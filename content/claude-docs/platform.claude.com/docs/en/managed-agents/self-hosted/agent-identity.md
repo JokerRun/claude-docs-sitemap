@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/agent-identity
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 3ee314909675782f236f54a4ed9c6e29cd54a8faca3c0f81658416d621c20491
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 0c0d741f1e0525b17c12b73520a1d8f8e9a623612f77d3ec084fd1e2311f72aa
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Have your self-hosted Claude Managed Agents server sign a short-liv
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 This page shows how to let the systems outside your server trust an agent, and where to keep the credentials that your agents use:

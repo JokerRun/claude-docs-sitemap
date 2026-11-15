@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 726d61cc5ceb2d3ee53acf46de80cb4eedc146e45d349a9f27eb830ba0c6d7a0
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 755f34580839e36cffedcc54e2c4f694d34c6e8cdcab484c3e56cd3c9600ccf1
 ---
 
 > ## Documentation Index
@@ -529,6 +529,17 @@ const { effective, provenance } = await resolveSettings({
 
 console.log(`Cleanup period: ${effective.cleanupPeriodDays} days`);
 console.log(`Set by: ${provenance.cleanupPeriodDays?.source}`);
+```
+
+### `matchDeniedModels()`
+
+Reports which of `models` a [`deniedModels`](https://code.claude.com/docs/en/settings-reference#deniedmodels) list blocks. `denied` holds one Boolean per model, `true` when an entry blocks it. `warnings` flags ignored input and entries that block more or less than they appear to. A `false` doesn't mean the model is allowed, because Claude Code also checks aliases and model overrides. This function is alpha and requires Agent SDK v0.3.323 or later.
+
+```typescript theme={null}
+function matchDeniedModels(
+  models: readonly string[],
+  deniedModels: readonly string[] | undefined
+): Promise<{ denied: boolean[]; warnings: string[] }>;
 ```
 
 ## Types
@@ -1420,7 +1431,7 @@ type CanUseTool = (
 | Option | Type | Description |
 | :- | :- | :- |
 | `signal` | `AbortSignal` | Signaled if the operation should be aborted |
-| `suggestions` | [`PermissionUpdate`](#permissionupdate)`[]` | Suggested permission updates so the user is not prompted again for this tool. Bash prompts include a suggestion with the `localSettings` [destination](#permissionupdatedestination), so returning it in `updatedPermissions` writes the rule to `.claude/settings.local.json` and persists across sessions. |
+| `suggestions` | [`PermissionUpdate`](#permissionupdate)`[]` | Suggested permission updates so the user is not prompted again for this tool. Bash prompts can include a suggestion with the `localSettings` [destination](#permissionupdatedestination), so returning it in `updatedPermissions` writes the rule to `.claude/settings.local.json` and persists across sessions. |
 | `blockedPath` | `string` | The file path that triggered the permission request, if applicable |
 | `mcpServer` | `{ name: string; source: string }` | For an `mcp__*` tool, the MCP server that serves it and where that server's definition came from, with the fields of [`McpServerProvenance`](#mcpserverprovenance). Absent for other tools. Requires Agent SDK v0.3.274 or later |
 | `decisionReason` | `string` | Explains why this permission request was triggered |
@@ -1603,7 +1614,7 @@ type McpServerToolPolicy = {
 Choose `always_ask` to approve each call yourself, or `always_deny` to block the tool outright:
 
 * **`always_ask`**: each call to the tool [needs approval](https://code.claude.com/docs/en/agent-sdk/permissions.md#how-permissions-are-evaluated), even if an `allowedTools` entry or allow rule covers it. The call goes to your `canUseTool` callback or [`permissionPromptToolName`](#options) tool, unless it's settled first. A [mod](https://code.claude.com/docs/en/plugins/mods/overview.md) in a plugin you load [can approve it first](https://code.claude.com/docs/en/permissions.md#precedence-among-rules-hooks-and-mods). Otherwise, in `dontAsk` mode it's denied, and in [`auto`, `plan`, and `bypassPermissions` mode](#permission-modes-that-can-approve-an-always_ask-call) it can be approved before it reaches your callback
-* **`always_deny`**: a call to the tool [is denied](https://code.claude.com/docs/en/agent-sdk/permissions.md#how-permissions-are-evaluated) in every permission mode, including `bypassPermissions`, but a mod in a plugin you load [can still approve it](https://code.claude.com/docs/en/permissions.md#precedence-among-rules-hooks-and-mods)
+* **`always_deny`**: Claude Code removes the tool from Claude's context in every permission mode, including `bypassPermissions`. Removal requires Claude Code v2.1.324 or later
 
 If you pass neither `canUseTool` nor `permissionPromptToolName`, or set [`permissionPrompts`](#options) to `'none'`, an `always_ask` call that isn't settled first is denied unless a [`PermissionRequest` hook](https://code.claude.com/docs/en/hooks#permissionrequest) allows it.
 
@@ -1731,6 +1742,7 @@ type SDKAssistantMessage = {
   user_message_uuid?: string;
   user_message_uuids?: string[];
   resume_reason?: string;
+  supersedes?: UUID[];
 };
 ```
 
@@ -1744,6 +1756,8 @@ The `message` field is a [`BetaMessage`](https://platform.claude.com/docs/en/api
 * `'cloud_credential_error'`: Claude Code couldn't obtain usable AWS or Google Cloud credentials on the machine it runs on, so no request reached the cloud provider. The usual cause is a cloud sign-in that expired or was never completed on that machine, though a briefly unreachable credential service reports the same value. See [Could not load AWS or Google Cloud credentials](https://code.claude.com/docs/en/errors.md#could-not-load-aws-or-google-cloud-credentials). Requires TypeScript Agent SDK v0.3.267 or later, which bundles Claude Code v2.1.267
 
 `aborted` is `true` when an interrupt or abort truncated the assistant message before the stream completed: the message has no `stop_reason` and the content may end mid-word. The field is absent on normally completed messages. It requires Agent SDK v0.3.214 or later.
+
+`supersedes` lists the UUIDs of earlier messages that this message replaces. Remove those messages from your display when this one arrives.
 
 `agent_id` identifies the subagent that produced the message and is absent on main-thread messages. The value equals the `task_id` on that subagent's [`task_started`](#sdktaskstartedmessage) and other task events, and is unchanged when the subagent is [resumed](https://code.claude.com/docs/en/agent-sdk/subagents.md#resume-subagents). On messages from a [nested subagent](https://code.claude.com/docs/en/sub-agents.md#let-subagents-spawn-their-own-subagents), it names the nested subagent, not the subagent that spawned it. The field requires Agent SDK v0.3.292 or later.
 
@@ -5728,6 +5742,8 @@ type SDKToolProgressMessage = {
 
 While a tool call runs in the main conversation, Claude Code emits a `tool_progress` message every 30 seconds with `heartbeat: true`. Each heartbeat carries the tool name and elapsed seconds, so you can distinguish a long-running call from a stalled session. Claude Code doesn't emit heartbeats for tool calls inside a subagent. The `heartbeat` field requires Agent SDK v0.3.214 or later. Before v2.1.257, Claude Code didn't emit heartbeats for a foreground Agent tool call either.
 
+On Agent SDK v0.3.323 or later, a heartbeat whose `tool_use_id` starts with `hook-` comes from a long-running hook, not a tool call. Its `tool_name` is the hook event name, such as `PreToolUse`.
+
 On `tool_progress` messages for the Agent tool other than heartbeats, `subagent_type` names the running subagent type, such as `general-purpose`. `subagent_retry` is present while that subagent waits out an API error backoff, such as a rate limit or overload, with one message per retry attempt. Both fields require Agent SDK v0.3.214 or later.
 
 To render a retry indicator from `subagent_retry`:
@@ -6096,7 +6112,7 @@ type SandboxSettings = {
 | :- | :- | :- | :- |
 | `enabled` | `boolean` | `false` | Enable sandbox mode for command execution |
 | `failIfUnavailable` | `boolean` | `true` | Stop at startup if `enabled` is `true` but the sandbox can't start. Set `false` to fall back to unsandboxed execution with a warning on stderr |
-| `autoAllowBashIfSandboxed` | `boolean` | `true` | Auto-approve Bash commands when sandbox is enabled |
+| [`autoAllowBashIfSandboxed`](https://code.claude.com/docs/en/settings-reference#sandbox-autoallowbashifsandboxed) | `boolean` | `false` | Auto-approve Bash commands when sandbox is enabled. The `false` default requires Agent SDK v0.3.324 or later |
 | `excludedCommands` | `string[]` | `[]` | Commands that bypass sandbox restrictions, such as `['docker *']`. These run unsandboxed automatically without model involvement; [`sandbox.excludedCommands`](https://code.claude.com/docs/en/settings-reference#sandbox-excludedcommands) covers when an entry applies |
 | `allowUnsandboxedCommands` | `boolean` | `true` | Allow the model to request running commands outside the sandbox. When `true`, the model can set `dangerouslyDisableSandbox` in tool input, which falls back to the [permissions system](#permissions-fallback-for-unsandboxed-commands) |
 | `network` | [`SandboxNetworkConfig`](#sandboxnetworkconfig) | `undefined` | Network-specific sandbox configuration |

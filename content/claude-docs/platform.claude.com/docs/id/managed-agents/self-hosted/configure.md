@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/configure
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: efbf6f594ae0aac5ba20fa602adef19a2225dda38c130613fca05b7f1aa467cd
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: d5292e763e85f93531727bb41d174c167724e6ad0b2d6816c47b253edafad492
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Izinkan orang dan layanan memanggil server Claude Managed Agents ya
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Secara default, server Anda menerima satu kunci bersama, yaitu [kunci API server](https://platform.claude.com/docs/id/managed-agents/self-hosted#the-three-credentials). Dengan “single sign-on” (masuk tunggal), setiap orang atau layanan juga dapat memanggil server dengan token dari penyedia identitas OpenID Connect (OIDC) Anda. Server memberikan peran kepada pemanggil berdasarkan grup di dalam token. Kunci API server tetap berfungsi sebagai kredensial administrator.

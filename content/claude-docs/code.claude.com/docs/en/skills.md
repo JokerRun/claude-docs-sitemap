@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 66e9c66c9aef6b8699520106c9ca1b8c197578046c2c0a296cc43423324341a5
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 654fd3e23932c9a0e0f79f382a348a231ed8add3944c7ef3e3cec543589a6060
 ---
 
 > ## Documentation Index
@@ -21,7 +21,10 @@ Create a skill when you keep pasting the same instructions, checklist, or multi-
 >
 > For built-in commands like `/help` and `/compact`, and bundled skills like `/debug` and `/code-review`, see the [commands reference](https://code.claude.com/docs/en/commands.md).
 >
-> **Custom commands have been merged into skills.** A file at `.claude/commands/deploy.md` and a skill at `.claude/skills/deploy/SKILL.md` both create `/deploy` and work the same way. Your existing `.claude/commands/` files keep working. Skills add optional features: a directory for supporting files, frontmatter to [control whether you or Claude invokes them](#control-who-invokes-a-skill), and the ability for Claude to load them automatically when relevant.
+> **Custom commands have been merged into skills.** Your existing `.claude/commands/` files keep working. Claude can invoke them without you typing the command. Edit a command to stop Claude from invoking it on its own, or convert a command that needs more than one file to a skill:
+>
+> * **Stop Claude from invoking a command on its own**: add [`disable-model-invocation: true`](#control-who-invokes-a-skill) to the command file's [frontmatter](#frontmatter-reference)
+> * **Add [supporting files](#add-supporting-files) such as scripts**: convert the command to a skill. For example, move `.claude/commands/deploy.md` to `.claude/skills/deploy/SKILL.md`. The [folder name becomes the command](#how-a-skill-gets-its-command-name), so you still type `/deploy`.
 
 Claude Code skills follow the [Agent Skills](https://agentskills.io) open standard, which works across multiple AI tools. Claude Code extends the standard with additional features like [invocation control](#control-who-invokes-a-skill), [subagent execution](#run-skills-in-a-subagent), and [dynamic context injection](#inject-dynamic-context). See [Using skill frontmatter outside Claude Code](#using-skill-frontmatter-outside-claude-code) for which frontmatter fields are part of the standard and which are Claude Code extensions.
 
@@ -319,7 +322,7 @@ What Claude Code does with a synced skill's body depends on where the session ru
 
 * In a cloud session, the body keeps the behavior a local skill has, because the session runs in an isolated container.
 * In a Cowork session on your desktop, the body keeps the behavior a local skill has, except that Claude Code replaces every `!` command line with the [`disableSkillShellExecution` placeholder](#inject-dynamic-context), as it does for every skill you supply there.
-* In any other session on your machine, Claude Code doesn't run [`!` commands](#inject-dynamic-context), doesn't attach the files that `@` references name the way it does for a local skill, and doesn't substitute the `${CLAUDE_PROJECT_DIR}` and `${CLAUDE_SESSION_ID}` placeholders, so the `@` references and both placeholders reach Claude as literal text. A `!` command line reaches Claude as literal text too, or as that placeholder when `disableSkillShellExecution` is on. This handling requires Claude Code v2.1.228 or later.
+* In a terminal or VS Code session, Claude Code doesn't run [`!` commands](#inject-dynamic-context), doesn't attach the files that `@` references name, and doesn't substitute the `${CLAUDE_PROJECT_DIR}` and `${CLAUDE_SESSION_ID}` placeholders. The `@` references and both placeholders reach Claude as literal text. A `!` command line reaches Claude as literal text too, or as the `disableSkillShellExecution` placeholder when that setting is on. This handling requires Claude Code v2.1.228 or later.
 
 ### Edit a skill during a session
 
@@ -587,15 +590,15 @@ Deploy $ARGUMENTS to production:
 4. Verify the deployment succeeded
 ```
 
-If Claude tries anyway, Claude Code blocks the call and instructs it not to reproduce the deploy steps another way, so expect Claude to suggest running `/deploy` yourself.
+If Claude tries when your message doesn't include `/deploy` as a [separate word with no punctuation attached](#where-you-write-the-skills-name), Claude Code blocks the call. Expect Claude to suggest running `/deploy` yourself.
 
 Here's how the two fields affect invocation and context loading:
 
 | Frontmatter | You can invoke | Claude can invoke | When loaded into context |
 | :- | :- | :- | :- |
-| (default) | Yes | Yes | Description always in context, full skill loads when invoked |
+| (default) | Yes | Yes | Description in context, full skill loads when invoked |
 | `disable-model-invocation: true` | Yes | Not on its own | Description not in context, full skill loads when invoked |
-| `user-invocable: false` | No | Yes | Description always in context, full skill loads when invoked |
+| `user-invocable: false` | No | Yes | Description in context, full skill loads when invoked |
 
 > [!NOTE]
 >
@@ -626,7 +629,7 @@ If Claude stops following a skill partway through a session, see [Claude stops f
 
 The `allowed-tools` field grants permission for the listed tools during the turn that invokes the skill, so Claude can use them without prompting you for approval. The grant clears when you send your next message, even though the skill content [stays in context](#skill-content-lifecycle); invoking the skill again re-applies it for that turn. It does not restrict which tools are available: every tool remains callable, and your [permission settings](https://code.claude.com/docs/en/permissions.md) still govern tools that are not listed. To pre-approve tools for the whole session rather than a single turn, add allow rules to those permission settings instead.
 
-Workspace trust doesn't gate this field. Claude Code applies a project skill's `allowed-tools` even in a `-p` run in a folder you've never trusted. A skill can grant itself broad tool access, so review the `allowed-tools` of skills checked into a repository before you run Claude Code there. To withhold the field from repository skills across your organization, see [When only managed permission rules apply](#when-only-managed-permission-rules-apply).
+Claude Code applies a project skill's `allowed-tools` even in a `-p` run in a folder you've never trusted. A skill can grant itself broad tool access, so review the `allowed-tools` of skills checked into a repository before you run Claude Code there. To withhold the field from repository skills across your organization, see [When only managed permission rules apply](#when-only-managed-permission-rules-apply).
 
 This skill lets Claude run git commands without per-use approval whenever you invoke it:
 
@@ -714,7 +717,7 @@ Claude Code expands the first skill plus up to five more stacked after it. Expan
 
 ### Inject dynamic context
 
-The `` !`<command>` `` syntax runs shell commands before the skill content is sent to Claude. The command output replaces the placeholder, so Claude receives actual data, not the command itself. Claude Code doesn't run these commands on your machine when the skill is [synced from your claude.ai account](#how-claude-code-handles-the-body-of-a-synced-skill). This restriction requires Claude Code v2.1.228 or later.
+The `` !`<command>` `` syntax runs shell commands before the skill content is sent to Claude. The command output replaces the placeholder, so Claude receives actual data, not the command itself. For a skill synced from your claude.ai account, see [How Claude Code handles the body of a synced skill](#how-claude-code-handles-the-body-of-a-synced-skill).
 
 This skill summarizes a pull request by fetching live PR data with the GitHub CLI. The `` !`gh pr diff` `` and other commands run first, and their output gets inserted into the prompt:
 
@@ -752,7 +755,7 @@ git status --short
 
 To disable this behavior for skills and custom commands from user, project, plugin, or [additional-directory](#skills-from-additional-directories) sources, set `"disableSkillShellExecution": true` in [settings](https://code.claude.com/docs/en/settings.md). Each command is replaced with `[shell command execution disabled by policy]` instead of being run. Bundled and managed skills are not affected. This setting is most useful in [managed settings](https://code.claude.com/docs/en/managed-settings.md), where users cannot override it.
 
-Claude Code never runs these commands on your machine when they appear in skills [synced from your claude.ai account](#how-synced-skills-behave), regardless of this setting. This restriction requires Claude Code v2.1.228 or later. [How Claude Code handles the body of a synced skill](#how-claude-code-handles-the-body-of-a-synced-skill) says what Claude receives in place of the command in each kind of session.
+In a terminal or VS Code session, Claude Code doesn't run these commands in skills [synced from your claude.ai account](#how-synced-skills-behave), regardless of this setting. This restriction requires Claude Code v2.1.228 or later.
 
 > [!TIP]
 >
@@ -800,7 +803,7 @@ Outside [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminat
 
 * **Deny and ask rules**: a command that one of them matches still aborts. To find the rule, see [Manage permissions](https://code.claude.com/docs/en/permissions.md#manage-permissions).
 * **Managed-only rules**: if `/status` in the session lists the skill under `allowed-tools ignored this session`, see [When only managed permission rules apply](#when-only-managed-permission-rules-apply).
-* **Unverified Git folders**: where a `HEAD` or `.git` file may not be yours, Claude Code ignores `allowed-tools` for a Bash command that contains `git` or that Claude Code can't parse. If you trust the folder, for example your own bare repository's worktree, allow the command with [`/permissions`](https://code.claude.com/docs/en/permissions#manage-permissions) in the session.
+* **Bare repository folders**: a folder looks bare when it holds a `HEAD` file directly beside `refs` or `commondir`. When the closest repository at or above the working directory looks bare, Claude Code ignores `allowed-tools` for a Bash command that contains `git` or that Claude Code can't parse. If you trust that folder, allow the command with [`/permissions`](https://code.claude.com/docs/en/permissions#manage-permissions) in the session.
 
 In auto mode, a command that would otherwise need your approval doesn't abort the invocation. The skill loads with an instruction telling Claude to run the command first, and Claude's own call then goes through [auto mode's usual checks](https://code.claude.com/docs/en/permission-modes.md#how-the-classifier-evaluates-actions). The invocation still aborts in a [forked skill](#run-skills-in-a-subagent) that sets `agent`, and in a session where Claude doesn't have the [shell tool that runs injected commands](#how-injected-commands-run).
 
@@ -883,10 +886,10 @@ Three ways to control which skills Claude can invoke:
 Skill
 ```
 
-**Allow or deny specific skills** using [permission rules](https://code.claude.com/docs/en/permissions.md):
+**Allow or deny specific skills** using [permission rules](https://code.claude.com/docs/en/permissions.md). When you add allow rules, Claude isn't limited to the skills they name.
 
 ```text theme={null}
-# Allow only specific skills
+# Allow rules: skip the prompt
 Skill(commit)
 Skill(review-pr *)
 

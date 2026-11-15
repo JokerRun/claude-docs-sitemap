@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/call-the-api
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 31f94d77e4098391ab0034e96582d590158c54fef5e4e1557d06a4b4a5f03994
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 0eaea1984d7c7b37f6363502d5f732d0b11ec26f13f73ab65bedae25b1d8a02c
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Arahkan SDK resmi, cURL, atau CLI ant ke server Claude Managed Agen
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Server Claude Managed Agents yang di-host sendiri memiliki API yang sama dengan layanan [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) yang di-hosting oleh Anthropic. Kode Anda memanggilnya dengan SDK resmi, cURL, atau CLI `ant`. Ada dua hal yang berubah: “base URL” (URL dasar) adalah alamat server Anda, dan kunci API adalah [kunci API server](https://platform.claude.com/docs/id/managed-agents/self-hosted#the-three-credentials) Anda, bukan kunci API Claude.

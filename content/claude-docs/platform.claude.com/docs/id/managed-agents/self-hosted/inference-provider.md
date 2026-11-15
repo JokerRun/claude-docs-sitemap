@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/inference-provider
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 52919688f0967ee17e4e08c7efcbe14994f5f80f9276d1ed416834e60864021b
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 734aefcadf9e81a6fdae3897082b52750d464469359585d014b8d3cf1696007d
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Kirim panggilan model dari server Claude Managed Agents yang Anda h
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Secara default, server Anda mengirim panggilan model ke Claude API. Halaman ini menunjukkan cara mengirimnya ke penyedia cloud, atau ke model gateway yang Anda jalankan. Untuk mengubah penyedia:

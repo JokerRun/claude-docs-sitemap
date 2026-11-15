@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/configuration-reference
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 3579077341975cda2b16406a979b07e3d8ae5137d7035489373e879644fadc3d
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 538d8fcb01d6777461350f0c0da748f28e1092dfef6776f38aefd3017c895f72
 ---
 
 ---
@@ -12,7 +12,7 @@ description: See where the settings of a self-hosted Claude Managed Agents serve
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 This page shows where the settings of a self-hosted Claude Managed Agents server go, and lists them. To set up a feature, see [Single sign-on](https://platform.claude.com/docs/en/managed-agents/self-hosted/configure), [Agent identity and credentials](https://platform.claude.com/docs/en/managed-agents/self-hosted/agent-identity), and [Inference provider](https://platform.claude.com/docs/en/managed-agents/self-hosted/inference-provider).

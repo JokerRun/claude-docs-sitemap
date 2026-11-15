@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 39a957ad8ed5946d5bef94abf29bbd8f91d164802de7f1b3dbb9745df95401fd
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: bcf7ba8147a9a8cf3261e383cc50151958576a72233d30716c94a39c3fe71cce
 ---
 
 > ## Documentation Index
@@ -483,7 +483,7 @@ If the name doesn't arrive, check for one of these causes:
 * **You set it on the computer that runs Desktop**: Desktop doesn't pass a value you set there to the SSH session
 * **You exported it in `/etc/profile` or another file that only login shells read**: the name arrives when you run `claude` from a login shell, but not in a Desktop SSH session. Desktop doesn't start Claude Code through a login shell. Set the variable under `env` in the [managed settings file](https://code.claude.com/docs/en/desktop.md#managed-settings) on the remote machine instead.
 * **A value has a space inside it**: Claude Code then copies none of the keys onto events or datapoints. To see which value has the space, run `/status` in a session on the remote machine. [Take the space out of the value](#multi-team-organization-support).
-* **Something else already sets the variable**: in a session that the desktop app starts, a variable already set in the launch environment [takes precedence over settings files](https://code.claude.com/docs/en/settings-reference.md#how-env-values-interact-with-your-shell). The [debug log](https://code.claude.com/docs/en/debug-your-config.md) names each ignored variable. When a third-party Desktop deployment [names an OTLP endpoint](#how-managed-settings-lock-the-otlp-destination) in the environment it provides, that environment carries Desktop's own `OTEL_RESOURCE_ATTRIBUTES`.
+* **Something else already sets the variable**: in a session that the desktop app starts, a variable already set in the launch environment [takes precedence over settings files](https://code.claude.com/docs/en/settings-reference.md#how-env-values-interact-with-your-shell). The [debug log](https://code.claude.com/docs/en/debug-your-config.md) can name an ignored variable. When a third-party Desktop deployment [names an OTLP endpoint](#how-managed-settings-lock-the-otlp-destination) in the environment it provides, that environment carries Desktop's own `OTEL_RESOURCE_ATTRIBUTES`.
 
 ### Example configurations
 
@@ -710,12 +710,12 @@ The `agent.name`, `skill.name`, `plugin.name`, `mcp_server.name`, and `mcp_tool.
 
 * All [standard attributes](#standard-attributes)
 * `model`: Model identifier (for example, "claude-sonnet-5")
-* `query_source`: Category of the subsystem that issued the request. One of `"main"`, `"subagent"`, or `"auxiliary"`
+* `query_source`: Category of the subsystem that issued the request. One of `"main"`, `"subagent"`, `"auxiliary"`, `"plugin_model_complete"`, or `"plugin_model_classify"`. The last two mark the requests a [mod](https://code.claude.com/docs/en/plugins/mods/overview.md) makes with `$.model.complete` or `$.model.classify`. Claude Code counts those requests from v2.1.324, so totals can step up after you upgrade.
 * `speed`: `"fast"` when the request used fast mode. Absent otherwise
 * `effort`: [Effort level](https://code.claude.com/docs/en/model-config.md#adjust-effort-level) applied to the request: `"low"`, `"medium"`, `"high"`, `"xhigh"`, or `"max"`. Absent when Claude Code sends no effort level, for example on a model that doesn't support effort.
 * `agent.name`: Subagent type that issued the request. Built-in agent names and agents from official-marketplace plugins appear verbatim. Other user-defined agent names are replaced with `"custom"`. Absent when the request was not issued by a named subagent type.
 * `skill.name`: Skill active for the request, set by the Skill tool or a `/` command, or inherited by a spawned subagent. Built-in, bundled, user-defined, and official-marketplace plugin skill names appear verbatim. Third-party plugin skill names are replaced with `"third-party"`. Absent when no skill is active.
-* `plugin.name`: Owning plugin when the active skill or subagent is provided by a plugin. Official-marketplace plugin names appear verbatim. Third-party plugin names are replaced with `"third-party"`. Absent when neither the skill nor the subagent has an owning plugin.
+* `plugin.name`: Owning plugin when the active skill or subagent is provided by a plugin, or the plugin whose `$.model` call made the request. Official-marketplace plugin names appear verbatim. Third-party plugin names are replaced with `"third-party"`. Absent for other requests.
 * `marketplace.name`: Marketplace the owning plugin was installed from. Only emitted for official-marketplace plugins, even with `OTEL_LOG_TOOL_DETAILS=1` set. Absent otherwise.
 * `mcp_server.name`: MCP server whose tool result this request consumed. Built-in, claude.ai-proxied, and official-registry server names appear verbatim. User-configured server names are replaced with `"custom"`. Absent when the request consumed no MCP tool result. Before v2.1.222, Claude Code set this attribute on every request after an MCP tool call, not only on requests that consumed a tool result, so dashboards that aggregate it show a step down after you upgrade.
   * From v2.1.312, the name of a remote server with a fixed URL that a plugin from Anthropic's official marketplace declares also appears verbatim, as `plugin_<plugin>_<server>`. That name is replaced with `"custom"` when the plugin's marketplace copy didn't come from Anthropic's registered source, such as one mounted from a seed directory in a cloud session.
@@ -730,7 +730,7 @@ Incremented after each API request.
 * All [standard attributes](#standard-attributes)
 * `type`: (`"input"`, `"output"`, `"cacheRead"`, `"cacheCreation"`). The `"input"` type excludes tokens read from or written to the prompt cache, which are counted under `"cacheRead"` and `"cacheCreation"`. The `"cacheCreation"` type counts cache writes with the five-minute and one-hour [cache lifetimes](https://code.claude.com/docs/en/prompt-caching.md#cache-lifetime) together.
 * `model`: Model identifier (for example, "claude-sonnet-5")
-* `query_source`: Category of the subsystem that issued the request. One of `"main"`, `"subagent"`, or `"auxiliary"`
+* `query_source`: Category of the subsystem that issued the request. See [Cost counter](#cost-counter) for the values.
 * `speed`: `"fast"` when the request used fast mode. Absent otherwise
 * `effort`: [Effort level](https://code.claude.com/docs/en/model-config.md#adjust-effort-level) applied to the request. See [Cost counter](#cost-counter) for details.
 * `agent.name`, `skill.name`, `plugin.name`, `marketplace.name`, `mcp_server.name`, `mcp_tool.name`: Skill, plugin, agent, and MCP attribution for the request. See [Cost counter](#cost-counter) for definitions and redaction behavior.
@@ -879,7 +879,7 @@ Logged for each API request to Claude.
 * `speed`: `"fast"` or `"normal"`, indicating whether fast mode was active
 * `query_source`: Subsystem that issued the request, such as `"repl_main_thread"`, `"compact"`, or a subagent name
 * `effort`: [Effort level](https://code.claude.com/docs/en/model-config.md#adjust-effort-level) applied to the request: `"low"`, `"medium"`, `"high"`, `"xhigh"`, or `"max"`. Absent when Claude Code sends no effort level, for example on a model that doesn't support effort.
-* `agent.name`, `skill.name`, `plugin.name`, `marketplace.name`, `mcp_server.name`, `mcp_tool.name`: Skill, plugin, agent, and MCP attribution for the request. See [Cost counter](#cost-counter) for definitions and redaction behavior.
+* `agent.name`, `skill.name`, `plugin.name`, `marketplace.name`, `mcp_server.name`, `mcp_tool.name`: Skill, plugin, agent, and MCP attribution for the request. See [Cost counter](#cost-counter) for definitions and redaction behavior. When a [mod](https://code.claude.com/docs/en/plugins/mods/overview.md) from outside the official marketplace and built-in bundle calls [`$.model`](https://code.claude.com/docs/en/plugins/mods/api#call-a-model), `marketplace.name` is also present, redacted to `"third-party"` unless you set `OTEL_LOG_TOOL_DETAILS=1`.
 
 #### API error event
 
@@ -903,7 +903,7 @@ Logged when an API request to Claude fails.
 * `speed`: `"fast"` or `"normal"`, indicating whether fast mode was active
 * `query_source`: Subsystem that issued the request, such as `"repl_main_thread"`, `"compact"`, or a subagent name
 * `effort`: [Effort level](https://code.claude.com/docs/en/model-config.md#adjust-effort-level) applied to the request. Absent when Claude Code sends no effort level, for example on a model that doesn't support effort.
-* `agent.name`, `skill.name`, `plugin.name`, `marketplace.name`, `mcp_server.name`, `mcp_tool.name`: Skill, plugin, agent, and MCP attribution for the request. See [Cost counter](#cost-counter) for definitions and redaction behavior.
+* `agent.name`, `skill.name`, `plugin.name`, `marketplace.name`, `mcp_server.name`, `mcp_tool.name`: Skill, plugin, agent, and MCP attribution for the request. See [Cost counter](#cost-counter) for definitions and redaction behavior. For `marketplace.name` on a mod's `$.model` calls, see [`api_request`](#api-request-event).
 
 #### API refusal event
 

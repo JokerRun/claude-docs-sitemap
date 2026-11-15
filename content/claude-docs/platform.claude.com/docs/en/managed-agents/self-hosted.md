@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: d8cd76bef5ea3754f010d10ae274991cb1d52b9aacdfb570ab5f920b35729d94
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: d5ef417c1ee31bd29fc3ec7ad7d0c56dbdc74b5bd8b7743439bf81542b650f42
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Host the Claude Managed Agents service and its sandboxes on your ow
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 Self-hosted Claude Managed Agents is Managed Agents on your own infrastructure, which can be a cloud account or an on-premise data center. You host the service and the sandboxes. The model runs at Anthropic or at a provider that you choose.
@@ -92,7 +92,7 @@ For each model call, the server sends the conversation so far, including tool in
 
 ## Where to start
 
-To request access to the download, contact your Anthropic account team. Then follow [Get started with self-hosted Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/self-hosted/quickstart) to start a server and run a first session.
+To request access to the download, contact your Anthropic account team. If your organization already has access, follow the note at the top of this page. Then follow [Get started with self-hosted Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/self-hosted/quickstart) to start a server and run a first session.
 
 Each release’s archive includes an operator guide for that version, `operator-guide.md`. Have Claude read that file, so that Claude can help you configure and run your server and write code that connects to it.
 

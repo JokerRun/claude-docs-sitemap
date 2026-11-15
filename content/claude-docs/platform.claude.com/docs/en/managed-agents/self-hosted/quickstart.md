@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/quickstart
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c565df065bcef91c9c26e6d61dcb7b0c99fbdda5a7a80b46ec64ad0e892688ef
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 477c447d0b9270c9737dde10672ef6196ab63f517be4541193dac3ed026f34a1
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Start self-hosted Claude Managed Agents on one machine with Docker 
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 In this quickstart, you start self-hosted Claude Managed Agents on one machine with Docker Compose. The Compose stack is the server, its PostgreSQL database, and a set of workers that run each session in a sandbox container of its own. You then chat with an agent from your terminal and confirm that its tool calls ran in a sandbox container. You can then open the session in the [console on your server](https://platform.claude.com/docs/en/managed-agents/self-hosted/console).
@@ -40,7 +40,7 @@ If you’re an agent that runs these steps for a person:
 
 ## Prerequisites
 
-* **The release archive:** To request access to the download, contact your Anthropic account team.
+* **The release archive:** To request access to the download, contact your Anthropic account team. If your organization already has access, follow the note at the top of this page.
 * **A Claude API key:** The server uses it for model calls. Create one in the [Claude Console](https://platform.claude.com/settings/keys).
 * **Docker:** The [latest version of Docker Engine](https://docs.docker.com/engine/install/) with the Compose plugin (`docker compose`, not the older `docker-compose`).
 * **A host with at least two CPUs:** x86-64 or Arm. On a smaller host, set `CMA_SANDBOX_CPUS` to its CPU count when you create `.env`.

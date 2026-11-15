@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/manifest-reference
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 1bfc3252191281cb3248bfa43111e240b467257bad36613dd79bd3c28c59a4b2
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: f5d88a52b3bf6ef52b249dc230df025d4915701459a6947375e87740ffc75ffc
 ---
 
 > ## Documentation Index
@@ -313,8 +313,8 @@ An `mcpServers` value takes one of these shapes:
 | Shape | Example value | What Claude Code does |
 | :- | :- | :- |
 | `.json` file path | `"./mcp/servers.json"` | Reads the file as an `mcpServers` map |
-| MCP bundle path | `"./bundle.mcpb"` | Extracts the `.mcpb` or `.dxt` bundle into `.mcpb-cache/` under the plugin root and reads its server config |
-| MCP bundle URL | `"https://example.com/server.mcpb"` | Downloads the bundle into `.mcpb-cache/`, then reads it |
+| MCP bundle path | `"./bundle.mcpb"` | Extracts the `.mcpb` or `.dxt` bundle into `mcpb/` under the [plugins root](https://code.claude.com/docs/en/plugins/loading.md#find-plugins-on-disk) and reads its server config |
+| MCP bundle URL | `"https://example.com/server.mcpb"` | Downloads the bundle, then extracts and reads it the same way |
 | Inline map | `{ "deploy-api": { "command": "node", "args": ["${CLAUDE_PLUGIN_ROOT}/server.js"] } }` | Uses the map as server configs keyed by name |
 
 A bundle path or URL must end in `.mcpb` or `.dxt`. Any other extension fails validation.

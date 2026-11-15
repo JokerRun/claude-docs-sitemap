@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 521b3a8891f33d7f8d9eec3628dd6d4aa6523e10cc7c6956ef25013634e8b40a
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 75de361c2bc74c0abebdef694caf25c92df5eb694e822e993a03fb6efecfe90f
 ---
 
 ---
@@ -20,9 +20,17 @@ Setiap organisasi memiliki **workspace default** yang tidak dapat diganti nama, 
 Karakteristik utama:
 
 * **Pengidentifikasi workspace** menggunakan awalan `wrkspc_` (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`).
+
 * **Maksimum 100 workspace** untuk setiap organisasi secara default (workspace yang diarsipkan tidak dihitung). Hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
-* **Workspace default** memiliki ID `wrkspc_` seperti workspace lainnya (dikembalikan dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response) dan diterima oleh [Dapatkan Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve)), tetapi hanya muncul dalam hasil [Daftar Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`. [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) melaporkan penggunaan dan biayanya di bawah ID tersebut, sedangkan laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) versi lama menampilkan `null` untuk `workspace_id`-nya (field `scope` pada kunci API memuat ID sebenarnya untuk kunci yang terikat ke workspace default).
-* **Kunci API** dapat dibatasi cakupannya ke satu workspace. Dalam hal ini, kunci tersebut hanya dapat mengakses sumber daya di dalam workspace itu. Kunci API lainnya tidak dibatasi ke workspace. Dengan salah satu kunci ini, kirimkan [header ID workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) pada setiap permintaan untuk memilih workspace. Pengguna atau akun layanan pemilik kunci tersebut harus memiliki akses ke workspace itu.
+
+* **Workspace default** memiliki ID `wrkspc_` seperti workspace lainnya:
+
+  * Respons API memuat ID tersebut dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response), dan [Dapatkan Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) menerimanya.
+  * [Daftar Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/list) menyertakan workspace default hanya ketika Anda meneruskan `include_default=true`.
+  * [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) melaporkan penggunaan dan biayanya di bawah ID tersebut. Laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) versi lama menampilkan `null` untuk `workspace_id`-nya.
+  * Untuk kunci API yang terikat ke workspace default, field `scope` pada kunci tersebut memuat ID itu.
+
+* **Kunci API** dapat dibatasi cakupannya ke satu workspace. Dalam hal ini, kunci tersebut hanya dapat mengakses sumber daya di dalam workspace itu. Kunci API lainnya tidak dibatasi ke workspace. Dengan salah satu kunci ini, kirimkan [header ID workspace](https://platform.claude.com/docs/id/manage-claude/authentication#select-a-workspace) pada setiap permintaan untuk memilih workspace. Pengguna atau akun layanan pemilik kunci tersebut harus memiliki akses ke workspace itu. Untuk jenis-jenis kunci, lihat [Kunci API dan pencakupan sumber daya](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping).
 
 ### Workspace Claude Code
 
@@ -43,13 +51,18 @@ Workspace Claude Code menjaga lalu lintas Claude Code terpisah dari beban kerja 
 
 Anggota dapat memiliki peran yang berbeda di setiap workspace, memungkinkan kontrol akses yang terperinci.
 
-| Peran                        | Izin                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Pengguna Ruang Kerja         | Hanya menggunakan playground                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| Developer Terbatas Workspace | Membuat dan mengelola kunci API, menggunakan API<br />Untuk [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) di Claude Console, anggota dengan peran ini tidak dapat membuka atau memulai sesi, membuka memory store, atau mengelola deployment. Mereka juga tidak dapat mengunduh atau menghapus file di halaman [File](https://platform.claude.com/files) Console. Batasan ini hanya berlaku untuk antarmuka Console, bukan untuk API. |
-| Pengembang Ruang Kerja       | Membuat dan mengelola kunci API, menggunakan API                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Admin Ruang Kerja            | Kontrol penuh atas pengaturan dan anggota workspace                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| Penagihan ruang kerja        | Melihat informasi penagihan workspace (diwarisi dari peran penagihan organisasi)                                                                                                                                                                                                                                                                                                                                                                                             |
+| Peran                        | Izin                                                                                                                           |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| Pengguna Ruang Kerja         | Hanya menggunakan playground                                                                                                   |
+| Developer Terbatas Workspace | Membuat dan mengelola kunci API, menggunakan API (dengan beberapa batasan di Claude Console, yang tercantum setelah tabel ini) |
+| Pengembang Ruang Kerja       | Membuat dan mengelola kunci API, menggunakan API                                                                               |
+| Admin Ruang Kerja            | Kontrol penuh atas pengaturan dan anggota workspace                                                                            |
+| Penagihan ruang kerja        | Melihat informasi penagihan workspace (diwarisi dari peran penagihan organisasi)                                               |
+
+Batasan berikut hanya berlaku untuk antarmuka Claude Console, bukan untuk API. Di Console, Developer Terbatas Workspace tidak dapat:
+
+* Membuka atau memulai sesi, membuka memory store, atau mengelola deployment untuk [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
+* Mengunduh atau menghapus file di halaman [File](https://platform.claude.com/files)
 
 ### Pewarisan peran
 
@@ -127,10 +140,7 @@ Untuk mengubah nama atau warna workspace:
 
 #### Menetapkan batas workspace
 
-Anda menetapkan batas laju dan batas pengeluaran workspace di tempat yang berbeda:
-
-* **Batas laju:** Di bawah [Batas laju di Claude Console](https://platform.claude.com/usage/limits), pilih workspace dari menu dropdown **Ruang kerja** dan klik **Edit** di samping model untuk menetapkan batas permintaan per menit, token input, atau token output.
-* **Batas pengeluaran:** Di halaman [Ruang kerja](https://platform.claude.com/settings/workspaces) di Claude Console, pilih workspace. Di panel yang terbuka, klik **Batas pengeluaran** untuk membatasi pengeluaran bulanan dan mengonfigurasi peringatan ketika pengeluaran mencapai ambang batas tertentu.
+Anda menetapkan batas pengeluaran dan batas laju workspace di halaman Console yang berbeda. Untuk langkah-langkahnya, lihat [Menetapkan batas workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#setting-workspace-limits).
 
 #### Mengarsipkan workspace
 
@@ -149,10 +159,10 @@ Untuk mengarsipkan workspace, buka menu **Tindakan lainnya** (tiga titik) dan pi
 Kelola workspaces secara terprogram menggunakan [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api).
 
 <Note>
-  Endpoint Admin API menerima [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth `org:admin`, atau kunci akun pribadi atau layanan yang tidak dicakupkan ke workspace tertentu. Kunci workspace tidak berfungsi di sana. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication).
+  Endpoint Admin API menerima [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys), token OAuth `org:admin`, atau kunci akun pribadi atau layanan yang tidak dicakupkan ke workspace tertentu. Kunci yang dicakupkan ke satu workspace, termasuk [kunci workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping), tidak berfungsi di sana. Lihat [Autentikasi Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication).
 </Note>
 
-Contoh SDK dan CLI berikut membuat klien default, yang membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`; SDK mengekspos endpoint ini di bawah `client.organization.workspaces` (csharp, go: `client.Organization.Workspaces`; java: `client.organization().workspaces()`; php: `$client->organization->workspaces`). Metode list SDK mengambil halaman berikutnya sesuai permintaan, sehingga `limit` menetapkan ukuran halaman; contoh PHP, Ruby, dan curl mengembalikan satu halaman.
+Contoh berikut membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`. SDK mengekspos endpoint ini di bawah `client.organization.workspaces` (csharp, go: `client.Organization.Workspaces`; java: `client.organization().workspaces()`; php: `$client->organization->workspaces`).
 
 Membuat workspace:
 
@@ -254,6 +264,7 @@ Mendaftar workspaces:
 
 <CodeGroup>
   ```bash cURL
+  # Mengembalikan satu halaman.
   curl "https://api.anthropic.com/v1/organizations/workspaces?limit=10&include_archived=false" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21"
@@ -268,6 +279,7 @@ Mendaftar workspaces:
 
   workspaces = client.organization.workspaces.list(limit=10, include_archived=False)
 
+  # Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menetapkan ukuran halaman, bukan total.
   for workspace in workspaces:
       print(f"{workspace.id}: {workspace.name}")
   ```
@@ -280,6 +292,7 @@ Mendaftar workspaces:
     include_archived: false
   });
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
   for await (const workspace of workspaces) {
     console.log(`${workspace.id}: ${workspace.name}`);
   }
@@ -294,6 +307,7 @@ Mendaftar workspaces:
       IncludeArchived = false
   });
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `Limit` menentukan ukuran halaman, bukan total.
   await foreach (var workspace in workspaces.Paginate())
   {
       Console.WriteLine($"{workspace.ID}: {workspace.Name}");
@@ -308,6 +322,7 @@ Mendaftar workspaces:
   	IncludeArchived: anthropic.Bool(false),
   })
 
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `Limit` menentukan ukuran halaman, bukan total.
   for workspaces.Next() {
   	workspace := workspaces.Current()
   	fmt.Printf("%s: %s\n", workspace.ID, workspace.Name)
@@ -329,6 +344,7 @@ Mendaftar workspaces:
           .build();
       var workspaces = client.organization().workspaces().list(params);
 
+      // Otomatis mengambil halaman tambahan sesuai kebutuhan, jadi `limit` menetapkan ukuran halaman, bukan jumlah total.
       for (var workspace : workspaces.autoPager()) {
           IO.println(workspace.id() + ": " + workspace.name());
       }
@@ -343,7 +359,8 @@ Mendaftar workspaces:
       includeArchived: false,
   );
 
-  foreach ($workspaces->getItems() as $workspace) {
+  // Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menentukan ukuran halaman, bukan total.
+  foreach ($workspaces->pagingEachItem() as $workspace) {
       echo "{$workspace->id}: {$workspace->name}\n";
   }
   ```
@@ -353,7 +370,8 @@ Mendaftar workspaces:
 
   workspaces = client.organization.workspaces.list(limit: 10, include_archived: false)
 
-  workspaces.data.each do |workspace|
+  # Otomatis mengambil halaman berikutnya sesuai kebutuhan, jadi `limit` menetapkan ukuran halaman, bukan total.
+  workspaces.auto_paging_each do |workspace|
     puts "#{workspace.id}: #{workspace.name}"
   end
   ```
@@ -830,7 +848,7 @@ Untuk detail parameter lengkap, lihat [referensi API anggota workspace](https://
 
 ## Kunci API dan pencakupan sumber daya
 
-Setiap permintaan berjalan di tepat satu workspace dan hanya dapat mengakses sumber daya dalam workspace tersebut. Workspace mana bergantung pada [jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types):
+Selain permintaan tingkat organisasi, seperti permintaan Admin API, setiap permintaan berjalan di tepat satu workspace. Permintaan tersebut hanya dapat mengakses sumber daya dalam workspace tersebut. Workspace mana bergantung pada [jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types):
 
 * Sebuah **kunci workspace** (kunci lama tanpa pemilik) milik workspace tempat kunci tersebut dibuat dan selalu berjalan di sana.
 * **Kunci pribadi** atau **kunci akun layanan** bertindak sebagai pengguna atau akun layanannya. Kunci satu-workspace selalu berjalan di workspace yang dipilih saat kunci itu dibuat. Kunci yang tidak dibatasi ke workspace berjalan di workspace yang disebutkan oleh header `anthropic-workspace-id` pada setiap permintaan. Akun harus memiliki akses ke workspace untuk menggunakannya.
@@ -843,7 +861,12 @@ Sumber daya yang dicakupkan ke workspaces meliputi:
 
 Beberapa sumber daya dikelola secara berbeda:
 
-* **[Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview)** dikelola dengan token OAuth `workspace:manage_tunnels` yang diperoleh melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation), bukan kunci API. Tunnels dibuat di workspace, dan daftar **Tunnel MCP** Console serta pemilih server Managed Agent menampilkan tunnels di workspace saat ini saja; batas 10 tunnels aktif berlaku di seluruh organisasi. Pengelolaan tunnel memerlukan peran dengan izin pengelolaan tunnel; developer organisasi dapat melihat tetapi tidak mengubahnya.
+* **[Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview)** dikelola dengan token OAuth `workspace:manage_tunnels` yang diperoleh melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation), bukan kunci API.
+
+  * Tunnels dibuat di workspace. Daftar **Tunnel MCP** Console serta pemilih server MCP untuk Claude Managed Agents menampilkan tunnels di workspace saat ini saja.
+  * Batas 10 tunnels aktif berlaku di seluruh organisasi.
+  * Pengelolaan tunnel memerlukan izin Manage tunnels (mengelola tunnel), yang dimiliki oleh admin dan pemilik organisasi secara default. Developer organisasi dapat melihat tunnels tetapi tidak dapat mengubahnya.
+
 * **Ruang kerja** itu sendiri dan **anggota organisasi** dikelola di tingkat organisasi melalui [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), menggunakan kunci Admin API, token OAuth `org:admin`, atau kunci akun pribadi atau layanan yang tidak dicakupkan ke workspace tertentu.
 
 Untuk mencari ID workspace organisasi Anda, panggil endpoint [Daftar Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/list) (teruskan `include_default=true` untuk menyertakan workspace default) atau temukan di halaman [Ruang kerja](https://platform.claude.com/settings/workspaces) di Claude Console.
@@ -865,7 +888,7 @@ anthropic-workspace-id: wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ
 
 Header tidak ada ketika kredensial tidak diselesaikan ke workspace (misalnya, pada permintaan Admin API) atau ketika permintaan gagal sebelum autentikasi selesai, seperti kesalahan 401.
 
-Contoh berikut mengirim permintaan Messages API dan membaca ID workspace dari header respons:
+Contoh berikut mengirim permintaan Messages API dan membaca ID workspace dari header respons. Tetapkan `ANTHROPIC_API_KEY` ke kunci yang dicakupkan ke satu workspace (lihat [Kunci API dan pencakupan sumber daya](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping)), bukan ke kunci Admin API:
 
 <CodeGroup>
   ```bash cURL
@@ -1017,9 +1040,10 @@ Accessor yang sama membaca header dari endpoint Claude API lainnya juga, termasu
 Dengan ID workspace dari respons, Anda dapat:
 
 * Mengonfirmasi penggunaan, biaya, dan [batas laju](https://platform.claude.com/docs/id/api/rate-limits) workspace mana yang dihitung oleh permintaan tersebut
-* Mencocokkannya dengan field `workspace_id` pada baris [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang memuat ID yang sama ini untuk workspace default, dan dengan field `scope` pada kunci API di [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), yang memuat ID sebenarnya dari workspace tempat kunci terikat, termasuk workspace default
+* Mencocokkannya dengan field `workspace_id` pada baris [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang memuat ID yang sama ini untuk workspace default
+* Mencocokkannya dengan field `scope` pada kunci API di [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), yang memuat ID sebenarnya dari workspace tempat kunci terikat, termasuk workspace default
 * Memeriksa apakah itu ID workspace default Anda dengan meneruskannya ke [Dapatkan Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) menggunakan [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys): workspace default dikembalikan dengan `"name": "Default"`, meskipun [Daftar Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/list) menghilangkannya kecuali Anda meneruskan `include_default=true`
-* Membuka workspace tersebut di [Console](https://platform.claude.com/settings/workspaces) untuk menemukan sumber daya permintaan, seperti sesi, file, batch pesan, dan skills
+* Menemukan sumber daya permintaan, seperti sesi, file, batch pesan, dan skills: cari nama workspace di halaman [Ruang kerja](https://platform.claude.com/settings/workspaces) di Claude Console, lalu pilih workspace tersebut di pemilih workspace pada halaman seperti [File](https://platform.claude.com/files)
 
 ## Batas workspace
 
@@ -1027,9 +1051,9 @@ Anda dapat menetapkan batas pengeluaran dan batas laju khusus untuk setiap works
 
 ### Menetapkan batas workspace
 
-Anda dapat menetapkan batas workspace lebih rendah dari (tetapi tidak lebih tinggi dari) batas organisasi Anda:
+Batas workspace dapat menjaga workspace tetap di bawah batas organisasi Anda, tetapi tidak dapat menaikkan batas tersebut:
 
-* **Batas pengeluaran:** Batasi pengeluaran bulanan untuk sebuah workspace. Untuk menetapkannya, buka halaman [Ruang kerja](https://platform.claude.com/settings/workspaces) (`platform.claude.com/settings/workspaces`) di Claude Console dan pilih workspace. Di panel yang terbuka, klik **Batas pengeluaran**.
+* **Batas pengeluaran:** Batasi pengeluaran bulanan untuk sebuah workspace. Untuk menetapkannya, buka [Batas pengeluaran di Claude Console](https://platform.claude.com/settings/spend-limits) (`platform.claude.com/settings/spend-limits`). Di bawah **Batas ruang kerja**, pilih workspace dari menu dropdown. Lalu klik **Tetapkan batas** atau **Sesuaikan batas** di samping **Batas pengeluaran bulanan**. Jika Anthropic menagih organisasi Anda secara langsung, Anda juga dapat menyiapkan peringatan email untuk saat pengeluaran mencapai jumlah yang Anda pilih: klik **Tambahkan notifikasi** atau **Edit** di samping **Notifikasi email**.
 * **Batas laju:** Membatasi permintaan per menit, token input per menit, atau token output per menit. Untuk menetapkannya, buka [Batas laju di Claude Console](https://platform.claude.com/usage/limits), pilih workspace dari menu dropdown **Ruang kerja**, dan klik **Edit** di samping model.
 
 <Note>
@@ -1252,7 +1276,7 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
 
 <AccordionGroup>
   <Accordion title="Apa itu workspace default?">
-    Setiap organisasi memiliki “workspace default” yang tidak dapat diganti namanya, diarsipkan, atau dihapus. Seperti setiap workspace, workspace ini memiliki ID `wrkspc_`: API mengembalikannya dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response), dan Anda dapat meneruskannya ke [Dapatkan Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) dan [Perbarui Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/update). Workspace ini tidak memiliki daftar anggota sendiri, karena akses ke workspace ini mengikuti peran organisasi setiap anggota. Workspace ini hanya muncul dalam hasil [Daftar Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`. [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) melaporkan penggunaan dan biayanya di bawah ID sebenarnya. Laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama menampilkan `null` untuk `workspace_id`. Untuk kunci API yang menjadi miliknya, field `scope` pada kunci tersebut memuat ID sebenarnya dari workspace.
+    Setiap organisasi memiliki “workspace default” yang tidak dapat diganti namanya, diarsipkan, atau dihapus. Seperti setiap workspace, workspace ini memiliki ID `wrkspc_`. API mengembalikan ID tersebut dalam [header respons `anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response), dan Anda dapat meneruskannya ke [Dapatkan Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/retrieve) dan [Perbarui Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/update). Perbarui Workspace menolak nama baru untuknya. Workspace default tidak memiliki daftar anggota sendiri, karena akses ke workspace ini mengikuti peran organisasi setiap anggota. Workspace ini hanya muncul dalam hasil [Daftar Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/list) ketika Anda meneruskan `include_default=true`. [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) melaporkan penggunaan dan biayanya di bawah ID sebenarnya. Laporan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama menampilkan `null` untuk `workspace_id`. Untuk kunci API yang menjadi miliknya, field `scope` pada kunci tersebut memuat ID sebenarnya dari workspace.
   </Accordion>
 
   <Accordion title="Apa itu workspace Claude Code?">
@@ -1272,7 +1296,7 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
   </Accordion>
 
   <Accordion title="Dapatkah peran workspace admin organisasi atau anggota penagihan diubah?">
-    Admin organisasi dan anggota penagihan tidak dapat mengubah peran workspace mereka atau dihapus dari workspaces selama mereka memegang peran organisasi tersebut (dengan satu pengecualian: anggota penagihan dapat ditingkatkan ke peran Admin Ruang Kerja). Untuk semua orang lain yang tercakup oleh batasan ini, ubah peran organisasi mereka terlebih dahulu untuk mengubah akses workspace mereka.
+    Tidak selama mereka memegang peran organisasi tersebut, dengan satu pengecualian: anggota penagihan dapat ditingkatkan ke peran Admin Ruang Kerja. Admin organisasi dan anggota penagihan juga tidak dapat dihapus dari workspaces selama mereka memegang peran tersebut. Untuk mengubah akses workspace mereka dengan cara lain, ubah peran organisasi mereka terlebih dahulu.
   </Accordion>
 
   <Accordion title="Apa yang terjadi pada akses workspace ketika peran organisasi berubah?">
@@ -1282,7 +1306,7 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
   <Accordion title="Apa yang terjadi pada kunci API ketika pengguna dihapus dari workspace?">
     Perilaku bergantung pada [jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types).
 
-    Kunci akun pribadi atau layanan berhenti bekerja di workspace segera setelah pengguna atau akun layanannya dihapus darinya. Kunci akun layanan tetap bekerja bahkan jika pengguna yang membuatnya dihapus. Kunci API workspace terus bekerja. Di [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), setiap kunci terikat ke anggota yang membuatnya dan berhenti bekerja ketika anggota tersebut dihapus.
+    Kunci akun pribadi atau layanan berhenti bekerja di workspace segera setelah pengguna atau akun layanannya dihapus darinya. Kunci akun layanan tetap bekerja bahkan jika pengguna yang membuatnya dihapus. Kunci workspace (kunci lama tanpa pemilik) terus bekerja. Di [workspace Claude Code](https://platform.claude.com/docs/id/manage-claude/workspaces#claude-code-workspace), setiap kunci terikat ke anggota yang membuatnya dan berhenti bekerja ketika anggota tersebut dihapus.
 
     Kunci pribadi diarsipkan ketika penggunanya dihapus dari organisasi. Jika pengguna diundang kembali, mereka perlu membuat kunci baru; kunci yang diarsipkan tidak dipulihkan.
   </Accordion>

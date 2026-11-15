@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/inference-provider
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 428cc898634909f0a2b1cb0a0970dfb899faa548dd3b4540b2c91458ee9a9475
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 216a3c3e855e4c696d4d54eb6417dbe632eac1f04a31eefff58a6d4b361886a4
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Send model calls from your self-hosted Claude Managed Agents server
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 By default, your server sends model calls to the Claude API. This page shows how to send them to a cloud provider, or to a model gateway that you run. To change the provider:

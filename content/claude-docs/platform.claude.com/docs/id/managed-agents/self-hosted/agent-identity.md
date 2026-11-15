@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/agent-identity
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: d270685935c2bf1f12b731b70ae3f970c78f8259875c05649486dce59fab6380
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 25871fb5645479ddac69ce199d7ff0438febf851f6d63cd38b2ae10978c28596
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Minta server Claude Managed Agents yang Anda hosting sendiri menand
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Halaman ini menunjukkan cara agar sistem di luar server Anda dapat memercayai sebuah agen, dan tempat menyimpan kredensial yang digunakan agen Anda:

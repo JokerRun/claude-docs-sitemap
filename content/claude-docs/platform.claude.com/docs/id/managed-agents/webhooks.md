@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5f559518995dd78a30877d50d9659d63d487eabb92d5c6a28c2ed699392202b9
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: ce7fff7db054edab59a334ea5a0dd43d55f97b4fd9f4c8ff52eb75c9c2ec9fa8
 ---
 
 ---
@@ -134,7 +134,7 @@ Event webhook mengembalikan `type` dan `id` event, bukan objek lengkapnya. Saat 
 
 ## Mendaftarkan endpoint
 
-Di Claude Console, buka halaman [Webhook](https://platform.claude.com/settings/workspaces/default/webhooks) (`platform.claude.com/settings/workspaces/default/webhooks`). Setiap endpoint dimiliki oleh satu workspace. Pilih workspace yang Anda inginkan di pemilih workspace pada sidebar.
+Di Claude Console, buka halaman [Webhook](https://platform.claude.com/settings/workspaces/default/webhooks) (`platform.claude.com/settings/workspaces/default/webhooks`). Setiap endpoint dimiliki oleh satu workspace. Pilih workspace yang Anda inginkan di pemilih workspace.
 
 Endpoint webhook terdiri dari:
 
@@ -144,7 +144,7 @@ Endpoint webhook terdiri dari:
 
 ## Memverifikasi tanda tangan
 
-Setiap pengiriman membawa header `webhook-id`, `webhook-timestamp`, dan `webhook-signature`. Di setiap SDK kecuali C#, gunakan helper `unwrap()` (csharp, go: `Unwrap()`) untuk memverifikasi tanda tangan dan mem-parsing event dalam satu langkah. Helper ini akan melempar error jika tanda tangan tidak valid atau payload berusia lebih dari 5 menit.
+Setiap pengiriman membawa header `webhook-id`, `webhook-timestamp`, dan `webhook-signature`. Di setiap SDK kecuali C#, gunakan helper `unwrap()` (csharp, go: `Unwrap()`) untuk memverifikasi tanda tangan dan mem-parsing event dalam satu langkah. Helper ini akan melaporkan error jika tanda tangan tidak valid atau payload berusia lebih dari 5 menit.
 
 Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berawalan `whsec_` yang ditampilkan saat pembuatan endpoint.
 
@@ -345,7 +345,7 @@ Atur `ANTHROPIC_WEBHOOK_SIGNING_KEY` ke secret berawalan `whsec_` yang ditampilk
 
 ## Menangani event
 
-Urai body, lakukan switch pada `data.type`, dan ambil sumber daya berdasarkan ID. Kembalikan `2xx` apa pun untuk mengonfirmasi penerimaan. Respons lain apa pun dihitung merugikan endpoint: `3xx` langsung menonaktifkannya (pengalihan tidak pernah diikuti), sedangkan kegagalan lainnya dicoba ulang; lihat [Perilaku pengiriman](https://platform.claude.com/docs/id/managed-agents/webhooks#delivery-behavior) untuk aturan percobaan ulang dan penonaktifan otomatis.
+Urai body, lakukan switch pada `data.type`, dan ambil sumber daya berdasarkan ID. Kembalikan `2xx` apa pun untuk mengonfirmasi penerimaan. Respons lain apa pun dihitung merugikan endpoint. `3xx` langsung menonaktifkannya (pengalihan tidak pernah diikuti), sedangkan kegagalan lainnya dicoba ulang. Untuk aturan percobaan ulang dan penonaktifan otomatis, lihat [Perilaku pengiriman](https://platform.claude.com/docs/id/managed-agents/webhooks#delivery-behavior).
 
 Setiap payload event memiliki struktur yang sama, termasuk jenis event, pengidentifikasi, dan timestamp kapan event terjadi.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: ec75055352f5f2fd4b7d1a6e4c288adc326ccfc8c1dda2531d4c7ac1639f7f6e
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 5d682bfead6569e2f437a0555779768208c95014965faa251d48e5dd7bc5e529
 ---
 
 ---
@@ -268,10 +268,19 @@ Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Pe
 
 Pengaturan workspace juga mendukung pembatasan geografi inferensi yang tersedia:
 
-* **`allowed_inference_geos`:** Membatasi geo yang dapat digunakan oleh workspace. Jika permintaan menentukan `inference_geo` yang tidak ada dalam daftar ini, API akan mengembalikan error.
-* **`default_inference_geo`:** Menetapkan geo cadangan ketika `inference_geo` dihilangkan dari permintaan. Permintaan individual dapat menggantinya dengan menetapkan `inference_geo` secara eksplisit.
+* **`allowed_inference_geos`:** Membatasi geo yang dapat digunakan oleh workspace. Jika permintaan menentukan `inference_geo` yang tidak ada dalam daftar ini, API akan mengembalikan error 400.
+* **`default_inference_geo`:** Menetapkan geo cadangan ketika `inference_geo` dihilangkan dari permintaan. Nilainya harus merupakan salah satu geo yang diizinkan. Permintaan dapat menggantinya dengan geo lain yang diizinkan.
 
-Pengaturan ini dapat dikonfigurasi melalui Console atau [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) di bawah field `data_residency`.
+Untuk mengubah pengaturan ini di Claude Console:
+
+1. Buka halaman [Residensi data](https://platform.claude.com/settings/data-residency) (`platform.claude.com/settings/data-residency`). Jika yang terbuka adalah halaman **Kontrol data**, temukan bagian **Residensi data** di halaman tersebut.
+2. Pilih workspace dari menu dropdown di samping judul **Residensi data**.
+3. Di bawah **Geografi inferensi**, pilih geo yang diizinkan dari menu dropdown **Diizinkan** dan geo cadangan dari menu dropdown **Default**.
+4. Klik **Simpan**, lalu klik **Konfirmasi**.
+
+Jika menu ini tidak ada atau dinonaktifkan, peran Anda mungkin tidak mengizinkan perubahan tersebut. Minta admin organisasi untuk melakukannya.
+
+Untuk menetapkannya dengan [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), masukkan kedua field ke dalam objek `data_residency` pada permintaan [Create Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/create) atau [Update Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/update). Dalam pembaruan, field yang tidak Anda sertakan akan mempertahankan nilainya.
 
 <Note>
   **Claude Models on Google Cloud (Anthropic managed):** Setiap workspace mengizinkan semua geografi inferensi dan menggunakan `"global"` sebagai geografi inferensi default-nya. Claude Console menampilkan kedua pengaturan tersebut sebagai hanya-baca. Untuk inferensi khusus AS, tetapkan `inference_geo: "us"` pada setiap permintaan.

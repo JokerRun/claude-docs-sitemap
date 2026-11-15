@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 0a6b07b77d5059026b31eed66ed0683bfd47878196b403f69cf676d43fe5918c
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: c290994e64b6ae8c7898f8c69dca71fd3b57689ac882155fedcf5a8d2ceab5ca
 ---
 
 > ## Documentation Index
@@ -17,6 +17,10 @@ sha256: 0a6b07b77d5059026b31eed66ed0683bfd47878196b403f69cf676d43fe5918c
 
 View plans
 Contact sales
+
+> [!NOTE]
+>
+> This page covers one of the two ways to use Claude through your Google Cloud project: Google Cloud's Agent Platform, formerly Vertex AI, which Google manages. If you use Claude Models on Google Cloud (Anthropic managed), follow [its Claude Code setup page](https://code.claude.com/docs/en/claude-models-on-google-cloud-anthropic-managed.md) instead. To find out which one you use, see [Which offering are you using?](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview#which-offering-are-you-using)
 
 ## Prerequisites
 

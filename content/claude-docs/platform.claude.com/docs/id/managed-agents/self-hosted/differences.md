@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/differences
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 28b17b8ea61b473c97b611aa4b4eb59db02302ac5d3822dad03213bc9aca94da
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: e15afa76c407015e2d1f57958aca4ca5a38757cd0e82552952713a1b30d56322
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Lihat fitur mana yang hanya dimiliki Claude Managed Agents yang di-
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Server Claude Managed Agents yang di-host sendiri memiliki API yang sama dengan layanan [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) yang di-hosting oleh Anthropic, kecuali perbedaan di halaman ini. Tabel-tabel berikut menyebutkan apa yang perlu dilakukan untuk masing-masing. Periksa tabel-tabel tersebut sebelum Anda memindahkan aplikasi ke server Anda. Tidak ada yang disalin dari layanan yang di-hosting, termasuk riwayat sesi. Buat kembali agen, skill, kredensial vault, dan memory store Anda di server Anda.

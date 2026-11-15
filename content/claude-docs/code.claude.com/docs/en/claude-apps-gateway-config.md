@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: df647a52f40f7710e20c2f07c23e592b5db62a420572a18642323bd1eefaddba
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 464a654cfffc0cbba6edeca61faeb10cdf9c1b202fd32d36d710c58d588e76c8
 ---
 
 > ## Documentation Index
@@ -1356,7 +1356,7 @@ The gateway omits keys with no Claude Desktop equivalent, such as `hooks` and sc
 
 ##### Apply `code` settings in the Code tab
 
-The Claude Code settings a policy holds under its [`code`](#choose-cli-or-code) key apply in Claude Desktop's Code tab when all of these hold:
+Apart from [some provider and model variables](https://code.claude.com/docs/en/desktop.md#managed-settings), the Claude Code settings a policy holds under its [`code`](#choose-cli-or-code) key apply in Claude Desktop's Code tab when all of these hold:
 
 * The policy also has a `desktop` key, and an empty `desktop: {}` counts
 * Claude Desktop is version 2.9939.2 or later

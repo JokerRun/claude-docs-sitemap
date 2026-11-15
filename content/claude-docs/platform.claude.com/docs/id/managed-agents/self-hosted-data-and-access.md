@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: f6c33b852a7d1031483fb9b06b1fb529d37c9fa68b34f63e1da4f553def083bb
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 62358b957e792eea79e563a35991dc880db36f271921aef8e678899b1a8fe1f0
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Apa yang dikirim oleh Claude Managed Agents yang di-host sendiri ke
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Dengan [Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted), Anda menjalankan server, database-nya, dan sandbox tempat worker menjalankan alat shell dan file milik agen. Halaman ini menjawab pertanyaan-pertanyaan dalam tinjauan keamanan. Penyedia inferensi server adalah layanan yang menjawab panggilan modelnya. Server terhubung ke Anthropic hanya ketika penyedia tersebut adalah Claude API. Anthropic tidak memiliki akses jarak jauh ke server atau lognya.

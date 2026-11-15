@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 255fd02736e977752b687eda89080663a179c87e5d8974ca8e551b0098b34ab2
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 583003b821db725016c35e63818892c6d5e8b9d6e948321fd40fe6614e130cf4
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Host layanan Claude Managed Agents dan sandbox-nya di infrastruktur
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Claude Managed Agents yang di-host sendiri adalah Managed Agents di infrastruktur Anda sendiri, yang dapat berupa akun cloud atau pusat data on-premise. Anda meng-host layanan dan sandbox. Model berjalan di Anthropic atau di penyedia yang Anda pilih.
@@ -92,7 +92,7 @@ Untuk setiap panggilan model, server mengirimkan percakapan sejauh ini, termasuk
 
 ## Dari mana harus memulai
 
-Untuk meminta akses ke unduhan, hubungi tim akun Anthropic Anda. Lalu ikuti [Memulai dengan Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted/quickstart) untuk memulai server dan menjalankan sesi pertama.
+Untuk meminta akses ke unduhan, hubungi tim akun Anthropic Anda. Jika organisasi Anda sudah memiliki akses, ikuti catatan di bagian atas halaman ini. Lalu ikuti [Memulai dengan Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted/quickstart) untuk memulai server dan menjalankan sesi pertama.
 
 Arsip setiap rilis menyertakan panduan operator untuk versi tersebut, `operator-guide.md`. Minta Claude membaca file tersebut, sehingga Claude dapat membantu Anda mengonfigurasi dan menjalankan server Anda serta menulis kode yang terhubung ke server tersebut.
 

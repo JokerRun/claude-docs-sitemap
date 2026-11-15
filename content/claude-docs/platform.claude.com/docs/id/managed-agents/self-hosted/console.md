@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/console
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 88391832b607ca075dd1c7628e1ff24cd883f9a4530d48af5dc0971b6c885cf7
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: fc86111640c4b2057d33d319b65f6e866196c503c5ce60f84ce9565fef005358
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Siapkan proses masuk untuk konsol di server Claude Managed Agents y
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Konsol di server Anda adalah halaman web yang disajikan oleh server Claude Managed Agents yang di-host sendiri pada alamat yang sama dengan API-nya. Di dalamnya, Anda membuat agen, menjalankan sesi, dan mengelola environment, credential vault, memory store, dan skill, tanpa SDK atau CLI.

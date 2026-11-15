@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/console
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 60ce044ca4f7be80f368f815b38ce621262d73143ac6b37196046a0e6c57390a
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: f0b3a2b8e557b4bd9ec2ce9eb106aad9dc3c8aabd4469187fc38085f68bbe6f0
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Set up sign-in for the console on your self-hosted Claude Managed A
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 The console on your server is a webpage that a self-hosted Claude Managed Agents server serves at the same address as its API. In it, you create agents, run sessions, and manage environments, credential vaults, memory stores, and skills, with no SDK or CLI.

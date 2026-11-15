@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/kubernetes
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 9a2d2b90332ac1db8e473e3005223b9087902fd436f5e8daf7505092cd54bba8
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 53c70b4423c4db97647d05735b266c7d17f5662c7cc1ffca1fd4a965eb26814a
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Install the self-hosted Claude Managed Agents server and its sandbo
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 This page takes an empty Google Kubernetes Engine (GKE) cluster to a session that runs a tool in a sandbox pod. It uses the two Helm charts in the release archive, which run the whole stack on the cluster:
@@ -40,7 +40,7 @@ Your PostgreSQL database stays outside both. On another kind of cluster, the ste
 
 * **Tools on your machine:** `helm`, `kubectl`, `docker buildx`, `openssl`, and the [`ant` CLI](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart#installation).
 
-* **The release archive:** To request access to the download, contact your Anthropic account team. Extract the archive. Run every command on this page from its top directory.
+* **The release archive:** To request access to the download, contact your Anthropic account team. If your organization already has access, follow the note at the top of this page. After you download the archive, extract it. Run every command on this page from its top directory.
 
 ## Install the stack
 

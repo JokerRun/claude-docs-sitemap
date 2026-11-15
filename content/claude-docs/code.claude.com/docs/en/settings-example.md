@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-example
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 1a47ec2d37d6c36cfed03ca9c7c7760faef657ed88954fa9978f1ed4ed23ab7e
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: cac911d94631e3a20a0b720d43f6f71c3c90af796a2ff823b389e79de82aee51
 ---
 
 > ## Documentation Index
@@ -247,7 +247,7 @@ A `managed-settings.json` file that shows the shape of the managed keys, with on
 * [`allowManagedPermissionRulesOnly`](https://code.claude.com/docs/en/settings-reference#allowmanagedpermissionrulesonly) and [`allowManagedMcpServersOnly`](https://code.claude.com/docs/en/settings-reference#allowmanagedmcpserversonly) make the managed permission and MCP allowlists the only ones that apply
 * `allowedMcpServers` pins the MCP server by URL
 * `strictKnownMarketplaces` allows one plugin marketplace
-* `sandbox` sandboxes commands with a fixed network allowlist and no unsandboxed retry. Its `failIfUnavailable` key [stops Claude Code from starting where the sandbox can't run](https://code.claude.com/docs/en/sandboxing.md#enforce-sandboxing-with-managed-settings)
+* `sandbox` sandboxes commands with a fixed network allowlist and no unsandboxed retry. Its `failIfUnavailable` key [stops Claude Code from starting where the sandbox can't run](https://code.claude.com/docs/en/sandboxing.md#enforce-sandboxing-with-managed-settings), except in an Anthropic-hosted environment
 * `requiredMinimumVersion` sets a minimum Claude Code version
 * `cleanupPeriodDays` shortens retention of session transcripts and other local data to seven days
 * `companyAnnouncements` shows a message at startup

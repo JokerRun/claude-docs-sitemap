@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-data-and-access
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: cefa2d0f4a6d8f5476cd3eed813dcb3d72521decccb3f9ea4ccfbbabf9c3decb
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 0b4a4ac04114d81c3d8faedc9ea2189fe8c998b61548caaaf8bfcd25312eed80
 ---
 
 ---
@@ -12,7 +12,7 @@ description: What self-hosted Claude Managed Agents sends outside your network, 
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 With [self-hosted Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/self-hosted), you run the server, its database, and the sandboxes where workers run the agent’s shell and file tools. This page answers the questions of a security review. The server’s inference provider is the service that answers its model calls. The server connects to Anthropic only when that provider is the Claude API. Anthropic has no remote access to the server or its log.

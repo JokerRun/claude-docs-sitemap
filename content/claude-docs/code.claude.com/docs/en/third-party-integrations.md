@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/third-party-integrations
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 69d05e8de3a4159721d7d1a2db6337db887f473902980bb95a32458008e3f271
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 4854ed8df1827317c61ac430199da957e45dcad784487cd888b00ce6155fc8dd
 ---
 
 > ## Documentation Index
@@ -140,6 +140,7 @@ Select a deployment option to view setup instructions:
 * [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway), a self-hosted gateway that adds IdP sign-in in front of Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, Microsoft Foundry, or the Anthropic API
 * [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md)
 * [Claude Platform on AWS](https://code.claude.com/docs/en/claude-platform-on-aws.md)
+* [Claude Models on Google Cloud (Anthropic managed)](https://code.claude.com/docs/en/claude-models-on-google-cloud-anthropic-managed.md)
 * [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md)
 * [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md)
 

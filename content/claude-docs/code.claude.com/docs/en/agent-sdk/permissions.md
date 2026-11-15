@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/permissions
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: ba13522c5b401b52643e724f9ea28b6f1da8fa228e7ea4e54163698dd56c62c1
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: becebe536f1b288485a5cdab00cb0271f8db80518d3c3a5c76110387c4fd6c65
 ---
 
 > ## Documentation Index
@@ -32,8 +32,6 @@ A `PreToolUse` hook that returns `allow` also can't approve an `rm` or `rmdir` c
 **2. Deny rules**
 
 If a deny rule from `disallowed_tools` or from a [settings file the SDK loads](#rules-in-settings-files) matches, the call is denied and [`canUseTool`](https://code.claude.com/docs/en/agent-sdk/user-input) isn't called. The call is denied this way even in [`bypassPermissions`](#bypass-permissions-mode-bypasspermissions) mode and when a hook returned `allow`.
-
-In the TypeScript SDK, if you set the `permission_policy` of a [custom tool](https://code.claude.com/docs/en/agent-sdk/custom-tools.md#require-approval-for-specific-tools) to [`always_deny`](https://code.claude.com/docs/en/agent-sdk/typescript#mcpservertoolpolicy), a call to that tool is denied at this step.
 
 **3. Ask rules**
 

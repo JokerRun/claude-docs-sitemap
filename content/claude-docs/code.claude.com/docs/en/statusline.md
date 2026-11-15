@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/statusline
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 3c1cdd1401c6eb644311ea2e0c1cd70d6445037d780d1d7dbe2ce6d531149635
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 604a14fea0f6c834d0bf6d472efcee7630f9b0cba1a34c5da90364c3c6d93904
 ---
 
 > ## Documentation Index
@@ -189,7 +189,7 @@ Claude Code sends the following JSON fields to your script via stdin:
 | `cost.total_api_duration_ms` | Total time spent waiting for API responses in milliseconds |
 | `cost.total_lines_added`, `cost.total_lines_removed` | Lines of code changed |
 | `context_window.total_input_tokens`, `context_window.total_output_tokens` | Token counts currently in the context window, from the most recent API response. Input includes cache reads and writes |
-| `context_window.context_window_size` | Maximum context window size in tokens. 200000 by default, or 1000000 for models with extended context. |
+| `context_window.context_window_size` | Maximum context window size in tokens |
 | `context_window.used_percentage` | Pre-calculated percentage of context window used |
 | `context_window.remaining_percentage` | Pre-calculated percentage of context window remaining |
 | `context_window.current_usage` | Token counts from the last API call, described in [context window fields](#context-window-fields) |

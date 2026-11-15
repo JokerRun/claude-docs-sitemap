@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/differences
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 1f5529ee351d2d3337b705f09b68e16415cb09bd7289820e9cd57b52e292eeef
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: e2184ef2d981e42f9d6b1c7190be5cd0a4f3211274e13bdd736f1c49d9e80dac
 ---
 
 ---
@@ -12,7 +12,7 @@ description: See which features only self-hosted Claude Managed Agents has, whic
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 A self-hosted Claude Managed Agents server has the same API as Anthropic’s hosted [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) service, apart from the differences on this page. The tables say what to do about each. Check them before you move an application to your server. Nothing is copied from the hosted service, session history included. Create your agents, skills, vault credentials, and memory stores again on your server.

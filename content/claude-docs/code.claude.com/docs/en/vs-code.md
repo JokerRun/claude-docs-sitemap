@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: d67c6e7f2d3d728de0285acd91964c43cf63e7fedd1c027f85dff73acb4d31f1
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: d3ef9c0fd4de0215af1598fef0ab228f6b813ce202fe1507847b04a84565df43
 ---
 
 > ## Documentation Index
@@ -311,6 +311,7 @@ When the conversation you resume ended in plan mode, Claude Code restores plan m
 * The extension [chooses the starting permission mode](https://code.claude.com/docs/en/permission-modes.md#switch-permission-modes) from `claudeCode.initialPermissionMode` or a pick that carries over from an earlier conversation
 * You have `claudeCode.claudeProcessWrapper` configured
 * A [deny rule](https://code.claude.com/docs/en/permissions.md#manage-permissions) removes the [`ExitPlanMode`](https://code.claude.com/docs/en/tools-reference) tool
+* [`permissions.denyInsteadOfPrompting`](https://code.claude.com/docs/en/settings-reference#permissions-denyinsteadofprompting) is on
 
 #### The conversation is still open somewhere else
 
@@ -612,6 +613,20 @@ On a reopened conversation, the **This session is in worktree** banner means the
 
 A conversation moves into a worktree when, for example, you [ask Claude to work in one](https://code.claude.com/docs/en/worktrees.md#ask-claude-to-create-a-worktree). When you reopen it, or the panel [reopens it after a window reload](#continue-conversations-after-a-reload), it resumes in the worktree if Claude Code created the worktree under `.claude/worktrees/` and it still exists. Before Claude Code v2.1.300, an empty conversation opened instead. On those versions, update the extension.
 
+## Work with Jupyter notebooks
+
+Claude Code edits notebooks with the [NotebookEdit tool](https://code.claude.com/docs/en/tools-reference.md#notebookedit-tool-behavior).
+
+### Re-run edited cells
+
+When Claude replaces a code cell, it rewrites the cell's source in the file and clears the cell's saved output and execution count.
+
+The edit doesn't require a kernel restart: NotebookEdit writes only the file and doesn't connect to your kernel. Re-run that cell, and any cells that use the functions or variables it defines.
+
+### Save the notebook before an edit
+
+Save the notebook before you ask for an edit; the extension's [`autosave` setting](#extension-settings) doesn't save before NotebookEdit.
+
 ## Run work in the background
 
 Send a long-running command or subagent to the background, then check on it from the prompt box.
@@ -743,7 +758,7 @@ VS Code reads `initialPermissionMode` from your user settings and ignores worksp
 | `initialPermissionMode` | - | Controls approval prompts for new conversations: `default`, `plan`, `acceptEdits`, or `bypassPermissions`. `manual` is an alias for `default` and selects the mode labeled **Manual** in the mode indicator. When you leave it unset, the extension chooses the starting permission mode as described in [Switch permission modes](https://code.claude.com/docs/en/permission-modes.md#switch-permission-modes). |
 | `preferredLocation` | `panel` | Where Claude opens: `sidebar` (right) or `panel` (new tab) |
 | `lockEditorGroups` | `true` | [Lock the editor groups Claude starts for its tabs](#choose-where-claude-lives), so files you open while a Claude tab is focused go to another group. When off, the extension never locks an editor group. Requires Claude Code v2.1.274 or later |
-| `autosave` | `true` | Auto-save files before Claude reads or writes them |
+| `autosave` | `true` | Auto-save files before the Read, Edit, and Write tools run |
 | `attachOpenFile` | `true` | Add the file that is open in the editor to your messages and show it in the prompt box. When off, the file is added only along with text you select. Requires Claude Code v2.1.271 or later |
 | `attachSelection` | `true` | Add the text you select in the editor to your messages and show it in the prompt box. When off, you can still [add a selection as an @-mention](#automatic-context-from-your-selection-and-open-file). Requires Claude Code v2.1.300 or later |
 | `useCtrlEnterToSend` | `false` | Use Ctrl/Cmd+Enter instead of Enter to send prompts |

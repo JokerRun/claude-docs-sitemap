@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: b7d97a5f7a3201ce60f6a7e6a04c4e240cfd157a0c0e5dd3d82fff9491c587f9
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: a62d3ad1cff8a8b282a4cc8397b32e92097df9f4665dd9f468e91505979e591e
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Tingkatkan deployment Claude Managed Agents yang di-host sendiri di
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Halaman ini menunjukkan cara meningkatkan deployment di Kubernetes atau Docker Compose, dan cara kembali ke rilis lama. Di Kubernetes, downtime bergantung pada seberapa jauh peningkatan tersebut:

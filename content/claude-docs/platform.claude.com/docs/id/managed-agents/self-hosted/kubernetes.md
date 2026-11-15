@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/kubernetes
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: fe1986a089774d7ed6b24536add9d8cebc8a66f9838e9bcedba728ee47fa2736
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 99e6cf17c62a39608ced62dd058b9c9a0cf35248b3b97209ee30088e49cc7bc0
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Instal server Claude Managed Agents yang di-host sendiri dan sandbo
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Halaman ini membawa “cluster” (klaster) Google Kubernetes Engine (GKE) yang kosong hingga menjadi sesi yang menjalankan alat di pod sandbox. Halaman ini menggunakan dua Helm chart dalam arsip rilis, yang menjalankan seluruh stack pada klaster:
@@ -40,7 +40,7 @@ Database PostgreSQL Anda tetap berada di luar keduanya. Pada jenis klaster lain,
 
 * **Alat di mesin Anda:** `helm`, `kubectl`, `docker buildx`, `openssl`, dan [CLI `ant`](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#installation).
 
-* **Arsip rilis:** Untuk meminta akses ke unduhan, hubungi tim akun Anthropic Anda. Ekstrak arsip tersebut. Jalankan setiap perintah di halaman ini dari direktori teratasnya.
+* **Arsip rilis:** Untuk meminta akses ke unduhan, hubungi tim akun Anthropic Anda. Jika organisasi Anda sudah memiliki akses, ikuti catatan di bagian atas halaman ini. Setelah Anda mengunduh arsip, ekstrak arsip tersebut. Jalankan setiap perintah di halaman ini dari direktori teratasnya.
 
 ## Menginstal stack
 

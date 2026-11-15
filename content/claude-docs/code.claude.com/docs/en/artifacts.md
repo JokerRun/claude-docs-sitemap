@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: cf92ceea89769019ee8e77daf46a95082d29e4460228fcb37b50e96e850d1954
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 490ea21f06dbb20b137659dbced3266b2e611a9569ed960399a8a43ee6a8e6b5
 ---
 
 > ## Documentation Index
@@ -375,7 +375,6 @@ Each artifact is one self-contained page. Claude Code wraps the file you publish
 | External requests | The page can load typefaces from Google Fonts, and scripts from [five public CDN hosts](#allowlist-the-viewer-domain): cdnjs, unpkg, the Tailwind and jQuery CDNs, and selected paths on jsDelivr such as `/npm/`. The CSP blocks every external image and all other external scripts, stylesheets, and fonts, and lets `fetch`, XHR, and WebSocket calls reach only the page's own origin and the Google Fonts hosts. Claude therefore loads any library the page needs from one of those CDNs, inlines all other CSS and JavaScript, and embeds images as data URIs. [Connector calls](#pull-live-data-with-mcp-connectors) go through claude.ai, which makes the network call itself. |
 | No backend | An artifact is a static page. It can't authenticate viewers itself. |
 | Downloads | The page can't start a download itself. To let viewers save a file the page generates, Claude declares the downloads capability. See [Offer a file download](#offer-a-file-download). |
-| Single page | Relative links do not resolve, because nothing is deployed alongside the page. For multi-section content, Claude uses in-page anchors rather than separate files. |
 | Source file types | The published file must be `.html`, `.htm`, or `.md`, and must decode as UTF-8, or as little-endian UTF-16 by its byte-order mark. Markdown files render as styled document pages with syntax-highlighted code. A file that doesn't decode, or that contains the replacement character `U+FFFD`, is [refused with the line and column to fix](https://code.claude.com/docs/en/errors.md#the-source-file-is-not-valid-utf-8-text). |
 | Source location | A file at a path that names a network host is refused without being read. See [Not published: that file is on a network share](https://code.claude.com/docs/en/errors.md#not-published-that-file-is-on-a-network-share) for which paths are refused and the mapped-drive exception on Windows. |
 | Rendered size | The rendered page must be 16 MiB or smaller. Large embedded images are the usual cause when a publish fails for size. |

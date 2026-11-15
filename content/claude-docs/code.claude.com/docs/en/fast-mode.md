@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 8180a00603df26fa881dcbecf8b0d5aea2778a0ede37c64e45ed60aa0fa9fa25
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: d465037ac1c7ba585208daa2aa412f34e9369792e807c99989b486931d0728fd
 ---
 
 > ## Documentation Index
@@ -190,7 +190,7 @@ On Agent Platform, `"fastMode": true` in your user, project, local, or managed s
 If Agent Platform refuses fast mode, Claude Code falls back to standard speed. An interactive session then shows one of these terminal messages:
 
 * `Using standard speed on Fable 5.2 · fast mode wasn't available`: run `/fast on` to try fast mode again
-* `Fast mode was refused for this project · trying again in 30m`: Agent Platform answered a fast mode request with a 403 or 404 error. To try sooner, run `/fast on`.
+* `Fast mode paused: your cloud provider refused a fast request · trying again in 30m`: Agent Platform answered a fast mode request with a 403 or 404 error. To try sooner, run `/fast on`. Requires Claude Code v2.1.323 or later.
 
 ### Use fast mode behind proxies and LLM gateways
 

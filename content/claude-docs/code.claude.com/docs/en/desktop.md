@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 06d179439eeaabd5c2ec13833ad9c364e93dc40e08ad951553292f0cf4c7e283
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 62babc490508d4d53ed58c8887630131bcf392c0a31e53e81ed8f10dac0b74ac
 ---
 
 > ## Documentation Index
@@ -271,7 +271,7 @@ To hide or show the panel, click **Hide session rail** or **Show session rail** 
 
 ### Minimize a pane
 
-To keep the Terminal, Browser, [iOS Simulator](https://code.claude.com/docs/en/desktop-ios-simulator.md), or a [side chat](#ask-a-side-question-without-derailing-the-session) in view at a small size, click **Minimize** in the pane's header. The button requires Claude Desktop v4.0.0 or later and a Claude account rather than a [third-party provider](https://code.claude.com/docs/en/third-party-integrations.md). The Browser pane has it only in local sessions.
+To keep the Terminal, Browser, [iOS Simulator](https://code.claude.com/docs/en/desktop-ios-simulator.md), or a [side chat](#ask-a-side-question-without-derailing-the-session) in view at a small size, click **Minimize** in the pane's header. The button requires Claude Desktop v4.0.0 or later. With a [third-party provider](https://code.claude.com/docs/en/third-party-integrations.md) it requires v5.11492.0 or later, so [check your version](#check-your-version). The Browser pane has the button only in local sessions.
 
 The minimized pane sits in the [session details panel](#see-session-details) while that panel is on screen, and floats in a corner of the chat otherwise:
 

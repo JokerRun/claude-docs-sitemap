@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/create
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: ea4010a5dfdb8af005665f4b9d72b053d8ff4c962d9e4611c0868dcc2e426f2b
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 0d04a27c58fef32e9658206817732423f61ff96e31cfbd0bdf9cde209a4089f8
 ---
 
 > ## Documentation Index
@@ -267,7 +267,7 @@ When a change to your plugin doesn't show up, work through these checks in order
 
 To check an MCP server, run `/mcp` in the session to see the server's status. When the server is healthy, `/mcp` lists it as connected. If it isn't, see [MCP servers that don't start](https://code.claude.com/docs/en/plugins/troubleshooting.md#invalid-mcp-server-config-for-and-mcp-servers-that-dont-start).
 
-To check a hook, trigger the event it matches. For example, ask Claude to edit a file to trigger a `PostToolUse` hook. Then read the [debug log](https://code.claude.com/docs/en/hooks.md#debug-hooks), which shows which hooks matched, their exit codes, and their output.
+To check a hook, turn on debug logging as [Debug hooks](https://code.claude.com/docs/en/hooks.md#debug-hooks) describes and trigger the event it matches. For example, ask Claude to edit a file to trigger a `PostToolUse` hook. Then read the debug log.
 
 The next sections cover the failures you're most likely to hit while developing, and the [troubleshooting page](https://code.claude.com/docs/en/plugins/troubleshooting.md#build-a-plugin) has the full entry for each.
 

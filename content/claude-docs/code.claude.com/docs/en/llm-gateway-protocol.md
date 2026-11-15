@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 1b84f6e690b2a725c9108305f51d970b5681f956d37d0a3a3467b6f468aa7435
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 2cfb0e85f26a477ae6ab2a578b98949a43fc51619d9b132330f75fd049b6ea88
 ---
 
 > ## Documentation Index
@@ -117,7 +117,7 @@ For the features each connection supports and the telemetry it sends to Anthropi
 
 Two client-side settings change what Claude Code assumes for a model ID it doesn't recognize, whichever connection method the developer uses:
 
-* **Context window**: Claude Code assumes 200K, or 1M when the ID carries `[1m]`. To declare the real window, see [Correct the window for a gateway or custom model ID](https://code.claude.com/docs/en/model-config.md#correct-the-window-for-a-gateway-or-custom-model-id)
+* **Context window**: Claude Code assumes a 1M token context window by default. To declare the real window, see [Correct the window for a gateway or custom model ID](https://code.claude.com/docs/en/model-config.md#correct-the-window-for-a-gateway-or-custom-model-id)
 * **Capabilities**: to give a gateway alias the capabilities of the model behind it, map that model's Anthropic ID to your alias with a [`modelOverrides`](https://code.claude.com/docs/en/errors#unrecognized-model-id-on-a-request) entry in the settings you distribute. For where the `ANTHROPIC_DEFAULT_*_MODEL_SUPPORTED_CAPABILITIES` variables apply, see [feature pass-through](#feature-pass-through)
 
 ## Request headers

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/configure
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 69cf907dd10c74a41fad4aabe3283f166404d414b63f9f932c9e32956712ad88
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: 11d870bcebc584286e0a54da9ed8dfb320d5e77c6e044efd8063313b195f6e37
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Let people and services call your self-hosted Claude Managed Agents
 ---
 
 <Note>
-  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team.
+  To request access to self-hosted Claude Managed Agents, contact your Anthropic account team. If you belong to a Claude Console organization that already has access, [sign in to the Claude Console](https://platform.claude.com) and switch to that organization. Then reload this page.
 </Note>
 
 By default, your server accepts one shared key, the [server API key](https://platform.claude.com/docs/en/managed-agents/self-hosted#the-three-credentials). With single sign-on, each person or service can also call the server with a token from your OpenID Connect (OIDC) identity provider. The server gives the caller a role from the groups in the token. The server API key keeps working as an administrator credential.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/quickstart
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 1c549892bf8288a76612a12f7015d23a0cc75aa7d1124235ad3f3e0f46e39082
+fetched_at: 2026-11-15T02:13:36.177739Z
+sha256: c8112d64d8165daca017ed1a7f2e7c943b7f6226b0ffd13fcb1f44a6afc038bf
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Jalankan Claude Managed Agents yang di-host sendiri di satu mesin d
 ---
 
 <Note>
-  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda.
+  Untuk meminta akses ke Claude Managed Agents yang di-host sendiri, hubungi tim akun Anthropic Anda. Jika Anda tergabung dalam organisasi Claude Console yang sudah memiliki akses, [masuk ke Claude Console](https://platform.claude.com) dan beralih ke organisasi tersebut. Lalu muat ulang halaman ini.
 </Note>
 
 Dalam quickstart ini, Anda menjalankan Claude Managed Agents yang di-host sendiri di satu mesin dengan Docker Compose. Stack Compose terdiri dari server, database PostgreSQL-nya, dan sekumpulan worker yang menjalankan setiap sesi di “sandbox container” (container sandbox) miliknya sendiri. Setelah itu, Anda mengobrol dengan agen dari terminal Anda dan memastikan bahwa “tool calls” (panggilan alat) agen tersebut berjalan di dalam sandbox container. Anda kemudian dapat membuka sesi di [konsol di server Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted/console).
@@ -40,7 +40,7 @@ Jika Anda adalah agen yang menjalankan langkah-langkah ini untuk seseorang:
 
 ## Prasyarat
 
-* **Arsip rilis:** Untuk meminta akses ke unduhan, hubungi tim akun Anthropic Anda.
+* **Arsip rilis:** Untuk meminta akses ke unduhan, hubungi tim akun Anthropic Anda. Jika organisasi Anda sudah memiliki akses, ikuti catatan di bagian atas halaman ini.
 * **Kunci API Claude:** Server menggunakannya untuk panggilan model. Buat kunci di [Claude Console](https://platform.claude.com/settings/keys).
 * **Docker:** [Versi terbaru Docker Engine](https://docs.docker.com/engine/install/) dengan plugin Compose (`docker compose`, bukan `docker-compose` versi lama).
 * **Host dengan setidaknya dua CPU:** x86-64 atau Arm. Pada host yang lebih kecil, atur `CMA_SANDBOX_CPUS` ke jumlah CPU host tersebut saat Anda membuat `.env`.
