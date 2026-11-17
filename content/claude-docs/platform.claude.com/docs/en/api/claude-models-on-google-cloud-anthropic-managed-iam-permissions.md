@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: ca9b81d81e274271b1ad1df74db3db8584634a3addde50cfdb1485a0a79f6243
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 9fe0bf4479225e2222791638b97fdf8fec8ab233a89b3736e12d44f3cf6a795a
 ---
 
 ---
@@ -153,11 +153,9 @@ Other session operations need the following permissions:
 
 This permission is separate from `environments.update`. Reading the work queue and its statistics needs only `environments.get`.
 
-Besides `environments.processWork`, a worker needs other permissions to run a session, such as `sessions.get` to read the session and its events, `sessions.update` to send tool results, and `skills.get` to download the agent’s skills.
+Besides `environments.processWork`, a worker needs other permissions to run a session. For example, it needs `sessions.get` to read the session and its events, `sessions.update` to send tool results, and `skills.get` to download the agent’s skills.
 
 ### Vaults
-
-Google Cloud records these routes in Admin Activity audit logs, except the route for `vaults.verify`, whose audit log type is Data Access.
 
 | Permission       | Roles               | Routes authorized                                                                                                                                                                                        |
 | ---------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

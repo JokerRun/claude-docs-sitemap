@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 0668f2f6378432f95974710c16c14a966a0b60e1239edadbf1e3730a09eb285e
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: ebb8b037cdd377286ac84a9722a16ae03a3034a168461eb3451587f67c19bdc0
 ---
 
 > ## Documentation Index
@@ -344,6 +344,7 @@ The `usage` field covers only the main agent loop. Use `modelUsage`, or `model_u
 >
 > * A single-shot `query()` call yields the final result message, then raises an error that includes the failure text, such as `Reached maximum number of turns`. The raise is intentional. Wrap the loop in a try block if your code needs to continue past it. The underlying Claude Code process also exits with a nonzero code.
 > * A streaming input session stays alive, and you can keep sending messages, except after a session crash, which emits a final `error_during_execution` result and exits the process.
+> * In TypeScript, the loop over `query()` in a streaming input session throws when the last response ends in an error result. Wrap the loop in a try block if your code needs to continue past it.
 
 The result also includes a `stop_reason` field (`string | null` in TypeScript, `str | None` in Python) indicating why the model stopped generating on its final turn. Common values are `end_turn` (model finished normally), `max_tokens` (hit the output token limit), and `refusal` (the model declined the request). On error results that the loop produced, `stop_reason` carries the value from the last assistant response before the loop ended; the result Claude Code synthesizes after a session crash carries `null`.
 

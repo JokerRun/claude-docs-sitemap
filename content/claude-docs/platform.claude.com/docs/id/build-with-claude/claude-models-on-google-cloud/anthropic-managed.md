@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 304727e953e3c3a08b899058bac42e4c7c85117376a045dd91f2a2697e23c28e
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 000d20e647a0a77ff9abd1130018932fd1f06cae7d9192c428e8d53bbe3f80b0
 ---
 
 ---
@@ -184,8 +184,8 @@ Instal paket yang menyediakan klien tersebut:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.8.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.8.0")
+        implementation("com.anthropic:anthropic-java:3.9.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.9.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Instal paket yang menyediakan klien tersebut:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.8.0</version>
+            <version>3.9.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.8.0</version>
+            <version>3.9.0</version>
         </dependency>
         ```
       </Tab>
@@ -407,7 +407,7 @@ Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum me
   ```
 </CodeGroup>
 
-Contoh cURL meminta token Application Default Credentials dari gcloud. Token akses berumur pendek. Buat token untuk setiap sesi alih-alih menyimpannya.
+Untuk memanggil API melalui HTTP mentah, kirim token akses dari Application Default Credentials. Di mesin yang memiliki gcloud CLI, `gcloud auth application-default print-access-token` akan mencetak satu token. Token akses berumur pendek, jadi buat token baru saat Anda membutuhkannya alih-alih menyimpannya. Untuk sumber kredensial lainnya, lihat [Autentikasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication).
 
 ### ID model API
 
@@ -630,10 +630,10 @@ Pengaturan ZDR pada organisasi Anthropic lain tidak berlaku untuk organisasi And
 
 [Cloud Audit Logs](https://cloud.google.com/logging/docs/audit) mencatat aktivitas API untuk Claude Models on Google Cloud (Anthropic managed) di proyek Anda. Entri muncul di bawah layanan `claude.googleapis.com`. Setiap rute API termasuk dalam salah satu dari dua jenis log:
 
-* **Log Data Access:** Log ini mencakup sebagian besar rute, termasuk pesan, batch, file, skill, model, dan sebagian besar sumber daya Claude Managed Agents. Log ini nonaktif secara default.
-* **Log Admin Activity:** Log ini mencakup rute lainnya, termasuk rute kunci enkripsi dan sebagian besar rute vault kredensial. Pengecualiannya adalah rute untuk `vaults.verify`, yang termasuk Data Access. Log Admin Activity selalu aktif.
+* **Log Data Access:** Log ini mencakup sebagian besar rute, termasuk pesan, batch, file, skill, model, dan sumber daya Claude Managed Agents seperti vault kredensial. Log ini nonaktif secara default.
+* **Log Admin Activity:** Log ini mencakup rute kunci enkripsi dan beberapa [rute tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) lain yang tidak dicantumkan di halaman izin IAM. Log Admin Activity selalu aktif.
 
-Untuk menyimpan catatan permintaan, aktifkan log Data Access untuk `claude.googleapis.com` di pengaturan log audit proyek Anda.
+Untuk menyimpan catatan permintaan, [aktifkan log Data Access](https://docs.cloud.google.com/logging/docs/audit/configure-data-access) untuk `claude.googleapis.com` di pengaturan log audit proyek Anda. Pilih semua jenis log Data Access, karena rute yang berbeda menggunakan jenis yang berbeda.
 
 Untuk jenis log audit berdasarkan rute, lihat [Izin IAM untuk Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions).
 
@@ -868,7 +868,7 @@ Untuk beralih ke Claude Models on Google Cloud (Anthropic managed), selesaikan l
 
 ## Dukungan
 
-[Dukungan Google Cloud](https://cloud.google.com/support) menangani akun, akses, dan penagihan Google Cloud Anda. [Dukungan Anthropic](https://support.claude.com/en/articles/9015913-how-to-get-support) menangani Claude itu sendiri, termasuk model, kesalahan API, dan batas laju. Untuk meminta batas laju yang lebih tinggi, lihat [Batas laju](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#rate-limits).
+[Dukungan Google Cloud](https://cloud.google.com/support) menangani akun, akses, dan penagihan Google Cloud Anda. [Dukungan Anthropic](https://support.claude.com/en/articles/9015913-how-to-get-support) menangani Claude itu sendiri, termasuk model, kesalahan API, dan batas laju. Untuk meminta batas yang lebih tinggi, lihat [batas laju untuk Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#rate-limits).
 
 ## Langkah selanjutnya
 

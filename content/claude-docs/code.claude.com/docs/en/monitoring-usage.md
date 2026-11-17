@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/monitoring-usage
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: bcf7ba8147a9a8cf3261e383cc50151958576a72233d30716c94a39c3fe71cce
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 9da1b86d3df10d2602f84cb9318b27f163a7daaac2773600b5e67e6f3e970867
 ---
 
 > ## Documentation Index
@@ -453,7 +453,7 @@ Each custom key becomes a label on every metric series, so high-cardinality valu
 > export OTEL_RESOURCE_ATTRIBUTES="org.name=John%27s%20Organization"
 > ```
 >
-> Wrapping values in quotes doesn't escape spaces. For example, `org.name="My Company"` results in the literal value `"My Company"` with the quotes included, not `My Company`.
+> Wrapping values in quotes doesn't escape spaces.
 
 ### Attribute telemetry to Desktop SSH sessions
 

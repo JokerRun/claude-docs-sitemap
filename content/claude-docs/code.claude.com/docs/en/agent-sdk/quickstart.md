@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/quickstart
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 5ec622c04b7ebeef1d577c890564b891ce5e76f21d5fa41bec1773e849e89dd9
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 21749cf4c7bf98376902e28573ea9b220a780af8fa03ed97dd181e57c323e438
 ---
 
 > ## Documentation Index
@@ -225,7 +225,7 @@ The message handling inside the loop filters for human-readable output. Without 
 
 > [!NOTE]
 >
-> This example uses streaming to show progress in real-time. If you don't need live output (for example, for background jobs or CI pipelines), you can collect all messages at once. See [Streaming vs. single-turn mode](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md) for details.
+> This example prints Claude's text and tool calls as the loop receives them. If you don't need live output, collect the messages in the loop and read them after the loop ends. To choose between a single-shot `query()` and streaming input, see [Choose single-shot or streaming input](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md#choose-single-shot-or-streaming-input).
 
 ### Run your agent
 

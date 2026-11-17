@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: fe2d97e824c95da2dda7f2c47c3ebe35c063d952addacdb6cdc560ff30be9817
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 97591eca6ce581856e3a787f829185d5b9d122ab47f9ce594c882745c3b0b9af
 ---
 
 > ## Documentation Index
@@ -733,7 +733,7 @@ Whether Claude must read an existing file in the current conversation before ove
 * Newer models can overwrite a file they never read this session under the same conditions as [read-before-edit](#edit-tool-behavior): reading it wouldn't need a permission prompt and the Read tool is available.
 * Jupyter notebooks, and files Claude has read only partially with a [`PARTIAL view` notice](#large-files), require the read on every model.
 
-This constraint doesn't apply to new files. Before v2.1.228, every model required the read before overwriting an existing file.
+This constraint doesn't apply to new files.
 
 Viewing the file with Bash also satisfies this requirement under the same rules described in [Edit tool behavior](#edit-tool-behavior).
 

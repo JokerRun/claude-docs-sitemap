@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 144d169867d6644a31b45e2c315887edafec6c913dec42a49ac1300a3fc0f0a1
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: c24ce94b8e09679bf23473788e74bf3ed74aa1bafda1b092795d5dbfd35a12ef
 ---
 
 ---
@@ -18,6 +18,10 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
+
+### 16 November 2026
+
+* Teks yang dihasilkan oleh Claude Opus 4.6, Claude Opus 4.5, Claude Sonnet 4.5, dan Claude Haiku 4.5 membawa watermark teks Anthropic pada platform yang didukung. [Bagaimana Claude menandai konten yang dihasilkan AI](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) mencantumkan platform-platform tersebut. Jika permintaan ke salah satu model ini menetapkan `temperature`, `top_p`, atau `top_k` ke nilai non-default, teks tersebut mungkin tidak membawa watermark. Lihat [Watermark teks](https://platform.claude.com/docs/id/build-with-claude/text-watermark).
 
 ### 12 November 2026
 

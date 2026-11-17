@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: eb9e0258dd807af4d25e3d418b3d16ba9afecc6e2473a2109513b74425061619
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 5a8bae3a6428a696934afad01339ea7a640b0cf2960bfa2120307240af0d6aa7
 ---
 
 ---
@@ -153,11 +153,9 @@ Operasi sesi lainnya memerlukan izin berikut:
 
 Izin ini terpisah dari `environments.update`. Membaca antrean pekerjaan dan statistiknya hanya memerlukan `environments.get`.
 
-Selain `environments.processWork`, worker memerlukan izin lain untuk menjalankan sesi, seperti `sessions.get` untuk membaca sesi dan event-nya, `sessions.update` untuk mengirim hasil alat, dan `skills.get` untuk mengunduh skill milik agen.
+Selain `environments.processWork`, worker memerlukan izin lain untuk menjalankan sesi. Misalnya, worker memerlukan `sessions.get` untuk membaca sesi dan event-nya, `sessions.update` untuk mengirim hasil alat, dan `skills.get` untuk mengunduh skill milik agen.
 
 ### Vault
-
-Google Cloud mencatat rute-rute ini dalam log audit Admin Activity, kecuali rute untuk `vaults.verify`, yang jenis log auditnya adalah Data Access.
 
 | Izin             | Peran               | Rute yang diotorisasi                                                                                                                                                                                    |
 | ---------------- | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

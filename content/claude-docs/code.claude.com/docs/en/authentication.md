@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 86c28d9f9a994974ca6ad7bd6050fd0d9bc7fc5e7172ac79af7ca98bc7b92278
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: b9aef35976efc5494d664fff43fa75bac378e154019545cde7a2b3a2721afd10
 ---
 
 > ## Documentation Index
@@ -103,7 +103,7 @@ Use your existing Claude Console account or create a new one.
 
 You can add users through either method:
 
-* Bulk invite users from the Console's Members page at [platform.claude.com/settings/members](https://platform.claude.com/settings/members): click **Invite**
+* Bulk invite users from the Console's Members page at [platform.claude.com/settings/members](https://platform.claude.com/settings/members): click **Invite to organization**
 * [Set up SSO](https://support.claude.com/en/articles/13132885-setting-up-single-sign-on-sso)
 
 **3. Assign roles**

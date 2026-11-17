@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-deploy
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: ee899958f319f6a444324493552953b30452ba4f651e2740ac32b8c75248c635
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 2516a73bb80af671bfeb42e21ec0b472fd4dc5f3bcee123799dac256fd73c6c6
 ---
 
 > ## Documentation Index
@@ -69,7 +69,7 @@ A few decisions shape the deployment beyond where it runs:
 
 Every production topology here puts an L7 proxy, such as an Ingress, Cloud Run's front end, or an ALB, in front of plain-HTTP replicas. Set [`listen.trusted_proxies`](https://code.claude.com/docs/en/claude-apps-gateway-config#listen) to the proxy's source ranges so the gateway reads client IPs from `X-Forwarded-For`. The gateway honors the header only when the TCP peer is trusted. The [Google Cloud](https://code.claude.com/docs/en/claude-apps-gateway-on-gcp.md) and [AWS](https://code.claude.com/docs/en/claude-apps-gateway-on-aws.md) worked examples have concrete values per topology. Without trusted proxies, every request appears to come from the proxy's IP, which collapses per-IP rate limits into one shared bucket and records the proxy's IP in audit events.
 
-Don't redirect requests to the gateway's device-authorization and token endpoints, for example with an HTTP-to-HTTPS or host-canonicalization rewrite at the ingress. Claude Code doesn't follow redirects on those requests, so an ingress rule that redirects them breaks sign-in and token refresh.
+Don't redirect requests bound for the gateway's device-authorization and token endpoints, for example with an HTTP-to-HTTPS or host-canonicalization rewrite at the ingress. Claude Code doesn't follow redirects on those requests, so an ingress rule that redirects them breaks sign-in and token refresh.
 
 Give the proxy any idle timeout longer than the gateway's keepalive interval, which depends on the upstream:
 

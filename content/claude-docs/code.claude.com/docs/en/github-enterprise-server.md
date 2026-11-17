@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-enterprise-server
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 50025e0d4f143e72e52aa2ef6505fa44961a0b050d45dd2ed86898943318ba2f
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: a95056ddd35fffde4a68dd06d0dfb9f0a3150caa4041133b9d4827bbce22c6ff
 ---
 
 > ## Documentation Index
@@ -172,7 +172,7 @@ Claude Code installs these marketplaces locally: it registers each entry and clo
 
 * **Use a full git URL.** The `owner/repo` shorthand always resolves to github.com and cannot reference a GHES host.
 * **Prefer HTTPS URLs.** SSH clones fail on machines that do not already trust your GHES host key. An HTTPS URL with your organization's standard git credential helper works on any machine with credentials configured.
-* **Confirm each machine can clone from your GHES host.** If a machine lacks credentials, the marketplace is registered but never installed, and its plugins report as not found instead of prompting for credentials.
+* **Confirm each machine can clone from your GHES host.** If a machine lacks credentials, the clone fails without prompting for them, and the `/plugin` **Errors** tab shows why.
 * **Confirm the setting reaches each machine.** A managed settings file only takes effect on machines it's deployed to, for example through your device management system. See [Deploy managed settings](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) for file locations.
 
 ### Allowlist GHES marketplaces in managed settings

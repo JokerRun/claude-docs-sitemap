@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/marketplace-reference
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 6220dc0a4ae8518fc1c0dc8fb6d1af040cfeadda055893249eabd9dd32a76544
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 6085ac38416b48b35a97861b9604f0b753a6771ffd764a912f7a809e684a5b04
 ---
 
 > ## Documentation Index
@@ -149,7 +149,7 @@ The table lists each plugin source type and its fields.
 | `git-subdir` | `url`, `path`, `ref`, `sha` | One subdirectory of a git repository, fetched with a sparse checkout |
 | `npm` | `package`, `version`, `registry` | npm registry package or tarball link, fetched with your npm client and unpacked without running install scripts |
 | `archive` | `url`, `sha256` | Zip archive over HTTPS |
-| `command` | `command`, `timeout`, `mode` | Directory printed by a command Claude Code runs on the user's machine. Requires Claude Code v2.1.229 or later |
+| `command` | `command`, `timeout`, `mode` | Directory printed by a command Claude Code runs on the user's machine |
 
 The names `url` and `github` are also [marketplace source](#marketplace-sources) types, where `url` means a direct link to a `marketplace.json` file rather than a git repository. `git` exists only as a marketplace source, and `npm` exists as both. `git-subdir`, `archive`, and `command` exist only as plugin sources.
 

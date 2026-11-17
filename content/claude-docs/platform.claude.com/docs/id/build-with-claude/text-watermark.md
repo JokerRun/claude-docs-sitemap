@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/text-watermark
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 0cf386fab4d9a2379ce4d2a99df552f26c76a19696b2f3c395d658eca922c970
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: db7fdac7735f9f31a427123103d5d6d3802f8a5bf48181578835b3c8d184c033
 ---
 
 ---
@@ -17,7 +17,7 @@ Watermark tidak mengubah makna, kualitas, atau keterbacaan output. Watermark tid
 
 ## Pengaturan sampling
 
-**Bagian ini berlaku untuk:** Claude Sonnet 4.6
+**Bagian ini berlaku untuk:** Claude Opus 4.6, Claude Sonnet 4.6, Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 3 ([akses model berdasarkan permintaan](https://www.anthropic.com/research/deprecation-updates-opus-3))
 
 Jika output Anda perlu membawa watermark, hilangkan `temperature`, `top_p`, dan `top_k` dari permintaan Anda. Jika sebuah permintaan menetapkan salah satu dari parameter tersebut ke nilai non-default, output mungkin tidak membawa watermark.
 

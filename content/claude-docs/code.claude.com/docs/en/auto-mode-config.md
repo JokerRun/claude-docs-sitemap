@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: b1e091cb1a6c8041d92ec15a2bf756677037bc237193906f4b6fbb14baa27dd5
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 107fdfe927e2cdcacfc774a70d989b77adcde852b7854281ec2eb399cc7be7a0
 ---
 
 > ## Documentation Index
@@ -231,7 +231,7 @@ Each is an array of prose descriptions, read as natural-language rules. For tool
 
 > [!NOTE]
 >
-> In a [Code Mode](https://code.claude.com/docs/en/code-mode.md#permission-checks) session, the classifier applies `hard_deny` and `soft_deny` when it reviews Claude's code, and not to each tool call the code makes. `permissions.deny` rules apply to each call.
+> In a [Code Mode](https://code.claude.com/docs/en/code-mode.md#permission-checks) session, the classifier applies `hard_deny` and `soft_deny` to each piece of code as a whole, before the code runs. To block a specific tool call that the code makes, use a `permissions.deny` rule.
 
 Inside the classifier, precedence works in four tiers:
 

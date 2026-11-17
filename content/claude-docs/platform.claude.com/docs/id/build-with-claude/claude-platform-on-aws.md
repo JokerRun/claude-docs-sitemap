@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 8aa1f1766ccee7cd8e335da1cd60c030d16532016a1f8a561f22f7b572f48be9
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 9b5784f594c5008a2af53e4d72a515d04071d14544abdc819258f461751707d1
 ---
 
 ---
@@ -320,8 +320,8 @@ Klien memerlukan region untuk menandatangani permintaan dengan SigV4 dan untuk m
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.8.0")
-        implementation("com.anthropic:anthropic-java-aws:3.8.0")
+        implementation("com.anthropic:anthropic-java:3.9.0")
+        implementation("com.anthropic:anthropic-java-aws:3.9.0")
         ```
       </Tab>
 
@@ -330,12 +330,12 @@ Klien memerlukan region untuk menandatangani permintaan dengan SigV4 dan untuk m
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.8.0</version>
+            <version>3.9.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-aws</artifactId>
-            <version>3.8.0</version>
+            <version>3.9.0</version>
         </dependency>
         ```
       </Tab>

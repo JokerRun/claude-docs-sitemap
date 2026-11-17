@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 79ab57f77667f76cbe03317c6a05a603bb8b1fe63a3d9daf8f718fa2492dbf30
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 78510f24797f0411aa35425ae1fc38d3d6e4104e437200336812382f35da3650
 ---
 
 ---
@@ -26,10 +26,10 @@ Model Claude di Microsoft Foundry tersedia dalam dua opsi hosting. Anda memilih 
 | Jenis deployment          | Global Standard, US Data Zone Standard                                                                                                                    | Global Standard                                                                                                                                                                                                                                                                                                                                                                                 |
 | Direkomendasikan untuk    | Sebagian besar beban kerja                                                                                                                                | Beban kerja yang memerlukan [model yang hanya di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) atau [fitur yang hanya tersedia saat di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) |
 
-Untuk deployment yang di-hosting di Azure, prompt dan completion tetap berada di dalam Azure. Hanya metadata penggunaan dan konten yang ditandai oleh sistem keamanan Anthropic yang keluar ke Anthropic.
+Untuk deployment yang di-hosting di Azure, Anthropic memproses prompt dan completion di infrastruktur Azure dan menyimpan konten yang dipertahankan di sana. Konten yang dipertahankan mencakup konten yang ditandai oleh sistem keamanan Anthropic untuk ditinjau oleh Anthropic. Data operasional yang tidak berisi prompt atau completion disimpan di sistem Anthropic di luar Azure. Contohnya meliputi skor pengklasifikasi keamanan, pengidentifikasi, serta data penggunaan dan penagihan.
 
 <Note>
-  Anthropic bertindak sebagai pemroses independen untuk Microsoft. Pelanggan yang menggunakan Claude melalui Microsoft Foundry tunduk pada [ketentuan penggunaan data](https://www.anthropic.com/legal) Anthropic. Anthropic tetap memberikan komitmennya terkait keamanan dan data.
+  Anthropic bertindak sebagai pemroses independen untuk Microsoft. Pelanggan yang menggunakan Claude melalui Microsoft Foundry tunduk pada [ketentuan penggunaan data](https://www.anthropic.com/legal) Anthropic. Anthropic memberikan komitmennya terkait keamanan dan data.
 </Note>
 
 ## Prasyarat
@@ -83,8 +83,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.8.0")
-        implementation("com.anthropic:anthropic-java-foundry:3.8.0")
+        implementation("com.anthropic:anthropic-java:3.9.0")
+        implementation("com.anthropic:anthropic-java-foundry:3.9.0")
         ```
       </Tab>
 
@@ -93,12 +93,12 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.8.0</version>
+            <version>3.9.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>3.8.0</version>
+            <version>3.9.0</version>
         </dependency>
         ```
       </Tab>

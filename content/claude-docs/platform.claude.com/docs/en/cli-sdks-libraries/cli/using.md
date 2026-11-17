@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 0b626973b5583e74801e78a5cc017e89adc57326727dfcfbddbd5e93c574b4df
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: b86fd75b04a9a912977f9cc6456ea79d41be26fba74062cf65c867403efcbe54
 ---
 
 ---
@@ -146,6 +146,12 @@ tools:
   - type: agent_toolset_20260401
 YAML
 ```
+
+The CLI expands [file references](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/using#file-references), such as `@./notes.txt`, in a stdin document: it reads the files that the document names and sends their contents in the request.
+
+<Warning>
+  A stdin document can name any file that you can read. Use one only if you trust its source as much as your own command line.
+</Warning>
 
 ### File references
 

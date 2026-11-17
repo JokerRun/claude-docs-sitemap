@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permission-modes
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: e4b21e3717458e028a041a753580c398d5e577a55e8ce8133af1353ab85583f3
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 21dcf00e63d9c325b6a89ee541d146591c52e62ef38a90e9ecce0c5eba2f49b8
 ---
 
 > ## Documentation Index
@@ -604,7 +604,7 @@ The following sections cover the order Claude Code evaluates an action in, how t
 >    * When Claude reads an [artifact someone else made](https://code.claude.com/docs/en/artifacts.md#read-an-artifact-shared-with-you), the approval cases listed in that section apply
 >    * A read from a [network path](https://code.claude.com/docs/en/permissions.md#network-paths) prompts you
 > 3. Everything else goes to the classifier, apart from [critical-path removals](#critical-paths) under their default handling. The connector tools and `requiresUserInteraction` MCP tools that prompt you directly in step 1 never reach the classifier either, so neither an org-required approval nor a consent step is auto-approved
->    * With [Code Mode](https://code.claude.com/docs/en/code-mode.md#permission-checks) on, Claude's code goes to the classifier once before it runs, and the tool calls inside it don't. You can still block a call with a `deny` rule or require a prompt with an `ask` rule, but Claude can run Bash commands in [forms the rules don't match](https://code.claude.com/docs/en/permissions.md#bash-rule-limits)
+>    * With [Code Mode](https://code.claude.com/docs/en/code-mode.md#permission-checks) on, the code that Claude writes goes to the classifier once before it runs, and the tool calls inside it don't. You can still block a call with a `deny` rule or require a prompt with an `ask` rule, but Claude can run Bash commands in [forms the rules don't match](https://code.claude.com/docs/en/permissions.md#bash-rule-limits)
 > 4. If the classifier blocks, Claude receives the reason. In most sessions the reason names the rule the classifier matched, such as `[Data Exfiltration]`, rather than giving a written explanation; see [Review denials](https://code.claude.com/docs/en/auto-mode-config.md#review-denials)
 >
 > A [mod](https://code.claude.com/docs/en/plugins/mods/overview.md) you install that handles `tool.check` can also approve an action. For the cases where its approval doesn't get past your rules and hooks, see [Extend permissions with hooks](https://code.claude.com/docs/en/permissions.md#precedence-among-rules-hooks-and-mods).

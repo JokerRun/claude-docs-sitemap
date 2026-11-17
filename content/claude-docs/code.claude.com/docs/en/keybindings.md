@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 5e05be409007f90ef11edd3326c3044c3ad7d311c4dbc9174a3504e0e477ff37
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: c46af1ac6291b110d033d99271152289961fde0e5c0816bcb2e52fb358457d79
 ---
 
 > ## Documentation Index
@@ -117,7 +117,7 @@ Actions available in the `Chat` context:
 | :- | :- | :- |
 | `chat:cancel` | Escape | Cancel current input |
 | `chat:clearInput` | Ctrl+L | Force a full screen redraw, preserving input and conversation |
-| `chat:clearScreen` | Cmd+K | Same as `chat:clearInput`. See [Clear the conversation](https://code.claude.com/docs/en/fullscreen.md#clear-the-conversation) for how Cmd+K behaves on iTerm2 and Terminal.app |
+| `chat:clearScreen` | Cmd+K | Same as `chat:clearInput`. See [Clear the conversation](https://code.claude.com/docs/en/fullscreen.md#clear-the-conversation) for how Cmd+K behaves on iTerm2 |
 | `chat:killAgents` | Ctrl+X Ctrl+K | Stop all running [background subagents](https://code.claude.com/docs/en/sub-agents.md#run-subagents-in-foreground-or-background) in this session and turn off [artifact auto-replies](https://code.claude.com/docs/en/artifacts.md#let-claude-reply-to-comments-on-its-own) for the rest of it. Press the shortcut twice within 3 seconds to confirm. You can press it while a background subagent's permission prompt is open |
 | `chat:cycleMode` | Shift+Tab\* | Cycle permission modes |
 | `chat:modelPicker` | Meta+P | Open model picker |

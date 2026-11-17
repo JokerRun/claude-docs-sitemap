@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: fba4337a5fbceee8d817007800f7ea92b86b546c25013a44a94a0ae56e5c211b
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 5e316d311dff8629196be7dff74b7b16cca694a941c6d4fa9ff1f8f51105fb6f
 ---
 
 ---
@@ -71,6 +71,7 @@ Which product you use decides what your key encrypts, what stays under Anthropic
 * Your key protects only data written [after it takes effect](https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works#when-your-key-takes-effect).
 * If your key is deleted, Anthropic can’t recover the data it protects. [While the key is disabled](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle#restore-access), Claude can’t read that data.
 * On Claude Platform, a workspace with a key [must retain data](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#data-retention).
+* When Anthropic approves your whole organization for CMEK, it also enables [Access Transparency](https://platform.claude.com/docs/en/manage-claude/access-transparency#access-transparency-with-customer-managed-keys) for it. If your organization is linked to a parent organization, Anthropic also enables it for the other Claude Console organizations linked to that parent. Organizations with Access Transparency can’t call the Claude API directly from a browser.
 
 ## Who can use CMEK
 

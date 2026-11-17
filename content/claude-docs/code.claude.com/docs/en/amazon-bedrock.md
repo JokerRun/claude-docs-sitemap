@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/amazon-bedrock
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 9e29da3916f822f8249195d7e26d34347748f5c55e67c2e031b2c686f5bb30e7
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: bf97c0351fbb18b8a8435014287aeb76bc77fa1ba950656d3bbc83d49fed5f7f
 ---
 
 > ## Documentation Index
@@ -471,7 +471,7 @@ Before v2.1.287, the Fable models and Opus 4.7 and later ran with a 200K window 
 export ANTHROPIC_BEDROCK_SERVICE_TIER=priority
 ```
 
-Claude Code sends this as the `X-Amzn-Bedrock-Service-Tier` header on every [Invoke API](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModelWithResponseStream.html) request from a session that has the variable, except its [model access checks](#startup-model-checks). Setting it has no effect on requests to the [Mantle endpoint](#use-the-mantle-endpoint) or through a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway). Tier availability varies by model and region. Reserved capacity uses a [provisioned throughput](https://docs.aws.amazon.com/bedrock/latest/userguide/prov-throughput.html) ARN as the model ID instead of this setting.
+Claude Code sends this as the `X-Amzn-Bedrock-Service-Tier` header on every [Invoke API](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_InvokeModelWithResponseStream.html) request from a session that has the variable, except its [model access checks](#startup-model-checks). Setting it has no effect on requests to the [Mantle endpoint](#use-the-mantle-endpoint) or through a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway). Tier availability varies by model and region.
 
 To cover [background sessions](https://code.claude.com/docs/en/agent-view.md#settings-and-provider) you start from a terminal, set `ANTHROPIC_BEDROCK_SERVICE_TIER` in the [`env`](https://code.claude.com/docs/en/settings-reference#env) block of your settings. Those sessions get the value you export only when the shell that started the [supervisor](https://code.claude.com/docs/en/agent-view.md#the-supervisor-process) exported it.
 

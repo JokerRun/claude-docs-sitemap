@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/app-attest
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 7584776c26592f1f05097545e5299dc8b0d8135faae44c260bc07c8666aaf5da
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 6ad069cc372852abc1f893e9d5a3500778999e1133aabc9f7541329ba9a2422a
 ---
 
 ---
@@ -31,16 +31,24 @@ Token dibatasi cakupannya pada workspace Anda, kedaluwarsa setelah 1 jam, dan ha
   App Attest memerlukan perangkat fisik. Simulator, dan perangkat keras tanpa Secure Enclave, tidak dapat melakukan App Attest. Saat mengembangkan di Simulator, lakukan autentikasi dengan “API key” ([kunci API](https://platform.claude.com/docs/id/manage-claude/authentication#api-keys)) sebagai gantinya.
 </Note>
 
-Untuk menyiapkan App Attest, Anda memerlukan Apple Developer Team ID Anda dan peran admin, pemilik, atau pemilik utama di organisasi Anda. Konfigurasikan proyek Xcode Anda dan daftarkan aplikasi Anda di [Claude Console](https://platform.claude.com/):
+Untuk menyiapkan App Attest, Anda memerlukan Apple Developer Team ID Anda dan peran admin, pemilik, atau pemilik utama di organisasi Claude Console Anda. Konfigurasikan proyek Xcode Anda dan daftarkan aplikasi Anda di [Claude Console](https://platform.claude.com/):
 
 1. Di Xcode, tambahkan kapabilitas **App Attest** ke target aplikasi Anda di bawah **Signing & Capabilities**.
-2. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/workspaces/default/app-integrations) (`platform.claude.com/settings/workspaces/default/app-integrations`). Setiap integrasi aplikasi dimiliki oleh satu workspace. Pilih workspace yang Anda inginkan di pemilih workspace pada sidebar.
-3. Klik **Create app integration** dan masukkan nama, Apple Developer Team ID Anda, dan satu atau lebih bundle ID (hingga 32).
-4. Salin client ID (`clid_...`) dari tab **Ringkasan** integrasi tersebut dan teruskan ke konfigurasi Claude aplikasi Anda.
+2. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/app-integrations) (`platform.claude.com/settings/app-integrations`) dan klik **Create app integration**.
+3. Masukkan nama. Dari menu dropdown **Ruang kerja**, pilih workspace yang akan ditagih untuk penggunaan aplikasi tersebut. Setiap integrasi aplikasi dimiliki oleh satu workspace, yang tidak dapat Anda ubah nanti.
+4. Masukkan Apple Developer Team ID Anda dan satu atau lebih bundle ID (hingga 32), lalu klik **Create app integration**.
+5. Salin client ID (`clid_...`) dari tab **Ringkasan** integrasi tersebut.
+6. Di aplikasi Anda, teruskan client ID ke [`.appAttest(clientID:)`](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models#app-attest-production).
 
 ## Mencabut integrasi aplikasi
 
-Untuk menghentikan aplikasi yang telah disusupi atau sudah tidak digunakan lagi, cabut integrasinya. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/workspaces/default/app-integrations) (`platform.claude.com/settings/workspaces/default/app-integrations`). Setiap integrasi aplikasi dimiliki oleh satu workspace. Di pemilih workspace pada sidebar, pilih workspace yang menyimpan integrasi tersebut. Pilih integrasi tersebut dan klik **Cabut**, lalu konfirmasi. Mencabut integrasi akan mencabut token-tokennya yang masih berlaku, dan perangkat-perangkatnya yang terdaftar tidak dapat lagi meminta token baru. Pencabutan bersifat permanen, jadi buat integrasi aplikasi baru untuk memulihkan akses.
+Untuk menghentikan aplikasi yang telah disusupi atau sudah tidak digunakan lagi, cabut integrasinya. Pencabutan bersifat permanen dan mencakup setiap bundle ID dalam integrasi tersebut. Pencabutan akan mencabut token-token integrasi yang masih berlaku, dan perangkat tidak dapat lagi meminta token baru.
+
+1. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/app-integrations) (`platform.claude.com/settings/app-integrations`).
+2. Temukan integrasi tersebut. Daftar ini mencakup setiap workspace di organisasi Anda, dan kolom **Ruang kerja** menunjukkan workspace tempat setiap integrasi berada. Untuk mempersempit daftar ke satu workspace, pilih workspace tersebut di filter **Ruang kerja**.
+3. Di ujung baris integrasi, buka menu **Tindakan lainnya** (tiga titik) dan pilih **Cabut**, lalu konfirmasi.
+
+Untuk memulihkan akses, buat integrasi aplikasi baru dan perbarui aplikasi Anda agar menggunakan client ID-nya.
 
 ## Langkah selanjutnya
 

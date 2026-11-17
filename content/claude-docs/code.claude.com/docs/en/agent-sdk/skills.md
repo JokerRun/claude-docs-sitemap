@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: d7419fbd6d6ce9163e3245928529ac6725a4b689c1d2e5cf520580d65fb7f3a9
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 0e24f8045898dfc7b0df4ac82be25518d2670a0a8122036d91edbd6579a89b3f
 ---
 
 > ## Documentation Index
@@ -176,7 +176,10 @@ A `/<name>` that matches a built-in Claude Code command that isn't available in 
 
 > [!NOTE]
 >
-> A command can hit the `maxTurns` / `max_turns` limit like any other prompt, ending the query with an error result instead of `success`. For the error-result contract, see [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop.md#handle-the-result). If your command might hit the limit, wrap the loop in a `try`/`catch` in TypeScript or `try`/`except` in Python, as shown in [Single Message Input](https://code.claude.com/docs/en/agent-sdk/streaming-vs-single-mode.md#single-message-input), or set `maxTurns` high enough for the work to complete.
+> When a command reaches the `maxTurns` / `max_turns` limit, the query ends with an error result instead of `success`. For the error-result contract, see [Handle the result](https://code.claude.com/docs/en/agent-sdk/agent-loop.md#handle-the-result). If your command might hit the limit, do one of these:
+>
+> * Set `maxTurns` high enough for the work to complete.
+> * Wrap the `query()` loop in `try`/`catch` in TypeScript or `try`/`except` in Python.
 
 ### Compact history with `/compact`
 

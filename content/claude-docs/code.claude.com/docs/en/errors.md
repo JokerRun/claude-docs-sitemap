@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: ff48d8e8865f63340185d01c84e9a180cadaf8576d0c67bac48afd2d814eeb3b
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 3e3c24e16666011a1e2cf24277e6c8d147287d224e46f034d6f537045c768083
 ---
 
 > ## Documentation Index
@@ -414,6 +414,7 @@ Match the message you see to a section below.
 | `Reading a local file from outside this session's connected folders, or through a link, needs the approval card` | [Tool errors](#reading-a-local-file-from-outside-the-connected-folders) |
 | `cannot read file_path (...) — the file could not be examined, and no one can answer the approval card` | [Tool errors](#reading-a-local-file-from-outside-the-connected-folders) |
 | `WebFetch cannot fetch localhost or other hostnames without a dot` | [Tool errors](#webfetch-cannot-fetch-localhost) |
+| `Claude Code is unable to fetch from ...` | [Tool errors](#claude-code-is-unable-to-fetch-from-a-host) |
 | `The safety check for domain ... is rate-limited` | [Tool errors](#webfetch-domain-safety-check-failed) |
 | `The safety check for domain ... is temporarily rate-limited` | [Tool errors](#webfetch-domain-safety-check-failed) |
 | `Unable to verify if domain ... is safe to fetch` | [Tool errors](#webfetch-domain-safety-check-failed) |
@@ -5440,6 +5441,18 @@ WebFetch cannot fetch localhost or other hostnames without a dot. To reach a loc
 * Usually nothing: the message points Claude at `curl` through the Bash tool, which can reach local and intranet servers
 
 Before v2.1.268, WebFetch reported these URLs with a generic `Invalid URL` error.
+
+### Claude Code is unable to fetch from a host
+
+WebFetch sends a URL's hostname to `api.anthropic.com` before requesting the page, to check it against Anthropic's domain safety blocklist. This message means the check answered that the hostname can't be fetched:
+
+```text wrap theme={null}
+Claude Code is unable to fetch from example.com
+```
+
+Claude Code didn't contact the host, because the check runs before the request.
+
+For what the check sends, see [WebFetch domain safety check](https://code.claude.com/docs/en/data-usage.md#webfetch-domain-safety-check).
 
 ### WebFetch domain safety check failed
 

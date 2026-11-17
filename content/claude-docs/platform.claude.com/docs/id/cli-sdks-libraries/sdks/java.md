@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 84bfd749ce1696a3ac7d72c4c1ce8c301c7c3f68af99e241318272fa9197eeee
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 7fc882dd73c4295f4a9df9658f5983c38d8a774d951503a9f37f8608df75c20d
 ---
 
 ---
@@ -22,7 +22,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.8.0")
+    implementation("com.anthropic:anthropic-java:3.9.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.8.0</version>
+        <version>3.9.0</version>
     </dependency>
     ```
   </Tab>
@@ -44,8 +44,8 @@ Integrasi platform cloud dan helper MCP sisi klien tersedia sebagai artefak add-
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.8.0")
-    implementation("com.anthropic:anthropic-java-mcp:3.8.0")
+    implementation("com.anthropic:anthropic-java:3.9.0")
+    implementation("com.anthropic:anthropic-java-mcp:3.9.0")
     ```
   </Tab>
 
@@ -54,12 +54,12 @@ Integrasi platform cloud dan helper MCP sisi klien tersedia sebagai artefak add-
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.8.0</version>
+        <version>3.9.0</version>
     </dependency>
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java-mcp</artifactId>
-        <version>3.8.0</version>
+        <version>3.9.0</version>
     </dependency>
     ```
   </Tab>

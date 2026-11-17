@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review-costs
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 55cc84e7bf4337f5a8392b976f0ff32393585a982416df47f3612062d017f464
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 92b3ac64aeefed5fa4a5441a3b7978e45c7d0cb42d5a74c0ac9ba5c75b5ef390
 ---
 
 > ## Documentation Index
@@ -68,9 +68,9 @@ Go to [claude.ai/analytics/code-review](https://claude.ai/analytics/code-review)
 
 | Section | What it shows |
 | :- | :- |
-| PRs reviewed | Daily count of pull requests reviewed over the selected time range |
+| PRs reviewed by Code Review | Daily count of pull requests reviewed over the selected time range |
 | Code Review cost | Code Review spend so far this month |
-| Feedback | Count of review comments that were auto-resolved because a developer addressed the issue |
+| Code Review feedback | Count of review comments that were auto-resolved because a developer addressed the issue |
 | Code Review findings | Daily count of [findings by severity level](https://code.claude.com/docs/en/code-review-pull-requests.md#severity-levels), from reviews Claude posted over the selected time range |
 | Repository breakdown | Per-repo counts of PRs reviewed, comments resolved, and review runs, with estimated cost and a per-PR view |
 

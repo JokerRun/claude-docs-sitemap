@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/text-watermark
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 34c9311c6bbdc23113d6a2771ed1969a94b972347d3d83c65f40c849c5a253ab
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 92df0d35e889d233a319630d552bf26f6730ce572db4917dc3a96bcb896149a8
 ---
 
 ---
@@ -17,7 +17,7 @@ The watermark doesn’t change the meaning, quality, or readability of the outpu
 
 ## Sampling settings
 
-**This section applies to:** Claude Sonnet 4.6
+**This section applies to:** Claude Opus 4.6, Claude Sonnet 4.6, Claude Opus 4.5, Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 3 ([model access on request](https://www.anthropic.com/research/deprecation-updates-opus-3))
 
 If you need your output to carry the watermark, omit `temperature`, `top_p`, and `top_k` from your requests. If a request sets any of them to a non-default value, the output might not carry the watermark.
 

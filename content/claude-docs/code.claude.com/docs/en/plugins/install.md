@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/install
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 041d060043a23273eba6c4679dc3ac22d01afccb51db65f8d82d231a338e187e
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 93f983100988bf21c04c66e0b9327c50093d50eaa0f9cf34a54eb12aa3a586b4
 ---
 
 > ## Documentation Index
@@ -98,7 +98,7 @@ Pick the tab for where you run Claude Code.
 >
 > **1. Open the plugin browser**
 >
-> Click the **+** button next to the prompt box and select **Add plugins**. If the **+** menu shows **Plugins** instead of **Add plugins**, select **Plugins**, then **Browse plugins**. The plugin browser opens with the plugins from your marketplaces.
+> Click the **+** button next to the prompt box and select **Add plugins**. If the **+** menu shows **Plugins** instead of **Add plugins**, select **Plugins**, then **Browse plugins**. If **Browse plugins** is missing, select **Manage plugins**. The plugin browser opens with the plugins from your marketplaces.
 >
 > **2. Select the plugin**
 >

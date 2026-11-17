@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 1769922127dbc2858198b62b00f489444498aa697d5a5a80ec57aacf696bdfdb
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 1a623ccb99702405642544fbed6399da4942fd729d1273818adffe09ff429553
 ---
 
 ---
@@ -21,14 +21,19 @@ Dengan sendirinya, profil tidak mengubah penagihan atau harga.
 
 ## Tentukan siapa yang mendapatkan profil
 
-Apa yang diwakili oleh sebuah profil bergantung pada cara Anda menjual Claude: seseorang yang menggunakan produk Anda, atau perusahaan tempat Anda menjual kembali akses API. Kedua kasus ini mencakup sebagian besar platform. Field `access_type` pada profil menyatakan kasus mana yang berlaku.
+Setiap pelanggan akhir mendapatkan satu profil, sehingga sebuah perusahaan mendapatkan satu profil untuk seluruh perusahaan, bukan satu profil untuk setiap orang di perusahaan tersebut. Kirim ID profil tersebut pada setiap permintaan yang Anda buat untuk siapa pun di perusahaan tersebut. Untuk juga memberi tahu Anthropic dari siapa sebuah permintaan berasal, lihat [Identifikasi satu orang dalam sebuah perusahaan](https://platform.claude.com/docs/id/manage-claude/user-profiles#identify-individual-users-within-a-company).
 
-| Untuk siapa lalu lintas tersebut                                           | Profil                                                                                                                                                                                                                                | `access_type`                                                             |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| Pengguna terdaftar produk Anda                                             | Satu untuk setiap pengguna, dibuat saat mereka mendaftar.                                                                                                                                                                             | `application` (default, ditetapkan saat Anda menghilangkan `access_type`) |
-| Perusahaan tempat Anda menjual kembali akses API, misalnya sebagai gateway | Satu untuk setiap perusahaan, bukan untuk setiap orang di dalamnya.                                                                                                                                                                   | `passthrough` (bukan default, sehingga Anda harus mengirimkannya)         |
-| Organisasi Anda sendiri                                                    | Tidak ada. Anthropic menghitung permintaan tanpa ID profil sebagai penggunaan Anda sendiri. Tempatkan penggunaan tersebut di [organisasi terpisah](https://platform.claude.com/docs/id/manage-claude/user-profiles#before-you-begin). | Tidak berlaku                                                             |
-| Workspace di organisasi Anda                                               | Tidak ada profil terpisah. Profil dimiliki oleh organisasi Anda, dan ID-nya berfungsi pada permintaan melalui workspace mana pun di dalamnya.                                                                                         | Tidak berlaku                                                             |
+Field `access_type` pada profil menyatakan apakah pelanggan akhir menggunakan produk Anda atau membeli akses API dari Anda, misalnya melalui gateway Anda:
+
+| Pelanggan akhir                                       | `access_type`                                                             |
+| ----------------------------------------------------- | ------------------------------------------------------------------------- |
+| Menggunakan produk Anda                               | `application` (default, ditetapkan saat Anda menghilangkan `access_type`) |
+| Merupakan perusahaan yang membeli akses API dari Anda | `passthrough` (bukan default, sehingga Anda harus mengirimkannya)         |
+
+Jangan buat profil untuk kedua hal berikut:
+
+* **Penggunaan Anda sendiri:** Anthropic menghitung permintaan tanpa ID profil sebagai penggunaan Anda sendiri. Tempatkan penggunaan tersebut di organisasi terpisah, seperti yang dijelaskan di [Sebelum Anda memulai](https://platform.claude.com/docs/id/manage-claude/user-profiles#before-you-begin).
+* **Workspace di organisasi Anda:** Profil dimiliki oleh organisasi Anda, bukan oleh workspace, sehingga ID profil tersebut berfungsi pada permintaan melalui workspace mana pun di organisasi tersebut. Pengecualiannya adalah workspace yang memiliki profil berbeda yang dilampirkan melalui `user_profile_id` di [Buat Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/create) atau [Perbarui Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/update). Setiap permintaan inferensi melalui workspace tersebut harus membawa ID profil yang dilampirkan, dan API menolak permintaan dengan ID lain atau tanpa ID.
 
 ## Apa isi profil dan bagaimana Anthropic menggunakannya
 
@@ -56,7 +61,7 @@ Contoh-contoh ini memanggil Claude API dengan kunci API. Anda tidak memerlukan [
 
 Buat satu profil untuk setiap pelanggan akhir yang lalu lintasnya Anda kirim ke Claude. Buat sekali saja, dalam alur onboarding pelanggan Anda. `POST /v1/user_profiles` tidak “idempotent” (idempoten), sehingga setiap panggilan membuat profil baru, bahkan ketika `reference_id` cocok dengan profil yang sudah ada. Jika Anda sudah memiliki pelanggan akhir tanpa profil, lihat panduan nanti di bagian ini tentang mendaftarkan basis pelanggan yang sudah ada.
 
-Contoh berikut mendaftarkan perusahaan yang membeli akses API melalui gateway, sehingga menetapkan `access_type` ke `passthrough`. Untuk profil `application`, hilangkan `access_type`, dan deskripsikan satu pengguna akhir di `name` dan `external_user_details` alih-alih perusahaan. [Tentukan siapa yang mendapatkan profil](https://platform.claude.com/docs/id/manage-claude/user-profiles#decide-who-gets-a-profile) membandingkan kedua jenis akses tersebut.
+Contoh berikut mendaftarkan perusahaan yang membeli akses API dari Anda, sehingga permintaan tersebut menetapkan `access_type` ke `passthrough`. Untuk profil `application`, hilangkan `access_type`. [Tentukan siapa yang mendapatkan profil](https://platform.claude.com/docs/id/manage-claude/user-profiles#decide-who-gets-a-profile) menjelaskan jenis akses mana yang harus digunakan.
 
 <CodeGroup>
   ```bash cURL
@@ -226,11 +231,11 @@ Setiap field bersifat opsional. Anda dapat mengirim `name`, `metadata`, dan fiel
 Ikuti aturan berikut saat Anda menetapkan field:
 
 * **Nilai yang tidak diketahui:** Jika Anda tidak mengetahui suatu nilai, hilangkan alih-alih mengirim placeholder. Anda dapat mengganti nilai di `external_user_details` nanti, tetapi Anda tidak dapat mengosongkannya.
-* **Nama perusahaan:** Untuk profil `passthrough`, kirim nama resmi perusahaan di `name` jika Anda mengetahuinya.
+* **Nama:** Di `name`, kirim nama asli pelanggan akhir. Untuk perusahaan, kirim nama resmi perusahaan tersebut jika Anda mengetahuinya.
+* **Nama dan alamat email yang tidak dapat Anda bagikan:** Hilangkan `name` dan kirim `external_user_details.name_hash` sebagai gantinya. Untuk alamat email, kirim `external_user_details.email_hash`, karena profil tidak memiliki field untuk alamat email itu sendiri.
 * **Negara:** Di `country`, kirim negara pelanggan akhir, bukan negara Anda.
 * **ID Anda sendiri:** Di `reference_id`, kirim pengidentifikasi stabil Anda sendiri untuk pelanggan akhir. Nilai ini tidak harus unik.
-* **Nama dan alamat email yang tidak dapat Anda bagikan:** Hilangkan `name` dan kirim `external_user_details.name_hash` sebagai gantinya. Untuk alamat email, kirim `external_user_details.email_hash`. Profil tidak memiliki field untuk alamat itu sendiri.
-* **Hash:** Hitung hash sendiri, dengan fungsi yang Anda pilih. Hash menunjukkan kepada Anthropic profil mana milik Anda yang memiliki nama atau alamat email yang sama. Gunakan fungsi yang sama serta normalisasi huruf besar-kecil dan spasi yang sama untuk setiap profil, karena hanya nilai yang dihitung dengan cara yang sama yang akan cocok.
+* **Hash:** Hitung hash sendiri dengan fungsi yang Anda pilih. Hash tersebut menunjukkan kepada Anthropic profil mana milik Anda yang memiliki nama atau alamat email yang sama. Hanya nilai yang dihitung dengan cara yang sama yang akan cocok, sehingga untuk setiap profil, gunakan fungsi yang sama dan tangani huruf besar-kecil dan spasi dengan cara yang sama.
 
 ## Atribusikan setiap permintaan
 
@@ -371,6 +376,10 @@ Claude API, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic man
 
 Message Batches adalah pengecualian: pembuatan batch hanya memeriksa format ID. Jika ID yang formatnya valid bukan milik organisasi yang mengirim batch, batch tetap dibuat, dan setiap permintaan di dalamnya kemudian gagal dengan hasil `errored` yang berisi `invalid_request_error` yang sama.
 
+### Identifikasi satu orang dalam sebuah perusahaan
+
+Profil untuk perusahaan mengidentifikasi perusahaan tersebut, bukan orang yang menjadi asal sebuah permintaan. Jika sebuah permintaan berasal dari satu orang yang dapat Anda identifikasi, tetapkan juga [`metadata.user_id`](https://platform.claude.com/docs/id/api/messages/create) pada permintaan Messages ke pengidentifikasi untuk orang tersebut. Field ini berada di objek `metadata` milik permintaan itu sendiri, bukan di field `metadata` pada profil. Pengidentifikasi ini bersifat opsional dan membantu Anthropic mendeteksi penyalahgunaan oleh satu orang.
+
 ### Atribusikan permintaan di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock
 
 ID profil dari kedua jenis akses juga berfungsi di Claude Models on Google Cloud (Google managed) dan di [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). ID ini tidak berfungsi di [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), yang Anda panggil dengan `InvokeModel` atau `Converse`. Anda menggunakan kredensial organisasi Anthropic Anda hanya untuk membuat dan mengelola profil. Inferensi tetap menggunakan kredensial AWS atau Google Cloud Anda yang sudah ada.
@@ -404,10 +413,6 @@ Tautkan setiap akun AWS yang mengirim permintaan ke Claude di Amazon Bedrock, da
 Program yang berlaku untuk sebuah profil hanya berlaku untuk permintaan sebuah akun setelah akun tersebut ditautkan dan portal menampilkannya sebagai **Linked**. Program-program tersebut mencakup program yang disetujui untuk organisasi pelanggan akhir setelah pelanggan akhir [menautkan profil ke organisasi tersebut](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal) dan, untuk tingkat akses Cyber Verification Program, mengaktifkannya untuk profil tersebut di portal.
 
 Claude Models on Google Cloud (Google managed) dan Claude di Amazon Bedrock memeriksa format ID tetapi tidak mencari profilnya. Keduanya menolak ID yang formatnya tidak valid dengan `400`. Keduanya menerima ID apa pun yang formatnya valid, sehingga respons yang berhasil tidak mengonfirmasi bahwa ID tersebut cocok dengan sebuah profil. Permintaan tanpa ID diproses tanpa atribusi, dan jika memicu tindakan penegakan, tindakan tersebut berlaku untuk seluruh organisasi Anda.
-
-### Identifikasi pengguna individual dalam sebuah perusahaan
-
-Profil `passthrough` mengidentifikasi perusahaan, bukan orang yang membuat permintaan. Jika permintaan berasal dari satu orang yang dapat diidentifikasi, kirim juga pengidentifikasi untuk orang tersebut di field [`metadata.user_id`](https://platform.claude.com/docs/id/api/messages/create) pada permintaan Messages. Ini adalah objek `metadata` milik permintaan itu sendiri, bukan field `metadata` milik profil. Pengidentifikasi ini opsional, dan membantu Anthropic mendeteksi penyalahgunaan oleh satu orang.
 
 ## Memeriksa apakah Anthropic telah membatasi atau memblokir sebuah profil
 

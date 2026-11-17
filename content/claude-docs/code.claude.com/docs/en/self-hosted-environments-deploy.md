@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-deploy
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 7f7f5d4eb521ce8f1686dabd8644d34c428faaef48186c790a5028055ace6770
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: f628c859ab5b00f7076110d57914da959239804100be4b8d0f250234bc0741d8
 ---
 
 > ## Documentation Index
@@ -751,7 +751,7 @@ Each session's child process runs the runner's own binary by default, and the ru
 Choose which version your sessions run and when it changes:
 
 * **Before you pin a version**: check [the Claude Code versions that models require](https://code.claude.com/docs/en/model-config.md#available-models) for every model your sessions use. If a model requires a newer version than the one your sessions run, the server rejects requests for that model with [Claude Code does not support this model](https://code.claude.com/docs/en/errors.md#claude-code-does-not-support-this-model).
-* **To hold a fleet on one version**: build the image with a pinned version, or on a bare host install a specific version and [disable auto-updates](https://code.claude.com/docs/en/setup.md#disable-auto-updates)
+* **To hold a fleet on one version**: build the image with a pinned version, or on a bare host [install a specific version](https://code.claude.com/docs/en/setup.md#install-a-specific-version) and [disable auto-updates](https://code.claude.com/docs/en/setup.md#disable-auto-updates)
 * **To upgrade a fixed fleet**: read the [changelog](https://code.claude.com/docs/en/changelog.md) entries between your version and the one you're installing, then install the newer version or rebuild the image and restart the runners
 * **To upgrade on-demand runners**: read the [changelog](https://code.claude.com/docs/en/changelog.md) entries between your version and the one you're installing, then change the image your [`spawn-runner` hook](https://code.claude.com/docs/en/self-hosted-environments-configuration#the-spawn-runner-hook) starts. Each new runner gets the new version. A runner that's already up, including a standby runner that [`--min-idle`](https://code.claude.com/docs/en/self-hosted-environments-reference#orchestrator-cli-flags) started, keeps its version until it exits. Don't restart it, because its work order is single-use.
 * **If sessions start a different binary**: if you use [`--exec-path`](https://code.claude.com/docs/en/self-hosted-environments-reference#runner-cli-flags) or a [`command` hook](https://code.claude.com/docs/en/self-hosted-environments-configuration#command) to start a Claude Code binary other than the runner's own, sessions run that binary's version. Update that binary when you update the runner.

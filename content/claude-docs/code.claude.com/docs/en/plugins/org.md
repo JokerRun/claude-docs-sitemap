@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/org
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 447f35e4a60e1cb0f1b80b0bf8c5bd747c1bd357420f94d3a63175e9bc1ddd85
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: d5230def88939ae29a5d8ad38e5a2df9bb9b0294ee68760f7590ca0cd1af1774
 ---
 
 > ## Documentation Index
@@ -174,7 +174,9 @@ Both lists apply before anything downloads and again at session start:
 
 Where the two lists are enforced depends on where you set them:
 
-* **The claude.ai admin console**: Claude Code enforces both lists in the sessions that [read server-managed settings](https://code.claude.com/docs/en/managed-settings.md#where-and-when-a-policy-applies). claude.ai also checks them when anyone in your organization adds a new marketplace from a git repository on claude.ai, or from **Customize** in the Claude Desktop app outside its Code tab. That covers a marketplace a member adds for their own account and one added for the whole organization under [**Organization settings > Plugins**](https://claude.ai/admin-settings/plugins). claude.ai refuses a repository that the allowlist doesn't admit or that the blocklist names. It doesn't re-check a marketplace that was added in either place before you set the lists, and it doesn't check uploaded plugins.
+* **The claude.ai admin console**: Claude Code enforces both lists in the sessions that [read server-managed settings](https://code.claude.com/docs/en/managed-settings.md#where-and-when-a-policy-applies). claude.ai also checks them when anyone in your organization adds a marketplace from a git repository on claude.ai, or from **Customize** in the Desktop app outside its Code tab.
+
+  That covers a marketplace a member adds for their own account and one added for the whole organization under [**Organization settings > Plugins & skills**](https://claude.ai/admin-settings/skills?tab=marketplaces). claude.ai refuses a repository that the allowlist doesn't admit or that the blocklist names. It doesn't re-check a marketplace that was added in either place before you set the lists, and it doesn't check uploaded plugins.
 * **A managed settings file, OS-level policy, or other managed source**: Claude Code enforces both lists where it reads that source. claude.ai doesn't read it.
 
 While any allowlist is set, or a blocklist names any source other than [`skills-dir`](#blocklist-with-blockedmarketplaces), a plugin whose marketplace Claude Code can't find doesn't load. `/plugin` shows the policy error for it rather than a not-found error. The common case is a stale `enabledPlugins` entry for a marketplace nobody registered.

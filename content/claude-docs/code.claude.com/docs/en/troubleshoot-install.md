@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: c1ac45099afe6563ff8670b2cd97806ddaf2d9fa44454214c8f26b04e5c2cbfc
+fetched_at: 2026-11-17T02:14:14.952467Z
+sha256: 406ad18e91408155775c2ccb106383c056cdc84772ea2fa01522cb666b7280ab
 ---
 
 > ## Documentation Index
@@ -631,7 +631,7 @@ The connection to the download server closed while `claude install` or `claude u
 The connection dropped while downloading the update (attempt 3/3: aborted). Check your network — proxies sometimes cut off large downloads.
 ```
 
-The text in parentheses names which attempt failed and the underlying network error. `claude update` precedes the message with `Error: Failed to install native update` on stderr.
+The text in parentheses names which attempt failed and the underlying network error. `claude update` precedes the message with `Failed to install native update`.
 
 A download that stays connected but doesn't finish within 10 minutes fails with `Download timed out: exceeded the total deadline` instead. Claude Code doesn't retry a timed-out download, because a connection too slow to finish inside the deadline won't finish on an immediate retry either. The steps below apply to both messages.
 
@@ -654,7 +654,7 @@ Release verification failed for Claude Code <version> (<reason>). The update was
 
 Take the step that matches the value in parentheses in your message:
 
-* **A value that starts with `sidecar_fetch_`**: run the same command again from your shell. `claude update` succeeded if it prints a line that starts with `Successfully updated from`, and `claude install` succeeded if it prints `Claude Code successfully installed!`.
+* **A value that starts with `sidecar_fetch_`**: run the same command again from your shell. `claude update` succeeded if it prints a line that ends with `to version <new version>`, and `claude install` succeeded if it prints `Claude Code successfully installed!`.
 * **Any other value**: try the same command again later
 
 With any value, if the message repeats, [report the problem](#still-stuck) and include the full message.
