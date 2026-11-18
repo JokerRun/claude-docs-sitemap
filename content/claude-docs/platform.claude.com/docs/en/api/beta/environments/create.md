@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 716d5dbb7e0d0a515e2306281c4a6c55326c781fca152cbd6e330a49425271b3
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: af4888cb5569a4260def1264453f79fdc9157de68b37e32ef3248b4cab745817
 ---
 
 ---
@@ -121,6 +121,8 @@ Create a new environment with the specified configuration.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

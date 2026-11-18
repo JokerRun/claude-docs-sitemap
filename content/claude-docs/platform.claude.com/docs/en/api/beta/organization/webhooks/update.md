@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/update
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 4016f90ac942f250087efad9a2b1e128b7582e1e99ebe07be45ab0a8de3d4e1b
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 9f1b6f542dca045f82e374c45e1a46833138c86594881e45776203bd3430c3bb
 ---
 
 ---
@@ -132,6 +132,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -178,9 +180,13 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   Notes about the endpoint.
 
-- `enabled_events: optional array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved" or "user_profile.program_status_updated"`
+- `enabled_events: optional array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
 
   The event types to deliver to the endpoint. Replaces the whole set; an empty list leaves it unchanged.
+
+  - `"external_key.failed"`
+
+  - `"external_key.recovered"`
 
   - `"user_profile.enforcement_action_opened"`
 
@@ -231,9 +237,13 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved" or "user_profile.program_status_updated"`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
 
     The event types delivered to the endpoint.
+
+    - `"external_key.failed"`
+
+    - `"external_key.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -283,7 +293,7 @@ curl https://api.anthropic.com/v1/organizations/webhooks/$WEBHOOK_ENDPOINT_ID \
   "description": "description",
   "disabled_reason": "disabled_reason",
   "enabled_events": [
-    "user_profile.enforcement_action_opened"
+    "external_key.failed"
   ],
   "name": "name",
   "state": "disabled",

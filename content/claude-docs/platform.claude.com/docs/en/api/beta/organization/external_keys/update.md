@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/update
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: a073caa49560beabb0283d5f7e8e30658c868ffb3b0dc6aa57d1c3952488df60
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: f4790f81e9887254b17c3feaa5c5244b7e4ba440041de58dcb33b07bcd5a6c48
 ---
 
 ---
@@ -206,7 +206,7 @@ encrypted data requires the original key identity to decrypt.
 
   - `user_profile_id: string or null`
 
-    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can be attached to a Workspace whatever its user profile.
+    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can only be attached to a Workspace that has no user profile.
 
 ## Example
 

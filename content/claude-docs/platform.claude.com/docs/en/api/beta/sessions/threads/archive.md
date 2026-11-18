@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/archive
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 85f9056de1675934444736518cdcda92465ce6a3ef319e5f0a55d942fd6cec2b
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: d5651c81f5b33faa119f29c9db78edbaa3a23878b1cda33aaab44d225d024244
 ---
 
 ---
@@ -127,6 +127,8 @@ Archive Session Thread
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

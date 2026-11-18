@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/create
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 65f349815bf858f60be22d8b0820c2ef8941038c0060b5ed99bb8bacd1d7814e
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 25dbb7079599dd3c0716649d574c8723b1d5c5e6672974ff4d87e9efcef984ab
 ---
 
 ---
@@ -196,7 +196,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces \
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "name": "x",
+          "name": "Workspace Name",
           "display_color": "#6C5BB9",
           "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
           "tags": {

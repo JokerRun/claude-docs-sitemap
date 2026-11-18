@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 01f7eb8536054d1f50514771e60edd758b3a4030388970e1eab1a3de68e5870c
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 38706946b2f9737cfa3007c7c190c60a85eecab7d548a0f5633aeb7da2b15bdd
 ---
 
 ---
@@ -125,6 +125,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -356,6 +358,8 @@ Fetches a tunnel by ID.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -586,6 +590,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -815,6 +821,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -1036,6 +1044,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -1237,6 +1247,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -1501,6 +1513,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -1743,6 +1757,8 @@ Fetches a tunnel certificate by ID.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -1987,6 +2003,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -2226,6 +2244,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

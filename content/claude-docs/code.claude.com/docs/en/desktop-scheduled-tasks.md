@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-scheduled-tasks
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 42d2d8e7cf415e249f81920bdb08478e336a348d0d1f306891e939ab7e40f7c2
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 10648ce06fa1ea4d2bd190a7c1d19e7686b17f28ba8c513233287d5a61ec155d
 ---
 
 > ## Documentation Index
@@ -194,6 +194,8 @@ You can also manage tasks by asking Claude, letting a task update itself, or edi
 * **Ask Claude**: list, create, edit, and pause tasks by asking Claude in any Desktop session. For example, "pause my dependency-audit task" or "show me my scheduled tasks." To delete a task, use the **Delete** button on its detail page.
 * **Let a task update itself**: for a task to change its own schedule or prompt with the `update_scheduled_task` MCP tool, click **Run now** and approve the call each time
 * **Edit the prompt on disk**: open `~/.claude/scheduled-tasks/<task-name>/SKILL.md`, or `scheduled-tasks/<task-name>/SKILL.md` under [`CLAUDE_CONFIG_DIR`](https://code.claude.com/docs/en/env-vars) if you set that variable. The file uses YAML frontmatter for `name` and `description`, with the prompt as the body. Changes take effect on the next run. Schedule, folder, and enabled state are not in this file: change them through the Edit form or ask Claude.
+
+If a local one-time task that has already run isn't on the **Scheduled tasks** page, click the sort icon above the list and select **Include completed**.
 
 ## Related resources
 

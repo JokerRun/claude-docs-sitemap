@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 97591eca6ce581856e3a787f829185d5b9d122ab47f9ce594c882745c3b0b9af
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 26f15de094a6abe14df81d0892b7c42a8f2c427b3541bcb4ef26aec26aa8fc2a
 ---
 
 > ## Documentation Index
@@ -21,7 +21,9 @@ To add custom tools, connect an [MCP server](https://code.claude.com/docs/en/mcp
 
 > [!NOTE]
 >
-> In [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode), a classifier decides most permission prompts instead of you. The `Permission required` column shows whether the tool prompts in [Manual mode](https://code.claude.com/docs/en/permission-modes.md) for paths inside the working directory. File-access tools marked No, including `Read`, `Grep`, and `Glob`, still prompt for paths outside the [working directory and additional directories](https://code.claude.com/docs/en/permissions.md#working-directories). `Bash` is marked Yes but runs a built-in set of [read-only commands](https://code.claude.com/docs/en/permissions.md#read-only-commands) without prompting.
+> In [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode), a classifier decides most permission prompts instead of you. The `Permission required` column shows whether the tool prompts in [Manual mode](https://code.claude.com/docs/en/permission-modes.md) for paths inside the working directory. File-access tools marked No, including `Read`, `Grep`, and `Glob`, still prompt for paths outside the [working directory and additional directories](https://code.claude.com/docs/en/permissions.md#working-directories), apart from files Claude Code itself needs.
+>
+> `Bash` is marked Yes but runs a built-in set of [read-only commands](https://code.claude.com/docs/en/permissions.md#read-only-commands) without prompting.
 
 | Tool | Description | Permission required |
 | :- | :- | :- |

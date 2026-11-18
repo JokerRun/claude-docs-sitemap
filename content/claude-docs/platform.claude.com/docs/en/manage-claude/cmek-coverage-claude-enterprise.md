@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-coverage-claude-enterprise
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 31f1cc1666717f9266868c899ff0d7063032f1e24a60afcdb97a6b3179da82f6
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: bc4f13d6aec92e3ba75b930ac115eb9e3405a30602f0ca7669cb10c4a2f06e2f
 ---
 
 ---
@@ -21,7 +21,7 @@ For Claude Platform, see [What CMEK covers on Claude Platform](https://platform.
 * Claude Code on the CLI, including message content.
 * Cowork in Claude Desktop.
 * Chats in the unified Claude experience, on the web only. **Computer access** is off.
-* Office agents, including Claude for Outlook (beta).
+* Office agents, including Claude for Outlook.
 * Claude in Chrome.
 * Claude Science, which is in beta.
 * [Plugins API](https://platform.claude.com/docs/en/manage-claude/plugins-api#customer-managed-encryption-keys) (beta) plugin versions: each version’s description, release notes, components, and files. That page lists which requests still work while your key can’t be used.

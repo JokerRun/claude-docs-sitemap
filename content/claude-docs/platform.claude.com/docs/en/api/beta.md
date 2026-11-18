@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: af4a336d0ea4de84583da99ed3b8761227174bfede02f21c1f537b1e9647d962
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: fa2b256efdd17db6005a0b85361064da510710c5dbec3d1c443be18bb5827dbe
 ---
 
 ---
@@ -16,7 +16,7 @@ url: https://platform.claude.com/docs/en/api/beta
 
 ### Anthropic Beta
 
-- `AnthropicBeta = string or "computer-use-2024-10-22" or "computer-use-2025-01-24" or "output-128k-2025-02-19" or 53 more`
+- `AnthropicBeta = string or "computer-use-2024-10-22" or "computer-use-2025-01-24" or "output-128k-2025-02-19" or 54 more`
 
   Beta names you can send in the `anthropic-beta` header.
 
@@ -115,6 +115,8 @@ url: https://platform.claude.com/docs/en/api/beta
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -750,6 +752,8 @@ The Models API response can be used to determine which models are available for 
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -1261,6 +1265,8 @@ The Models API response can be used to determine information about a specific mo
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -1750,6 +1756,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -5250,6 +5258,20 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+- `billing_policy: optional BetaBillingPolicy or null`
+
+  Declares which organization is billed for this request. `{"type": "billing_policy", "bill_to": "user_profile"}` bills the customer behind the user profile named in the `anthropic-user-profile-id` header, instead of your organization. If that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you. Omit the field, or send `"bill_to": "self"` (the default), to be billed as usual.
+
+  - `type: "billing_policy"`
+
+  - `bill_to: optional BetaBillTo`
+
+    Who is billed. `self`, the default, bills your organization, as if `billing_policy` were omitted. `user_profile` bills the customer behind the user profile the request names; if that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you.
+
+    - `"self"`
+
+    - `"user_profile"`
 
 - `cache_control: optional BetaCacheControlEphemeral or null`
 
@@ -10391,6 +10413,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -13879,6 +13903,20 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+- `billing_policy: optional BetaBillingPolicy or null`
+
+  Declares which organization is billed when this body is sent to `/v1/messages`. Accepted here so that you can count the tokens of the exact body you will send, and otherwise ignored: counting tokens bills nobody, so no user profile is required.
+
+  - `type: "billing_policy"`
+
+  - `bill_to: optional BetaBillTo`
+
+    Who is billed. `self`, the default, bills your organization, as if `billing_policy` were omitted. `user_profile` bills the customer behind the user profile the request names; if that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you.
+
+    - `"self"`
+
+    - `"user_profile"`
+
 - `cache_control: optional BetaCacheControlEphemeral or null`
 
   Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
@@ -14568,6 +14606,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -18089,6 +18129,20 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
 
+    - `billing_policy: optional BetaBillingPolicy or null`
+
+      Declares which organization is billed for this request. `{"type": "billing_policy", "bill_to": "user_profile"}` bills the customer behind the user profile named in the `anthropic-user-profile-id` header, instead of your organization. If that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you. Omit the field, or send `"bill_to": "self"` (the default), to be billed as usual.
+
+      - `type: "billing_policy"`
+
+      - `bill_to: optional BetaBillTo`
+
+        Who is billed. `self`, the default, bills your organization, as if `billing_policy` were omitted. `user_profile` bills the customer behind the user profile the request names; if that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you.
+
+        - `"self"`
+
+        - `"user_profile"`
+
     - `cache_control: optional BetaCacheControlEphemeral or null`
 
       Top-level cache control automatically applies a cache_control marker to the last cacheable block in the request.
@@ -19090,6 +19144,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -19408,6 +19464,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -19737,6 +19795,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -20047,6 +20107,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -20248,6 +20310,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -24465,6 +24529,8 @@ Create Agent
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -24735,7 +24801,7 @@ Create Agent
 
   - `BetaManagedAgentsMultiagentCoordinatorParams object`
 
-    A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
+    Recommendation: use `multiagent_20261001` instead of `coordinator`. A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
     - `type: "coordinator"`
 
@@ -26489,6 +26555,8 @@ List Agents
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -27535,6 +27603,8 @@ Get Agent
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -28564,6 +28634,8 @@ Update Agent
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -28828,7 +28900,7 @@ Update Agent
 
   - `BetaManagedAgentsMultiagentCoordinatorParams object`
 
-    A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
+    Recommendation: use `multiagent_20261001` instead of `coordinator`. A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
     - `type: "coordinator"`
 
@@ -30557,6 +30629,8 @@ Archive Agent
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -31601,6 +31675,8 @@ List Agent Versions
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -32635,6 +32711,8 @@ Create a new environment with the specified configuration.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -33132,6 +33210,8 @@ List environments with pagination support.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -33485,6 +33565,8 @@ Retrieve a specific environment by ID.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -33828,6 +33910,8 @@ Update an existing environment's configuration.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -34295,6 +34379,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -34491,6 +34577,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -34843,6 +34931,8 @@ Retrieve detailed information about a specific work item.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -35137,6 +35227,8 @@ Long poll for work items in the queue.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -35416,6 +35508,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -35704,6 +35798,8 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -35923,6 +36019,8 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -36226,6 +36324,8 @@ List work items in an environment.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -36510,6 +36610,8 @@ Update work item metadata with merge semantics.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -36801,6 +36903,8 @@ Get statistics about the work queue for an environment.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -37011,6 +37115,8 @@ Create Session
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -39695,6 +39801,8 @@ List Sessions
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -41159,6 +41267,8 @@ Get Session
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -42608,6 +42718,8 @@ Update Session
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -44649,6 +44761,8 @@ Delete Session
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -44839,6 +44953,8 @@ Archive Session
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -46420,6 +46536,8 @@ List Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -49614,6 +49732,8 @@ Send Events
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -50638,6 +50758,8 @@ Stream Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -53864,6 +53986,8 @@ Add Session Resource
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -54105,6 +54229,8 @@ List Session Resources
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -54423,6 +54549,8 @@ Get Session Resource
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -54718,6 +54846,8 @@ Update Session Resource
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -55027,6 +55157,8 @@ Delete Session Resource
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -55245,6 +55377,8 @@ List Session Threads
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -56346,6 +56480,8 @@ Get Session Thread
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -57436,6 +57572,8 @@ Archive Session Thread
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -58538,6 +58676,8 @@ List Session Thread Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -61743,6 +61883,8 @@ Stream Session Thread Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -64965,6 +65107,8 @@ Create Deployment
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -66181,6 +66325,8 @@ List Deployments
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -66940,6 +67086,8 @@ Get Deployment
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -67689,6 +67837,8 @@ Update Deployment
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -68854,6 +69004,8 @@ Archive Deployment
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -69605,6 +69757,8 @@ Run Deployment Now
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -70027,6 +70181,8 @@ Pause Deployment
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -70778,6 +70934,8 @@ Unpause Deployment
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -71582,6 +71740,8 @@ List Deployment Runs
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -72013,6 +72173,8 @@ Get Deployment Run
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -72431,6 +72593,8 @@ Create a Vault
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -72687,6 +72851,8 @@ List Vaults
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -72923,6 +73089,8 @@ Retrieve a Vault
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -73149,6 +73317,8 @@ Update a Vault
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -73396,6 +73566,8 @@ Delete a Vault
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -73590,6 +73762,8 @@ Archive a Vault
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -73820,6 +73994,8 @@ Create a Credential
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -74377,6 +74553,8 @@ List Credentials
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -74740,6 +74918,8 @@ Retrieve a Credential
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -75093,6 +75273,8 @@ Update a Credential
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -75597,6 +75779,8 @@ Delete a Credential
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -75795,6 +75979,8 @@ Archive a Credential
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -76151,6 +76337,8 @@ Validate an MCP OAuth Credential
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -76435,6 +76623,8 @@ Create a Memory Store
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -76726,6 +76916,8 @@ List Memory Stores
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -76973,6 +77165,8 @@ Retrieve a Memory Store
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -77214,6 +77408,8 @@ Update a Memory Store
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -77481,6 +77677,8 @@ Delete a Memory Store
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -77677,6 +77875,8 @@ Archive a Memory Store
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -77936,6 +78136,8 @@ Create a Memory
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -78254,6 +78456,8 @@ List Memories
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -78553,6 +78757,8 @@ Retrieve a Memory
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -78826,6 +79032,8 @@ Update a Memory
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -79123,6 +79331,8 @@ Delete a Memory
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -79397,6 +79607,8 @@ List Memory Versions
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -79758,6 +79970,8 @@ Retrieve a Memory Version
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -80099,6 +80313,8 @@ Redact a Memory Version
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -80433,6 +80649,8 @@ Upload File
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -80720,6 +80938,8 @@ List Files
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -80986,6 +81206,8 @@ Download File
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -81157,6 +81379,8 @@ Get File Metadata
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -81413,6 +81637,8 @@ Delete File
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -81606,6 +81832,8 @@ Create Skill
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -81900,6 +82128,8 @@ List Skills
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -82173,6 +82403,8 @@ Get Skill
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -82433,6 +82665,8 @@ Delete Skill
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -82636,6 +82870,8 @@ Create Skill Version
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -82890,6 +83126,8 @@ List Skill Versions
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -83138,6 +83376,8 @@ Download a skill version's content as a zip archive.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -83317,6 +83557,8 @@ Get Skill Version
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -83553,6 +83795,8 @@ Delete Skill Version
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -83747,6 +83991,8 @@ Create User Profile
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -84219,6 +84465,8 @@ List User Profiles
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -84555,6 +84803,8 @@ Get User Profile
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -84883,6 +85133,8 @@ Update User Profile
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -85317,6 +85569,8 @@ Delete User Profile
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -85511,6 +85765,8 @@ Create Enrollment URL
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -85717,6 +85973,8 @@ Create Action URL
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -85938,6 +86196,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -86552,6 +86812,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -87000,6 +87262,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -87442,6 +87706,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -87887,6 +88153,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -88325,6 +88593,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -88554,6 +88824,8 @@ Fetches a tunnel by ID.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -88785,6 +89057,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -89014,6 +89288,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -89235,6 +89511,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -89436,6 +89714,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -89649,6 +89929,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -89893,6 +90175,8 @@ Fetches a tunnel certificate by ID.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -90136,6 +90420,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -90375,6 +90661,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -91213,7 +91501,7 @@ Create an external key config owned by the caller's organization.
 
 - `user_profile_id: optional string or null`
 
-  ID of a user profile to bind the key to. A user profile represents one of your customers: bind a customer's key to that customer's user profile. A key bound to a user profile can only be attached to a Workspace that has the same user profile, and the binding cannot be changed later. Omit this field only for your organization's own key, because a key created without a user profile ID can be attached to any Workspace, including another customer's.
+  ID of a user profile to bind the key to. A user profile represents one of your customers: bind a customer's key to that customer's user profile. A key bound to a user profile can only be attached to a Workspace that has the same user profile, and the binding cannot be changed later. Omit this field only for your organization's own key, never a customer's. A key created without a user profile ID can't be attached to a Workspace that has a user profile, and you can't add one to the key later.
 
 #### Returns
 
@@ -91319,7 +91607,7 @@ Create an external key config owned by the caller's organization.
 
   - `user_profile_id: string or null`
 
-    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can be attached to a Workspace whatever its user profile.
+    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can only be attached to a Workspace that has no user profile.
 
 #### Example
 
@@ -91487,7 +91775,7 @@ Results are ordered by creation time (newest first). Use the
 
   - `user_profile_id: string or null`
 
-    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can be attached to a Workspace whatever its user profile.
+    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can only be attached to a Workspace that has no user profile.
 
 - `next_page: string or null`
 
@@ -91655,7 +91943,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
   - `user_profile_id: string or null`
 
-    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can be attached to a Workspace whatever its user profile.
+    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can only be attached to a Workspace that has no user profile.
 
 #### Example
 
@@ -91884,7 +92172,7 @@ encrypted data requires the original key identity to decrypt.
 
   - `user_profile_id: string or null`
 
-    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can be attached to a Workspace whatever its user profile.
+    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can only be attached to a Workspace that has no user profile.
 
 #### Example
 
@@ -92160,6 +92448,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -92591,6 +92881,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -92931,6 +93223,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -93275,6 +93569,8 @@ session.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -93698,6 +93994,8 @@ issuer cannot be changed), or recreate them against another issuer.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -94045,6 +94343,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -94501,6 +94801,8 @@ unless `include_archived=true`.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -94841,6 +95143,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -95200,6 +95504,8 @@ Console session.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -95632,6 +95938,8 @@ other scopes require a Console session.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -95987,6 +96295,8 @@ other scopes require a Console session.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -96226,6 +96536,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -96454,6 +96766,8 @@ Console session.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -97156,6 +97470,8 @@ accounts.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -97447,6 +97763,8 @@ archived service accounts.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -97699,6 +98017,8 @@ Retrieve a service account by its ID (`svac_...`).
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -97953,6 +98273,8 @@ interactive credential (a user OAuth token or a Console session).
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -98226,6 +98548,8 @@ those rules first or change their target to another service account.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -98484,6 +98808,8 @@ rejected.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -98753,6 +99079,8 @@ page to recover.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -98992,6 +99320,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -99588,6 +99918,8 @@ Every request must include the beta header `anthropic-beta: admin-user-sign-out-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -100017,6 +100349,8 @@ Create Workspace
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -100229,7 +100563,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces \
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "name": "x",
+          "name": "Workspace Name",
           "display_color": "#6C5BB9",
           "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
           "tags": {
@@ -100494,7 +100828,7 @@ Update Workspace
 
 - `user_profile_id: optional string`
 
-  ID of a user profile to attach to the Workspace. Every inference request through the Workspace must then name this user profile; the API rejects a request that names none or a different one. Once set, it can't be replaced or removed (sending the same ID again changes nothing); only deleting the user profile clears it. The default Workspace can't have a user profile.
+  ID of a user profile to attach to the Workspace. Every inference request through the Workspace must then name this user profile; the API rejects a request that names none or a different one. Once set, it can't be replaced or removed (sending the same ID again changes nothing); only deleting the user profile clears it. It can't be set on a Workspace whose External Key isn't bound to this user profile. The default Workspace can't have a user profile.
 
 #### Returns
 
@@ -100606,6 +100940,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID \
     -d '{
           "display_color": "#6C5BB9",
           "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
+          "name": "Workspace Name",
           "tags": {
             "env": "prod",
             "team": "platform"
@@ -101881,6 +102216,8 @@ omitted from the results.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -102117,6 +102454,8 @@ accounts cannot be added and are rejected.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -102371,6 +102710,8 @@ account returns 404.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -102600,6 +102941,8 @@ rejected.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -102847,6 +103190,8 @@ membership. Archived workspaces return 400.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -103528,6 +103873,8 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -104177,6 +104524,8 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -104515,6 +104864,8 @@ archived tunnels are excluded unless `include_archived` is set.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -104751,6 +105102,8 @@ Retrieve a single tunnel in the caller's organization by ID.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -104982,6 +105335,8 @@ tunnel returns the existing record unchanged.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -105216,6 +105571,8 @@ access logs.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -105420,6 +105777,8 @@ restarted after rotation must use the new value. An optional
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -105636,6 +105995,8 @@ holds at most two non-archived certificates.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -105899,6 +106260,8 @@ Archived certificates are excluded unless `include_archived` is set.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -106139,6 +106502,8 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -106373,6 +106738,8 @@ certificate is added.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -108945,6 +109312,8 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -109762,6 +110131,8 @@ API key with the `read:analytics` scope, or an Admin API key.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -110457,7 +110828,7 @@ This endpoint is one of the legacy Claude Enterprise usage and cost reports. For
 
 - `data_refreshed_at: string or null`
 
-  RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case every bucket's `results` list is empty. Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours. Values can be revised as late events arrive and reconciliation runs, until about 7 days after the end of the calendar month the usage falls in; for example, values for October 1 can change until about November 7.
+  RFC 3339 timestamp of the newest data refresh this request reads, determined when the first page is served. Later pages return the same value unless the first page returned null. Null when no export yet covers any part of the requested range, in which case every bucket's `results` list is empty. Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours. Values can be revised as late events arrive and reconciliation runs, until about 7 days after the end of the calendar month the usage falls in; for example, values for October 1 can change until about November 7.
 
   format: date-time
 
@@ -111255,7 +111626,7 @@ This endpoint is one of the legacy Claude Enterprise usage and cost reports. For
 
 - `data_refreshed_at: string or null`
 
-  RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case every bucket's `results` list is empty. Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours. Values can be revised as late events arrive and reconciliation runs, until about 7 days after the end of the calendar month the usage falls in; for example, values for October 1 can change until about November 7.
+  RFC 3339 timestamp of the newest data refresh this request reads, determined when the first page is served. Later pages return the same value unless the first page returned null. Null when no export yet covers any part of the requested range, in which case every bucket's `results` list is empty. Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours. Values can be revised as late events arrive and reconciliation runs, until about 7 days after the end of the calendar month the usage falls in; for example, values for October 1 can change until about November 7.
 
   format: date-time
 
@@ -111853,6 +112224,8 @@ Anthropic account team.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -112488,6 +112861,8 @@ come in a fixed order that is not creation order.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -115563,6 +115938,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -115679,7 +116056,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `reason: string or null`
 
-      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Null on a `pass`, whenever `assessment` is null, and when no mechanism is reported for the verdict.
+      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Read `status` first: on an `errored` scan it is not a finding but why there is no verdict: `scan-invalid-archive`, the scan refused the version's archive, or could not process it, before checking what its files say, and running it again will not help, so change the files and store a new version; `scan-did-not-finish`, the scan did not finish or its result is no longer available, so retry the scan in claude.ai if it offers a retry; `scan-unavailable`, the scan could not run or its result cannot be read right now, so read the version again later, then retry the scan in claude.ai if it offers a retry. If these steps do not help, contact support. Null on a `pass`, while a scan runs, and when no mechanism is reported for the verdict. On an errored scan, null means that a compliance configuration ruled out the scan.
 
     - `status: "completed" or "errored" or "processing"`
 
@@ -115996,6 +116373,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -116096,7 +116475,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `reason: string or null`
 
-      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Null on a `pass`, whenever `assessment` is null, and when no mechanism is reported for the verdict.
+      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Read `status` first: on an `errored` scan it is not a finding but why there is no verdict: `scan-invalid-archive`, the scan refused the version's archive, or could not process it, before checking what its files say, and running it again will not help, so change the files and store a new version; `scan-did-not-finish`, the scan did not finish or its result is no longer available, so retry the scan in claude.ai if it offers a retry; `scan-unavailable`, the scan could not run or its result cannot be read right now, so read the version again later, then retry the scan in claude.ai if it offers a retry. If these steps do not help, contact support. Null on a `pass`, while a scan runs, and when no mechanism is reported for the verdict. On an errored scan, null means that a compliance configuration ruled out the scan.
 
     - `status: "completed" or "errored" or "processing"`
 
@@ -116427,6 +116806,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -116533,7 +116914,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `reason: string or null`
 
-      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Null on a `pass`, whenever `assessment` is null, and when no mechanism is reported for the verdict.
+      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Read `status` first: on an `errored` scan it is not a finding but why there is no verdict: `scan-invalid-archive`, the scan refused the version's archive, or could not process it, before checking what its files say, and running it again will not help, so change the files and store a new version; `scan-did-not-finish`, the scan did not finish or its result is no longer available, so retry the scan in claude.ai if it offers a retry; `scan-unavailable`, the scan could not run or its result cannot be read right now, so read the version again later, then retry the scan in claude.ai if it offers a retry. If these steps do not help, contact support. Null on a `pass`, while a scan runs, and when no mechanism is reported for the verdict. On an errored scan, null means that a compliance configuration ruled out the scan.
 
     - `status: "completed" or "errored" or "processing"`
 
@@ -116906,6 +117287,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -117006,7 +117389,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `reason: string or null`
 
-      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Null on a `pass`, whenever `assessment` is null, and when no mechanism is reported for the verdict.
+      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Read `status` first: on an `errored` scan it is not a finding but why there is no verdict: `scan-invalid-archive`, the scan refused the version's archive, or could not process it, before checking what its files say, and running it again will not help, so change the files and store a new version; `scan-did-not-finish`, the scan did not finish or its result is no longer available, so retry the scan in claude.ai if it offers a retry; `scan-unavailable`, the scan could not run or its result cannot be read right now, so read the version again later, then retry the scan in claude.ai if it offers a retry. If these steps do not help, contact support. Null on a `pass`, while a scan runs, and when no mechanism is reported for the verdict. On an errored scan, null means that a compliance configuration ruled out the scan.
 
     - `status: "completed" or "errored" or "processing"`
 
@@ -117337,6 +117720,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -117546,6 +117931,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -117658,7 +118045,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `reason: string or null`
 
-      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Null on a `pass`, whenever `assessment` is null, and when no mechanism is reported for the verdict.
+      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Read `status` first: on an `errored` scan it is not a finding but why there is no verdict: `scan-invalid-archive`, the scan refused the version's archive, or could not process it, before checking what its files say, and running it again will not help, so change the files and store a new version; `scan-did-not-finish`, the scan did not finish or its result is no longer available, so retry the scan in claude.ai if it offers a retry; `scan-unavailable`, the scan could not run or its result cannot be read right now, so read the version again later, then retry the scan in claude.ai if it offers a retry. If these steps do not help, contact support. Null on a `pass`, while a scan runs, and when no mechanism is reported for the verdict. On an errored scan, null means that a compliance configuration ruled out the scan.
 
     - `status: "completed" or "errored" or "processing"`
 
@@ -117921,6 +118308,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -118021,7 +118410,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `reason: string or null`
 
-      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Null on a `pass`, whenever `assessment` is null, and when no mechanism is reported for the verdict.
+      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Read `status` first: on an `errored` scan it is not a finding but why there is no verdict: `scan-invalid-archive`, the scan refused the version's archive, or could not process it, before checking what its files say, and running it again will not help, so change the files and store a new version; `scan-did-not-finish`, the scan did not finish or its result is no longer available, so retry the scan in claude.ai if it offers a retry; `scan-unavailable`, the scan could not run or its result cannot be read right now, so read the version again later, then retry the scan in claude.ai if it offers a retry. If these steps do not help, contact support. Null on a `pass`, while a scan runs, and when no mechanism is reported for the verdict. On an errored scan, null means that a compliance configuration ruled out the scan.
 
     - `status: "completed" or "errored" or "processing"`
 
@@ -118278,6 +118667,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -118378,7 +118769,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     - `reason: string or null`
 
-      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Null on a `pass`, whenever `assessment` is null, and when no mechanism is reported for the verdict.
+      The primary mechanism behind a `warn` or `fail`, such as `credential-exposure` or `guardrail-tampering`; a mechanism this API does not yet name reads as `other`. Read `status` first: on an `errored` scan it is not a finding but why there is no verdict: `scan-invalid-archive`, the scan refused the version's archive, or could not process it, before checking what its files say, and running it again will not help, so change the files and store a new version; `scan-did-not-finish`, the scan did not finish or its result is no longer available, so retry the scan in claude.ai if it offers a retry; `scan-unavailable`, the scan could not run or its result cannot be read right now, so read the version again later, then retry the scan in claude.ai if it offers a retry. If these steps do not help, contact support. Null on a `pass`, while a scan runs, and when no mechanism is reported for the verdict. On an errored scan, null means that a compliance configuration ruled out the scan.
 
     - `status: "completed" or "errored" or "processing"`
 
@@ -118642,6 +119033,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -118841,6 +119234,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -119120,6 +119515,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -119417,6 +119814,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -119686,6 +120085,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -119973,6 +120374,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -120273,6 +120676,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -120561,6 +120966,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -120873,6 +121280,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -121171,6 +121580,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -121452,6 +121863,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -121956,6 +122369,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -122337,6 +122752,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -122712,6 +123129,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -123223,6 +123642,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -123411,6 +123832,8 @@ Send one test span, named `anthropic.test`, to the destination with its register
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -123637,6 +124060,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -123856,6 +124281,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -124069,6 +124496,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -124267,6 +124696,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -124309,9 +124740,13 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
 #### Body parameters
 
-- `enabled_events: array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved" or "user_profile.program_status_updated"`
+- `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
 
   The event types to deliver to the endpoint. Must list at least one.
+
+  - `"external_key.failed"`
+
+  - `"external_key.recovered"`
 
   - `"user_profile.enforcement_action_opened"`
 
@@ -124357,9 +124792,13 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved" or "user_profile.program_status_updated"`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
 
     The event types delivered to the endpoint.
+
+    - `"external_key.failed"`
+
+    - `"external_key.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -124403,9 +124842,11 @@ curl https://api.anthropic.com/v1/organizations/webhooks \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "enabled_events": [
-            "user_profile.enforcement_action_opened"
+            "user_profile.enforcement_action_opened",
+            "user_profile.enforcement_action_resolved"
           ],
-          "url": "x"
+          "url": "https://example.com/anthropic-webhooks",
+          "name": "Enforcement actions"
         }'
 ```
 
@@ -124418,7 +124859,7 @@ curl https://api.anthropic.com/v1/organizations/webhooks \
   "description": "description",
   "disabled_reason": "disabled_reason",
   "enabled_events": [
-    "user_profile.enforcement_action_opened"
+    "external_key.failed"
   ],
   "name": "name",
   "signing_secret": "signing_secret",
@@ -124569,6 +125010,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -124633,9 +125076,13 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved" or "user_profile.program_status_updated"`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
 
     The event types delivered to the endpoint.
+
+    - `"external_key.failed"`
+
+    - `"external_key.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -124697,7 +125144,7 @@ curl https://api.anthropic.com/v1/organizations/webhooks \
       "description": "description",
       "disabled_reason": "disabled_reason",
       "enabled_events": [
-        "user_profile.enforcement_action_opened"
+        "external_key.failed"
       ],
       "name": "name",
       "state": "disabled",
@@ -124833,6 +125280,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -124898,9 +125347,13 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved" or "user_profile.program_status_updated"`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
 
     The event types delivered to the endpoint.
+
+    - `"external_key.failed"`
+
+    - `"external_key.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -124948,7 +125401,7 @@ curl https://api.anthropic.com/v1/organizations/webhooks/$WEBHOOK_ENDPOINT_ID \
   "description": "description",
   "disabled_reason": "disabled_reason",
   "enabled_events": [
-    "user_profile.enforcement_action_opened"
+    "external_key.failed"
   ],
   "name": "name",
   "state": "disabled",
@@ -125079,6 +125532,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -125125,9 +125580,13 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   Notes about the endpoint.
 
-- `enabled_events: optional array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved" or "user_profile.program_status_updated"`
+- `enabled_events: optional array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
 
   The event types to deliver to the endpoint. Replaces the whole set; an empty list leaves it unchanged.
+
+  - `"external_key.failed"`
+
+  - `"external_key.recovered"`
 
   - `"user_profile.enforcement_action_opened"`
 
@@ -125178,9 +125637,13 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "user_profile.enforcement_action_opened" or "user_profile.enforcement_action_resolved" or "user_profile.program_status_updated"`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
 
     The event types delivered to the endpoint.
+
+    - `"external_key.failed"`
+
+    - `"external_key.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -125230,7 +125693,7 @@ curl https://api.anthropic.com/v1/organizations/webhooks/$WEBHOOK_ENDPOINT_ID \
   "description": "description",
   "disabled_reason": "disabled_reason",
   "enabled_events": [
-    "user_profile.enforcement_action_opened"
+    "external_key.failed"
   ],
   "name": "name",
   "state": "disabled",
@@ -125360,6 +125823,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -125559,6 +126024,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -125740,6 +126207,8 @@ Set a Slack channel up for Claude Tag and return it with its identifier. If the 
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -126294,6 +126763,8 @@ List the set-up Slack channels of one Slack workspace, newest first by `created_
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -126745,6 +127216,8 @@ Get one Slack channel and its settings. By default `settings` holds what the cha
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -127180,6 +127653,8 @@ Change the settings a Slack channel stores. The update is partial: a setting lef
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -127697,6 +128172,8 @@ Remove a Slack channel from Claude Tag. This deletes the channel's stored settin
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -127901,6 +128378,8 @@ List the set-up Slack workspaces the organization owns, newest first by `created
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -128356,6 +128835,8 @@ Get one Slack workspace and its settings. By default `settings` holds what the w
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -128794,6 +129275,8 @@ Change the settings a Slack workspace stores. The update is partial: a setting l
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -129322,6 +129805,8 @@ List the organization's Bundles, newest first by `created_at`. A Bundle that Cla
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -129388,6 +129873,10 @@ List the organization's Bundles, newest first by `created_at`. A Bundle that Cla
 
     The Bundle's name. Always set. Read-only.
 
+  - `instructions: string or null`
+
+    Instructions for Claude, added to the instructions of every session that can use the Bundle. Null when it has none.
+
   - `updated_at: string`
 
     Time of the last change to the Bundle.
@@ -129417,6 +129906,7 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/bundles \
       "created_at": "2019-12-27T18:11:19.117Z",
       "description": "description",
       "display_name": "display_name",
+      "instructions": "instructions",
       "type": "bundle",
       "updated_at": "2019-12-27T18:11:19.117Z"
     }
@@ -129543,6 +130033,8 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -129587,7 +130079,7 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
 
 - `BetaClaudeTagBundle object`
 
-  A named set of access that Claude can use in a Slack channel or a Slack workspace: connectors, repositories and credentials. Created and edited in claude.ai.
+  A named set of access that Claude can use in a Slack channel or a Slack workspace: connectors, repositories and credentials. Created and edited in claude.ai; Update Bundle also changes its instructions.
 
   - `type: "bundle"`
 
@@ -129608,6 +130100,10 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
   - `display_name: string`
 
     The Bundle's name. Always set. Read-only.
+
+  - `instructions: string or null`
+
+    Instructions for Claude, added to the instructions of every session that can use the Bundle. Null when it has none.
 
   - `updated_at: string`
 
@@ -129632,6 +130128,234 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/bundles/$BUNDLE_ID \
   "created_at": "2019-12-27T18:11:19.117Z",
   "description": "description",
   "display_name": "display_name",
+  "instructions": "instructions",
+  "type": "bundle",
+  "updated_at": "2019-12-27T18:11:19.117Z"
+}
+```
+
+### Update Bundle
+
+**POST** `/v1/organizations/claude_tag/bundles/{bundle_id}`
+
+Change a Bundle's instructions. The update is partial: a field left out is unchanged, and `instructions` sent as null or as an empty string clears them. The later of two updates wins. Sessions that start after the change use the new instructions; sessions already running keep the ones they started with. Some Bundles are managed in claude.ai, and an update of one returns 400.
+
+#### Path parameters
+
+- `bundle_id: string`
+
+  The Bundle's identifier, starting with `capp_`.
+
+#### Headers
+
+- `"anthropic-version": optional string`
+
+  The version of the Claude API you want to use.
+
+  Read more about versioning and our version history [here](https://platform.claude.com/docs/en/api/versioning?sdk_languages=http).
+
+- `"anthropic-beta": optional array of AnthropicBeta`
+
+  This endpoint is in beta: requests must send `experimental-claude-tag-2026-10-21` in this header.
+
+  - `string`
+
+  - `"computer-use-2024-10-22"`
+
+  - `"computer-use-2025-01-24"`
+
+  - `"output-128k-2025-02-19"`
+
+  - `"mcp-client-2025-04-04"`
+
+  - `"mcp-client-2025-11-20"`
+
+  - `"dev-full-thinking-2025-05-14"`
+
+  - `"interleaved-thinking-2025-05-14"`
+
+  - `"code-execution-2025-05-22"`
+
+  - `"context-1m-2025-08-07"`
+
+  - `"context-management-2025-06-27"`
+
+  - `"model-context-window-exceeded-2025-08-26"`
+
+  - `"fast-mode-2026-02-01"`
+
+  - `"output-300k-2026-03-24"`
+
+  - `"user-profiles-2026-03-24"`
+
+  - `"user-profiles-2026-08-18"`
+
+  - `"user-profiles-2026-09-04"`
+
+  - `"advisor-tool-2026-03-01"`
+
+  - `"managed-agents-2026-04-01"`
+
+  - `"dreaming-2026-04-21"`
+
+  - `"thinking-token-count-2026-05-13"`
+
+  - `"server-side-fallback-2026-06-01"`
+
+  - `"server-side-fallback-2026-07-01"`
+
+  - `"fallback-credit-2026-06-01"`
+
+  - `"fallback-credit-2026-07-01"`
+
+  - `"agent-memory-2026-07-22"`
+
+  - `"mid-conversation-tool-changes-2026-07-01"`
+
+  - `"compact-2026-01-12"`
+
+  - `"computer-use-2025-11-24"`
+
+  - `"mcp-tunnels-2026-06-22"`
+
+  - `"structured-outputs-2025-11-13"`
+
+  - `"task-budgets-2026-03-13"`
+
+  - `"thinking-display-updates-2026-08-18"`
+
+  - `"mid-conversation-output-config-2026-07-01"`
+
+  - `"thinking-binding-controls-2026-08-01"`
+
+  - `"mid-conversation-system-clear-at-2026-08-21"`
+
+  - `"compact-2026-09-04"`
+
+  - `"inline-tools-2026-09-15"`
+
+  - `"mcp-client-2026-09-15"`
+
+  - `"ce-plugins-2026-09-01"`
+
+  - `"spend-limit-reads-2026-09-26"`
+
+  - `"telemetry-destinations-2026-08-11"`
+
+  - `"webhooks-2026-10-07"`
+
+  - `"admin-user-sign-out-2026-10-08"`
+
+  - `"message-threads-2026-08-12"`
+
+  - `"analytics-usage-cost-2026-08-24"`
+
+  - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
+
+  - `"message-batches-2024-09-24"`
+
+    **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+  - `"prompt-caching-2024-07-31"`
+
+    **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+  - `"pdfs-2024-09-25"`
+
+    **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+  - `"token-counting-2024-11-01"`
+
+    **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+  - `"token-efficient-tools-2025-02-19"`
+
+    **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+  - `"files-api-2025-04-14"`
+
+    **Deprecated**: Sending this value selects the beta response shapes. Removing it moves you to the current shapes, so follow the migration steps: https://platform.claude.com/docs/en/build-with-claude/files#migrate-from-files-api-2025-04-14
+
+  - `"extended-cache-ttl-2025-04-11"`
+
+    **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+  - `"skills-2025-10-02"`
+
+    **Deprecated**: Sending this value selects the beta response shapes. Removing it moves you to the current shapes, so follow the migration steps: https://platform.claude.com/docs/en/build-with-claude/skills-guide#migrate-from-skills-2025-10-02
+
+  - `"cache-diagnosis-2026-04-07"`
+
+    **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+  - `"ce-user-management-2026-07-13"`
+
+    **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+#### Body parameters
+
+- `instructions: optional string or null`
+
+  Instructions for Claude, up to 10,000 bytes (UTF-8), added to the instructions of every session that can use the Bundle. Null or an empty string clears them.
+
+#### Returns
+
+- `BetaClaudeTagBundle object`
+
+  A named set of access that Claude can use in a Slack channel or a Slack workspace: connectors, repositories and credentials. Created and edited in claude.ai; Update Bundle also changes its instructions.
+
+  - `type: "bundle"`
+
+  - `id: string`
+
+    The Bundle's identifier. Starts with `capp_`.
+
+  - `created_at: string`
+
+    Time the Bundle was created.
+
+    format: date-time
+
+  - `description: string or null`
+
+    What the Bundle is for. Null when it has none. Read-only.
+
+  - `display_name: string`
+
+    The Bundle's name. Always set. Read-only.
+
+  - `instructions: string or null`
+
+    Instructions for Claude, added to the instructions of every session that can use the Bundle. Null when it has none.
+
+  - `updated_at: string`
+
+    Time of the last change to the Bundle.
+
+    format: date-time
+
+#### Example
+
+```bash
+curl https://api.anthropic.com/v1/organizations/claude_tag/bundles/$BUNDLE_ID \
+    -H 'Content-Type: application/json' \
+    -H 'anthropic-version: 2026-10-21' \
+    -H 'anthropic-beta: experimental-claude-tag-2026-10-21' \
+    -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
+    -d '{}'
+```
+
+##### Response (200)
+
+```json
+{
+  "id": "id",
+  "created_at": "2019-12-27T18:11:19.117Z",
+  "description": "description",
+  "display_name": "display_name",
+  "instructions": "instructions",
   "type": "bundle",
   "updated_at": "2019-12-27T18:11:19.117Z"
 }
@@ -129768,6 +130492,8 @@ List the Slack channels and Slack workspaces a Bundle is attached to, newest fir
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -130001,6 +130727,8 @@ Attach a Bundle to a Slack channel or a Slack workspace. A Bundle attached to a 
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -130263,6 +130991,8 @@ Get one Bundle Target. Returns 404 when `target_id` is the identifier of another
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -130490,6 +131220,8 @@ Detach a Bundle from a Slack channel or a Slack workspace. A repeated detach ret
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

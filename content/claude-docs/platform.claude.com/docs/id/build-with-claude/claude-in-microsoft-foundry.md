@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 78510f24797f0411aa35425ae1fc38d3d6e4104e437200336812382f35da3650
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 6dfc05251edc95d63618bc6754d6e9506ddeda1cb9a062958a3f5b7b1a785394
 ---
 
 ---
@@ -83,8 +83,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.9.0")
-        implementation("com.anthropic:anthropic-java-foundry:3.9.0")
+        implementation("com.anthropic:anthropic-java:3.10.0")
+        implementation("com.anthropic:anthropic-java-foundry:3.10.0")
         ```
       </Tab>
 
@@ -93,12 +93,12 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.9.0</version>
+            <version>3.10.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>3.9.0</version>
+            <version>3.10.0</version>
         </dependency>
         ```
       </Tab>

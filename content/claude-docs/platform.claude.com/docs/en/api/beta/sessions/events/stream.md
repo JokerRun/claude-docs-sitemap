@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/stream
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5f51b9b4067af2da3ee5b6e355b6659974bbc47c13dd2e9b1b40d326050d302a
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: b997f0681994093c374bb0d00caea9b9210ca6df352d7b74eca8bad2cb6e5a07
 ---
 
 ---
@@ -135,6 +135,8 @@ Stream Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

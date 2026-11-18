@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 198eb18f42c41f3fe7e01d41776a02cd546d47a3f68fc5cc672b9a028f543e9e
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 39d910808d668a211cf8fccf6ceb8fe4c02d91d980fd2e9143f866c6fa5d28c3
 ---
 
 ---
@@ -143,6 +143,8 @@ Archived issuers are excluded unless `include_archived=true`.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

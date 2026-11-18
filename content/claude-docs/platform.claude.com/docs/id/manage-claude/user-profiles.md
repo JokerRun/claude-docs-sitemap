@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 1a623ccb99702405642544fbed6399da4942fd729d1273818adffe09ff429553
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: a84d4f812729dc04938049184dae2acbadce2bb29a01a5a56926bda70f75c0ff
 ---
 
 ---
@@ -17,7 +17,7 @@ Jika Anda mengoperasikan platform atau gateway, atau menjual kembali akses API, 
 
 Anda mendaftarkan setiap pelanggan akhir satu kali dengan `POST /v1/user_profiles` dan menyimpan ID `uprof_` yang dikembalikannya. Kemudian Anda mengirim ID tersebut di header `anthropic-user-profile-id` pada setiap permintaan yang Anda buat atas nama pelanggan akhir tersebut.
 
-Dengan sendirinya, profil tidak mengubah penagihan atau harga.
+Dengan sendirinya, profil tidak mengubah penagihan atau harga. Jika Anda menggunakan [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections), profil juga merupakan cara Anda mengidentifikasi pelanggan yang akan ditagih.
 
 ## Tentukan siapa yang mendapatkan profil
 
@@ -693,6 +693,8 @@ Setelah penghapusan, endpoint profil mengembalikan `404` untuk ID tersebut. Hing
 Referensi API berisi field, tipe, dan batasan setiap endpoint: [Membuat profil](https://platform.claude.com/docs/id/api/user_profiles/create), [Mengambil profil](https://platform.claude.com/docs/id/api/user_profiles/retrieve), [Memperbarui profil](https://platform.claude.com/docs/id/api/user_profiles/update), [Menghapus profil](https://platform.claude.com/docs/id/api/user_profiles/delete), dan [Mencantumkan profil](https://platform.claude.com/docs/id/api/user_profiles/list).
 
 Jika persetujuan program pelanggan akhir harus berlaku ketika mereka menggunakan Claude melalui platform Anda, lihat [Kirim tautan ke Verification Portal kepada pelanggan akhir](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal).
+
+Untuk menagihkan permintaan suatu profil ke organisasi Claude milik pelanggan tersebut, lihat [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections).
 
 Untuk mendapatkan event saat Anthropic membatasi atau memblokir salah satu pelanggan akhir Anda, atau saat pembatasan atau pemblokiran tersebut berakhir, lihat [Webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks).
 

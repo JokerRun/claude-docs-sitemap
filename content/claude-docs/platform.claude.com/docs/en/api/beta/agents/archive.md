@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 6e3935d80db952e8af0b840d8410e2987d24c4a632714fcdb2c0b73c4c1ea1b3
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 558afe750ce96f8fc19e7e25d0c723682078600382b04271366f286c84adfd71
 ---
 
 ---
@@ -127,6 +127,8 @@ Archive Agent
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

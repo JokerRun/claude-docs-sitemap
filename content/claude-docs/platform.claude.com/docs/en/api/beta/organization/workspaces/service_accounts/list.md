@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: dc8ceae72db3c7087ba9c443b69cb41c0689f04303aa6e658bf825526363a729
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 628e97ba5fc483b1a272ffa7dae4d19a273ca5722fe8f2e1185e5f6ac18f9241
 ---
 
 ---
@@ -148,6 +148,8 @@ omitted from the results.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

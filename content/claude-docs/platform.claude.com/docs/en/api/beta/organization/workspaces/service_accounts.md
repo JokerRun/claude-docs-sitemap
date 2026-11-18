@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: d6e9a788e41c890791152b4f01601da6f1860d4b08c58c163043e4f83cbfebcd
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 0c896330b7408abb0bbb679d2ea5412ac5f936e2f1724e75ffb32a3371c23e4c
 ---
 
 ---
@@ -150,6 +150,8 @@ omitted from the results.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -387,6 +389,8 @@ accounts cannot be added and are rejected.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -641,6 +645,8 @@ account returns 404.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -870,6 +876,8 @@ rejected.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -1117,6 +1125,8 @@ membership. Archived workspaces return 400.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

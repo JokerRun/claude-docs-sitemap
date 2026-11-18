@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/list
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: a2deb8c4329f79496178d22a50f63a2f531a7f2191d10dcc8c1417dc43ed07eb
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 7672c40310e21afa39de810c0da800772011a1813bd2f773abeb31f01b4a1674
 ---
 
 ---
@@ -137,7 +137,7 @@ Results are ordered by creation time (newest first). Use the
 
   - `user_profile_id: string or null`
 
-    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can be attached to a Workspace whatever its user profile.
+    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can only be attached to a Workspace that has no user profile.
 
 - `next_page: string or null`
 

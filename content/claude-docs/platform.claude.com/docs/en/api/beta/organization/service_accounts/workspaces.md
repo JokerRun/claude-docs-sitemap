@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5b271d80c4add36ea296bc571b2d916ea78eb399c65adea5af1da7fcad430d8d
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 2f9db0ffb021179b661b3000593909c59ee9881bce200ecac749c49f3adb801b
 ---
 
 ---
@@ -138,6 +138,8 @@ rejected.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -407,6 +409,8 @@ page to recover.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -646,6 +650,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

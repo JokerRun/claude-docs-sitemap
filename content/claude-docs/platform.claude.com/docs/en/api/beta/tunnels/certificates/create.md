@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: b7d399dc3c5fcf19f6a5780450e5845ff2f14367f66d86b455430ef29bc6e58b
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: e36d92a21292bbd3a81be48c7fa41ce7aba216b2456d40dea2bf39c50a017f1a
 ---
 
 ---
@@ -129,6 +129,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

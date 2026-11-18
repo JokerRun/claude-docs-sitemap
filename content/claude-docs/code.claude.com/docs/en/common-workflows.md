@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/common-workflows
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 16a0b3b401c36f1fac7ae43d2a00c99c636fde70fbf906703d5a637428ee909a
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: e3a6419cc1cefaa7e05b76de77301b8d638eff21c46dd63e1bc48b81c10cbbe4
 ---
 
 > ## Documentation Index
@@ -372,7 +372,7 @@ What's the structure of @src/components?
 Show me the data from @github:repos/owner/repo/issues
 ```
 
-This fetches data from connected MCP servers using the format @server:resource. See [MCP resources](https://code.claude.com/docs/en/mcp.md#use-mcp-resources) for details.
+See [MCP resources](https://code.claude.com/docs/en/mcp.md#use-mcp-resources) for details.
 
 > [!TIP]
 >
@@ -497,7 +497,7 @@ The subagent reads files in its own context window and reports a summary. See [S
 
 ## Pipe Claude into scripts
 
-Run Claude non-interactively for CI, pre-commit hooks, or batch processing. Stdin and stdout work like any Unix tool.
+Run Claude non-interactively for CI, pre-commit hooks, or batch processing.
 
 ```bash theme={null}
 git log --oneline -20 | claude -p "summarize these recent commits"

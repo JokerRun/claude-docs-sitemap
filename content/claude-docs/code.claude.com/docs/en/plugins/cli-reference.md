@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/cli-reference
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 8d24a5282d3f8ffb48c70f094abe0f7dd404de5836b610ce53f996c6363201d9
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: e4ddf7b89e048836fe18f024049e70feee377c99d779b87a702e3665531cec60
 ---
 
 > ## Documentation Index
@@ -182,13 +182,15 @@ If the failure line continues with `"formatter" was not uninstalled:` and names 
 
 #### What an uninstall deletes and keeps
 
-When you uninstall a plugin from the last scope it's installed at, Claude Code also deletes the plugin's stored [options and secrets](https://code.claude.com/docs/en/plugins/manifest-reference.md#user-configuration) and its data directory, `~/.claude/plugins/data/<id>/`. There are three exceptions:
+When you uninstall a plugin from the last scope it's installed at, Claude Code also deletes the plugin's stored [options and secrets](https://code.claude.com/docs/en/plugins/manifest-reference.md#user-configuration) and its data directory, `~/.claude/plugins/data/<id>/`. Some or all of them can stay, such as in these cases:
 
 * With `--keep-data`, the data directory stays
 * When another installed plugin uses the same folder, such as one whose ID differs from this one only in letter case, the data directory stays
 * When Claude Code can't read the list of installed plugins back after it removes the plugin from that scope, the options, secrets, and data directory all stay, because the plugin may still be installed at another scope. The uninstall still succeeds. The message lists what stayed and how to delete it, and with `--json` the result carries `savedKept: "install_records_unreadable"`
 
 With `--json`, `keptData` reports whether the directory stayed, and `/plugin` shows `· data preserved` when it did. For a directory that stays without `--keep-data`, this reporting requires Claude Code v2.1.281 or later. The `savedKept` field requires Claude Code v2.1.282 or later.
+
+When Claude Code deletes the options and secrets, it also deletes the files that v2.1.326 or later extracted into `~/.claude/plugins/mcpb/` from the plugin's [MCP bundles](https://code.claude.com/docs/en/plugins/components.md#include-a-packaged-mcpb-server). It keeps them while another plugin uses an identical bundle. Any extracted files you still find there are [cleaned up automatically](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically) once no session has used them for the `cleanupPeriodDays` period.
 
 ### plugin enable
 

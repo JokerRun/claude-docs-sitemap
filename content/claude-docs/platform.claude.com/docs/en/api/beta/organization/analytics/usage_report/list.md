@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/usage_report/list
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: a5cfa14359b8be96ffa692f1f4729338bae73e73de73d2494b2a0f06c972822b
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 310c93adbe9f6f7ac2deeda250f7e1b60edce5ef1d214f65da3739a934a97fc7
 ---
 
 ---
@@ -310,7 +310,7 @@ This endpoint is one of the legacy Claude Enterprise usage and cost reports. For
 
 - `data_refreshed_at: string or null`
 
-  RFC 3339 timestamp of the export this response was served from. Null when no export yet covers any part of the requested range, in which case every bucket's `results` list is empty. Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours. Values can be revised as late events arrive and reconciliation runs, until about 7 days after the end of the calendar month the usage falls in; for example, values for October 1 can change until about November 7.
+  RFC 3339 timestamp of the newest data refresh this request reads, determined when the first page is served. Later pages return the same value unless the first page returned null. Null when no export yet covers any part of the requested range, in which case every bucket's `results` list is empty. Buckets beyond this watermark are incomplete; for stable results, set `ending_at` to this value or earlier. Data is typically refreshed every 4 hours. Values can be revised as late events arrive and reconciliation runs, until about 7 days after the end of the calendar month the usage falls in; for example, values for October 1 can change until about November 7.
 
   format: date-time
 

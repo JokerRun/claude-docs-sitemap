@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report/retrieve_messages
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: eacc43fe2e0f285cab4bdb39baa1291a247c0f606860b9db18c85723a1c85523
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 93d47b6e37d8473d1fb7babc24d006fb5942c0e38e4502c92ef900c4f861f0db
 ---
 
 ---
@@ -247,6 +247,8 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

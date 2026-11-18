@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/delete
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: de38aaa69cf6d6a113ee3785e7aa1fba0c6321415e2bee49c99fb2a2646a203b
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 01b53585c596cf663d5569619893b1ca8c4d40d74e47398e8f59ee5a9da5daa5
 ---
 
 ---
@@ -127,6 +127,8 @@ Delete Session Resource
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

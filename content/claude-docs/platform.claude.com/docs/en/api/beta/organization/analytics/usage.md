@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/usage
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: f78c43b13b9dedef031c92796565e4f84083089c717aee7142012f1a9e5ad792
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: d547fad987992bc60f436e0ffe19a534fd7028ecb91bc2042971bbacde0119e1
 ---
 
 ---
@@ -427,6 +427,8 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

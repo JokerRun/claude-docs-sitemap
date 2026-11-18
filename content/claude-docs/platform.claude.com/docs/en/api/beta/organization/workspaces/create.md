@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 28c52e9a76ef89820e0dc5a1b97ba7e19758b7f6d1a8a6ac46e209b4a5fab43c
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 98dad70af94e8acb1c11e4b4f03b60571114228781468daea8be85d71fd653b1
 ---
 
 ---
@@ -121,6 +121,8 @@ Create Workspace
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -334,7 +336,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces \
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "name": "x",
+          "name": "Workspace Name",
           "display_color": "#6C5BB9",
           "external_key_id": "ekey_01SDCCSbTxrXDpWc1phhtcfK",
           "tags": {

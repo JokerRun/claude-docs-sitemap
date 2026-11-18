@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 7a38c1b3e98789b34090b97891b798b0fbd6cf74ff11773be875820e18993c2f
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 027537644226c1592215c992c6091cc8bd333768c1e222c5ef036f0db126dd8b
 ---
 
 > ## Documentation Index
@@ -111,6 +111,7 @@ Each supported channel is a plugin that requires [Bun](https://bun.sh). For a ha
 > * View Channels
 > * Send Messages
 > * Send Messages in Threads
+> * Create Public Threads
 > * Read Message History
 > * Attach Files
 > * Add Reactions

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 3637ac0ef8e20a0e1986f73ee2260ab8abeb946a081d0e755128d6b1dacca35a
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 4c1ad3d5d1e4150bda43c1301f126691a5b61c458d7ee9abc70c45e458649b9a
 ---
 
 ---
@@ -135,6 +135,8 @@ Get Skill Version
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

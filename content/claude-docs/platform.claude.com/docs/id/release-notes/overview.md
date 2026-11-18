@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: c24ce94b8e09679bf23473788e74bf3ed74aa1bafda1b092795d5dbfd35a12ef
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 5b6180dc5689d3419e22e8c3e883b51f8bbbbb4bc4ace3c76c4bea54b81c6e9d
 ---
 
 ---
@@ -18,6 +18,10 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
+
+### 17 November 2026
+
+* Kami telah meluncurkan [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections) dalam versi beta dengan beta header `user-profiles-billing-2026-10-01`. Pelanggan Anda kini dapat membayar penggunaan Claude di aplikasi Anda melalui organisasi Claude mereka sendiri. Setelah pelanggan menautkan organisasinya, atur `billing_policy` pada setiap permintaan `/v1/messages` atau `/v1/chat/completions` untuk memilih siapa yang membayar. Di Claude Console, pelanggan dapat menetapkan batas pengeluaran untuk aplikasi Anda atau membatalkan tautan aplikasi Anda. Linked billing berfungsi untuk pelanggan yang organisasinya membayar Anthropic secara langsung untuk penggunaan API.
 
 ### 16 November 2026
 

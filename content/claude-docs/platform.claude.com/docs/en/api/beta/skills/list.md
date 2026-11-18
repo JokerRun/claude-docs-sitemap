@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c9af49329bce60ed47c23770d56885aa97fe038728ba74e2cd39e0dc7e5c2593
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: b4459e61a2c881afc5ba4d426799a47c6a21c818ac1cf3dd4577bbc7ab80f841
 ---
 
 ---
@@ -146,6 +146,8 @@ List Skills
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

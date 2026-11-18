@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 27ce8f10b21180453dc567328c640a11e06095e29a0585726e55a145303d9b60
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 087e9f265cdc4492f1a84f5a05f76f12f7d5da24909d814d0d0e099cd55b4de3
 ---
 
 ---
@@ -138,6 +138,8 @@ accounts cannot be added and are rejected.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

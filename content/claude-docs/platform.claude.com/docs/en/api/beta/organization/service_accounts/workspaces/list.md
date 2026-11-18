@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c7674dfa9e80b891045a22f349ef6696a539bc6a3133ba76274304e6a496ee75
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 549e0b6f43527201a702273cd7070726f7471bc0dc723c2296ef281c8b723c9c
 ---
 
 ---
@@ -155,6 +155,8 @@ page to recover.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

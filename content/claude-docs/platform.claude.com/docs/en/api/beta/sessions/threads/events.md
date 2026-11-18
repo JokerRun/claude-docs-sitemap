@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 8cda871b8721377fa143b3ec3ab10120de9ddd599ff2c1ebc2c94a54294d2043
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 4ca749194e001867a7caa9ef146c2ae4d50c88f11bd7b6edc4e87345aacc922f
 ---
 
 ---
@@ -137,6 +137,8 @@ List Session Thread Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -3342,6 +3344,8 @@ Stream Session Thread Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

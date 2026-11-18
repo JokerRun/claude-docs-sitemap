@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 80c6709b6b1ad16581781bd8e06e79f4c30b365dfae630654e276144843e345e
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 3657cf42ea96a8f01c7ade83fbfe5c88376f7ffacf989d0cfbafa6d2d7191197
 ---
 
 ---
@@ -21,7 +21,7 @@ Untuk Claude Platform, lihat [Cakupan CMEK di Claude Platform](https://platform.
 * Claude Code di CLI, termasuk konten pesan.
 * Cowork di Claude Desktop.
 * Chat dalam pengalaman Claude terpadu, hanya di web. **Computer access** dinonaktifkan.
-* Office agents, termasuk Claude for Outlook (beta).
+* Office agents, termasuk Claude for Outlook.
 * Claude in Chrome.
 * Claude Science, yang masih dalam versi beta.
 * Versi plugin [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api#customer-managed-encryption-keys) (beta): deskripsi, catatan rilis, komponen, dan file setiap versi. Halaman tersebut mencantumkan permintaan mana yang tetap berfungsi selama kunci Anda tidak dapat digunakan.

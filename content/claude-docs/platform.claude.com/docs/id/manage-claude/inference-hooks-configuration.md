@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 6f9d263a9f88fc5fd4faac836d0608ae810ab669bb1221f0ac21d03328aa37c5
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: c140293bb5f4e34ae1f357843c6e0ad1cf7b50dce505faf8d4ec0c80bd862a48
 ---
 
 ---
@@ -170,7 +170,7 @@ Setiap pemicuan juga dicatat di [Activity Feed](https://platform.claude.com/docs
 
 Untuk memulihkan, perbaiki server, lalu aktifkan kembali **Terapkan keputusan** untuk mengatur ulang pemutus sirkuit.
 
-Breaker juga dapat di-reset dengan sendirinya. Mulai 10 menit setelah pemicuan, Anthropic memeriksa apakah server Anda telah pulih dengan mengirimkan permintaan uji di latar belakang, paling banyak sekitar sekali per menit; tidak ada permintaan pengguna yang terlibat. Jika server Anda merespons dengan verdict yang valid, izinkan atau tolak, breaker di-reset dan penegakan dilanjutkan. Jika tidak, breaker tetap terpicu dan pemeriksaan berlanjut.
+Breaker juga dapat di-reset dengan sendirinya. Mulai 3 menit setelah pemicuan, Anthropic memeriksa apakah server Anda telah pulih. Paling banyak sekitar sekali per menit, Anthropic mengirimkan permintaan uji ke server Anda di latar belakang. Tidak ada permintaan pengguna yang terlibat. Jika server Anda merespons dengan verdict yang valid, izinkan atau tolak, breaker di-reset dan penegakan dilanjutkan. Jika tidak, breaker tetap terpicu dan pemeriksaan berlanjut.
 
 Pemulihan otomatis hanya berjalan selama pengaturan Inference hooks Anda tidak berubah sejak pemicuan. Jika Anda mengubah pengaturan Inference hooks apa pun setelah pemicuan, termasuk merotasi signing secret, pemeriksaan berhenti dan breaker tidak lagi di-reset dengan sendirinya; aktifkan kembali **Terapkan keputusan** ketika server Anda sudah diperbaiki. Pemulihan otomatis hanya berlaku untuk pemicuan: jika Anda sendiri mematikan **Terapkan keputusan**, penegakan tetap mati hingga Anda mengaktifkannya kembali.
 

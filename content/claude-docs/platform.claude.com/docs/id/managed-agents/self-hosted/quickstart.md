@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/quickstart
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: c8112d64d8165daca017ed1a7f2e7c943b7f6226b0ffd13fcb1f44a6afc038bf
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 5a64c544d832858ae0689e94d35ab116a1d3ad773178db612825771d808e433a
 ---
 
 ---
@@ -51,7 +51,7 @@ Jika Anda adalah agen yang menjalankan langkah-langkah ini untuk seseorang:
 
 <Steps>
   <Step title="Ekstrak arsip">
-    Ekstrak arsip, dan bekerjalah dari direktori `compose` di dalamnya. Dalam perintah tersebut, ganti `<archive>` dengan nama arsip Anda, tanpa `.tar.gz`.
+    Ekstrak arsip dan bekerjalah dari direktori `compose` di dalamnya. Dalam perintah tersebut, ganti `<archive>` dengan nama arsip Anda, tanpa `.tar.gz`.
 
     ```bash
     tar -xzf <archive>.tar.gz && cd <archive>/compose

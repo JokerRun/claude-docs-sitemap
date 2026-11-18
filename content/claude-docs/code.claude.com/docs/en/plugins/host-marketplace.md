@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/host-marketplace
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 52787e3decc5e4d2169f611ce8cf87a34d1b4ec5748ff8264a05e4d1a6149a0e
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: d7b5880de1a51c1731d7f979f55809942fa283e357af97e9b10c34f7ce77223f
 ---
 
 > ## Documentation Index
@@ -205,7 +205,7 @@ Don't set `version` in both `plugin.json` and the marketplace entry. If you do, 
 
 ### Hold users on one version
 
-One marketplace serves one version of each plugin at a time, so you hold users on a version by choosing what each entry points at:
+To hold users on a version, choose which ref, commit, or tag they get:
 
 * **`ref` and `sha` on the plugin entry**: `ref` names a branch or tag and `sha` names a commit for a `github`, `url`, or `git-subdir` source. See [Plugin sources](https://code.claude.com/docs/en/plugins/marketplace-reference.md#plugin-sources).
 * **`#<ref>` on the add command**: users who add `your-org/your-marketplace#stable` get that branch or tag of the catalog. For two release lines at once, see [Run release channels](#run-release-channels).
@@ -226,7 +226,7 @@ Tell users to run the `claude plugin update` command that entry shows, in a term
 
 ## Run release channels
 
-To offer stable and early-access tracks, host two marketplaces whose entries point at different refs of the same plugin, and let each user add the one they want. Claude Code has no release-channel concept, and one marketplace serves one version of each plugin at a time.
+To offer stable and early-access tracks, host two marketplaces whose entries point at different refs of the same plugin, and let each user add the one they want.
 
 Give the two `marketplace.json` files different `name` values. Claude Code identifies a marketplace by its `name`, so a user can't have two marketplaces with the same name registered at once.
 

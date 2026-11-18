@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 9ba9ae9669acc1792df12eb60bddfb4235d1eec9fd9b5a702574de820fd860ac
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: d0f7b743f3bfc48dbedc1ada676bb5c84494b9d3e22afeedf8913c8a4f17156a
 ---
 
 ---
@@ -121,6 +121,8 @@ Create Skill
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

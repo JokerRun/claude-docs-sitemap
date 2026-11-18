@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: ff096c29a6df123549639ce110ed4ce613198ebe8020739c0816070de0ac7af8
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 984fd4d066584103c708000e36fb43c0f7fce03b721c316092fad213138ae8bd
 ---
 
 ---
@@ -169,6 +169,8 @@ List Memories
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

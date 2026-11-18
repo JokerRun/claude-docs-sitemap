@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 464a654cfffc0cbba6edeca61faeb10cdf9c1b202fd32d36d710c58d588e76c8
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: c110ccb1294b9d24e010a27fafad5aebb5627347fedd99744031249eb8098d9d
 ---
 
 > ## Documentation Index
@@ -31,7 +31,7 @@ Five sections are [required](#required-sections). Every other section is [option
 * [`oidc`](#oidc): your identity provider (IdP), including issuer, client, claim mapping, and who may sign in
 * [`session`](#session): the bearer tokens the gateway mints, with secret and lifetime
 * [`store`](#store): PostgreSQL, for device grants and rate-limit counters
-* [`upstreams`](#upstreams): where inference goes, whether Anthropic, Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, or Microsoft Foundry
+* [`upstreams`](#upstreams): where inference goes, whether Anthropic, Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), Google Cloud's Agent Platform, or Microsoft Foundry
 
 **Optional sections:**
 
@@ -184,7 +184,7 @@ Each row below is one class of outbound request on a gateway with `HTTPS_PROXY` 
 | - | - | - |
 | `provider: anthropic` upstreams, Workload Identity Federation token exchange, `telemetry.forward_to` exports | Resolved and checked locally, then `CONNECT` to the checked IP address through the proxy. A telemetry collector listed in `NO_PROXY` is reached directly instead | Hostname handed to the proxy |
 | IdP discovery, JWKS, token, and userinfo | Direct unless [`oidc.use_proxy: true`](#idp-requests-through-a-forward-proxy), then `CONNECT` to the checked IP address | Hostname handed to the proxy, unless `oidc.use_proxy: false` keeps an internal IdP direct |
-| Amazon Bedrock, Claude Platform on AWS, Google Cloud's Agent Platform, and Microsoft Foundry upstreams; Google group lookups | Hostname handed to the proxy | Unchanged |
+| Amazon Bedrock, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), Google Cloud's Agent Platform, and Microsoft Foundry upstreams; Google group lookups | Hostname handed to the proxy | Unchanged |
 
 Proxy-only egress stays off unless the gateway's environment meets all three of these conditions:
 
@@ -618,6 +618,24 @@ The platform runs in a separate AWS account from Amazon Bedrock and signs SigV4 
 | `base_url` | No | Override the derived endpoint |
 
 Because the platform resolves first-party model IDs, the built-in catalog routes to it with no [`models:`](#models) block. When you curate a `models:` list, key the entry `anthropicAws:` with the first-party ID.
+
+#### Claude Models on Google Cloud (Anthropic managed)
+
+Claude Models on Google Cloud (Anthropic managed) is the Anthropic-operated Claude API, reached through your Google Cloud project. To send model requests to it, add an upstream with the `anthropicGoogleCloud` provider.
+
+Before you add the upstream, upgrade your gateway replicas to Claude Code v2.1.307 or later and [set up the service in a Google Cloud project](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#set-up-your-account). Grant `roles/claude.user` on that project to the identity that the gateway's Google credentials resolve to.
+
+```yaml theme={null}
+upstreams:
+  - provider: anthropicGoogleCloud
+    project_id: example-prod
+    workspace_id: wrkspc_01ABCDEFGHIJKLMN
+    auth: {}                           # Google credentials, not an API key; {} uses Application Default Credentials
+    # OR the path to a service account key file:
+    # auth: { service_account_json: /secrets/sa.json }
+```
+
+Both `project_id` and `workspace_id` are required: `project_id` is the ID of the project where you set up the service, and you can [find the `wrkspc_` ID](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#find-your-workspace-id) in the Claude Console.
 
 #### Google Cloud Agent Platform
 

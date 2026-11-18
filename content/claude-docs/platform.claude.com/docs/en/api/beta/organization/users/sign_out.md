@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/users/sign_out
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: e8d1cdad8c6251ce2ccc97bb0be18d27a38dd7927ebe524d78ca94f5437ae560
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 0c777cfdb9428e4f89e306f2dd052dbdec091f3f262f04423dc7999b06618a6d
 ---
 
 ---
@@ -133,6 +133,8 @@ Every request must include the beta header `anthropic-beta: admin-user-sign-out-
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

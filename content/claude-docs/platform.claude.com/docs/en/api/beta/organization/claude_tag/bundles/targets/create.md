@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c38e01c9c707f00c83734ab29bd3e48b75a5eb7f4ea4bf2a85b47f84762f3d8b
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: e0ae96cfcec02a9ef50399ffa3df8dd2b49bff75feda6b84e541543895f851c5
 ---
 
 ---
@@ -127,6 +127,8 @@ Attach a Bundle to a Slack channel or a Slack workspace. A Bundle attached to a 
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

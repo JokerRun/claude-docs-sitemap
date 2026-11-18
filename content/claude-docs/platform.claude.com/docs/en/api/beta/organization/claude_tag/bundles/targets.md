@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 05a0152202a02c7cad1f9579708d0d562c6d929497406b03d713fd9e54df94fa
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: e82c806aa1cb45ade3fe5980cfb84f9942b2085de41ae2a125c6122d96f05f97
 ---
 
 ---
@@ -141,6 +141,8 @@ List the Slack channels and Slack workspaces a Bundle is attached to, newest fir
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -374,6 +376,8 @@ Attach a Bundle to a Slack channel or a Slack workspace. A Bundle attached to a 
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -636,6 +640,8 @@ Get one Bundle Target. Returns 404 when `target_id` is the identifier of another
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -863,6 +869,8 @@ Detach a Bundle from a Slack channel or a Slack workspace. A repeated detach ret
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

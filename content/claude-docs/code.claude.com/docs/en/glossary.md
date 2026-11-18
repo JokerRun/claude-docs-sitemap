@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 31a987b22da0c4ad13adf4bb900c001e17a13acd9aa3177f239fc45bcb84abc6
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: b5f13db2ad55c754d36e4596069c460caee58bde4ef8866228fb30a69745efab
 ---
 
 > ## Documentation Index
@@ -302,7 +302,7 @@ Learn more: [Work with sessions](https://code.claude.com/docs/en/how-claude-code
 
 ### Settings layers
 
-The hierarchy Claude Code reads configuration from, in precedence order from highest to lowest: [managed policy](#managed-settings), settings you pass with the `--settings` flag, local settings at `.claude/settings.local.json`, project settings at `.claude/settings.json`, then user settings at `~/.claude/settings.json`. Arrays merge across layers; scalars at a higher layer override lower ones. See [Settings precedence](https://code.claude.com/docs/en/settings.md#settings-precedence).
+The hierarchy Claude Code reads configuration from. From highest to lowest precedence, the layers are [managed policy](#managed-settings), settings you pass with the `--settings` flag, local settings at `.claude/settings.local.json`, project settings at `.claude/settings.json`, and user settings at `~/.claude/settings.json`. Most lists, such as `permissions.allow`, [merge across files](https://code.claude.com/docs/en/settings.md#lists-merge-instead-of-overriding). See [Settings precedence](https://code.claude.com/docs/en/settings.md#settings-precedence).
 
 Learn more: [Settings files](https://code.claude.com/docs/en/settings.md#where-settings-live)
 

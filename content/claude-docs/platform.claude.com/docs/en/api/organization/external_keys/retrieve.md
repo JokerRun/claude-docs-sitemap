@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/retrieve
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 0479fcdbc6ac39352071fa083fe3c5d1aa3800217fa272def9e1a8a280cc3560
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: a97dfee26a691f4177786b4622c15f2fb1f3d708bdf9286602d589b184a2647a
 ---
 
 ---
@@ -136,7 +136,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
   - `user_profile_id: string or null`
 
-    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can be attached to a Workspace whatever its user profile.
+    ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can only be attached to a Workspace that has no user profile.
 
 ## Example
 

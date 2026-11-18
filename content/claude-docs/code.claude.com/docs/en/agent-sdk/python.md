@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: ed7dd1ab4deda29186aa9b9897374305bbfce217f040bc7a874c3f8251b916c3
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 446a823c3206520317f11b8862b64f24d2b6ba4d67a509b6726542a5e5a2cc9e
 ---
 
 > ## Documentation Index
@@ -3079,12 +3079,13 @@ The output takes one of the following shapes depending on what Claude read. Chec
     "totalLines": int | None,  # Optional total before head_limit and offset, in content mode
     "appliedLimit": int | None,  # Present when head_limit truncated the result
     "appliedOffset": int | None,  # Present when an offset was applied
+    "timedOut": bool | None,  # True when the search ran out of time, so results may be incomplete
 }
 ```
 
 Grep returns this dict shape in each output mode. Which optional keys are present depends on `output_mode`.
 
-`totalFiles` requires Claude Code v2.1.208 or later. `totalLines` requires Claude Code v2.1.210 or later.
+`totalFiles` requires Claude Code v2.1.208 or later. `totalLines` requires Claude Code v2.1.210 or later. `timedOut` requires Claude Code v2.1.317 or later.
 
 ### NotebookEdit
 

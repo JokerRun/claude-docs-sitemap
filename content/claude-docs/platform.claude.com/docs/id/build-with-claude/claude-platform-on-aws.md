@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 9b5784f594c5008a2af53e4d72a515d04071d14544abdc819258f461751707d1
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 1266d03d40c0181263d0889ce119aa8bfdd47c181079de4ad9df5b9ca72a29c2
 ---
 
 ---
@@ -320,8 +320,8 @@ Klien memerlukan region untuk menandatangani permintaan dengan SigV4 dan untuk m
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.9.0")
-        implementation("com.anthropic:anthropic-java-aws:3.9.0")
+        implementation("com.anthropic:anthropic-java:3.10.0")
+        implementation("com.anthropic:anthropic-java-aws:3.10.0")
         ```
       </Tab>
 
@@ -330,12 +330,12 @@ Klien memerlukan region untuk menandatangani permintaan dengan SigV4 dan untuk m
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.9.0</version>
+            <version>3.10.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-aws</artifactId>
-            <version>3.9.0</version>
+            <version>3.10.0</version>
         </dependency>
         ```
       </Tab>
@@ -620,6 +620,7 @@ Kemampuan berikut saat ini tidak tersedia di Claude Platform on AWS:
 * **Mode cepat:** Tidak tersedia di Claude Platform on AWS.
 * **Endpoint API yang kompatibel dengan OpenAI:** Tidak tersedia di Claude Platform on AWS.
 * **Tunnel MCP:** Hanya server MCP yang diekspos melalui internet publik yang didukung.
+* **Linked billing (beta):** [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections) tidak tersedia di Claude Platform on AWS.
 
 ## Residensi data
 

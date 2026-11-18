@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 6022bfd346a6db96af13e30cd8c7f7224b0c3283dcccfc2e35b82aa7a1e7326c
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: dd985203516b512b04f91c9061c1a50aabffc0415e09af92c059046ee02ef09e
 ---
 
 ---
@@ -137,6 +137,8 @@ List Vaults
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

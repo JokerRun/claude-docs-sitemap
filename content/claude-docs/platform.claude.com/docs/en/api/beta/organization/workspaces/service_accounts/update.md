@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/update
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 3addc9b0a0c37d03c3a6b9c2c1eb236c450cf0713135ece08f904b283e4c5493
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 95787a9d2e5863902be7ac95fe4ae0c0debd10a60bc10456c19f29262d99bb3a
 ---
 
 ---
@@ -140,6 +140,8 @@ rejected.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

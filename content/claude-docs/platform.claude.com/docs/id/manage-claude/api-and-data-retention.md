@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 72058874deba8e41d6d69afadafa1bad2eed1e078846b6a373fe5e505554f20e
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 2fc6eed694685aba86001054cf52b963fdc1b876963af730971c04884db8995f
 ---
 
 ---
@@ -70,7 +70,7 @@ Claude API mendukung integrasi yang siap HIPAA untuk organisasi yang menangani â
 
 * **Produk konsumen Claude:** Paket Claude Free, Pro, Max, dan Ultra.
 * **Claude Console:** Penggunaan melalui antarmuka Claude Console (mengaktifkan kesiapan HIPAA dari pengaturan Console didukung; memproses PHI melalui Console tidak tercakup).
-* **Platform yang dioperasikan mitra:** Amazon Bedrock dan Google Cloudâ€™s Agent Platform. Lihat dokumentasi kepatuhan platform tersebut.
+* **Platform yang dioperasikan mitra:** Claude Models on Google Cloud (Google managed) dan Amazon Bedrock. Lihat dokumentasi kepatuhan platform tersebut.
 * **Claude Platform on AWS:** Kesiapan HIPAA tidak tersedia di Claude Platform on AWS.
 * **Integrasi pihak ketiga:** Data yang diproses oleh alat atau layanan eksternal yang terhubung ke aplikasi Anda.
 * **Claude Code:** Claude Code tidak tercakup dalam kesiapan HIPAA.
@@ -106,8 +106,8 @@ Ada dua cara untuk menyiapkan akses API yang siap HIPAA. Sebagian besar organisa
 #### Aktifkan di Console (BAA standar)
 
 <Steps>
-  <Step title="Buka pengaturan retensi data organisasi Anda">
-    Di Claude Console, buka halaman [Retensi data](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`). Admin organisasi dengan izin pengelolaan HIPAA akan melihat kartu **Kepatuhan HIPAA** di sana. Jika Anda tidak melihat kartu tersebut, pilih **Organisasi** dari menu dropdown di bagian atas halaman. Jika organisasi Anda memenuhi syarat tetapi Anda masih tidak melihat opsi untuk mengaktifkan, minta admin organisasi untuk menyelesaikan langkah-langkah ini.
+  <Step title="Buka pengaturan HIPAA organisasi Anda">
+    Di Claude Console, buka halaman [Privasi data](https://platform.claude.com/settings/data-privacy) (`platform.claude.com/settings/data-privacy`). Admin organisasi dengan izin pengelolaan HIPAA akan melihat kartu **Kepatuhan HIPAA** di sana. Jika alamat tersebut justru membuka halaman lain, kartu tersebut ada di halaman itu. Jika halaman tersebut memiliki menu dropdown di bagian atas dan Anda tidak melihat kartu tersebut, pilih **Organisasi** dari menu itu. Jika organisasi Anda memenuhi syarat tetapi Anda tidak dapat membuka halaman tersebut atau menemukan opsinya, minta admin organisasi untuk menyelesaikan langkah-langkah ini.
   </Step>
 
   <Step title="Tinjau dan tandatangani BAA">
@@ -177,7 +177,7 @@ Setiap kolom kelayakan menggunakan tiga nilai:
 
 ### Fitur platform
 
-Bagian ini mencantumkan fitur yang terkait dengan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) maupun [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Beberapa hanya tersedia di salah satunya. Tabel ini memberikan kelayakan setiap fitur di Messages API. Di Claude Managed Agents, tidak ada fitur yang memenuhi syarat untuk ZDR atau kesiapan HIPAA, kecuali Managed Agents yang di-host sendiri di bawah ZDR; lihat baris Claude Managed Agents di bawah [Fitur Managed Agents](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#managed-agents-features).
+Bagian ini mencantumkan fitur yang terkait dengan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) maupun [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Beberapa hanya tersedia di salah satunya. Tabel ini memberikan kelayakan setiap fitur di Messages API. Di Claude Managed Agents, tidak ada fitur yang memenuhi syarat untuk ZDR atau kesiapan HIPAA, kecuali Managed Agents yang di-host sendiri di bawah ZDR. Lihat baris Claude Managed Agents di bawah [Fitur Managed Agents](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#managed-agents-features).
 
 | Fitur                                                                                                                          | Endpoint                                           | Layak ZDR      | Layak HIPAA | Detail                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | :----------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------- | :------------- | :---------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -275,7 +275,7 @@ Bahkan dengan pengaturan ZDR atau HIPAA yang berlaku, Anthropic dapat menyimpan 
   </Accordion>
 
   <Accordion title="Bagaimana cara meminta akses API yang siap HIPAA?">
-    Organisasi yang memenuhi syarat dapat mengaktifkan kesiapan HIPAA langsung di halaman [Retensi data](https://platform.claude.com/settings/privacy) (`platform.claude.com/settings/privacy`) di Claude Console dengan meninjau dan menandatangani BAA standar Anthropic; lihat [Memulai dengan kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#getting-started-with-hipaa-readiness). Jika organisasi Anda memerlukan BAA hasil negosiasi, atau pengaktifan mandiri tidak tersedia untuk organisasi Anda, hubungi [tim penjualan Anthropic](https://claude.com/contact-sales).
+    Organisasi yang memenuhi syarat dapat mengaktifkan kesiapan HIPAA langsung di Claude Console: admin organisasi meninjau dan menandatangani BAA standar Anthropic di halaman [Privasi data](https://platform.claude.com/settings/data-privacy) (`platform.claude.com/settings/data-privacy`). Jika Anda tidak dapat membuka halaman tersebut atau menemukan opsinya, minta admin organisasi untuk mengaktifkan kesiapan HIPAA untuk Anda. Untuk langkah-langkahnya, lihat [Memulai dengan kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#getting-started-with-hipaa-readiness). Jika organisasi Anda memerlukan BAA hasil negosiasi, atau pengaktifan mandiri tidak tersedia untuk organisasi Anda, hubungi [tim penjualan Anthropic](https://claude.com/contact-sales).
   </Accordion>
 
   <Accordion title="Apakah ini berlaku untuk Amazon Bedrock atau Google Cloud?">

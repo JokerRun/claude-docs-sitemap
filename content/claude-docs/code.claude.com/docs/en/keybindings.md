@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/keybindings
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: c46af1ac6291b110d033d99271152289961fde0e5c0816bcb2e52fb358457d79
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 5e304ea7670fe9f2dc39f480cd17e8bf5ff0761fdec57e8fd8d56e319bd9a532
 ---
 
 > ## Documentation Index
@@ -727,11 +727,10 @@ After you save the file, press `Ctrl+Q` in the `Other` row of a question where y
 
 Claude Code validates your keybindings and writes a warning to the debug log for:
 
-* Parse errors (invalid JSON or structure)
+* Invalid JSON
 * Misspelled modifiers, such as `ctl+k`. Claude Code ignores the whole binding. Correct the modifier, to `ctrl+k` in this example.
 * A space next to `+` in a key string, such as `ctrl+ k`. Claude Code reads the string as a [chord](#chords) of `ctrl+` followed by `k`. No keypress matches `ctrl+` on its own, so the binding never fires. Remove the space.
 * Invalid context names
-* Invalid action values, such as an action that isn't a string or `null`
 * Unknown action names, such as a typo of a registered action. Claude Code skips the binding and keeps any default binding for that key in effect.
 * Reserved shortcut conflicts
 * Duplicate bindings in the same context

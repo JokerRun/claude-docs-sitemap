@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: b3163d3d41648f6b8420eab5ad80c45d1fc203fef861ddaf6f69e95cf80069c6
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 27b6456caa779c679694457ab95fe4ae83d3d7b340dd7f26be098f23decfe57e
 ---
 
 ---
@@ -127,6 +127,8 @@ Get User Profile
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

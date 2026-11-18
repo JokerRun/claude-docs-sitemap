@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration
-fetched_at: 2026-11-03T02:13:03.351290Z
-sha256: 49119570fa5b901ad09d2464776bd4ba127037c4aed44c646bd8b481e016864e
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 0a1636f919c06de01a7d8115fbe303830d16de90cb12ad9c3ea285448624f207
 ---
 
 ---
@@ -170,7 +170,7 @@ Each trip is also recorded in your organization’s [Activity Feed](https://plat
 
 To recover, fix the server, then turn **Enforce verdicts** back on to reset the breaker.
 
-The breaker can also reset on its own. Starting 10 minutes after the trip, Anthropic checks whether your server has recovered by sending it a test request in the background, at most about once per minute; no user request is involved. If your server responds with a valid verdict, allow or deny, the breaker resets and enforcement resumes. Otherwise the breaker stays tripped and the checks continue.
+The breaker can also reset on its own. Starting 3 minutes after the trip, Anthropic checks whether your server has recovered. At most about once per minute, it sends your server a test request in the background. No user request is involved. If your server responds with a valid verdict, allow or deny, the breaker resets and enforcement resumes. Otherwise, the breaker stays tripped and the checks continue.
 
 Automatic recovery runs only while your Inference hooks settings are unchanged since the trip. If you change any Inference hooks setting after a trip, including rotating the signing secret, the checks stop and the breaker no longer resets on its own; turn **Enforce verdicts** back on when your server is fixed. Automatic recovery applies only to trips: if you turn **Enforce verdicts** off yourself, enforcement stays off until you turn it back on.
 

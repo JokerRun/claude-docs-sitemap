@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 6a4b01b9276f1a87ea6e7f81f6ef9320a0887d3a15f2eef04247b4c4bd64e07c
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: b941a64548379c2ba1786f8bfc2d7eac8cdca9a70b6c82e5ef203795a32e40c6
 ---
 
 ---
@@ -125,6 +125,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -3645,6 +3647,20 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
       The model that will complete your prompt.
 
       See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+    - `billing_policy: optional BetaBillingPolicy or null`
+
+      Declares which organization is billed for this request. `{"type": "billing_policy", "bill_to": "user_profile"}` bills the customer behind the user profile named in the `anthropic-user-profile-id` header, instead of your organization. If that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you. Omit the field, or send `"bill_to": "self"` (the default), to be billed as usual.
+
+      - `type: "billing_policy"`
+
+      - `bill_to: optional BetaBillTo`
+
+        Who is billed. `self`, the default, bills your organization, as if `billing_policy` were omitted. `user_profile` bills the customer behind the user profile the request names; if that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you.
+
+        - `"self"`
+
+        - `"user_profile"`
 
     - `cache_control: optional BetaCacheControlEphemeral or null`
 

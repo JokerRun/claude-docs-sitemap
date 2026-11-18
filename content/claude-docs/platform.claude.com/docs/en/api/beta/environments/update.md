@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/update
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 8394d45ca8980ff058bdafc11d7f60c7c16c982338bf37dbbeb29c31095f6ce5
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 50aa921d4c268a71c7c5a6b69194214611cf756723931f9476f6f52747bd7025
 ---
 
 ---
@@ -125,6 +125,8 @@ Update an existing environment's configuration.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

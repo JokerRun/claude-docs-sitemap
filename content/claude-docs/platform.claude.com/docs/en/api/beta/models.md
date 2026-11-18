@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: ed12af14069e11c208fcbfd3e1cfa874d48e1b021c1769c567a06c69834f2bd7
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 3aca98138936a878c9e1973b5337b7c5e884457539d0a33eddcdc9ef5b6bda13
 ---
 
 ---
@@ -155,6 +155,8 @@ The Models API response can be used to determine which models are available for 
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -666,6 +668,8 @@ The Models API response can be used to determine information about a specific mo
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c5712cf4443e4a56664cf230fd93a7782c290293e28c394733f80d3af6aa6198
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: f8d0e6bbbceb9e96935d139094c34a3cd49110750fcb69f7ebdc305d53e2ebe6
 ---
 
 ---
@@ -128,6 +128,8 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -172,7 +174,7 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
 
 - `BetaClaudeTagBundle object`
 
-  A named set of access that Claude can use in a Slack channel or a Slack workspace: connectors, repositories and credentials. Created and edited in claude.ai.
+  A named set of access that Claude can use in a Slack channel or a Slack workspace: connectors, repositories and credentials. Created and edited in claude.ai; Update Bundle also changes its instructions.
 
   - `type: "bundle"`
 
@@ -193,6 +195,10 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
   - `display_name: string`
 
     The Bundle's name. Always set. Read-only.
+
+  - `instructions: string or null`
+
+    Instructions for Claude, added to the instructions of every session that can use the Bundle. Null when it has none.
 
   - `updated_at: string`
 
@@ -217,6 +223,7 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/bundles/$BUNDLE_ID \
   "created_at": "2019-12-27T18:11:19.117Z",
   "description": "description",
   "display_name": "display_name",
+  "instructions": "instructions",
   "type": "bundle",
   "updated_at": "2019-12-27T18:11:19.117Z"
 }

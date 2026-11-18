@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/troubleshoot
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 76682d9a66531d08e301ddfea796be619d38fd4e9b1f8f40959791d206888458
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 44d2ef238176063a3954adba17ee16e195c216d4f13973058e88ddca09c60d09
 ---
 
 > ## Documentation Index
@@ -91,7 +91,7 @@ Add `"modules": ["./register.js"]`.
 
 ### `hooks module did not load`
 
-The line starts with the mod's name, then `hooks module did not load:` and a reason, which gives the file and line when the problem is in your code. Claude Code couldn't load the module, for example because its top-level code threw.
+The line starts with the mod's name, then `hooks module did not load:` and a reason, which gives the file and line for a syntax error. Claude Code couldn't load the module, for example because its top-level code threw.
 
 Fix the error the reason names.
 

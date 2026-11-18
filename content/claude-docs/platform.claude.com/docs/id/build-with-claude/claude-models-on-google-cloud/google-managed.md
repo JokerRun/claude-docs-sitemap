@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 560371897dfd7e9fcce3c6abc8bd057999bc51f1100e05655111815320c2fdef
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: f7bee6d246492d0b2dbb2e54e5b215b8c1e08db6d0b8974910a393b353cdc3bb
 ---
 
 ---
@@ -56,8 +56,8 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.9.0")
-        implementation("com.anthropic:anthropic-java-vertex:3.9.0")
+        implementation("com.anthropic:anthropic-java:3.10.0")
+        implementation("com.anthropic:anthropic-java-vertex:3.10.0")
         ```
       </Tab>
 
@@ -66,12 +66,12 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.9.0</version>
+            <version>3.10.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-vertex</artifactId>
-            <version>3.9.0</version>
+            <version>3.10.0</version>
         </dependency>
         ```
       </Tab>

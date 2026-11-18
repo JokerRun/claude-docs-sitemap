@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: edabb646822933af10d6934a6aff5f46cfcbb000b3fdf25ae558edcad24d4c75
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 805e57d6ae074078d70c123c46107ef619a8e006840ab1c47191bd38a43154ff
 ---
 
 ---
@@ -140,6 +140,8 @@ account returns 404.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

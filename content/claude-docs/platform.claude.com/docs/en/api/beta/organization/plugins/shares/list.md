@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/shares/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 37d2384132311fe72ff1cdb360efe24861511a1ef304c09fcde3b965d1797de9
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 9d383ae306dbb791ba29eaafabdb7ff947066046afb9b381fca0d02554f9a980
 ---
 
 ---
@@ -161,6 +161,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

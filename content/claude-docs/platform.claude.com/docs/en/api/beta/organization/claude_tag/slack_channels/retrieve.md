@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: d0a6cd4d1f24eb38e68ea3a8d5b48d55f37e566f810d31e139ad9eb9f73fd90e
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 83c5c0570876c37d17fc0789f68202b5956c837b50eb2886421d1436e237bd52
 ---
 
 ---
@@ -133,6 +133,8 @@ Get one Slack channel and its settings. By default `settings` holds what the cha
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

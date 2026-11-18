@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/validate_repository
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: d041013124a7b05aee761092e822c6a9d1afe349f9df0be98086ff62c3f6b7f7
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: ba0af1fe10468596b9d9187a2c129d1dae000efbc01b1b696c62d80845cfeab7
 ---
 
 ---
@@ -134,6 +134,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

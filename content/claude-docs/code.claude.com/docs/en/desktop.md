@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 35b77248f3f513e476f979a6a86109b504604e0e74be08a29c16b7cd0d941033
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: bc0295df18527ebbe49c842536670f0859624991d6ed6be0b5475e982bc31816
 ---
 
 > ## Documentation Index
@@ -2366,6 +2366,10 @@ If the app opens but shows a blank or unresponsive screen:
 ### "Failed to load session"
 
 If you see `Failed to load session`, the selected folder may no longer exist, a Git repository may require Git LFS that isn't installed, or file permissions may prevent access. Try selecting a different folder or restarting the app.
+
+### Claude Code is "newer than the maximum version allowed by your organization"
+
+When the desktop app's [own copy of Claude Code](#claude-code-version-in-the-code-tab) is newer than the limit your organization sets with [`requiredMaximumVersion`](https://code.claude.com/docs/en/settings-reference#requiredmaximumversion), local sessions fail with an error whose details show this message. Ask your administrator to raise the limit to at least the Claude Code version in the message, or to remove it.
 
 ### Session not finding installed tools
 

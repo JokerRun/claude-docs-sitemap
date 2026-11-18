@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 414dac5e991ba710a26ac19a63edceb963f48cadea20a9ece6437fd2b98f997f
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: c34a826deb88d609c556f5717bfd25ef23fc2b3f32233e347596d515dcbf0f4e
 ---
 
 ---
@@ -145,6 +145,8 @@ archived service accounts.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

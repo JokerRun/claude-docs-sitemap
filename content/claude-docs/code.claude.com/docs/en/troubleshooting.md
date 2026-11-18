@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 0a71dc48e7edb7fdacc151054d0376d0aa2ad08105e9cb80a384d3c1af7c98ea
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 2d4ff8345bc6e72a09bccde71014dafbc5be06feeee31d54dfced5f9d477eecc
 ---
 
 > ## Documentation Index
@@ -46,7 +46,7 @@ Claude Code is designed to work with most development environments, but may cons
 1. Use `/compact` regularly to reduce context size. If it returns `Not enough messages to compact.`, the conversation has too few turns to summarize; that can happen even with a full context when a single large paste filled it
 2. Close and restart Claude Code between major tasks
 3. Consider adding large build directories to your `.gitignore` file
-4. Restart with [`claude --safe-mode`](https://code.claude.com/docs/en/cli-reference#cli-flags) to check whether a plugin, MCP server, or hook is the source. It disables all customizations for the session; if usage drops, see [Debug your configuration](https://code.claude.com/docs/en/debug-your-config.md#test-against-a-clean-configuration) to find which one
+4. Restart with [`claude --safe-mode`](https://code.claude.com/docs/en/cli-reference#cli-flags) to check whether a plugin, MCP server, or hook is the source. If usage drops, see [Debug your configuration](https://code.claude.com/docs/en/debug-your-config.md#test-against-a-clean-configuration) to find which one
 
 If a session's heap memory passes 2.5GB, a critical memory usage warning appears. To free the memory, restart Claude Code and run [`claude --continue`](https://code.claude.com/docs/en/cli-reference#cli-flags) to resume the conversation in a fresh process.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/archive
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c0f983172e5d9cf5ec7495b59d3460fc8bef994d61a8a3d82396efa19fdfb9be
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: e2c62b2f20727e9e51c6b34eab82179b2227faa794acf951cd5b96538bcc3fe1
 ---
 
 ---
@@ -131,6 +131,8 @@ Archive a Credential
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

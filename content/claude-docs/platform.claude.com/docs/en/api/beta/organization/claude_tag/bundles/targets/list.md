@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 49f6005de38606616b0832da7623990ce0875689f08fca36da0f2f707f0410f6
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 5d574d824be62d4b58cf60401cd4a22ad498e86953a6604315a0a928b5cf247d
 ---
 
 ---
@@ -139,6 +139,8 @@ List the Slack channels and Slack workspaces a Bundle is attached to, newest fir
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

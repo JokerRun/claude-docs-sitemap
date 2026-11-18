@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 672c28560a16113b88ee36bfe9f183c8ec9438edb653ab4790c0a5f5e62f407f
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 9535d4ba9c7493af8f566224e8792572bf3512112798fb8bd22b5cc0e19fc3b2
 ---
 
 ---
@@ -123,6 +123,8 @@ Set a Slack channel up for Claude Tag and return it with its identifier. If the 
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -677,6 +679,8 @@ List the set-up Slack channels of one Slack workspace, newest first by `created_
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -1128,6 +1132,8 @@ Get one Slack channel and its settings. By default `settings` holds what the cha
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -1563,6 +1569,8 @@ Change the settings a Slack channel stores. The update is partial: a setting lef
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -2079,6 +2087,8 @@ Remove a Slack channel from Claude Tag. This deletes the channel's stored settin
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: d733db0358bd03fc358659effdbbfbfde49be6e9bfbcb9f9ed3b7175f4faae59
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 82179513fefa97fd176245d181db8a7a71931c3d5d72175aeedf5b865b2d28f8
 ---
 
 ---
@@ -121,6 +121,8 @@ Create Agent
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -392,7 +394,7 @@ Create Agent
 
   - `BetaManagedAgentsMultiagentCoordinatorParams object`
 
-    A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
+    Recommendation: use `multiagent_20261001` instead of `coordinator`. A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
     - `type: "coordinator"`
 

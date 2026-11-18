@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/delete
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 6430d5c7facd3e16244e13297b12e50f1b65e717c37e94d66ed811df2af6fd45
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 275cd95b6310601d89cfc326c41e13c9b59854807209a56182a9373ff7a32f2b
 ---
 
 ---
@@ -131,6 +131,8 @@ Delete a Credential
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 48a6354ac7f7efab50bca5428acc110d7ed19dea19d813313d17e86c74c906c6
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: e6ba439487382261469076bd2606fa2e6cf2b61c983ce66589b15497c8cb724a
 ---
 
 ---
@@ -85,25 +85,25 @@ Untuk harga resmi di [Claude Models on Google Cloud (Google managed)](https://pl
   Untuk detail implementasi dan contoh kode:
 
   * Endpoint global versus regional Amazon Bedrock: [Claude di Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#regions) atau [Claude di Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#global-vs-regional-endpoints), tergantung apakah Anda memanggil `bedrock-mantle` atau `bedrock-runtime`
-  * [Endpoint global, multi-region, dan regional Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#global-multi-region-and-regional-endpoints)
+  * Endpoint global, multi-region, dan regional Google Cloud: [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#global-multi-region-and-regional-endpoints)
 </Note>
 
 ## Harga Claude Platform on AWS
 
 [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) ditagih melalui AWS Marketplace menggunakan Claude Consumption Units (CCU). Anthropic menghitung penggunaan token Anda dalam USD berdasarkan tarif standar per model dan per fitur, menerapkan diskon yang telah dinegosiasikan, mengonversi hasilnya menjadi CCU dengan tarif $0,01 USD per CCU, dan melaporkan jumlah CCU ke AWS Marketplace setiap jam. Tagihan AWS Anda menampilkan satu item baris CCU.
 
-| Konsep                  | Detail                                                                                                                                                                                                                                                     |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Unit penagihan**      | Claude Consumption Unit (CCU)                                                                                                                                                                                                                              |
-| **Harga CCU**           | $0,01 USD per CCU (tetap; diskon diterapkan pada konversi token ke CCU, bukan pada harga CCU)                                                                                                                                                              |
-| **Konversi**            | Penggunaan token dihitung dalam USD berdasarkan tarif standar per model dan per fitur (sama dengan [harga Claude API](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing)), lalu dikonversi menjadi CCU dengan tarif $0,01 USD per CCU |
-| **Frekuensi penagihan** | Pengukuran per jam ke AWS Marketplace; faktur bulanan                                                                                                                                                                                                      |
-| **Model pembayaran**    | Hanya pascabayar (arrears); tanpa kredit prabayar                                                                                                                                                                                                          |
-| **Diskon**              | Diterapkan dalam bentuk jumlah CCU terukur yang lebih sedikit                                                                                                                                                                                              |
-| **Pajak**               | Pengukuran sebelum pajak; AWS Marketplace menangani pajak                                                                                                                                                                                                  |
-| **Visibilitas biaya**   | Rincian real-time di Claude Console (diakses melalui AWS Console); AWS Cost Explorer menampilkan CCU agregat                                                                                                                                               |
+| Konsep                  | Detail                                                                                                                                                                                                                                                |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Unit penagihan**      | Claude Consumption Unit (CCU)                                                                                                                                                                                                                         |
+| **Harga CCU**           | $0,01 USD per CCU (tetap; diskon diterapkan pada konversi token ke CCU, bukan pada harga CCU)                                                                                                                                                         |
+| **Konversi**            | Penggunaan token dihitung dalam USD berdasarkan tarif standar per model dan per fitur (sama dengan [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing)), lalu dikonversi menjadi CCU dengan tarif $0,01 USD per CCU |
+| **Frekuensi penagihan** | Pengukuran per jam ke AWS Marketplace; faktur bulanan                                                                                                                                                                                                 |
+| **Model pembayaran**    | Hanya pascabayar (arrears); tanpa kredit prabayar                                                                                                                                                                                                     |
+| **Diskon**              | Diterapkan dalam bentuk jumlah CCU terukur yang lebih sedikit                                                                                                                                                                                         |
+| **Pajak**               | Pengukuran sebelum pajak; AWS Marketplace menangani pajak                                                                                                                                                                                             |
+| **Visibilitas biaya**   | Rincian real-time di Claude Console (diakses melalui AWS Console); AWS Cost Explorer menampilkan CCU agregat                                                                                                                                          |
 
-**CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS), penggunaan akan ditagih dalam Claude Consumption Units (“CCU”) alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [claude.com/pricing#api](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
+**CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS), penggunaan akan ditagih dalam Claude Consumption Units (“CCU”) alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [bagian API pada halaman harga Claude](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
 
 ### Geografi inferensi
 
@@ -121,18 +121,18 @@ Saat Anda mendaftar di halaman layanan **Claude Platform on AWS** di AWS Console
 
 [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) ditagih melalui Azure Marketplace menggunakan Claude Consumption Units (CCU). Anthropic menghitung penggunaan token Anda dalam USD berdasarkan tarif standar per model dan per fitur, menerapkan diskon yang telah dinegosiasikan, mengonversi hasilnya menjadi CCU dengan tarif $0,01 USD per CCU, dan melaporkan jumlah CCU ke Azure Marketplace setiap jam. Tagihan Azure Anda menampilkan satu item baris CCU.
 
-| Konsep                  | Detail                                                                                                                                                                                                                                                     |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Unit penagihan**      | Claude Consumption Unit (CCU)                                                                                                                                                                                                                              |
-| **Harga CCU**           | $0,01 USD per CCU (tetap; diskon diterapkan pada konversi token ke CCU, bukan pada harga CCU)                                                                                                                                                              |
-| **Konversi**            | Penggunaan token dihitung dalam USD berdasarkan tarif standar per model dan per fitur (sama dengan [harga Claude API](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing)), lalu dikonversi menjadi CCU dengan tarif $0,01 USD per CCU |
-| **Frekuensi penagihan** | Pengukuran per jam ke Azure Marketplace; faktur bulanan                                                                                                                                                                                                    |
-| **Model pembayaran**    | Hanya pascabayar (arrears); tanpa kredit prabayar                                                                                                                                                                                                          |
-| **Diskon**              | Diterapkan dalam bentuk jumlah CCU terukur yang lebih sedikit                                                                                                                                                                                              |
-| **Pajak**               | Pengukuran sebelum pajak; Azure Marketplace menangani pajak                                                                                                                                                                                                |
-| **Visibilitas biaya**   | Azure Cost Management menampilkan CCU agregat                                                                                                                                                                                                              |
+| Konsep                  | Detail                                                                                                                                                                                                                                                |
+| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Unit penagihan**      | Claude Consumption Unit (CCU)                                                                                                                                                                                                                         |
+| **Harga CCU**           | $0,01 USD per CCU (tetap; diskon diterapkan pada konversi token ke CCU, bukan pada harga CCU)                                                                                                                                                         |
+| **Konversi**            | Penggunaan token dihitung dalam USD berdasarkan tarif standar per model dan per fitur (sama dengan [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing)), lalu dikonversi menjadi CCU dengan tarif $0,01 USD per CCU |
+| **Frekuensi penagihan** | Pengukuran per jam ke Azure Marketplace; faktur bulanan                                                                                                                                                                                               |
+| **Model pembayaran**    | Hanya pascabayar (arrears); tanpa kredit prabayar                                                                                                                                                                                                     |
+| **Diskon**              | Diterapkan dalam bentuk jumlah CCU terukur yang lebih sedikit                                                                                                                                                                                         |
+| **Pajak**               | Pengukuran sebelum pajak; Azure Marketplace menangani pajak                                                                                                                                                                                           |
+| **Visibilitas biaya**   | Azure Cost Management menampilkan CCU agregat                                                                                                                                                                                                         |
 
-**CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS, Claude in Microsoft Foundry), penggunaan akan ditagih dalam Claude Consumption Units (“CCU”) alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [claude.com/pricing#api](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
+**CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS, Claude in Microsoft Foundry), penggunaan akan ditagih dalam Claude Consumption Units (“CCU”) alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [bagian API pada halaman harga Claude](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
 
 ### Geografi inferensi
 
@@ -182,7 +182,7 @@ Untuk detail implementasi, model yang didukung, dan contoh kode, lihat [Caching 
 
 Untuk model Claude 4.6 dan yang lebih baru, menentukan inferensi khusus AS melalui parameter `inference_geo` dikenakan pengali 1,1x pada semua kategori harga token, termasuk token input, token output, penulisan cache, dan pembacaan cache. Pada Claude Haiku 5.5, pengali ini juga berlaku untuk harga yang lebih tinggi bagi prompt di atas 100.000 token (lihat [Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing)). Perutean global (default) menggunakan harga standar.
 
-Ini berlaku untuk Claude API (first-party), Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). Pada Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang menggunakan jenis deployment US Data Zone Standard (lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography)). Platform yang dioperasikan mitra, Claude Models on Google Cloud (Google managed) dan Bedrock, memiliki harga regional tersendiri. Lihat [harga Amazon Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [harga Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) untuk detailnya. Model-model sebelumnya tidak mendukung parameter `inference_geo` dan selalu menggunakan harga standar; permintaan yang menyertakan parameter tersebut pada model-model ini akan mengembalikan error 400.
+Ini berlaku untuk Claude API (first-party), Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). Pada Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang menggunakan jenis deployment US Data Zone Standard (lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography)). Platform yang dioperasikan mitra, Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, memiliki harga regional tersendiri. Lihat [harga Amazon Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [harga Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) untuk detailnya. Model-model sebelumnya tidak mendukung parameter `inference_geo` dan selalu menggunakan harga standar; permintaan yang menyertakan parameter tersebut pada model-model ini akan mengembalikan error 400.
 
 Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency).
 
@@ -531,7 +531,7 @@ Untuk batas di atas tingkat Scale atau pengaturan harga khusus, [hubungi tim pen
 Diskon volume mungkin tersedia untuk pengguna bervolume tinggi. Diskon ini dinegosiasikan berdasarkan kasus per kasus.
 
 * Tingkat penggunaan standar menggunakan harga yang ditampilkan di [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing).
-* Pelanggan enterprise dapat [menghubungi tim penjualan](mailto:sales@anthropic.com) untuk harga khusus.
+* Pelanggan enterprise dapat [mengirim email ke tim penjualan](mailto:sales@anthropic.com) untuk harga khusus.
 * Diskon akademik dan riset mungkin tersedia.
 
 ### Harga enterprise
@@ -543,7 +543,7 @@ Untuk pelanggan enterprise dengan kebutuhan khusus:
 * Dukungan khusus
 * Ketentuan khusus
 
-Hubungi tim penjualan di [sales@anthropic.com](mailto:sales@anthropic.com) atau melalui [Batas laju di Claude Console](https://platform.claude.com/usage/limits) untuk mendiskusikan opsi harga enterprise.
+Untuk mendiskusikan opsi harga enterprise, kirim email ke [sales@anthropic.com](mailto:sales@anthropic.com) atau [hubungi tim penjualan dari Claude Console](https://platform.claude.com/usage/limits).
 
 ## Penagihan dan pembayaran
 
@@ -560,7 +560,7 @@ Token adalah potongan teks yang diproses oleh model. Berapa banyak token yang di
 
 ### Apakah ada tingkat gratis atau uji coba?
 
-Pengguna baru menerima sejumlah kecil kredit gratis untuk menguji API. [Hubungi tim penjualan](mailto:sales@anthropic.com) untuk informasi tentang uji coba yang diperpanjang untuk evaluasi enterprise.
+Pengguna baru menerima kredit gratis untuk menguji API. [Kirim email ke tim penjualan](mailto:sales@anthropic.com) untuk informasi tentang uji coba yang diperpanjang untuk evaluasi enterprise.
 
 ### Bagaimana diskon bertumpuk?
 

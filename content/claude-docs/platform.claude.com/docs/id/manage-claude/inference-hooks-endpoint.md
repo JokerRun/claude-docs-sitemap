@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 8f8c060a95c5a198c74cbc2915a32764abe02468aa536ceb43ac052a2eb5ddfd
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 372551169c2598eb9795841c4af996b68ae697e7485c5cbc45c761b51bacc98a
 ---
 
 ---
@@ -849,7 +849,7 @@ Timeout, status non-200 (termasuk redirect), body respons yang tidak dapat di-pa
 
 Kegagalan webhook berkelanjutan yang disebabkan oleh server keamanan AI Anda akan memicu circuit breaker yang menghentikan penegakan: Anthropic berhenti menghubungi server Anda, dan penanganan kegagalan berlaku untuk setiap permintaan.
 
-Mulai 10 menit setelah pemicuan, Anthropic memeriksa apakah server Anda telah pulih: paling sering sekitar sekali per menit, Anthropic mengirimkan ke server Anda permintaan uji sintetis yang sama dengan yang dikirim **Uji koneksi** (`source.application` adalah `config-test`), ditandatangani seperti permintaan lainnya dan tidak membawa konten pengguna. Respons seperti biasa. Putusan yang valid, allow atau deny, mereset breaker dan penegakan dilanjutkan; kegagalan webhook membuat breaker tetap terpicu, dan pemeriksaan berlanjut. Administrator juga dapat mereset breaker kapan saja, dan perubahan konfigurasi oleh administrator menghentikan pemeriksaan otomatis; lihat [Circuit breaker](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#circuit-breaker).
+Mulai 3 menit setelah pemicuan, Anthropic memeriksa apakah server Anda telah pulih. Paling sering sekitar sekali per menit, Anthropic mengirimkan ke server Anda permintaan uji sintetis yang sama dengan yang dikirim **Uji koneksi** (`source.application` adalah `config-test`). Permintaan tersebut ditandatangani seperti permintaan lainnya dan tidak membawa konten pengguna. Respons seperti biasa. Putusan yang valid, allow atau deny, mereset breaker dan penegakan dilanjutkan; kegagalan webhook membuat breaker tetap terpicu, dan pemeriksaan berlanjut. Administrator juga dapat mereset breaker kapan saja, dan perubahan konfigurasi oleh administrator menghentikan pemeriksaan otomatis; lihat [Circuit breaker di Mengonfigurasi Inference hooks](https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration#circuit-breaker).
 
 Frame prompt dan frame panggilan alat berbagi satu circuit breaker, dan kegagalan pada salah satunya dihitung terhadapnya.
 

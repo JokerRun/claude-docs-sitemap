@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 19f73387e0549ac57c5cf4eb41df8af327ac86c8191156816d47ea7681438317
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 9dd8b9c080b78231459b20b554e8a9df3fc2252a15c97830758c98ca9fc56472
 ---
 
 ---
@@ -133,6 +133,8 @@ Fetches a tunnel certificate by ID.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

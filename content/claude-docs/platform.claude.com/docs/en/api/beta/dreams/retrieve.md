@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: ccaff45e1d70291ae0a27eefe2f37e94f7d0235283f4542cad7db382b791cd42
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 720e69c1881632eb118a02a1a49a7c3bc32b6f26a33ee1998868f0714868bae9
 ---
 
 ---
@@ -131,6 +131,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

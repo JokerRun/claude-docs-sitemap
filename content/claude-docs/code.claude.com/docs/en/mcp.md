@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 4df615e0fc0e0f632550c98eaaf973d16db8ab98cbaed13fea85512fd427d518
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: c8ed8648fee345f8cdd403c1dc7d7e1c936e4e5e8680a8492d8f303323f65702
 ---
 
 > ## Documentation Index
@@ -456,7 +456,7 @@ Claude Code asks stdio servers for that revision by default. To keep a stdio cha
 > * The `--transport` and `--header` flags also accept `-t` and `-H` short forms
 > * Configure MCP server startup timeout using the `MCP_TIMEOUT` environment variable (for example, `MCP_TIMEOUT=10000 claude` sets a 10-second timeout)
 > * Set a per-server tool execution timeout by adding a `timeout` field in milliseconds to that server's `.mcp.json` entry, for example `"timeout": 600000` for ten minutes. This overrides the `MCP_TOOL_TIMEOUT` environment variable for that server only
-> * Claude Code displays a warning when MCP tool output exceeds 10,000 tokens and limits output to 25,000 tokens by default. To change the token limit, set the `MAX_MCP_OUTPUT_TOKENS` environment variable, for example `MAX_MCP_OUTPUT_TOKENS=50000`. The warning threshold is fixed. Unless the server raises a tool's own limit, successful text results longer than 50,000 characters are saved to a file regardless of this variable. See [MCP output limits and warnings](#mcp-output-limits-and-warnings)
+> * For limits on the size of tool output, see [MCP output limits and warnings](#mcp-output-limits-and-warnings)
 > * Use `/mcp` to authenticate with remote servers that require OAuth 2.0 authentication
 
 ### Time limits on MCP tool calls
@@ -1519,7 +1519,7 @@ The `backgroundOutputPath` field requires Claude Code v2.1.295 or later.
 
 When MCP tools produce large outputs, Claude Code helps manage the token usage to prevent overwhelming your conversation context:
 
-* **Output warning threshold**: Claude Code displays a warning when any MCP tool output exceeds 10,000 tokens
+* **Output warning threshold**: the [transcript viewer](https://code.claude.com/docs/en/interactive-mode.md#transcript-viewer) displays a warning when any MCP tool output exceeds a fixed 10,000 tokens
 * **Configurable limit**: you can adjust the maximum allowed MCP output tokens using the `MAX_MCP_OUTPUT_TOKENS` environment variable
 * **Default limit**: the default maximum is 25,000 tokens
 * **Scope**: the environment variable applies to tools that don't declare their own limit. Tools that set [`anthropic/maxResultSizeChars`](#raise-the-limit-for-a-specific-tool) use that value instead for text content, regardless of what `MAX_MCP_OUTPUT_TOKENS` is set to. Tools that return image data are still subject to `MAX_MCP_OUTPUT_TOKENS`
@@ -1572,7 +1572,7 @@ Some MCP servers declare a tool's input schema as a JSON Schema union, with `any
 Tools with a root-level combinator stay available. Before sending the tool to the API, Claude Code flattens the schema into a single object and prepends a sentence to the tool's description that tells Claude which parameter groups belong together:
 
 * `allOf`: properties from every branch are merged, and each branch's `required` list still applies
-* `anyOf` and `oneOf`: properties from every branch are merged, and each branch's `required` list is described in the tool description instead of enforced by the schema
+* `anyOf` and `oneOf`: properties from every branch are merged, and each branch's `required` list is described in the tool description
 
 Your server receives whichever arguments Claude chose, so keep validating the combination server-side.
 
@@ -1701,7 +1701,7 @@ A server built on Java MCP SDK 0.17.0 or earlier can refuse a declaration that h
 
 ## Use MCP resources
 
-MCP servers can expose resources that you can reference using @ mentions, similar to how you reference files.
+MCP servers can expose resources that you can reference using @ mentions, similar to how you reference files. With `claude -p`, a resource mention stays plain text.
 
 ### Reference MCP resources
 

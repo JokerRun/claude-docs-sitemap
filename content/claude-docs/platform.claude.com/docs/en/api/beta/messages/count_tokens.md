@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 8036afd2fc80fe470210475bd2bb2974338c48c8709f7c57943bf66f973fc4ea
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 7d910b7116c8e9b36300ffdcbabb9de80321abb779ea807baa6527c22b998472
 ---
 
 ---
@@ -125,6 +125,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -3613,6 +3615,20 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   The model that will complete your prompt.
 
   See [models](https://docs.anthropic.com/en/docs/models-overview) for additional details and options.
+
+- `billing_policy: optional BetaBillingPolicy or null`
+
+  Declares which organization is billed when this body is sent to `/v1/messages`. Accepted here so that you can count the tokens of the exact body you will send, and otherwise ignored: counting tokens bills nobody, so no user profile is required.
+
+  - `type: "billing_policy"`
+
+  - `bill_to: optional BetaBillTo`
+
+    Who is billed. `self`, the default, bills your organization, as if `billing_policy` were omitted. `user_profile` bills the customer behind the user profile the request names; if that customer has not linked an Anthropic organization to the profile, or has not allowed your organization to bill it, the request is rejected rather than billed to you.
+
+    - `"self"`
+
+    - `"user_profile"`
 
 - `cache_control: optional BetaCacheControlEphemeral or null`
 

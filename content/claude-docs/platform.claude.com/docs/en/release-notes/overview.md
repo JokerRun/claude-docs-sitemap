@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: e4846a0efe9863d30fc8ad05b4ac4e69a7b86c00801d541b829db0759a4316f3
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 3c0db4127d5b51a91b1387f16ac7707571f1fcd268615050ec87ecac1e322db4
 ---
 
 ---
@@ -18,6 +18,10 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### November 17, 2026
+
+* We’ve launched [Linked billing](https://platform.claude.com/docs/en/manage-claude/oauth-apps/organization-billing-connections) in beta with the `user-profiles-billing-2026-10-01` beta header. Your customers can now pay for the Claude usage in your app through their own Claude organization. Once a customer links their organization, set `billing_policy` on each `/v1/messages` or `/v1/chat/completions` request to choose who pays. In the Claude Console, customers can set a spend cap for your app or unlink your app. Linked billing works for customers whose organization pays Anthropic directly for API usage.
 
 ### November 16, 2026
 

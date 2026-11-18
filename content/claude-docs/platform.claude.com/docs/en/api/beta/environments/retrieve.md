@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/retrieve
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 1c2b8bbe5dbee987fe3643041b4cff1b2d8b8828d9303d97e9b31da3d268cfbc
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: b17f27932c0716ef4804bf177958c407f426cf8cab6bd689e1bdd555cac3c9f5
 ---
 
 ---
@@ -125,6 +125,8 @@ Retrieve a specific environment by ID.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

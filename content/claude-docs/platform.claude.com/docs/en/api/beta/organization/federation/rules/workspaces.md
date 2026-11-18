@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: de78e17bc3fab5c8717125d02b3e072aa994bcc183787b53b4052724e2368327
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: b33d7c9490caf0e571c89e3c1bb6c7ee6bff44ce3d387e5e2f55b98ed44b1303
 ---
 
 ---
@@ -140,6 +140,8 @@ other scopes require a Console session.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -380,6 +382,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -608,6 +612,8 @@ Console session.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

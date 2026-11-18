@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 1e0ed0a385afa8cde8acc90e4dbe9643f613eb8bf58f1474ba2a0390c6d994e1
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: ff038f17a3c3c424a5c66c9c68d0efcc1a3a43a4371fd9bf7cb08699d8341345
 ---
 
 ---
@@ -129,6 +129,8 @@ Update work item metadata with merge semantics.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

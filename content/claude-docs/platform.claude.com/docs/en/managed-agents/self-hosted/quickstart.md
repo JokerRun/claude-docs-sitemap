@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/quickstart
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 477c447d0b9270c9737dde10672ef6196ab63f517be4541193dac3ed026f34a1
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: c8c3ed5bcf06384f87e03ed0d980df7920eb4fbe27e9a4cd358910dfde7a1645
 ---
 
 ---
@@ -51,7 +51,7 @@ If you’re an agent that runs these steps for a person:
 
 <Steps>
   <Step title="Extract the archive">
-    Extract the archive, and work from its `compose` directory. In the command, replace `<archive>` with your archive’s name, without `.tar.gz`.
+    Extract the archive and work from its `compose` directory. In the command, replace `<archive>` with your archive’s name, without `.tar.gz`.
 
     ```bash
     tar -xzf <archive>.tar.gz && cd <archive>/compose

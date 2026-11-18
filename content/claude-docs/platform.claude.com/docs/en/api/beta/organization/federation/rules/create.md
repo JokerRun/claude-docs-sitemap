@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 65c21be11710c2ff8505b839b40e011cb06709a51f3415cbe4afb00f1946931e
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 7169f2dd81c3be7e09f6f9b57bc3cbdaf524f0986520a8297fe6928bb87f5d48
 ---
 
 ---
@@ -137,6 +137,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

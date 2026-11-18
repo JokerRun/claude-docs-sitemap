@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/update
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 51b3dc013af7a0d09070c742a596897c8002097595655e8682eb92da99d6ad84
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 009dbe4b71b5a549a025da689ec2fc46ac253f54cdd04ea4eb1e79e107bf22ab
 ---
 
 ---
@@ -131,6 +131,8 @@ Update a Credential
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

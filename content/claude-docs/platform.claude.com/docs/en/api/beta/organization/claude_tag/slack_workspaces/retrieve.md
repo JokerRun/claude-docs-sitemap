@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_workspaces/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 20a7f505cc5df7cbba2e104189533878b9659737871c986095325d84b1af569a
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 28f1170cfb29d93f52c65aea8d93540438f22a4452a0eac5a67d76644eb48f7b
 ---
 
 ---
@@ -133,6 +133,8 @@ Get one Slack workspace and its settings. By default `settings` holds what the w
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

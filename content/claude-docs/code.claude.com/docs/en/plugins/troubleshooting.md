@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 259729f10c85afd8b27c686422c3ae26453ba30a4c8e9062fdd2b54ef6920de9
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 148e9a9fa57dc2aba504b5e6dffc8792ac8bb18634f251ae48e84f6f4659e357
 ---
 
 > ## Documentation Index
@@ -1070,6 +1070,7 @@ The table covers the messages that stop validation and two warnings, `No frontma
 | `Path is a file; skills entries must be directories containing SKILL.md` | A `skills` entry points at `SKILL.md` instead of its directory. | Point at the parent directory, or `.` for a root-level `SKILL.md`. |
 | `No frontmatter block found` or `YAML frontmatter failed to parse: <error>` | A skill, agent, or command file has missing or invalid YAML frontmatter. | Add or fix the frontmatter between `---` delimiters. Reported when validating a plugin directory. |
 | `Plugin name "<name>" is reserved: it passes as one of Anthropic's own` | The plugin's `name` is one of the [reserved names](https://code.claude.com/docs/en/plugins/manifest-reference.md#name). | Rename the plugin for what it does. |
+| `Must be a version range such as ">=2.1.0"; got "<value>". It will be ignored at load time.` | Claude Code can't read the `claude-code` value under `engines` as a semver range. | Set the value to a range of Claude Code versions, such as `">=2.1.0"`. See the [`engines` field](https://code.claude.com/docs/en/plugins/manifest-reference#fields). |
 | `Unknown field '<key>'` | The manifest has a field the schema doesn't define. | Remove it, or use the name the message suggests. Claude Code ignores unknown fields at load time. For `privacyPolicyUrl` and the other directory listing fields in `plugin.json`, see [Directory listing fields](https://code.claude.com/docs/en/plugins/manifest-reference.md#directory-listing-fields). |
 
 Run the command again after each fix until it prints no errors.

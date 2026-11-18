@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/delete
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5f1e42b9ea59417f4416b8a118ff9441fa52209497134b22d45b4d6b72690b2a
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: c30031c36de8039fbb91e347529c8b87b782427f853b11c72112e55f180385b2
 ---
 
 ---
@@ -138,6 +138,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

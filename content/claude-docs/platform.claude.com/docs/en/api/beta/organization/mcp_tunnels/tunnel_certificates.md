@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 8b0478102c1bb8f24af72704edfae348ddacde1ac1ae4ac6a4ed7278ac82d48b
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 30c5b4a892174f2605c8f3c5009ab53c82ca973c2953208faf686d7030676b6f
 ---
 
 ---
@@ -138,6 +138,8 @@ holds at most two non-archived certificates.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -401,6 +403,8 @@ Archived certificates are excluded unless `include_archived` is set.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -641,6 +645,8 @@ Retrieve a single certificate registered on a tunnel by ID.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -875,6 +881,8 @@ certificate is added.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

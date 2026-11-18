@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 20f5478f560b24377671f40febd9c856b2fce0135f08c72a3b79e10eb107258c
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 331ccd66fbddcc9676607016457b2858589044c24d76c5febad76ad9c3e8eaf5
 ---
 
 ---
@@ -184,8 +184,8 @@ Install the package that provides the client:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.9.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.9.0")
+        implementation("com.anthropic:anthropic-java:3.10.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.10.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Install the package that provides the client:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.9.0</version>
+            <version>3.10.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.9.0</version>
+            <version>3.10.0</version>
         </dependency>
         ```
       </Tab>
@@ -599,6 +599,7 @@ The following aren’t supported on Claude Models on Google Cloud (Anthropic man
 * **MCP tunnels:** [MCP tunnels](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview) aren’t available on Claude Models on Google Cloud (Anthropic managed).
 * **[Memory stores on self-hosted environments](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-memory):** Memory stores aren’t supported for sessions on self-hosted environments.
 * **Pre-built self-hosted sandbox workers:** The [self-hosted workers](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers) in the `ant` CLI and in the Python, TypeScript, and Go SDKs don’t support Claude Models on Google Cloud (Anthropic managed). Instead, implement your own worker that calls the [Environments Work endpoints](https://platform.claude.com/docs/en/api/beta/environments/work) directly. For the roles and permissions your worker needs, see [IAM permissions for environments](https://platform.claude.com/docs/en/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions#environments).
+* **Linked billing (beta):** [Linked billing](https://platform.claude.com/docs/en/manage-claude/oauth-apps/organization-billing-connections) isn’t available on Claude Models on Google Cloud (Anthropic managed).
 
 ### Context window
 

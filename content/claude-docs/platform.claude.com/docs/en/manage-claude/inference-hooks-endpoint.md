@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-endpoint
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 72082f371839c78d4fbd5c44910b27c26e49dd856cf65265a99e4afce5b7af6a
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 2623a233f800eefb34bb35e89dd8f5c7b15e0443eaf866015500d8c2767dd61e
 ---
 
 ---
@@ -849,7 +849,7 @@ Timeouts, non-200 statuses (redirects included), unparseable or oversized respon
 
 Sustained webhook failures attributable to your AI security server trip a circuit breaker that stops enforcement: Anthropic stops contacting your server, and failure handling applies to every request.
 
-Starting 10 minutes after the trip, Anthropic checks whether your server has recovered: at most about once per minute it sends your server the same synthetic test request that **Test connection** sends (`source.application` is `config-test`), signed like any other request and carrying no user content. Respond to it normally. A valid verdict, allow or deny, resets the breaker and enforcement resumes; a webhook failure leaves the breaker tripped, and the checks continue. An administrator can also reset the breaker at any time, and administrator configuration changes stop the automatic checks; see [Circuit breaker](https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration#circuit-breaker).
+Starting 3 minutes after the trip, Anthropic checks whether your server has recovered. At most about once per minute, it sends your server the same synthetic test request that **Test connection** sends (`source.application` is `config-test`). The request is signed like any other request and carries no user content. Respond to it normally. A valid verdict, allow or deny, resets the breaker and enforcement resumes; a webhook failure leaves the breaker tripped, and the checks continue. An administrator can also reset the breaker at any time, and administrator configuration changes stop the automatic checks; see [Circuit breaker in Configure Inference hooks](https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration#circuit-breaker).
 
 Prompt frames and tool call frames share one circuit breaker, and failures on either count toward it.
 

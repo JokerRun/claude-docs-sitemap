@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/list
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 49741706bef2662ee697a832feea6e6417f10308eb190dec8f3cdd4904463f4f
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 2cb86b4e2f9c731f8c42d62dcc44b841b9e8b59c901d469b8dbf511f5fc33d14
 ---
 
 ---
@@ -165,6 +165,8 @@ List Deployments
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

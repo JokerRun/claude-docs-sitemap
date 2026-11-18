@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: b9fa9efd317c92efc0c2ca331a2ecb08a22eb735aad0844b90e9435a45f66cd6
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 5466954a992870d13715b1e5a933a49bebba9ddcfee2e72f7a19b3e4aacc6990
 ---
 
 > ## Documentation Index
@@ -661,7 +661,7 @@ If a listed skill is missing or disabled, for example by your organization's pol
 
 #### Enable persistent memory
 
-The `memory` field gives the subagent a persistent directory that survives across conversations. The subagent uses this directory to build up knowledge over time, such as codebase patterns, debugging insights, and architectural decisions.
+The `memory` field gives the subagent a persistent directory that survives across conversations. The subagent uses this directory to build up knowledge over time, such as your preferences, your corrections, and project decisions.
 
 ```yaml theme={null}
 ---
@@ -671,7 +671,7 @@ memory: user
 ---
 
 You are a code reviewer. As you review code, update your agent memory with
-patterns, conventions, and recurring issues you discover.
+the review preferences and corrections you're given.
 ```
 
 Choose a scope based on how broadly the memory should apply:
@@ -698,10 +698,10 @@ When memory is enabled:
 * Include memory instructions directly in the subagent's markdown file so it proactively maintains its own knowledge base:
 
   ```markdown theme={null}
-  Update your agent memory as you discover codepaths, patterns, library
-  locations, and key architectural decisions. This builds up institutional
-  knowledge across conversations. Write concise notes about what you found
-  and where.
+  Update your agent memory as you learn the team's preferences, project
+  constraints, and the reasons behind key decisions. This builds up
+  institutional knowledge across conversations. Write concise notes about
+  what you learned and why it matters.
   ```
 
 #### Conditional rules with hooks

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/create
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 3283cb43427bb4e63b8b9a67f1cc3cc9030deca46620b8a2a459e50187900d71
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 236f59cef83d2fac04aa56167c0422d355526295e7253f14ae0799d5247b1a58
 ---
 
 ---
@@ -133,6 +133,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

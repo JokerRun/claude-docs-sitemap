@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: fb7ce6414e05b54132f4386d25019f5767a0218cd9f16d1307f6345c6b01bc8e
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 90449ed3dcfd4c8b5174d10af6714ad7ca06efd89a4ba85c679128d7cbeafbd7
 ---
 
 ---
@@ -129,6 +129,8 @@ Retrieve detailed information about a specific work item.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: a599e2927035675e229ad9b9617c2ec31428b1999a22a1e6e60c94810c8761a7
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 58398a7a4472749cee10be3c8e3ce116a23754fd5e74381b1146385cac305850
 ---
 
 ---
@@ -255,6 +255,8 @@ List Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -3449,6 +3451,8 @@ Send Events
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"user-profiles-billing-2026-10-01"`
+
   - `"message-batches-2024-09-24"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
@@ -4473,6 +4477,8 @@ Stream Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

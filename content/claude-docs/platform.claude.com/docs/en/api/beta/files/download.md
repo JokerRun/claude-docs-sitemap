@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/download
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 3107f0df625e3b85f99012c5aa27ba02e7bbfe52bd2c200acd44698e8d4a0a9c
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 8fcdd2c2b0997a3d65116fd18f3f5f1112aaad1010173d7d11fcf3e798c0458d
 ---
 
 ---
@@ -127,6 +127,8 @@ Download File
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/list
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 85e185f976802cf110b07d7e32fb6b0acc75240cd4da2b49009d9a27478cb216
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: a90198bc50de07d8e4c784176794590f5f8fe3701a3185cbe9218c4be171332b
 ---
 
 ---
@@ -154,6 +154,8 @@ archived tunnels are excluded unless `include_archived` is set.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

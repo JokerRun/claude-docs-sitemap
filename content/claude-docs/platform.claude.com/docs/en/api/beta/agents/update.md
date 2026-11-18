@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 0bb4aa0810f2e7d63aa582ad821966206c14b3c57dc87e4f8069d1c136883494
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 1632a611a831a663426134ba527faed982ba7758dab11f822a2cc9400d5e5eac
 ---
 
 ---
@@ -127,6 +127,8 @@ Update Agent
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 
@@ -392,7 +394,7 @@ Update Agent
 
   - `BetaManagedAgentsMultiagentCoordinatorParams object`
 
-    A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
+    Recommendation: use `multiagent_20261001` instead of `coordinator`. A coordinator topology: the session's primary thread orchestrates work by spawning session threads, each running an agent drawn from the `agents` roster.
 
     - `type: "coordinator"`
 

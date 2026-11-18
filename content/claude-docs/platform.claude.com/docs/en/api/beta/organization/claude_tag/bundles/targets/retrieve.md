@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 4e50fbbaa79aceda8579c289a3ac4ccf5128ac0501c1495ff626c64abdf0bc58
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 7aae3defe0d0a642febf800d3589b4b4a1bf7c11fa4feb944a6954aaaf6cb391
 ---
 
 ---
@@ -131,6 +131,8 @@ Get one Bundle Target. Returns 404 when `target_id` is the identifier of another
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/send
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5f14b53b4e06b607d99849e004503e126fb35f7c715db0660a2c102552aba25d
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 1ef190e45d713d5cea7d2675a145928265e83a0f61a24b04d56480a3a220132e
 ---
 
 ---
@@ -125,6 +125,8 @@ Send Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

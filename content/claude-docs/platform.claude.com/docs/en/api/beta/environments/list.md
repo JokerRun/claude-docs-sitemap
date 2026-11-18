@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/list
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 850e04f82e23735fe7ae3a3e2490239920e4f8f37ab1d98980ad655631d9a62d
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 59c2c4d75fdafd6a1c69fc31977253a6d7d9b9c61cb90ac9973ac60a5cc56b1f
 ---
 
 ---
@@ -139,6 +139,8 @@ List environments with pagination support.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

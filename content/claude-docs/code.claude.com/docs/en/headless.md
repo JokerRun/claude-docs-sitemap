@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: b57c1dc43ebb56d607ff38e3db7f50b37c4976a667ed4daf8879cfd161992438
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 83f0a357848f1e7d660af635ebe4c6f3d598837443ae5fd54b550b1161e361cd
 ---
 
 > ## Documentation Index
@@ -132,7 +132,7 @@ These examples highlight common CLI patterns. Where a command names a file such 
 
 ### Pipe data through Claude
 
-Non-interactive mode reads stdin, so you can pipe data in and redirect the response out like any other command-line tool.
+Non-interactive mode reads stdin, so you can pipe data in and redirect the response out.
 
 This example pipes a build log into Claude and writes the explanation to a file:
 
@@ -377,7 +377,7 @@ claude -p "Look at my staged changes and create an appropriate commit" \
   --allowedTools "Bash(git diff *),Bash(git log *),Bash(git status *),Bash(git commit *)"
 ```
 
-The `--allowedTools` flag uses [permission rule syntax](https://code.claude.com/docs/en/settings-reference.md#permission-rule-syntax). The trailing ` *` enables prefix matching, so `Bash(git diff *)` allows any command starting with `git diff`. The space before `*` is important: without it, `Bash(git diff*)` would also match `git diff-index`.
+The `--allowedTools` flag uses [permission rule syntax](https://code.claude.com/docs/en/settings-reference.md#permission-rule-syntax). With the trailing ` *`, `Bash(git diff *)` matches `git diff` with or without arguments. The space before `*` is important: without it, `Bash(git diff*)` would also match `git diff-index`.
 
 > [!NOTE]
 >

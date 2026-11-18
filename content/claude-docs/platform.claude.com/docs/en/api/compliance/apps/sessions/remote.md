@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/compliance/apps/sessions/remote
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 95be77bb75f28d0e480241a578e15a45f0e552a2b0fad078c03afb946d041c0c
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 0035b86f1cb0a4d8d69b719f44d42215e75124c432de28dcb79013338515762b
 ---
 
 ---
@@ -279,7 +279,10 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/remote \
 
 Retrieve one remote session's transcript: user prompts, assistant
 responses, and tool calls and results. Thinking blocks and images are
-not included.
+not included. Some notes for the assistant that Claude's apps add to a user's
+message, without showing them to the user, are withheld: such a `text` block
+is returned empty with `added_as_context: true`. Other added text is returned
+in full.
 
 Messages are returned oldest first by default; pass `order=desc` to
 reverse. Pagination uses the same `page`/`next_page` scheme as the
@@ -376,9 +379,15 @@ until those settings change.
 
         default: text
 
+      - `added_as_context: boolean`
+
+        True when the server recognized this text block, by its exact wording, as a note that a Claude app adds to a user's message for the assistant, and withheld it: `text` is then empty. The match is on the text alone, so it does not prove that an app wrote the block. False does not mean that the user typed the text: other added text, including some of the apps' notes, is exported in full. Always false on assistant messages.
+
+        default: false
+
       - `text: string`
 
-        Text content from the user or the assistant
+        Text content from the user or the assistant. Empty when the text is withheld: see `added_as_context`.
 
       - `truncated: boolean`
 
@@ -559,6 +568,7 @@ curl https://api.anthropic.com/v1/compliance/apps/sessions/remote/$CLAUDE_REMOTE
       "id": "id",
       "content": [
         {
+          "added_as_context": true,
           "text": "text",
           "truncated": true,
           "type": "text"

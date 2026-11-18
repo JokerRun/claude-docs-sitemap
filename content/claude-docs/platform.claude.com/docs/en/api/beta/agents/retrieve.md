@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/retrieve
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 56bf15a2e52614b2f11f221bb4e6d22f6feeb590d5f8b3a83bfa1548acebe630
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 96f4ad15e1efb6d2ef9504841a0a5ae115b99a3f25a0c2dbb3c7c8ca03ce9efb
 ---
 
 ---
@@ -135,6 +135,8 @@ Get Agent
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
 

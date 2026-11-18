@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-mcp
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 00afba85e6279012d6452a1fa6b2001d84159d1f6b516fd49968babe488abfe1
+fetched_at: 2026-11-18T02:14:00.973041Z
+sha256: 8a9d2bca67647cdbf6a11fb81b21a16138d2c4a2c904d3651d09f0be944bf8b1
 ---
 
 > ## Documentation Index
@@ -145,7 +145,7 @@ Deploy a `managed-mcp.json` containing an empty server map to block every MCP se
 }
 ```
 
-`claude mcp add` fails with the enterprise-policy error above. Servers users had previously configured stop loading the next time they start a session, with no warning that policy is the reason. Servers you provide through `managedMcpServers`, and anything else you allow alongside the managed set, [still load](#exclusive-control-with-managed-mcp-json) under an empty map, so leave those keys unset.
+`claude mcp add` fails with the enterprise-policy error above. Servers users had previously configured stop loading by each user's next session. Servers you provide through `managedMcpServers`, and anything else you allow alongside the managed set, [still load](#exclusive-control-with-managed-mcp-json) under an empty map, so leave those keys unset.
 
 ### Allow claude.ai connectors alongside the managed set
 
@@ -530,6 +530,7 @@ For what users see at startup when `managed-mcp.json` is deployed and the sessio
 | The server isn't on the allowlist and the user runs `claude mcp add` | `Cannot add MCP server "<name>": not allowed by enterprise policy` |
 | [`strictPluginOnlyCustomization`](https://code.claude.com/docs/en/settings-reference#strictpluginonlycustomization) is `true` or includes `mcp`, and the user runs `claude mcp add` | [`Cannot add MCP server: your organization's managed settings allow only MCP servers that plugins provide`](https://code.claude.com/docs/en/errors#cannot-add-mcp-server-when-managed-settings-allow-only-plugin-servers) |
 | The user runs `claude mcp remove` on a server from `managedMcpServers` | `MCP server "<name>" is provided by your organization (managed settings) and cannot be removed locally.` |
+| `managed-mcp.json` takes effect while a terminal session is open | A notice that begins `Your organization now manages MCP servers on this computer` |
 | A previously configured server is now blocked by policy | The server disappears from `/mcp` and `claude mcp list` |
 | A server becomes blocked while a session is running, and the user selects **Reconnect** or turns it back on in `/mcp` | [`MCP server <name> is blocked by enterprise managed policy`](https://code.claude.com/docs/en/errors#mcp-server-is-blocked-by-enterprise-managed-policy) |
 
