@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-security-posture/events-reference
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 1b6d43eaf3c50b40daa459531de1f05784f2e2c58f9ac2f944fac2990f158f3b
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 69affb9b8a4ada1c5624524c3a16bc5f34a157eae8f949a8fd2971b218a24225
 ---
 
 ---
@@ -39,13 +39,15 @@ On an information-only control, the value Reviewed is recorded as `completed`.
 
 ### `action` values
 
-| `action`   | Meaning                                                                                                                                |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `attested` | An attestation was recorded for a control that had none.                                                                               |
-| `changed`  | An attestation was saved again with another value or, where `status` equals `previous_status`, with the same value, as with `renewed`. |
-| `renewed`  | An attestation was saved again with the same value.                                                                                    |
-| `cleared`  | A person cleared an attestation.                                                                                                       |
-| `lapsed`   | An attestation ended automatically, not by a person.                                                                                   |
+| `action`   | Meaning                                                  |
+| ---------- | -------------------------------------------------------- |
+| `attested` | An attestation was recorded for a control that had none. |
+| `changed`  | An attestation was saved again with another value.       |
+| `renewed`  | An attestation was saved again with the same value.      |
+| `cleared`  | A person cleared an attestation.                         |
+| `lapsed`   | An attestation ended automatically, not by a person.     |
+
+On or before October 23, 2026 (UTC), a `changed` activity can also record a save with the same value. Such an activity has a `created_at` on or before that day and a `status` that equals `previous_status`.
 
 On `renewed` and `lapsed` activities, `status` equals `previous_status`. A save with the same value after a `lapsed` activity is recorded as `renewed`, not `attested`.
 

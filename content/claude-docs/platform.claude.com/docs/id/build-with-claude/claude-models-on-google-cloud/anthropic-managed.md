@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: d679872591f4116b689c1f16605b52b26f79fc0e3ab6780300ccad677b19004b
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: eeffbac8b983c8711e11e844a0dc17ae812a0be53a0566792ce1a8cafbfe78b9
 ---
 
 ---
@@ -253,6 +253,8 @@ Semua hal lainnya sama seperti di Claude API, termasuk yang berikut:
 * Streaming
 * Respons
 
+Satu pengecualian adalah ukuran permintaan: permintaan Messages dan Token Counting memiliki batas yang lebih rendah. Untuk batas tersebut, lihat bagian [Batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits) di ikhtisar API.
+
 Contoh kode di bagian lain dokumentasi ini membuat klien Claude API dan membaca kunci API. Untuk menjalankannya dengan Claude Models on Google Cloud (Anthropic managed), ganti impor dan konstruktor kliennya dengan yang ada di contoh berikut. Untuk contoh cURL, terapkan tiga perbedaan yang tercantum sebelumnya.
 
 Sebelum menjalankan contoh-contoh ini, selesaikan langkah-langkah di [Sebelum melakukan panggilan API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#before-making-api-calls).
@@ -411,7 +413,28 @@ Untuk memanggil API melalui HTTP mentah, kirim token akses dari Application Defa
 
 ### ID model API
 
-Claude Models on Google Cloud (Anthropic managed) menggunakan ID model yang sama dengan Claude API, misalnya `claude-opus-5-5`. Untuk model dan ID-nya, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
+Claude Models on Google Cloud (Anthropic managed) menggunakan ID model yang sama dengan Claude API. Model yang tersedia mencakup yang berikut:
+
+| Model                                                                                                 | Model ID                     |
+| :---------------------------------------------------------------------------------------------------- | :--------------------------- |
+| Claude Fable 5.2                                                                                      | `claude-fable-5-2`           |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-2`          |
+| Claude Fable 5.1                                                                                      | `claude-fable-5-1`           |
+| Claude Fable 5                                                                                        | `claude-fable-5`             |
+| Claude Opus 5.5                                                                                       | `claude-opus-5-5`            |
+| Claude Opus 5                                                                                         | `claude-opus-5`              |
+| Claude Opus 4.8                                                                                       | `claude-opus-4-8`            |
+| Claude Opus 4.7                                                                                       | `claude-opus-4-7`            |
+| Claude Opus 4.6                                                                                       | `claude-opus-4-6`            |
+| Claude Opus 4.5                                                                                       | `claude-opus-4-5-20251101`   |
+| Claude Sonnet 5.5                                                                                     | `claude-sonnet-5-5`          |
+| Claude Sonnet 5                                                                                       | `claude-sonnet-5`            |
+| Claude Sonnet 4.6                                                                                     | `claude-sonnet-4-6`          |
+| Claude Sonnet 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-sonnet-4-5-20250929` |
+| Claude Haiku 5.5                                                                                      | `claude-haiku-5-5`           |
+| Claude Haiku 4.5                                                                                      | `claude-haiku-4-5-20251001`  |
+
+Claude Models on Google Cloud (Anthropic managed) mengikuti jadwal siklus hidup Claude API. Untuk tanggal-tanggalnya, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Untuk membandingkan model, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
 
 Di Claude Models on Google Cloud (Anthropic managed), permintaan untuk model yang tidak tersedia bagi organisasi Anthropic Anda akan mengembalikan error. Pesan error-nya berbunyi `Model {model} is not available for this organization's inference configuration.`
 
@@ -511,19 +534,36 @@ Seperti klien SDK, CLI tidak mengirim permintaan untuk Claude Models on Google C
 
 ## Dukungan fitur
 
-Bagian ini mencantumkan fitur yang berfungsi di Claude Models on Google Cloud (Anthropic managed) dan fitur yang tidak didukung di sana. Bagian ini tidak mencantumkan setiap fitur Claude API, dan tidak menyatakan apakah fitur yang tidak tercantum berfungsi.
+Bagian-bagian berikut mencantumkan fitur yang tersedia di Claude Models on Google Cloud (Anthropic managed):
 
-Models API dan fitur-fitur berikut tersedia di Claude Models on Google Cloud (Anthropic managed):
+* **[Fitur Messages API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#messages-api-features):** Kemampuan model, alat, manajemen konteks, file, dan skill
+* **[Fitur Claude Managed Agents](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#claude-managed-agents):** Agen, sesi, sandbox, dan deployment terjadwal
+* **[Administrasi dan kepatuhan](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#administration-and-compliance):** Workspace, profil pengguna, laporan penggunaan dan biaya, pengaturan Compliance API, kunci enkripsi, dan Zero Data Retention
+
+Untuk fitur yang tidak didukung, lihat bagian [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported). Jika tidak ada satu pun dari bagian ini yang mencantumkan fitur yang Anda butuhkan, tanyakan kepada perwakilan akun Anthropic Anda apakah fitur tersebut tersedia.
+
+Untuk memeriksa model mana yang mendukung suatu fitur, lihat bagian **Ketersediaan** di halaman fitur tersebut.
+
+### Fitur Messages API
+
+[Messages API](https://platform.claude.com/docs/id/api/messages/create), [Models API](https://platform.claude.com/docs/id/api/models/list), dan fitur-fitur berikut tersedia di Claude Models on Google Cloud (Anthropic managed):
 
 * [Alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool) (Beta)
 * [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview)
   * [Skill Kustom](https://platform.claude.com/docs/id/build-with-claude/skills-guide#managing-custom-skills)
   * [Agent Skills siap pakai](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#pre-built-agent-skills)
+* [Alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool)
 * [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)
+* [Toolset SDK penggunaan browser dan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk) (Beta)
+* [Alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)
+* [Kutipan](https://platform.claude.com/docs/id/build-with-claude/citations)
 * [Penolakan pengklasifikasi](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback)
   * [Fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) (Beta)
+  * [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) (Beta)
   * [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) (Beta)
 * [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)
+* [Alat penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool)
+* [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) (Beta)
 * [Alat kustom](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools)
 * [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency)
 * [Effort](https://platform.claude.com/docs/id/build-with-claude/effort)
@@ -535,34 +575,39 @@ Models API dan fitur-fitur berikut tersedia di Claude Models on Google Cloud (An
 * [Alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool)
   * [Helper alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#implement-the-memory-handler) (Beta)
 * [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming)
+  * [Streaming alat fine-grained](https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming)
 * [Thread pesan](https://platform.claude.com/docs/id/build-with-claude/message-threads) (Beta)
 * [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages)
   * [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) (Beta)
   * [Pesan sistem lingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (Beta)
-* [OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry) (Beta)
+* [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) (Beta)
+  * [Helper compaction tool runner](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop) (Beta)
+* [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use)
 * [Dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support)
+* [Pemanggilan alat secara programatik](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
   * [Durasi 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration)
   * [Durasi 5 menit (default)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#how-prompt-caching-works)
   * [Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching)
+  * [Diagnostik cache](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics)
 * [Middleware SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware)
+* [Hasil pencarian](https://platform.claude.com/docs/id/build-with-claude/search-results)
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
+  * [Penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use)
   * [Helper output terstruktur bertipe](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#usage)
+* [Anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) (Beta)
+* [Alat editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)
 * [Pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking)
   * [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost)
   * [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking)
   * [Pemikiran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking)
+* [Compaction ambang batas](https://platform.claude.com/docs/id/build-with-claude/compaction-threshold) (Beta)
 * [Penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting)
 * [Tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) (Beta)
+* [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)
 * [Vision (gambar)](https://platform.claude.com/docs/id/build-with-claude/vision)
 * [Alat web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool)
 * [Alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)
-
-Jika suatu fitur beta dibatasi hanya untuk organisasi tertentu di Claude API, organisasi Anthropic yang dibuat oleh proses penyiapan memerlukan akses yang sama.
-
-Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) untuk organisasi Anthropic yang dibuat oleh penyiapan, pertama-tama [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console). Lalu buka [Kepatuhan di Claude Console](https://platform.claude.com/settings/security) (`platform.claude.com/settings/security`) dan gunakan toggle **Compliance API**.
-
-“Customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, tersedia dengan kunci Google Cloud KMS. Untuk mengaktifkan CMEK untuk organisasi Anthropic yang dibuat oleh penyiapan, lihat [Siapa yang dapat menggunakan CMEK](https://platform.claude.com/docs/id/manage-claude/cmek#availability). Untuk menyiapkan kunci, ikuti [Menyiapkan CMEK dengan Google Cloud KMS](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms). Kemudian daftarkan, verifikasi, dan lampirkan kunci di [Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console), seperti yang dijelaskan tab **Claude Platform** di halaman penyiapan.
 
 ### Claude Managed Agents
 
@@ -584,20 +629,68 @@ Untuk mengaktifkan atau menonaktifkan [Compliance API](https://platform.claude.c
 * [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) (Beta)
 * [Pembatasan domain web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions) (Beta)
 
+Beberapa [fitur Messages API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#messages-api-features), seperti Files API dan konektor MCP, juga berfungsi dengan Claude Managed Agents. Untuk detailnya, lihat bagian **Ketersediaan** di halaman fitur tersebut.
+
+Jika Anda berencana menggunakan sandbox self-hosted, baca entri tentang memory store dan worker di bagian [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported).
+
+#### Saat Anda mencabut akses
+
 Akses diperiksa saat sesi atau deployment dibuat, bukan saat sedang berjalan:
 
-* **Sesi yang sedang berjalan tetap berjalan.** Jika Anda mencabut akses Google Cloud dari identitas yang membuat sesi, sesi tersebut tidak berhenti. Untuk menghentikannya, kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#integrating-events) secara tersendiri. Setelah sesi berstatus `idle`, Anda dapat mengarsipkan atau menghapusnya.
+* **Sesi yang sedang berjalan tetap berjalan.** Jika Anda mencabut akses Google Cloud dari identitas yang membuat sesi, sesi tersebut tidak berhenti.
 * **Deployment terjadwal tetap berjalan.** Deployment tidak memeriksa ulang akses pembuatnya pada setiap eksekusi terjadwal. Untuk menghentikannya, jeda, perbarui, atau arsipkan deployment tersebut.
 
+Untuk menghentikan sesi yang sedang berjalan, ikuti langkah-langkah berikut:
+
+1. Kirimkan [event `user.interrupt`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent) ke sesi tersebut. Jangan kirim event `user.message` setelahnya.
+2. Tunggu hingga status sesi menjadi `idle`.
+3. Jika Anda tidak lagi membutuhkan sesi tersebut, arsipkan atau hapus sesi tersebut.
+
 Ketika Anda menghapus pengguna atau merotasi akun layanan, tinjau sesi dan deployment yang dibuat oleh identitas tersebut.
+
+### Administrasi dan kepatuhan
+
+Hal-hal berikut juga tersedia di Claude Models on Google Cloud (Anthropic managed):
+
+* [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#workspaces)
+* [Profil pengguna untuk atribusi pelanggan akhir](https://platform.claude.com/docs/id/manage-claude/user-profiles)
+* [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) (beta)
+* [API Penggunaan dan Biaya](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) (lama), hanya endpoint penggunaan
+* [Pengaturan Compliance API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#compliance-api) di Claude Console
+* [Kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek) (CMEK), dengan kunci Google Cloud KMS
+* [Zero Data Retention](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#data-retention) (retensi data nol), atau ZDR, berdasarkan permintaan
+
+Endpoint penggunaan dan biaya menggunakan [base URL tanpa workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests). Dari tiga [peran IAM](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) yang telah ditentukan sebelumnya, hanya `roles/claude.admin` yang mengizinkan panggilan ini.
+
+#### Compliance API
+
+Selama [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) nonaktif, Compliance API tidak mencatat event aktivitas. Anda tidak dapat memulihkan event tersebut nanti. Untuk hal lain yang diubah oleh pengaturan ini, lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
+
+Untuk mengaktifkan atau menonaktifkan Compliance API untuk organisasi Anthropic yang dibuat oleh penyiapan, ikuti langkah-langkah berikut:
+
+1. [Buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console).
+2. Buka [Kepatuhan di Claude Console](https://platform.claude.com/settings/security) (`platform.claude.com/settings/security`).
+3. Aktifkan atau nonaktifkan toggle **Compliance API**.
+
+#### Kunci enkripsi yang dikelola pelanggan
+
+Untuk menggunakan kunci Google Cloud KMS Anda sendiri dengan organisasi Anthropic yang dibuat oleh penyiapan, ikuti langkah-langkah berikut:
+
+1. Hubungi perwakilan akun Anthropic Anda untuk mengaktifkan CMEK bagi organisasi tersebut. Untuk detailnya, lihat [Siapa yang dapat menggunakan CMEK](https://platform.claude.com/docs/id/manage-claude/cmek#availability).
+2. [Buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console).
+3. Ikuti [Menyiapkan CMEK dengan Google Cloud KMS](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms) untuk membuat, menambahkan, memverifikasi, dan melampirkan kunci. Untuk langkah-langkah di Claude Console, gunakan tab **Claude Platform** di halaman tersebut.
+
+### Akses ke fitur beta
+
+Beberapa fitur beta hanya terbuka untuk organisasi tertentu. Untuk menggunakannya, organisasi Anthropic yang dibuat oleh penyiapan memerlukan aksesnya sendiri.
 
 ### Fitur yang tidak didukung
 
 Hal-hal berikut tidak didukung di Claude Models on Google Cloud (Anthropic managed):
 
-* **Kunci API:** Autentikasi hanya melalui kredensial Google Cloud.
+* **Kunci API, termasuk kunci Admin API:** Lakukan autentikasi dengan [kredensial Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication) sebagai gantinya.
 * **Tunnel MCP:** [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) tidak tersedia di Claude Models on Google Cloud (Anthropic managed).
-* **[Memory store pada environment self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory):** Memory store tidak didukung untuk sesi pada environment self-hosted.
+* **[Memory store di sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory):** Di Claude Models on Google Cloud (Anthropic managed), memory store tidak didukung di sandbox self-hosted. Untuk menggunakannya, jalankan sesi di [environment cloud](https://platform.claude.com/docs/id/managed-agents/environments).
 * **Worker sandbox self-hosted yang sudah jadi:** [Worker self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers) di `ant` CLI dan di SDK Python, TypeScript, dan Go tidak mendukung Claude Models on Google Cloud (Anthropic managed). Sebagai gantinya, implementasikan worker Anda sendiri yang memanggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung. Untuk peran dan izin yang dibutuhkan worker Anda, lihat [izin IAM untuk environment](https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions#environments).
 * **Linked billing (beta):** [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections) tidak tersedia di Claude Models on Google Cloud (Anthropic managed).
 
@@ -609,7 +702,37 @@ Ukuran “context window” (jendela konteks) di Claude Models on Google Cloud (
 
 ### Batas laju
 
-Anthropic mengelola “rate limit” (batas laju) untuk Claude Models on Google Cloud (Anthropic managed). Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [hubungi tim penjualan](https://claude.com/contact-sales). Untuk cara batas laju diukur dan dilaporkan, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
+Anthropic mengelola “rate limit” (batas laju) untuk Claude Models on Google Cloud (Anthropic managed). Untuk cara batas laju diukur dan dilaporkan, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits).
+
+Untuk melihat batas laju organisasi Anda, [buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console) dan buka [Batas laju di Claude Console](https://platform.claude.com/usage/limits) (`platform.claude.com/usage/limits`). Badge di halaman tersebut menampilkan **Tingkat Custom** untuk setiap organisasi di Claude Models on Google Cloud (Anthropic managed), apa pun [tingkat penggunaannya](https://platform.claude.com/docs/id/api/rate-limits#about-rate-limits).
+
+Untuk meminta batas yang lebih tinggi, gunakan formulir di Claude Console:
+
+1. Di halaman **Batas laju**, klik **Minta batas lebih tinggi**.
+
+   <Frame caption="Tombol tersebut berada di kanan atas halaman Rate limits (Batas laju).">
+     ![Header halaman Rate limits di Claude Console, dengan badge Custom tier dan tombol Request higher limits.](https://platform.claude.com/docs/images/rate-limits/request-higher-limits-button.png)
+   </Frame>
+
+2. Isi setiap field. Perkiraan kasar sudah cukup untuk angka-angkanya:
+
+   * Di **Model mana?**, pilih model yang memerlukan batas lebih tinggi.
+   * Di bawah **Puncak token per menit**, masukkan puncak token **Input** dan **Output** Anda (bukan total harian). Di **Input**, jangan sertakan token yang dibaca dari cache. Untuk sebagian besar model, token tersebut tidak dihitung terhadap batas token input (lihat [ITPM yang sadar cache](https://platform.claude.com/docs/id/api/rate-limits#cache-aware-itpm)). Angka-angka tersebut berlaku untuk setiap model yang Anda pilih. Jika sebuah model memerlukan angka yang berbeda, tambahkan di field berikutnya.
+   * Di **Apa yang Anda bangun, dan mengapa Anda memerlukan batas lebih tinggi?**, jelaskan kasus penggunaan Anda dan alasan Anda memerlukan batas lebih tinggi. Jika Anda memerlukan [batas pengeluaran bulanan](https://platform.claude.com/docs/id/api/rate-limits#spend-limits) yang lebih tinggi, sebutkan hal tersebut di sini.
+   * Di **Perkiraan pengeluaran bulanan**, masukkan bilangan bulat dalam dolar AS.
+   * Di **Email kontak**, masukkan satu alamat email untuk balasan.
+
+   <Frame caption="Formulir, dengan contoh permintaan.">
+     ![Formulir Request higher limits (Minta batas lebih tinggi) dengan field untuk model, puncak token per menit, alasan, pengeluaran bulanan, dan email kontak.](https://platform.claude.com/docs/images/rate-limits/request-higher-limits-form.png)
+   </Frame>
+
+3. Klik **Kirim permintaan**.
+
+Dukungan Anthropic meninjau permintaan Anda dan membalas ke alamat email kontak tersebut. Organisasi Anda dapat mengirim satu permintaan setiap 24 jam.
+
+Jika organisasi Anda memiliki pengaturan Zero Data Retention (ZDR) atau telah [mengaktifkan kunci enkripsi yang dikelola pelanggan (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek#availability), organisasi tersebut tidak dapat menggunakan formulir. Halaman tersebut menampilkan **Hubungi penjualan**, atau formulir menampilkan error saat Anda mengirim permintaan. Sebagai gantinya, hubungi perwakilan akun Anthropic Anda atau [hubungi tim penjualan](https://claude.com/contact-sales).
+
+Organisasi lain mana pun juga dapat menghubungi perwakilan akunnya atau tim penjualan.
 
 ### Penagihan
 
@@ -651,7 +774,7 @@ Rencanakan perpindahan sebagai cutover ke organisasi baru:
 * **Buat organisasi baru terlebih dahulu.** Ikuti [Menyiapkan akun Anda](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#set-up-your-account).
 * **Buat ulang akses dan konfigurasi.** Kunci API, workspace, dan pengaturan Claude Console tidak ikut terbawa. Berikan [peran IAM](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) pada proyek alih-alih membuat kunci API. Untuk membuat ulang workspace Anda, lihat [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#workspaces). Untuk pengaturan ZDR, lihat [Retensi data](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#data-retention).
 * **Rencanakan untuk sumber daya yang tersimpan.** File, skill, batch, dan sumber daya Claude Managed Agents tetap berada di organisasi yang sudah ada.
-* **Perbarui integrasi Anda.** Untuk apa yang berubah dan apa yang tetap sama, lihat [Melakukan permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests). Untuk fitur yang tidak didukung, lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported).
+* **Perbarui integrasi Anda.** Untuk apa yang berubah dan apa yang tetap sama, lihat [Melakukan permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests). Untuk memeriksa fitur yang digunakan kode Anda, lihat bagian [Dukungan fitur](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#feature-support).
 * **Lakukan cutover sesuai jadwal Anda sendiri.** Kedua organisasi bersifat independen dan dapat melayani lalu lintas secara paralel. Anda dapat memindahkan workload secara bertahap. Organisasi yang sudah ada tetap menggunakan penagihannya saat ini. Sebelum Anda mengalihkan lalu lintas produksi, periksa [batas laju untuk Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#rate-limits).
 
 ## Bermigrasi dari Claude Models on Google Cloud (Google managed)

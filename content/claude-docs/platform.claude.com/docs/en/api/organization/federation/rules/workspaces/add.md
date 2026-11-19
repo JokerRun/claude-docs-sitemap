@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/workspaces/add
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: a2c02a117e21ab8cc6510d7d664908395a41253b4087edfd8a54802ae71bdf87
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 8a3ea2e05e39d1d0c6d919a64fef3247e623ae6a5f90cd53ee61e96a8f967580
 ---
 
 ---
@@ -76,6 +76,16 @@ other scopes require a Console session.
   - `workspace_name: string or null`
 
     Workspace display name. Populated when listing; null in the enable response.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

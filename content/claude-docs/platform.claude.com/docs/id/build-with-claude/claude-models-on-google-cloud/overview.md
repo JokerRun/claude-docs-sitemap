@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a5a6a0364af3368702711905ed47110d226e5af3fcd22778aba1d14d10f0e7e6
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 271d6ca0f5abdd73934b6a7f5bcb0451ec9fcb9c101a8ae34b87fac214cacc4b
 ---
 
 ---
@@ -32,6 +32,15 @@ Tabel berikut membandingkan Claude Models on Google Cloud (Anthropic managed) de
 | **Penagihan**                                    | Google Cloud Marketplace                                                                                                                                                                                       | Google Cloud, sebagai penggunaan Agent Platform                                                                                                                                                                                                       |
 | **Batas laju**                                   | Dikelola oleh Anthropic                                                                                                                                                                                        | Dikelola oleh Google Cloud                                                                                                                                                                                                                            |
 
+## Dukungan fitur
+
+Halaman setiap penawaran memiliki bagian tentang dukungan fitur:
+
+* [Dukungan fitur untuk Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#feature-support)
+* [Dukungan fitur untuk Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#feature-support)
+
+Untuk memeriksa satu fitur, temukan halamannya di [Ikhtisar fitur](https://platform.claude.com/docs/id/build-with-claude/overview) dan lihat bagian **Ketersediaan**. Bagian tersebut menyebutkan setiap penawaran yang mendukung fitur tersebut.
+
 ## Kesamaan kedua penawaran
 
 * **Kredensial:** Kedua penawaran menggunakan kredensial Google Cloud, termasuk Application Default Credentials. Anda memberikan akses ke setiap penawaran secara terpisah, melalui peran IAM masing-masing.
@@ -46,7 +55,10 @@ Tabel berikut membandingkan Claude Models on Google Cloud (Anthropic managed) de
 
 * **ID model:** Model Claude 4.6 dan yang lebih baru menggunakan ID Claude API mereka di kedua penawaran. Lihat [ID model dan pembuatan versi](https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions).
 
-* **SDK:** [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) Anthropic mendukung kedua penawaran.
+* **SDK:** Kedua penawaran menggunakan Anthropic SDK untuk bahasa Anda. [Penawaran mana yang Anda gunakan?](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/overview#which-offering-are-you-using) menyebutkan klien yang digunakan setiap penawaran. Untuk menginstal SDK, lihat bagian masing-masing penawaran.
+
+  * [SDK untuk Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#install-an-sdk)
+  * [SDK untuk Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#install-an-sdk-for-accessing-vertex-ai)
 
 ## Berpindah di antara kedua penawaran
 

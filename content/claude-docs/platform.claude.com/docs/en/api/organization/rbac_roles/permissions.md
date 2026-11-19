@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/rbac_roles/permissions
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: e1a5333785a47ae3355f9403063571b58be709ab377a492f6f293c85cf4198a6
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 0c697b0cf152ccd87b7d4c89767d1104e3a23d725f9d864d9da98cee95f9abb3
 ---
 
 ---
@@ -170,6 +170,24 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
 
   Opaque cursor for the next page. Pass as the `page` parameter on the next
   request.
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `organization_type_not_supported` (HTTP status 400)
+
+  The endpoint does not support the organization's type. Each endpoint's description says which organization types it supports.
+
+- `parent_organization_required` (HTTP status 400)
+
+  The endpoint serves only organizations that belong to a parent organization, and this organization belongs to none.
+
+- `rbac_role_not_found` (HTTP status 404)
+
+  No RBAC Role with this ID was found.
 
 ### Example
 

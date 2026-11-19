@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/archive
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 19c421bd06513e6d86b76ddd573e313b8487b1ca9154a1f44fe19611d873d498
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: ea4ce2e161ac2f54643a81435757782d92420eb05324eee5f55d54a83b307b3f
 ---
 
 ---
@@ -220,6 +220,16 @@ tunnel returns the existing record unchanged.
 
     ID of the Workspace this Tunnel belongs to. May be `null` for a Tunnel in
     the default Workspace. A Tunnel never moves to another Workspace.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

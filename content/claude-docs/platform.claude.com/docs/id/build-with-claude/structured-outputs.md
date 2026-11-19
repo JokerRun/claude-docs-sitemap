@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 06935ef8ef128bb2e6e070515e6e774da671f4f3ab59e6d985792b1af22dfc82
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: c3c5068530257738397d6a1b9c557febc1a871e5d078695998d493c2feb87e60
 ---
 
 ---
@@ -2871,10 +2871,9 @@ Output terstruktur mendukung JSON Schema standar dengan beberapa batasan. Output
 
 <Accordion title="Fitur yang didukung">
   * Semua tipe dasar: object, array, string, integer, number, boolean, null
-  * `enum` (hanya string, angka, boolean, atau null, tanpa tipe kompleks). Untuk catatan tentang kapitalisasi, lihat [Output tidak valid](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#invalid-outputs).
-  * `const`
-  * `anyOf` dan `allOf` (dengan batasan: `allOf` dengan `$ref` tidak didukung)
-  * `$ref`, `$def`, dan `definitions` (`$ref` eksternal tidak didukung)
+  * `enum` dan `const` (hanya string, angka, boolean, atau null), dengan [catatan tentang kapitalisasi](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#invalid-outputs)
+  * `anyOf` dan `allOf`, kecuali penggunaan yang tercantum di bawah “Tidak didukung”
+  * `$ref`, `$defs`, dan `definitions`
   * Properti `default` untuk semua tipe yang didukung
   * `required` dan `additionalProperties` (harus diatur ke `false` untuk objek)
   * Format string: `date-time`, `time`, `date`, `duration`, `email`, `hostname`, `uri`, `ipv4`, `ipv6`, `uuid`
@@ -2883,6 +2882,11 @@ Output terstruktur mendukung JSON Schema standar dengan beberapa batasan. Output
 
 <Accordion title="Tidak didukung">
   * Skema rekursif
+  * `oneOf` (gunakan `anyOf` sebagai gantinya)
+  * `not`
+  * `anyOf` dalam objek skema yang sama dengan kata kunci seperti `type` atau `properties` (anotasi seperti `title` dan `description` diperbolehkan)
+  * `allOf` dengan skema yang saling bertentangan (misalnya, nilai `type` yang berbeda)
+  * `allOf` dengan dua skema atau lebih ketika salah satunya secara langsung berisi `$ref`, `anyOf`, atau `allOf`
   * Tipe kompleks dalam enum
   * `$ref` eksternal (misalnya, `'$ref': 'http://...'`)
   * Batasan numerik (seperti `minimum`, `maximum`, `multipleOf`)
@@ -2901,7 +2905,7 @@ Output terstruktur mendukung JSON Schema standar dengan beberapa batasan. Output
   * Kelas karakter: `[]`, `.`, `\d`, `\w`, `\s`
   * Grup: `(...)`
 
-  **TIDAK didukung:**
+  **Tidak didukung:**
 
   * Referensi balik ke grup (misalnya, `\1`, `\2`)
   * Asersi lookahead/lookbehind (misalnya, `(?=...)`, `(?!...)`)

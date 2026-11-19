@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/ocsf-mapping
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 7e38db714dfff8a0d06d027f54a148db4055b7e2a36d019f7f1c546a337a37f5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: c38ee4d56593b349bf6e9daffb386a976852718ce683c671455acb1e1d6ab243
 ---
 
 ---
@@ -25,20 +25,20 @@ Pemetaan ini menggunakan OCSF 1.6.0. Jika Anda melakukan validasi terhadap versi
 
 Petakan field berikut pada setiap peristiwa.
 
-| Field aktivitas     | Atribut OCSF                   | Catatan                                                                                                                                                                                                                              |
-| ------------------- | ------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `id`                | `metadata.uid`                 | Salin tanpa perubahan.                                                                                                                                                                                                               |
-| `type`              | `metadata.event_code`          | Salin tanpa perubahan.                                                                                                                                                                                                               |
-| `created_at`        | `time`                         | Konversikan string RFC 3339 menjadi milidetik sejak epoch Unix, lalu potong menjadi bilangan bulat.                                                                                                                                  |
-| `created_at`        | `metadata.original_time`       | Salin string tanpa perubahan.                                                                                                                                                                                                        |
-| Tidak ada           | `metadata.logged_time`         | Waktu saat Anda menyimpan aktivitas (`stored_at` di [Mendeteksi perubahan](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/detect-changes#before-you-write-a-rule)), dalam milidetik sejak epoch Unix. |
-| `organization_uuid` | `metadata.tenant_uid`          | Salin tanpa perubahan.                                                                                                                                                                                                               |
-| `organization_id`   | `unmapped.organization_id`     | Salin tanpa perubahan.                                                                                                                                                                                                               |
-| Tidak ada           | `metadata.version`             | Konstan: `1.6.0`.                                                                                                                                                                                                                    |
-| Tidak ada           | `metadata.product.vendor_name` | Konstan: `Anthropic`.                                                                                                                                                                                                                |
-| Tidak ada           | `metadata.product.name`        | Konstan: `Compliance API`.                                                                                                                                                                                                           |
-| Tidak ada           | `type_uid`                     | `class_uid * 100 + activity_id`.                                                                                                                                                                                                     |
-| Tidak ada           | `severity_id`                  | Setel ke `1` (Informational) pada setiap peristiwa, dan tetapkan prioritas peringatan di [aturan deteksi](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/detect-changes) yang memunculkannya.         |
+| Field aktivitas     | Atribut OCSF                   | Catatan                                                                                                                                                                                                                                                    |
+| ------------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `id`                | `metadata.uid`                 | Salin tanpa perubahan.                                                                                                                                                                                                                                     |
+| `type`              | `metadata.event_code`          | Salin tanpa perubahan.                                                                                                                                                                                                                                     |
+| `created_at`        | `time`                         | Konversikan string RFC 3339 menjadi milidetik sejak epoch Unix, lalu potong menjadi bilangan bulat.                                                                                                                                                        |
+| `created_at`        | `metadata.original_time`       | Salin string tanpa perubahan.                                                                                                                                                                                                                              |
+| Tidak ada           | `metadata.logged_time`         | Waktu saat Anda menyimpan aktivitas (`stored_at` di [Mendeteksi perubahan pada Security posture](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/detect-changes#before-you-write-a-rule)), dalam milidetik sejak epoch Unix. |
+| `organization_uuid` | `metadata.tenant_uid`          | Salin tanpa perubahan.                                                                                                                                                                                                                                     |
+| `organization_id`   | `unmapped.organization_id`     | Salin tanpa perubahan.                                                                                                                                                                                                                                     |
+| Tidak ada           | `metadata.version`             | Konstan: `1.6.0`.                                                                                                                                                                                                                                          |
+| Tidak ada           | `metadata.product.vendor_name` | Konstan: `Anthropic`.                                                                                                                                                                                                                                      |
+| Tidak ada           | `metadata.product.name`        | Konstan: `Compliance API`.                                                                                                                                                                                                                                 |
+| Tidak ada           | `type_uid`                     | `class_uid * 100 + activity_id`.                                                                                                                                                                                                                           |
+| Tidak ada           | `severity_id`                  | Setel ke `1` (Informational) pada setiap peristiwa, dan tetapkan prioritas peringatan di [aturan deteksi](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/detect-changes) yang memunculkannya.                               |
 
 Masukkan setiap field yang tidak memiliki atribut OCSF ke dalam objek `unmapped` dengan nama yang digunakan di Activity Feed, termasuk field yang tidak dikenali oleh handler Anda. Jika sebuah field tidak ada atau bernilai `null`, hilangkan atribut OCSF-nya.
 

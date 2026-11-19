@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 6dfc05251edc95d63618bc6754d6e9506ddeda1cb9a062958a3f5b7b1a785394
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f7f350b1b2e238aa02e5a79c92f76984823cfca80e58cfecd3de39abcf2a75c1
 ---
 
 ---
@@ -115,9 +115,10 @@ Sebelum memulai, pastikan Anda memiliki:
 
   <Tab title="Ruby">
     ```bash
-    # Gemfile
-    gem "anthropic"
+    bundle add anthropic
     ```
+
+    Untuk autentikasi Entra ID, Anda memberikan penyedia token kepada klien. Penyedia di [Autentikasi Microsoft Entra](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#microsoft-entra-authentication) mendapatkan tokennya dari [Azure CLI](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli), jadi instal Azure CLI untuk menggunakan penyedia tersebut.
   </Tab>
 </Tabs>
 
@@ -365,7 +366,7 @@ Klien Foundry pada SDK memerlukan kunci API dan salah satu dari nama resource at
     messages: [{role: "user", content: "Hello!"}]
   )
 
-  puts message.content.find { it.type == :text }.text
+  message.content.grep(Anthropic::Models::TextBlock).each { |block| puts block.text }
   ```
 </CodeGroup>
 
@@ -594,7 +595,7 @@ Autentikasi Entra ID memungkinkan Anda mengelola akses dengan Azure RBAC, berint
 
   # Dapatkan token Microsoft Entra ID dari Azure CLI. Klien memanggil lambda
   # ini untuk setiap permintaan dan percobaan ulang, jadi di produksi, simpan token di cache
-  # hingga mendekati waktu kedaluwarsanya.
+  # hingga mendekati masa kedaluwarsanya.
   token_provider = lambda do
     `az account get-access-token --resource https://ai.azure.com --query accessToken -o tsv`
   end
@@ -610,7 +611,7 @@ Autentikasi Entra ID memungkinkan Anda mengelola akses dengan Azure RBAC, berint
     messages: [{role: "user", content: "Hello!"}]
   )
 
-  puts message.content.find { it.type == :text }.text
+  message.content.grep(Anthropic::Models::TextBlock).each { |block| puts block.text }
   ```
 </CodeGroup>
 

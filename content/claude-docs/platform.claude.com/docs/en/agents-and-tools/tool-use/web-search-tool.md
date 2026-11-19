@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 20617e55a88165a4ff5ff564991455487745c9d87d7360e23e5f9a98e9a00691
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 77760875998c1ed149a9637f9583368ccbbfe017bcd9e93a1e9a5a1c28486904
 ---
 
 ---
@@ -715,7 +715,7 @@ Web search usage is charged in addition to token usage:
 }
 ```
 
-Web search is available on the Claude API for **$10 USD per 1,000 searches**, plus standard token costs for search-generated content. Web search results retrieved throughout a conversation are counted as input tokens, in search iterations run during a single turn and in subsequent conversation turns.
+On the Claude API, web search costs **$10 USD per 1,000 searches**, plus standard token costs for search-generated content. Search results count as input tokens, both while Claude keeps searching within a turn and in later conversation turns.
 
 Each web search counts as one use, regardless of the number of results returned. A web search that fails with an error is not billed.
 

@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: d6df66ef74d19b9ee5f282c5deab59f9ae218c689cbe0ad6e95b386445541bb5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: a4cee52e5463b2e4fbac96e3d18ac4fe2072d7a1861f3b8ec5042ac82dad8a04
 ---
 
 ---
 title: Vision
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-description: Kemampuan vision Claude memungkinkannya memproses dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
+description: Kirim gambar ke Claude melalui API dan pelajari batasan serta biaya yang berlaku.
 featureMetadata:
   status: stable
   supportedModels:
@@ -77,6 +77,10 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
 
 <CodeGroup>
   ```bash cURL
+  curl -sSo vision-example.jpg https://platform.claude.com/docs/images/vision-example.jpg
+
+  BASE64_IMAGE_DATA=$(base64 vision-example.jpg | tr -d '\n')
+
   curl https://api.anthropic.com/v1/messages \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21" \
@@ -159,6 +163,9 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   ```typescript TypeScript
   const anthropic = new Anthropic();
 
+  const imageData =
+    "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC";
+
   const message = await anthropic.messages.create({
     model: "claude-opus-5-5",
     max_tokens: 1024,
@@ -170,7 +177,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
             type: "image",
             source: {
               type: "base64",
-              media_type: "image/jpeg",
+              media_type: "image/png",
               data: imageData // base64-encoded image data as string
             }
           },
@@ -187,10 +194,6 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   ```
 
   ```csharp C#
-  using System.Collections.Generic;
-  using Anthropic;
-  using Anthropic.Models.Messages;
-
   AnthropicClient client = new();
 
   string imageData = "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAADElEQVR4nGP4z8AAAAMBAQDJ/pLvAAAAAElFTkSuQmCC";
@@ -291,7 +294,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
                       'type' => 'image',
                       'source' => [
                           'type' => 'base64',
-                          'media_type' => 'image/png',
+                          'mediaType' => 'image/png',
                           'data' => $imageData,
                       ],
                   ],
@@ -437,10 +440,6 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
   ```
 
   ```csharp C#
-  using System.Collections.Generic;
-  using Anthropic;
-  using Anthropic.Models.Messages;
-
   AnthropicClient client = new();
 
   var message = await client.Messages.Create(new MessageCreateParams
@@ -516,7 +515,7 @@ Di API, berikan gambar ke Claude sebagai blok konten `image` menggunakan salah s
               .addUserMessageOfContentBlockParams(contentBlockParams)
               .build()
       );
-  System.out.println(message);
+  IO.println(message);
   ```
 
   ```php PHP
@@ -579,6 +578,8 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
 <Tip>
   Dalam percakapan multi-giliran dan alur kerja agentik, setiap permintaan mengirim ulang seluruh riwayat percakapan. Jika gambar berenkode base64, seluruh byte gambar disertakan dalam payload pada setiap giliran, yang dapat secara signifikan meningkatkan ukuran permintaan dan “latency” (latensi) seiring bertambahnya percakapan. Mengunggah gambar ke Files API dan mereferensikannya dengan `file_id` menjaga payload permintaan tetap kecil terlepas dari berapa banyak gambar yang terakumulasi dalam riwayat percakapan.
 </Tip>
+
+Untuk mengikuti contoh-contoh ini dengan gambar yang digunakannya, unduh terlebih dahulu [gambar contoh](https://platform.claude.com/docs/images/vision-example.jpg) ke direktori kerja Anda. Setiap contoh mengunggah file tersebut, `vision-example.jpg`, lalu mereferensikannya dengan `file_id` yang dikembalikan oleh unggahan:
 
 <CodeGroup>
   ```bash cURL
@@ -709,8 +710,6 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   ```
 
   ```csharp C#
-  using System.Collections.Generic;
-  using Anthropic;
   using Anthropic.Core;
   using Anthropic.Models.Files;
   using Anthropic.Models.Messages;
@@ -794,58 +793,68 @@ Untuk gambar yang akan Anda gunakan berulang kali atau ketika Anda ingin menghin
   import com.anthropic.core.MultipartField;
   import com.anthropic.models.files.FileMetadata;
   import com.anthropic.models.files.FileUploadParams;
-  // ...
-          AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  import com.anthropic.models.messages.*;
+  import java.io.IOException;
+  import java.io.InputStream;
+  import java.nio.file.Files;
+  import java.nio.file.Path;
+  import java.util.List;
 
-          // Unggah file gambar
-          FileMetadata file = client.files().upload(
-              FileUploadParams.builder()
-                  .file(
-                      MultipartField.<InputStream>builder()
-                          .value(Files.newInputStream(Path.of("vision-example.jpg")))
-                          .filename("vision-example.jpg")
-                          .contentType("image/jpeg")
+  void main() throws IOException {
+      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+
+      // Unggah file gambar
+      FileMetadata file = client.files().upload(
+          FileUploadParams.builder()
+              .file(
+                  MultipartField.<InputStream>builder()
+                      .value(Files.newInputStream(Path.of("vision-example.jpg")))
+                      .filename("vision-example.jpg")
+                      .contentType("image/jpeg")
+                      .build()
+              )
+              .build()
+      );
+
+      // Gunakan file yang diunggah dalam pesan
+      ImageBlockParam imageParam = ImageBlockParam.builder()
+          .fileSource(file.id())
+          .build();
+
+      MessageCreateParams params = MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024)
+          .addUserMessageOfContentBlockParams(
+              List.of(
+                  ContentBlockParam.ofImage(imageParam),
+                  ContentBlockParam.ofText(
+                      TextBlockParam.builder()
+                          .text("Describe this image.")
                           .build()
                   )
-                  .build()
-          );
-
-          // Gunakan file yang telah diunggah dalam pesan
-          ImageBlockParam imageParam = ImageBlockParam.builder()
-              .fileSource(file.id())
-              .build();
-
-          MessageCreateParams params = MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024)
-              .addUserMessageOfContentBlockParams(
-                  List.of(
-                      ContentBlockParam.ofImage(imageParam),
-                      ContentBlockParam.ofText(
-                          TextBlockParam.builder()
-                              .text("Describe this image.")
-                              .build()
-                      )
-                  )
               )
-              .build();
+          )
+          .build();
 
-          Message message = client.messages().create(params);
-          System.out.println(message.content());
+      Message message = client.messages().create(params);
+      IO.println(message.content());
+  }
   ```
 
   ```php PHP
   use Anthropic\Core\FileParam;
-  use Anthropic\Messages\Model;
 
   $client = new Client();
 
   // Unggah file gambar
+  $image = fopen('vision-example.jpg', 'rb')
+      ?: throw new \RuntimeException('Could not open vision-example.jpg.');
+
   $fileUpload = $client->files->upload(
-      file: FileParam::fromResource(fopen('vision-example.jpg', 'rb'), contentType: 'image/jpeg'),
+      file: FileParam::fromResource($image, contentType: 'image/jpeg'),
   );
 
-  // Gunakan file yang telah diunggah dalam pesan
+  // Gunakan file yang diunggah dalam pesan
   $message = $client->messages->create(
       maxTokens: 1024,
       messages: [
@@ -1204,7 +1213,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
                       'type' => 'image',
                       'source' => [
                           'type' => 'base64',
-                          'media_type' => 'image/png',
+                          'mediaType' => 'image/png',
                           'data' => $image1Data,
                       ],
                   ],
@@ -1213,7 +1222,7 @@ Anda dapat menyertakan beberapa gambar dalam satu permintaan, dan Claude mengana
                       'type' => 'image',
                       'source' => [
                           'type' => 'base64',
-                          'media_type' => 'image/png',
+                          'mediaType' => 'image/png',
                           'data' => $image2Data,
                       ],
                   ],
@@ -1377,7 +1386,7 @@ Selalu tinjau dan verifikasi interpretasi gambar Claude dengan cermat, terutama 
   </Accordion>
 
   <Accordion title="Apakah ada batas ukuran file gambar yang dapat saya unggah?">
-    Ya. Lihat [Batasan permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) untuk batas ukuran per gambar dan ukuran permintaan keseluruhan di Claude API, Amazon Bedrock, Claude Models on Google Cloud (Google managed), dan claude.ai.
+    Ya. Lihat [Batasan permintaan](https://platform.claude.com/docs/id/build-with-claude/vision#request-limits) untuk batas ukuran setiap gambar dan ukuran permintaan secara keseluruhan.
   </Accordion>
 
   <Accordion title="Berapa banyak gambar yang dapat saya sertakan dalam satu permintaan?">

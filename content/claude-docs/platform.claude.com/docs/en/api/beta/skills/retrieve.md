@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 8227d89ea6b3eefe7be639c87b82c4683ff080461251382e08a79a971ede4d02
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 0ca2e1fffe3ed22d8051a7c95feaf2cc4e0b7cb243b378873768984873ca5cfa
 ---
 
 ---
@@ -247,6 +247,20 @@ Get Skill
     ISO 8601 timestamp of when the skill was last updated.
 
     format: date-time
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `claude_code_key_creator_not_member` (HTTP status 400)
+
+  The API key belongs to the Claude Code workspace, and the user who created it is no longer a member of the organization or of that workspace.
+
+- `organization_on_hold` (HTTP status 400)
+
+  Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
 
 ## Example
 

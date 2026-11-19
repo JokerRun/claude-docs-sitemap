@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-sonnet-4-5
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: c043a12efd3a58416e268ade5d04b2b17d0e2e18db5bafb2119634f3875a61d8
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 1fc31dbd359e3a2e4a40f325bd462b5cf76606215ae650dc3e36784834db4f70
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/release-notes/system-prompts/claude-son
 description: Lihat pembaruan pada prompt sistem inti untuk Claude Sonnet 4.5 di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
-Perubahan antara versi-versi bertanggal berikut ditandai dengan `**` di sekitar teks yang diubah.
+Hanya satu versi, 18 Januari 2026, yang menggunakan `**` untuk menandai teks yang berubah dari versi sebelumnya.
 
 ## 18 Januari 2026
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: e203ca65a4d36ad620284f575465119c6169f79af758a14debb3a080f26a77f1
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f7c05331416770bb5ba8feebbca853a1a5913a2d3be8444deec8e5d5ee58b436
 ---
 
 ---
@@ -30,7 +30,7 @@ API menjalankan alat tersebut secara internal. Anda melihat panggilan dan hasiln
 
 ## Loop sisi server dan pause\_turn
 
-Saat menggunakan alat server seperti pencarian web, API mengeksekusi panggilan alat dalam “agentic loop” (loop agentik) sisi server. Pada giliran yang berjalan lama, API mungkin menjeda loop tersebut dan mengembalikan alasan berhenti `pause_turn`.
+Saat Anda menggunakan alat server seperti pencarian web, API mengeksekusi panggilan alat dalam “agentic loop” (loop agentik) sisi server. Pada giliran yang berjalan lama, API mungkin menjeda loop tersebut dan mengembalikan alasan berhenti `pause_turn`.
 
 Berikut cara menangani alasan berhenti `pause_turn`:
 
@@ -269,8 +269,7 @@ Berikut cara menangani alasan berhenti `pause_turn`:
 
       Message response = client.messages().create(params);
 
-      if (response.stopReason().isPresent()
-              && response.stopReason().get().equals(StopReason.PAUSE_TURN)) {
+      if (response.stopReason().map(StopReason.PAUSE_TURN::equals).orElse(false)) {
           MessageCreateParams continuationParams = MessageCreateParams.builder()
               .model(Model.CLAUDE_OPUS_5_5)
               .maxTokens(4096L)
@@ -1038,7 +1037,7 @@ Untuk menggunakan alat server `_20260209` atau yang lebih baru dengan ZDR, nonak
 
 Ini membatasi alat hanya untuk panggilan langsung, melewati langkah eksekusi kode internal.
 
-`allowed_callers` mengontrol bagaimana alat dapat dipanggil: langsung oleh Claude (`"direct"`), dari dalam container eksekusi kode (misalnya, `"code_execution_20260120"`), atau keduanya. Versi `_20260209` dari alat web secara default hanya menggunakan pemanggil eksekusi kode; versi sebelumnya secara default menggunakan `["direct"]`. Pada model yang tidak mendukung pemanggilan alat terprogram, versi ini memerlukan `allowed_callers: ["direct"]`; tanpanya API mengembalikan kesalahan validasi yang meminta Anda untuk mengaturnya.
+`allowed_callers` mengontrol bagaimana alat dapat dipanggil: langsung oleh Claude (`"direct"`), dari dalam container eksekusi kode (misalnya, `"code_execution_20260120"`), atau keduanya. Versi `_20260209` dari alat web secara default hanya menggunakan pemanggil eksekusi kode; versi sebelumnya secara default menggunakan `["direct"]`. Pada [model yang tidak mendukung pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling#feature-availability), versi ini memerlukan `allowed_callers: ["direct"]`; tanpanya API mengembalikan kesalahan validasi yang meminta Anda untuk mengaturnya.
 
 <Note>
   Bahkan ketika web fetch digunakan dalam konfigurasi yang memenuhi syarat ZDR, penerbit situs web mungkin menyimpan parameter apa pun yang diteruskan ke URL jika Claude mengambil konten dari situs mereka.

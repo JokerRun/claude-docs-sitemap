@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: f66a681003fd9df053f0a72f1fd00684d82e55f37509fcbf0f5f5115d746a97f
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 7c1ae4b6125673e97759f2a41d6d378364d66196daaa6fd69a2334f5a547db12
 ---
 
 ---
@@ -719,7 +719,7 @@ Most use cases need multidimensional evaluation along several success criteria.
       	"log"
       	"math"
 
-      // ...
+      	// ...
       	"github.com/knights-analytics/hugot"
       	"github.com/knights-analytics/hugot/pipelines"
       )

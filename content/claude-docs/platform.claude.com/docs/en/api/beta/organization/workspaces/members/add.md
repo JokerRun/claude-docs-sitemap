@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/add
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 51e23d4a1158260aef3cfc1c616907cf892fbb59c53cbedc2f6941a21d375191
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: a49a2eb0393d07ab9c4a4ed10126e593da2725d32dc0a713f7634e063e64a740
 ---
 
 ---
@@ -81,6 +81,20 @@ Create Workspace Member
     - `"workspace_restricted_developer"`
 
     - `"workspace_user"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `workspace_member_limit_exceeded` (HTTP status 400)
+
+  The workspace has reached the member limit that Anthropic set for it.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

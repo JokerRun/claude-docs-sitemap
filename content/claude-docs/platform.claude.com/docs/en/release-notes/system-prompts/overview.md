@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/system-prompts/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: dd216dd83d018484c81089789f580778519f374d2cb45053dd216185d40b02ee
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 85017fd4774445f6a72d157889f94de0e3d00f9ec252c227228f9abbe7f774e0
 ---
 
 ---
@@ -11,7 +11,9 @@ url: https://platform.claude.com/docs/en/release-notes/system-prompts/overview
 description: See updates to the core system prompts on [claude.ai](https://claude.ai), the [Claude iOS app](https://anthropic.com/ios), and the [Claude Android app](https://anthropic.com/android).
 ---
 
-Claude’s web interface ([claude.ai](https://claude.ai)) and mobile apps use a system prompt to provide up-to-date information, such as the current date, to Claude at the start of every conversation. The system prompt also encourages certain behaviors, such as always providing code snippets in Markdown. This prompt is periodically updated to improve Claude’s responses. These system prompt updates do not apply to the Claude API. Some models have multiple dated entries on their pages.
+Claude’s web interface ([claude.ai](https://claude.ai)), desktop apps, and mobile apps use a system prompt at the start of every conversation. It provides Claude with up-to-date information, such as Anthropic’s current models and products. The system prompt also encourages certain behaviors, such as discussing topics factually and objectively. Anthropic periodically updates the system prompt to improve Claude’s responses. These updates do not apply to the Claude API.
+
+For current models, these pages publish one version of the core system prompt, used in some chats with web search turned off. Other chats, including those with web search turned on, use other versions, which these pages don’t publish. Some models have multiple dated entries on their pages.
 
 <CardGroup cols={3}>
   <Card id="claude-fable-5-2" title="Claude Fable 5.2" icon="file" href="https://platform.claude.com/docs/en/release-notes/system-prompts/claude-fable-5-2" />

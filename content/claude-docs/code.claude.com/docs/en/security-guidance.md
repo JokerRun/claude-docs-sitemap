@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security-guidance
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 0e8c2fc3869f867711ab8f2ea262e283afda528acd024755a0150e76f44d17a0
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: d8f970b8ca75ca1369a61daf81c6b50f299f12bc33d3e7821d3625ac3b5dd956
 ---
 
 > ## Documentation Index
@@ -206,7 +206,7 @@ To remove it from your user scope:
 /plugin uninstall security-guidance@claude-plugins-official
 ```
 
-If the plugin was enabled through a project's `.claude/settings.json`, uninstalling it from `/plugin` writes an override to your `.claude/settings.local.json` rather than editing the checked-in file, so the plugin stays off for you while teammates are unaffected. The same dialog also offers to uninstall the plugin for everyone by removing it from the shared `.claude/settings.json`. If it was enabled through [managed settings](https://code.claude.com/docs/en/admin-setup.md), only an administrator can disable it.
+If the plugin was enabled through a project's `.claude/settings.json`, uninstalling it from `/plugin` writes an override to your `.claude/settings.local.json` rather than editing the checked-in file. The plugin stays off for you while teammates are unaffected. The same dialog also offers to uninstall the plugin for everyone by removing it from the shared `.claude/settings.json`. If it was enabled through [managed settings](https://code.claude.com/docs/en/admin-setup.md), `/plugin` refuses **Disable plugin** and **Uninstall**.
 
 ## How the plugin integrates with Claude Code
 

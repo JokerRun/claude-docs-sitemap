@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-admin-api
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: d727d958fce8457915c8b2d9714d4ac4db3f1d57f1fd6a71867b218382216ea3
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 552cbb2bfa8eb5ef09ee4c5b1243b23f32733254add7c61983d1801040d508af
 ---
 
 ---
@@ -15,7 +15,7 @@ The Admin API lets you create and manage [Workload Identity Federation](https://
 
 ## Prerequisites
 
-Every request on this page authenticates with an OAuth bearer token that carries the `org:admin` scope. Anthropic grants the scope only to organization members with the admin, owner, or primary owner role. The scope grants access to the whole organization, and these endpoints ignore any workspace binding. There are two ways to obtain a token, and they carry different permissions. A token from your own login acts as a user. A federated token acts as a service account and cannot perform every operation on this page.
+Every request on this page authenticates with an OAuth bearer token that carries the `org:admin` scope. Anthropic grants the scope only to users and service accounts with the admin role. The scope grants access to the whole organization, and these endpoints ignore any workspace binding. There are two ways to obtain a token, and they carry different permissions. A token from your own login acts as a user. A federated token acts as a service account and cannot perform every operation on this page.
 
 ### Interactive (your terminal)
 

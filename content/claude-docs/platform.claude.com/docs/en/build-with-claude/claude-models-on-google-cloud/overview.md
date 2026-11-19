@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 2ecdcd59421466c08b653dadaff9f817431fe82e38a3502c1e4772b986252341
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 3ba4dffa42dfdb08f4929ae14b0ac4e9e3d6b12a7781008bcc6770f6c8608050
 ---
 
 ---
@@ -32,6 +32,15 @@ The following table compares Claude Models on Google Cloud (Anthropic managed) w
 | **Billing**                                      | Google Cloud Marketplace                                                                                                                                                                                          | Google Cloud, as Agent Platform usage                                                                                                                                                                                                                |
 | **Rate limits**                                  | Managed by Anthropic                                                                                                                                                                                              | Managed by Google Cloud                                                                                                                                                                                                                              |
 
+## Feature support
+
+Each offering’s page has a section on feature support:
+
+* [Feature support for Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#feature-support)
+* [Feature support for Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed#feature-support)
+
+To check one feature, find its page in the [Features overview](https://platform.claude.com/docs/en/build-with-claude/overview) and see the **Availability** section. That section names each offering that supports the feature.
+
 ## What both offerings share
 
 * **Credentials:** Both offerings use Google Cloud credentials, including Application Default Credentials. You grant access to each offering separately, through its own IAM roles.
@@ -46,7 +55,10 @@ The following table compares Claude Models on Google Cloud (Anthropic managed) w
 
 * **Model IDs:** Claude 4.6 and later models use their Claude API IDs on both offerings. See [Model IDs and versioning](https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions).
 
-* **SDKs:** Anthropic’s [client SDKs](https://platform.claude.com/docs/en/cli-sdks-libraries/overview) support both offerings.
+* **SDKs:** Both offerings use the Anthropic SDK for your language. [Which offering are you using?](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview#which-offering-are-you-using) names the client that each offering uses. To install the SDK, see each offering’s own section.
+
+  * [SDK for Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#install-an-sdk)
+  * [SDK for Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed#install-an-sdk-for-accessing-vertex-ai)
 
 ## Moving between the two offerings
 

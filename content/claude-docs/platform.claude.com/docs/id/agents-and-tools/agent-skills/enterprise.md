@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 781966ec12fe51e3a493c750925c089bc2673b377169fdb3604cf6f9ec9be78d
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 39f695a4cefaa2ce3751387ed4f71965c150e56ef85a6641a886d37146d22bdb
 ---
 
 ---
@@ -179,7 +179,7 @@ Simpan direktori Skill di Git untuk pelacakan riwayat, tinjauan kode melalui pul
 
 ### Distribusi berbasis API
 
-Skills API menyediakan distribusi dengan cakupan workspace. Skills yang diunggah melalui API tersedia untuk semua anggota workspace. Lihat [Menggunakan Agent Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide) untuk endpoint pengunggahan, pembuatan versi, dan manajemen.
+Skills API menyediakan distribusi dengan cakupan workspace. Skills yang diunggah melalui API tersedia untuk semua anggota workspace. Cara kerja berbagi berbeda di Claude Models on Google Cloud (Anthropic managed). Untuk detailnya, lihat bagian [Cakupan berbagi](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#sharing-scope) dalam ikhtisar Agent Skills. Lihat [Menggunakan Agent Skills dengan API](https://platform.claude.com/docs/id/build-with-claude/skills-guide) untuk endpoint pengunggahan, pembuatan versi, dan manajemen.
 
 ### Strategi pembuatan versi
 

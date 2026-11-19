@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/detect-changes
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: fbebf70dd0991f0d2615ee434a9a57f6985d17b8323e2bba31f3237051fd3dff
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 09fc4b915483f408dc0d6ad13eb531f83b061b0522c9ddd4103c040d3fbe6790
 ---
 
 ---
@@ -15,7 +15,7 @@ description: "Mulailah dari contoh aturan deteksi untuk aktivitas Security postu
   Untuk mengaktifkan Compliance API, lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
 </Note>
 
-Contoh aturan ini memberi peringatan saat terjadi perubahan pada [Security posture](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview) organisasi Anda, menggunakan aktivitas yang dicatat oleh Activity Feed Compliance API. Aturan ini mengasumsikan bahwa sistem security information and event management (SIEM) Anda menyimpan aktivitas tersebut, seperti yang dijelaskan di [Mengirim peristiwa ke SIEM Anda](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/send-events).
+Contoh aturan ini memberi peringatan saat terjadi perubahan pada [Security posture](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview) organisasi Anda, menggunakan aktivitas yang dicatat oleh Activity Feed Compliance API. Aturan ini mengasumsikan bahwa sistem security information and event management (SIEM) Anda menyimpan aktivitas tersebut, seperti yang dijelaskan di [Mengirim peristiwa Security posture ke SIEM Anda](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/send-events).
 
 ## Sebelum Anda menulis aturan
 
@@ -24,7 +24,7 @@ Setiap aturan berupa deskripsi sederhana dan kueri yang tidak terikat pada bahas
 * Kueri menggunakan nama field Activity Feed, ditambah `stored_at`, yaitu nama yang digunakan halaman ini untuk waktu Anda menyimpan suatu aktivitas. Nama lain mana pun adalah daftar atau alias milik Anda sendiri.
 * Sebelum aturan menghitung aktivitas, lakukan deduplikasi aktivitas tersebut berdasarkan `id`.
 * Kecuali suatu aturan menyatakan lain, jalankan aturan tersebut pada rentang waktu sejak eksekusi terakhirnya yang selesai, berdasarkan `stored_at`, bukan `created_at`, karena suatu aktivitas dapat tiba terlambat; kueri tidak menyertakan rentang tersebut.
-* Tulis aturan yang terpicu oleh aktivitas yang telah Anda simpan, jangan pernah oleh aktivitas yang belum Anda simpan: aktivitas itu mungkin terlambat, atau merupakan perubahan yang [tidak dicatat oleh feed](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#what-the-feed-does-not-record). Untuk membandingkan aktivitas yang tersimpan dengan hasil saat ini, lihat [Mencocokkan peristiwa dengan hasil](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/check-events-against-results).
+* Tulis aturan yang terpicu oleh aktivitas yang telah Anda simpan, jangan pernah oleh ketiadaan aktivitas. Aktivitas yang belum Anda simpan mungkin terlambat, atau mungkin merupakan perubahan yang [tidak dicatat oleh feed](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#what-the-feed-does-not-record). Untuk membandingkan aktivitas yang tersimpan dengan hasil saat ini, lihat [Mencocokkan peristiwa Security posture yang tersimpan dengan hasil saat ini](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/check-events-against-results).
 
 ## Aturan atestasi
 
@@ -97,7 +97,7 @@ AND action == "lapsed"
 Nilai baru dapat muncul di salah satu field ini.
 
 * Identifikasi perubahan otomatis berdasarkan `actor.type`, bukan berdasarkan nilai `actor.service`.
-* Jangan membuang aktivitas yang nilai `control`, `action`, atau `status`-nya tidak tercantum dalam aturan; nilai `action` yang baru dapat mencatat penerimaan risiko. Lihat [Referensi peristiwa](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference).
+* Jangan membuang aktivitas yang nilai `control`, `action`, atau `status`-nya tidak tercantum dalam aturan; nilai `action` yang baru dapat mencatat penerimaan risiko. Lihat [Referensi peristiwa Security posture](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference).
 
 ## Menguji aturan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: f99c28ce472f451e6eeed1f2aff92643db922ffba018d2b2b29f035836c8c111
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f821d3273ee47db33a5cb2ef9dcf3c916eae211debbd7ecf30995cbfb6394dc8
 ---
 
 ---
@@ -307,6 +307,20 @@ Archive an environment by ID. Archived environments cannot be used to create new
     - `"organization"`
 
     - `"account"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `claude_code_key_creator_not_member` (HTTP status 400)
+
+  The API key belongs to the Claude Code workspace, and the user who created it is no longer a member of the organization or of that workspace.
+
+- `organization_on_hold` (HTTP status 400)
+
+  Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
 
 ## Example
 

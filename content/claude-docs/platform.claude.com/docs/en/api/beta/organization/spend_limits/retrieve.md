@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: ff037d7f70da864d26a45aa2862875be32133ff850e8ad32caf71ed18c73e505
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 746d4ddee50dd904bf12d574c37614c92fa01e26a0f6a9674350206790b56d52
 ---
 
 ---
@@ -155,6 +155,16 @@ Retrieve a spend limit by ID.
     RFC 3339 datetime at which the spend limit was last modified.
 
     format: date-time
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `spend_limits_admin_api_writes_not_enabled` (HTTP status 403)
+
+  The organization cannot retrieve, set or delete spend limits with an Admin API credential.
 
 ## Example
 

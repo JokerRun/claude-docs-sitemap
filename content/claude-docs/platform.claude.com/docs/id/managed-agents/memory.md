@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 8658ffa9e042f9054c4037288f36e407d6d038824bacae003ce3fc46a41269a3
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: c81856e22468009d05efb5078b79b3dd9c6a9943ef8a478ec2b3e2ab0f67a463
 ---
 
 ---
@@ -426,9 +426,7 @@ Setiap store yang dilampirkan di-mount di dalam sandbox sesi sebagai direktori d
 `access` (csharp, go: `Access`) diberlakukan di tingkat filesystem: mount `read_only` menolak penulisan, sedangkan penulisan ke mount `read_write` menghasilkan [versi memori](https://platform.claude.com/docs/id/managed-agents/memory#audit-memory-changes) yang diatribusikan ke sesi.
 
 <Note>
-  Pada [sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory), direktori setiap store adalah salinan lokal yang dikelola oleh worker, bukan mount langsung. Worker merekonsiliasi setiap salinan dengan store-nya setelah pemanggilan alat, paling banyak sekali per interval sinkronisasi (15 detik secara default), dan sekali lagi ketika sesi berakhir. Alat `write` dan `edit` milik agen hanya mengubah salinan lokal; worker mengunggah perubahan tersebut pada sinkronisasi berikutnya, sehingga sesi lain yang berjalan di sandbox self-hosted hanya melihat perubahan setelah kedua worker melakukan sinkronisasi. Path di bawah `/mnt/memory/` di luar direktori store bukan ruang scratch di sana: alat file worker menolak menulis ke path tersebut, dan apa pun yang ditulis oleh perintah shell di sana tidak pernah disinkronkan ke store.
-
-  Untuk store `read_only`, alat `write` dan `edit` milik worker menolak perubahan di bawah direktori tersebut dan worker tidak pernah mengunggah apa pun darinya. Untuk mempelajari cara worker menyelesaikan konflik penulisan, dan apa yang masih dapat diubah oleh alat `bash` dalam salinan lokal store read-only, lihat [Store read-only dan konflik](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#read-only-stores-and-conflicts).
+  Pada sandbox self-hosted, direktori setiap store adalah salinan lokal yang disinkronkan oleh worker dengan store, bukan mount langsung. Perubahan hanya mencapai store, dan sesi lain, pada saat sinkronisasi. Lihat [Cara worker menangani memori](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#how-the-worker-handles-memory) dan [Store read-only dan konflik](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#read-only-stores-and-conflicts).
 </Note>
 
 Pembacaan dan penulisan agen muncul dalam [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sebagai event `agent.tool_use` dan `agent.tool_result` biasa untuk alat mana pun yang menyentuh mount tersebut.

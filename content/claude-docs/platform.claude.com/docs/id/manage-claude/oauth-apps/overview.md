@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/oauth-apps/overview
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: ed1bcb01a262699da26465d10afcc8e1993f6a8183704800c258ef9f7bc5fcf6
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: acb74b3d520f0e7b7d8b454aec1da407baf9843d397d4fdbd18fbae5b17bd27e
 ---
 
 ---
@@ -52,7 +52,9 @@ Halaman persetujuan menampilkan nama aplikasi Anda dan apa yang diminta oleh apl
 
 Linked billing dimulai dengan langkah penyiapan satu kali berikut di Claude Console. Panduan [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#setup-process) memandu Anda melaluinya.
 
-1. **Buat aplikasi.** Anggota organisasi Claude Anda dengan peran Admin membuat aplikasi OAuth di Claude Console dan menyalin client ID-nya. Aplikasi tersebut menyimpan nama yang dilihat orang di halaman persetujuan, serta alamat di produk Anda tempat mereka kembali.
+Langkah-langkah ini memerlukan peran Admin di organisasi Claude Anda.
+
+1. **Buat aplikasi.** Di Claude Console, buat aplikasi OAuth dan salin client ID-nya. Aplikasi tersebut menyimpan nama yang dilihat orang di halaman persetujuan serta alamat di produk Anda tempat mereka kembali.
 2. **Siapkan autentikasi klien.** Alih-alih “client secret” (rahasia klien), back end Anda membuktikan bahwa suatu permintaan berasal dari aplikasi Anda dengan token berumur pendek dari penyedia identitas Anda sendiri, seperti AWS, Google Cloud, Microsoft Entra ID, atau Kubernetes. Anda memilih penyedia identitas, dan token mana darinya yang diterima, pada tab **Client authentication** aplikasi.
 3. **Siapkan identitas back end Anda.** Buat “service account” (akun layanan) dan aturan federasi kedua dengan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation), lalu pilih akun layanan tersebut sebagai akun layanan operator aplikasi.
 

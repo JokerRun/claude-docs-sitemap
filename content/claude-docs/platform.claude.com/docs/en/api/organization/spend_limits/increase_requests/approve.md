@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/spend_limits/increase_requests/approve
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: a07e9cca6d0e26dab442876ab5606ea4e58d0898df63f3f25af3e3ae9abd2a68
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f93125c25605348fc7124ed383fae44fe7c821891398282618d886314cbd830e
 ---
 
 ---
@@ -344,6 +344,16 @@ the member was blocked on. Anthropic emails the requester unless
   - `"denied"`
 
   - `"pending"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

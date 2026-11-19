@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: f2121f6f769a47484d0e675c013908d99aa08381c1d641e4361de30ff57b4fa7
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 0b393d043ca485afc7516dfadb4568e674c90c8dfea4326178b92bca5af8a909
 ---
 
 > ## Documentation Index
@@ -847,6 +847,7 @@ If your callback needs more time, set a higher `timeout` on its `HookMatcher`. I
 * Check all `PreToolUse` hooks for `permissionDecision: 'deny'` returns
 * Add logging to your hooks to see what `permissionDecisionReason` they're returning
 * Verify matcher patterns aren't too broad: an empty matcher matches all tools
+* If the tool result says a hook `returned updatedInput that failed schema validation` or `returned updatedInput that the tool refused`, fix that hook's `updatedInput`. Include the unchanged `tool_input` fields, as in [Modify tool input](#modify-tool-input), because `updatedInput` replaces the whole input.
 
 ### Modified input not applied
 

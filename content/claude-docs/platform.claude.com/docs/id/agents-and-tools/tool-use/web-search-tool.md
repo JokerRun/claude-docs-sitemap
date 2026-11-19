@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: ff78aa9e95a9a685668ce45fd1c9f5da561d882f93cc69991e032ae385e2b7cc
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 15f4c186ecc5d2c1b4ac61650b6c3a858be65803dc5e93f52f394b4c9950b15f
 ---
 
 ---
@@ -715,7 +715,7 @@ Penggunaan web search (pencarian web) dikenakan biaya di luar penggunaan token:
 }
 ```
 
-Pencarian web tersedia di Claude API seharga **$10 USD per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan pencarian. Hasil pencarian web yang diambil sepanjang percakapan dihitung sebagai token input, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
+Di Claude API, pencarian web dikenakan biaya **$10 USD per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan pencarian. Hasil pencarian dihitung sebagai token input, baik selama Claude terus melakukan pencarian dalam satu giliran maupun dalam giliran percakapan berikutnya.
 
 Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasil yang dikembalikan. Pencarian web yang gagal karena kesalahan tidak ditagih.
 

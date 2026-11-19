@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 4f1b0410adfe4dbff3e729f2aa8f1363464c4b1f3c81aa380325cdad58490fc5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 2a480bd8cb0c2cdf472172a23c92612f03047df9af7e303a392d852c7bd8af5c
 ---
 
 ---
@@ -52,7 +52,7 @@ Pesan sistem di tengah percakapan menutup celah tersebut. Anda menambahkan pesan
 
   [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) berstatus beta pada model yang sama. Dua “beta header” (header beta) mengaktifkan perubahan ini. Jika keduanya berfungsi di platform Anda, kirimkan `inline-tools-2026-09-15`:
 
-  * `inline-tools-2026-09-15` berfungsi di Claude API, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Microsoft Foundry. Header ini juga mencakup [mendefinisikan alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta). [Menambahkan server MCP dengan cara tersebut](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta) juga memerlukan header beta `mcp-client-2026-09-15`, yang tersedia di Claude API.
+  * `inline-tools-2026-09-15` berfungsi di Claude API, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), dan Microsoft Foundry. Header ini juga mencakup [mendefinisikan alat di dalam blok `tool_addition`](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta). [Menambahkan server MCP dengan cara tersebut](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#add-an-mcp-server-mid-conversation-beta) juga memerlukan header beta `mcp-client-2026-09-15`. Untuk memeriksa apakah platform Anda menerima header tersebut, lihat [Ketersediaan konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#feature-availability).
   * `mid-conversation-tool-changes-2026-07-01` berfungsi di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, serta di empat platform yang tercantum untuk `inline-tools-2026-09-15`. Header ini tidak mencakup pendefinisian alat di dalam blok `tool_addition`.
 
   [Pesan sistem berlingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (`clear_at`) berstatus beta dan memerlukan header beta `mid-conversation-system-clear-at-2026-08-21`, pada [model dan platform yang sama](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#feature-availability) dengan pesan sistem di tengah percakapan.
@@ -1649,7 +1649,9 @@ Permintaan berikut mempertahankan `get_weather` di `tools`, mencantumkan server 
 
 Dengan `mcp-client-2026-09-15`, respons yang memerlukan API mengambil daftar alat server diawali dengan blok `mcp_tool_listing`, satu untuk setiap server yang diambil. Jika kode Anda membaca `content[0]`, lewati blok-blok ini. Kirim kembali pesan asisten tanpa perubahan, termasuk blok ini, dan terus kirim `mcp-client-2026-09-15` pada setiap permintaan yang membawanya. Permintaan berikutnya kemudian menggunakan daftar yang tercatat alih-alih menanyakan server lagi. Untuk menyematkan toolset sendiri, salin daftar tersebut ke field `tools` milik `mcp_toolset`, seperti yang dijelaskan dalam [Menyematkan daftar alat server MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#pin-mcp-tool-list).
 
-`mcp-client-2026-09-15` mencakup semua yang dicakup `mcp-client-2025-11-20`, sehingga Anda tidak perlu mengirim keduanya. Fitur-fitur ini tersedia di Claude API. Permintaan yang menggunakan konektor MCP tetap tunduk pada ketentuan [retensi data](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#data-retention) konektor tersebut.
+`mcp-client-2026-09-15` juga mengaktifkan konektor MCP itu sendiri, sehingga header ini adalah satu-satunya header beta MCP yang Anda kirim. Untuk memeriksa apakah platform Anda menerimanya, lihat [Ketersediaan konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#feature-availability).
+
+Permintaan yang menggunakan konektor MCP tetap tunduk pada ketentuan [retensi data](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#data-retention) konektor tersebut.
 
 ## Kapan menggunakan pesan sistem di tengah percakapan
 

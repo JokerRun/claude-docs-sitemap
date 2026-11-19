@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/service_accounts/workspaces/remove
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 301c7ac1c26ae5e423db6d62feaab4713c5ecb3ba475ad51ba40da1428d44457
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 96b99941e70628a2cf70e278f5f31249c7deaa266cdad27752018d1df7a836f8
 ---
 
 ---
@@ -57,6 +57,16 @@ to the implicit `workspace_user` membership. Archived workspaces return
 - `workspace_id: string`
 
   Tagged workspace ID (`wrkspc_...`) named in the delete request.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

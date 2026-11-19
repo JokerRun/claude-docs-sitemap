@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: fd816b375a361bcc42ce24212560c681d3d15c4f61252f167903721c775802ce
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f2a1951856e6fb1dd7da995d838e1f1893e877a7abaed142ca2ff6e2e621c761
 ---
 
 ---
@@ -584,9 +584,9 @@ Contoh disertakan dalam prompt bersama skema alat Anda, menunjukkan kepada Claud
 
 ### Persyaratan dan batasan
 
-* **Validasi skema** - Setiap contoh harus valid menurut `input_schema` alat. Contoh yang tidak valid mengembalikan error 400.
-* **Tidak didukung untuk alat sisi server atau toolset klien** - Contoh input berfungsi pada alat klien yang ditentukan pengguna dan alat klien dengan skema Anthropic selain toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) dan [penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool), tetapi tidak pada alat server seperti pencarian web atau eksekusi kode.
-* **Biaya token** - Contoh menambah token prompt: \~20–50 token untuk contoh sederhana, \~100–200 token untuk objek bersarang yang kompleks.
+* **Contoh yang valid:** Validasi sendiri setiap contoh terhadap `input_schema` alat. API biasanya mengembalikan error 400 untuk contoh yang tidak valid. Dalam beberapa kasus, seperti skema dengan `pattern`, API melewati pemeriksaan tersebut dan Claude melihat contoh yang tidak valid.
+* **Alat yang didukung:** Contoh input berfungsi pada alat yang ditentukan pengguna dan beberapa alat klien dengan skema Anthropic. Untuk memeriksa jenis alat mana yang menerimanya, lihat baris `input_examples` pada tabel [Properti definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties) di referensi alat.
+* **Biaya token:** Setiap contoh menambah token input: sekitar 100 untuk contoh dengan beberapa nilai datar dan sekitar 200 untuk contoh dengan objek bersarang.
 
 ## Mengendalikan output Claude
 
@@ -887,13 +887,13 @@ Saat bekerja dengan parameter `tool_choice`, ada empat opsi yang mungkin:
   Saat menggunakan [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#what-invalidates-the-cache), perubahan pada parameter `tool_choice` akan membatalkan blok pesan yang di-cache. Definisi alat dan prompt sistem tetap di-cache, tetapi konten pesan harus diproses ulang.
 </Note>
 
-Diagram ini mengilustrasikan cara kerja setiap opsi:
+Diagram ini menunjukkan cara kerja opsi `auto`, `any`, dan `tool`:
 
 <Frame>
   ![Diagram tiga opsi tool\_choice: auto (sebuah alat atau respons biasa), any (salah satu alat), dan tool (alat yang disebutkan namanya)](https://platform.claude.com/docs/id/images/tool_choice.svg)
 </Frame>
 
-Perhatikan bahwa ketika Anda menetapkan `tool_choice` sebagai `any` atau `tool`, API melakukan prefill pada pesan asisten untuk memaksa penggunaan alat. Ini berarti model tidak akan mengeluarkan respons atau penjelasan bahasa alami sebelum blok konten `tool_use`, meskipun diminta secara eksplisit untuk melakukannya.
+Ketika `tool_choice` adalah `any` atau `tool`, API membuat respons Claude dimulai dengan panggilan alat. Akibatnya, Claude tidak mengeluarkan respons atau penjelasan bahasa alami sebelum blok konten `tool_use`, meskipun Anda memintanya.
 
 Pengujian menunjukkan bahwa hal ini seharusnya tidak mengurangi kinerja. Jika Anda ingin model memberikan konteks atau penjelasan bahasa alami sambil tetap meminta model menggunakan alat tertentu, Anda dapat menggunakan `{"type": "auto"}` untuk `tool_choice` (default) dan menambahkan instruksi eksplisit dalam pesan `user`. Misalnya: `What's the weather like in London? Use the get_weather tool in your response.`
 

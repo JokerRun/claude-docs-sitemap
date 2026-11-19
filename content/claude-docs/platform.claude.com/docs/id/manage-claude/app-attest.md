@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/app-attest
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 6ad069cc372852abc1f893e9d5a3500778999e1133aabc9f7541329ba9a2422a
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 0a8402f8865067bfe7ccfabcbf2ec92c86683cbaa67aed80f024955d1cbe8fbf
 ---
 
 ---
@@ -31,7 +31,7 @@ Token dibatasi cakupannya pada workspace Anda, kedaluwarsa setelah 1 jam, dan ha
   App Attest memerlukan perangkat fisik. Simulator, dan perangkat keras tanpa Secure Enclave, tidak dapat melakukan App Attest. Saat mengembangkan di Simulator, lakukan autentikasi dengan “API key” ([kunci API](https://platform.claude.com/docs/id/manage-claude/authentication#api-keys)) sebagai gantinya.
 </Note>
 
-Untuk menyiapkan App Attest, Anda memerlukan Apple Developer Team ID Anda dan peran admin, pemilik, atau pemilik utama di organisasi Claude Console Anda. Konfigurasikan proyek Xcode Anda dan daftarkan aplikasi Anda di [Claude Console](https://platform.claude.com/):
+Untuk menyiapkan App Attest, Anda memerlukan Apple Developer Team ID Anda dan peran admin di organisasi Claude Console Anda. Konfigurasikan proyek Xcode Anda dan daftarkan aplikasi Anda di [Claude Console](https://platform.claude.com/):
 
 1. Di Xcode, tambahkan kapabilitas **App Attest** ke target aplikasi Anda di bawah **Signing & Capabilities**.
 2. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/app-integrations) (`platform.claude.com/settings/app-integrations`) dan klik **Create app integration**.

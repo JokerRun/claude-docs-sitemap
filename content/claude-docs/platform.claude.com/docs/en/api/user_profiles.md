@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/user_profiles
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 68f3b6ec70645a0fb047b06b51134288e298e676d2f288c37e64ee8dad4d5695
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 060abb90af8888a88e182663b63573bea623d97b2699a0e0a0bb9ccc7dd441d3
 ---
 
 ---
@@ -2427,8 +2427,6 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
 
 - `UserProfileNotFoundErrorDetails object`
 
-  The request depends on a user profile that does not exist in the organization or is no longer active. The request either names this user profile by ID, or names a resource, such as an External Key, that is bound to it.
-
   - `error_code: "user_profile_not_found"`
 
 ### User Profile Program Status
@@ -2518,6 +2516,20 @@ curl https://api.anthropic.com/v1/user_profiles/$USER_PROFILE_ID \
     - `status: UserProfileProgramStatus`
 
       Anthropic's decision on the entity the profile represents: `pending` while it is awaited, `active` once Anthropic has approved the entity for the program, or `rejected` once Anthropic has declined or has removed the entity from the program. `active` does not mean that any one feature is approved: read the feature you need in `features`.
+
+## Errors
+
+### user_profile_not_found
+
+HTTP status 400
+
+- `"user_profile_not_found"`
+
+  The request depends on a user profile that does not exist in the organization or is no longer active. The request either names this user profile by ID, or names a resource, such as an External Key, that is bound to it.
+
+  - `details: UserProfileNotFoundErrorDetails`
+
+    - `error_code: "user_profile_not_found"`
 
 ## User Profiles › Action URLs
 

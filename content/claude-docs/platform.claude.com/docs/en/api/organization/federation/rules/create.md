@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: e166c36983a3ff9beb5c5a3b43e2e19146a43c78ad43247c1199370ce02568a2
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: d1ddce29acba926281e433dc6c76cef777934f5c21e86b5c0b409e26c854375c
 ---
 
 ---
@@ -254,6 +254,16 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `workspace_ids: array of string`
 
     Tagged IDs of the workspaces this rule is enabled for. May be empty for older rules that only carry the legacy `workspace_id` binding. Ignored at exchange time when `applies_to_all_workspaces` is true (the list may still be non-empty).
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

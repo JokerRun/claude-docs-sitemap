@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: f7bee6d246492d0b2dbb2e54e5b215b8c1e08db6d0b8974910a393b353cdc3bb
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: e4102f8a9b8a7152b1becda0decb69157292087270adf29b00250f571b825a3c
 ---
 
 ---
 title: Claude Models on Google Cloud (Google managed)
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-description: Google mengoperasikan Claude Models on Google Cloud (Google managed) sebagai bagian dari Google Cloud's Agent Platform. Anda dapat memanggil Claude dengan SDK klien Anthropic.
+description: Siapkan Claude Models on Google Cloud (Google managed), yang dioperasikan Google sebagai bagian dari Google Cloud's Agent Platform. Kemudian, panggil Claude dengan Anthropic SDK atau cURL.
 ---
 
 [Claude Models on Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/overview) membandingkan kedua penawaran Google Cloud. Halaman tersebut juga menunjukkan cara mengetahui penawaran mana yang Anda gunakan.
@@ -86,9 +86,8 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
 
   <Tab title="Ruby">
     ```bash
-    # Gemfile
-    gem "anthropic"
-    gem "googleauth"
+    bundle add anthropic
+    bundle add googleauth
     ```
   </Tab>
 </Tabs>
@@ -102,7 +101,11 @@ Permintaan ke Claude Models on Google Cloud (Google managed) dikirim ke URL endp
 Sebuah permintaan hampir identik dengan permintaan [Messages API](https://platform.claude.com/docs/id/api/messages/create). Perbedaannya terdapat pada dua hal utama:
 
 * **Model:** URL endpoint menyebutkan nama model. Dalam permintaan cURL, jangan sertakan `model` di dalam body.
-* **Versi:** Dalam permintaan cURL, teruskan `anthropic_version` di dalam body, bukan sebagai header. Atur nilainya ke `vertex-2023-10-16`, atau ke [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/migration-2026-10-21).
+* **Versi:** Dalam permintaan cURL, teruskan `anthropic_version` di dalam body dan bukan sebagai header. Atur nilainya ke `vertex-2023-10-16` atau ke [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/migration-2026-10-21).
+
+SDK menangani kedua perbedaan tersebut untuk Anda. SDK memindahkan nilai `model` Anda ke dalam URL dan mengatur `anthropic_version` ke versi API yang digunakannya dengan Claude API. Untuk ID model yang perlu diteruskan, lihat [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#api-model-ids).
+
+Dalam contoh-contoh berikut, klien SDK mengautentikasi dengan Application Default Credentials. Untuk menyiapkan Application Default Credentials, lihat [Sebelum melakukan panggilan API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#before-making-api-calls).
 
 Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya, lihat [Endpoint global, multi-region, dan regional](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#global-multi-region-and-regional-endpoints).
 
@@ -196,8 +199,9 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
   	"github.com/anthropics/anthropic-sdk-go/v2"
   	"github.com/anthropics/anthropic-sdk-go/v2/vertex"
   )
-  // ...
-  	// Menggunakan kredensial default Google Cloud
+
+  func main() {
+  	// Menggunakan Application Default Credentials. Argumen: context, region, ID proyek.
   	client := anthropic.NewClient(
   		vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
   	)
@@ -213,6 +217,7 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
   		panic(err)
   	}
   	fmt.Printf("%+v\n", message)
+  }
   ```
 
   ```java Java
@@ -252,9 +257,9 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
   ```php PHP
   use Anthropic\Messages\Model;
   use Anthropic\Messages\TextBlock;
-  use Anthropic\Vertex;
+  use Anthropic\Vertex\Client;
 
-  $client = Vertex\Client::fromEnvironment(
+  $client = Client::fromEnvironment(
       region: 'global',
       projectId: 'MY_PROJECT_ID',
   );
@@ -288,7 +293,7 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
     messages: [{ role: "user", content: "Hey Claude!" }]
   )
 
-  puts message.content.find { |block| block.is_a?(Anthropic::Models::TextBlock) }.text
+  message.content.grep(Anthropic::Models::TextBlock).each { |block| puts block.text }
   ```
 </CodeGroup>
 
@@ -412,11 +417,14 @@ Contoh-contoh berikut menggunakan endpoint multi-region `us`. Baris yang disorot
   	"github.com/anthropics/anthropic-sdk-go/v2"
   	"github.com/anthropics/anthropic-sdk-go/v2/vertex"
   )
-  // ...
+
+  func main() {
   	// Pengenal multi-region: "us" atau "eu"
   	client := anthropic.NewClient(
   		vertex.WithGoogleAuth(context.Background(), "us", "MY_PROJECT_ID"),
   	)
+  	// ...
+  }
   ```
 
   ```java Java
@@ -440,9 +448,9 @@ Contoh-contoh berikut menggunakan endpoint multi-region `us`. Baris yang disorot
   ```
 
   ```php PHP
-  use Anthropic\Vertex;
+  use Anthropic\Vertex\Client;
 
-  $client = Vertex\Client::fromEnvironment(
+  $client = Client::fromEnvironment(
       region: 'us', // Multi-region identifier: "us" or "eu"
       projectId: 'MY_PROJECT_ID',
   );
@@ -606,14 +614,16 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
       import (
       	"context"
 
-      	"github.com/anthropics/anthropic-sdk-go/v2"
       	"github.com/anthropics/anthropic-sdk-go/v2/googlecloud"
       )
-      // ...
+
+      func main() {
       	client, err := googlecloud.NewClient(context.Background(), googlecloud.ClientConfig{})
       	if err != nil {
       		panic(err)
       	}
+      	// ...
+      }
       ```
 
       ```java Java
@@ -696,11 +706,14 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
       	"github.com/anthropics/anthropic-sdk-go/v2"
       	"github.com/anthropics/anthropic-sdk-go/v2/vertex"
       )
-      // ...
-      	// Menggunakan kredensial default Google Cloud
+
+      func main() {
+      	// Menggunakan Application Default Credentials. Argumen: context, region, ID proyek.
       	client := anthropic.NewClient(
       		vertex.WithGoogleAuth(context.Background(), "global", "MY_PROJECT_ID"),
       	)
+      	// ...
+      }
       ```
 
       ```java Java
@@ -723,9 +736,9 @@ Untuk mengetahui apa yang berubah saat Anda berpindah, lihat [Perbedaan kedua pe
       ```
 
       ```php PHP
-      use Anthropic\Vertex;
+      use Anthropic\Vertex\Client;
 
-      $client = Vertex\Client::fromEnvironment(
+      $client = Client::fromEnvironment(
           region: 'global',
           projectId: 'MY_PROJECT_ID',
       );

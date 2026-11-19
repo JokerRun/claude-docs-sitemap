@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 8fbcd0824bb3ed3faf409f9d629ff81b9f0c55bf71bbd53b12bedb0f38d6c336
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: b7e0b47420195852a6373b3dfff91852e6f307bcae12836a521493984f7bd351
 ---
 
 ---
@@ -48,7 +48,7 @@ Ketika tidak ada apa pun di akun organisasi tersebut yang dapat membayar suatu p
 
 ## Proses penyiapan
 
-Anda melakukan tiga langkah ini satu kali. Langkah-langkah ini mendaftarkan aplikasi Anda ke Anthropic. Setelahnya, [Profil pengguna mana yang ditautkan](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#which-user-profile-to-link) menjelaskan aturan yang perlu Anda ketahui sebelum membuat profil pengguna.
+Anda melakukan tiga langkah ini satu kali. Langkah-langkah ini mendaftarkan aplikasi Anda ke Anthropic. Anda memerlukan peran Admin di organisasi Anda untuk ketiganya. Setelahnya, [Profil pengguna mana yang ditautkan](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#which-user-profile-to-link) menjelaskan aturan yang perlu Anda ketahui sebelum membuat profil pengguna.
 
 ### Langkah 1: Buat aplikasi
 
@@ -587,7 +587,6 @@ Tetapkan `bill_to: "user_profile"` hanya pada permintaan yang diarahkan pelangga
     messages: [{ role: "user", content: "Hello, Claude" }],
     betas: ["user-profiles-billing-2026-10-01"],
     user_profile_id: "uprof_01HV9Z",
-    // @ts-expect-error: billing_policy isn't in the SDK's types yet
     billing_policy: { type: "billing_policy", bill_to: "user_profile" }
   });
 
@@ -609,7 +608,6 @@ Tetapkan `bill_to: "user_profile"` hanya pada permintaan yang diarahkan pelangga
       Betas = ["user-profiles-billing-2026-10-01"],
       UserProfileID = "uprof_01HV9Z",
   };
-  // billing_policy belum ada di tipe SDK
   var body = new Dictionary<string, JsonElement>(parameters.RawBodyData)
   {
       ["billing_policy"] = JsonSerializer.SerializeToElement(
@@ -900,7 +898,6 @@ atau gunakan `bill_to: "self"`:
     messages: [{ role: "user", content: "Hello, Claude" }],
     betas: ["user-profiles-billing-2026-10-01"],
     user_profile_id: "uprof_01HV9Z",
-    // @ts-expect-error: billing_policy isn't in the SDK's types yet
     billing_policy: { type: "billing_policy", bill_to: "self" }
   });
 
@@ -922,7 +919,6 @@ atau gunakan `bill_to: "self"`:
       Betas = ["user-profiles-billing-2026-10-01"],
       UserProfileID = "uprof_01HV9Z",
   };
-  // billing_policy belum ada di tipe SDK
   var body = new Dictionary<string, JsonElement>(parameters.RawBodyData)
   {
       ["billing_policy"] = JsonSerializer.SerializeToElement(
@@ -1768,7 +1764,7 @@ Ketika permintaan mengatur `bill_to: "user_profile"`, Anthropic menagih pelangga
 
   * **Batas atas pengeluaran untuk aplikasi Anda:** Di halaman untuk aplikasi Anda di bawah [Linked platforms](https://platform.claude.com/linked-platforms), mereka dapat menetapkan atau menaikkan batas atas pengeluaran. Batas atas yang ditetapkan di sana menggantikan batas atas default apa pun yang mereka tetapkan untuk semua platform yang tertaut.
   * **Batas pengeluaran bulanan organisasi:** Di bagian [Batas pengeluaran](https://platform.claude.com/settings/billing#spend-limits), mereka dapat menaikkannya.
-  * **Saldo kredit:** Di halaman [Penagihan](https://platform.claude.com/settings/billing) mereka, mereka dapat melihat saldo kredit dan membeli kredit. Sebagian kredit tidak dapat membayar permintaan ini: lihat [Kredit yang dapat membayar](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#which-credits-can-pay).
+  * **Saldo kredit:** Di halaman [Penagihan](https://platform.claude.com/settings/billing) mereka, mereka dapat melihat saldo kredit dan membeli kredit. Pembelian dapat memerlukan waktu untuk berlaku, sehingga permintaan yang dikirim segera setelahnya masih dapat mendapatkan 402 ini. Jika demikian, coba lagi nanti. Sebagian kredit tidak dapat membayar permintaan ini: lihat [Kredit yang dapat membayar](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#which-credits-can-pay).
 
 * `503 overloaded_error`: Anthropic saat ini tidak dapat memastikan apakah pelanggan dapat ditagih. Coba ulang dengan backoff dan patuhi header `retry-after`. Permintaan tidak dilayani maupun ditagih.
 
@@ -1788,9 +1784,9 @@ Periksa hal-hal berikut secara berurutan:
 
 * **Permintaan Anda.** Permintaan harus melakukan autentikasi sebagai akun layanan operator aplikasi OAuth Anda (Langkah 3). [Token akses koneksi](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#oauth-tokens-for-each-connection) juga melakukan autentikasi sebagai akun layanan tersebut. Permintaan yang melakukan autentikasi dengan cara lain akan ditolak. Contohnya adalah akun layanan yang berbeda dan kunci API yang tidak terikat ke akun layanan tersebut. Jika header `anthropic-user-profile-id` menyebutkan salah satu profil Anda yang tidak tertaut, permintaan akan ditolak. Jika kredensial atau header salah, perbaiki permintaan tersebut. Koneksi baru tidak membantu.
 * **Koneksi.** Pelanggan belum menautkan melalui aplikasi ini, atau koneksi tersebut telah berakhir: administrator organisasi mereka atau organisasi Anda telah mengakhirinya, atau back end Anda yang mengakhirinya. Koneksi yang telah berakhir ditampilkan sebagai **Unlinked** di halaman [User profiles](https://platform.claude.com/user-profiles) Anda. Profil yang hanya tertaut melalui aplikasi pengujian Anda tidak tertaut ke aplikasi produksi Anda. Hentikan penagihan pelanggan tersebut hingga mereka menautkan. Token akses koneksi terbatas pada koneksi tersebut, jadi setelah pelanggan menautkan lagi, gunakan token akses dari koneksi yang baru. Jika aplikasi Anda telah [menonaktifkan autentikasi khusus operator](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#turn-off-operator-only-authentication), Anda hanya dapat menagih pelanggan dengan token akses koneksi mereka. Dalam hal itu, pelanggan yang token koneksi `billing:attribution`-nya yang berfungsi tidak Anda pegang ditampilkan sebagai **Linked**, tetapi harus menyetujui lagi, seperti dijelaskan dalam [Menautkan pelanggan lagi](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#connect-a-customer-again).
-* **Organisasi pelanggan.** Organisasi tersebut harus merupakan [pelanggan yang memenuhi syarat](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#eligible-customers-and-endpoints). Anda tidak dapat melihatnya dari sisi Anda, jadi tanyakan kepada tim akun Anthropic Anda.
+* **Organisasi pelanggan.** Organisasi tersebut harus merupakan [pelanggan yang memenuhi syarat](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#eligible-customers-and-endpoints). Anda tidak dapat melihat status organisasi tersebut dari sisi Anda. Organisasi baru milik pelanggan dapat ditautkan sebelum penagihannya disiapkan. Hingga saat itu, permintaan yang menagihnya mendapatkan 403 ini, bukan 402 karena kehabisan kredit. Minta pelanggan untuk membeli kredit di halaman [Penagihan](https://platform.claude.com/settings/billing) mereka di Claude Console, lalu kirim permintaan tersebut lagi. Pembelian dapat memerlukan waktu untuk berlaku, jadi jika Anda masih mendapatkan 403 ini atau 402 karena kehabisan kredit tersebut (`linked_organization_spend_limit_reached`), coba lagi nanti. Jika itu tidak membantu, tanyakan kepada tim akun Anthropic Anda.
 
-Koneksi baru biasanya langsung berfungsi, tetapi dapat memerlukan waktu sekitar 10 detik setelah penukaran di Langkah 8. Jika permintaan ditolak dengan `user_profile_not_billable` dalam 10 detik tersebut, kirim lagi. Setelah itu, menunggu atau mencoba ulang tidak mengubah hasilnya. Catat seluruh `error.message` dan header respons `request-id` dari setiap permintaan yang ditolak. Jika pelanggan yang koneksinya ditampilkan sebagai **Linked** masih ditolak dan permintaan Anda sudah benar, kirimkan `request-id` dari permintaan yang ditolak ke tim akun Anthropic Anda, sehingga Anthropic dapat menelusuri alasan penolakannya.
+Koneksi baru biasanya langsung berfungsi, tetapi dapat memerlukan waktu sekitar 10 detik setelah penukaran di Langkah 8. Jika permintaan ditolak dengan `user_profile_not_billable` dalam 10 detik tersebut, kirim lagi. Setelah itu, menunggu atau mencoba ulang tidak mengubah hasilnya hingga penyebabnya diperbaiki. Catat seluruh `error.message` dan header respons `request-id` dari setiap permintaan yang ditolak. Jika pelanggan yang koneksinya ditampilkan sebagai **Linked** masih ditolak dan permintaan Anda sudah benar, kirimkan `request-id` dari permintaan yang ditolak ke tim akun Anthropic Anda, sehingga Anthropic dapat menelusuri alasan penolakannya.
 
 ## Tampilan dari sisi pelanggan Anda
 

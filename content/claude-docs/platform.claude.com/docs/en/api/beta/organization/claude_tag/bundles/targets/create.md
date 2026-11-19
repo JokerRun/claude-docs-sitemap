@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets/create
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: e0ae96cfcec02a9ef50399ffa3df8dd2b49bff75feda6b84e541543895f851c5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: e9e1663cfe84e01d3b2dd6efaf5ad819dcf4dbfa7c6373e48107a4a9b557ec15
 ---
 
 ---
@@ -243,6 +243,28 @@ Attach a Bundle to a Slack channel or a Slack workspace. A Bundle attached to a 
     - `slack_workspace_id: string`
 
       The identifier of the Slack workspace the Bundle is attached to, starting with `slws_`.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
 
 ## Example
 

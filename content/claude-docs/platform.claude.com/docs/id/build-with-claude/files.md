@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 80ab277b2352c6e8f541f33d9984052d244ac539f383803ae8e08d91e4c4476f
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: abafd22470cc0a5d9e85bd404ec4d5c9b27a6816f077a7bf874a59674cc1a762
 ---
 
 ---
@@ -95,7 +95,7 @@ Unggah file untuk dirujuk dalam panggilan API berikutnya:
 
   ```typescript TypeScript
   const uploaded = await client.files.upload({
-    file: await toFile(fs.createReadStream("/path/to/document.pdf"), undefined, {
+    file: await toFile(createReadStream("/path/to/document.pdf"), undefined, {
       type: "application/pdf"
     })
   });
@@ -149,12 +149,15 @@ Unggah file untuk dirujuk dalam panggilan API berikutnya:
   );
 
   String fileId = file.id();
-  System.out.println(fileId);
+  IO.println(fileId);
   ```
 
   ```php PHP
+  $document = fopen('/path/to/document.pdf', 'rb')
+      ?: throw new \RuntimeException('Could not open /path/to/document.pdf.');
+
   $file = $client->files->upload(
-      file: FileParam::fromResource(fopen('/path/to/document.pdf', 'rb'), contentType: 'application/pdf'),
+      file: FileParam::fromResource($document, contentType: 'application/pdf'),
   );
 
   $fileId = $file->id;
@@ -356,7 +359,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
       .build();
 
   Message message = client.messages().create(params);
-  System.out.println(message);
+  IO.println(message);
   ```
 
   ```php PHP
@@ -377,7 +380,7 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo $response;
@@ -469,9 +472,8 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
 
 <CodeGroup>
   ```bash cURL
-  # Baca file teks
-  # Catatan: Untuk file dengan karakter khusus, pertimbangkan encoding base64
-  TEXT_CONTENT=$(cat document.txt)
+  # Enkode teks file sebagai string JSON agar tanda kutip dan baris baru tetap aman
+  TEXT_JSON=$(jq -Rs . document.txt)
 
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
@@ -485,10 +487,9 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
       {
         "role": "user",
         "content": [
-          {
-            "type": "text",
-            "text": "Here's the document content:\n\n${TEXT_CONTENT}\n\nPlease summarize this document."
-          }
+          {"type": "text", "text": "Here's the document content:"},
+          {"type": "text", "text": ${TEXT_JSON}},
+          {"type": "text", "text": "Please summarize this document."}
         ]
       }
     ]
@@ -527,7 +528,11 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
               "content": [
                   {
                       "type": "text",
-                      "text": f"Here's the document content:\n\n{text_content}\n\nPlease summarize this document.",
+                      "text": f"""Here's the document content:
+
+  {text_content}
+
+  Please summarize this document.""",
                   }
               ],
           }
@@ -556,7 +561,11 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
         content: [
           {
             type: "text",
-            text: `Here's the document content:\n\n${textContent}\n\nPlease summarize this document.`
+            text: `Here's the document content:
+
+  ${textContent}
+
+  Please summarize this document.`
           }
         ]
       }
@@ -579,7 +588,13 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
       MaxTokens = 1024,
       Messages = [new UserMessageParam
       {
-          Content = $"Here's the document content:\n\n{textContent}\n\nPlease summarize this document."
+          Content = $"""
+              Here's the document content:
+
+              {textContent}
+
+              Please summarize this document.
+              """
       }]
   };
 
@@ -631,20 +646,28 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   MessageCreateParams params = MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024L)
-      .addUserMessage("Here's the document content:\n\n" + textContent + "\n\nPlease summarize this document.")
+      .addUserMessage(
+          """
+          Here's the document content:
+
+          %s
+
+          Please summarize this document.""".formatted(textContent)
+      )
       .build();
 
   Message response = client.messages().create(params);
   response.content().stream()
       .flatMap(block -> block.text().stream())
-      .forEach(textBlock -> System.out.println(textBlock.text()));
+      .forEach(textBlock -> IO.println(textBlock.text()));
   ```
 
   ```php PHP
   $client = new Client();
 
   // Baca file teks
-  $textContent = file_get_contents('document.txt');
+  $textContent = file_get_contents('document.txt')
+      ?: throw new \RuntimeException('Could not read document.txt.');
 
   $message = $client->messages->create(
       maxTokens: 1024,
@@ -654,16 +677,22 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
               'content' => [
                   [
                       'type' => 'text',
-                      'text' => "Here's the document content:\n\n{$textContent}\n\nPlease summarize this document."
+                      'text' => <<<TEXT
+                          Here's the document content:
+
+                          {$textContent}
+
+                          Please summarize this document.
+                          TEXT
                   ]
               ]
           ]
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   foreach ($message->content as $block) {
-      if ($block->type === 'text') {
+      if ($block instanceof \Anthropic\Messages\TextBlock) {
           echo $block->text, PHP_EOL;
       }
   }
@@ -684,7 +713,13 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
         content: [
           {
             type: "text",
-            text: "Here's the document content:\n\n#{text_content}\n\nPlease summarize this document."
+            text: <<~TEXT.chomp
+              Here's the document content:
+
+              #{text_content}
+
+              Please summarize this document.
+            TEXT
           }
         ]
       }
@@ -692,7 +727,7 @@ Contoh berikut membaca file teks dan mengirim kontennya sebagai teks biasa:
   )
 
   message.content.each do |block|
-    puts block.text if block.type == :text
+    puts block.text if block.is_a?(Anthropic::Models::TextBlock)
   end
   ```
 </CodeGroup>
@@ -750,12 +785,12 @@ Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan “pagination
 
   ```java Java
   import com.anthropic.models.files.FileListPage;
-  // ...
+
   void main() {
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       FileListPage files = client.files().list();
-      System.out.println(files);
+      IO.println(files);
   }
   ```
 
@@ -774,7 +809,11 @@ Ambil daftar file yang telah Anda unggah. Endpoint ini menggunakan “pagination
   ```
 </CodeGroup>
 
-Untuk memeriksa sekumpulan file yang sudah diketahui dalam satu permintaan alih-alih melakukan paginasi, teruskan hingga 100 ID file sebagai parameter query `ids[]`. Permintaan `ids[]` selalu mengembalikan satu halaman (`next_page` bernilai `null`), dan ID apa pun yang tidak merujuk ke file di workspace Anda akan dihilangkan secara diam-diam dari `data`; bandingkan ID yang dikembalikan dengan ID yang diminta untuk mendeteksi yang tidak ditemukan. `ids[]` tidak dapat digabungkan dengan `page` atau `limit`.
+Untuk memeriksa sekumpulan file yang sudah diketahui dalam satu permintaan alih-alih melakukan paginasi, teruskan hingga 100 ID file sebagai parameter query `ids[]`. Permintaan `ids[]` berbeda dari daftar berpaginasi dalam tiga hal:
+
+* Anda tidak dapat menggabungkan `ids[]` dengan `page` atau `limit`.
+* Respons selalu berupa satu halaman (`next_page` bernilai `null`).
+* Jika sebuah ID tidak merujuk ke file di workspace Anda, API akan menghilangkan ID tersebut dari `data` tanpa mengembalikan error. Untuk menemukan ID yang dihilangkan oleh API, bandingkan ID yang dikembalikan dengan ID yang diminta.
 
 #### Mendapatkan metadata file
 
@@ -818,7 +857,7 @@ Ambil informasi tentang file tertentu:
   ```java Java
   FileMetadata metadata = client.files().retrieveMetadata(fileId);
 
-  System.out.println(metadata);
+  IO.println(metadata);
   ```
 
   ```php PHP
@@ -881,7 +920,7 @@ Hapus file dari workspace Anda:
 
 ### Mengunduh file
 
-Unduh file yang dibuat oleh [skill](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh. `file_id` dari file yang dihasilkan muncul dalam [blok konten `bash_code_execution_tool_result`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) pada respons Messages yang membuatnya:
+Unduh file yang dibuat oleh [skill](https://platform.claude.com/docs/id/build-with-claude/skills-guide) atau [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool). File yang Anda unggah tidak dapat diunduh. `file_id` dari file yang dihasilkan muncul dalam [blok konten `bash_code_execution_tool_result`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#retrieve-generated-files) pada respons Messages yang membuat file tersebut. Gunakan `file_id` tersebut dalam permintaan unduhan:
 
 <CodeGroup>
   ```bash cURL
@@ -902,10 +941,9 @@ Unduh file yang dibuat oleh [skill](https://platform.claude.com/docs/id/build-wi
   ```
 
   ```typescript TypeScript
-  const content = await client.files.download(uploaded.id);
+  const content = await client.files.download(fileId);
 
-  const bytes = Buffer.from(await content.arrayBuffer());
-  await fsp.writeFile("downloaded_file.txt", bytes);
+  await writeFile("downloaded_file.txt", content.body!);
   ```
 
   ```csharp C#
@@ -952,7 +990,7 @@ Unduh file yang dibuat oleh [skill](https://platform.claude.com/docs/id/build-wi
   ```ruby Ruby
   file_content = client.files.download(file_id)
 
-  File.binwrite("downloaded_file.txt", file_content.read)
+  IO.copy_stream(file_content, "downloaded_file.txt")
   ```
 </CodeGroup>
 
@@ -1018,7 +1056,28 @@ Untuk bermigrasi:
 
 ### Namespace beta SDK
 
-Mulai dari Python SDK 1.2.0, TypeScript SDK 0.122.0, Go SDK 1.68.0, Java SDK 2.59.0, PHP SDK 0.45.0, Ruby SDK 1.67.0, dan C# SDK 12.44.0, `client.beta.files` (csharp, go: `client.Beta.Files`; java: `client.beta().files()`; php: `$client->beta->files`) tidak lagi mengirimkan `files-api-2025-04-14` dan mengembalikan bentuk yang sama dengan `client.files` (csharp, go: `client.Files`; java: `client.files()`; php: `$client->files`), dengan nama tipe berawalan `Beta` (di PHP, kelas dalam namespace `Anthropic\Beta`). Namespace ini menerima nama beta melalui `betas` (csharp, go: `Betas`; java: `.addBeta()`) untuk fitur Files yang masih dalam beta, seperti pemfilteran `scope_id` di bawah header beta [Managed Agents](https://platform.claude.com/docs/id/managed-agents/files). Rilis SDK sebelumnya memiliki tipe yang sesuai dengan bentuk beta; jika Anda bergantung pada tipe tersebut, tetaplah pada rilis sebelumnya hingga Anda bermigrasi.
+SDK menawarkan Files API dalam dua namespace. Halaman ini menggunakan namespace stabil, dan fitur Files yang masih dalam beta menggunakan namespace beta.
+
+Mulai dari rilis SDK Anda dalam tabel berikut, namespace beta berbeda dari namespace pada rilis sebelumnya dalam dua hal:
+
+* Tidak lagi mengirimkan `files-api-2025-04-14`.
+* Mengembalikan bentuk yang sama dengan namespace stabil tetapi dengan nama tipe berawalan `Beta`.
+
+Tabel ini juga mencantumkan nama namespace setiap SDK dan tempat namespace beta menerima nilai `anthropic-beta`:
+
+| SDK        | Namespace stabil | Namespace beta                                               | Namespace beta berubah di | Nilai `anthropic-beta` diteruskan di |
+| ---------- | ---------------- | ------------------------------------------------------------ | ------------------------- | ------------------------------------ |
+| Python     | `client.files`   | `client.beta.files`                                          | 1.2.0                     | `betas`                              |
+| TypeScript | `client.files`   | `client.beta.files`                                          | 0.122.0                   | `betas`                              |
+| C#         | `client.Files`   | `client.Beta.Files`                                          | 12.44.0                   | `Betas`                              |
+| Go         | `client.Files`   | `client.Beta.Files`                                          | 1.68.0                    | `Betas`                              |
+| Java       | `client.files()` | `client.beta().files()`                                      | 2.59.0                    | `.addBeta()`                         |
+| PHP        | `$client->files` | `$client->beta->files` (kelas berada dalam `Anthropic\Beta`) | 0.45.0                    | `betas`                              |
+| Ruby       | `client.files`   | `client.beta.files`                                          | 1.67.0                    | `betas`                              |
+
+Untuk fitur Files yang masih dalam beta, gunakan namespace beta dan teruskan nilai `anthropic-beta` fitur tersebut seperti yang ditunjukkan tabel. Misalnya, di bawah header beta Managed Agents, `scope_id` membatasi daftar file pada file dari satu sesi. Untuk menggunakan `scope_id`, lihat [Mendaftarkan dan mengunduh file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files).
+
+Pada rilis sebelum rilis SDK Anda dalam tabel, tipe namespace beta sesuai dengan bentuk yang dikembalikan oleh `files-api-2025-04-14`. Jika Anda bergantung pada tipe tersebut, tetaplah pada rilis tersebut hingga Anda bermigrasi dari tipe tersebut.
 
 Permintaan yang membawa `anthropic-beta: managed-agents-2026-04-01` tanpa `files-api-2025-04-14` menerima bentuk di halaman ini dengan satu kelonggaran kompatibilitas pada `GET /v1/files`: `before_id` dan `after_id` masih diterima (tidak dapat digabungkan dengan `page` atau `ids[]`), dan respons list menyertakan `has_more`, `first_id`, dan `last_id` di samping `next_page`. Versi beta Managed Agents yang lebih baru menerima bentuk biasa.
 
@@ -1059,7 +1118,7 @@ Konten file yang digunakan dalam permintaan Messages dikenai harga sebagai token
 
 ### Batas laju
 
-Panggilan API terkait file dibatasi hingga sekitar 500 permintaan per menit (“rate limit” atau batas laju). Untuk meminta batas yang lebih tinggi, [hubungi tim penjualan](mailto:sales@anthropic.com).
+Panggilan API terkait file dibatasi hingga sekitar 500 permintaan per menit. Untuk meminta batas yang lebih tinggi, [hubungi tim penjualan](mailto:sales@anthropic.com).
 
 ## Langkah selanjutnya
 

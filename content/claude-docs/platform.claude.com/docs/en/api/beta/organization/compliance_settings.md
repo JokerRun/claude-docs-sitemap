@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/compliance_settings
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: be20d567e4213a08af30e8540346f70548e043646fb22a3fe235a7f94ca80cab
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 48033898ecc5641fd2bd3777f67c60c4d843c99ab66ebad7e73f5f312b455f95
 ---
 
 ---
@@ -141,6 +141,16 @@ compliance settings.
       - `type: "disabled"`
 
         default: disabled
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 

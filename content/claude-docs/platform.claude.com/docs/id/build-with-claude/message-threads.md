@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/message-threads
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 06c4407fa96d16034221ac6cb697119c21fe954e050a5de412d6287683a6e629
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 6c9530d2014b0459c0db6cc2408062f774870ac9c1f0c6b53d0a20b7a875f34d
 ---
 
 ---
@@ -655,7 +655,17 @@ Permintaan continue mengembalikan error 404 dengan `error.details.error_code` di
 * Permintaan berasal dari pengguna atau akun layanan yang berbeda dari yang membuat thread. Thread yang dibuat dengan [kunci workspace (lama)](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) tetap terikat pada kunci tersebut, jadi gunakan kunci yang sama untuk seluruh thread.
 * Pesan-pesan baru menambahkan sesuatu yang tidak dapat diterima oleh percakapan yang tersimpan. Misalnya, gambar pertama dalam percakapan yang sebelumnya tidak memiliki gambar dapat mengembalikan error ini.
 
-Untuk memulihkan, kirim seluruh percakapan dari salinan Anda sendiri dalam permintaan create baru, dengan `system` dan `tools`. Helper thread SDK mengirimkan permintaan create ini satu kali dengan sendirinya, dan tidak menyertakan breakpoint `cache_control` dari giliran sebelumnya saat melakukannya. Jika pesan-pesan sebelumnya dalam salinan Anda membawa breakpoint `cache_control`, hapus terlebih dahulu (lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching)). Kemudian lanjutkan dari `id` respons yang baru. Jika model fallback yang menulis respons sebelumnya, lihat [Menggunakan fallback dengan thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#fallbacks). Untuk menyingkirkan penyebab terkait kepemilikan, gunakan kunci API dan workspace yang sama untuk setiap permintaan dalam sebuah thread. Di Claude Platform on AWS, tandatangani setiap permintaan dalam sebuah thread dengan kredensial untuk peran IAM atau pengguna IAM yang membuat thread tersebut.
+Untuk memulihkan, ikuti langkah-langkah berikut:
+
+1. Jika pesan-pesan sebelumnya dalam salinan percakapan Anda sendiri membawa breakpoint `cache_control`, hapus breakpoint tersebut (lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching)).
+2. Kirim seluruh percakapan dari salinan Anda dalam permintaan create baru, dengan `system` dan `tools`.
+3. Lanjutkan dari `id` respons yang baru.
+
+Helper thread SDK mengirimkan permintaan create ini satu kali dengan sendirinya. Saat melakukannya, helper tidak menyertakan breakpoint `cache_control` dari giliran sebelumnya.
+
+Jika model fallback yang menulis respons sebelumnya, lihat [Menggunakan fallback dengan thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#fallbacks).
+
+Beberapa penyebab ini bergantung pada siapa yang mengirim permintaan. Untuk menyingkirkannya, gunakan workspace yang sama dan kunci API, pengguna, atau akun layanan yang sama untuk setiap permintaan dalam sebuah thread. Di Claude Platform on AWS, tandatangani setiap permintaan dalam sebuah thread dengan kredensial untuk peran IAM atau pengguna IAM yang membuat thread tersebut.
 
 Permintaan untuk model yang tidak ada juga mengembalikan error 404, jadi periksa `error.details.error_code` sebelum Anda memutar ulang.
 

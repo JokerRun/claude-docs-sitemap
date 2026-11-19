@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: d1cf821af5a363c3553ece95dbbd303542d57caf0137d9767e4a79aac1052015
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: bd5daabac60ba9b9d227a2496ebd5ca616e4a0641649c4e9ef8e77a3a0df89c2
 ---
 
 ---
@@ -309,9 +309,13 @@ Tindakan mengikuti konvensi AWS `VerbNoun` dan menggunakan disiplin kata kerja s
 
 Sesi Claude Console mencakup seluruh organisasi, bukan satu workspace, dan beberapa halaman Claude Console melewati pemeriksaan tindakan IAM. Pada halaman-halaman tersebut, principal dengan peran Claude Console mana pun dapat melihat penggunaan, biaya, dan batas laju seluruh organisasi, apa pun yang diizinkan oleh kebijakan IAM-nya. Dengan peran Admin, principal juga dapat melihat metadata permintaan di halaman **Logs**. Sesi Admin juga dapat mengubah pengaturan di luar IAM, seperti batas pengeluaran untuk organisasi dan setiap workspace. Berikan `AssumeConsole` hanya kepada principal yang boleh melihat dan bertindak atas seluruh organisasi. [Halaman Claude Console yang tersedia di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#available-pages) menunjukkan halaman mana yang memeriksa tindakan IAM dan mana yang melewatinya.
 
+Pada halaman **Batas laju**, melihat batas tidak melalui pemeriksaan tindakan IAM, tetapi **Minta batas lebih tinggi** harus melaluinya. `ListAccountRateLimitIncreaseRequests` mengotorisasi tampilan tombol tersebut, dan `CreateAccountRateLimitIncreaseRequest` mengotorisasi pengiriman permintaan. Tombol tersebut juga memerlukan peran Admin. Kedua tindakan bercakupan akun. Pernyataan yang `Resource`-nya berupa ARN workspace tidak memberikan tindakan tersebut; gunakan `Resource: "*"`. Tindakan ini tidak memiliki rute API publik, sehingga tabel-tabel dalam [Pemetaan rute ke tindakan](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#route-to-action-mapping) tidak mencantumkannya. Lihat [Batas laju dan kuota](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
+
 ## Pemetaan rute ke tindakan
 
-Tabel-tabel berikut mencantumkan setiap rute pada Claude Platform on AWS dan tindakan IAM yang diperlukan untuk memanggilnya. Setiap tindakan IAM juga mengotorisasi permintaan yang menggunakan header `anthropic-beta`; varian beta dari suatu rute tidak memerlukan tindakan IAM terpisah. CloudTrail mengklasifikasikan setiap tindakan sebagai Data event (operasi data-plane bervolume tinggi) atau Management event (operasi control-plane). Tindakan vault dan webhook diklasifikasikan sebagai Management event karena menyimpan rahasia (kredensial vault dan rahasia penandatanganan webhook) dan mendapat manfaat dari pencatatan audit yang aktif secara default. Tindakan workspace, kunci eksternal, tujuan telemetri, dan kepatuhan juga diklasifikasikan sebagai Management event karena merupakan operasi control-plane bercakupan organisasi. Semua tindakan lainnya, termasuk inferensi, batch, model, file, skill, profil pengguna, penggunaan dan biaya, dan tindakan Claude Managed Agents lainnya, diklasifikasikan sebagai Data event.
+Tabel-tabel berikut mencantumkan rute API publik pada Claude Platform on AWS dan tindakan IAM yang diperlukan untuk memanggil masing-masing rute. Setiap tindakan IAM juga mengotorisasi permintaan yang menggunakan header `anthropic-beta`; varian beta dari suatu rute tidak memerlukan tindakan IAM terpisah.
+
+CloudTrail mengklasifikasikan setiap tindakan sebagai Data event (operasi data-plane bervolume tinggi) atau Management event (operasi control-plane). CloudTrail mengklasifikasikan tindakan vault dan webhook sebagai Management event karena menyimpan rahasia (kredensial vault dan rahasia penandatanganan webhook) dan mendapat manfaat dari pencatatan audit yang aktif secara default. CloudTrail juga mengklasifikasikan tindakan workspace, kunci eksternal, tujuan telemetri, kepatuhan, dan permintaan kenaikan batas laju sebagai Management event. Tindakan-tindakan ini merupakan operasi control-plane bercakupan organisasi. CloudTrail mengklasifikasikan semua tindakan lainnya sebagai Data event. Tindakan tersebut mencakup inferensi, batch, model, file, skill, profil pengguna, penggunaan dan biaya, dan tindakan Claude Managed Agents lainnya.
 
 | Metode   | Rute                                                                      | Tindakan IAM                                | Tipe event CloudTrail |
 | -------- | ------------------------------------------------------------------------- | ------------------------------------------- | --------------------- |
@@ -442,7 +446,7 @@ Tabel-tabel berikut mencantumkan setiap rute pada Claude Platform on AWS dan tin
 | `GET`  | `/v1/organizations/analytics/usage` | `ListAccountUsage` | Data                  |
 | `GET`  | `/v1/organizations/analytics/cost`  | `ListAccountCost`  | Data                  |
 
-Rute yang tidak ada dalam tabel-tabel ini tidak tersedia di Claude Platform on AWS. Gateway secara default menolak rute apa pun yang tidak tercantum di sini.
+Rute API publik yang tidak ada dalam tabel-tabel ini tidak tersedia di Claude Platform on AWS. Gateway menolaknya.
 
 <Note>
   Rute workspace, kunci eksternal, tujuan telemetri, dan Usage and Cost Analytics API adalah satu-satunya rute Admin API yang tersedia di Claude Platform on AWS. Anda juga dapat membuat, memperbarui, atau mengarsipkan workspace di AWS Console atau, dengan peran Admin, di Claude Console. Kunci enkripsi juga dapat didaftarkan dan dilampirkan di Claude Console.

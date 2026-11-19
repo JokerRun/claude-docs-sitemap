@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: e6ba439487382261469076bd2606fa2e6cf2b61c983ce66589b15497c8cb724a
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 5bab9defe553b56abc2f531faac42f8da528d818b2fae48c8c166031e1e6b12b
 ---
 
 ---
@@ -67,8 +67,8 @@ Bagian ini membahas platform cloud yang dioperasikan mitra, di mana penyedia clo
 
 Untuk harga resmi di [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) dan [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), kunjungi:
 
+* [Harga Claude Models on Google Cloud (Google managed)](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models)
 * [Harga Amazon Bedrock](https://aws.amazon.com/bedrock/pricing/)
-* [Harga Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models)
 
 <Note>
   **Harga endpoint regional dan multi-region untuk model Claude 4.5 dan seterusnya**
@@ -182,7 +182,13 @@ Untuk detail implementasi, model yang didukung, dan contoh kode, lihat [Caching 
 
 Untuk model Claude 4.6 dan yang lebih baru, menentukan inferensi khusus AS melalui parameter `inference_geo` dikenakan pengali 1,1x pada semua kategori harga token, termasuk token input, token output, penulisan cache, dan pembacaan cache. Pada Claude Haiku 5.5, pengali ini juga berlaku untuk harga yang lebih tinggi bagi prompt di atas 100.000 token (lihat [Harga konteks panjang](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing)). Perutean global (default) menggunakan harga standar.
 
-Ini berlaku untuk Claude API (first-party), Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). Pada Claude in Microsoft Foundry, pengali 1,1x yang sama berlaku untuk deployment yang menggunakan jenis deployment US Data Zone Standard (lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography)). Platform yang dioperasikan mitra, Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, memiliki harga regional tersendiri. Lihat [harga Amazon Bedrock](https://aws.amazon.com/bedrock/pricing/) dan [harga Google Cloud](https://cloud.google.com/vertex-ai/generative-ai/pricing#claude-models) untuk detailnya. Model-model sebelumnya tidak mendukung parameter `inference_geo` dan selalu menggunakan harga standar; permintaan yang menyertakan parameter tersebut pada model-model ini akan mengembalikan error 400.
+Berlaku atau tidaknya pengali 1,1x bergantung pada platform:
+
+* **Claude API (first-party), Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed):** Pengali berlaku.
+* **Claude in Microsoft Foundry:** Pengali berlaku untuk deployment yang menggunakan jenis deployment US Data Zone Standard (lihat [Geografi inferensi](https://platform.claude.com/docs/id/about-claude/pricing#foundry-inference-geography)).
+* **Claude Models on Google Cloud (Google managed) dan Amazon Bedrock:** Platform yang dioperasikan mitra ini memiliki harga regional tersendiri. Untuk daftar harganya, lihat bagian [Harga platform cloud](https://platform.claude.com/docs/id/about-claude/pricing#cloud-platform-pricing).
+
+Model yang lebih awal dari Claude 4.6 tidak mendukung parameter `inference_geo` dan selalu menggunakan harga standar. Pada model-model ini, permintaan yang menyertakan parameter tersebut akan mengembalikan error 400.
 
 Untuk informasi lebih lanjut, lihat [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency).
 
@@ -380,7 +386,7 @@ Penggunaan web search (pencarian web) dikenakan biaya di luar penggunaan token:
 }
 ```
 
-Pencarian web tersedia di Claude API seharga **$10 USD per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan pencarian. Hasil pencarian web yang diambil sepanjang percakapan dihitung sebagai token input, baik dalam iterasi pencarian yang dijalankan selama satu giliran maupun dalam giliran percakapan berikutnya.
+Di Claude API, pencarian web dikenakan biaya **$10 USD per 1.000 pencarian**, ditambah biaya token standar untuk konten yang dihasilkan pencarian. Hasil pencarian dihitung sebagai token input, baik selama Claude terus melakukan pencarian dalam satu giliran maupun dalam giliran percakapan berikutnya.
 
 Setiap pencarian web dihitung sebagai satu penggunaan, terlepas dari jumlah hasil yang dikembalikan. Pencarian web yang gagal karena kesalahan tidak ditagih.
 
@@ -451,11 +457,17 @@ Penggunaan browser mengikuti [harga penggunaan alat](https://platform.claude.com
 
 [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) ditagih berdasarkan dua dimensi: token dan runtime sesi.
 
+Di Claude Platform on AWS, biaya token dan runtime sesi dikonversi menjadi Claude Consumption Units dengan tarif standar (lihat [Harga Claude Platform on AWS](https://platform.claude.com/docs/id/about-claude/pricing#claude-platform-on-aws-pricing)). [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#billing) juga menagih penggunaan dalam Claude Consumption Units.
+
 Untuk harga [Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted), hubungi tim akun Anthropic Anda.
 
 ### Token
 
-Semua token yang dikonsumsi oleh sesi Claude Managed Agents ditagih dengan tarif yang ditampilkan di [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing). [Pengali caching prompt](https://platform.claude.com/docs/id/about-claude/pricing#prompt-caching) berlaku secara identik. Pencarian web yang dipicu di dalam sesi dikenakan biaya standar $10 USD per 1.000 pencarian. Di Claude Platform on AWS, biaya token dan runtime sesi dikonversi menjadi Claude Consumption Units dengan tarif standar (lihat [Harga Claude Platform on AWS](https://platform.claude.com/docs/id/about-claude/pricing#claude-platform-on-aws-pricing)). [Harga premium mode cepat](https://platform.claude.com/docs/id/about-claude/pricing#fast-mode-pricing) berlaku ketika `model.speed` agen diatur ke `"fast"`.
+Semua token yang dikonsumsi oleh sesi Claude Managed Agents ditagih dengan tarif yang ditampilkan di [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing). Aturan harga berikut juga berlaku:
+
+* [Pengali caching prompt](https://platform.claude.com/docs/id/about-claude/pricing#prompt-caching) berlaku secara identik.
+* Pencarian web yang dipicu di dalam sesi dikenakan biaya standar $10 USD per 1.000 pencarian.
+* [Harga premium mode cepat](https://platform.claude.com/docs/id/about-claude/pricing#fast-mode-pricing) berlaku ketika `model.speed` agen diatur ke `"fast"`.
 
 [Pengali residensi data](https://platform.claude.com/docs/id/about-claude/pricing#data-residency-pricing) juga berlaku: ketika `model.inference_geo` agen ditetapkan ke `"us"`, token yang dikonsumsi oleh sesi yang menjalankan agen tersebut ditagih 1,1x dari tarif standar, pengali yang sama yang berlaku untuk inferensi khusus AS pada Messages API.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 83566175268d78ee61df338dbe8ab15b182b9ab3e2a4ffd88304281653584819
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 597b5c3b4d50ee0f3eb89097fa20c840a43b01400726d09e4dabc5d9388f6bbe
 ---
 
 ---
@@ -1388,37 +1388,36 @@ Claude sedang memanggil alat yang perlu Anda jalankan.
   ```
 
   ```java Java
-  void main() {
-      AnthropicClient client = AnthropicOkHttpClient.fromEnv();
+  AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
-      Tool weatherTool = Tool.builder()
-          .name("get_weather")
-          .description("Get the current weather in a given location")
-          .inputSchema(Tool.InputSchema.builder()
-              .properties(JsonValue.from(Map.of(
-                  "location", Map.of("type", "string", "description", "City and state")
-              )))
-              .putAdditionalProperty("required", JsonValue.from(List.of("location")))
-              .build())
-          .build();
+  Tool weatherTool = Tool.builder()
+      .name("get_weather")
+      .description("Get the current weather in a given location")
+      .inputSchema(Tool.InputSchema.builder()
+          .properties(JsonValue.from(Map.of(
+              "location", Map.of("type", "string", "description", "City and state")
+          )))
+          .putAdditionalProperty("required", JsonValue.from(List.of("location")))
+          .build())
+      .build();
 
-      Message response = client.messages().create(
-          MessageCreateParams.builder()
-              .model(Model.CLAUDE_OPUS_5_5)
-              .maxTokens(1024L)
-              .addTool(weatherTool)
-              .addUserMessage("What is the weather in San Francisco?")
-              .build()
-      );
+  Message response = client.messages().create(
+      MessageCreateParams.builder()
+          .model(Model.CLAUDE_OPUS_5_5)
+          .maxTokens(1024L)
+          .addTool(weatherTool)
+          .addUserMessage("What is the weather in San Francisco?")
+          .build()
+  );
 
-      if (response.stopReason().map(StopReason.TOOL_USE::equals).orElse(false)) {
-          // Ekstrak dan jalankan alat
-          for (ContentBlock block : response.content()) {
-              block.toolUse().ifPresent(toolUse -> {
-                  // Jalankan toolUse.name() dengan toolUse.input() lalu kembalikan hasilnya ke Claude
-              });
-          }
+  if (response.stopReason().map(StopReason.TOOL_USE::equals).orElse(false)) {
+      // Ekstrak dan jalankan alat
+      for (ContentBlock block : response.content()) {
+          block.toolUse().ifPresent(toolUse -> {
+              // Jalankan toolUse.name() dengan toolUse.input() lalu kembalikan hasilnya ke Claude
+          });
       }
+  }
   ```
 
   ```php PHP
@@ -1485,11 +1484,17 @@ Claude sedang memanggil alat yang perlu Anda jalankan.
   ```
 </CodeGroup>
 
-Respons `tool_use` juga dapat berisi blok `server_tool_use` yang `id`-nya tidak memiliki blok hasil yang cocok. Panggilan alat server tersebut belum selesai, dan respons ini tidak membawa hasilnya. Dalam kasus umum, Claude memanggil sebuah [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) dan salah satu alat klien Anda dalam kelompok panggilan alat paralel yang sama: API mengembalikan respons tanpa menjalankan alat server agar Anda dapat menjalankan alat klien terlebih dahulu. Tidak ada penanda lain untuk keadaan ini; deteksi dengan memeriksa `id` setiap blok `server_tool_use` atau `mcp_tool_use` apakah memiliki blok hasil yang cocok.
+#### Ketika alat server masih menunggu
+
+Claude dapat memanggil sebuah [alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) dan alat klien (alat yang dijalankan oleh kode Anda) dalam kelompok [panggilan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use) yang sama. API kemudian mengembalikan respons `tool_use` tanpa menjalankan alat server agar Anda dapat menjalankan alat klien terlebih dahulu.
+
+Panggilan yang menunggu adalah blok `server_tool_use` atau `mcp_tool_use` tanpa blok hasil. Tidak ada hal lain dalam respons yang menandainya. Setelah alat server berjalan, blok hasilnya, seperti `web_search_tool_result`, menyimpan `id` panggilan tersebut di field `tool_use_id`-nya.
 
 <Note>
   Dengan [pemanggilan alat terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling), bentuk respons yang sama memiliki arti yang berbeda. Blok `tool_use` klien berasal dari kode yang sedang berjalan di alat `code_execution` alih-alih langsung dari Claude, dan field `caller`-nya menyebutkan blok `code_execution` yang memanggilnya. Kode tersebut sudah dimulai: kode itu dijeda sambil menunggu blok `tool_result` Anda, dan mengirimkannya akan melanjutkan eksekusi alih-alih memulai alat yang ditunda. Blok hasil milik blok `code_execution` itu sendiri tiba setelah kode selesai, yang dapat memerlukan lebih dari satu putaran hasil alat. Pesan pengguna lanjutan itu sendiri sama dalam kedua kasus; dengan pemanggilan alat terprogram, kirimkan juga kembali `id` dari field `container` respons, seperti yang ditunjukkan di halaman tersebut.
 </Note>
+
+Respons campuran ini memiliki alat server yang sedang menunggu dan panggilan alat klien:
 
 ```json A mixed tool_use response
 {
@@ -1511,7 +1516,13 @@ Respons `tool_use` juga dapat berisi blok `server_tool_use` yang `id`-nya tidak 
 }
 ```
 
-Kelanjutannya adalah pesan pengguna berisi blok `tool_result`, satu untuk setiap blok `tool_use` dalam respons (lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls)), dengan dua aturan tambahan: pesan tersebut tidak boleh berisi apa pun selain blok `tool_result`, dan permintaan harus mempertahankan array `tools` yang sama. Permintaan lanjutan yang tidak lagi mendefinisikan alat server yang sedang menunggu akan gagal dengan 400 yang pesannya diakhiri ``but no `web_search` tool was provided``. API melampirkan hasil Anda ke giliran asisten yang masih terbuka, menjalankan alat server yang ditangguhkan (untuk eksekusi kode yang dijeda, melanjutkannya), dan meneruskan giliran tersebut. Untuk alat server yang dipanggil Claude secara langsung, `content` respons berikutnya dimulai dengan blok hasil yang menjawab `id` `server_tool_use` dari respons sebelumnya.
+Untuk melanjutkan dari respons campuran seperti ini, buat permintaan lanjutan:
+
+1. Pertahankan pesan-pesan sebelumnya dan tambahkan `content` respons tanpa diubah sebagai pesan `assistant`.
+2. Tambahkan pesan pengguna yang hanya berisi blok `tool_result`, satu untuk setiap blok `tool_use` klien. Panggilan yang menunggu tidak mendapatkannya.
+3. Kirim permintaan dengan array `tools` yang sama seperti sebelumnya agar alat server yang menunggu tetap terdefinisi.
+
+Untuk field-field blok `tool_result`, lihat [Menangani panggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/handle-tool-calls). Pesan pengguna dalam permintaan lanjutan terlihat seperti ini:
 
 ```json The follow-up user message
 {
@@ -1526,19 +1537,39 @@ Kelanjutannya adalah pesan pengguna berisi blok `tool_result`, satu untuk setiap
 }
 ```
 
-Menambahkan apa pun setelah blok `tool_result` dalam pesan pengguna tersebut, seperti teks, akan mengakhiri giliran asisten; untuk alat server yang dipanggil Claude secara langsung, permintaan kemudian gagal dengan 400 `invalid_request_error` yang menyebutkan alat server yang belum terselesaikan:
+API menambahkan hasil Anda ke giliran Claude yang belum selesai, menjalankan alat server yang menunggu, dan melanjutkan. Untuk alat server yang dipanggil Claude secara langsung, `content` respons berikutnya dimulai dengan blok hasil alat tersebut.
 
-```text wrap
-`web_search` tool use with id `srvtoolu_01HxbWnMRmbWyMfUtJKC45rA` was found without a corresponding `web_search_tool_result` block
-```
+Loop yang mengikuti langkah-langkah sebelumnya untuk setiap respons `tool_use` tidak perlu mendeteksi alat server yang menunggu. Pada permintaan berikutnya, pertahankan tiga pesan terpisah di `messages`, dengan urutan berikut: respons pertama, pesan `tool_result` Anda, dan respons berikutnya.
 
-Menghilangkan `tool_result`, atau menempatkannya setelah konten lain, akan gagal lebih awal dengan error standar `tool_use ids were found without tool_result blocks immediately after`. Untuk memberi Claude input tambahan, kirimkan sebagai pesan pengguna terpisah setelah giliran selesai.
+Dua kasus memerlukan satu field tambahan dalam permintaan lanjutan:
+
+* **Respons menyertakan `container`:** Kirimkan kembali ID-nya (lihat bagian [Penggunaan ulang container](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#container-reuse) pada alat eksekusi kode).
+* **Blok yang menunggu adalah [blok `mcp_tool_use`](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#mcp-tool-use-block):** Kirim `mcp_servers` yang sama seperti sebelumnya.
+
+Setiap kesalahan berikut dalam permintaan lanjutan akan gagal dengan 400 `invalid_request_error`. Pesan yang ditampilkan adalah untuk pencarian web. Untuk alat server lainnya, nama-nama di dalamnya berbeda.
+
+| Kesalahan                                                                                   | Pesan error mencakup                                                           |
+| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| `tools` tidak lagi mendefinisikan alat server yang menunggu                                 | ``but no `web_search` tool was provided``                                      |
+| Teks atau konten lain muncul setelah blok `tool_result`                                     | ``was found without a corresponding `web_search_tool_result` block``           |
+| Dengan pemanggilan alat terprogram, teks atau konten lain muncul setelah blok `tool_result` | `only tool_result blocks are allowed`                                          |
+| Teks atau konten lain muncul sebelum blok `tool_result`                                     | `` `tool_use` ids were found without `tool_result` blocks immediately after `` |
+| Sebuah blok `tool_result` hilang                                                            | `` `tool_use` ids were found without `tool_result` blocks immediately after `` |
+
+Konten setelah blok `tool_result` akan gagal karena mengakhiri giliran Claude saat alat server masih menunggu. Untuk memberi Claude input tambahan, lanjutkan hingga `stop_reason` sebuah respons bukan `tool_use` maupun `pause_turn`. Kemudian, kirimkan input tersebut sebagai pesan pengguna baru dalam daftar `messages` yang sama.
 
 ### pause\_turn
 
 Dikembalikan ketika loop sampling sisi server mencapai batas iterasinya saat menjalankan [server tool](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) seperti pencarian web. Batas default adalah 10 iterasi untuk setiap permintaan.
 
-Ketika hal ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok hasil yang sesuai. Agar Claude dapat menyelesaikan pemrosesan, lanjutkan percakapan dengan mengirimkan kembali respons apa adanya. Respons yang menyisakan blok `tool_use` klien yang menunggu Anda tidak pernah memiliki `stop_reason` bernilai `pause_turn`: ketika Claude berhenti untuk memanggil alat Anda, `stop_reason` bernilai [`tool_use`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use), dan Anda melanjutkannya dengan mengirimkan blok `tool_result` klien alih-alih respons itu sendiri.
+Ketika Claude berhenti untuk memanggil alat yang Anda jalankan, alasan berhentinya adalah [`tool_use`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use), tidak pernah `pause_turn`.
+
+Agar Claude dapat menyelesaikan giliran yang dijeda, buat permintaan baru:
+
+1. Pertahankan pesan-pesan sebelumnya dan tambahkan `content` respons tanpa diubah sebagai pesan `assistant`, termasuk blok `server_tool_use` apa pun yang tidak memiliki blok hasil.
+2. Kirim permintaan dengan `tools` yang sama seperti sebelumnya dan tanpa pesan pengguna setelah pesan `assistant`.
+
+Jika respons menyertakan `container`, kirimkan juga ID-nya kembali agar giliran tersebut mempertahankan file-filenya. Untuk detailnya, lihat bagian [Penggunaan ulang container](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#container-reuse) pada alat eksekusi kode. Contoh-contoh berikut menggunakan pencarian web dan tidak mengirimkan ID container:
 
 <CodeGroup>
   ```bash cURL
@@ -1752,9 +1783,7 @@ Ketika hal ini terjadi, respons mungkin berisi blok `server_tool_use` tanpa blok
   ```
 </CodeGroup>
 
-<Note>
-  Aplikasi Anda harus menangani `pause_turn` dalam setiap loop agen yang menggunakan alat server. Tambahkan respons asisten ke array messages Anda dan buat permintaan API lain agar Claude dapat melanjutkan.
-</Note>
+Aplikasi Anda harus menangani `pause_turn` dalam setiap loop agen yang menggunakan alat server. Untuk loop yang menangani jeda berulang dan mengirimkan kembali ID container, lihat [Implementasikan logika percobaan ulang untuk pause\_turn](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#implement-retry-logic-for-pause-turn).
 
 ### refusal
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 27739c5f6a9309d4184a6692d7f431fdf6806d87785c2cd859647e3d7ac632dd
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: e56010c9cface2980aed17a3ecfa80c2968956fd8d76da8f93732e843194d60f
 ---
 
 ---
@@ -352,6 +352,20 @@ Anthropic account team.
 
     format: date-time
 
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
+- `spend_limits_admin_api_writes_not_enabled` (HTTP status 403)
+
+  The organization cannot retrieve, set or delete spend limits with an Admin API credential.
+
 ### Example
 
 ```bash
@@ -534,6 +548,16 @@ Retrieve a spend limit by ID.
 
     format: date-time
 
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `spend_limits_admin_api_writes_not_enabled` (HTTP status 403)
+
+  The organization cannot retrieve, set or delete spend limits with an Admin API credential.
+
 ### Example
 
 ```bash
@@ -595,6 +619,20 @@ workspace limits through the API is in an early access preview.
   default: spend_limit_deleted
 
 - `id: string`
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
+- `spend_limits_admin_api_writes_not_enabled` (HTTP status 403)
+
+  The organization cannot retrieve, set or delete spend limits with an Admin API credential.
 
 ### Example
 
@@ -937,6 +975,16 @@ come in a fixed order that is not creation order.
 
 - `next_page: string or null`
 
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `organization_type_not_supported` (HTTP status 400)
+
+  The endpoint does not support the organization's type. Each endpoint's description says which organization types it supports.
+
 ### Example
 
 ```bash
@@ -1242,8 +1290,6 @@ curl https://api.anthropic.com/v1/organizations/spend_limits \
 
 - `BetaSpendLimitsAdminAPIWritesNotEnabledErrorDetails object`
 
-  The organization cannot retrieve, set or delete spend limits with an Admin API credential.
-
   - `error_code: "spend_limits_admin_api_writes_not_enabled"`
 
 ### Beta Spend Summary
@@ -1427,6 +1473,20 @@ curl https://api.anthropic.com/v1/organizations/spend_limits \
     default: spend_limit_deleted
 
   - `id: string`
+
+## Errors
+
+### spend_limits_admin_api_writes_not_enabled
+
+HTTP status 403
+
+- `"spend_limits_admin_api_writes_not_enabled"`
+
+  The organization cannot retrieve, set or delete spend limits with an Admin API credential.
+
+  - `details: BetaSpendLimitsAdminAPIWritesNotEnabledErrorDetails`
+
+    - `error_code: "spend_limits_admin_api_writes_not_enabled"`
 
 ## Spend Limits › Effective
 
@@ -1651,6 +1711,16 @@ organizations.
   - `spend_limit_id: string`
 
 - `next_page: string or null`
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `organization_type_not_supported` (HTTP status 400)
+
+  The endpoint does not support the organization's type. Each endpoint's description says which organization types it supports.
 
 #### Example
 
@@ -2666,6 +2736,16 @@ the member was blocked on. Anthropic emails the requester unless
 
   - `"pending"`
 
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
 #### Example
 
 ```bash
@@ -2994,6 +3074,16 @@ Idempotent on `denied`; denying an already-`approved` request returns
     - `"denied"`
 
     - `"pending"`
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 #### Example
 

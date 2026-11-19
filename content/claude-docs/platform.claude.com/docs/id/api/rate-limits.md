@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: e2220aefe787f9606b0eea5499a549533db940ba52174e64fa9bd467dfc1e155
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: dc0c54d50911cb62c11caac3ba9f123547b1e1ff3d857d8432dd3c7af603c039
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Untuk memitigasi penyalahgunaan dan mengelola kapasitas pada API, t
 ---
 
 <Note>
-  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Batas laju di halaman ini berlaku untuk Claude Platform on AWS, tetapi penagihan dan pengelolaan batasnya berbeda. Penagihan dilakukan melalui AWS Marketplace (bukan pembelian kredit Anthropic). Organisasi di Claude Platform on AWS ditempatkan pada tingkat Start dan dapat berpindah ke tingkat yang lebih tinggi secara otomatis seiring mereka membangun riwayat faktur AWS Marketplace yang telah dibayar. Untuk meminta batas yang lebih tinggi, hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com); alur **Minta kenaikan tingkat** tidak tersedia. Konfigurasi batas laju per workspace dan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) tidak tersedia di Claude Platform on AWS. Untuk detailnya, lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
+  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Batas laju di halaman ini berlaku untuk Claude Platform on AWS, tetapi penagihan dan pengelolaan batasnya berbeda. Penagihan dilakukan melalui AWS Marketplace (bukan pembelian kredit Anthropic). Organisasi baru di Claude Platform on AWS ditempatkan pada tingkat Start. Organisasi tersebut dapat berpindah ke tingkat yang lebih tinggi secara otomatis seiring mereka membangun riwayat faktur AWS Marketplace yang telah dibayar. Konfigurasi batas laju per workspace dan [fast mode](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (mode cepat) tidak tersedia di Claude Platform on AWS. Untuk detailnya, lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
 </Note>
 
 Ada dua jenis batas:
@@ -27,7 +27,7 @@ API menerapkan batas yang dikonfigurasi oleh layanan di tingkat organisasi, teta
 * Batas dirancang untuk mencegah penyalahgunaan API, sekaligus meminimalkan dampak pada pola penggunaan pelanggan yang umum.
 * Batas ditentukan berdasarkan **tingkat penggunaan** (“usage tier”). Organisasi ditempatkan pada suatu tingkat secara otomatis berdasarkan riwayat penggunaan dan status akun, serta dapat berpindah ke tingkat yang lebih tinggi seiring waktu saat mereka menggunakan API.
 * Organisasi baru dan organisasi dengan riwayat penggunaan terbatas mungkin memulai di tingkat Evaluation, dengan batas di bawah batas standar yang ditampilkan di halaman ini selagi riwayat akun dibangun. Batas awal ini merupakan bagian dari cara Anthropic mencegah penipuan dan penyalahgunaan, dan batas tersebut meningkat secara otomatis seiring organisasi Anda membangun riwayat penggunaan.
-* Batas ditetapkan di tingkat organisasi. Anda dapat melihat tingkat dan batas organisasi Anda saat ini di halaman [Batas laju](https://platform.claude.com/usage/limits) (`platform.claude.com/usage/limits`) di [Claude Console](https://platform.claude.com/).
+* Batas ditetapkan di tingkat organisasi. Anda dapat melihat tingkat dan batas organisasi Anda saat ini di halaman [Batas laju](https://platform.claude.com/usage/limits) (`platform.claude.com/usage/limits`) di [Claude Console](https://platform.claude.com/). Di Claude Models on Google Cloud (Anthropic managed) dan Claude Platform on AWS, halaman tersebut menampilkan **Tingkat Custom** untuk setiap organisasi, apa pun tingkat penggunaannya.
 * Anda mungkin mencapai batas laju dalam interval waktu yang lebih pendek. Misalnya, laju 60 permintaan per menit (RPM) mungkin diberlakukan sebagai 1 permintaan per detik. Lonjakan permintaan singkat dapat melampaui batas dan memicu error batas laju.
 * Batas berikut adalah batas standar untuk setiap tingkat. Jika Anda memerlukan batas yang lebih tinggi, lihat [Meminta batas yang lebih tinggi](https://platform.claude.com/docs/id/api/rate-limits#requesting-higher-limits).
 * API menggunakan [algoritma token bucket](https://en.wikipedia.org/wiki/Token_bucket) untuk melakukan pembatasan laju. Ini berarti kapasitas Anda terus diisi ulang hingga batas maksimum Anda, bukan direset pada interval tetap.
@@ -182,7 +182,7 @@ Setiap baris dalam tabel berikut memiliki batas RPM, ITPM, dan OTPM tersendiri. 
   </Tab>
 
   <Tab title="Tingkat Custom">
-    Jika Anda memerlukan batas yang lebih tinggi dari tingkat Scale, hubungi tim penjualan melalui halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console.
+    Jika Anda memerlukan batas yang lebih tinggi dari tingkat Scale, hubungi tim penjualan melalui halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Di Claude Models on Google Cloud (Anthropic managed) dan Claude Platform on AWS, gunakan **Minta batas lebih tinggi** di halaman tersebut jika Anda melihatnya.
   </Tab>
 </Tabs>
 
@@ -236,7 +236,7 @@ Message Batches API memiliki set batas lajunya sendiri, yang dibagikan di semua 
   </Tab>
 
   <Tab title="Tingkat Custom">
-    Jika Anda memerlukan batas yang lebih tinggi dari tingkat Scale, hubungi tim penjualan melalui halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console.
+    Jika Anda memerlukan batas yang lebih tinggi dari tingkat Scale, hubungi tim penjualan melalui halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Di Claude Models on Google Cloud (Anthropic managed) dan Claude Platform on AWS, gunakan **Minta batas lebih tinggi** di halaman tersebut jika Anda melihatnya.
   </Tab>
 </Tabs>
 
@@ -285,7 +285,7 @@ Selain menyediakan grafik token dan permintaan, halaman **Penggunaan** menyediak
 Untuk meminta batas laju yang lebih tinggi atau batas pengeluaran bulanan yang lebih tinggi, gunakan **Minta kenaikan tingkat** di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console. Dukungan Anthropic juga dapat menaikkan batas; untuk kebutuhan mendesak, hubungi [dukungan Anthropic](https://support.claude.com).
 
 <Note>
-  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Alur **Minta kenaikan tingkat** tidak tersedia. Hubungi perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com), dan sertakan model yang perlu dinaikkan batasnya, token input dan output puncak per menit untuk setiap model, serta perkiraan porsi input Anda yang merupakan konteks yang di-cache atau berulang. Lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
+  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Di halaman **Batas laju**, tombol untuk batas laju dan batas pengeluaran adalah **Minta batas lebih tinggi**. Untuk menggunakannya, Anda memerlukan [peran Admin](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#signing-in) di Claude Console serta tindakan IAM `ListAccountRateLimitIncreaseRequests` dan `CreateAccountRateLimitIncreaseRequest`. Untuk hal-hal yang perlu disertakan, siapa yang tidak dapat menggunakan tombol tersebut, dan cara lain untuk meminta, lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
 </Note>
 
 ## Menetapkan batas yang lebih rendah untuk workspace
@@ -298,7 +298,8 @@ Contoh: Jika batas organisasi Anda adalah 40.000 token input per menit dan 8.000
 
 Catatan:
 
-* Anda tidak dapat menetapkan batas pengeluaran pada workspace default.
+* Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), Anda tidak dapat menetapkan batas pengeluaran pada workspace default.
+* Batas pengeluaran pada workspace default mungkin tidak menghitung atau menghentikan sebagian penggunaan di workspace tersebut. Ini mencakup penggunaan dari Claude Console (seperti playground) dan dari sesi Claude Managed Agents. Ini juga mencakup penggunaan Claude Code atau Claude Desktop ketika seorang anggota masuk dengan akun Claude Console dan menggunakan workspace default. [Batas pengeluaran](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) organisasi Anda berlaku untuk semua penggunaan ini.
 * Jika tidak ditetapkan, batas workspace sama dengan batas organisasi.
 * Batas workspace ditetapkan untuk setiap jenis pembatas (seperti permintaan per menit, token input per menit, atau token output per menit).
 * Batas tingkat organisasi selalu berlaku, meskipun jumlah batas workspace lebih besar.

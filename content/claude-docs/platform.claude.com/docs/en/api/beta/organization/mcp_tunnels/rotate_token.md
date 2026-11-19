@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/rotate_token
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: d21f7bdc39ce3a4ceb4a98391226a6ca598a71e8da925b9f661752d0bbbfe514
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 12b4fd9e718db1f8d89a7b43a9591a590aa42e419ea04c5ec5cc37892c7ea6ad
 ---
 
 ---
@@ -204,6 +204,16 @@ restarted after rotation must use the new value. An optional
   - `tunnel_token: string`
 
     The tunnel's connection token.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

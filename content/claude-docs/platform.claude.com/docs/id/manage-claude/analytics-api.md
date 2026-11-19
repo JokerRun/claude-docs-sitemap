@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/analytics-api
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 973da6512641e61fd0d684ba4c961a56f18105c98fa633a9f1bde31dfe1c884b
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 66702fb0fcf50d731de5a95ff0fae1ea8fdd00936f97827be1d01ede12e5cd85
 ---
 
 ---
@@ -25,7 +25,12 @@ Kedua API tersebut menggunakan jenis kunci yang berbeda, yang dibuat di tempat b
 | **Claude Code Analytics API**       | Kunci Admin API     | Halaman [Kunci admin](https://platform.claude.com/settings/admin-keys) di Claude Console | Admin organisasi            | Metrik Claude Code harian untuk setiap pengguna: sesi, baris kode, commit, pull request, penerimaan alat, dan estimasi biaya per model                                      |
 | **Claude Enterprise Analytics API** | Kunci Analytics API | [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access)   | Pemilik utama               | Keterlibatan dan adopsi di seluruh organisasi (aktivitas pengguna, ringkasan pengguna aktif, penggunaan proyek, skill, dan konektor), ditambah laporan biaya dan penggunaan |
 
-Jenis kunci ini tidak dapat dipertukarkan: kunci Admin API tidak dapat memanggil Claude Enterprise Analytics API, dan kunci Analytics API tidak dapat memanggil Admin API. Satu-satunya pengecualian adalah [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang dipanggil oleh organisasi Claude Enterprise dengan kunci Analytics API mereka. Kedua API analitik produk muncul di bawah [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization), tetapi keduanya adalah API terpisah dengan jenis kunci terpisah. Jika organisasi Anda menggunakan Claude Platform dan Claude Enterprise sekaligus, Anda dapat menyediakan kedua kunci dan menggunakan masing-masing API untuk datanya sendiri.
+Kedua jenis kunci tersebut berbeda dalam hal apa yang dapat dipanggilnya:
+
+* **Kunci Admin API** (`sk-ant-admin01-...`) tidak dapat memanggil Claude Enterprise Analytics API.
+* **Kunci Analytics API** adalah kunci yang dibuat di claude.ai dengan scope `read:analytics`. Selain Claude Enterprise Analytics API, kunci ini berfungsi dengan [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) dan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama (legacy). Untuk memanggil endpoint Admin API seperti anggota dan undangan, kunci yang dibuat di claude.ai memerlukan scope lain (lihat [Memilih scope untuk kunci Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key)).
+
+Claude Code Analytics API dan Claude Enterprise Analytics API sama-sama muncul di bawah [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization), tetapi keduanya adalah API terpisah. Jika organisasi Anda menggunakan Claude Platform dan Claude Enterprise sekaligus, Anda dapat menyediakan kedua kunci dan menggunakan masing-masing API untuk datanya sendiri.
 
 <Note>
   Mencari data penggunaan token dan biaya, bukan analitik produk? Lihat [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang melayani organisasi Claude Console maupun Claude Enterprise.

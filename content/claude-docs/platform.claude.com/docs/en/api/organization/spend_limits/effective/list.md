@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/spend_limits/effective/list
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: ea562a6ce1d19c1cbf3d13817641b9e6aa6bd5d3be3c2f8f65f77b964618649f
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 31bce85fec613c1fc80de1fc6672fa79c5bf279b1341754e1c1bb0106963adac
 ---
 
 ---
@@ -231,6 +231,16 @@ organizations.
   - `spend_limit_id: string`
 
 - `next_page: string or null`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `organization_type_not_supported` (HTTP status 400)
+
+  The endpoint does not support the organization's type. Each endpoint's description says which organization types it supports.
 
 ## Example
 

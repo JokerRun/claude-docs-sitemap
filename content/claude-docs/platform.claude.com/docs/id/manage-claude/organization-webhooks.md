@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/organization-webhooks
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 63b3d6bf102e4a16491f2d38a4e47e66666d1030d74ceabbfbe1e76242a9abfa
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f4fba939494cd3736d0f2e18cfc5741f5dff492e676bbcd53e8d460679d4f3e6
 ---
 
 ---
@@ -22,8 +22,6 @@ Endpoint webhook organisasi menerima sebuah event ketika Anthropic membatasi ata
   Pengiriman event belum aktif: Anthropic tidak mengirimkan kedua event tersebut, sehingga endpoint yang Anda daftarkan tidak menerima apa pun. Anda dapat mendaftarkan endpoint dan membangun handler Anda berdasarkan format event di halaman ini.
 </Note>
 
-Setiap anggota organisasi Anda dapat menampilkan daftar endpoint webhook organisasi dan melihatnya dengan API, tetapi hanya anggota dengan peran admin, pemilik, atau pemilik utama yang dapat membuat, mengubah, atau menghapusnya, atau mengganti signing secret-nya.
-
 ## Sebelum Anda memulai
 
 Anda memerlukan hal-hal berikut:
@@ -35,6 +33,11 @@ Anda memerlukan hal-hal berikut:
   * [Kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys).
   * [Token bearer OAuth](https://platform.claude.com/docs/id/manage-claude/admin-api#oauth-bearer-token) dengan scope `org:admin`.
   * [Kunci pribadi atau kunci akun layanan](https://platform.claude.com/docs/id/manage-claude/authentication#key-types) yang tidak dibatasi pada sebuah workspace.
+
+Dengan kunci Admin API, Anda dapat membuat setiap permintaan di [Mengelola endpoint](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#manage-endpoints). Dengan token `org:admin`, Anda dapat membuat permintaan yang sama. Jika token tersebut terikat pada workspace selain [workspace default](https://platform.claude.com/docs/id/manage-claude/workspaces#how-workspaces-work) organisasi Anda, Anda tidak dapat membuat satu pun permintaan tersebut. Dengan kunci pribadi atau kunci akun layanan, permintaan yang dapat Anda buat bergantung pada [peran organisasi](https://platform.claude.com/docs/id/manage-claude/admin-api#organization-roles-and-permissions) akun tersebut:
+
+* Untuk menampilkan daftar atau melihat endpoint webhook: `claude_code_user`, `developer`, atau `admin`
+* Untuk membuat, mengubah, atau menghapus endpoint webhook, atau untuk mengganti signing secret: `admin`
 
 ## Jenis event
 

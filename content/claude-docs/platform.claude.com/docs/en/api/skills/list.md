@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/skills/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2392d833fe42e185cc522b00a88a8cfd5ec8e83f40ca2fad5436584e57a211e8
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 3e6134a2392afffb998daae402192667611ac8786228845f8c3a0c4992e0439e
 ---
 
 ---
@@ -132,6 +132,20 @@ List Skills
   Token for fetching the next page of results.
 
   If `null`, there are no more results available. Pass this value to the `page` parameter in the next request to get the next page.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `claude_code_key_creator_not_member` (HTTP status 400)
+
+  The API key belongs to the Claude Code workspace, and the user who created it is no longer a member of the organization or of that workspace.
+
+- `organization_on_hold` (HTTP status 400)
+
+  Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
 
 ## Example
 

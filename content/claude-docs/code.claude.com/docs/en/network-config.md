@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 2e5c8c9b8d62a7de8a4f164dd80e278c3fb248a39c197da47585ee4a5737425a
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 683cdae881bda2f138e44c1f3af905b6269a0a3ecd1705c2a549fe1838a78c10
 ---
 
 > ## Documentation Index
@@ -156,6 +156,8 @@ When the session's launch environment already sets a variable, Claude Code [igno
 ## Verify your configuration
 
 You usually find out about a wrong proxy address or a bad certificate path from a [connection or certificate error](https://code.claude.com/docs/en/errors.md#network-and-connection-errors) on a later request, since Claude Code doesn't validate most of these settings when it reads them. The one setting it checks at startup is the proxy URL: when it can't parse the value, such as one missing the `http://` scheme, Claude Code stops launch with an error naming the variable to fix.
+
+With Claude Code v2.1.327 or later, some starts go ahead on an `HTTPS_PROXY` value that lacks `http://`, where neither standard input nor standard output is a terminal. That is so when Claude Desktop, an SDK, or cron starts Claude Code. Write the proxy value as a complete URL, such as `http://proxy.example.com:8080`, even if a plain `host:port` works in some of your sessions.
 
 To confirm your configuration loaded before you send a request, start Claude Code with debug logging:
 

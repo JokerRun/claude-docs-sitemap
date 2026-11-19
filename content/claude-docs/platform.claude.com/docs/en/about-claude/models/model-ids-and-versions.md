@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/model-ids-and-versions
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 19e1425eda664b74206a891efa4d9a901640f65d8e8fd71b1faeb8a05de8d8e1
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 821abd1b54ba7704c07c9fc7337e42c58f53da2fbd9956fd1fce3f307a3958bf
 ---
 
 ---
@@ -41,7 +41,7 @@ Claude Opus 4.6 is the last Bedrock model ID to include the `-v1` suffix (`anthr
 
 On the `bedrock-runtime` endpoint, models that AWS serves through cross-region inference, including Claude Fable 5.2 and Claude Mythos 5.2, take an inference profile ID: the base model ID with a prefix such as `global.` or `us.`, for example `global.anthropic.claude-fable-5-2`. See [API model IDs](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids).
 
-On Claude Models on Google Cloud (Google managed), the format matches the Claude API.
+On [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) and [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), the format matches the Claude API.
 
 ### Before the 4.6 generation
 
@@ -60,6 +60,8 @@ anthropic.claude-{name}-{major}-{minor}-{YYYYMMDD}-v1:0
 ```
 
 For example: `anthropic.claude-sonnet-4-5-20250929-v1:0`
+
+On [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#api-model-ids), the format matches the Claude API.
 
 On Claude Models on Google Cloud (Google managed), the date is separated with `@`:
 
@@ -89,4 +91,4 @@ Occasionally, infrastructure updates produce minor differences in observable beh
 
 ## Current model IDs
 
-For the full list of current model IDs and their equivalents on Claude Models on Google Cloud (Google managed) and Amazon Bedrock, see [Models overview](https://platform.claude.com/docs/en/models/overview).
+For the current model IDs on every platform, see [Models overview](https://platform.claude.com/docs/en/models/overview).

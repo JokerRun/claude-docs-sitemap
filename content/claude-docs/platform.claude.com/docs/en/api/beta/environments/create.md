@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: af4888cb5569a4260def1264453f79fdc9157de68b37e32ef3248b4cab745817
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 5bc03e3049900a8262aca74b64f068c4cb36d64214b65b18504bb38fb417ee1c
 ---
 
 ---
@@ -421,6 +421,24 @@ Create a new environment with the specified configuration.
     - `"organization"`
 
     - `"account"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `claude_code_key_creator_not_member` (HTTP status 400)
+
+  The API key belongs to the Claude Code workspace, and the user who created it is no longer a member of the organization or of that workspace.
+
+- `organization_on_hold` (HTTP status 400)
+
+  Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
+
+- `environment_create_disabled` (HTTP status 403)
+
+  Anthropic has turned off creating environments for this organization. Existing environments still work.
 
 ## Example
 

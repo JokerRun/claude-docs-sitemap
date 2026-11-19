@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api-access
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: bfc317d6639bca5c48095f42128d86c12fa091a691d2e551116ccb161996b0ba
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 267c12fecec3acaf3d259b8a4ac114351b7b2f96c1503779f54039c893a34e8e
 ---
 
 ---
@@ -85,7 +85,7 @@ Penyiapan terdiri dari satu alur: aktifkan Compliance API untuk organisasi Anda,
     | ----------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | `read:compliance_activities`  | Membaca Activity Feed. Kunci yang mencakup organisasi induk membaca peristiwa untuk organisasi induk dan semua organisasi tertaut.                                                                                                                                                                                                                                                                                                                                            |
     | `read:compliance_user_data`   | Membaca chat, pesan, file, proyek, metadata dan transkrip sesi pengguna, pengguna organisasi, preferensi pengguna, dan anggota grup. Bersama dengan `read:compliance_org_data`, juga membaca siapa yang membuat [atestasi Security posture](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#who-attested-and-comments), jika endpoint mengembalikannya: ID pengguna.                                                          |
-    | `delete:compliance_user_data` | Menghapus chat, file, dan proyek pengguna                                                                                                                                                                                                                                                                                                                                                                                                                                     |
+    | `delete:compliance_user_data` | Menghapus chat, file, dan proyek pengguna.                                                                                                                                                                                                                                                                                                                                                                                                                                    |
     | `read:compliance_org_data`    | Membaca metadata organisasi (nama, jenis, peran, dan grup) serta pengaturan efektif yang berlaku untuk organisasi di bawah organisasi induk. Juga membaca [Security posture](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference) milik organisasi: hasil saat ini dari sebagian besar kontrol keamanannya, beserta atestasi yang respons tampilkan. Daftar pengguna dan keanggotaan grup memerlukan `read:compliance_user_data`. |
 
     Dengan Plugins API, `read:compliance_org_data` juga membaca inventaris plugin dan marketplace plugin organisasi Anda melalui Admin API, termasuk plugin pribadi anggota beserta file-filenya. Inventaris tersebut mengidentifikasi anggota: inventaris memuat ID pengguna setiap anggota yang memiliki atau membuat plugin, atau yang menerima plugin yang dibagikan secara individual, serta alamat email pembuat plugin selama mereka masih menjadi anggota; lihat [Membaca plugin dan marketplace plugin](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#read-plugins-and-plugin-marketplaces).
@@ -163,6 +163,8 @@ Untuk merotasi kunci tanpa gangguan layanan:
 Kursor paginasi yang disimpan sebelum rotasi tetap valid: kursor dicakup ke organisasi, bukan ke kunci.
 
 Jika Compliance Access Key bocor, segera hapus, audit [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) untuk aktivitas `compliance_api_accessed` oleh kunci yang disusupi, dan rotasi kredensial hilir apa pun yang dapat dijangkau oleh kunci yang bocor tersebut. Teruskan `activity_types[]=compliance_api_accessed` untuk membatasi cakupan kueri, lalu di klien Anda, pertahankan aktivitas yang `actor.type`-nya adalah `api_actor` dan `actor.api_key_id`-nya cocok dengan kunci yang disusupi; lihat [Memahami objek Activity](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#understand-the-activity-object) untuk skema actor.
+
+Beberapa panggilan ke Compliance API tidak meninggalkan aktivitas apa pun di Activity Feed, termasuk panggilan yang berhasil. Jadi, tidak ditemukannya aktivitas `compliance_api_accessed` untuk kunci tersebut tidak menunjukkan bahwa kunci tersebut tidak digunakan.
 
 ## Langkah selanjutnya
 

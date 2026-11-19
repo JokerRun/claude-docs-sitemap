@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-sessions
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 73482b5afbde1615a55b503095c9ce11d8824b108243e5de7d11d65af7e2d8e2
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 42185c303b3b84feedca125233fa613807c5c95dc60b76cda7d79a01dfbeae32
 ---
 
 ---
@@ -35,7 +35,7 @@ Tabel berikut memetakan setiap produk, beserta tempat produk tersebut berjalan, 
 | Claude for Microsoft 365 (add-in Claude untuk Excel, PowerPoint, Word, dan Outlook), berjalan di aplikasi desktop atau web Microsoft 365                                                     | Endpoint sesi lokal                                              | `office_agents/excel`, `office_agents/powerpoint`, `office_agents/word`, atau `office_agents/outlook` |
 | Add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, berjalan di aplikasi Google tersebut                                                                                      | Endpoint sesi lokal                                              | `office_agents/google_docs`, `office_agents/google_sheets`, atau `office_agents/google_slides`        |
 | Claude in Chrome (chat bawaan ekstensi browser), berjalan di mesin pengguna                                                                                                                  | Endpoint sesi lokal                                              | `claude_in_chrome`                                                                                    |
-| Sesi Cowork yang dimulai di claude.ai web atau seluler, berjalan di cloud dalam lingkungan yang dikelola Anthropic                                                                           | Endpoint sesi jarak jauh (`/v1/compliance/apps/sessions/remote`) | `cowork_remote`                                                                                       |
+| Sesi Cowork yang berjalan di cloud dalam lingkungan yang dikelola Anthropic, termasuk sesi yang dimulai di claude.ai web atau seluler dan eksekusi tugas terjadwal Cowork di cloud           | Endpoint sesi jarak jauh (`/v1/compliance/apps/sessions/remote`) | `cowork_remote`                                                                                       |
 | Sesi [Claude Tag](https://claude.com/docs/claude-tag/overview) yang dimulai di Slack, berjalan di cloud dalam lingkungan yang dikelola Anthropic atau di pool runner yang di-hosting sendiri | Endpoint sesi jarak jauh                                         | `claude_tag`                                                                                          |
 
 `office_agents` saja tidak menunjukkan dari aplikasi mana sesi berasal, dan sesi tersebut dapat berasal dari Claude for Microsoft 365 atau add-in Google. Lihat deskripsi `product_surface` di bagian [Sesi di mesin pengguna](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions).
@@ -355,12 +355,12 @@ curl --fail-with-body -sS -G \
     {
       "id": "cse_01TkNpRsUvWxYzAbCdEfGhJ4",
       "organization_uuid": "91012d09-e48b-438e-a489-1bebfd8fa6f9",
-      "user": null,
-      "agent_id": "cagt_01MnPqRsTuVwXyZaBcDeFgH8",
-      "started_by_user": {
+      "user": {
         "id": "user_01WxYzAbCdEfGhJkMnPqRsTu",
         "email_address": "user@example.com"
       },
+      "agent_id": null,
+      "started_by_user": null,
       "status": "archived",
       "created_at": "2026-06-28T09:15:22Z",
       "updated_at": "2026-06-28T09:47:10Z",
@@ -374,15 +374,17 @@ curl --fail-with-body -sS -G \
 
 Hasil diurutkan dalam urutan kronologis terbalik (terbaru terlebih dahulu) berdasarkan `created_at` dan dibatasi hingga `limit` hasil untuk setiap respons (default 100, maksimum 500). Endpoint ini melakukan paginasi dengan token `page` dan `next_page` (lihat [Memaginasi hasil](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#paginate-results)): teruskan nilai `next_page` dari respons sebagai parameter kueri `page` pada permintaan berikutnya, dan berhenti ketika `next_page` bernilai `null`.
 
-Sebuah sesi dimiliki oleh pengguna atau agen, tidak pernah keduanya. Untuk sesi milik pengguna, `user` memuat ID dan alamat email pemilik (`email_address` bernilai `null` ketika pengguna tidak lagi menjadi anggota organisasi yang dapat dibaca oleh kunci Anda) dan `agent_id` bernilai `null`. Untuk sesi milik agen (misalnya, eksekusi tugas terjadwal Cowork di cloud, atau sesi Claude Tag yang dimulai oleh mention di Slack), `user` bernilai `null`, `agent_id` memuat ID agen (awalan `cagt_`), dan `started_by_user` mengidentifikasi manusia yang memulai eksekusi tersebut jika tercatat, sehingga nilainya dapat `null` pada sesi Claude Tag; pada sesi milik pengguna, `started_by_user` bernilai `null`. Setiap eksekusi tugas terjadwal adalah sesi terpisah, dan tidak ada field sesi yang memuat nama atau jadwal tugas.
+Sebuah sesi dimiliki oleh pengguna atau agen, tidak pernah keduanya. Untuk sesi milik pengguna, `user` memuat ID dan alamat email pemilik (`email_address` bernilai `null` ketika pengguna tidak lagi menjadi anggota organisasi yang dapat dibaca oleh kunci Anda) dan `agent_id` bernilai `null`. Untuk sesi milik agen (misalnya, sesi Claude Tag yang dimulai oleh mention di Slack), `user` bernilai `null` dan `agent_id` memuat ID agen (awalan `cagt_`). Pada sesi tersebut, `started_by_user` mengidentifikasi manusia yang memulai sesi jika tercatat, sehingga nilainya dapat `null` pada sesi Claude Tag. Pada sesi milik pengguna, `started_by_user` bernilai `null`.
+
+Setiap eksekusi tugas terjadwal Cowork di cloud berlangsung dalam sesi yang memiliki pemilik yang sama dengan tugas tersebut. Ketika pengguna membuat tugas di Cowork, sesi-sesi tersebut dimiliki oleh pengguna: `user` mengidentifikasi pengguna tersebut, dan `agent_id` serta `started_by_user` bernilai `null`. Filter `user_ids[]` yang menyebutkan pengguna tersebut mencocokkan sesi-sesi ini. Sebuah eksekusi dapat memulai sesi baru atau melanjutkan sesi yang sudah ada. Ketika eksekusi melanjutkan sesi yang sudah ada, `created_at` sesi tersebut adalah waktu sesi dimulai, bukan waktu eksekusi berlangsung. Tidak ada field sesi yang menandai sesi sebagai eksekusi terjadwal atau memuat nama atau jadwal tugas.
 
 `claude_project_id` adalah ID [proyek](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-projects-and-attachments) claude.ai tempat sesi tersebut berada (awalan `claude_proj_`), atau `null` ketika sesi tidak berada dalam proyek.
 
 `status` adalah salah satu dari `pending`, `active`, `paused`, `archived`, atau `failed`. Sebuah sesi berstatus `pending` selama sedang disiapkan; sesi `pending` belum memiliki transkrip, dan endpoint messages mengembalikan 404 untuknya hingga penyiapan selesai. Sesi yang telah dihapus tidak pernah dikembalikan.
 
-`product_surface` (string atau `null`) mengidentifikasi produk yang membuat sesi. Endpoint ini saat ini mengembalikan sesi dengan salah satu dari dua nilai `product_surface`: `cowork_remote`, untuk sesi Cowork yang dimulai di claude.ai web atau seluler, dan `claude_tag`, untuk sesi Claude Tag yang dimulai di Slack.
+`product_surface` (string atau `null`) mengidentifikasi produk yang membuat sesi. Endpoint ini saat ini mengembalikan sesi dengan salah satu dari dua nilai `product_surface`. `cowork_remote` untuk sesi Cowork di cloud, termasuk sesi yang dimulai di claude.ai web atau seluler dan eksekusi tugas terjadwal Cowork di cloud. `claude_tag` untuk sesi Claude Tag yang dimulai di Slack.
 
-Untuk mengambil chat dalam pengalaman Claude terpadu, termasuk bagian yang berjalan di cloud, gunakan endpoint chat ([Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list)), bukan endpoint sesi jarak jauh.
+Untuk mengambil chat dalam pengalaman Claude terpadu, termasuk bagian yang berjalan di cloud, gunakan endpoint chat ([Mendapatkan pesan chat](https://platform.claude.com/docs/id/api/compliance/apps/chats/messages/list)), bukan endpoint sesi jarak jauh. Daftar sesi jarak jauh juga mengembalikan sesi tempat chat tersebut berlanjut, sebagai `cowork_remote`, sehingga ekspor chat dan sesi jarak jauh sekaligus akan memuat pekerjaan tersebut dua kali.
 
 <Note>
   **Bangun handler yang kompatibel ke depan.** Teruskan nilai `status` dan `product_surface` yang tidak dikenali, dan abaikan field yang tidak diharapkan oleh handler Anda, sehingga integrasi Anda tetap berfungsi saat status dan permukaan produk baru dirilis.

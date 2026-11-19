@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/migration-guide
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: a823d0993a92ff58f058c737b4c7cf409bd229e6bb87033202f53bad2b3fb689
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 97b28f89bf50a2ed19a0c67e3a29f6318031bd5edc2c1e9c9bf42a1cda00f4bc
 ---
 
 ---
@@ -309,10 +309,17 @@ Telusuri grup-grup ini dari atas ke bawah dan berhentilah setelah grup yang meny
 ### Claude Opus 4.7 atau sebelumnya
 
 * Jalankan sweep [effort](https://platform.claude.com/docs/id/build-with-claude/effort) baru pada eval Anda sendiri alih-alih membawa pengaturan yang disesuaikan untuk model sebelumnya.
+
 * Hapus header beta jendela konteks apa pun.
+
 * Jika Anda menyusun ulang riwayat percakapan untuk memperbarui instruksi, beralihlah ke pesan sistem di tengah percakapan. Setelah penyusunan ulang, sebuah permintaan dapat mendapatkan error 400, dan hit cache prompt hilang.
+
 * Verifikasi bahwa penanganan alasan berhenti Anda membaca `stop_details` pada penolakan.
-* Jika Anda menginginkan mode cepat, yang ditolak Claude Opus 4.7, atur `speed: "fast"` pada permintaan Claude API Anda.
+
+* Jika Anda menginginkan mode cepat, yang ditolak Claude Opus 4.7, periksa bahwa [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) mencantumkan platform Anda. Kemudian, aktifkan:
+
+  * **Microsoft Foundry:** Kirim permintaan ke deployment model mode cepat.
+  * **Platform lain:** Atur `speed: "fast"`.
 
 ### Claude Opus 4.6 atau sebelumnya
 
@@ -1217,7 +1224,9 @@ Item-item ini tidak menambahkan perubahan yang merusak kompatibilitas di luar ya
 
 4. **Detail penghentian penolakan:** Ketika model menolak suatu permintaan, Claude Opus 5.5 mengembalikan objek `stop_details` yang menyebutkan kategori penolakan, bersama dengan alasan berhenti `refusal`. Anda tidak dapat menonaktifkannya. Claude Opus 4.7 mengembalikan objek yang sama, jadi tidak ada yang perlu diubah jika penanganan alasan berhenti Anda sudah membacanya. Jika belum, lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons). Claude Opus 5.5 menolak dalam lebih banyak kategori; lihat [Classifier keamanan dan fallback](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#safety-classifiers-and-fallback).
 
-5. **Mode cepat:** Claude Opus 5.5 mendukung [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) di Claude API dan di [beberapa platform cloud](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability). Mode cepat tidak tersedia di Claude Opus 4.7, di mana permintaan dengan `speed: "fast"` mengembalikan error. Untuk menggunakannya di Claude API, atur `speed: "fast"` pada permintaan Anda.
+5. **Mode cepat:** Claude Opus 5.5 mendukung [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) di Claude API dan di [beberapa platform cloud](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability). Mode cepat tidak tersedia di Claude Opus 4.7, di mana permintaan dengan `speed: "fast"` mengembalikan error.
+
+   Untuk menggunakan mode cepat, atur `speed: "fast"` pada permintaan Anda. Di Microsoft Foundry, kirim permintaan ke deployment model mode cepat sebagai gantinya.
 
 6. **Toolset penggunaan komputer dan alat penggunaan browser:** Claude Opus 5.5 mendukung [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) sebagai toolset `computer_toolset_20260801` dan [alat penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) untuk tugas di dalam halaman web. Claude Opus 4.7 tidak mendukung keduanya. Untuk memindahkan integrasi `computer_20251124` ke toolset, lihat [perubahan yang merusak kompatibilitas pada penggunaan komputer](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#computer-use-toolset).
 

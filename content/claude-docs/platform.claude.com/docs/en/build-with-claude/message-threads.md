@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/message-threads
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 3f78324d7c97a4879a3e230fe69329b6e35528a4322a342b6fb614340a163213
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 625e9b86982d97a9e3fc5e0e48f146c1cb069598f4b5f8d468348fd72bf89747
 ---
 
 ---
@@ -655,7 +655,17 @@ A continue request returns a 404 error with `error.details.error_code` set to `t
 * The request comes from a different user or service account from the one that created the thread. A thread created with a [workspace key (legacy)](https://platform.claude.com/docs/en/manage-claude/authentication#key-types) stays with that key, so use the same key for the whole thread.
 * The new messages add something that the stored conversation can’t take. For example, the first image in a conversation that had none can return this error.
 
-To recover, send the full conversation from your own copy in a new create request with `system` and `tools`. The SDK thread helper sends this create request once by itself and leaves out the `cache_control` breakpoints of earlier turns when it does. If earlier messages in your copy carry `cache_control` breakpoints, remove them first (see [Prompt caching on a thread](https://platform.claude.com/docs/en/build-with-claude/message-threads#prompt-caching)). Then continue from the new response `id`. If a fallback model wrote the previous response, see [Use fallbacks with a thread](https://platform.claude.com/docs/en/build-with-claude/message-threads#fallbacks). To rule out the ownership causes, use the same API key and workspace for every request of a thread. On Claude Platform on AWS, sign every request of a thread with credentials for the IAM role or IAM user that created the thread.
+To recover, follow these steps:
+
+1. If earlier messages in your own copy of the conversation carry `cache_control` breakpoints, remove them (see [Prompt caching on a thread](https://platform.claude.com/docs/en/build-with-claude/message-threads#prompt-caching)).
+2. Send the full conversation from your copy in a new create request with `system` and `tools`.
+3. Continue from the new response `id`.
+
+The SDK thread helper sends this create request once by itself. When it does, it leaves out the `cache_control` breakpoints of earlier turns.
+
+If a fallback model wrote the previous response, see [Use fallbacks with a thread](https://platform.claude.com/docs/en/build-with-claude/message-threads#fallbacks).
+
+Some of these causes depend on who sends the request. To rule them out, use the same workspace and the same API key, user, or service account for every request of a thread. On Claude Platform on AWS, sign every request of a thread with credentials for the IAM role or IAM user that created the thread.
 
 A request for a model that does not exist also returns a 404 error, so check `error.details.error_code` before you replay.
 

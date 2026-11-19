@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workload-identity-federation
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 0385b3a78b2dab3fc309aa35187aca5fd67926b01171e2202f402ae92ce951a5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 4b5988abbb5904fac72bc86706bb5bb6e08f995cd9c29d0dc393667803961e1a
 ---
 
 ---
@@ -60,7 +60,7 @@ Satu penerbit dapat memiliki banyak aturan: satu untuk setiap tim, namespace, at
 
 ## Menyiapkan federasi
 
-Anda memerlukan peran admin, pemilik, atau pemilik utama di organisasi Anthropic Anda. Anda juga memerlukan penyedia identitas berkemampuan OIDC dengan endpoint JWKS yang dapat dijangkau, atau dokumen JWKS yang dapat Anda tempel untuk klaster air-gapped. Workload Anda harus dapat memperoleh token identitas dari penyedia tersebut.
+Anda memerlukan peran admin di organisasi Anthropic Anda. Anda juga memerlukan penyedia identitas berkemampuan OIDC dengan endpoint JWKS yang dapat dijangkau, atau dokumen JWKS yang dapat Anda tempel untuk klaster air-gapped. Workload Anda harus dapat memperoleh token identitas dari penyedia tersebut.
 
 Wizard **Hubungkan beban kerja** membuat ketiga sumber daya (issuer, akun layanan, dan aturan federasi) dalam satu alur terpandu, lalu memverifikasi koneksi secara menyeluruh.
 

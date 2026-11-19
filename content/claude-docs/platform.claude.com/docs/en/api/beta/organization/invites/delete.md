@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 8cff664cdb93abf04ec7e5b52fbe7711cb2adc08510a4017110c2fcefb7cb2ae
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: d15a82c9000e829b5be3d05ceb00d5e6c8c47cc0f6336a7cac171906dddabcc7
 ---
 
 ---
@@ -43,6 +43,16 @@ Delete a pending invite.
 - `id: string`
 
   ID of the Invite.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

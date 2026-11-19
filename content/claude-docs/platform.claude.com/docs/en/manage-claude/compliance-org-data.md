@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-org-data
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 635eddc64bd3501002004ca923e825c4f583592e22822cdaaed6bb37e36c92ac
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f5a5103bed7f09098dc669620a1353e670723025ff1949acb993eea5174bb3c0
 ---
 
 ---
@@ -229,7 +229,7 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-See the [List Compliance Group Members](https://platform.claude.com/docs/en/api/compliance/groups/members/list) response schema for the full member record shape. The `user_id` field is the same `user_...` identifier that the Activity Feed, chat list, and remote session list accept; it also matches `user.id` on local session objects and on user-owned remote session objects (agent-owned remote sessions carry the human’s ID in `started_by_user.id` instead). To get a member’s full name, look it up through the organization users list.
+See the [List Compliance Group Members](https://platform.claude.com/docs/en/api/compliance/groups/members/list) response schema for the full member record shape. The `user_id` field is the same `user_...` identifier that the Activity Feed, chat list, and remote session list accept. It also matches `user.id` on local session objects and on user-owned remote session objects. Agent-owned remote sessions carry a human’s ID in `started_by_user.id` instead, when one is recorded. To get a member’s full name, look it up through the organization users list.
 
 ## Get effective organization settings
 

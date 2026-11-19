@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 0adc2577a8376519c7c03ab4914d51d215630d52a0e21fc1abf247ae8d9eeaf5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: c2b26479959fb79dc95cf12cd1f9a23edc9584e1ed4918ea1a05ee6bba5619ba
 ---
 
 ---
@@ -351,12 +351,12 @@ Each MCP server in the `mcp_servers` array defines the connection details:
 
 ### Field descriptions
 
-| Property              | Type   | Required | Description                                                                                                                                                                                                                                                                                                            |
-| --------------------- | ------ | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                | string | Yes      | Currently only `url` is supported.                                                                                                                                                                                                                                                                                     |
-| `url`                 | string | Yes      | The URL of the MCP server. Must start with `https://`.                                                                                                                                                                                                                                                                 |
-| `name`                | string | Yes      | A unique identifier for this MCP server. Must be referenced by exactly one MCPToolset in the `tools` array.                                                                                                                                                                                                            |
-| `authorization_token` | string | No       | OAuth authorization token if required by the MCP server. See [Authentication](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector#authentication) for how to obtain one, or the [MCP specification](https://modelcontextprotocol.io/specification/2025-11-25/basic/authorization) for protocol details. |
+| Property              | Type   | Required | Description                                                                                                                                                                             |
+| --------------------- | ------ | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `type`                | string | Yes      | Currently only `url` is supported.                                                                                                                                                      |
+| `url`                 | string | Yes      | The URL of the MCP server. Must start with `https://`.                                                                                                                                  |
+| `name`                | string | Yes      | A unique identifier for this MCP server. Must be referenced by exactly one MCPToolset in the `tools` array.                                                                             |
+| `authorization_token` | string | No       | OAuth authorization token if required by the MCP server. See [Authentication](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector#authentication) for how to obtain one. |
 
 ## MCP toolset configuration
 
@@ -561,7 +561,9 @@ When Claude uses MCP tools, the response includes two new content block types:
 
 ## Pin an MCP server’s tool list (beta)
 
-An MCP server can change its tools at any time. The `mcp-client-2026-09-15` beta header records the tool list each server returns and lets you pin it, so a server that changes its tools doesn’t change what Claude receives partway through a conversation. It includes everything `mcp-client-2025-11-20` does, so send it in place of that header. It’s available on the Claude API.
+An MCP server can change its tools at any time. With the `mcp-client-2026-09-15` beta header, the API records the tool list each server returns, and you can pin that list. That way, a change to a server’s tools doesn’t change what Claude receives partway through a conversation.
+
+This header includes everything `mcp-client-2025-11-20` does. On [platforms that accept it](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector#feature-availability), send it in place of that header.
 
 When the API asks an MCP server for its tools while producing a response, the response starts with an `mcp_tool_listing` block for that server, one block for each server it asked:
 
@@ -1512,9 +1514,9 @@ Convert MCP tools for use with the SDK’s [tool runner](https://platform.claude
 
   ```go Go
   import (
-  // ...
+  	// ...
 
-  // ...
+  	// ...
   	"github.com/anthropics/anthropic-sdk-go/v2/mcp"
   	mcpsdk "github.com/modelcontextprotocol/go-sdk/mcp"
   )

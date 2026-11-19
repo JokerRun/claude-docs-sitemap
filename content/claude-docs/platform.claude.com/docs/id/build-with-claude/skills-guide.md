@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 5203818b28b8c85217916a3ece12f9cf1bb9181eaf0b4406c6e38fb6b99d4afd
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: bf402fa3e377f2066689474186ba1253c7bb5b9454975fe827baa1fc3dde5969
 ---
 
 ---
@@ -2154,7 +2154,7 @@ File diidentifikasi berdasarkan nama file yang Anda lampirkan (akhiran `;filenam
   import com.anthropic.models.skills.Skill;
   // ...
   void main() throws Exception {
-  // ...
+      // ...
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       // Opsi 1: Menggunakan file zip

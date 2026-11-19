@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: a2b139340a79171e1babe24b5a6c4ecb906030ea4168c9eab42bdc4b74d96b74
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 651a96e52b860bd355f85c090b59e61a17cea5bc5b8064a3ff4c35a75d69e73a
 ---
 
 ---
@@ -39,6 +39,7 @@ featureMetadata:
     Amazon Bedrock: stable
     Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -266,7 +267,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
       .build();
 
   Message message = client.messages().create(params);
-  System.out.println(message);
+  IO.println(message);
   ```
 
   ```php PHP
@@ -282,7 +283,7 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
                       'type' => 'document',
                       'source' => [
                           'type' => 'text',
-                          'media_type' => 'text/plain',
+                          'mediaType' => 'text/plain',
                           'data' => 'The grass is green. The sky is blue.',
                       ],
                       'title' => 'My Document',
@@ -350,27 +351,27 @@ Contoh berikut menunjukkan cara mengaktifkan kutipan pada dokumen teks biasa den
 
 ## Cara kerja kutipan
 
-Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
+Kutipan bekerja dalam tiga tahap:
 
 <Steps>
-  <Step title="Sediakan dokumen dan aktifkan kutipan">
+  <Step title="Anda menyediakan dokumen dan mengaktifkan kutipan">
     * Sertakan dokumen dalam salah satu format yang didukung: dokumen [PDF](https://platform.claude.com/docs/id/build-with-claude/citations#pdf-documents), [teks biasa](https://platform.claude.com/docs/id/build-with-claude/citations#plain-text-documents), atau [konten kustom](https://platform.claude.com/docs/id/build-with-claude/citations#custom-content-documents).
-    * Atur `citations.enabled=true` pada setiap dokumen Anda. Saat ini, kutipan harus diaktifkan pada semua atau tidak sama sekali dari dokumen dalam sebuah permintaan.
-    * Hanya kutipan teks yang saat ini didukung. Kutipan gambar belum memungkinkan.
+    * Atur `citations.enabled=true` pada setiap dokumen Anda. Sebuah permintaan tidak dapat mencampur dokumen yang kutipannya diaktifkan dengan dokumen yang kutipannya tidak diaktifkan.
+    * Claude dapat mengutip teks tetapi tidak dapat mengutip gambar.
   </Step>
 
-  <Step title="Dokumen diproses">
+  <Step title="API memproses dokumen">
     * Konten dokumen “dipotong” (chunked) untuk menentukan granularitas minimum dari kutipan yang mungkin. Misalnya, pemotongan kalimat memungkinkan Claude mengutip satu kalimat atau merangkai beberapa kalimat berurutan untuk mengutip paragraf atau bagian yang lebih panjang.
 
-      * **Untuk PDF:** Teks diekstrak seperti yang dijelaskan dalam [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan konten dipotong menjadi kalimat. Mengutip gambar dari PDF saat ini tidak didukung.
-      * **Untuk dokumen teks biasa:** Konten dipotong menjadi kalimat yang dapat dikutip.
-      * **Untuk dokumen konten kustom:** Blok konten yang Anda sediakan digunakan apa adanya dan tidak ada pemotongan lebih lanjut yang dilakukan.
+      * **Untuk PDF:** API mengekstrak teks seperti yang dijelaskan dalam [dukungan PDF](https://platform.claude.com/docs/id/build-with-claude/pdf-support) dan memotongnya menjadi kalimat. Claude tidak dapat mengutip gambar dalam PDF.
+      * **Untuk dokumen teks biasa:** API memotong konten menjadi kalimat.
+      * **Untuk dokumen konten kustom:** API menggunakan blok konten Anda apa adanya dan tidak melakukan pemotongan lebih lanjut.
   </Step>
 
-  <Step title="Claude memberikan respons yang dikutip">
-    * Respons kini dapat menyertakan beberapa blok teks di mana setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar kutipan yang mendukung klaim tersebut.
+  <Step title="Claude merespons dengan kutipan">
+    * Sebuah respons dapat menyertakan beberapa blok teks. Setiap blok teks dapat berisi klaim yang dibuat Claude dan daftar kutipan yang mendukungnya.
 
-    * Kutipan merujuk ke lokasi tertentu dalam dokumen sumber. Format kutipan ini bergantung pada jenis dokumen yang dikutip.
+    * Kutipan merujuk ke lokasi tertentu dalam dokumen sumber. Format kutipan bergantung pada jenis dokumen yang dikutip Claude.
 
       * **Untuk PDF:** Kutipan mencakup rentang nomor halaman (diindeks mulai dari 1).
       * **Untuk dokumen teks biasa:** Kutipan mencakup rentang indeks karakter (diindeks mulai dari 0).
@@ -381,7 +382,7 @@ Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
 </Steps>
 
 <Tip>
-  **Pemotongan otomatis vs konten kustom**
+  **Pemotongan otomatis versus konten kustom**
 
   Secara default, dokumen teks biasa dan PDF secara otomatis dipotong menjadi kalimat. Jika Anda memerlukan kontrol lebih atas granularitas kutipan (misalnya, untuk poin-poin atau transkrip), gunakan dokumen konten kustom sebagai gantinya. Lihat [Jenis dokumen](https://platform.claude.com/docs/id/build-with-claude/citations#document-types) untuk detail lebih lanjut.
 
@@ -409,7 +410,7 @@ Integrasikan kutipan dengan Claude dalam langkah-langkah berikut:
 
 ## Kompatibilitas fitur
 
-Kutipan bekerja bersama dengan fitur API lainnya termasuk [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), dan [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
+Kutipan bekerja dengan fitur API lainnya, termasuk [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching), [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting), dan [pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing).
 
 <Warning>
   **Kutipan dan output terstruktur tidak kompatibel**
@@ -479,8 +480,6 @@ Untuk mengurai respons, ikuti langkah-langkah berikut:
 4. Periksa bahwa setiap bidang memiliki nilai dan setidaknya satu kutipan. API tidak menjamin satu pun dari keduanya.
 
 ### Menggunakan caching prompt dengan kutipan
-
-Kutipan dan caching prompt dapat digunakan bersama secara efektif.
 
 Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung, tetapi dokumen sumber yang dirujuknya dapat di-cache. Untuk mengoptimalkan kinerja, terapkan `cache_control` pada blok konten dokumen tingkat atas Anda.
 
@@ -710,7 +709,7 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
       .build();
 
   Message message = client.messages().create(params);
-  System.out.println(message);
+  IO.println(message);
   ```
 
   ```php PHP
@@ -731,11 +730,11 @@ Blok kutipan yang dihasilkan dalam respons tidak dapat di-cache secara langsung,
                       'type' => 'document',
                       'source' => [
                           'type' => 'text',
-                          'media_type' => 'text/plain',
+                          'mediaType' => 'text/plain',
                           'data' => $longDocument,
                       ],
                       'citations' => ['enabled' => true],
-                      'cache_control' => ['type' => 'ephemeral'], // Cache the document content
+                      'cacheControl' => ['type' => 'ephemeral'], // Cache the document content
                   ],
                   [
                       'type' => 'text',
@@ -817,7 +816,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
 <Tabs>
   <Tab title="Teks inline">
-    Contoh pengantar di bagian atas halaman ini menunjukkan permintaan teks biasa yang lengkap di setiap SDK. Blok dokumen menggunakan sumber `text`:
+    Untuk permintaan teks biasa yang lengkap, lihat contoh pertama di halaman ini. Blok dokumen menggunakan sumber `text`:
 
     ```json
     {
@@ -835,7 +834,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
   </Tab>
 
   <Tab title="Files API">
-    Contoh-contoh ini merujuk ke file yang diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) sebagai sumber `document`.
+    Dalam contoh-contoh ini, `source` dari blok `document` merujuk ke file yang diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files). ID file dalam setiap contoh adalah `id` yang dikembalikan oleh unggahan tersebut (lihat [Mengunggah file](https://platform.claude.com/docs/id/build-with-claude/files#uploading-a-file)).
 
     <CodeGroup>
       ```bash cURL
@@ -1011,7 +1010,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
           .build();
 
       Message citedMessage = client.messages().create(citedParams);
-      System.out.println(citedMessage);
+      IO.println(citedMessage);
       ```
 
       ```php PHP
@@ -1032,7 +1031,7 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
                   ],
               ],
           ],
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
       );
 
       echo $citedResponse;
@@ -1083,7 +1082,9 @@ Dokumen teks biasa secara otomatis dipotong menjadi kalimat. Anda dapat menyedia
 
 ### Dokumen PDF
 
-Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau dengan `file_id`. Teks PDF diekstrak dan dipotong menjadi kalimat. Karena kutipan gambar belum didukung, PDF yang merupakan hasil pindaian dokumen dan tidak berisi teks yang dapat diekstrak tidak dapat dikutip.
+Anda dapat memberikan dokumen PDF sebagai data yang dienkode base64, sebagai URL, atau dengan `file_id`. API mengekstrak teksnya dan memotongnya menjadi kalimat.
+
+Claude tidak dapat mengutip gambar, sehingga Claude tidak dapat mengutip PDF yang merupakan hasil pindaian dokumen dan tidak berisi teks yang dapat diekstrak.
 
 <Tabs>
   <Tab title="Base64">
@@ -1095,32 +1096,34 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
         -H "content-type: application/json" \
         -H "x-api-key: $ANTHROPIC_API_KEY" \
         -H "anthropic-version: 2026-10-21" \
-        -d '{
-          "model": "claude-opus-5-5",
-          "max_tokens": 1024,
-          "messages": [
-            {
-              "role": "user",
-              "content": [
-                {
-                  "type": "document",
-                  "source": {
-                    "type": "base64",
-                    "media_type": "application/pdf",
-                    "data": "'"$PDF_BASE64"'"
-                  },
-                  "title": "Document Title",
-                  "context": "Context about the document that will not be cited from",
-                  "citations": {"enabled": true}
+        -d @- <<EOF
+      {
+        "model": "claude-opus-5-5",
+        "max_tokens": 1024,
+        "messages": [
+          {
+            "role": "user",
+            "content": [
+              {
+                "type": "document",
+                "source": {
+                  "type": "base64",
+                  "media_type": "application/pdf",
+                  "data": "$PDF_BASE64"
                 },
-                {
-                  "type": "text",
-                  "text": "Summarize this document."
-                }
-              ]
-            }
-          ]
-        }'
+                "title": "Document Title",
+                "context": "Context about the document that will not be cited from",
+                "citations": {"enabled": true}
+              },
+              {
+                "type": "text",
+                "text": "Summarize this document."
+              }
+            ]
+          }
+        ]
+      }
+      EOF
       ```
 
       ```bash CLI
@@ -1312,13 +1315,15 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
           .build();
 
       Message message = client.messages().create(params);
-      System.out.println(message);
+      IO.println(message);
       ```
 
       ```php PHP
       $client = new Client();
 
-      $pdfBase64 = base64_encode(file_get_contents('/path/to/document.pdf'));
+      $pdfBytes = file_get_contents('/path/to/document.pdf')
+          ?: throw new \RuntimeException('Could not read /path/to/document.pdf.');
+      $pdfBase64 = base64_encode($pdfBytes);
 
       $response = $client->messages->create(
           maxTokens: 1024,
@@ -1330,7 +1335,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
                           'type' => 'document',
                           'source' => [
                               'type' => 'base64',
-                              'media_type' => 'application/pdf',
+                              'mediaType' => 'application/pdf',
                               'data' => $pdfBase64,
                           ],
                           'title' => 'Document Title',
@@ -1344,7 +1349,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
                   ],
               ],
           ],
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
       );
 
       echo json_encode($response, JSON_PRETTY_PRINT);
@@ -1593,7 +1598,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
           .build();
 
       Message message = client.messages().create(params);
-      System.out.println(message);
+      IO.println(message);
       ```
 
       ```php PHP
@@ -1622,7 +1627,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
                   ],
               ],
           ],
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
       );
 
       echo json_encode($response, JSON_PRETTY_PRINT);
@@ -1632,7 +1637,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
       client = Anthropic::Client.new
 
       response = client.messages.create(
-        model: "claude-opus-5-5",
+        model: Anthropic::Model::CLAUDE_OPUS_5_5,
         max_tokens: 1024,
         messages: [
           {
@@ -1663,7 +1668,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
   </Tab>
 
   <Tab title="Files API">
-    Contoh-contoh ini merujuk ke file yang diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) sebagai sumber `document`.
+    Dalam contoh-contoh ini, `source` dari blok `document` merujuk ke file yang diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files). ID file dalam setiap contoh adalah `id` yang dikembalikan oleh unggahan tersebut (lihat [Mengunggah file](https://platform.claude.com/docs/id/build-with-claude/files#uploading-a-file)).
 
     <CodeGroup>
       ```bash cURL
@@ -1839,7 +1844,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
           .build();
 
       Message citedMessage = client.messages().create(citedParams);
-      System.out.println(citedMessage);
+      IO.println(citedMessage);
       ```
 
       ```php PHP
@@ -1860,7 +1865,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
                   ],
               ],
           ],
-          model: 'claude-opus-5-5',
+          model: Model::CLAUDE_OPUS_5_5,
       );
 
       echo $citedResponse;
@@ -1911,7 +1916,7 @@ Dokumen PDF dapat diberikan sebagai data yang dienkode base64, sebagai URL, atau
 
 ### Dokumen konten kustom
 
-Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada pemotongan tambahan yang dilakukan dan potongan disediakan ke model sesuai dengan blok konten yang disediakan.
+Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Dalam `source` dokumen, `type` adalah `content`, dan bidang `content` berisi daftar blok konten. API tidak melakukan pemotongan lebih lanjut: setiap blok teks yang Anda sediakan adalah satu potongan, unit terkecil yang dapat dikutip Claude.
 
 <CodeGroup>
   ```bash cURL
@@ -2149,7 +2154,7 @@ Dokumen konten kustom memberi Anda kontrol atas granularitas kutipan. Tidak ada 
       .build();
 
   Message message = client.messages().create(params);
-  System.out.println(message);
+  IO.println(message);
   ```
 
   ```php PHP
@@ -2381,9 +2386,9 @@ Kutipan tersedia di semua model dan layak untuk retensi data nol dan kesiapan HI
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud               |
+| -------- | ---------------------------- |
+| Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

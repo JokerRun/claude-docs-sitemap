@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users/remove
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: b35780b14e8dc468e4e932a4774da2d679cd3c4829d30a85d26f93ac9f1162f5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 7c5221b3995644a5bd274a692856f6113819070e954140c59bdb393bcbcbcfdd
 ---
 
 ---
@@ -43,6 +43,24 @@ Remove a member from the organization.
 - `id: string`
 
   ID of the User.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `cannot_remove_last_member` (HTTP status 400)
+
+  The user is the organization's only member. Add another member before removing this one.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
+- `concurrent_membership_change` (HTTP status 409)
+
+  Another change to the organization's members is in progress. Retry the request once it completes.
 
 ## Example
 

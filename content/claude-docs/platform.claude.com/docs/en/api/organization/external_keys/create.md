@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/create
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 8c8c6915a63cf3997b38d0465cfad695a02d6c81951a34d82cb56bbe753f574e
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: dbabf71bd36ec007a9ab425cd2d765a980b9f3d66032f898a6711a32176ee30e
 ---
 
 ---
@@ -199,6 +199,20 @@ Create an external key config owned by the caller's organization.
   - `user_profile_id: string or null`
 
     ID of the user profile the key is bound to, or null if the key is not bound to one. A key bound to a user profile can only be attached to a Workspace that has the same user profile. A key that isn't bound can only be attached to a Workspace that has no user profile.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `user_profile_not_found` (HTTP status 400)
+
+  The request depends on a user profile that does not exist in the organization or is no longer active. The request either names this user profile by ID, or names a resource, such as an External Key, that is bound to it.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

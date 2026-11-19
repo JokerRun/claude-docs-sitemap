@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: fcda16867393ca486607618cdd0b46b9b99cdca4b862bfa78af263550dec526e
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: bf2ccf018df1b4bc1b6aea89ec210942fad0f36bc5dbad913b6e3751d4291469
 ---
 
 ---
@@ -1497,6 +1497,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `valid: boolean`
 
     True when marketplace.json is well-formed and no plugin would be skipped; warnings never make it false.
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `unsupported_charset` (HTTP status 400)
+
+  The request's `Content-Type` header names a charset other than UTF-8, ISO-8859-1 or US-ASCII. Send the request with no charset, or with one of these.
 
 ### Example
 

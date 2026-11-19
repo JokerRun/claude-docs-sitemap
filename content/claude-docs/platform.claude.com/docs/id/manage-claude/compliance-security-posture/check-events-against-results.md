@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/check-events-against-results
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 9ddb08ffddc62abb300ce79783017f03168ff8da75b32758104d394bce02be46
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 866f511b72c5bb0a4734df66b7c353145c13236d1abacf34832d8a34944bac21
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Sekali sehari, bandingkan aktivitas atestasi yang disimpan SIEM And
   Untuk mengaktifkan Compliance API, lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
 </Note>
 
-Activity Feed dapat mengirimkan aktivitas secara terlambat, dan endpoint tidak menyimpan riwayat, sehingga masing-masing sumber dapat menampilkan perubahan yang tidak ditampilkan sumber lainnya. Perbandingan harian menemukan apa yang tidak dimiliki penyimpanan security information and event management (SIEM) Anda. Feed tidak mencatat [semua perubahan](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#what-the-feed-does-not-record), sehingga atestasi bisa lebih lama daripada aktivitas pertama feed untuk kontrol keamanannya, dan dalam kasus yang jarang terjadi, suatu perubahan sama sekali tidak memiliki aktivitas. Jika Anda hanya melaporkan hasil saat ini, Anda tidak memerlukan pemeriksaan ini.
+Activity Feed dapat mengirimkan aktivitas secara terlambat, dan endpoint tidak menyimpan riwayat. Jadi, masing-masing sumber dapat menampilkan perubahan yang tidak ditampilkan sumber lainnya. Perbandingan harian menemukan apa yang tidak dimiliki penyimpanan security information and event management (SIEM) Anda. Feed tidak mencatat semua perubahan (lihat [Apa yang tidak dicatat oleh feed](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#what-the-feed-does-not-record)). Jadi, atestasi bisa lebih lama daripada aktivitas pertama feed untuk kontrol keamanannya. Dalam kasus yang jarang terjadi, suatu perubahan sama sekali tidak memiliki aktivitas. Jika Anda hanya melaporkan hasil saat ini, Anda tidak memerlukan pemeriksaan ini.
 
 Anda memerlukan Compliance Access Key yang mencakup organisasi tersebut, dengan `read:compliance_org_data` untuk endpoint dan `read:compliance_activities` untuk Activity Feed, atau `read:org_audit` untuk keduanya.
 
@@ -56,7 +56,7 @@ Sebelum membandingkan, sisihkan hal-hal berikut.
 
 ## Menentukan arti setiap ketidakcocokan
 
-Setiap kontrol yang tersisa cocok dengan tepat satu baris.
+Setiap kontrol yang tersisa cocok dengan tepat satu baris. Dalam tabel ini, anggap `state` yang bernilai `null` sebagai `in_force`.
 
 | #  | Aktivitas tersimpan terbaru                                                                                                            | Entri dalam respons                                                                                                                                                                                         | Putusan         | Yang harus dilakukan                                                                                                                                                                                                                                                                           |
 | -- | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

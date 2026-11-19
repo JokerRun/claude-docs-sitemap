@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 2eae10e872be6a2a4fc559cef9d2d2d00f05e2424329cd7012bc6df32a69fbfe
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 7a3325d8f15679d12f3ab8fab188dc13ce9c3d1a78708af5ab4f5ec69b11b96c
 ---
 
 ---
@@ -44,6 +44,20 @@ workspace limits through the API is in an early access preview.
   default: spend_limit_deleted
 
 - `id: string`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
+- `spend_limits_admin_api_writes_not_enabled` (HTTP status 403)
+
+  The organization cannot retrieve, set or delete spend limits with an Admin API credential.
 
 ## Example
 

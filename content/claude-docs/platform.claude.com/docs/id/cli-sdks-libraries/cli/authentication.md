@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 03e8843a673cb8be0547e24022bbc8a84ff9e0e30daf50fbd80df12c0721721c
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 5d795067561a20e14ccd2507b7b4148e80fa415a992586febed4251f03fa2cb2
 ---
 
 ---
@@ -11,7 +11,7 @@ url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication
 description: Autentikasi CLI ant dengan login interaktif, kunci API, profil bernama, dan Workload Identity Federation.
 ---
 
-CLI `ant` mendukung beberapa sumber kredensial. [Mulai cepat](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) membahas login satu perintah (`ant auth login`). Halaman ini membahas setiap opsi secara lengkap.
+CLI `ant` mendukung beberapa sumber kredensial. [Mulai cepat CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/quickstart#authentication) membahas login satu perintah (`ant auth login`). Halaman ini membahas setiap opsi secara lengkap.
 
 ## Login interaktif
 
@@ -23,32 +23,42 @@ ant auth login
 # Pada host jarak jauh tanpa browser:
 ant auth login --no-browser
 
-# Ikat ke workspace tertentu dan lewati pemilih browser:
+# Ikat ke workspace tertentu dan lewati pemilih di browser:
 ant auth login --workspace-id wrkspc_01...
 
-# Jika profil bernama yang Anda berikan dengan --profile tidak ada,
-# profil bernama baru akan dibuat dengan nama tersebut.
+# Jika profil yang Anda sebutkan dengan --profile tidak ada,
+# proses login akan membuatnya.
 ant auth login --profile work
 ```
 
-Selama alur browser, Anda memilih organisasi dan kemudian [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces). Token yang diterbitkan [dibatasi ke workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping), sehingga CLI hanya dapat melihat sumber daya yang menjadi miliknya. Berikan `--workspace-id` untuk mengikat secara langsung dan melewati pemilih. Untuk bekerja di lebih dari satu workspace, lihat [Beralih antar workspace](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#switch-between-workspaces).
+CLI menyimpan setiap login di bawah sebuah profil. Saat pertama kali Anda login di bawah sebuah profil, Anda memilih [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) di browser. Jika Anda tergabung dalam lebih dari satu organisasi Claude Console, Anda memilih organisasi terlebih dahulu. Token yang diterbitkan [dibatasi ke workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping), sehingga CLI hanya dapat melihat sumber daya yang menjadi miliknya. Berikan `--workspace-id` untuk mengikat langsung ke sebuah workspace dan melewati pemilih workspace.
+
+Profil tersebut menyimpan organisasi dan workspace itu untuk login berikutnya. Untuk bekerja di organisasi atau workspace lain, login di bawah profil baru (lihat [Beralih antar workspace](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#switch-between-workspaces)).
 
 Login interaktif ditujukan untuk pengembangan lokal dan scripting di mesin Anda sendiri. Untuk beban kerja non-interaktif seperti CI, server, dan kontainer, gunakan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) sebagai gantinya.
 
-Login menulis kredensial ke `credentials/<profile>.json`. Login pertama untuk sebuah profil juga membuat `configs/<profile>.json` dan menetapkannya sebagai profil aktif. Untuk menghapus kredensial yang tersimpan, jalankan `ant auth logout`, atau `ant auth logout --all` untuk membersihkan setiap profil.
+Login menulis kredensial ke `credentials/<profile>.json`. Login pertama untuk sebuah profil juga membuat `configs/<profile>.json`.
+
+Login yang menyebutkan sebuah profil, dengan `--profile` atau `ANTHROPIC_PROFILE`, menjadikan profil tersebut sebagai [profil aktif](https://platform.claude.com/docs/id/manage-claude/wif-reference#active-profile). Setiap perintah yang tidak menyebutkan profil, termasuk login, menggunakan profil aktif. Sampai Anda mengaktifkan profil lain, profil aktif tersebut adalah `default`.
+
+Untuk menghapus kredensial tersimpan milik profil aktif, jalankan `ant auth logout`. Profil tersebut tetap menyimpan organisasi dan workspace-nya. Untuk membersihkan setiap profil, termasuk pengaturan tersebut, jalankan `ant auth logout --all`.
 
 ## Akses admin
 
-Secara default, `ant auth login` meminta token yang dibatasi ke workspace. Untuk mengelola sumber daya yang didokumentasikan di halaman [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), minta scope `org:admin` di bawah profil khusus:
+Secara default, `ant auth login` meminta token yang dibatasi ke workspace. Untuk mengelola sumber daya yang didokumentasikan di halaman [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), minta scope `org:admin` di bawah profil khusus. Login tersebut menjadikan profil itu aktif, sehingga contoh ini diakhiri dengan beralih kembali ke profil sehari-hari Anda:
 
 ```bash CLI
 ant auth login --profile admin --scope "org:admin"
 
 # Cetak bearer token untuk header Authorization:
 ant auth print-credentials --profile admin --access-token
+
+# Beralih kembali ke profil sehari-hari Anda, yaitu profil yang aktif
+# sebelum login, seperti default:
+ant profile activate default
 ```
 
-Scope `org:admin` hanya diberikan kepada anggota organisasi dengan peran admin, pemilik, atau pemilik utama. Token yang diterbitkan memiliki akses seluruh organisasi, dan pengikatan workspace apa pun pada profil tidak membatasinya. Jaga agar profil admin tetap terpisah dari profil sehari-hari Anda sehingga perintah rutin tidak pernah berjalan dengan akses yang ditingkatkan.
+Anthropic memberikan scope `org:admin` hanya kepada pengguna dan akun layanan dengan peran admin. Token yang diterbitkan memiliki akses seluruh organisasi, dan pengikatan workspace apa pun pada profil tidak membatasinya. Jaga agar profil admin tetap terpisah dari profil sehari-hari Anda sehingga perintah rutin tidak pernah berjalan dengan akses yang ditingkatkan.
 
 ## Kunci API
 
@@ -123,10 +133,11 @@ Token login interaktif terikat ke satu workspace. Untuk menggunakan CLI terhadap
 #    browser, atau berikan --workspace-id untuk melewati pemilih):
 # ant auth login --profile other-ws
 
-# 2. Jadikan sebagai default untuk perintah berikutnya:
-ant profile activate other-ws
+# 2. Login tersebut membuat other-ws aktif. Beralih kembali ke profil
+#    sehari-hari Anda, misalnya default:
+ant profile activate default
 
-# 3. Atau pilih untuk satu perintah tanpa mengubah default:
+# 3. Gunakan other-ws untuk satu perintah; perintah berikutnya tetap memakai default:
 ant --profile other-ws models list
 ANTHROPIC_PROFILE=other-ws ant models list
 ```
@@ -149,7 +160,7 @@ ant profile set workspace_id wrkspc_01... --profile other-ws
 
 Kunci yang dapat ditulis untuk `ant profile set` adalah `workspace_id`, `base_url`, `organization_id`, `scope`, `client_id`, dan `console_url`. Mengatur `workspace_id` mencatat workspace target dalam konfigurasi profil tetapi tidak mengikat ulang kredensial yang sudah diterbitkan; jalankan `ant auth login` lagi di bawah profil tersebut untuk mencetak token untuk workspace baru.
 
-Untuk skema file profil dan blok federasi, lihat [File konfigurasi profil](https://platform.claude.com/docs/id/manage-claude/wif-reference#profile-configuration-file). Untuk Workload Identity Federation, lihat [Ikhtisar autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication) dan [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference).
+Untuk skema file profil dan blok federasi, lihat [File konfigurasi profil](https://platform.claude.com/docs/id/manage-claude/wif-reference#profile-configuration-file). Untuk Workload Identity Federation, lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication) dan [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference).
 
 ## Langkah selanjutnya
 

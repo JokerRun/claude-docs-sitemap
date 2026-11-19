@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/set
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: df0357dc2e513551e13a102a97cb26d396ef5a52d8b71fe7d5abc82ddbc08503
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 7d3e3fb99cde189eb92ab7cd991388d83dd78d7805bc3c342eacdd162aa9ba04
 ---
 
 ---
@@ -349,6 +349,20 @@ Anthropic account team.
     RFC 3339 datetime at which the spend limit was last modified.
 
     format: date-time
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
+- `spend_limits_admin_api_writes_not_enabled` (HTTP status 403)
+
+  The organization cannot retrieve, set or delete spend limits with an Admin API credential.
 
 ## Example
 

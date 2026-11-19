@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/members/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: bf82a5343a7ed91e12da01a198724f9ad11d126a2d66cae2d5ef0ab96374b9a9
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: df5eac229ecf4e4e1eba294f32ebc75eba3ea1928a734649d9b8d30a1ea5f90d
 ---
 
 ---
@@ -83,6 +83,20 @@ Update Workspace Member
     - `"workspace_restricted_developer"`
 
     - `"workspace_user"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `workspace_member_limit_exceeded` (HTTP status 400)
+
+  The workspace has reached the member limit that Anthropic set for it.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

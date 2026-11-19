@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: f5bc4c3e5113169ef5e1b2aad69040d77ea3c2d2a6df16b79f46de7907a8876d
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 2abbfbcb460d73911d5c75753b55bcc360cef69f39fd206c4edaa99f916b4e42
 ---
 
 ---
@@ -179,7 +179,7 @@ Store Skill directories in Git for history tracking, code review through pull re
 
 ### API-based distribution
 
-The Skills API provides workspace-scoped distribution. Skills uploaded through the API are available to all workspace members. See [Using Agent Skills with the API](https://platform.claude.com/docs/en/build-with-claude/skills-guide) for upload, versioning, and management endpoints.
+The Skills API provides workspace-scoped distribution. Skills uploaded through the API are available to all workspace members. Sharing works differently on Claude Models on Google Cloud (Anthropic managed). For details, see the Agent Skills overview’s [Sharing scope](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#sharing-scope) section. See [Using Agent Skills with the API](https://platform.claude.com/docs/en/build-with-claude/skills-guide) for upload, versioning, and management endpoints.
 
 ### Versioning strategy
 

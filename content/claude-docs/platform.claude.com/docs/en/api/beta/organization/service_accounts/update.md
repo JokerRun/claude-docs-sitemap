@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/update
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: e0f9c6a79001308fbaa4f7c71c677f44646062ea142349169523db2d3726b95d
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: a416faec8596ed497b3d261ae98a9ad9c2656460a6411e04d51cdfd42dd20ba8
 ---
 
 ---
@@ -255,6 +255,16 @@ interactive credential (a user OAuth token or a Console session).
   - `updated_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that last updated this service account.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: f90e93f3ad5166c01569b5663e57a7efcbd1448d7c223f706f73727a5775ad68
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 643e63108e43f813d72d8d7320254390166da8e73e3ac05cf291cb7ca26ee5f1
 ---
 
 ---
@@ -371,7 +371,7 @@ The response `usage` object includes a `speed` field that indicates which speed 
   "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
   "type": "message",
   "role": "assistant",
-// ...
+  // ...
   "usage": {
     "input_tokens": 8,
     "output_tokens": 12,

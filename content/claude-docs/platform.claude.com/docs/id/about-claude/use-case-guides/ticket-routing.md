@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 42e62eabe5de68c95f20671e16deb1836077a3a08858db914470c9671004322c
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 96096d9e670dabf4470fd1349fad737fba95c796f4eb14e63182b43dcb591a5c
 ---
 
 ---
@@ -495,7 +495,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
 
   		Remember to always include your classification reasoning before your actual intent output. The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
   		`
-  // ...
+  	// ...
   }
   ```
 
@@ -838,7 +838,7 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
   	"context"
   	"regexp"
   	"strings"
-  // ...
+  	// ...
   )
 
   // Buat instance klien API Claude
@@ -1203,7 +1203,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
   	"context"
   	"regexp"
   	"strings"
-  // ...
+  	// ...
   )
 
   // Buat instance klien API Claude

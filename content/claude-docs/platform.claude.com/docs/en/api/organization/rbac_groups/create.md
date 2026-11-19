@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/rbac_groups/create
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 5911e40fc0e31b2823e4e1b40df63d37ab3e9aa67106be8b74dd8ded8619980e
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: c933d6c76ecd6baa524f419c286c6e6ae2fa85578e4c4df659b51da3262b86a3
 ---
 
 ---
@@ -77,6 +77,16 @@ The RBAC Groups API is available to Claude Enterprise organizations only.
     RFC 3339 timestamp of when the RBAC Group was last updated.
 
     format: date-time
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

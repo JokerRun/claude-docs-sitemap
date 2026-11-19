@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api-access
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: ff78044f666d03aff588f249f58ba692afa287f8181c21b322358fc89635539d
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 9c69244c1480204fed8c2d3d49e392f247740b4be41e1c90abcb8296a7fae5fe
 ---
 
 ---
@@ -85,7 +85,7 @@ Setup is one flow: enable the Compliance API for your organization, then create 
     | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
     | `read:compliance_activities`  | Read the Activity Feed. A key covering the parent organization reads events for the parent organization and all linked organizations.                                                                                                                                                                                                                                                                                                                                           |
     | `read:compliance_user_data`   | Read user chats, messages, files, projects, session metadata and transcripts, organization users, user preferences, and group members. Together with `read:compliance_org_data`, also read who made a [Security posture attestation](https://platform.claude.com/docs/en/manage-claude/compliance-security-posture/results-reference#who-attested-and-comments), where the endpoint returns it: a user ID.                                                                      |
-    | `delete:compliance_user_data` | Delete user chats, files, and projects                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+    | `delete:compliance_user_data` | Delete user chats, files, and projects.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
     | `read:compliance_org_data`    | Read organization metadata (names, types, roles, and groups) and the effective settings in force for organizations under the parent organization. Also read an organization’s [Security posture](https://platform.claude.com/docs/en/manage-claude/compliance-security-posture/results-reference): the current results of most of its security controls, with the attestations that the response shows. User listings and group membership require `read:compliance_user_data`. |
 
     With the Plugins API, `read:compliance_org_data` also reads your organization’s plugin and plugin marketplace inventory through the Admin API, including members’ personal plugins and their files. That inventory identifies members: it carries the user ID of each member who owns or created a plugin, or with whom a plugin has been shared individually, and the email address of a plugin’s creator while they are still a member; see [Read plugins and plugin marketplaces](https://platform.claude.com/docs/en/manage-claude/compliance-org-data#read-plugins-and-plugin-marketplaces).
@@ -163,6 +163,8 @@ To rotate a key without an outage:
 Pagination cursors stored before a rotation remain valid: cursors are scoped to the organization, not the key.
 
 If a Compliance Access Key leaks, delete it immediately, audit the [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed) for `compliance_api_accessed` activities by the compromised key, and rotate any downstream credentials that the leaked key could reach. Pass `activity_types[]=compliance_api_accessed` to scope the query, then in your client, keep the activities whose `actor.type` is `api_actor` and whose `actor.api_key_id` matches the compromised key; see [Understand the Activity object](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed#understand-the-activity-object) for the actor schema.
+
+Some calls to the Compliance API leave no activity in the Activity Feed, including calls that succeed. So finding no `compliance_api_accessed` activity for the key does not show that the key was unused.
 
 ## Next steps
 

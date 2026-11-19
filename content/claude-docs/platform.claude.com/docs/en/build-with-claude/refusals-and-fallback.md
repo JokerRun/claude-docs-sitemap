@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: d9268d1bf0b65fb7bbe564bff8aedb6811f42fa37d6b0d9f0b2387d3b19e92e0
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: e0125b853896735f0aee9852366f62ee74cd67b2d43ffba31838a3b6887580c3
 ---
 
 ---
@@ -928,9 +928,9 @@ Pass `BetaRefusalFallbackMiddleware` (typescript: `betaRefusalFallbackMiddleware
 
   ```go Go
   import (
-  // ...
+  	// ...
   	"github.com/anthropics/anthropic-sdk-go/v2/lib/betafallback"
-  // ...
+  	// ...
   )
 
   func main() {

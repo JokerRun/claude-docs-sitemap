@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/archive
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 33f62b05189107fc4c648bae87e580b68ed07c6eb4ec2607b091bd230a18ad53
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: ea52db5f84d8e8140fd60183bc6115310174895de54aa601248b1d216c0a7a7f
 ---
 
 ---
@@ -127,6 +127,16 @@ Archive Workspace
   - `user_profile_id: string or null`
 
     ID of the user profile attached to the Workspace, or null if it has none. Every inference request through a Workspace that has a user profile must name that profile.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 99098118e26ee30f8bcb9210dcc5427cf7ad0e52c9ac39f9a66465bdf25876dd
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 9286f3dc54b9fde1dc60fae9f53b1cbf9703683836405b8bb1a6d146908fa161
 ---
 
 ---
@@ -41,7 +41,9 @@ featureMetadata:
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-    Claude Models on Google Cloud (Anthropic managed): beta
+    Claude Models on Google Cloud (Anthropic managed):
+      availability: beta
+      note: Anda menulis worker Anda sendiri, yang memanggil endpoint Environments Work.
 ---
 
 Di setiap lingkungan, Anthropic mengamankan bagian-bagian yang dijalankannya: integritas sesi dan antrean kerja, isolasi multitenant, dan minimisasi konteks agen. Ketika Anda melakukan self-hosting sandbox, tanggung jawab berikut berada di tangan Anda.
@@ -49,14 +51,27 @@ Di setiap lingkungan, Anthropic mengamankan bagian-bagian yang dijalankannya: in
 ## Apa yang menjadi tanggung jawab Anda
 
 * **Kualitas image sandbox dan hardening runtime.** Anthropic tidak memeriksa atau memverifikasi image sandbox Anda. Ikuti praktik terbaik seperti menghapus Linux capabilities yang tidak diperlukan, menjalankan sebagai pengguna non-root, dan menggunakan sistem file root read-only.
+
 * **Kontrol egress jaringan.** Akses jaringan sandbox Anda ditentukan oleh aturan VPC dan firewall Anda. Tanpa pembatasan egress, eksekusi alat yang telah disusupi dapat menjangkau host eksternal mana pun. Batasi lalu lintas keluar hanya ke endpoint yang dibutuhkan alat Anda.
+
 * **Penyimpanan dan rotasi kunci layanan.** “Environment service key” (kunci layanan lingkungan), yaitu `ANTHROPIC_ENVIRONMENT_KEY`, mengotorisasi polling antrean kerja lingkungan Anda dan pengiriman hasil kembali ke sesi. Simpan kunci ini di pengelola rahasia, bukan di file environment atau image sandbox. Rotasi segera jika Anda mencurigai adanya kebocoran.
-* **Mengisolasi beban kerja yang tidak tepercaya.** Kunci layanan lingkungan dibatasi cakupannya pada antrean kerja satu lingkungan. Jika Anda menjalankan kode yang tidak tepercaya di dalam sandbox Anda, pertimbangkan untuk menyediakan workspace dan lingkungan terpisah untuk setiap batas kepercayaan. Ini membatasi setiap kunci hanya pada sesi satu pengguna, bukan pada kumpulan bersama.
-* **Kredensial per sesi.** Setiap item pekerjaan yang diklaim oleh worker Anda dapat membawa `secret` (csharp, go: `Secret`) per sesi, yang digunakan worker sebagai pengganti kunci layanan lingkungan. Akses ke [memory store](https://platform.claude.com/docs/id/managed-agents/memory) memerlukan `secret` (csharp, go: `Secret`): endpoint memory store menolak kunci lingkungan (lihat [Meneruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret)). Teruskan `secret` (csharp, go: `Secret`) hanya ke sandbox yang melayani sesi tersebut, jauhkan dari image dan volume bersama, dan jangan pernah mencatatnya di log.
+
+* **Isolasi beban kerja yang tidak tepercaya.** Kunci layanan lingkungan dibatasi cakupannya pada antrean kerja satu lingkungan. Jika Anda menjalankan kode yang tidak tepercaya di dalam sandbox Anda, pertimbangkan untuk menyediakan workspace dan lingkungan terpisah untuk setiap batas kepercayaan. Dengan cara ini, setiap kunci hanya menjangkau sesi dalam satu batas kepercayaan, seperti sesi satu pengguna, bukan setiap sesi dalam lingkungan bersama.
+
+* **Kredensial per sesi.** Setiap item pekerjaan yang diklaim oleh worker Anda dapat membawa `secret` (csharp, go: `Secret`) per sesi, yang digunakan worker sebagai pengganti kunci layanan lingkungan. Akses ke [memory store](https://platform.claude.com/docs/id/managed-agents/memory) memerlukan `secret` (csharp, go: `Secret`): endpoint memory store menolak kunci layanan lingkungan (lihat [Meneruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#forward-the-work-items-secret)). Teruskan `secret` (csharp, go: `Secret`) hanya ke sandbox yang melayani sesi tersebut, jauhkan dari image dan volume bersama, dan jangan pernah mencatatnya di log.
+
 * **Radius dampak eksekusi alat.** Alat berjalan di dalam sandbox Anda dengan izin apa pun yang dimiliki proses Anda. Terapkan prinsip hak akses minimal pada pengguna proses dan mount hanya direktori yang dibutuhkan alat Anda.
+
 * **Retensi log dan konten sesi.** Konten percakapan dan output alat melewati worker Anda dan tetap berada di lingkungan Anda. Anda bertanggung jawab untuk menyimpan, menyunting (redact), atau menghapus data tersebut sesuai dengan kebijakan Anda sendiri. Anthropic tidak memiliki visibilitas terhadap apa yang dilakukan worker Anda dengan konten sesi setelah dikirimkan.
-* **Isi memory store.** [Memory store](https://platform.claude.com/docs/id/managed-agents/memory) tetap di-host oleh Anthropic, termasuk riwayat versinya. Ketika sebuah sesi melampirkan memory store, worker menyimpan salinan kerja di bawah `/mnt/memory/` di sandbox Anda selama durasi sesi dan menyinkronkan perubahan kembali. Worker menghapus salinan tersebut saat sesi berakhir, tetapi worker yang keluar tanpa menjalankan proses teardown-nya akan meninggalkan salinan tersebut. Pembersihan salinan yang tertinggal, izin pada path tersebut, dan isolasi antarsesi yang berbagi sistem file merupakan tanggung jawab Anda.
-* **Memory store read-only.** Store yang dilampirkan dengan akses `read_only` dilindungi dari pengunggahan, bukan dari modifikasi lokal. Alat `write` dan `edit` milik worker menolak menulis di bawah direktorinya, tidak ada yang disinkronkan kembali dari sana, dan endpoint memory store menolak penulisan ke store tersebut yang dilakukan dengan `secret` (csharp, go: `Secret`) sesi. Proses lain di dalam sandbox masih dapat mengubah salinan lokal: perintah yang dijalankan agen melalui alat `bash`, serta [alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools) atau server MCP yang Anda sajikan dari sandbox, yang berjalan dengan izin worker. Panggilan alat berikutnya dalam sesi tersebut membaca salinan yang telah diubah hingga memori tersebut berubah lagi di store. Jika agen sama sekali tidak boleh dapat mengubah bahkan tampilan lokalnya atas store semacam itu, nonaktifkan alat `bash` untuk agen tersebut dan jangan berikan alat kustom apa pun yang menulis ke filesystem sandbox.
+
+* **Isi memory store.** Anthropic meng-host [memory store](https://platform.claude.com/docs/id/managed-agents/memory), termasuk riwayat versinya. Ketika sebuah sesi melampirkan memory store, worker menyimpan salinan kerja di bawah `/mnt/memory/` di sandbox Anda selama worker melayani sesi tersebut dan menyinkronkan perubahan kembali. Worker menghapus salinan tersebut saat selesai menangani sesi (lihat [Cara worker menangani memori](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#how-the-worker-handles-memory)). Worker yang keluar tanpa menjalankan proses teardown-nya akan meninggalkan salinan tersebut. Pembersihan salinan yang tertinggal, izin pada path tersebut, dan isolasi antarsesi yang berbagi sistem file merupakan tanggung jawab Anda.
+
+* **Memory store read-only.** Store yang dilampirkan dengan akses `read_only` dilindungi dari pengunggahan, bukan dari modifikasi lokal.
+
+  * **Yang diblokir:** Alat `write` dan `edit` milik worker menolak menulis di bawah direktori store tersebut. Worker tidak mengunggah apa pun dari direktori tersebut. Endpoint memory store menolak permintaan yang menggunakan `secret` (csharp, go: `Secret`) sesi untuk menulis ke store tersebut.
+  * **Yang tidak diblokir:** Perintah yang dijalankan agen melalui alat `bash` dapat mengubah salinan lokal. Begitu pula [alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools) atau server MCP yang Anda sajikan dari sandbox, yang berjalan dengan izin worker.
+  * **Apa yang terjadi pada file yang diubah:** Selama worker melayani sesi tersebut, panggilan alat berikutnya membaca file yang telah diubah. Worker tidak memulihkannya dengan sendirinya. Jika file tersebut mendapatkan versi baru di store selama waktu itu, sinkronisasi berikutnya oleh worker akan menimpa file lokal dengan versi tersebut.
+  * **Cara mencegah perubahan lokal juga:** Nonaktifkan alat `bash` untuk agen tersebut, dan jangan berikan alat kustom atau server MCP apa pun yang menulis ke sistem file sandbox.
 
 ## Apa yang tidak dapat dilakukan Anthropic untuk Anda
 

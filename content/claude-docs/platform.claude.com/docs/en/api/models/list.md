@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/models/list
-fetched_at: 2026-10-30T02:15:26.914079Z
-sha256: 86100791562be7a50d53b57c7f9f1329119699bae4f531b8f85189cf98f3f90d
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 709ddaca24018c3a9a605d8583f4fe66aa83b5ebc0ee50730558d0e586f9e321
 ---
 
 ---
@@ -273,6 +273,20 @@ The Models API response can be used to determine which models are available for 
 - `last_id: string or null`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `claude_code_key_creator_not_member` (HTTP status 400)
+
+  The API key belongs to the Claude Code workspace, and the user who created it is no longer a member of the organization or of that workspace.
+
+- `organization_on_hold` (HTTP status 400)
+
+  Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
 
 ## Example
 

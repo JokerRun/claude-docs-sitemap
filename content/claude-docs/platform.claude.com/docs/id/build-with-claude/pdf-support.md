@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 9e171390ccedbc3431f03478f4fb26d54b9f82d4a107cfd0e831153e503dfa6e
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 7adba94b688c797235bcea3ce18f3f8bcc7d35a740d9d3de639e29a8a8fbe853
 ---
 
 ---
@@ -91,19 +91,15 @@ Semua [model aktif](https://platform.claude.com/docs/id/models/overview) menduku
 
 ### Kirim permintaan PDF pertama Anda
 
-Mulailah dengan contoh sederhana menggunakan Messages API. Anda dapat memberikan PDF kepada Claude dengan tiga cara:
+Mulailah dengan contoh yang menggunakan Messages API. Untuk memberikan PDF kepada Claude, kirimkan dalam [blok konten `document`](https://platform.claude.com/docs/id/api/messages#document_block_param) dengan salah satu dari tiga jenis sumber. Platform Anda menentukan jenis mana yang dapat Anda gunakan (lihat [Ketersediaan](https://platform.claude.com/docs/id/build-with-claude/pdf-support#feature-availability)). Di antara jenis-jenis tersebut, pilihlah berdasarkan lokasi PDF, ukurannya, dan seberapa sering Anda menggunakannya:
 
-1. Sebagai referensi URL ke PDF yang dihosting secara online
-2. Sebagai PDF yang dienkode base64 dalam blok konten `document`
-3. Melalui `file_id` dari [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
-
-<Note>
-  Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, hanya sumber yang dienkode base64 yang tersedia. Di Microsoft Foundry, Files API tidak didukung untuk deployment yang di-host di Azure.
-</Note>
+1. **PDF yang dihosting secara online:** Referensikan melalui URL-nya ([Opsi 1: Dokumen PDF berbasis URL](https://platform.claude.com/docs/id/build-with-claude/pdf-support#option-1-url-based-pdf-document)).
+2. **PDF di sistem lokal Anda atau tanpa URL:** Kirimkan sebagai data yang dienkode base64 ([Opsi 2: Dokumen PDF yang dienkode base64](https://platform.claude.com/docs/id/build-with-claude/pdf-support#option-2-base64-encoded-pdf-document)).
+3. **PDF berukuran besar atau yang akan Anda gunakan berulang kali:** Unggah dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan referensikan melalui `file_id`-nya ([Opsi 3: Files API](https://platform.claude.com/docs/id/build-with-claude/pdf-support#option-3-files-api)).
 
 #### Opsi 1: Dokumen PDF berbasis URL
 
-Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
+Referensikan PDF melalui URL-nya:
 
 <CodeGroup>
   ```bash cURL
@@ -287,7 +283,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
       .build();
 
   Message message = client.messages().create(params);
-  System.out.println(message.content());
+  IO.println(message.content());
   ```
 
   ```php PHP
@@ -313,7 +309,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo $message;
@@ -323,7 +319,7 @@ Pendekatan paling sederhana adalah mereferensikan PDF langsung dari URL:
   anthropic = Anthropic::Client.new
 
   message = anthropic.messages.create(
-    model: "claude-opus-5-5",
+    model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
     messages: [
       {
@@ -370,7 +366,7 @@ Respons mengembalikan analisis Claude sebagai blok teks dalam `content`, dengan 
 
 #### Opsi 2: Dokumen PDF yang dienkode base64
 
-Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersedia:
+Kirimkan PDF sebagai data yang dienkode base64 dalam permintaan itu sendiri. Sebagian besar contoh berikut mengunduh PDF sampel dan mengenkodenya, sehingga tidak memerlukan file lokal. Untuk mengirim file lokal dalam contoh-contoh tersebut, ganti baris yang mengunduh dan mengenkode PDF dengan baris yang dikomentari:
 
 <CodeGroup>
   ```bash cURL
@@ -557,7 +553,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
   }
   pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
-  // Alternatif: Muat dari file lokal (tambahkan "os" ke impor)
+  // Alternatif: Muat dari file lokal (di impor, ganti "io" dan "net/http" dengan "os")
   // pdfBytes, err := os.ReadFile("document.pdf")
   // pdfBase64 := base64.StdEncoding.EncodeToString(pdfBytes)
 
@@ -630,7 +626,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
       .build();
 
   Message message = client.messages().create(params);
-  System.out.println(message.content());
+  IO.println(message.content());
   ```
 
   ```php PHP
@@ -638,10 +634,14 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
   // Pertama, muat dan enkode PDF
   $pdf_url = 'https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf';
-  $pdf_data = base64_encode(file_get_contents($pdf_url));
+  $pdf_bytes = file_get_contents($pdf_url)
+      ?: throw new \RuntimeException('Could not fetch the PDF.');
+  $pdf_data = base64_encode($pdf_bytes);
 
   // Alternatif: Muat dari file lokal
-  // $pdf_data = base64_encode(file_get_contents('document.pdf'));
+  // $pdf_bytes = file_get_contents('document.pdf')
+  //     ?: throw new \RuntimeException('Could not read document.pdf.');
+  // $pdf_data = base64_encode($pdf_bytes);
 
   // Kirim ke Claude menggunakan enkode base64
   $message = $client->messages->create(
@@ -654,7 +654,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
                       'type' => 'document',
                       'source' => [
                           'type' => 'base64',
-                          'media_type' => 'application/pdf',
+                          'mediaType' => 'application/pdf',
                           'data' => $pdf_data,
                       ],
                   ],
@@ -665,7 +665,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo $message;
@@ -676,7 +676,7 @@ Jika Anda perlu mengirim PDF dari sistem lokal Anda atau ketika URL tidak tersed
 
   # Pertama, muat dan enkode PDF
   pdf_url = "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
-  pdf_bytes = URI.open(pdf_url, "rb") { |f| f.read }
+  pdf_bytes = URI.open(pdf_url, "rb", &:read)
   pdf_data = [pdf_bytes].pack("m0") # Encode as base64 without newlines
 
   # Alternatif: Muat dari file lokal
@@ -919,7 +919,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
           .file(Path.of("/path/to/document.pdf"))
           .build());
 
-  // Gunakan file yang telah diunggah dalam pesan
+  // Gunakan file yang diunggah dalam pesan
   MessageCreateParams params = MessageCreateParams.builder()
       .model(Model.CLAUDE_OPUS_5_5)
       .maxTokens(1024)
@@ -940,7 +940,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
       .build();
 
   Message message = client.messages().create(params);
-  System.out.println(message.content());
+  IO.println(message.content());
   ```
 
   ```php PHP
@@ -949,8 +949,11 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   $client = new Client();
 
   // Unggah file PDF
+  $document = fopen('/path/to/document.pdf', 'rb')
+      ?: throw new \RuntimeException('Could not open /path/to/document.pdf.');
+
   $file_upload = $client->files->upload(
-      file: FileParam::fromResource(fopen('/path/to/document.pdf', 'r'), contentType: 'application/pdf'),
+      file: FileParam::fromResource($document, contentType: 'application/pdf'),
   );
 
   // Gunakan file yang diunggah dalam pesan
@@ -974,7 +977,7 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo $message;
@@ -984,13 +987,13 @@ Untuk PDF yang akan Anda gunakan berulang kali, atau ketika Anda ingin menghinda
   anthropic = Anthropic::Client.new
 
   # Unggah file PDF
-  file_upload = File.open("/path/to/document.pdf", "rb") do |f|
+  file_upload = File.open("/path/to/document.pdf", "rb") do |pdf_file|
     anthropic.files.upload(
-      file: Anthropic::FilePart.new(f, filename: "document.pdf", content_type: "application/pdf")
+      file: Anthropic::FilePart.new(pdf_file, filename: "document.pdf", content_type: "application/pdf")
     )
   end
 
-  # Gunakan file yang telah diunggah dalam pesan
+  # Gunakan file yang diunggah dalam pesan
   message = anthropic.messages.create(
     model: Anthropic::Model::CLAUDE_OPUS_5_5,
     max_tokens: 1024,
@@ -1019,20 +1022,16 @@ Saat Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 <Steps>
   <Step title="Sistem mengekstrak isi dokumen.">
     * Sistem mengonversi setiap halaman dokumen menjadi gambar.
-    * Teks dari setiap halaman diekstrak dan disediakan bersama gambar setiap halaman.
+    * Sistem mengekstrak teks dari setiap halaman dan menyediakannya bersama gambar halaman tersebut.
   </Step>
 
   <Step title="Claude menganalisis teks dan gambar.">
-    * Dokumen disediakan sebagai kombinasi teks dan gambar untuk dianalisis.
-    * Ini memungkinkan pengguna meminta wawasan tentang elemen visual PDF, seperti grafik, diagram, dan konten non-tekstual lainnya.
+    * Claude menerima setiap dokumen sebagai kombinasi teks dan gambar.
+    * Karena Claude menerima gambar dari setiap halaman, Anda dapat meminta wawasan tentang elemen visual PDF, seperti grafik, diagram, dan konten non-tekstual lainnya.
   </Step>
 
-  <Step title="Claude merespons, dengan mereferensikan isi PDF jika relevan.">
-    Claude dapat mereferensikan konten tekstual maupun visual saat merespons. Anda dapat lebih meningkatkan kinerja dengan mengintegrasikan dukungan PDF dengan:
-
-    * [Gunakan caching prompt](https://platform.claude.com/docs/id/build-with-claude/pdf-support#use-prompt-caching): Untuk meningkatkan kinerja pada analisis berulang.
-    * [Proses batch dokumen](https://platform.claude.com/docs/id/build-with-claude/pdf-support#process-document-batches): Untuk memproses dokumen dalam volume tinggi.
-    * [Penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview): Untuk mengekstrak informasi spesifik dari dokumen untuk digunakan sebagai input alat.
+  <Step title="Claude menggunakan isi PDF dalam responsnya jika relevan.">
+    Claude dapat memanfaatkan konten tekstual maupun visual dalam responsnya.
   </Step>
 </Steps>
 
@@ -1041,11 +1040,17 @@ Saat Anda mengirim PDF ke Claude, langkah-langkah berikut terjadi:
 Jumlah token file PDF bergantung pada total teks yang diekstrak dari dokumen dan jumlah halaman:
 
 * Biaya token teks: Setiap halaman biasanya menggunakan 1.500–3.000 token tergantung pada kepadatan konten. Harga API standar berlaku tanpa biaya PDF tambahan.
-* Biaya token gambar: Karena setiap halaman dikonversi menjadi gambar, [perhitungan biaya berbasis gambar](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size) yang sama diterapkan.
+* Biaya token gambar: Gambar setiap halaman menggunakan paling banyak 1.568 token visual pada setiap model karena API menyesuaikan gambar halaman agar berada dalam batas tingkat resolusi standar. Untuk cara menghitung token visual sebuah gambar, lihat [Resolusi dan biaya token](https://platform.claude.com/docs/id/build-with-claude/vision#evaluate-image-size).
 
 Anda dapat menggunakan [penghitungan token](https://platform.claude.com/docs/id/build-with-claude/token-counting) untuk memperkirakan biaya untuk PDF spesifik Anda.
 
 ## Optimalkan pemrosesan PDF
+
+Anda dapat menggabungkan dukungan PDF dengan fitur lain:
+
+* [Gunakan caching prompt](https://platform.claude.com/docs/id/build-with-claude/pdf-support#use-prompt-caching) untuk meningkatkan kinerja pada analisis berulang.
+* [Proses batch dokumen](https://platform.claude.com/docs/id/build-with-claude/pdf-support#process-document-batches) untuk menangani dokumen dalam volume tinggi.
+* [Gunakan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview) agar Claude mengekstrak informasi spesifik dari dokumen untuk digunakan sebagai input alat.
 
 ### Tingkatkan kinerja
 
@@ -1309,7 +1314,7 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
       .build();
 
   Message message = client.messages().create(params);
-  System.out.println(message);
+  IO.println(message);
   ```
 
   ```php PHP
@@ -1317,7 +1322,9 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
 
   // Muat dan enkode PDF
   $pdf_url = 'https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf';
-  $pdf_data = base64_encode(file_get_contents($pdf_url));
+  $pdf_bytes = file_get_contents($pdf_url)
+      ?: throw new \RuntimeException('Could not fetch the PDF.');
+  $pdf_data = base64_encode($pdf_bytes);
 
   $message = $client->messages->create(
       maxTokens: 1024,
@@ -1329,10 +1336,10 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
                       'type' => 'document',
                       'source' => [
                           'type' => 'base64',
-                          'media_type' => 'application/pdf',
+                          'mediaType' => 'application/pdf',
                           'data' => $pdf_data,
                       ],
-                      'cache_control' => ['type' => 'ephemeral'],
+                      'cacheControl' => ['type' => 'ephemeral'],
                   ],
                   [
                       'type' => 'text',
@@ -1341,7 +1348,7 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
               ],
           ],
       ],
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
   );
 
   echo $message;
@@ -1352,7 +1359,7 @@ Cache PDF dengan [caching prompt](https://platform.claude.com/docs/id/build-with
 
   # Muat dan enkode PDF
   pdf_url = "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
-  pdf_bytes = URI.open(pdf_url, "rb") { |f| f.read }
+  pdf_bytes = URI.open(pdf_url, "rb", &:read)
   pdf_data = [pdf_bytes].pack("m0") # Encode as base64 without newlines
 
   anthropic = Anthropic::Client.new
@@ -1829,7 +1836,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
       .build();
 
   MessageBatch batch = client.messages().batches().create(params);
-  System.out.println(batch);
+  IO.println(batch);
   ```
 
   ```php PHP
@@ -1837,15 +1844,17 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
 
   // Muat dan enkode PDF
   $pdf_url = 'https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf';
-  $pdf_data = base64_encode(file_get_contents($pdf_url));
+  $pdf_bytes = file_get_contents($pdf_url)
+      ?: throw new \RuntimeException('Could not fetch the PDF.');
+  $pdf_data = base64_encode($pdf_bytes);
 
   $batch = $client->messages->batches->create(
       requests: [
           [
-              'custom_id' => 'my-first-request',
+              'customID' => 'my-first-request',
               'params' => [
-                  'model' => 'claude-opus-5-5',
-                  'max_tokens' => 1024,
+                  'model' => Model::CLAUDE_OPUS_5_5,
+                  'maxTokens' => 1024,
                   'messages' => [
                       [
                           'role' => 'user',
@@ -1854,7 +1863,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
                                   'type' => 'document',
                                   'source' => [
                                       'type' => 'base64',
-                                      'media_type' => 'application/pdf',
+                                      'mediaType' => 'application/pdf',
                                       'data' => $pdf_data,
                                   ],
                               ],
@@ -1868,10 +1877,10 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
               ],
           ],
           [
-              'custom_id' => 'my-second-request',
+              'customID' => 'my-second-request',
               'params' => [
-                  'model' => 'claude-opus-5-5',
-                  'max_tokens' => 1024,
+                  'model' => Model::CLAUDE_OPUS_5_5,
+                  'maxTokens' => 1024,
                   'messages' => [
                       [
                           'role' => 'user',
@@ -1880,7 +1889,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
                                   'type' => 'document',
                                   'source' => [
                                       'type' => 'base64',
-                                      'media_type' => 'application/pdf',
+                                      'mediaType' => 'application/pdf',
                                       'data' => $pdf_data,
                                   ],
                               ],
@@ -1904,7 +1913,7 @@ Gunakan [Message Batches API](https://platform.claude.com/docs/id/build-with-cla
 
   # Muat dan enkode PDF
   pdf_url = "https://assets.anthropic.com/m/1cd9d098ac3e6467/original/Claude-3-Model-Card-October-Addendum.pdf"
-  pdf_bytes = URI.open(pdf_url, "rb") { |f| f.read }
+  pdf_bytes = URI.open(pdf_url, "rb", &:read)
   pdf_data = [pdf_bytes].pack("m0") # Encode as base64 without newlines
 
   anthropic = Anthropic::Client.new
@@ -1976,7 +1985,7 @@ Batch diproses secara asinkron. Untuk memeriksa progres dan mengambil hasil sete
 
 <CardGroup cols={2}>
   <Card title="Vision" icon="image" href="https://platform.claude.com/docs/id/build-with-claude/vision">
-    Kemampuan vision Claude memungkinkannya memproses dan menganalisis gambar, membuka kemungkinan menarik untuk interaksi multimodal.
+    Pelajari cara menghitung token visual sebuah gambar dan keterbatasan apa saja yang dimiliki PDF bersama tugas vision lainnya.
   </Card>
 
   <Card title="Coba contoh PDF" icon="file" href="https://platform.claude.com/cookbook/multimodal-getting-started-with-vision">

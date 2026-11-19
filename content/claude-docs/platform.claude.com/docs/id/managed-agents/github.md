@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 716ac79c6b1156f2e445e594757a68d75cef0175bc0a8cfc41bee327fafae43a
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 5aa44dea45382f10cdcb96f6f3c5b0d31ffea7eceebf69f84b6731c736b6f792
 ---
 
 ---
@@ -677,7 +677,7 @@ Setelah sesi dibuat, Anda dapat menampilkan daftar sumber daya repositorinya dan
   # Rotasi token otorisasi
   curl -fsS \
     "https://api.anthropic.com/v1/sessions/$session_id/resources/$repo_resource_id" \
-  # ...
+    # ...
     -d @- <<'JSON'
   {
     "authorization_token": "ghp_your_new_github_token"

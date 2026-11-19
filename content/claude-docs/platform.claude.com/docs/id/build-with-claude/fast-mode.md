@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: a9aa9e3f9d7b6146fdad45afff8c6ee1537266248ddb761b002904f2ac106c62
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f79e00175888c69936bbe55f1b9991094e7f6194d962a71986df8029cc1aaa39
 ---
 
 ---
@@ -371,7 +371,7 @@ Objek `usage` pada respons menyertakan field `speed` yang menunjukkan kecepatan 
   "id": "msg_01XFDUDYJgAACzvnptvVoYEL",
   "type": "message",
   "role": "assistant",
-// ...
+  // ...
   "usage": {
     "input_tokens": 8,
     "output_tokens": 12,

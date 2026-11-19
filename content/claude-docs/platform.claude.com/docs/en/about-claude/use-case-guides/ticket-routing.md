@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 0efdccc26771f590a008922b1f18a4843eefcdd49b24ebf303a14d9b9d01af18
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 0135ab29caa45918e3012ed820dabe72688b5226921d679359241c1627be4688
 ---
 
 ---
@@ -495,7 +495,7 @@ Here’s an example ticket routing classification prompt:
 
   		Remember to always include your classification reasoning before your actual intent output. The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
   		`
-  // ...
+  	// ...
   }
   ```
 
@@ -838,7 +838,7 @@ Build the deployment structure. Start by defining the function signature for wra
   	"context"
   	"regexp"
   	"strings"
-  // ...
+  	// ...
   )
 
   // Create an instance of the Claude API client
@@ -1203,7 +1203,7 @@ To assess this, first modify the script so that it compares the predicted intent
   	"context"
   	"regexp"
   	"strings"
-  // ...
+  	// ...
   )
 
   // Create an instance of the Claude API client

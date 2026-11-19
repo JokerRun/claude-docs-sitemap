@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 92dea94f5c1e6c8f51046a358780836753b3bfcd0fe216436459d54adff209d4
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: a67c798bdc6134a30740af2057bf12c4c8b94ff2b11ee6364fefbd651a293a56
 ---
 
 ---
@@ -405,6 +405,28 @@ List the set-up Slack channels of one Slack workspace, newest first by `created_
 - `next_page: string or null`
 
   Cursor for the next page. Null on the last page.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
 
 ## Example
 

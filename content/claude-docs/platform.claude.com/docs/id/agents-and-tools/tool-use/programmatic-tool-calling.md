@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 047f5ce7da06b9957617bf26c2bd131d839c06e909bb2d32d933ade3308c37aa
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: fd9ab16936715efda62fe3b44f130d2bbc5ebbc8c185ef1d67106d2a75be970b
 ---
 
 ---
@@ -36,6 +36,7 @@ featureMetadata:
   supportedPlatforms:
     Claude API: stable
     Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
     Microsoft Foundry (hosted on Anthropic): stable
   details:
     - Pemanggilan alat terprogram memerlukan alat eksekusi kode dengan [versi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#tool-versions) `code_execution_20260120` atau yang lebih baru.
@@ -469,7 +470,7 @@ Pemanggilan alat secara programatik menggunakan kontainer yang sama dengan eksek
 * **Kedaluwarsa:** Kontainer kedaluwarsa 30 hari setelah dibuat. Setelah sekitar 5 menit tidak aktif, kontainer di-checkpoint, dan mengirim permintaan dengan ID-nya dalam rentang 30 hari tersebut akan memulihkannya. Timestamp `expires_at` adalah nilai bergulir yang lebih pendek dan tidak melaporkan batas 30 hari.
 
 <Warning>
-  Saat kode Claude sedang menunggu hasil alat programatik, pemanggilan yang tertunda akan habis waktu setelah sekitar 4 menit dan memunculkan `TimeoutError` di dalam kode. Kembalikan setiap hasil alat jauh sebelum timestamp `expires_at` pada respons yang dijeda. Lihat [Kedaluwarsa kontainer selama pemanggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling#container-expiration-during-tool-call).
+  Saat kode Claude sedang menunggu hasil alat programatik, pemanggilan yang tertunda akan habis waktu setelah sekitar 4 menit dan memunculkan `TimeoutError` di dalam kode. Waktu tersebut dimulai saat kode Claude melakukan pemanggilan, sebelum respons yang dijeda sampai kepada Anda. Timestamp `expires_at` pada respons yang dijeda jatuh setelah pemanggilan habis waktu, sehingga itu bukan tenggat waktu Anda. Lihat [Kedaluwarsa kontainer selama pemanggilan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling#container-expiration-during-tool-call).
 </Warning>
 
 ## Contoh alur kerja
@@ -1328,7 +1329,6 @@ Jika hasil alat Anda tidak tiba dalam waktu sekitar 4 menit, pemanggilan yang te
 
 Untuk mencegah timeout:
 
-* Pantau field `expires_at` pada respons yang dijeda.
 * Terapkan timeout untuk eksekusi alat Anda.
 * Pertimbangkan untuk memecah operasi panjang menjadi bagian-bagian yang lebih kecil.
 
@@ -1489,7 +1489,7 @@ Jika Anda tidak yakin, ukur token input yang ditagih dengan dan tanpa `allowed_c
 
 **Kedaluwarsa kontainer**
 
-* Respons setiap pemanggilan alat programatik jauh sebelum timestamp `expires_at` pada respons yang dijeda. Kode Claude berhenti menunggu hasil setelah sekitar 4 menit.
+* Respons setiap pemanggilan alat programatik secepat mungkin. Jangan anggap timestamp `expires_at` pada respons yang dijeda sebagai tenggat waktu Anda: timestamp tersebut jatuh setelah pemanggilan habis waktu. Kode Claude berhenti menunggu hasil setelah sekitar 4 menit.
 * Pertimbangkan untuk mengimplementasikan eksekusi alat yang lebih cepat.
 
 **Hasil alat tidak diurai dengan benar**
@@ -1558,7 +1558,7 @@ Pemanggilan alat terprogram Anthropic adalah versi terkelola dari eksekusi sandb
 * Diaktifkan dengan definisi alat, tanpa infrastruktur yang perlu dijalankan
 * Lingkungan dan instruksi yang dioptimalkan untuk Claude
 
-Pertimbangkan untuk menggunakan solusi terkelola Anthropic jika Anda menggunakan Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), atau [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, pemanggilan alat secara programatik memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure).
+**Gunakan ketika:** Anda menggunakan [platform dan model yang didukung](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling#feature-availability) dan tidak perlu menjalankan lingkungan eksekusi Anda sendiri.
 
 ## Retensi data
 
@@ -1597,6 +1597,7 @@ Pemanggilan alat secara programatik tersedia di model tertentu.
 | Status   | Platform cloud                                                                                                                                                                                                                                   | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview) |
+| Tersedia | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed)                                                                                       | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview)                                                                                                                                                                                              |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/oauth-apps/overview
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: bbd2006a9d58d0d7e7ba740a4c8dac4c33202d03372b378e579955f2ffe89110
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 2f1d64eb992e46eac8f684ceff55cbe85c729cd869e8e8dea239ca6d68941588
 ---
 
 ---
@@ -52,7 +52,9 @@ The approval page shows your app’s name and what your app is asking for, so th
 
 Linked billing starts with these one-time setup steps in the Claude Console. The [Linked billing](https://platform.claude.com/docs/en/manage-claude/oauth-apps/organization-billing-connections#setup-process) guide walks you through them.
 
-1. **Create the app.** A member of your Claude organization with the Admin role creates an OAuth app in the Claude Console and copies its client ID. The app holds the name that people see on the approval page, and the address in your product that they return to.
+These steps need the Admin role in your Claude organization.
+
+1. **Create the app.** In the Claude Console, create an OAuth app and copy its client ID. The app holds the name that people see on the approval page and the address in your product that they return to.
 2. **Set up client authentication.** Instead of a client secret, your back end proves that a request comes from your app with a short-lived token from your own identity provider, such as AWS, Google Cloud, Microsoft Entra ID, or Kubernetes. You select the identity provider, and which of its tokens to accept, on the app’s **Client authentication** tab.
 3. **Set up your back end’s identity.** Create a service account and a second federation rule with [Workload Identity Federation](https://platform.claude.com/docs/en/manage-claude/workload-identity-federation), and select the service account as the app’s operator service account.
 

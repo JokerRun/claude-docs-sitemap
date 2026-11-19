@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/issuers/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 0cd0f879b9afe33d912b98818c16cf9c95d6219e628c477c1c6f15479a423f7d
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 3321cbec0e136eeb4cb104fb5fe295b26084eda5ff05e6bf30baa080049221c1
 ---
 
 ---
@@ -255,6 +255,16 @@ session.
   - `updated_by_actor_id: string or null`
 
     Tagged ID (`user_`/`svac_`) of the actor that last updated this issuer.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

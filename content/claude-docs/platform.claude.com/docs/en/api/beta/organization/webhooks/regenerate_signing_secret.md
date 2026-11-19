@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/regenerate_signing_secret
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: d43a199934ef117c4c018011498320b8edeb312fd773657952c48182048e5fe2
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: b8e2add95b91968e6c87bd886258592b0c6116b4edbd2020932b0886e1796ae9
 ---
 
 ---
@@ -184,6 +184,16 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
   - `signing_secret: string`
 
     The new signing secret. Deliveries are signed with it from now on, and no other response returns it.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

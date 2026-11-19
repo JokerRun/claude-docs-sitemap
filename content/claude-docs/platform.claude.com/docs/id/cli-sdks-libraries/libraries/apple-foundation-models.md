@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 12c8b7d7a54c94bf947d53fea25d7c8d86c92fc76b5e96fe617d28167505294e
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: bbadc1045ad27a53ed5e0115432a4fec91fe53fb4958e12ace74755d3a234536
 ---
 
 ---
@@ -153,7 +153,7 @@ ClaudeLanguageModel(
   App Attest memerlukan perangkat fisik. Simulator, dan perangkat keras tanpa Secure Enclave, tidak dapat melakukan App Attest. Gunakan `.apiKey` saat beriterasi di Simulator, dan `.appAttest` saat berjalan di perangkat.
 </Note>
 
-Untuk menyiapkan App Attest, Anda memerlukan Apple Developer Team ID Anda dan peran admin, pemilik, atau pemilik utama di organisasi Claude Console Anda. Konfigurasikan proyek Xcode Anda dan daftarkan aplikasi Anda di [Claude Console](https://platform.claude.com/):
+Untuk menyiapkan App Attest, Anda memerlukan Apple Developer Team ID Anda dan peran admin di organisasi Claude Console Anda. Konfigurasikan proyek Xcode Anda dan daftarkan aplikasi Anda di [Claude Console](https://platform.claude.com/):
 
 1. Di Xcode, tambahkan kapabilitas **App Attest** ke target aplikasi Anda di bawah **Signing & Capabilities**.
 2. Di Claude Console, buka halaman [App integrations](https://platform.claude.com/settings/app-integrations) (`platform.claude.com/settings/app-integrations`) dan klik **Create app integration**.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 1fb90cdc632117d58d36b5dfa8faff7019b3f7782f6b0c4645141d64cb8f6d1f
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: fd704699ce4d604f73c5510efdfc8ae7c084f6ca206a7d75e44a498612d313a4
 ---
 
 ---
@@ -41,7 +41,7 @@ Claude Opus 4.6 adalah ID model Bedrock terakhir yang menyertakan sufiks `-v1` (
 
 Di endpoint `bedrock-runtime`, model yang disajikan AWS melalui inferensi lintas wilayah, termasuk Claude Fable 5.2 dan Claude Mythos 5.2, menggunakan ID profil inferensi: ID model dasar dengan prefiks seperti `global.` atau `us.`, misalnya `global.anthropic.claude-fable-5-2`. Lihat [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids).
 
-Di Claude Models on Google Cloud (Google managed), formatnya sama dengan Claude API.
+Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), formatnya sama dengan Claude API.
 
 ### Sebelum generasi 4.6
 
@@ -60,6 +60,8 @@ anthropic.claude-{name}-{major}-{minor}-{YYYYMMDD}-v1:0
 ```
 
 Contohnya: `anthropic.claude-sonnet-4-5-20250929-v1:0`
+
+Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#api-model-ids), formatnya sama dengan Claude API.
 
 Di Claude Models on Google Cloud (Google managed), tanggal dipisahkan dengan `@`:
 
@@ -89,4 +91,4 @@ Sesekali, pembaruan infrastruktur menghasilkan perbedaan kecil dalam perilaku ya
 
 ## ID model saat ini
 
-Untuk daftar lengkap ID model saat ini beserta padanannya di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
+Untuk ID model saat ini di setiap platform, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5bc04f83b079175d65753c64efe93cb76b255fdd7250b58cf8ecfe037bf17d65
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 919384c25e39f1dc2da8ac38292c87d7201df5a8ca931ebfd3aafe51fa68a4b9
 ---
 
 ---
@@ -773,11 +773,11 @@ Untuk informasi lebih rinci, lihat [Pemikiran dan caching prompt](https://platfo
 
 ### Penyimpanan dan berbagi cache
 
-<Warning>
-  Caching prompt menggunakan isolasi tingkat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces). Cache diisolasi per workspace, memastikan pemisahan data antar workspace dalam organisasi yang sama. Ini berlaku untuk Claude API, Claude Platform on AWS, dan Microsoft Foundry; Claude Models on Google Cloud (Google managed) dan Bedrock mempertahankan isolasi cache tingkat organisasi. Jika Anda menggunakan beberapa workspace, tinjau strategi caching Anda untuk memperhitungkan perbedaan ini.
-</Warning>
+Caching prompt mengikuti aturan berikut:
 
-* **Isolasi organisasi dan workspace:** Cache diisolasi antar organisasi. Organisasi yang berbeda tidak pernah berbagi cache, bahkan jika mereka menggunakan prompt yang identik. Cache juga diisolasi per workspace dalam suatu organisasi di Claude API, Claude Platform on AWS, dan Microsoft Foundry; Claude Models on Google Cloud (Google managed) dan Bedrock hanya menggunakan isolasi tingkat organisasi.
+* **Isolasi organisasi:** Organisasi yang berbeda tidak pernah berbagi cache, bahkan jika mereka menggunakan prompt yang identik.
+
+* **Isolasi workspace:** Di Claude API, Claude Platform on AWS, dan Microsoft Foundry, cache juga diisolasi antar [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces). Di platform tersebut, setiap workspace membangun cache-nya sendiri. Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, cache hanya diisolasi per organisasi.
 
 * **Pencocokan persis:** Cache hit memerlukan segmen prompt yang 100 persen identik, termasuk semua teks dan gambar hingga dan termasuk blok yang ditandai dengan kontrol cache.
 
@@ -830,11 +830,7 @@ Jika Anda mengalami perilaku yang tidak terduga:
 
 ## Durasi cache 1 jam
 
-Jika Anda merasa 5 menit terlalu singkat, Anthropic juga menawarkan durasi cache 1 jam dengan biaya tambahan (lihat [Harga](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing)).
-
-<Note>
-  Durasi cache 1 jam tersedia di Claude API, [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry).
-</Note>
+Jika Anda merasa 5 menit terlalu singkat, Anthropic juga menawarkan durasi cache 1 jam dengan biaya tambahan (lihat [Harga](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#pricing)). Durasi 1 jam tersedia di [setiap platform yang mendukung caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#feature-availability).
 
 Untuk menggunakan cache yang diperpanjang, sertakan `ttl` dalam definisi `cache_control` seperti ini:
 
@@ -3336,7 +3332,9 @@ Cuplikan kode berikut menampilkan berbagai pola caching prompt. Contoh-contoh in
 
 Caching prompt (baik otomatis maupun eksplisit) memenuhi syarat ZDR. Anthropic tidak menyimpan teks mentah dari prompt Anda atau respons Claude.
 
-Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cache hanya disimpan di memori dan tidak disimpan secara permanen (at rest). Entri yang di-cache memiliki masa hidup minimum 5 menit (standar) atau 1 jam (diperpanjang), setelah itu entri tersebut dihapus dengan segera, meskipun tidak seketika. Entri cache diisolasi antar organisasi dan, pada Claude API, Claude Platform on AWS, dan Microsoft Foundry, antar workspace dalam satu organisasi.
+Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cache hanya disimpan di memori dan tidak disimpan secara permanen (at rest). Entri yang di-cache memiliki masa hidup minimum 5 menit (standar) atau 1 jam (diperpanjang), setelah itu entri tersebut dihapus dengan segera, meskipun tidak seketika.
+
+Entri cache diisolasi antar organisasi dan, pada [beberapa platform](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-storage-and-sharing), antar workspace dalam satu organisasi.
 
 ***
 
@@ -3447,7 +3445,7 @@ Representasi cache KV (key-value) dan hash kriptografis dari konten yang di-cach
 
     1. Kunci cache dibuat menggunakan hash kriptografis dari prompt hingga titik kontrol cache. Ini berarti hanya permintaan dengan prompt identik yang dapat mengakses cache tertentu.
 
-    2. Pada Claude API, Claude Platform on AWS, dan Microsoft Foundry, cache diisolasi per workspace dalam satu organisasi. Pada Claude Models on Google Cloud (Google managed) dan Bedrock, cache diisolasi per organisasi. Dalam setiap kasus, cache tidak pernah dibagikan antar organisasi, bahkan untuk prompt yang identik. Lihat [Penyimpanan dan berbagi cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-storage-and-sharing) untuk detailnya.
+    2. Cache tidak pernah dibagikan antar organisasi, bahkan untuk prompt yang identik. Pada [beberapa platform](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-storage-and-sharing), cache juga diisolasi per workspace dalam satu organisasi.
 
     3. Mekanisme caching dirancang untuk menjaga integritas dan privasi setiap percakapan atau konteks yang unik.
 

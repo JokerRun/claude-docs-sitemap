@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 923159f859533091b1f242d9950e49a132c1f81b33c5bf342405758df535bec0
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 5f557b54f2ace0e727f3e08d3817626174df50720dac83504fe70cf964c1202f
 ---
 
 ---
 title: Menerapkan worker self-hosted
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-description: "Pilih cara worker sandbox self-hosted mengklaim pekerjaan dan tempat sesi berjalan: always-on atau dipicu webhook, dalam satu proses atau satu sandbox per sesi."
+description: Pilih cara worker sandbox self-hosted mengklaim pekerjaan dan tempat sesi berjalan, lalu jalankan worker always-on atau picu worker dari webhook.
 featureMetadata:
   topic:
     title: Managed Agents
@@ -43,7 +43,7 @@ featureMetadata:
     Claude Platform on AWS: beta
 ---
 
-[Panduan mulai cepat](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#quickstart) menjalankan satu worker CLI `ant` yang melakukan polling secara terus-menerus dan menjalankan setiap sesi dalam satu proses. Halaman ini membahas cara-cara lain untuk menjalankan worker dan cara memilih di antaranya.
+[Panduan mulai cepat sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#quickstart) menjalankan satu worker CLI `ant` yang melakukan polling secara terus-menerus dan menjalankan setiap sesi dalam satu proses. Halaman ini membantu Anda memilih pola deployment, lalu membahas worker always-on dan worker yang dipicu webhook.
 
 ## Pilih pola deployment
 
@@ -51,31 +51,41 @@ Saat menerapkan worker, Anda perlu membuat dua pilihan: bagaimana worker mengkla
 
 **Bagaimana worker mengklaim pekerjaan:**
 
-* **Selalu aktif:** Proses yang berjalan lama melakukan polling antrean secara terus-menerus dan hanya memerlukan HTTPS keluar. Ini adalah penyiapan paling sederhana.
+* **Selalu aktif:** Proses yang berjalan lama melakukan polling antrean secara terus-menerus. Proses ini hanya membuat permintaan HTTPS keluar, sehingga Anda tidak mengekspos endpoint kepada Anthropic.
 * **Dipicu webhook:** Sebuah handler aktif pada `session.status_run_started` dan mulai melakukan polling. Ini menghindari poller yang menganggur, tetapi memerlukan endpoint [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) yang dapat dijangkau oleh Anthropic.
 
 **Di mana setiap sesi berjalan:**
 
 * **Dalam proses:** Worker yang mengklaim sebuah sesi juga menjalankan pemanggilan alatnya, dalam satu direktori kerja bersama.
-* **Sandbox per sesi:** Sebuah poller meluncurkan sandbox baru untuk setiap sesi yang diklaim. Pilih ini untuk isolasi yang lebih kuat: sistem file baru, batas sumber daya, atau kontrol jaringan per sesi.
+* **Sandbox per sesi:** Sebuah poller meluncurkan sandbox baru untuk setiap sesi yang diklaim. Pilih ini untuk isolasi yang lebih kuat: sistem file baru, batas sumber daya, atau kontrol jaringan per sesi. Lihat [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session), yang juga membahas Helm chart untuk Kubernetes.
 
 Worker CLI dan SDK mendukung kombinasi yang berbeda:
 
-| Kemampuan                                                                                            | CLI `ant`                                  | SDK (Python, TypeScript, Go)                     |
-| ---------------------------------------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ |
-| Polling always-on                                                                                    | Ya                                         | Ya                                               |
-| Dipicu webhook                                                                                       | Tidak                                      | Ya                                               |
-| Sandbox per sesi                                                                                     | Ya                                         | Ya                                               |
-| [Memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory)      | Ya, dengan pengaturan sinkronisasi default | Ya, dengan sinkronisasi yang dapat dikonfigurasi |
-| [Alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools) | Tidak                                      | Ya                                               |
+| Kemampuan                                                                                                | CLI `ant`                                  | SDK (Python, TypeScript, Go)                     |
+| -------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ |
+| Polling always-on                                                                                        | Ya                                         | Ya                                               |
+| Dipicu webhook                                                                                           | Tidak                                      | Ya                                               |
+| [Sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session) | Ya                                         | Ya                                               |
+| [Memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory)          | Ya, dengan pengaturan sinkronisasi default | Ya, dengan sinkronisasi yang dapat dikonfigurasi |
+| [Alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools)     | Tidak                                      | Ya                                               |
 
-Lihat [Referensi worker self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference) untuk setiap flag CLI dan opsi SDK. Untuk kontrol lebih, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung dan implementasikan worker Anda sendiri.
+Lihat [Referensi worker self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference) untuk setiap flag CLI dan opsi SDK.
+
+Untuk kontrol lebih, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung dan implementasikan worker Anda sendiri. Worker Anda kemudian melakukan apa yang dilakukan worker SDK. Antara lain, worker tersebut melakukan acknowledge setiap item pekerjaan, mengirim heartbeat, dan mengunduh skill agen. Worker hanya menjalankan pemanggilan alat yang diizinkan oleh [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies#see-how-each-call-was-evaluated) sesi. Worker mengembalikan setiap hasil sebagai event `user.tool_result` atau `user.custom_tool_result`. Pada akhirnya, worker menghentikan item tersebut. Gunakan kode sumber worker di [SDK Python](https://github.com/anthropics/anthropic-sdk-python/tree/main/src/anthropic/lib/environments), [SDK TypeScript](https://github.com/anthropics/anthropic-sdk-typescript/tree/main/src/lib/environments), atau [SDK Go](https://github.com/anthropics/anthropic-sdk-go/tree/main/lib/environments) sebagai referensi.
 
 ## Menjalankan worker always-on
+
+Sampel ini menggunakan `/workspace` sebagai direktori kerja worker. Direktori tersebut harus sudah ada sebelum worker dimulai. Di host baru, buat direktori tersebut dan berikan akses tulis kepada pengguna worker, seperti pada langkah “Mulai worker” di [Jalankan sesi pertama Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session).
+
+Di macOS, `mkdir` tidak dapat membuat `/workspace`, karena volume root bersifat read-only. Buat `~/workspace` sebagai gantinya, seperti yang ditunjukkan pada langkah tersebut. Sebagai pengganti `/workspace`, gunakan path lengkap yang dicetak oleh `echo ~/workspace`, karena SDK tidak mengekspansi `~`.
 
 Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini melakukan autentikasi dengan [kunci lingkungan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session) dari quickstart:
 
 <CodeGroup exclude="shell:cURL, csharp, java, php, ruby">
+  <CodeGroupItem language="cURL">
+    Worker adalah proses yang berjalan lama, bukan satu permintaan HTTP. Jalankan worker CLI `ant` sebagai gantinya: `ant beta:worker poll --workdir /workspace`.
+  </CodeGroupItem>
+
   ```bash CLI
   ant beta:worker poll --workdir /workspace
   ```
@@ -190,7 +200,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
 
 <Steps>
   <Step title="Berlangganan webhook sesi">
-    Di [Claude Console](https://platform.claude.com/settings/workspaces/default/webhooks), tentukan endpoint webhook yang mendengarkan event `session.status_run_started`. Lihat [Webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk detailnya.
+    Di [Claude Console](https://platform.claude.com/settings/workspaces/default/webhooks), tentukan endpoint webhook yang mendengarkan event `session.status_run_started`. Lihat [Berlangganan webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) untuk detailnya.
   </Step>
 
   <Step title="Ekspor kunci penandatanganan webhook">
@@ -202,9 +212,19 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
   </Step>
 
   <Step title="Implementasikan handler webhook">
-    Mulai worker saat `session.status_run_started` dipicu. Handler menguras antrean dan menyerahkan setiap item pekerjaan yang diklaim ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`), yang mengunduh skill, menjalankan pemanggilan alat, mengirimkan hasil kembali, lalu kembali.
+    Mulai worker saat `session.status_run_started` dipicu. Handler menguras antrean dan menyerahkan setiap item pekerjaan yang diklaim ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) (di SDK Python, TypeScript, dan Go). Metode tersebut mengunduh skill, menjalankan pemanggilan alat, mengirimkan hasil kembali, lalu kembali.
+
+    Sampel menggunakan `/workspace` sebagai direktori kerja. Sebelum Anda memulai handler, buat direktori tersebut di host handler. Pastikan pengguna handler dapat menulis ke direktori tersebut, seperti pada langkah “Mulai worker” di [Jalankan sesi pertama Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#run-your-first-session).
 
     <CodeGroup exclude="shell, csharp, java, php, ruby">
+      <CodeGroupItem language="cURL">
+        Handler ini memerlukan logika lebih dari satu perintah shell. Gunakan SDK Python, TypeScript, atau Go untuk menjalankannya.
+      </CodeGroupItem>
+
+      <CodeGroupItem language="CLI">
+        Handler ini memerlukan logika lebih dari satu perintah shell. Gunakan SDK Python, TypeScript, atau Go untuk menjalankannya.
+      </CodeGroupItem>
+
       <CodeGroupItem>
         Untuk memverifikasi tanda tangan webhook, instal extra webhooks: `pip install "anthropic[webhooks]"`.
 
@@ -220,11 +240,11 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
             auth_token=environment_key,
         )
         # Dibatalkan oleh shutdown() agar item pekerjaan yang sedang berjalan dapat mengunggah file memori yang berubah dan
-        # menghapus direktori store-nya sebelum proses berakhir.
+        # menghapus direktori store-nya sebelum proses keluar.
         inflight: set[asyncio.Task[None]] = set()
 
 
-        # Await ini dari hook shutdown milik host, misalnya shutdown lifespan ASGI (kode setelah
+        # Await ini dari shutdown hook host, seperti shutdown lifespan ASGI (kode setelah
         # `yield` dalam lifespan FastAPI), yang dijalankan uvicorn saat SIGTERM. uvicorn membiarkan request terbuka
         # selesai sebelum hook itu berjalan, jadi atur --timeout-graceful-shutdown untuk membatasi waktu tunggu.
         async def shutdown() -> None:
@@ -244,7 +264,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
             inflight.add(task)
             task.add_done_callback(inflight.discard)
             try:
-                # Dilindungi (shielded): pengiriman yang terputus atau timeout tidak boleh membatalkan item; shutdown() yang melakukannya.
+                # Di-shield: pengiriman yang terputus atau timeout tidak boleh membatalkan item; shutdown() yang melakukannya.
                 await asyncio.shield(task)
             except asyncio.CancelledError:
                 return {"status": "shutting down"}, 503
@@ -328,7 +348,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       ```
 
       <CodeGroupItem language="C#">
-        SDK C# tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+        SDK C# tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, implementasikan worker Anda sendiri, seperti yang dijelaskan di [Pilih pola deployment](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#choose-a-deployment-pattern).
       </CodeGroupItem>
 
       ```go Go
@@ -361,7 +381,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       	worker = environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
       		Workdir: "/workspace",
       	})
-      	// Dibatalkan pada SIGINT atau SIGTERM (diatur di main) agar work item yang sedang berjalan dapat
+      	// Dibatalkan saat SIGINT atau SIGTERM (diatur di main) agar item pekerjaan yang sedang berjalan dapat
       	// mengunggah file memori yang berubah dan menghapus direktori store-nya sebelum keluar.
       	shutdown context.Context
       )
@@ -384,8 +404,8 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
 
       	// Go SDK tidak menyediakan kemudahan RunOne: kuras item yang tertunda
       	// dengan WorkPoller dan jalankan masing-masing dengan HandleItem.
-      	// Lepaskan dari r.Context(): sesi dapat bertahan lebih lama dari batas waktu pengiriman webhook.
-      	// Konteks shutdown tingkat proses tetap mengakhiri item dengan bersih pada SIGTERM.
+      	// Lepaskan dari r.Context(): sesi bisa bertahan lebih lama dari batas waktu pengiriman webhook.
+      	// Konteks shutdown tingkat proses tetap mengakhiri item dengan bersih saat SIGTERM.
       	ctx := shutdown
       	poller := environments.NewWorkPoller(ctx, client, environments.WorkPollerOptions{
       		EnvironmentID:      environmentID,
@@ -403,7 +423,7 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       			EnvironmentID:  item.EnvironmentID,
       			SessionID:      item.Data.ID,
       			EnvironmentKey: environmentKey,
-      			// Secret per sesi inilah yang memungkinkan worker memasang memory store milik sesi.
+      			// Secret per sesi inilah yang memungkinkan worker me-mount memory store milik sesi.
       			WorkSecret: item.Secret,
       		}); err != nil {
       			slog.Error("handle work item", "work_id", item.ID, "err", err)
@@ -432,8 +452,8 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       			os.Exit(1)
       		}
       	}()
-      	// Saat ada sinyal, berhenti menerima pengiriman dan kembali hanya setelah handler yang sedang berjalan,
-      	// dan karenanya teardown memori work item mereka, telah selesai.
+      	// Saat menerima sinyal, berhenti menerima pengiriman dan kembali hanya setelah handler
+      	// yang sedang berjalan, beserta teardown memori item pekerjaannya, selesai.
       	<-ctx.Done()
       	if err := server.Shutdown(context.Background()); err != nil {
       		slog.Error("http shutdown", "err", err)
@@ -442,490 +462,32 @@ Mulai worker yang melakukan polling antrean secara terus-menerus. Worker ini mel
       ```
 
       <CodeGroupItem language="Java">
-        SDK Java tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+        SDK Java tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, implementasikan worker Anda sendiri, seperti yang dijelaskan di [Pilih pola deployment](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#choose-a-deployment-pattern).
       </CodeGroupItem>
 
       <CodeGroupItem language="PHP">
-        SDK PHP tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+        SDK PHP tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, implementasikan worker Anda sendiri, seperti yang dijelaskan di [Pilih pola deployment](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#choose-a-deployment-pattern).
       </CodeGroupItem>
 
       <CodeGroupItem language="Ruby">
-        SDK Ruby tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
+        SDK Ruby tidak memiliki `EnvironmentWorker`. Untuk menangani item pekerjaan dari kode Anda sendiri, implementasikan worker Anda sendiri, seperti yang dijelaskan di [Pilih pola deployment](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#choose-a-deployment-pattern).
       </CodeGroupItem>
     </CodeGroup>
 
-    Karena handler mengklaim pekerjaan sendiri, handler harus [meneruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret), seperti yang dilakukan argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) di sini.
+    Di SDK Python, TypeScript, dan Go, `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) memerlukan secret item pekerjaan untuk me-mount memory store. Worker yang melakukan polling dengan `run()` (go: `Run()`) sudah memiliki secret tersebut. Handler ini mengklaim setiap item sendiri, sehingga handler meneruskan secret dalam argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`). Lihat [Meneruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#forward-the-work-items-secret).
   </Step>
 </Steps>
 
-Handler ini menjalankan setiap item yang diklaim dalam satu proses di satu host. Jika sesi Anda melampirkan memory store yang sama, lihat [Mengisolasi sesi yang berbagi store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#isolate-sessions-that-share-a-store).
-
-## Menjalankan satu sandbox per sesi
-
-Poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali untuk setiap item pekerjaan. Skrip tersebut meluncurkan sandbox untuk satu sesi itu.
-
-<Steps>
-  <Step title="Bangun image sandbox">
-    Instal `ant` dan tetapkan `ant beta:worker run` sebagai entrypoint. Saat sandbox dimulai, sandbox membaca detail sesi dari variabel lingkungan, menangani sesi tersebut, lalu keluar. Image dasar harus menyediakan `/bin/bash`; `curl` hanya digunakan saat build.
-
-    ```dockerfile
-    FROM your-base-image
-    ARG ANT_VERSION=2.11.0
-    ARG TARGETARCH
-    RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
-        curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \
-          | tar -xz -C /usr/local/bin ant
-    WORKDIR /workspace
-    VOLUME /workspace
-    ENTRYPOINT ["ant", "beta:worker", "run"]
-    ```
-  </Step>
-
-  <Step title="Tulis skrip spawn">
-    Skrip meneruskan detail sesi ke sandbox baru. Skrip ini memerlukan `jq` di host poller.
-
-    ```bash
-    #!/bin/bash
-    # spawn.sh: dipanggil sekali untuk setiap item kerja yang diklaim
-    # Item kerja yang diklaim diterima sebagai JSON melalui stdin.
-    ANTHROPIC_WORK_SECRET="$(jq -r '.secret // empty')"
-    export ANTHROPIC_WORK_SECRET
-    mkdir -p "/host/outputs/$ANTHROPIC_SESSION_ID"
-    exec docker run --rm \
-      -e ANTHROPIC_SESSION_ID -e ANTHROPIC_ENVIRONMENT_KEY \
-      -e ANTHROPIC_WORK_ID -e ANTHROPIC_ENVIRONMENT_ID -e ANTHROPIC_BASE_URL \
-      -e ANTHROPIC_WORK_SECRET \
-      -v "/host/outputs/$ANTHROPIC_SESSION_ID":/workspace \
-      your-image
-    ```
-
-    Poller menetapkan variabel `ANTHROPIC_*` yang diteruskan oleh skrip, kecuali secret. Lihat [Variabel lingkungan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference#environment-variables).
-
-    `/host/outputs` adalah direktori host yang Anda pilih. Memasangnya di `/workspace` memungkinkan Anda mengambil hasil kerja sesi setelah sandbox keluar. Mount tersebut juga menangkap pohon `skills/` yang diunduh dan file perantara apa pun.
-  </Step>
-
-  <Step title="Mulai poller">
-    ```bash
-    ant beta:worker poll --on-work ./spawn.sh
-    ```
-  </Step>
-</Steps>
-
-### Meneruskan secret item pekerjaan
-
-Setiap item pekerjaan yang diklaim dapat membawa `secret` (csharp, go: `Secret`) per sesi, yang diterbitkan oleh Anthropic. Worker yang menjalankan sesi memerlukannya untuk me-mount [memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory).
-
-Worker yang mengklaim dan menjalankan sesi dalam satu proses (`ant beta:worker poll` tanpa `--on-work`, atau `EnvironmentWorker` dengan `run()` (go: `Run()`)) meneruskan secret itu sendiri. Ketika kode Anda sendiri berada di antara klaim dan worker, Anda yang meneruskannya:
-
-| Anda mengklaim pekerjaan dengan                                | Secret tiba sebagai                                                    | Teruskan ke worker sebagai                                                                                                                                                                 |
-| -------------------------------------------------------------- | ---------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `ant beta:worker poll --on-work`                               | Field `secret` dari JSON item pekerjaan pada standard input skrip Anda | `ANTHROPIC_WORK_SECRET` di lingkungan sandbox                                                                                                                                              |
-| `work.poller()` (go: `environments.NewWorkPoller()`) milik SDK | Field `secret` (go: `Secret`) dari setiap item pekerjaan yang diklaim  | `ANTHROPIC_WORK_SECRET` di lingkungan sandbox, atau argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) ke `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
-
-Teruskan secret hanya ke sandbox yang melayani sesi tersebut, dan jangan pernah mencatatnya di log. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk mengetahui hubungannya dengan kunci lingkungan.
-
-### Meluncurkan sandbox dari poller SDK
-
-Untuk mengklaim pekerjaan dari kode Anda sendiri alih-alih `ant beta:worker poll --on-work`, gunakan `work.poller()` (typescript: `new WorkPoller()`; go: `environments.NewWorkPoller()`). Fungsi ini melakukan polling terhadap antrean dan memberi Anda setiap sesi yang diklaim, lalu Anda meluncurkan sandbox:
-
-<CodeGroup exclude="shell, csharp, java, php, ruby">
-  <CodeGroupItem language="cURL">
-    Mengklaim pekerjaan dalam loop dan meluncurkan sandbox untuk setiap sesi memerlukan logika lebih dari satu perintah shell. Dari shell, jalankan `ant beta:worker poll --on-work` dengan skrip spawn, seperti pada [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session).
-  </CodeGroupItem>
-
-  <CodeGroupItem language="CLI">
-    Untuk mengklaim pekerjaan dari shell dan meluncurkan sandbox untuk setiap sesi, jalankan `ant beta:worker poll --on-work` dengan skrip spawn, seperti pada [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session).
-  </CodeGroupItem>
-
-  ```python Python
-  import asyncio
-  import os
-
-  from anthropic import AsyncAnthropic
-  from anthropic.types.beta.environments import BetaSelfHostedWork
-
-  SANDBOX_ENV = (
-      "ANTHROPIC_ENVIRONMENT_ID",
-      "ANTHROPIC_ENVIRONMENT_KEY",
-      "ANTHROPIC_WORK_ID",
-      "ANTHROPIC_SESSION_ID",
-      "ANTHROPIC_WORK_SECRET",
-      "ANTHROPIC_BASE_URL",  # forwarded only when set on this host
-  )
-
-
-  async def launch_container(work: BetaSelfHostedWork) -> None:
-      print(f"claimed session {work.data.id}")
-      # Ganti `docker run` dengan peluncur sandbox Anda sendiri. Teruskan kunci
-      # environment (jangan pernah kunci API Anda) dan secret per sesi milik item kerja: worker
-      # di dalamnya memerlukan secret tersebut untuk me-mount memory store sesi.
-      env = os.environ | {
-          "ANTHROPIC_WORK_ID": work.id,
-          "ANTHROPIC_SESSION_ID": work.data.id,
-          "ANTHROPIC_WORK_SECRET": work.secret or "",
-      }
-      forward = [arg for name in SANDBOX_ENV for arg in ("-e", name)]
-      launcher = await asyncio.create_subprocess_exec(
-          "docker", "run", "--rm", "--detach", *forward, "your-image", env=env
-      )
-      await launcher.wait()
-
-
-  async def main() -> None:
-      environment_key = os.environ["ANTHROPIC_ENVIRONMENT_KEY"]
-      environment_id = os.environ["ANTHROPIC_ENVIRONMENT_ID"]
-      async with AsyncAnthropic(auth_token=environment_key) as client:
-          async for work in client.beta.environments.work.poller(
-              environment_id=environment_id,
-              environment_key=environment_key,
-              auto_stop=False,  # the launched sandbox owns the stop call
-          ):
-              await launch_container(work)
-
-
-  asyncio.run(main())
-  ```
-
-  ```typescript TypeScript
-  import { spawn } from "node:child_process";
-  import { once } from "node:events";
-  import Anthropic from "@anthropic-ai/sdk";
-  import { WorkPoller } from "@anthropic-ai/sdk/helpers/beta/environments";
-  import type { BetaSelfHostedWork } from "@anthropic-ai/sdk/resources/beta/environments";
-
-  const SANDBOX_ENV = [
-    "ANTHROPIC_ENVIRONMENT_ID",
-    "ANTHROPIC_ENVIRONMENT_KEY",
-    "ANTHROPIC_WORK_ID",
-    "ANTHROPIC_SESSION_ID",
-    "ANTHROPIC_WORK_SECRET",
-    "ANTHROPIC_BASE_URL" // forwarded only when set on this host
-  ];
-
-  const environmentKey = process.env.ANTHROPIC_ENVIRONMENT_KEY!;
-  const environmentId = process.env.ANTHROPIC_ENVIRONMENT_ID!;
-  const client = new Anthropic({ authToken: environmentKey });
-
-  async function launchContainer(work: BetaSelfHostedWork): Promise<void> {
-    console.log(`claimed session ${work.data.id}`);
-    // Ganti `docker run` dengan peluncur sandbox Anda sendiri. Teruskan kunci environment
-    // (jangan pernah kunci API Anda) dan secret per sesi milik item pekerjaan: worker
-    // di dalamnya memerlukan secret tersebut untuk me-mount memory store sesi.
-    const env = {
-      ...process.env,
-      ANTHROPIC_WORK_ID: work.id,
-      ANTHROPIC_SESSION_ID: work.data.id,
-      ANTHROPIC_WORK_SECRET: work.secret ?? ""
-    };
-    const forward = SANDBOX_ENV.flatMap((name) => ["-e", name]);
-    const launcher = spawn("docker", ["run", "--rm", "--detach", ...forward, "your-image"], {
-      env,
-      stdio: "inherit"
-    });
-    await once(launcher, "close");
-  }
-
-  const poller = new WorkPoller({
-    client,
-    environmentId,
-    environmentKey,
-    autoStop: false // the launched sandbox owns the stop call
-  });
-
-  for await (const work of poller) {
-    await launchContainer(work);
-  }
-  ```
-
-  <CodeGroupItem language="C#">
-    SDK C# tidak memiliki helper yang melakukan polling pekerjaan. Untuk mengklaim pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
-  </CodeGroupItem>
-
-  ```go Go
-  package main
-
-  import (
-  	"context"
-  	"fmt"
-  	"log"
-  	"os"
-  	"os/exec"
-
-  	"github.com/anthropics/anthropic-sdk-go/v2"
-  	"github.com/anthropics/anthropic-sdk-go/v2/lib/environments"
-  	"github.com/anthropics/anthropic-sdk-go/v2/option"
-  	"github.com/anthropics/anthropic-sdk-go/v2/packages/param"
-  )
-
-  var sandboxEnv = []string{
-  	"ANTHROPIC_ENVIRONMENT_ID",
-  	"ANTHROPIC_ENVIRONMENT_KEY",
-  	"ANTHROPIC_WORK_ID",
-  	"ANTHROPIC_SESSION_ID",
-  	"ANTHROPIC_WORK_SECRET",
-  	"ANTHROPIC_BASE_URL", // forwarded only when set on this host
-  }
-
-  func launchContainer(ctx context.Context, work *anthropic.BetaSelfHostedWork) error {
-  	fmt.Printf("claimed session %s\n", work.Data.ID)
-  	// Ganti `docker run` dengan peluncur sandbox Anda sendiri. Teruskan kunci environment
-  	// (jangan pernah kunci API Anda) dan secret per sesi milik item pekerjaan: worker
-  	// di dalamnya memerlukan secret tersebut untuk me-mount memory store sesi.
-  	args := []string{"run", "--rm", "--detach"}
-  	for _, name := range sandboxEnv {
-  		args = append(args, "-e", name)
-  	}
-  	launcher := exec.CommandContext(ctx, "docker", append(args, "your-image")...)
-  	launcher.Env = append(os.Environ(),
-  		"ANTHROPIC_WORK_ID="+work.ID,
-  		"ANTHROPIC_SESSION_ID="+work.Data.ID,
-  		"ANTHROPIC_WORK_SECRET="+work.Secret,
-  	)
-  	launcher.Stdout, launcher.Stderr = os.Stdout, os.Stderr
-  	return launcher.Run()
-  }
-
-  func main() {
-  	environmentID := os.Getenv("ANTHROPIC_ENVIRONMENT_ID")
-  	environmentKey := os.Getenv("ANTHROPIC_ENVIRONMENT_KEY")
-
-  	client := anthropic.NewClient(option.WithAuthToken(environmentKey))
-
-  	ctx := context.Background()
-
-  	poller := environments.NewWorkPoller(ctx, client, environments.WorkPollerOptions{
-  		EnvironmentID:  environmentID,
-  		EnvironmentKey: environmentKey,
-  		AutoStop:       param.NewOpt(false), // the launched sandbox owns the stop call
-  	})
-  	defer poller.Close()
-
-  	for work, err := range poller.All() {
-  		if err != nil {
-  			log.Fatal(err)
-  		}
-  		if err := launchContainer(ctx, work); err != nil {
-  			log.Fatal(err)
-  		}
-  	}
-  }
-  ```
-
-  <CodeGroupItem language="Java">
-    SDK Java tidak memiliki helper yang melakukan polling pekerjaan. Untuk mengklaim pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
-  </CodeGroupItem>
-
-  <CodeGroupItem language="PHP">
-    SDK PHP tidak memiliki helper yang melakukan polling pekerjaan. Untuk mengklaim pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
-  </CodeGroupItem>
-
-  <CodeGroupItem language="Ruby">
-    SDK Ruby tidak memiliki helper yang melakukan polling pekerjaan. Untuk mengklaim pekerjaan dari kode Anda sendiri, panggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work).
-  </CodeGroupItem>
-</CodeGroup>
-
-### Menjalankan worker SDK di dalam sandbox
-
-Ganti entrypoint `ant beta:worker run` dengan entrypoint SDK ketika sandbox harus [melayani alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools) atau menggunakan [pengaturan sinkronisasi memori non-default](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#configure-sync). Entrypoint membuat `EnvironmentWorker` dan memanggil `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`), yang membaca variabel `ANTHROPIC_*` yang sama yang diteruskan oleh skrip spawn.
-
-<CodeGroup exclude="shell, csharp, java, php, ruby">
-  ```python Python
-  import asyncio
-  import contextlib
-  import os
-  import signal
-  from anthropic import AsyncAnthropic
-  from anthropic.lib.environments import EnvironmentWorker
-
-
-  async def main() -> None:
-      async with AsyncAnthropic(
-          auth_token=os.environ["ANTHROPIC_ENVIRONMENT_KEY"]
-      ) as client:
-          worker = EnvironmentWorker(client, workdir="/workspace")
-          # Tanpa argumen, handle_item() membaca variabel ANTHROPIC_* yang diteruskan oleh
-          # skrip spawn, termasuk ANTHROPIC_WORK_SECRET.
-          task = asyncio.create_task(worker.handle_item())
-          # Membatalkan task saat container dihentikan memungkinkan worker mengunggah
-          # file memori yang berubah dan menghapus direktori store sebelum keluar.
-          loop = asyncio.get_running_loop()
-          for signum in (signal.SIGINT, signal.SIGTERM):
-              loop.add_signal_handler(signum, task.cancel)
-          with contextlib.suppress(asyncio.CancelledError):
-              await task
-
-
-  asyncio.run(main())
-  ```
-
-  ```typescript TypeScript
-  import Anthropic from "@anthropic-ai/sdk";
-  import { EnvironmentWorker } from "@anthropic-ai/sdk/helpers/beta/environments";
-
-  const client = new Anthropic({ authToken: process.env.ANTHROPIC_ENVIRONMENT_KEY });
-  const controller = new AbortController();
-  // Membatalkan saat container dihentikan memungkinkan worker mengunggah file memori yang berubah
-  // dan menghapus direktori store sebelum keluar.
-  process.once("SIGTERM", () => controller.abort());
-  process.once("SIGINT", () => controller.abort());
-
-  // Tanpa argumen, handleItem() membaca variabel ANTHROPIC_* yang diteruskan oleh skrip
-  // spawn, termasuk ANTHROPIC_WORK_SECRET.
-  await new EnvironmentWorker({
-    client,
-    workdir: "/workspace",
-    signal: controller.signal
-  }).handleItem();
-  ```
-
-  <CodeGroupItem language="C#">
-    SDK C# tidak memiliki `EnvironmentWorker`.
-  </CodeGroupItem>
-
-  ```go Go
-  package main
-
-  import (
-  	"context"
-  	"log"
-  	"os"
-  	"os/signal"
-  	"syscall"
-
-  	"github.com/anthropics/anthropic-sdk-go/v2"
-  	"github.com/anthropics/anthropic-sdk-go/v2/lib/environments"
-  	"github.com/anthropics/anthropic-sdk-go/v2/option"
-  )
-
-  func main() {
-  	// Membatalkan context saat container dihentikan memungkinkan worker mengunggah
-  	// file memori yang berubah dan menghapus direktori store sebelum keluar.
-  	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
-  	defer stop()
-
-  	client := anthropic.NewClient(option.WithAuthToken(os.Getenv("ANTHROPIC_ENVIRONMENT_KEY")))
-  	worker := environments.NewEnvironmentWorker(client, environments.EnvironmentWorkerOptions{
-  		Workdir: "/workspace",
-  	})
-  	// Dengan opsi bernilai nol, HandleItem membaca variabel ANTHROPIC_* yang diteruskan
-  	// oleh skrip spawn, termasuk ANTHROPIC_WORK_SECRET.
-  	if err := worker.HandleItem(ctx, environments.HandleItemOptions{}); err != nil {
-  		log.Fatalf("worker: %v", err)
-  	}
-  }
-  ```
-
-  <CodeGroupItem language="Java">
-    SDK Java tidak memiliki `EnvironmentWorker`.
-  </CodeGroupItem>
-
-  <CodeGroupItem language="PHP">
-    SDK PHP tidak memiliki `EnvironmentWorker`.
-  </CodeGroupItem>
-
-  <CodeGroupItem language="Ruby">
-    SDK Ruby tidak memiliki `EnvironmentWorker`.
-  </CodeGroupItem>
-</CodeGroup>
-
-## Menyiapkan file untuk sesi
-
-Anthropic tidak me-mount file atau repositori GitHub ke dalam sandbox self-hosted. Untuk menyediakan file khusus sesi:
-
-1. Teruskan referensi file, seperti path S3 atau SHA commit, di field `metadata` sesi.
-2. Di skrip spawn atau handler `--on-work` Anda, ambil sesi (`GET /v1/sessions/{session_id}`) dan baca `metadata`. Item pekerjaan yang diklaim membawa ID sesi tetapi tidak membawa metadata.
-3. Siapkan file ke dalam direktori kerja sebelum alat apa pun dijalankan.
-
-<CodeGroup>
-  ```bash cURL
-  curl -sS --fail-with-body https://api.anthropic.com/v1/sessions \
-    -H "x-api-key: $ANTHROPIC_API_KEY" \
-    -H "anthropic-version: 2026-10-21" \
-    -H "anthropic-beta: managed-agents-2026-04-01" \
-    -H "content-type: application/json" \
-    -d '{
-      "agent": "'"$AGENT_ID"'",
-      "environment_id": "'"$ANTHROPIC_ENVIRONMENT_ID"'",
-      "metadata": {"input_file": "s3://my-bucket/data.csv"}
-    }'
-  ```
-
-  ```bash CLI
-  ant beta:sessions create \
-    --agent "$AGENT_ID" \
-    --environment-id "$ANTHROPIC_ENVIRONMENT_ID" \
-    --metadata '{"input_file": "s3://my-bucket/data.csv"}'
-  ```
-
-  ```python Python
-  session = client.beta.sessions.create(
-      agent=agent.id,
-      environment_id=environment.id,
-      metadata={"input_file": "s3://my-bucket/data.csv"},
-  )
-  ```
-
-  ```typescript TypeScript
-  const session = await client.beta.sessions.create({
-    agent: agent.id,
-    environment_id: environment.id,
-    metadata: { input_file: "s3://my-bucket/data.csv" }
-  });
-  ```
-
-  ```csharp C#
-  var session = await client.Beta.Sessions.Create(new()
-  {
-      Agent = agent.ID,
-      EnvironmentID = environment.ID,
-      Metadata = new Dictionary<string, string> { ["input_file"] = "s3://my-bucket/data.csv" },
-  });
-  ```
-
-  ```go Go
-  session, err := client.Beta.Sessions.New(ctx, anthropic.BetaSessionNewParams{
-  	Agent:         anthropic.BetaSessionNewParamsAgentUnion{OfString: anthropic.String(agent.ID)},
-  	EnvironmentID: environment.ID,
-  	Metadata: map[string]string{
-  		"input_file": "s3://my-bucket/data.csv",
-  	},
-  })
-  if err != nil {
-  	panic(err)
-  }
-  ```
-
-  ```java Java
-  var session = client.beta().sessions().create(SessionCreateParams.builder()
-      .agent(agent.id())
-      .environmentId(environment.id())
-      .metadata(SessionCreateParams.Metadata.builder()
-          .putAdditionalProperty("input_file", JsonValue.from("s3://my-bucket/data.csv"))
-          .build())
-      .build());
-  ```
-
-  ```php PHP
-  $session = $client->beta->sessions->create(
-      agent: $agent->id,
-      environmentID: $environment->id,
-      metadata: ['input_file' => 's3://my-bucket/data.csv'],
-  );
-  ```
-
-  ```ruby Ruby
-  session = client.beta.sessions.create(
-    agent: agent.id,
-    environment_id: environment.id,
-    metadata: {input_file: "s3://my-bucket/data.csv"}
-  )
-  ```
-</CodeGroup>
+Handler ini menjalankan setiap item yang diklaim dalam satu proses, dan menjalankan item dari pengiriman webhook yang terpisah secara bersamaan. Sesi-sesi tersebut berbagi satu sistem file, termasuk `/workspace` dan `/mnt/memory`. Jika sesi Anda melampirkan memory store yang sama, lihat [Mengisolasi sesi yang berbagi store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#isolate-sessions-that-share-a-store).
 
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Memantau dan memecahkan masalah" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations">
+  <Card title="Menjalankan satu sandbox per sesi" icon="cube" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session">
+    Luncurkan sandbox dengan Helm chart di Kubernetes, skrip spawn, atau poller SDK.
+  </Card>
+
+  <Card title="Memantau dan memecahkan masalah worker self-hosted" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations">
     Baca kedalaman antrean, hentikan sesi dan worker dengan bersih, dan perbaiki kegagalan umum.
   </Card>
 
@@ -936,7 +498,7 @@ Anthropic tidak me-mount file atau repositori GitHub ke dalam sandbox self-hoste
 
 ## Ketersediaan
 
-Worker yang di-host sendiri dalam versi beta di semua model.
+Worker self-hosted siap pakai dalam versi beta di semua model.
 
 ### Dukungan API
 

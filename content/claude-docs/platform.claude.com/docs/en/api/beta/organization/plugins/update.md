@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/update
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 60f69d3e8504a03387fb52edca2b37a1f9ecdebeb3d7e162211cc1680579f5be
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 3cf2cc61d85adc679d3f2fad3db2bb0b87fd18151ec9846798814e649d220580
 ---
 
 ---
@@ -397,6 +397,32 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
     RFC 3339. Moves on a served-version change (including pinning an unpinned Plugin to the version it already serves) and, normally, on a new version. A version saved in claude.ai that waits for its content scan moves it when it becomes the served version, and not necessarily when it is stored. A change to the Plugin's installation settings or shares does not move it.
 
     format: date-time
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `cmek_key_disabled` (HTTP status 400)
+
+  The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
+- `cmek_key_network_blocked` (HTTP status 400)
+
+  The key management service's network access controls blocked the request to the workspace's customer-managed encryption key. The key itself may be healthy.
+
+- `scan_failed` (HTTP status 400)
+
+  The version in `plugin_version_id` did not pass its content scan, so it cannot be served.
+
+- `scan_pending` (HTTP status 409)
+
+  The content scan of the version in `plugin_version_id` is still running. Retry once the scan finishes.
+
+- `skill_name_taken` (HTTP status 409)
+
+  One of the Plugin's skills has the name of an organization skill. `skill_name` is that name.
 
 ## Example
 

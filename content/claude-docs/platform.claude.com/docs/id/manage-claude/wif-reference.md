@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-reference
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: deadeff95daa0f3a1ef32a1e683a1556638302084c00359ff621866924b0a513
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 7a59aa65e68f53ab6750573965befceb3e3f269ead9f9d052f471ae5ea5cfe59
 ---
 
 ---
@@ -91,9 +91,9 @@ SDK menemukan direktori konfigurasi dalam urutan ini:
 
 Nama profil aktif diselesaikan dalam urutan ini:
 
-1. `$ANTHROPIC_PROFILE`
-2. Isi dari `<config_dir>/active_config` (file satu baris yang ditulis oleh `ant profile activate <name>`)
-3. Nama literal `default`
+1. `$ANTHROPIC_PROFILE`.
+2. Isi dari `<config_dir>/active_config`. `ant profile activate <name>` menulis file satu baris ini. Begitu pula `ant auth login` ketika perintah tersebut menyebutkan nama profil atau ketika file tersebut belum ada.
+3. Nama literal `default`.
 
 Claude Code dan Claude Agent SDK mengikuti urutan resolusi yang sama, sehingga profil federasi yang dikonfigurasi di sini juga mengautentikasi alat-alat tersebut tanpa penyiapan tambahan.
 

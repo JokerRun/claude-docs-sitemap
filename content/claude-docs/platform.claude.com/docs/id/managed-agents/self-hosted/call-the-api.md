@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/call-the-api
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 0eaea1984d7c7b37f6363502d5f732d0b11ec26f13f73ab65bedae25b1d8a02c
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 7f41e03f73ede2ae1bfb00411e1bb60e93af9f9436af1fafdc29adbde430fa10
 ---
 
 ---
@@ -626,7 +626,7 @@ Di Kubernetes, sebuah sesi mempertahankan satu pod paling lama sekitar satu jam,
 
 Untuk worker yang Anda mulai sendiri, letakkan file input di direktori kerja sebelum Anda mengirim pesan yang membutuhkannya. Baca file output darinya setelahnya.
 
-Jika Anda sendiri yang memulai container untuk setiap sesi, mount direktori yang berisi file input sesi sebagai direktori kerja container. Kumpulkan file output darinya setelah container berhenti. Lihat [Menyiapkan file untuk sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#stage-files-for-a-session).
+Jika Anda sendiri yang memulai container untuk setiap sesi, mount direktori yang berisi file input sesi sebagai direktori kerja container. Kumpulkan file output darinya setelah container berhenti. Lihat [Menyiapkan file untuk sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#stage-files-for-a-session).
 
 ## Menemukan contoh lainnya di panduan layanan yang di-hosting
 
@@ -706,16 +706,16 @@ Jangan gunakan worker ini untuk hal lain. Worker ini menyimpan kunci environment
 
 ### Menjalankan worker di produksi
 
-Untuk keperluan apa pun selain eksperimen lokal, mulai satu container untuk setiap sesi dan jalankan `ant beta:worker run` di dalamnya, seperti yang ditunjukkan di [Menjalankan satu sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-one-sandbox-per-session). Berikan image-nya apa yang tercantum di [Membangun image sandbox Anda sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted/call-the-api#build-your-own-sandbox-image), dan ubah tiga hal dalam penyiapan tersebut:
+Untuk keperluan apa pun selain eksperimen lokal, mulai satu container untuk setiap sesi dan jalankan `ant beta:worker run` di dalamnya. [Meluncurkan sandbox dengan skrip spawn](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#launch-sandboxes-with-a-spawn-script) menunjukkan caranya. Berikan image container tersebut apa yang tercantum di [Membangun image sandbox Anda sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted/call-the-api#build-your-own-sandbox-image), dan ubah tiga hal dalam penyiapan tersebut:
 
 * **Kunci environment:** Jangan teruskan `ANTHROPIC_ENVIRONMENT_KEY` ke dalam container sebuah sesi. Server menerima kunci tersebut untuk setiap sesi di environment, sedangkan container hanya memerlukan akses ke satu sesi.
-* **Secret milik work item:** Teruskan secret ini sebagai pengganti kunci tersebut, karena server menerimanya hanya untuk satu sesi itu. [Meneruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#forward-the-work-items-secret) menunjukkan tempat kode Anda menerimanya. Di tempat bagian tersebut mengatur `ANTHROPIC_WORK_SECRET`, letakkan secret tersebut dalam file yang hanya dapat dibaca oleh pengguna container. Misalnya, salurkan secret tersebut ke input standar container, dan minta container menulis file tersebut sebelum memulai worker. Lalu atur `ANTHROPIC_WORK_SECRET_FILE` ke path file tersebut.
+* **Secret milik item pekerjaan:** Teruskan secret ini sebagai pengganti kunci tersebut, karena server menerimanya hanya untuk satu sesi itu. [Meneruskan secret item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#forward-the-work-items-secret) menunjukkan tempat kode Anda menerimanya. Di tempat bagian tersebut mengatur `ANTHROPIC_WORK_SECRET`, letakkan secret tersebut dalam file yang hanya dapat dibaca oleh pengguna container. Misalnya, salurkan secret tersebut ke input standar container, dan minta container menulis file tersebut sebelum memulai worker. Lalu atur `ANTHROPIC_WORK_SECRET_FILE` ke path file tersebut.
 * **Alamat server:** Atur `ANTHROPIC_BASE_URL` ke alamat yang dapat dijangkau container. `http://127.0.0.1:8400` bukan salah satunya.
 
 Untuk worker SDK, dua hal lagi berlaku:
 
 * **Versi:** Bangun worker pada versi terbaru SDK, seperti yang dijelaskan di [SDK, CLI, dan library](https://platform.claude.com/docs/id/cli-sdks-libraries/overview). Worker pada versi tersebut menunggu persetujuan sebelum menjalankan panggilan alat yang memerlukannya, dan tidak pernah menjalankan panggilan yang ditolak oleh kebijakan. Worker yang dibangun pada versi lama menjalankan setiap panggilan alat segera setelah panggilan tersebut tiba.
-* **Contoh:** Contoh di [Menjalankan worker SDK di dalam sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-the-sdk-worker-inside-the-sandbox) membaca kunci environment, sehingga contoh tersebut tidak berfungsi di sini apa adanya.
+* **Contoh:** Contoh di [Menjalankan worker SDK di dalam sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#run-the-sdk-worker-inside-the-sandbox) membaca kunci environment, sehingga contoh tersebut tidak berfungsi di sini apa adanya.
 
 ### Membangun image sandbox Anda sendiri
 

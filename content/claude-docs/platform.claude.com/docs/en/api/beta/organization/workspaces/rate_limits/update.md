@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits/update
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: bb9325cd0f9637b05002f549ed4a7855f6175a0bbcf34d98409eadb492996aa0
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 05c705387ecfe88d881d1560fd2c94deecd6a7c1a9f7d4ada31cb725c4ea67aa
 ---
 
 ---
@@ -217,6 +217,16 @@ Changes take effect within about an hour.
   - `workspace_id: string`
 
     ID of the Workspace this entry applies to.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

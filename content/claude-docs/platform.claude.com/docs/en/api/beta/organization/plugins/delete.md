@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/delete
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: c30031c36de8039fbb91e347529c8b87b782427f853b11c72112e55f180385b2
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 9792144c48225bdfcab3aabd5cc60ed42ffd6a868288ce6b6791974f893f6326
 ---
 
 ---
@@ -194,6 +194,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `id: string`
 
     The deleted Plugin's ID.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `cmek_key_disabled` (HTTP status 400)
+
+  The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
 
 ## Example
 

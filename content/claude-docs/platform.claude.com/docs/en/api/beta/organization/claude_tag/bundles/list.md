@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 191c6ae670927679cb9341979f2d902664bf8dbeb018d6cf5cf372528fbe1b3e
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 2e3d45a9af8ef5e3841e0b89f869a664fcc4f34f42f0cdb133457e089ea4f817
 ---
 
 ---
@@ -215,6 +215,28 @@ List the organization's Bundles, newest first by `created_at`. A Bundle that Cla
 - `next_page: string or null`
 
   Cursor for the next page. Null on the last page.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
 
 ## Example
 

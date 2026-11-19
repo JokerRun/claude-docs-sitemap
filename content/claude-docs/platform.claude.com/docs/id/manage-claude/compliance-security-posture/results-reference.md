@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 8f34d374979f9f995f1ca20f3de30e8d46f531806408080d2af6aa3cc26d7929
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 9d34276f20418847fca9b2a37cd74e20b5528bad442fa0f22b43389774dae557
 ---
 
 ---
@@ -19,7 +19,7 @@ Endpoint ini mengembalikan satu entri untuk masing-masing dari sebagian besar ko
 
 ## Permintaan
 
-Kirim permintaan `GET` ke `/v1/compliance/organizations/{organization_id}/security_posture`. Setiap panggilan membaca satu organisasi, dan respons tidak dipaginasi.
+Kirim permintaan `GET` ke `/v1/compliance/organizations/{organization_id}/security_posture`. Setiap panggilan membaca satu organisasi, dan respons tidak dipaginasi. Endpoint ini tidak memiliki subresource, seperti subresource untuk satu kontrol atau untuk ringkasan.
 
 ```bash cURL
 curl --fail-with-body -sS \
@@ -144,7 +144,7 @@ Untuk membandingkan nilai dalam kode, cari `setting_name` di [pengaturan efektif
 
 | Field         | Tipe                   | Deskripsi                                                                                                                                                                                                                                                         |
 | ------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `state`       | string                 | Apakah atestasi berlaku; lihat [Keadaan atestasi](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#attestation-states).                                                                                            |
+| `state`       | string atau null       | Apakah atestasi berlaku (`null` berarti berlaku); lihat [Keadaan atestasi](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#attestation-states).                                                                   |
 | `attested_at` | string (RFC 3339, UTC) | Waktu atestasi dibuat.                                                                                                                                                                                                                                            |
 | `comment`     | string atau null       | Komentar yang disimpan bersama atestasi, paling banyak 2.000 karakter; `null` jika tidak ada, atau jika `comments_status` bukan `available`.                                                                                                                      |
 | `attested_by` | objek atau null        | Orang yang mengatestasi; `null` jika kunci tidak memiliki `read:compliance_user_data` maupun `read:org_audit`, jika akun orang tersebut telah dihapus atau sedang dihapus, atau jika, untuk organisasi ini, endpoint tidak mengembalikan siapa yang mengatestasi. |
@@ -185,6 +185,7 @@ Tidak ada field yang menyebutkan jenis kontrol; untuk `failed`, `current_value` 
 | `state`           | Arti                                                                                                                                      |
 | ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
 | `in_force`        | Atestasi berlaku.                                                                                                                         |
+| `null`            | Atestasi berlaku, sama seperti `in_force`. Keadaan ini hanya muncul pada kontrol manual.                                                  |
 | `review_due`      | Tanggal berakhir telah tiba.                                                                                                              |
 | `setting_changed` | Pemeriksaan tidak berhasil pada nilai selain nilai yang risikonya diterima, atau risiko diterima sudah tercatat sebagai berhenti berlaku. |
 | `check_passing`   | Pemeriksaan berhasil, jadi tidak ada risiko yang perlu diterima.                                                                          |
@@ -210,21 +211,40 @@ Respons menampilkan sebagian atestasi dan menghilangkan yang lain, jadi `attesta
 | Otomatis, pemeriksaan berhasil          | Risiko diterima                                 | `status` yang diberikan pemeriksaan otomatis                                          | `passed`                    | `null` selama pemeriksaan berhasil pada nilai yang diterima |
 | Otomatis, pemeriksaan berhasil          | Gagal                                           | `failed`                                                                              | `failed`                    | `null`: tidak pernah ditampilkan                            |
 | Khusus informasi                        | Nilai apa pun                                   | `descriptive`                                                                         | `descriptive`               | `null`: tidak pernah ditampilkan                            |
-| Mana pun, selama atestasi tidak berlaku | Nilai yang ditampilkan menurut baris sebelumnya | Sama seperti tanpa atestasi                                                           | Sama seperti tanpa atestasi | Ditampilkan, dengan `state` selain `in_force`               |
+| Mana pun, selama atestasi tidak berlaku | Nilai yang ditampilkan menurut baris sebelumnya | Sama seperti tanpa atestasi                                                           | Sama seperti tanpa atestasi | Ditampilkan, dengan `state` selain `in_force` atau `null`   |
 | Mana pun, selama atestasi tidak berlaku | Nilai yang dihilangkan oleh baris sebelumnya    | Sama seperti tanpa atestasi                                                           | Sama seperti tanpa atestasi | `null`                                                      |
 
 Setiap baris kecuali dua baris terakhir berlaku selama atestasi masih berlaku. Pada kontrol otomatis, atestasi tidak berlaku selama nilai yang dibaca pemeriksaan berbeda dari nilai saat atestasi tersebut disimpan. Setiap atestasi yang respons tampilkan pada kontrol otomatis adalah risiko diterima. [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) juga mencatat atestasi dari jenis-jenis yang dihilangkan dari respons.
 
 ## Menghitung hasil
 
+Respons tidak memuat skor maupun jumlah, baik secara keseluruhan maupun per kelompok. Di halaman Security posture, baris ringkasan menyebutkan berapa banyak kontrol yang lulus dan berapa banyak kontrol yang dihitung halaman tersebut. Untuk menghitung seperti baris ringkasan, hitung entri-entri berikut:
+
+| Angka              | Entri yang dihitungnya                                                                                                 |
+| ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
+| Kontrol yang lulus | Entri dengan rating `passed`                                                                                           |
+| Total              | Entri dengan rating `passed`, `failed`, atau `not_attested`, kecuali entri yang `status`-nya `attestation_not_enabled` |
+
+Halaman menampilkan entri `attestation_not_enabled` sebagai Deskriptif dan tidak menghitungnya. Entri dengan rating `descriptive` tidak termasuk dalam kedua angka tersebut.
+
+Hasil Anda dapat berbeda dari angka di halaman karena alasan seperti berikut:
+
+* Respons menghilangkan beberapa kontrol yang dihitung halaman. Jadi, kedua angka Anda dapat lebih rendah daripada angka di halaman.
+* Kontrol otomatis dapat memiliki pemeriksaan yang tidak berhasil sekaligus atestasi Selesai yang berlaku. Halaman menampilkannya sebagai Lulus, tetapi respons memberinya rating `failed`. Jadi, jumlah `failed` Anda dapat lebih tinggi daripada di halaman, dan jumlah `passed` Anda lebih rendah.
+* Setiap permintaan mengevaluasi ulang setiap kontrol, begitu pula setiap kali halaman dimuat. Suatu pengaturan dapat berubah di antara permintaan Anda dan pemuatan halaman. Atau suatu pengaturan dapat gagal dibaca pada salah satunya tetapi tidak pada yang lain.
+
+Kontrol yang dihilangkan dari respons tidak disebutkan di dalamnya. Jangan menghitung kontrol semacam itu sebagai Lulus. Membandingkan nilai `id` dengan respons sebelumnya untuk organisasi tersebut akan menemukan kontrol yang dicantumkan salah satu respons sebelumnya tetapi dihilangkan oleh respons ini. Cara ini tidak dapat menemukan kontrol yang belum pernah tercantum dalam respons mana pun.
+
 Periksa empat hal saat Anda menghitung kontrol berdasarkan `rating`.
 
-| Jika Anda menghitung       | Periksa juga                                                                                                                                                                                                         |
-| -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Lulus (`passed`)           | Ini mencakup setiap kontrol dengan risiko diterima yang berlaku, jadi cari `failed_check_accepted_risk` dan `attested_accepted_risk`.                                                                                |
-| Gagal (`failed`)           | Ini mencakup kontrol yang diatestasi sebagai Gagal (`control_failed`), serta pemeriksaan otomatis yang tidak berhasil dengan atestasi Selesai yang berlaku, yang ditampilkan halaman Security posture sebagai Lulus. |
-| Deskriptif (`descriptive`) | Ini dapat menyembunyikan kontrol yang tidak dapat dibaca, jadi cari `not_evaluated`.                                                                                                                                 |
-| Setiap kontrol             | Kontrol yang tidak ada dalam respons tidak dianggap Lulus dan tidak disebutkan, jadi bandingkan nilai `id` dengan nilai yang pernah Anda lihat untuk organisasi tersebut.                                            |
+| Jika Anda menghitung              | Periksa juga                                                                                                                                                                                                         |
+| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Lulus (`passed`)                  | Ini mencakup setiap kontrol dengan risiko diterima yang berlaku, jadi cari `failed_check_accepted_risk` dan `attested_accepted_risk`.                                                                                |
+| Gagal (`failed`)                  | Ini mencakup kontrol yang diatestasi sebagai Gagal (`control_failed`), serta pemeriksaan otomatis yang tidak berhasil dengan atestasi Selesai yang berlaku, yang ditampilkan halaman Security posture sebagai Lulus. |
+| Belum diatestasi (`not_attested`) | Ini mencakup entri yang `status`-nya `attestation_not_enabled`, yang ditampilkan halaman Security posture sebagai Deskriptif.                                                                                        |
+| Deskriptif (`descriptive`)        | Ini dapat menyembunyikan kontrol yang tidak dapat dibaca, jadi cari `not_evaluated`.                                                                                                                                 |
+
+Halaman Security posture mengelompokkan kontrol berdasarkan produk. Anda tidak dapat menyusun ulang kelompok tersebut dari respons. Satu-satunya field pengelompokan adalah `section`, dan halaman tidak membentuk kelompoknya hanya dari bagian. Menghitung berdasarkan `section` dapat dilakukan, tetapi menghasilkan baris yang berbeda dari baris di halaman.
 
 ## Siapa yang mengatestasi, dan komentar
 
@@ -275,4 +295,4 @@ Endpoint ini mengevaluasi setiap kontrol saat Anda memanggilnya, dan `evaluated_
 * Hasil dapat berubah tanpa ada pengaturan yang berubah, misalnya ketika tanggal berakhir tiba atau Anthropic mengubah nilai yang direkomendasikan.
 * Jika Anthropic mengubah kata-kata suatu nilai saat ini, risiko diterima pada nilai tersebut tidak berlaku.
 * Panggilan tidak menyimpan hasil apa pun dan tidak membuat atestasi apa pun berhenti berlaku.
-* Permintaan dengan kunci untuk organisasi induk maupun kunci untuk satu organisasi di Claude Enterprise mencatat satu aktivitas `compliance_api_accessed`. Aktivitas ini dicatat ketika permintaan lolos pemeriksaan kunci, scope, dan versi tanpa parameter kueri, baik berhasil maupun gagal. `url` milik aktivitas tersebut menyebutkan organisasi yang dibaca, dan `organization_uuid` bernilai `null` untuk kunci untuk organisasi induk.
+* Permintaan dengan kunci untuk organisasi induk atau dengan kunci untuk satu organisasi di Claude Enterprise mencatat satu aktivitas `compliance_api_accessed`. Aktivitas ini dicatat ketika permintaan lolos pemeriksaan kunci, scope, dan versi tanpa parameter kueri, baik berhasil maupun gagal. `url` milik aktivitas tersebut menyebutkan organisasi yang dibaca, dan `organization_uuid` bernilai `null` untuk kunci untuk organisasi induk.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: a84d4f812729dc04938049184dae2acbadce2bb29a01a5a56926bda70f75c0ff
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 24a9a0bb112d66c40db31fa4c6e490be5bfeea27e3de676eae04d793d52dea2e
 ---
 
 ---
@@ -164,7 +164,7 @@ Contoh berikut mendaftarkan perusahaan yang membeli akses API dari Anda, sehingg
       var profile = client.userProfiles().create(params);
 
       IO.println(profile.id());
-  // ...
+      // ...
   }
   ```
 
@@ -406,9 +406,9 @@ Di Claude di Amazon Bedrock, letakkan ID di tingkat teratas body permintaan:
 
 Tautkan setiap akun AWS yang mengirim permintaan ke Claude di Amazon Bedrock, dan setiap proyek Google Cloud yang mengirim permintaan ke Claude Models on Google Cloud (Google managed), ke organisasi Anthropic yang membuat profil Anda:
 
-1. Admin atau pemilik organisasi tersebut memulai penautan di Verification Portal di `portal.anthropic.com`, di bawah **Linked accounts (akun tertaut)**.
+1. Admin organisasi tersebut memulai penautan di Verification Portal di `portal.anthropic.com`, di bawah **Linked accounts (akun tertaut)**.
 2. Seseorang yang dapat mengelola IAM di akun AWS atau proyek Google Cloud menjalankan perintah yang disediakan portal.
-3. Admin atau pemilik menyelesaikan verifikasi di portal.
+3. Admin menyelesaikan verifikasi di portal.
 
 Program yang berlaku untuk sebuah profil hanya berlaku untuk permintaan sebuah akun setelah akun tersebut ditautkan dan portal menampilkannya sebagai **Linked**. Program-program tersebut mencakup program yang disetujui untuk organisasi pelanggan akhir setelah pelanggan akhir [menautkan profil ke organisasi tersebut](https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal) dan, untuk tingkat akses Cyber Verification Program, mengaktifkannya untuk profil tersebut di portal.
 

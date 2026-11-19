@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: cc192a4db76f90bcd43eab75be2dee47c80c1f4f6319d248744452fb23a4365a
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 831cadbbe422c0c7780afa30ab1c6bfa6d9d94a7daf864119ae134faa88f89dd
 ---
 
 ---
@@ -153,7 +153,7 @@ ClaudeLanguageModel(
   App Attest requires a physical device. The Simulator, and hardware without a Secure Enclave, cannot perform App Attest. Use `.apiKey` while iterating in the Simulator, and `.appAttest` when running on a device.
 </Note>
 
-To set up App Attest, you need your Apple Developer Team ID and the admin, owner, or primary owner role in your Claude Console organization. Configure your Xcode project and register your app in the [Claude Console](https://platform.claude.com/):
+To set up App Attest, you need your Apple Developer Team ID and the admin role in your Claude Console organization. Configure your Xcode project and register your app in the [Claude Console](https://platform.claude.com/):
 
 1. In Xcode, add the **App Attest** capability to your app target under **Signing & Capabilities**.
 2. In the Claude Console, go to the [App integrations](https://platform.claude.com/settings/app-integrations) page (`platform.claude.com/settings/app-integrations`) and click **Create app integration**.

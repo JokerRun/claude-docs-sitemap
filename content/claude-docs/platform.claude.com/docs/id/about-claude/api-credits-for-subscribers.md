@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/api-credits-for-subscribers
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: faabe2614780d4c2b4123014956545e5aeaeb4b288432de8e8a1ca249c816e01
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: eaa5139124963577485789a0820ad52833097651c88999464363b8c92b8baa7c
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Klaim kredit Claude Platform bulanan yang disertakan dengan paket C
 Paket Claude Max, Ultra, dan Team menyertakan kredit bulanan untuk Claude API. Untuk mengklaimnya, Anda menautkan organisasi [Claude Console](https://platform.claude.com/) ke paket Anda. Kredit kemudian masuk ke organisasi tersebut setiap siklus penagihan (atau setiap bulan untuk paket tahunan), dan Anda dapat menggunakannya untuk membangun dan menjalankan aplikasi serta agen Anda sendiri. Anda tidak perlu menambahkan metode pembayaran ke Claude Platform.
 
 <Note>
-  Claude Platform on AWS, Amazon Bedrock, Google Cloud, dan Microsoft Foundry: Kredit ini hanya berlaku untuk Claude API di Claude Console. Kredit ini tidak dapat digunakan di platform lain.
+  Kredit ini hanya berlaku untuk Claude API. Kredit ini tidak tersedia di [platform cloud](https://platform.claude.com/docs/id/api/overview#cloud-platform-apis) mana pun, bahkan jika Anda menggunakan Claude Console dengan platform tersebut.
 </Note>
 
 ## Ringkasan
@@ -57,7 +57,7 @@ Anda memerlukan kedua peran berikut:
 | Tempat                        | Peran yang diperlukan                                     |
 | ----------------------------- | --------------------------------------------------------- |
 | **Paket Claude**              | Max atau Ultra: pelanggan<br />Team: Primary Owner, Owner |
-| **Organisasi Claude Console** | Pemilik, Admin, atau Penagihan                            |
+| **Organisasi Claude Console** | Admin atau Penagihan                                      |
 
 Jika Anda belum memiliki organisasi Claude Console, buat terlebih dahulu di Console di [platform.claude.com](https://platform.claude.com/), atau buat selama alur klaim.
 
@@ -87,15 +87,15 @@ Pelanggan yang tidak memenuhi syarat tidak melihat kredit API di halaman pengatu
 
 Kredit API ini hanya dapat digunakan di Claude Platform. Tabel berikut menunjukkan produk mana yang dicakup:
 
-| Produk                                                                               | Dicakup |
-| ------------------------------------------------------------------------------------ | ------- |
-| [Claude API](https://platform.claude.com/docs/id/api/overview)                       | Ya      |
-| [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) | Ya      |
-| [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)               | Ya      |
-| [Playground](https://platform.claude.com/playground) di Claude Console               | Ya      |
-| Claude Code                                                                          | Tidak   |
-| Penggunaan tambahan di aplikasi Claude                                               | Tidak   |
-| Claude Platform on AWS, Bedrock, Google Cloud, Microsoft Foundry                     | Tidak   |
+| Produk                                                                                          | Dicakup |
+| ----------------------------------------------------------------------------------------------- | ------- |
+| [Claude API](https://platform.claude.com/docs/id/api/overview)                                  | Ya      |
+| [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)            | Ya      |
+| [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)                          | Ya      |
+| [Playground](https://platform.claude.com/playground) di Claude Console                          | Ya      |
+| Claude Code                                                                                     | Tidak   |
+| Penggunaan tambahan di aplikasi Claude                                                          | Tidak   |
+| [Platform cloud](https://platform.claude.com/docs/id/api/overview#cloud-platform-apis) mana pun | Tidak   |
 
 ## Cara kredit diterapkan
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: dd1bff387b809aaa22caca8bbf7ab7886ce2ba95e8fccd0aa2bf904cb4ab91b2
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: c16fbefa8a1875e957188fb8143ad292df0b2c870bc05becdba7de16f31ac7ce
 ---
 
 ---
@@ -17,7 +17,13 @@ description: Kelola anggota organisasi, workspace, undangan, dan kunci API secar
 
 Admin API tersedia untuk organisasi Claude Console dan Claude Enterprise. Admin API tidak tersedia untuk organisasi dengan paket Team claude.ai atau untuk akun Console individu. Akun Console individu harus terlebih dahulu menyiapkan organisasi di halaman [Organisasi](https://platform.claude.com/settings/organization) (`platform.claude.com/settings/organization`) di Claude Console. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys) untuk mengetahui tempat setiap jenis organisasi membuat kuncinya.
 
-Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota dan undangan yang berlaku untuk mereka. Mereka juga dapat memanggil [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang masih dalam tahap beta dan memerlukan kunci dengan scope `read:analytics`. Mereka juga mendapatkan endpoint khusus Enterprise: pembacaan grup dan peran kustom, serta [batas pengeluaran](https://platform.claude.com/docs/id/manage-claude/spend-limits-api). [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api), yang juga khusus Enterprise, masih dalam tahap beta. Begitu pula [Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api). Lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
+Organisasi Claude Enterprise (claude.ai) memanggil Admin API dengan kunci API ber-scope yang dibuat di claude.ai. Dari halaman ini, hanya endpoint anggota, undangan, dan [info organisasi](https://platform.claude.com/docs/id/manage-claude/admin-api#accessing-organization-info) yang berlaku untuk mereka. Di luar halaman ini, mereka juga dapat memanggil API dan endpoint berikut:
+
+* [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api), yang masih dalam tahap beta, dan [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) versi lama. Keduanya memerlukan kunci dengan scope `read:analytics`.
+* Endpoint khusus Enterprise: grup, pembacaan peran kustom, dan [Spend Limits API](https://platform.claude.com/docs/id/manage-claude/spend-limits-api).
+* [Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api) dan [Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api), yang khusus Enterprise dan masih dalam tahap beta.
+
+Untuk anggota, undangan, grup, dan peran kustom, lihat [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management).
 
 Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), hanya endpoint Admin API berikut yang tersedia:
 
@@ -33,7 +39,7 @@ Anggota organisasi, anggota workspace, undangan, kunci API, [Usage and Cost API]
 Admin API menerima salah satu dari tiga kredensial berikut:
 
 * **Kunci Admin API** (diawali dengan `sk-ant-admin...`) yang dikirim dalam header `x-api-key`. Hanya anggota organisasi dengan peran admin yang dapat membuatnya. Lihat [Membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api-keys).
-* **Token bearer OAuth** dengan scope `org:admin` yang dikirim dalam header `authorization: Bearer`. Hanya anggota dengan peran admin, pemilik, atau pemilik utama yang dapat memperolehnya. Lihat [Memperoleh token bearer OAuth](https://platform.claude.com/docs/id/manage-claude/admin-api#oauth-bearer-token).
+* **Token bearer OAuth** dengan scope `org:admin` yang dikirim dalam header `authorization: Bearer`. Hanya pengguna dan akun layanan dengan peran admin yang dapat memperolehnya. Lihat [Memperoleh token bearer OAuth](https://platform.claude.com/docs/id/manage-claude/admin-api#oauth-bearer-token).
 * **Kunci personal** atau **kunci akun layanan** yang tidak dibatasi pada workspace tertentu, dikirim dalam header `x-api-key`. Kunci tersebut memiliki izin yang sama dengan akun yang tertaut. Lihat [Jenis kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-types).
 
 Kunci Admin API mencakup sebagian besar endpoint. Endpoint akun layanan, penerbit federasi, dan aturan federasi hanya menerima token OAuth `org:admin`. Kirim kunci personal atau kunci akun layanan dalam header `x-api-key`, sama seperti kunci Admin API. Contoh berikut memanggil [endpoint info organisasi](https://platform.claude.com/docs/id/manage-claude/admin-api#accessing-organization-info) dengan token OAuth dan dengan kunci Admin API.
@@ -233,7 +239,7 @@ Penggunaan umum mencakup otomatisasi onboarding dan offboarding, pengelolaan aks
 
 ## Peran dan izin organisasi
 
-Ada lima peran tingkat organisasi. Untuk detailnya, lihat [Peran dan izin API Console](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions).
+Organisasi Claude Console memiliki lima peran tingkat organisasi. Untuk detailnya, lihat [Peran dan izin API Console](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions).
 
 | Peran              | Izin                                                                                     |
 | ------------------ | ---------------------------------------------------------------------------------------- |
@@ -243,7 +249,7 @@ Ada lima peran tingkat organisasi. Untuk detailnya, lihat [Peran dan izin API Co
 | billing            | Dapat menggunakan playground dan mengelola detail penagihan                              |
 | admin              | Dapat melakukan semua hal di atas, ditambah mengelola pengguna                           |
 
-Pemilik dan pemilik utama organisasi memiliki semua izin admin dan juga dapat mengelola admin. Semua rujukan ke peran admin di halaman ini juga berlaku untuk pemilik dan pemilik utama.
+Organisasi Claude Enterprise memiliki kumpulan peran yang berbeda, termasuk pemilik dan pemilik utama. Lihat [Peran organisasi](https://platform.claude.com/docs/id/manage-claude/user-management#organization-roles).
 
 ## Konsep utama
 
@@ -1786,7 +1792,7 @@ Daftarkan endpoint webhook untuk peristiwa tentang tindakan penegakan pada profi
 
 <AccordionGroup>
   <Accordion title="Izin apa yang diperlukan untuk menggunakan Admin API?">
-    Admin API menerima kunci Admin API (diawali dengan `sk-ant-admin`), token bearer OAuth dengan scope `org:admin`, atau kunci personal maupun kunci akun layanan yang tidak dibatasi pada workspace tertentu. Hanya anggota organisasi dengan peran admin yang dapat membuat kunci Admin API, dan hanya anggota dengan peran admin, pemilik, atau pemilik utama yang dapat memperoleh token `org:admin`. Kunci personal atau kunci akun layanan memiliki izin yang sama dengan akun yang tertaut. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication).
+    Admin API menerima kunci Admin API (diawali dengan `sk-ant-admin`), token bearer OAuth dengan scope `org:admin`, atau kunci personal maupun kunci akun layanan yang tidak dibatasi pada workspace tertentu. Hanya anggota organisasi dengan peran admin yang dapat membuat kunci Admin API. Hanya pengguna dan akun layanan dengan peran admin yang dapat memperoleh token `org:admin`. Kunci personal atau kunci akun layanan memiliki izin yang sama dengan akun yang tertaut. Lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication).
   </Accordion>
 
   <Accordion title="Bisakah Admin API membuat kunci API?">

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: bfbae1b6aa2c522e1141436a8b8a43bed15d5fe118a8f232c8d01c6d1d9665a2
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: a24b276b44228d06f42aa7ee9b014cb5e1f670dd9a8086f6d02911023dbb461b
 ---
 
 ---
@@ -15,7 +15,7 @@ Admin API memungkinkan Anda membuat dan mengelola sumber daya [Workload Identity
 
 ## Prasyarat
 
-Setiap permintaan di halaman ini diautentikasi dengan “bearer token” (token pembawa) OAuth yang membawa scope `org:admin`. Anthropic memberikan scope ini hanya kepada anggota organisasi dengan peran admin, pemilik, atau pemilik utama. Scope ini memberikan akses ke seluruh organisasi, dan endpoint ini mengabaikan setiap pengikatan workspace. Ada dua cara untuk memperoleh token, dan keduanya membawa izin yang berbeda. Token dari login Anda sendiri bertindak sebagai pengguna. Token terfederasi bertindak sebagai akun layanan dan tidak dapat melakukan setiap operasi di halaman ini.
+Setiap permintaan di halaman ini diautentikasi dengan “bearer token” (token pembawa) OAuth yang membawa scope `org:admin`. Anthropic memberikan scope ini hanya kepada pengguna dan akun layanan dengan peran admin. Scope ini memberikan akses ke seluruh organisasi, dan endpoint ini mengabaikan setiap pengikatan workspace. Ada dua cara untuk memperoleh token, dan keduanya membawa izin yang berbeda. Token dari login Anda sendiri bertindak sebagai pengguna. Token terfederasi bertindak sebagai akun layanan dan tidak dapat melakukan setiap operasi di halaman ini.
 
 ### Interaktif (terminal Anda)
 

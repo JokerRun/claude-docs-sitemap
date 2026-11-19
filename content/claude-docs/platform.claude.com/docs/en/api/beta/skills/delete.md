@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: d1cd8a2d5397146cc134ab4f1acd74fb4ced3ebe09d4510fb141397dec164273
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: d63c1eb83bac99cf7b0e7af3597e97928780086fb279390985ba6f82b71280f6
 ---
 
 ---
@@ -195,6 +195,20 @@ Delete Skill
     Unique identifier for the skill.
 
     The format and length of IDs may change over time.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `claude_code_key_creator_not_member` (HTTP status 400)
+
+  The API key belongs to the Claude Code workspace, and the user who created it is no longer a member of the organization or of that workspace.
+
+- `organization_on_hold` (HTTP status 400)
+
+  Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
 
 ## Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: cebf978deb078d4ecd447c0e1fe690d6d78794b12b3a184f147e416bb3fa1ed5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 6442b724c39dfc793d91dfd5d3b33353e06713c58ded66d2f27d5c7a81e7826d
 ---
 
 ---
@@ -100,7 +100,7 @@ Compaction on demand and mid-conversation tool changes help you keep the history
 
 [Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode) is available for Claude Fable 5.2 in Messages API requests on the Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), and [Claude in Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry). On Claude in Microsoft Foundry, it’s available for deployments hosted on Anthropic, with its own model ID, `claude-fable-5-2-fast`.
 
-Fast mode is also available for Claude Mythos 5.2 in Messages API requests on the Claude API. [Availability of fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode#feature-availability) lists every platform where Claude Mythos 5.2 has fast mode.
+Fast mode is also available for Claude Mythos 5.2 in Messages API requests. [Availability of fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode#feature-availability) lists every platform where Claude Mythos 5.2 has fast mode.
 
 ### Thinking blocks stay with the account that produced them
 
@@ -211,7 +211,7 @@ Then review these items:
 2. **Check model switches.** If a router or fallback moves conversations between models, expect every model except Claude Mythos 5.2 to drop Claude Fable 5.2’s thinking blocks, Claude Fable 5.1 and Claude Opus 5.5 included. See [Only Claude Fable 5.2 and Claude Mythos 5.2 read Claude Fable 5.2 thinking blocks](https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2#thinking-blocks-are-tied-to-the-model-that-produced-them).
 3. **Move computer use to the toolset.** If you use the `computer_20251124` tool anywhere except Amazon Bedrock, Claude Fable 5.2 returns a 400 error for that tool. Declare `computer_toolset_20260801` instead. For the change itself, see [Use the computer use toolset instead of `computer_20251124`](https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2#computer-20251124-is-not-supported).
 4. **Update the advisor.** If you use the advisor tool with Claude Fable 5.2 as the executor, set the advisor’s `model` to `claude-fable-5-2` or `claude-mythos-5-2`. See [A Claude Fable 5.2 executor needs a Claude Fable 5.2 or Claude Mythos 5.2 advisor](https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2#advisor-tool-pairs).
-5. **Re-run your evals.** Include an effort sweep that starts at the default, `high`. See [Recommended effort levels for Claude Fable 5.2](https://platform.claude.com/docs/en/build-with-claude/effort#recommended-effort-levels-for-claude-fable-5-2).
+5. **Rerun your evals.** Include an effort sweep that starts at the default, `high`. See [Recommended effort levels for Claude Fable 5.2](https://platform.claude.com/docs/en/build-with-claude/effort#recommended-effort-levels-for-claude-fable-5-2).
 
 See the [Claude Fable 5.2 and Claude Mythos 5.2 migration guide](https://platform.claude.com/docs/en/models/fable-5-2/migration-guide) for step-by-step instructions, including from Claude Mythos 5.1 and from Claude Opus models. For model-specific prompting patterns, see [Prompting Claude Fable 5.2](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-2).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/remote-mcp-servers
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 5049c503cf0ba86773ad06f1ee2f85cb635fb6c6732de04e815a337541ceed7d
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 5c804c26ac9cfdae2dedbcd76fddd164dee7a0fc20a6d3e5e52c23e6a5e5b796
 ---
 
 ---
@@ -33,7 +33,7 @@ For more information about using remote MCP servers with the Claude API, see [MC
 
 ## Remote MCP server examples
 
-<MCPServersTable platform="mcpConnector" />
+<MCPServersTable />
 
 <Note>
   **Looking for more?** [Find hundreds more MCP servers on GitHub](https://github.com/modelcontextprotocol/servers).

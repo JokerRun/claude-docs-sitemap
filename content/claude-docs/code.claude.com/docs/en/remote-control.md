@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/remote-control
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 244a2635b8a16fb56436b6e7346240cd7eeb4a1e28d3c6c9a46c7a6d9777b4cb
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 9f6f21f4b30281f92995c1a17fcd56ed8fdb57131eee6d05149df2c2f66bf02d
 ---
 
 > ## Documentation Index
@@ -272,8 +272,6 @@ To turn Remote Control off entirely, use the [`disableRemoteControl`](https://co
 
 > [!NOTE]
 >
-> Trusted Devices is currently in beta. Features and functionality may evolve as the experience is refined.
->
 > Trusted Devices is available on Pro, Max, Ultra, Team, and Enterprise plans and is off by default. On Team and Enterprise plans, an Owner turns it on for the organization. On Pro, Max, and Ultra plans, you turn on **Require trusted devices** yourself in your settings, on the Cowork or Account page.
 
 Trusted Devices requires a verified device before you can view or steer Remote Control sessions from claude.ai, the Claude mobile apps, or Claude Desktop. The requirement applies to each member of your organization, or you alone on a Pro, Max, or Ultra plan. It ties Remote Control access to a known device and a recent authentication, not just a signed-in account.
@@ -421,7 +419,7 @@ The following command reconnects the Slack connector:
 /mcp reconnect claude.ai Slack
 ```
 
-In the terminal, Claude Code prints `Successfully reconnected to claude.ai Slack`. From the mobile app or the web, the reply is `Reconnected "claude.ai Slack".`
+In the terminal, Claude Code says it reconnected to `claude.ai Slack`. From the mobile app or the web, the reply is `Reconnected "claude.ai Slack".`
 
 ## Troubleshooting
 

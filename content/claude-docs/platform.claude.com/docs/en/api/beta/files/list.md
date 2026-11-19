@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: a39f63247071cc80f7e3da0cabf76039154a54d34a4c7a4947553876bbb39606
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 2bfb175da21b1ecd206a32ff6d1c50734cd2875aeaae401423546cb910dc69fe
 ---
 
 ---
@@ -261,6 +261,28 @@ List Files
 - `next_page: optional string or null`
 
   Opaque cursor for the next page. Supply as `?page=` to fetch the next page; null when there are no more results.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `claude_code_key_creator_not_member` (HTTP status 400)
+
+  The API key belongs to the Claude Code workspace, and the user who created it is no longer a member of the organization or of that workspace.
+
+- `cmek_key_disabled` (HTTP status 400)
+
+  The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
+- `cmek_key_network_blocked` (HTTP status 400)
+
+  The key management service's network access controls blocked the request to the workspace's customer-managed encryption key. The key itself may be healthy.
+
+- `organization_on_hold` (HTTP status 400)
+
+  Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
 
 ## Example
 

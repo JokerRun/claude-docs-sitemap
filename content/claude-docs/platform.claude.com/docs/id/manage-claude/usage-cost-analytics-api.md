@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 5688c7faab789b27705ab8ebb8cca6b01f2b0d5deae8decb6328164d36d7266b
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 3626e86ded63b8225bd4c105c2cd5ce5e74ee9c1b8dc8e2062e3bca94f4eb1af
 ---
 
 ---
@@ -806,7 +806,7 @@ Setiap respons menyertakan timestamp `data_refreshed_at`, dan penggunaan setelah
 
 ## Migrasi dari Usage and Cost API
 
-Bagian ini ditujukan untuk organisasi Claude Console yang memanggil [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama (`/v1/organizations/usage_report/messages` dan `/v1/organizations/cost_report`). Kunci Admin API Anda, header `anthropic-version`, `starting_at` dan `ending_at`, nilai lebar bucket (`1m`, `1h`, `1d`), notasi kurung siku, nama field paginasi, serta nama field token dan biaya tetap berlaku. Yang berubah:
+Bagian ini ditujukan untuk organisasi yang memanggil [Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) lama (`/v1/organizations/usage_report/messages` dan `/v1/organizations/cost_report`). Kredensial Anda dan header `anthropic-version` tetap berlaku. Demikian pula nama `starting_at` dan `ending_at`, akhiran `[]` pada parameter array, nama field paginasi, serta nama field token dan biaya. Lebar bucket endpoint penggunaan (`1m`, `1h`, `1d`) juga tetap berlaku. Tabel berikut mencantumkan apa yang berubah:
 
 | Usage and Cost API                                                                                                                                                                   | Usage and Cost Analytics API                                                                                                                                                                                                                                                                                                                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -824,6 +824,11 @@ Bagian ini ditujukan untuk organisasi Claude Console yang memanggil [Usage and C
 | `inference_geo: "not_available"` dan `service_tier: "standard"` pada penggunaan tanpa geo atau tingkat                                                                               | `null` untuk keduanya. `inference_geos[]=not_available` tetap mencocokkan baris tanpa geografi inferensi.                                                                                                                                                                                                                                                                                                                      |
 | `service_tier` biaya adalah `standard` atau `batch`; `amount` seperti `"123.45"`                                                                                                     | Tingkat yang sebenarnya; `amount` dengan enam angka desimal, seperti `"123.450000"`, ditambah `list_amount`.                                                                                                                                                                                                                                                                                                                   |
 | Eksekusi kode tidak ada dalam laporan penggunaan; tidak ada jumlah permintaan                                                                                                        | Eksekusi kode muncul sebagai baris penggunaan dengan `model: null`; menambahkan `requests` pada kedua endpoint dan `total_tokens` pada baris penggunaan                                                                                                                                                                                                                                                                        |
+
+Ada dua hal yang berbeda untuk organisasi Claude Enterprise:
+
+* **Workspace dan kunci API:** Usage and Cost Analytics API mengembalikan `null` untuk `workspace_id` dan `api_key_id` (lihat [Bagaimana hasil dibentuk](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api#how-results-are-shaped)), sehingga baris tabel tentang workspace default tidak berlaku.
+* **Total penggunaan:** Usage and Cost Analytics API menghitung penggunaan yang tidak disertakan oleh laporan penggunaan lama, sehingga total penggunaannya bisa lebih tinggi. Lihat [Organisasi Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/usage-cost-api#claude-enterprise-organizations).
 
 Untuk mereproduksi laporan harian lama, minta `time_bucket_width=1d` dengan `group_by[]` yang sama, telusuri halaman dengan `limit=1000`, lalu kelompokkan baris berdasarkan `starting_at` dan isi hari yang hilang dengan nol. Tambahkan `order_by=time&order=asc` untuk mendapatkan hari-hari secara berurutan. Penggunaan harian berdasarkan model selama 1 minggu, sebelumnya:
 
@@ -1297,7 +1302,8 @@ Biaya per pengguna selama sebulan, sebelumnya:
   )
 
   for row in rows:
-      print(f"{row.actor.user_id}: {row.amount}")
+      if row.actor.type == "user_actor":
+          print(f"{row.actor.user_id}: {row.amount}")
   ```
 
   ```typescript TypeScript
@@ -1310,7 +1316,9 @@ Biaya per pengguna selama sebulan, sebelumnya:
   });
 
   for await (const row of rows) {
-    console.log(`${row.actor.user_id}: ${row.amount}`);
+    if (row.actor.type === "user_actor") {
+      console.log(`${row.actor.user_id}: ${row.amount}`);
+    }
   }
   ```
 
@@ -1328,7 +1336,10 @@ Biaya per pengguna selama sebulan, sebelumnya:
 
   await foreach (var row in page.Paginate())
   {
-      Console.WriteLine($"{row.Actor.UserID}: {row.Amount}");
+      if (row.Actor.TryPickBetaAnalyticsUser(out var user))
+      {
+          Console.WriteLine($"{user.UserID}: {row.Amount}");
+      }
   }
   ```
 
@@ -1343,7 +1354,9 @@ Biaya per pengguna selama sebulan, sebelumnya:
 
   for rows.Next() {
   	row := rows.Current()
-  	fmt.Printf("%s: %s\n", row.Actor.UserID, row.Amount)
+  	if user, ok := row.Actor.AsAny().(anthropic.BetaAnalyticsUserActor); ok {
+  		fmt.Printf("%s: %s\n", user.UserID, row.Amount)
+  	}
   }
   if err := rows.Err(); err != nil {
   	log.Fatal(err)
@@ -1365,7 +1378,9 @@ Biaya per pengguna selama sebulan, sebelumnya:
       var rows = client.beta().organization().analytics().userCostReport().list(params);
 
       for (var row : rows.autoPager()) {
-          IO.println(row.actor().userId() + ": " + row.amount());
+          row.actor().user().ifPresent(user ->
+              IO.println(user.userId() + ": " + row.amount())
+          );
       }
   }
   ```
@@ -1394,7 +1409,9 @@ Biaya per pengguna selama sebulan, sebelumnya:
   )
 
   page.auto_paging_each do |row|
-    puts "#{row.actor.user_id}: #{row.amount}"
+    if row.actor.type == :user_actor
+      puts "#{row.actor.user_id}: #{row.amount}"
+    end
   end
   ```
 </CodeGroup>

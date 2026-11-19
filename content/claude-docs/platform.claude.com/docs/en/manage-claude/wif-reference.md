@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-reference
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: dca9b308afd17d675c2b573a6e9c5966ea4f007e320bb96d01c1111ccb017ef5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: ecdbd5e00dbefa76e36f481593ce0e4fa927d7479332abdbf506758e58ec9658
 ---
 
 ---
@@ -91,9 +91,9 @@ The SDK locates the configuration directory in this order:
 
 The active profile name resolves in this order:
 
-1. `$ANTHROPIC_PROFILE`
-2. The contents of `<config_dir>/active_config` (a one-line file written by `ant profile activate <name>`)
-3. The literal name `default`
+1. `$ANTHROPIC_PROFILE`.
+2. The contents of `<config_dir>/active_config`. `ant profile activate <name>` writes this one-line file. So does `ant auth login` when it names a profile or when the file doesn’t exist yet.
+3. The literal name `default`.
 
 Claude Code and the Claude Agent SDK honor this same resolution order, so a federation profile configured here also authenticates those tools without additional setup.
 

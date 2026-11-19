@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 3836ee3e90f6f9d3c5401a34a5c541c293384ff2286cea719e33db10a2695db8
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 2a068d75abe8f42761dfc497c4bb6e09bd7d8c2b824bba4c5a0fbfcf0a0b1c1a
 ---
 
 ---
@@ -171,6 +171,20 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 - `last_id: string or null`
 
   Last ID in the `data` list. Can be used as the `after_id` for the next page.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `claude_code_key_creator_not_member` (HTTP status 400)
+
+  The API key belongs to the Claude Code workspace, and the user who created it is no longer a member of the organization or of that workspace.
+
+- `organization_on_hold` (HTTP status 400)
+
+  Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
 
 ## Example
 

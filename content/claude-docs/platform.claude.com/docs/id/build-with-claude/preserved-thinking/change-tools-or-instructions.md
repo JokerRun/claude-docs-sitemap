@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 2e41c68bfd0abb895feb852f30bf49ad38d0a8ba4a905227970bb5a61e02cc1f
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f9383a62dfd2ab134b8c788409067550e701cd575c0556620ca93a795315f7f3
 ---
 
 ---
@@ -199,7 +199,7 @@ Pesan pengguna dengan hasil alat harus hanya berisi blok `tool_result` ketika gi
 
 ### Model yang tidak menerima pesan sistem
 
-Di Claude API, setiap model dengan pemikiran yang dipertahankan menerima pesan sistem. Untuk model yang tidak menerimanya, lihat [Ketika model tidak menerima pesan sistem](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#unchosen-switches-details).
+[Ketersediaan pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#feature-availability) mencantumkan platform dan model yang menerimanya. Di platform tersebut, daftar itu mencakup setiap model dengan pemikiran yang dipertahankan. Jika Anda beralih ke model yang tidak ada dalam daftar, lihat [Ketika model tidak menerima pesan sistem](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#unchosen-switches-details).
 
 ### Kirim pengingat untuk satu giliran
 
@@ -224,7 +224,7 @@ Untuk platform yang menerima setiap header, lihat [Pesan sistem dan perubahan al
 * **Jika Anda mengetahui semua alat sejak awal:** Deklarasikan semuanya pada permintaan pertama, dengan `defer_loading: true` pada alat yang Anda tawarkan nanti. Lalu sebutkan nama alat tersebut dalam blok `tool_addition` atau `tool_removal` dari pesan sistem. Beta header: `inline-tools-2026-09-15` atau `mid-conversation-tool-changes-2026-07-01`.
 * **Jika Anda baru mengetahui sebuah alat nanti, atau memiliki alat yang skemanya berubah:** Definisikan alat tersebut dalam blok `tool_addition` dari pesan sistem. Beta header: `inline-tools-2026-09-15`.
 * **Jika Anda baru mengetahui sebuah alat nanti, pada platform tanpa header `inline-tools-2026-09-15`:** Tambahkan alat tersebut ke akhir `tools` dengan `defer_loading: true`, yang tidak terhitung sebagai perubahan, lalu tawarkan berdasarkan namanya. Beta header: `mid-conversation-tool-changes-2026-07-01`.
-* **Jika Anda menghubungkan server MCP melalui MCP connector belakangan, di Claude API:** Definisikan `mcp_toolset`-nya dalam blok `tool_addition`. Beta header: `inline-tools-2026-09-15` dan `mcp-client-2026-09-15`.
+* **Jika Anda menghubungkan server MCP melalui konektor MCP belakangan:** Definisikan `mcp_toolset`-nya dalam blok `tool_addition`. Beta header: keduanya, `inline-tools-2026-09-15` dan `mcp-client-2026-09-15`. Untuk memeriksa apakah platform Anda menerima header kedua, lihat [Ketersediaan konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#feature-availability).
 
 Jika daftar alat server MCP dapat berubah, lihat [Sematkan daftar alat server MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#pin-mcp-tool-list).
 

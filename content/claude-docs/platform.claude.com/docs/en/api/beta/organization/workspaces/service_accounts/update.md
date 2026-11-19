@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/update
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 95787a9d2e5863902be7ac95fe4ae0c0debd10a60bc10456c19f29262d99bb3a
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 94a215471c5fd8ab8a5f9c6903edeffa8d0644509cbeb500b9422402392f54b5
 ---
 
 ---
@@ -234,6 +234,16 @@ rejected.
     - `"workspace_restricted_developer"`
 
     - `"workspace_user"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

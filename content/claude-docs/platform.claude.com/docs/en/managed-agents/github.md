@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/github
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5aa2f6b2f7975f87114861e25e0b1dcf9e2d614398cd677f6eb25373295ca4fe
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 92e733b40116527eefd0502a824a3594a006c485b16088639aa4c8b97d153e24
 ---
 
 ---
@@ -677,7 +677,7 @@ After a session is created, you can list its repository resources and rotate the
   # Rotate the authorization token
   curl -fsS \
     "https://api.anthropic.com/v1/sessions/$session_id/resources/$repo_resource_id" \
-  # ...
+    # ...
     -d @- <<'JSON'
   {
     "authorization_token": "ghp_your_new_github_token"

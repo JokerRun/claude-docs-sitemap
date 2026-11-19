@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5bc5d74a11e286baceee2e2277441441dfcf261d3af96d8e8e0a985cd031364b
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 377b70121f28b163b60bdb0e0d74b4c3371040281ab177877aa3031e4818f82e
 ---
 
 ---
@@ -36,6 +36,7 @@ featureMetadata:
     - claude-sonnet-4-5-20250929
   supportedPlatforms:
     Claude API: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
 ---
 
 [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) memangkas latensi dan biaya secara signifikan, tetapi hanya ketika bagian awal prompt Anda identik byte demi byte dengan permintaan terbaru. Alat yang diurutkan ulang, timestamp yang diinterpolasi ke dalam “system prompt” (prompt sistem) Anda, atau pengeditan pada pesan sebelumnya dapat secara diam-diam membatalkan cache. Tanpa diagnostik cache, satu-satunya sinyal adalah `usage.cache_read_input_tokens` yang turun menjadi nol, tanpa indikasi apa pun tentang apa yang berubah.
@@ -1066,10 +1067,15 @@ Matriks ini berlaku untuk giliran di mana Anda meneruskan `previous_message_id` 
 
 ## Keterbatasan
 
-* **Hanya Claude API:** Diagnostik cache tersedia di Claude API.
 * **Retensi terbatas:** Fingerprint untuk pencarian `previous_message_id` kedaluwarsa setelah periode singkat. Jalankan perbandingan diagnostik antara permintaan yang berdekatan waktunya.
-* **Workspace yang sama:** Permintaan sebelumnya harus dijalankan dalam organisasi dan workspace yang sama. Untuk memeriksanya, bandingkan [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) `anthropic-workspace-id` pada kedua respons.
+
+* **Workspace yang sama:** Permintaan sebelumnya harus dijalankan dalam organisasi dan workspace yang sama. Jika tidak, hasilnya adalah `previous_message_not_found`. Cara Anda memeriksa bahwa dua permintaan berada dalam workspace yang sama bergantung pada platform:
+
+  * **Claude API:** Bandingkan [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) `anthropic-workspace-id` pada kedua respons.
+  * **Claude Models on Google Cloud (Anthropic managed):** Bandingkan ID workspace pada kedua [URL permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests).
+
 * **Cakupan perbandingan:** Untuk percakapan yang sangat panjang ketika satu-satunya perubahan berada jauh di dalam daftar pesan, respons mungkin berupa `unavailable` alih-alih lokasi yang tepat.
+
 * **Upaya terbaik:** Diagnostik tidak pernah memblokir atau menggagalkan permintaan Anda. Jika informasi diagnostik tidak tersedia, respons mengembalikan `unavailable`, atau `cache_miss_reason: null` ketika perbandingan masih berjalan.
 
 ## Retensi data
@@ -1093,9 +1099,9 @@ Diagnostik cache tersedia di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud |
-| -------- | -------------- |
-| Tersedia | Claude API     |
+| Status   | Platform cloud                                                                                                                                                         |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Tersedia | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: ee22a2fbd4792a22f60a59fe369fa120451456bd1729f71af6a065cc9efa3ae9
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: b3efb64605e9776cbecc3467a66149a59111c4d76037e732bdac32b29b3626a7
 ---
 
 ---
@@ -45,7 +45,7 @@ featureMetadata:
 
 **Dukungan API**: Penggunaan berbeda menurut produk.
 
-* **Messages API**: Cantumkan `skill_ids` dalam parameter `container` dan sertakan alat eksekusi kode, yang kontainernya menjadi tempat skill dijalankan.
+* **Messages API**: Cantumkan `type` dan `skill_id` setiap Skill di `container.skills`, dan sertakan alat eksekusi kode, yang kontainernya menjadi tempat Skills dijalankan.
 * **Managed Agents**: Lampirkan skill dalam array `skills` agen, atau muat dari repositori GitHub yang di-mount pada sesi.
 
 ## Mengapa menggunakan Skills
@@ -66,9 +66,9 @@ Skills adalah sumber daya berbasis filesystem yang dapat digunakan kembali dan m
 
 Anthropic menyediakan Agent Skills siap pakai untuk tugas dokumen umum (PowerPoint, Excel, Word, PDF), dan Anda dapat membuat Skills kustom Anda sendiri. Keduanya bekerja dengan cara yang sama: setelah sebuah Skill tersedia di lingkungan Anda, Claude menggunakannya secara otomatis saat relevan dengan permintaan Anda.
 
-**Agent Skills siap pakai** tersedia di claude.ai, Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Microsoft Foundry, Agent Skills memerlukan [deployment Hosted on Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure). Lihat [Skills yang tersedia](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#available-skills) untuk daftar lengkapnya.
+**Agent Skills siap pakai** tersedia di claude.ai, Claude API, dan [beberapa platform cloud](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#feature-availability). Untuk daftar Skills, lihat [Skills yang tersedia](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#available-skills).
 
-**Skills kustom** memungkinkan Anda mengemas keahlian domain dan pengetahuan organisasi. Skills ini tersedia di seluruh produk Claude: buat di Claude Code, unggah melalui Claude API, atau tambahkan di pengaturan claude.ai. Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), unggah Skills kustom melalui Skills API.
+**Skills kustom** memungkinkan Anda mengemas keahlian domain dan pengetahuan organisasi. Buat di Claude Code, unggah melalui [Skills API](https://platform.claude.com/docs/id/build-with-claude/skills-guide), atau tambahkan di pengaturan claude.ai.
 
 <Note>
   **Memulai:**
@@ -183,19 +183,17 @@ Berikut cara Claude memuat dan menggunakan Skill kustom `pdf-processing` dari co
 
 ## Di mana Skills bekerja
 
-Skills tersedia di seluruh produk agen Claude:
+Skills tersedia di seluruh produk agen Claude. Untuk Claude Managed Agents, lihat halaman [Skills](https://platform.claude.com/docs/id/managed-agents/skills)-nya.
 
-<Note>
-  Claude Platform on AWS dan Microsoft Foundry mewarisi perilaku Skills yang sama dengan Claude API di semua bagian berikut, kecuali jika [Batasan dan kendala](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#limitations-and-constraints) menyatakan lain.
-</Note>
+Detail Claude API di halaman ini juga berlaku di platform cloud yang menawarkan Skills. Untuk pengecualiannya, lihat [Cakupan berbagi](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#sharing-scope) dan entri platform Anda di [Ketersediaan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#feature-availability).
 
 ### Claude API
 
-Claude API mendukung Agent Skills siap pakai dan Skills kustom. Keduanya bekerja secara identik: tentukan `skill_id` yang relevan dalam parameter `container` bersama dengan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool).
+Claude API mendukung Agent Skills siap pakai dan Skills kustom. Keduanya bekerja secara identik: cantumkan `type` dan `skill_id` setiap Skill dalam `container.skills`.
 
 **Prasyarat:** Menggunakan Skills melalui API memerlukan [alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool), yang container-nya menjadi tempat Skills berjalan.
 
-Gunakan Agent Skills siap pakai dengan mereferensikan `skill_id`-nya (`pptx`, `xlsx`, `docx`, atau `pdf`), atau buat dan unggah milik Anda sendiri melalui Skills API (endpoint `/v1/skills`). Skills kustom dibagikan ke seluruh workspace: semua anggota workspace dapat mengaksesnya.
+Gunakan Agent Skills siap pakai dengan mereferensikan `skill_id`-nya (`pptx`, `xlsx`, `docx`, atau `pdf`), atau buat dan unggah milik Anda sendiri melalui Skills API (endpoint `/v1/skills`). Untuk cara Skills kustom dibagikan, lihat [Cakupan berbagi](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#sharing-scope).
 
 Skills di API berjalan dalam container sandbox tanpa akses jaringan dan tanpa instalasi paket saat runtime. Lihat [Batasan dan kendala](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#limitations-and-constraints) untuk detailnya.
 
@@ -293,7 +291,7 @@ Agent Skills siap pakai berikut tersedia untuk langsung digunakan:
 * **Word (docx):** Membuat dokumen, mengedit konten, memformat teks
 * **PDF (pdf):** Menghasilkan dokumen dan laporan PDF yang terformat
 
-Skills ini tersedia di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), dan claude.ai. Lihat [tutorial quickstart](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart) untuk mulai menggunakannya di API.
+Untuk mulai menggunakannya, lihat [Memulai dengan Agent Skills di API](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart).
 
 ### Skills open-source
 
@@ -313,7 +311,7 @@ Untuk pencatatan audit operasi Skills API, lihat [Pencatatan audit](https://plat
 
 ## Batasan dan kendala
 
-Claude Platform on AWS dan Microsoft Foundry mengikuti batasan yang sama dengan Claude API pada subbagian berikut. Selain itu, di Microsoft Foundry, [endpoint unduhan versi Skill](https://platform.claude.com/docs/id/api/beta/skills/versions/download) (`GET /v1/skills/{skill_id}/versions/{version}/content`) tidak tersedia.
+Periksa batasan ini sebelum Anda membuat atau membagikan Skill. Di platform cloud, periksa juga entri platform Anda di [Ketersediaan](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#feature-availability) untuk batasan hosting atau endpoint apa pun.
 
 ### Ketersediaan lintas surface
 
@@ -331,6 +329,7 @@ Skills memiliki model berbagi yang berbeda bergantung pada tempat Anda menggunak
 
 * **Claude API:** Seluruh workspace. Semua anggota workspace dapat mengakses Skills yang diunggah.
 * **Claude Code:** Personal (`~/.claude/skills/`) atau berbasis proyek (`.claude/skills/`). Juga dapat dibagikan melalui plugin Claude Code.
+* **[Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed):** Setiap Skill dimiliki oleh satu workspace. Peran IAM berlaku untuk setiap workspace dalam proyek Google Cloud, sehingga workspace tidak memisahkan siapa yang dapat membaca, menggunakan, atau mengelola Skills. Untuk akses terpisah, gunakan proyek terpisah, sebagaimana dijelaskan di [Workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#workspaces) dalam Claude Models on Google Cloud (Anthropic managed).
 
 ### Kendala lingkungan runtime
 
@@ -381,7 +380,7 @@ Agent Skills tersedia di semua model.
 #### [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages)
 
 * Ketersediaan: Tersedia
-* Penggunaan: Cantumkan `skill_ids` dalam parameter `container` dan sertakan alat eksekusi kode, yang kontainernya menjadi tempat skill dijalankan.
+* Penggunaan: Cantumkan `type` dan `skill_id` setiap Skill di `container.skills`, dan sertakan alat eksekusi kode, yang kontainernya menjadi tempat Skills dijalankan.
 
 | Status               | Platform cloud                                                                                                                                                                                                                                                                 |
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

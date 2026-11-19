@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/console
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: fba48e2f1969352dc2d77ff1ae2a24d8fa9dea05bd3b50aa876a8f588779cb5f
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 1837251a2912b22cc374f4ada79381c4277297f56d30389a50e6ab9ae5e01864
 ---
 
 ---
@@ -21,7 +21,7 @@ Halaman ini membahas sisi Console dari deployment MCP tunnels: membuat tunnel, m
 
 * **Satu atau lebih server MCP** yang berjalan di jaringan privat Anda. Tunnel merutekan lalu lintas ke server tersebut; tunnel tidak meng-host-nya. Lihat [Server MCP jarak jauh](https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers) untuk contoh yang dapat Anda deploy.
 
-* **Peran Console dengan izin Manage tunnels (mengelola tunnel)**, sehingga Anda dapat membuat dan mengarsipkan tunnel, merotasi token, dan mengelola sertifikat. Admin dan pemilik organisasi memilikinya secara default; peran kustom dan pemberian izin per akun juga dapat menyertakannya. Peran tanpa izin ini memiliki akses hanya-baca ke halaman **Tunnel MCP** dan detail tunnel.
+* **Peran admin di organisasi Anda**, sehingga Anda dapat membuat dan mengarsipkan tunnel, merotasi token, dan mengelola sertifikat. Dengan peran developer, Anda dapat melihat halaman **Tunnel MCP** dan detail tunnel, tetapi tidak dapat mengubahnya.
 
 * **Cara bagi stack Anda untuk melakukan autentikasi ke Tunnels API.** Pilih salah satu:
 

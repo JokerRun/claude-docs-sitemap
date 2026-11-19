@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: b9f3cdf6ffd7c7379c88751504f8089d401e8a9543f96d4975053beb0eed3bbb
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 1a8497c2ab3cfcf25a70c6b655eeb6e72f2ad42d268bd4854d0e7c9edea4e66d
 ---
 
 ---
@@ -1031,7 +1031,7 @@ Isi blok pembaruan progres bergantung pada [`display`](https://platform.claude.c
 
 Pada Claude Sonnet 5.5, pengaturan pemikiran terendah adalah `thinking: {type: "between_tools"}`. Pengaturan ini menonaktifkan pemikiran di awal, dan setiap pembaruan progres dikembalikan dengan teks ringkasannya, seperti di bawah `display: "updates"`. `between_tools` hanya diterima pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Pada `xhigh` atau `max`, permintaan dengan pengaturan ini mengembalikan error 400. `between_tools` tidak menerima field lain: `display`, `budget_tokens`, atau `block_binding` yang dikirim bersamanya mengembalikan error 400. Pengaturan ini berfungsi di setiap platform yang menawarkan Claude Sonnet 5.5. Kirimkan kembali blok-blok tersebut tanpa diubah: blok pembaruan progres yang Anda kirim kembali memberi model catatan lengkap yang ditulisnya, bukan ringkasannya.
 
-Gunakan `display: "updates"` untuk antarmuka agen yang menyembunyikan penalaran dan menampilkan baris status kepada pengguna di setiap langkah. Di bawah pengaturan ini, setiap blok `thinking` dengan teks yang tidak kosong adalah pembaruan progres, jadi tampilkan blok-blok tersebut dan tidak ada yang lain. Fitur ini dalam tahap beta dan memerlukan header beta `thinking-display-updates-2026-08-18` (untuk mengirimkannya di Amazon Bedrock, Claude Models on Google Cloud (Google managed), atau Microsoft Foundry, lihat [Fitur beta di platform lain](https://platform.claude.com/docs/id/api/beta-headers#beta-features-on-other-platforms)). Tanpa header tersebut, nilai ini ditolak dengan error 400 `invalid_request_error` yang sama seperti nilai `display` yang tidak dikenal.
+Gunakan `display: "updates"` untuk antarmuka agen yang menyembunyikan penalaran dan menampilkan baris status kepada pengguna di setiap langkah. Di bawah pengaturan ini, setiap blok `thinking` dengan teks yang tidak kosong adalah pembaruan progres, jadi tampilkan blok-blok tersebut dan tidak ada yang lain. Fitur ini dalam tahap beta dan memerlukan header beta `thinking-display-updates-2026-08-18`. Untuk mengirimkan header tersebut di platform cloud, lihat [Fitur beta di platform lain](https://platform.claude.com/docs/id/api/beta-headers#beta-features-on-other-platforms). Tanpa header tersebut, API menolak nilai ini dengan error 400 `invalid_request_error` yang sama seperti nilai `display` yang tidak dikenal.
 
 ```json
 {
@@ -1210,7 +1210,8 @@ Perhatikan hal-hal berikut saat bekerja dengan signature:
 * Saat [melakukan streaming respons](https://platform.claude.com/docs/id/build-with-claude/thinking#streaming-thinking), signature tiba sebagai `signature_delta` di dalam event `content_block_delta` tepat sebelum event `content_block_stop`.
 * Nilai `signature` jauh lebih panjang pada model Claude 4 dan yang lebih baru dibandingkan model sebelumnya.
 * Field `signature` bersifat opaque: jangan menafsirkan atau mem-parse-nya.
-* Nilai `signature` kompatibel lintas platform, termasuk Claude API, [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed). Nilai yang dihasilkan di satu platform berfungsi di platform lain, kecuali bahwa blok pemikiran dari Claude Sonnet 5.5, Claude Haiku 5.5, Claude Fable 5.2, dan Claude Mythos 5.2 hanya berfungsi di akun yang menghasilkannya atau di akun yang ditautkan dengannya. Lihat [Akun dan platform cloud](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
+* Nilai `signature` kompatibel lintas platform: nilai yang dihasilkan di satu platform berfungsi di platform lain.
+* Blok pemikiran dari beberapa model merupakan pengecualian. Blok tersebut hanya berfungsi di akun yang menghasilkannya atau di akun yang ditautkan dengannya. Untuk model-model tersebut, lihat [Akun dan platform cloud](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 
 ## Blok pemikiran yang disunting
 

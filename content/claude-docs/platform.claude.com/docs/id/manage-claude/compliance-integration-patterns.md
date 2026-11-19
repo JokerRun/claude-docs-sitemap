@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 33d9a7e6139ae021947160bbec0dfad16cc96a9a268857a8c06a71c7ca674b38
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: e9a08eb82f2db27b58416434dd6968ecf33b43425df005c36631d2e36f18b4f1
 ---
 
 ---
@@ -112,7 +112,9 @@ Setiap `Activity` membawa field yang dapat Anda gabungkan dengan event yang suda
 
 `actor.user_id` dan `actor.email_address` ada ketika `actor.type` adalah `user_actor`. `actor.ip_address` dan `actor.user_agent` tidak ada pada beberapa tipe aktor, seperti `anthropic_actor` dan `scim_directory_sync_actor`. Periksa diskriminator sebelum membaca field-field ini. `user_id` adalah pengidentifikasi stabil dan buram untuk akun pengguna: nilainya konsisten di seluruh endpoint Compliance API dan payload aktivitas, dan tidak berubah ketika email atau nama tampilan pengguna berubah. Gunakan `user_id`, bukan `email_address`, sebagai kunci join utama.
 
-Panggilan ke Compliance API itu sendiri menghasilkan aktivitas `compliance_api_accessed`. Serap aktivitas ini bersama tipe aktivitas lainnya sehingga SIEM Anda mencatat siapa yang mengueri data kepatuhan, dan kapan. Teruskan `activity_types[]=compliance_api_accessed` untuk membatasi kueri, lalu di klien Anda, baca `actor.api_key_id` dari setiap aktivitas yang `actor.type`-nya adalah `api_actor` untuk mengatribusikan akses tersebut ke Compliance Access Key atau kunci Admin API tertentu.
+Sebagian besar panggilan ke Compliance API itu sendiri menghasilkan aktivitas `compliance_api_accessed`. Serap aktivitas ini bersama tipe aktivitas lainnya sehingga SIEM Anda mencatat siapa yang mengueri data kepatuhan, dan kapan. Teruskan `activity_types[]=compliance_api_accessed` untuk membatasi kueri. Lalu, di klien Anda, baca `actor.api_key_id` dari setiap aktivitas yang `actor.type`-nya adalah `api_actor`. Nilai tersebut mengatribusikan akses ke Compliance Access Key atau kunci Admin API tertentu.
+
+Beberapa panggilan ke Compliance API tidak meninggalkan aktivitas apa pun di Activity Feed, termasuk panggilan yang berhasil. Jadi, celah dalam aktivitas ini tidak menunjukkan bahwa tidak ada yang mengueri data kepatuhan.
 
 ## Rencanakan retensi konten
 
@@ -155,7 +157,7 @@ Endpoint konten (chat, file, proyek, lampiran proyek, serta transkrip sesi lokal
 
 * Teks prompt atau respons model dari Claude Console, atau dari beban kerja Claude API yang diautentikasi dengan kunci API.
 * Aktivitas di perangkat dalam sesi lokal yang tidak pernah dikirim ke Anthropic, seperti file lokal yang tidak dibaca oleh Claude.
-* Penggunaan Claude Code yang diautentikasi dengan kunci API Claude Console, dijalankan melalui platform cloud pihak ketiga (Amazon Bedrock, Google Cloud, atau Microsoft Foundry), atau dijalankan dalam [sesi cloud Claude Code](https://code.claude.com/docs/id/claude-code-on-the-web), yang berjalan di infrastruktur cloud alih-alih di mesin pengguna.
+* Penggunaan Claude Code yang diautentikasi dengan kunci API Claude Console, dijalankan melalui [platform cloud](https://platform.claude.com/docs/id/api/overview#claude-api-vs-cloud-platforms) apa pun, atau dijalankan dalam [sesi cloud Claude Code](https://code.claude.com/docs/id/claude-code-on-the-web). Sesi cloud Claude Code berjalan di infrastruktur cloud alih-alih di mesin pengguna.
 * Sesi lokal dari produk selain Cowork dan Claude Code di organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness), serta sesi lokal yang menerapkan [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) (retensi data nol).
 * Blok thinking, serta gambar atau konten biner lainnya, di dalam transkrip sesi (transkrip hanya memuat prompt pengguna, respons asisten, dan aktivitas alat; transkrip sesi lokal menampilkan blok `text` placeholder di tempat konten biner dihilangkan).
 * File asli untuk lampiran chat yang disimpan claude.ai sebagai teks hasil ekstraksi, seperti beberapa unggahan Word, PowerPoint, dan PDF (endpoint konten file mengembalikan teks hasil ekstraksi; lihat [Mengambil file dan artifact](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-files-and-artifacts)).

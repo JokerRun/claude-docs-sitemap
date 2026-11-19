@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 1f42e6434ccbe8175df3073ba07e5528f4e1761921667aea81955a64210b2049
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 25530b1f05f13d6f17a07eba21902301b2b7e13f3488979b9503c3ae3fd9a359
 ---
 
 ---
@@ -55,7 +55,9 @@ Atestasi adalah pernyataan tercatat dari seseorang tentang posisi organisasi ter
 * Risiko diterima (`accepted_risk`): kontrol tidak diterapkan, dan organisasi menerima risikonya.
 * Gagal (`control_failed`): kontrol tidak diterapkan.
 
-Seseorang yang dapat melakukan atestasi melakukannya di halaman. API membaca atestasi dan tidak dapat membuatnya. Halaman dapat mengajukan pertanyaan ketika seseorang melakukan atestasi, dan terkadang mewajibkan jawaban. Halaman menyimpan jawaban tersebut bersama atestasi sebagai [komentar](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview#what-anthropic-stores-when-someone-attests) atestasi tersebut, paling banyak 2.000 karakter. Aktivitas di Activity Feed tidak pernah menyertakan komentar tersebut atau menunjukkan bahwa komentar tersebut ada. Endpoint juga tidak mengembalikan komentar.
+Seseorang yang dapat melakukan atestasi melakukannya di halaman. API membaca atestasi dan tidak dapat membuatnya. Halaman dapat mengajukan pertanyaan ketika seseorang melakukan atestasi, dan terkadang mewajibkan jawaban. Halaman menyimpan jawaban tersebut bersama atestasi sebagai komentar atestasi tersebut, paling banyak 2.000 karakter (lihat [Apa yang disimpan Anthropic saat seseorang melakukan atestasi](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview#what-anthropic-stores-when-someone-attests)). Aktivitas di Activity Feed tidak pernah menyertakan komentar tersebut atau menunjukkan bahwa komentar tersebut ada. Endpoint juga tidak mengembalikan komentar.
+
+Saat seseorang menyimpan atestasi, Security posture memberi atestasi tersebut tanggal berakhir yang jatuh 90 hari setelah penyimpanan. Jika orang tersebut memilih untuk menyimpan atestasi tanpa tanggal berakhir, atestasi tersebut tidak memiliki tanggal berakhir.
 
 ### Hasil
 
@@ -75,7 +77,7 @@ Risiko diterima yang berlaku dihitung sebagai Lulus pada kontrol otomatis atau m
 Atestasi tetap berlaku sampai salah satu dari tiga hal berikut terjadi:
 
 * Seseorang mencabut atau mengubahnya.
-* Tanggal berakhirnya (`review_date`) tiba. Orang yang melakukan atestasi memilih 90 hari atau tanpa tanggal berakhir.
+* Tanggal berakhirnya (`review_date`) tiba.
 * Pada kontrol otomatis atau kontrol khusus informasi, nilai saat ini berubah, atau, untuk risiko diterima pada beberapa kontrol otomatis, pemeriksaan otomatis berhasil.
 
 Tanpa atestasi yang berlaku, hasil kontrol otomatis mengikuti pemeriksaannya, dan kontrol manual bernilai Belum diatestasi.
@@ -118,7 +120,7 @@ Nilai-nilai ini adalah data pribadi; salinan Anda tetap ada lebih lama daripada 
 
 ## Apa yang disimpan Anthropic saat seseorang melakukan atestasi
 
-Anthropic menyimpan satu atestasi per kontrol, termasuk nilainya, kapan atestasi tersebut dibuat, tanggal berakhir jika ada, dan akun orang yang melakukan atestasi. Melakukan atestasi lagi akan menggantikannya.
+Anthropic menyimpan satu atestasi per kontrol, termasuk nilainya, kapan atestasi tersebut dibuat, tanggal berakhir jika ada, dan akun orang yang melakukan atestasi. Melakukan atestasi lagi akan menggantikannya, kecuali penyimpanan tersebut ditolak, seperti dalam kasus yang dijelaskan nanti di bagian ini.
 
 Anthropic tetap menyimpan atestasi setelah tanggal berakhirnya tiba atau setelah atestasi tersebut [berhenti berlaku secara otomatis](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview#what-ends-an-attestation), sampai seseorang mencabutnya atau Anthropic menghapusnya saat menghapus organisasi. Jika akun orang yang melakukan atestasi dihapus, Anthropic tetap menyimpan atestasi tersebut, yang tidak lagi menyebutkan siapa yang melakukan atestasi. Aktivitas apa pun di Activity Feed yang disebabkan oleh orang ini tetap menyebutkan orang tersebut. Mencabut atau mengganti atestasi tersebut tidak menghapus apa pun dari Activity Feed (lihat [Siapa yang dapat melihat siapa yang melakukan atestasi](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview#who-can-see-who-attested)).
 
@@ -126,6 +128,13 @@ Anthropic tetap menyimpan atestasi setelah tanggal berakhirnya tiba atau setelah
 
 Komentar suatu atestasi adalah jawaban atas pertanyaan yang dapat diajukan halaman Security posture ketika seseorang melakukan atestasi. Anthropic menyimpan komentar suatu atestasi sampai seseorang mencabut atestasi tersebut atau Anthropic menghapus komentar tersebut saat menghapus organisasi. Melakukan atestasi lagi dapat menggantikan atau menghapus komentar tersebut. Periode retensi percakapan kustom tidak memperpendek berapa lama Anthropic menyimpan atestasi atau komentar tersebut. Aktivitas di Activity Feed tidak pernah menyertakan komentar tersebut (lihat [Apa yang tidak dicatat oleh feed](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#what-the-feed-does-not-record)).
 
-Beberapa organisasi tidak dapat menyimpan komentar bersama atestasi karena pengaturan penanganan datanya, seperti CMEK atau ZDR. Untuk organisasi tersebut, halaman Security posture tidak menampilkan kotak komentar dan tidak meminta jawaban ketika seseorang melakukan atestasi. Jika suatu organisasi telah menyimpan komentar sebelum pengaturan tersebut berlaku untuknya, komentar tersebut tetap tersimpan bersama atestasinya. Halaman Security posture tidak menampilkan komentar tersebut. Mencabut atestasi akan menghapus komentar tersebut.
+Beberapa organisasi tidak dapat menyimpan komentar bersama atestasi karena pengaturan penanganan datanya, seperti CMEK atau ZDR. Untuk organisasi tersebut, halaman Security posture tidak menampilkan kotak komentar dan tidak meminta jawaban ketika seseorang melakukan atestasi.
+
+Jika suatu organisasi telah menyimpan komentar sebelum pengaturan tersebut berlaku untuknya, komentar tersebut tetap tersimpan bersama atestasinya. Halaman Security posture tidak menampilkan komentar tersebut. Kontrol yang atestasinya memiliki komentar tersebut bekerja sebagai berikut:
+
+* Halaman menolak untuk menyimpan atestasi tersebut lagi, baik dengan nilai lain maupun dengan nilai yang sama untuk perpanjangan, kecuali seperti yang dijelaskan item terakhir. Activity Feed tidak mencatat aktivitas apa pun untuk penyimpanan yang ditolak.
+* Penyimpanan yang ditolak membiarkan atestasi tetap seperti semula. Jika atestasi memiliki tanggal berakhir, perpanjangan yang ditolak tidak menggeser tanggal tersebut, sehingga atestasi berhenti berlaku saat tanggal tersebut tiba. Setelah tanggal berakhir tersebut tiba, halaman tetap menolak untuk menyimpan atestasi tersebut lagi sampai seseorang mencabut atestasi tersebut. Lihat [Apa yang membuat atestasi berhenti berlaku](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview#what-ends-an-attestation).
+* Mencabut atestasi akan menghapus komentar tersebut. Tindakan ini tidak dapat dibatalkan. Setelah itu, penolakan ini tidak lagi berlaku.
+* Dalam beberapa kasus, halaman tidak menolak penyimpanan. Dalam hal itu, melakukan atestasi lagi dapat menghapus komentar tersebut tanpa menampilkannya terlebih dahulu.
 
 Selama Security posture tidak tersedia untuk suatu organisasi, Anthropic tetap menyimpan atestasi dan komentar organisasi tersebut. Selama waktu itu, tidak seorang pun dapat melihat atau mencabutnya di halaman Security posture.

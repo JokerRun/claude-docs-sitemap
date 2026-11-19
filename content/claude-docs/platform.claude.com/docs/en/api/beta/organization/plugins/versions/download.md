@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions/download
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 1f001a2dfb358a5a195cf666ebada569ae98debe88b684fefe747a7883145297
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: fc79acdff93d4caf31ec2b981de48093a155c7772abd4e88b80fb0cea99a10f4
 ---
 
 ---
@@ -193,6 +193,20 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"ce-user-management-2026-07-13"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `cmek_key_disabled` (HTTP status 400)
+
+  The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
+- `cmek_key_network_blocked` (HTTP status 400)
+
+  The key management service's network access controls blocked the request to the workspace's customer-managed encryption key. The key itself may be healthy.
 
 ## Example
 

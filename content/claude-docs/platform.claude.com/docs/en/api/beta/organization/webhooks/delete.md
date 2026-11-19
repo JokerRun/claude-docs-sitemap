@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/delete
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 840c1206260ca09bb4d6a404d354716f1bf992b9dda6889675570c0900629dd4
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 893418bf9f70f84db414364c50507f2fa41a86755eaa45eaaada244ec31d71bc
 ---
 
 ---
@@ -189,6 +189,16 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
   - `id: string`
 
     ID of the deleted webhook endpoint.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

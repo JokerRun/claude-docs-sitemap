@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 2bc9fc997cb3a6917c267197c45a8b72ca4a0046b5757e0dd2ae3634b33d328e
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: d14bc65ba9a3643767edb8574e35a019e2f108e9804bcb6ff270eb9f3d966522
 ---
 
 > ## Documentation Index
@@ -82,7 +82,7 @@ Entries from each scope are combined. A developer can extend `environment`, `all
 
 > [!NOTE]
 >
-> The classifier is a second gate that runs after the [permissions system](https://code.claude.com/docs/en/permissions.md). For actions that must never run regardless of user intent or classifier configuration, use `permissions.deny` in managed settings, which blocks the action before the classifier is consulted and can't be overridden.
+> The classifier is a second gate that runs after the [permissions system](https://code.claude.com/docs/en/permissions.md). To block Claude's [matching calls](https://code.claude.com/docs/en/permissions.md#bash-rule-limits) before the classifier runs, use `permissions.deny` in managed settings.
 
 ## Define trusted infrastructure
 
@@ -335,7 +335,8 @@ Both `defaults` and `config` print the four rule lists as a single JSON object, 
     ...
   ],
   "soft_deny": [
-    "Git Destructive [named+specifics — **must name:** the destructive operation and its target]: Force pushing (`git push --force`), deleting remote branches, tags, or releases, or rewriting remote history. Also `git commit --amend` when the commit being rewritten is not the agent's own unpushed work: either no prior `git commit` is visible (HEAD pre-dates the session), or a `git push` of the current branch is visible after the most recent commit (it has been pushed). Clears when the user asked to amend/reword/fixup, or when it is a message-only reword (`--amend -m …`, nothing newly staged) of a commit the agent visibly created this session.",
+    ...
+    "Production Deploy [named+specifics — **must name:** the production target]: Deploying to production/a production service or running production database migrations",
     ...
   ],
   "hard_deny": [...],

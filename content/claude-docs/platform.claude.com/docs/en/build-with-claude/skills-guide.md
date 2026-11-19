@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/skills-guide
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 452783468ac08e1b3c061151bdd23a433dc39d59e8134768433fa150dfba6860
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: edf03d65ba13ae37ffa392c2067c099e678d1feed135a8d486911edb4a3482bc
 ---
 
 ---
@@ -2154,7 +2154,7 @@ Files are identified by the file name you attach (the `;filename=` suffix in the
   import com.anthropic.models.skills.Skill;
   // ...
   void main() throws Exception {
-  // ...
+      // ...
       AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
       // Option 1: Using a zip file

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-2/migration-guide
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: a1d02fab11024ea78854f3c7fd90cc22265240fee6fbea655bc236b18b97d284
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: bb18a03ca5f08f627078533b800204241f4a381b62c6e3137fb2db42bfc2de6c
 ---
 
 ---
@@ -180,7 +180,7 @@ model = "claude-fable-5-2"  # After
 
    Claude Fable 5.2 juga mendukung mode cepat di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Anthropic. Di sana, mode cepat memiliki ID modelnya sendiri: kirim permintaan ke deployment `claude-fable-5-2-fast` dan jangan sertakan `speed`.
 
-   Claude Mythos 5.2 juga mendukung mode cepat dalam permintaan Messages API di Claude API, dengan harga mode cepat Claude Fable 5.2. [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) mencantumkan setiap platform tempat Claude Mythos 5.2 memiliki mode cepat.
+   Claude Mythos 5.2 juga mendukung mode cepat dalam permintaan Messages API. Di Claude API, biayanya sama dengan mode cepat untuk Claude Fable 5.2. [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) mencantumkan setiap platform tempat Claude Mythos 5.2 memiliki mode cepat.
 
    Hapus `speed: "fast"` di Claude Managed Agents. Hapus juga di platform atau opsi hosting mana pun tempat [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) tidak mencantumkan model yang Anda tuju.
 
@@ -338,7 +338,7 @@ model = "claude-fable-5-2"  # After
 
     Claude Fable 5.2 juga mendukung mode cepat di [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) untuk deployment yang di-hosting di Anthropic. Di sana, mode cepat memiliki ID modelnya sendiri: kirim permintaan ke deployment `claude-fable-5-2-fast` dan jangan sertakan `speed`.
 
-    Claude Mythos 5.2 juga mendukung mode cepat dalam permintaan Messages API di Claude API, tanpa header tersebut dan dengan harga mode cepat Claude Fable 5.2. [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) mencantumkan setiap platform tempat Claude Mythos 5.2 memiliki mode cepat.
+    Claude Mythos 5.2 juga mendukung mode cepat dalam permintaan Messages API tanpa header tersebut. Di Claude API, biayanya sama dengan mode cepat untuk Claude Fable 5.2. [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) mencantumkan setiap platform tempat Claude Mythos 5.2 memiliki mode cepat.
 
     Hapus `speed: "fast"` di Claude Managed Agents. Hapus juga jika [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) tidak mencantumkan model yang Anda tuju.
 

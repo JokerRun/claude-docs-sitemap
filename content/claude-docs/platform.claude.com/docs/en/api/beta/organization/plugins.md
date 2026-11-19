@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 4c39f44acdabebfef5b85bafe957237bdba3fcc4bbcc71a5375736f74b548358
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: d25cc6b1c48c08d27b4ca90eddaaa8b5a9063d560de290056de7b3feb4f192e8
 ---
 
 ---
@@ -406,6 +406,36 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
     RFC 3339. Moves on a served-version change (including pinning an unpinned Plugin to the version it already serves) and, normally, on a new version. A version saved in claude.ai that waits for its content scan moves it when it becomes the served version, and not necessarily when it is stored. A change to the Plugin's installation settings or shares does not move it.
 
     format: date-time
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `cmek_key_disabled` (HTTP status 400)
+
+  The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
+- `cmek_key_network_blocked` (HTTP status 400)
+
+  The key management service's network access controls blocked the request to the workspace's customer-managed encryption key. The key itself may be healthy.
+
+- `unsupported_charset` (HTTP status 400)
+
+  The request's `Content-Type` header names a charset other than UTF-8, ISO-8859-1 or US-ASCII. Send the request with no charset, or with one of these.
+
+- `plugin_name_taken` (HTTP status 409)
+
+  The marketplace already holds this name. `plugin_id` is the Plugin that holds it, and can be absent.
+
+- `skill_name_taken` (HTTP status 409)
+
+  One of the Plugin's skills has the name of an organization skill. `skill_name` is that name.
+
+- `registration_pending` (HTTP status 503)
+
+  The Plugin version was stored but is not yet usable in claude.ai. `plugin_id` and `plugin_version_id` identify what was stored.
 
 ### Example
 
@@ -1265,6 +1295,32 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     format: date-time
 
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `cmek_key_disabled` (HTTP status 400)
+
+  The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
+- `cmek_key_network_blocked` (HTTP status 400)
+
+  The key management service's network access controls blocked the request to the workspace's customer-managed encryption key. The key itself may be healthy.
+
+- `scan_failed` (HTTP status 400)
+
+  The version in `plugin_version_id` did not pass its content scan, so it cannot be served.
+
+- `scan_pending` (HTTP status 409)
+
+  The content scan of the version in `plugin_version_id` is still running. Retry once the scan finishes.
+
+- `skill_name_taken` (HTTP status 409)
+
+  One of the Plugin's skills has the name of an organization skill. `skill_name` is that name.
+
 ### Example
 
 ```bash
@@ -1985,6 +2041,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     The deleted Plugin's ID.
 
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `cmek_key_disabled` (HTTP status 400)
+
+  The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
 ### Example
 
 ```bash
@@ -2298,8 +2364,6 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID \
 
 - `BetaPluginNameTakenErrorDetails object`
 
-  The marketplace already holds this name. `plugin_id` is the Plugin that holds it, and can be absent.
-
   - `error_code: "plugin_name_taken"`
 
   - `plugin_id: optional string or null`
@@ -2388,8 +2452,6 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID \
 
 - `BetaRegistrationPendingErrorDetails object`
 
-  The Plugin version was stored but is not yet usable in claude.ai. `plugin_id` and `plugin_version_id` identify what was stored.
-
   - `error_code: "registration_pending"`
 
   - `plugin_id: string`
@@ -2400,8 +2462,6 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID \
 
 - `BetaScanFailedErrorDetails object`
 
-  The version in `plugin_version_id` did not pass its content scan, so it cannot be served.
-
   - `error_code: "scan_failed"`
 
   - `plugin_version_id: string`
@@ -2409,8 +2469,6 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID \
 ### Beta Scan Pending Error Details
 
 - `BetaScanPendingErrorDetails object`
-
-  The content scan of the version in `plugin_version_id` is still running. Retry once the scan finishes.
 
   - `error_code: "scan_pending"`
 
@@ -2420,11 +2478,83 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID \
 
 - `BetaSkillNameTakenErrorDetails object`
 
-  One of the Plugin's skills has the name of an organization skill. `skill_name` is that name.
-
   - `error_code: "skill_name_taken"`
 
   - `skill_name: string`
+
+## Errors
+
+### scan_failed
+
+HTTP status 400
+
+- `"scan_failed"`
+
+  The version in `plugin_version_id` did not pass its content scan, so it cannot be served.
+
+  - `details: BetaScanFailedErrorDetails`
+
+    - `error_code: "scan_failed"`
+
+    - `plugin_version_id: string`
+
+### plugin_name_taken
+
+HTTP status 409
+
+- `"plugin_name_taken"`
+
+  The marketplace already holds this name. `plugin_id` is the Plugin that holds it, and can be absent.
+
+  - `details: BetaPluginNameTakenErrorDetails`
+
+    - `error_code: "plugin_name_taken"`
+
+    - `plugin_id: optional string or null`
+
+### scan_pending
+
+HTTP status 409
+
+- `"scan_pending"`
+
+  The content scan of the version in `plugin_version_id` is still running. Retry once the scan finishes.
+
+  - `details: BetaScanPendingErrorDetails`
+
+    - `error_code: "scan_pending"`
+
+    - `plugin_version_id: string`
+
+### skill_name_taken
+
+HTTP status 409
+
+- `"skill_name_taken"`
+
+  One of the Plugin's skills has the name of an organization skill. `skill_name` is that name.
+
+  - `details: BetaSkillNameTakenErrorDetails`
+
+    - `error_code: "skill_name_taken"`
+
+    - `skill_name: string`
+
+### registration_pending
+
+HTTP status 503
+
+- `"registration_pending"`
+
+  The Plugin version was stored but is not yet usable in claude.ai. `plugin_id` and `plugin_version_id` identify what was stored.
+
+  - `details: BetaRegistrationPendingErrorDetails`
+
+    - `error_code: "registration_pending"`
+
+    - `plugin_id: string`
+
+    - `plugin_version_id: string`
 
 ## Plugins › Versions
 
@@ -2755,6 +2885,32 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `release_notes: string or null`
 
     As supplied with the upload; null when none were supplied.
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `cmek_key_disabled` (HTTP status 400)
+
+  The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
+- `cmek_key_network_blocked` (HTTP status 400)
+
+  The key management service's network access controls blocked the request to the workspace's customer-managed encryption key. The key itself may be healthy.
+
+- `unsupported_charset` (HTTP status 400)
+
+  The request's `Content-Type` header names a charset other than UTF-8, ISO-8859-1 or US-ASCII. Send the request with no charset, or with one of these.
+
+- `skill_name_taken` (HTTP status 409)
+
+  One of the Plugin's skills has the name of an organization skill. `skill_name` is that name.
+
+- `registration_pending` (HTTP status 503)
+
+  The Plugin version was stored but is not yet usable in claude.ai. `plugin_id` and `plugin_version_id` identify what was stored.
 
 #### Example
 
@@ -3705,6 +3861,20 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"ce-user-management-2026-07-13"`
 
     **Deprecated**: This value is no longer needed. Remove it from your requests.
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `cmek_key_disabled` (HTTP status 400)
+
+  The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
+- `cmek_key_network_blocked` (HTTP status 400)
+
+  The key management service's network access controls blocked the request to the workspace's customer-managed encryption key. The key itself may be healthy.
 
 #### Example
 

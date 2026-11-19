@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/rbac_roles/retrieve
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 33a1dd63fd29516048452ebd14866bbc8c12e533481c375d70afaa36bf3dc465
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 03a67daf31f26d1ab4a968893ad599cd8718102702632b896a1824dce7de3019
 ---
 
 ---
@@ -83,6 +83,24 @@ The RBAC Roles API is available to Claude Enterprise organizations only.
     RFC 3339 datetime string indicating when the RBAC Role was last updated.
 
     format: date-time
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `organization_type_not_supported` (HTTP status 400)
+
+  The endpoint does not support the organization's type. Each endpoint's description says which organization types it supports.
+
+- `parent_organization_required` (HTTP status 400)
+
+  The endpoint serves only organizations that belong to a parent organization, and this organization belongs to none.
+
+- `rbac_role_not_found` (HTTP status 404)
+
+  No RBAC Role with this ID was found.
 
 ## Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/validate
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 169c998aea554be4355c3fd68f672d7e00d6995af5e124ec8878df54c5e5f92c
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: c0b0c841efb8ac05e63c4f4b2727e5c12d43614fe3283569c3f9e4ef55a24986
 ---
 
 ---
@@ -54,6 +54,16 @@ message if it failed or timed out.
   - `"failure"`
 
   - `"success"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/remote-mcp-servers
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: ca5da4ce731ac04e2fde64a02defb1094add6be4d8505c59d790c5573a1ebffe
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 5c57d0f5836290c0c425e6f75ee5d3ca9d33698f4fb396ca7a63e1cbdd77ef70
 ---
 
 ---
@@ -33,7 +33,7 @@ Untuk informasi lebih lanjut tentang penggunaan server MCP jarak jauh dengan Cla
 
 ## Contoh server MCP jarak jauh
 
-<MCPServersTable platform="mcpConnector" />
+<MCPServersTable />
 
 <Note>
   **Mencari lebih banyak?** [Temukan ratusan server MCP lainnya di GitHub](https://github.com/modelcontextprotocol/servers).

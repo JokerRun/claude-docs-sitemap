@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/archive
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: bb298c556405f83a28a06cb00028a00f68bce4dcebd3e02c75a93a7cfa9c07a0
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 9d5de79a0791833d99734b3c6beb5c0d83aa41f9f3966e7b648fd165f08a97b7
 ---
 
 ---
@@ -223,6 +223,16 @@ certificate is added.
   - `tunnel_id: string`
 
     ID of the Tunnel this certificate is registered against.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: edd120e6ce4623d66184399bd3b53c03506a471e09f3d646d13bfe48b9be967d
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: d1815e0b303909663991bfddcb1295f32f79ee5bd7f49c600c22a8828302c47d
 ---
 
 ---
@@ -219,6 +219,16 @@ Record a heartbeat for a work item to maintain the lease.
   - `ttl_seconds: number`
 
     Effective TTL applied to the lease
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `heartbeat_precondition_failed` (HTTP status 412)
+
+  `expected_last_heartbeat` does not match the stored heartbeat, so another worker may hold the lease.
 
 ## Example
 

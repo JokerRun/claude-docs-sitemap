@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: ffe040180ca0dd263b153d41cf9b5394efcc6a72c3b8ee6f3db91fe21ee6aa0c
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: b16595f3756307c41900799b69ed3388cf44879f034f02ddffa1ece0ec69c6f0
 ---
 
 ---
@@ -229,7 +229,7 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-Lihat skema respons [Daftar Anggota Grup Kepatuhan](https://platform.claude.com/docs/id/api/compliance/groups/members/list) untuk bentuk lengkap catatan anggota. Field `user_id` adalah pengidentifikasi `user_...` yang sama dengan yang diterima Activity Feed, daftar chat, dan daftar sesi jarak jauh; field ini juga cocok dengan `user.id` pada objek sesi lokal dan pada objek sesi jarak jauh milik pengguna (sesi jarak jauh milik agen membawa ID manusianya di `started_by_user.id` sebagai gantinya). Untuk mendapatkan nama lengkap anggota, cari melalui daftar pengguna organisasi.
+Lihat skema respons [Daftar Anggota Grup Kepatuhan](https://platform.claude.com/docs/id/api/compliance/groups/members/list) untuk bentuk lengkap catatan anggota. Field `user_id` adalah pengidentifikasi `user_...` yang sama dengan yang diterima Activity Feed, daftar chat, dan daftar sesi jarak jauh. Field ini juga cocok dengan `user.id` pada objek sesi lokal dan pada objek sesi jarak jauh milik pengguna. Sesi jarak jauh milik agen membawa ID seorang manusia di `started_by_user.id` sebagai gantinya, jika ID tersebut tercatat. Untuk mendapatkan nama lengkap anggota, cari melalui daftar pengguna organisasi.
 
 ## Mendapatkan pengaturan organisasi efektif
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/choosing-an-environment
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 3169a7c4507899ac5ddd37be1d44f27f906834ebcea89f72e3b5c2f052296365
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: b300492b131acad239b04401b36069b220e62f3438f4d80675a8ed53244857e8
 ---
 
 ---
@@ -53,7 +53,7 @@ Definisi agen tetap sama apa pun pilihan Anda. Anda mengatur model, prompt, dan 
 
 ## Mulai dengan lingkungan cloud
 
-Jika Anda tidak yakin mana yang harus dipilih, atau Anda baru mengenal Claude Managed Agents, mulailah dengan [lingkungan cloud](https://platform.claude.com/docs/id/managed-agents/environments), seperti yang dilakukan dalam [panduan memulai cepat](https://platform.claude.com/docs/id/managed-agents/quickstart). Anthropic menjalankan container terisolasi untuk setiap sesi, dengan bahasa pemrograman dan alat umum yang sudah terinstal, sehingga tidak ada yang perlu Anda host. Pilih sandbox yang di-host sendiri hanya jika alat harus berjalan di infrastruktur yang Anda kendalikan.
+Jika Anda tidak yakin mana yang harus dipilih atau Anda baru mengenal Claude Managed Agents, mulailah dengan [lingkungan cloud](https://platform.claude.com/docs/id/managed-agents/environments). Panduan memulai cepat, [Memulai dengan Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/quickstart), menggunakan lingkungan cloud. Anthropic menjalankan container terisolasi untuk setiap sesi, dengan bahasa pemrograman dan alat umum yang sudah terinstal, sehingga tidak ada yang perlu Anda host. Pilih sandbox yang di-host sendiri hanya jika alat harus berjalan di infrastruktur yang Anda kendalikan.
 
 ## Bandingkan opsi-opsinya
 
@@ -92,14 +92,14 @@ Sandbox yang di-host sendiri menjadikan Anda operator host worker. Anda memperku
 
 Anda juga melepaskan fitur-fitur lingkungan cloud berikut:
 
-* [Sumber daya sesi `file` dan `github_repository`](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#session-resources). Anda [menyiapkan file input sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#stage-files-for-a-session), dan Anda juga bertanggung jawab untuk memasang repositori GitHub Anda sendiri.
+* [Sumber daya sesi `file` dan `github_repository`](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes#session-resources). Anda [menyiapkan file input sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#stage-files-for-a-session), dan Anda juga bertanggung jawab untuk memasang repositori GitHub Anda sendiri.
 * [Penemuan skill dari repositori](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
 * [Kredensial variabel lingkungan](https://platform.claude.com/docs/id/managed-agents/vaults#add-a-credential) di vault.
 * [Runtime dan paket pra-instal](https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference) pada sandbox cloud. Sandbox yang di-host sendiri memiliki apa pun yang disediakan worker Anda.
 
 ## Perbedaan pada Claude Platform on AWS
 
-Jika Anda menggunakan Claude Managed Agents melalui Claude Platform on AWS, Anthropic tetap mengoperasikan layanannya. Di sana, sandbox yang di-host sendiri tidak dapat menggunakan memory store, worker tidak menggunakan kunci lingkungan, dan tunnel MCP tidak tersedia. Lihat [Claude Managed Agents di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dan [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported).
+Jika Anda menggunakan Claude Managed Agents melalui Claude Platform on AWS, Anthropic tetap mengoperasikan layanannya. Di sana, memory store tidak tersedia di sandbox yang di-host sendiri, worker tidak menggunakan kunci lingkungan, dan tunnel MCP tidak tersedia. Lihat [Claude Managed Agents di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#claude-managed-agents) dan [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#features-not-supported).
 
 ## Perbedaan pada Claude Models on Google Cloud (Anthropic managed)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 253a842b20426d9037b7aa3179dc884400ccc547305254170fbfb105e8469319
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 7cbed0d0c0e257f7f5167a2905fcef72b8b37d1d21024f7d0e3ae848931243d4
 ---
 
 ---
@@ -62,17 +62,50 @@ Untuk akses terfederasi identitas dengan sesi maksimum 12 jam:
 
 ### Bearer token
 
-Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarankan):
+Bearer token memungkinkan Anda memanggil endpoint tanpa menandatangani permintaan dengan kredensial AWS. AWS menyebut token ini sebagai kunci API Amazon Bedrock. AWS merekomendasikan penandatanganan dengan kredensial AWS sementara jika memungkinkan, sehingga bearer token adalah jalur yang paling tidak disarankan di antara ketiga jalur autentikasi. Gunakan bearer token jika perangkat lunak Anda tidak dapat menandatangani permintaan.
+
+Bearer token tersedia dalam dua jenis:
+
+| Aspek            | Jangka pendek                                                                      | Jangka panjang                                                                         |
+| ---------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **Masa berlaku** | Hingga 12 jam, atau hingga sesi AWS yang membuatnya berakhir, mana yang lebih dulu | Hingga tanggal kedaluwarsanya. Jika tidak memilikinya, token tidak pernah kedaluwarsa. |
+| **Izin**         | Izin dari identitas IAM yang membuatnya                                            | Izin dari pengguna IAM pemilik token tersebut                                          |
+| **Catatan**      | Hanya berfungsi di region AWS tempat Anda membuatnya                               | Direkomendasikan oleh AWS hanya untuk eksplorasi                                       |
+
+Untuk kedua jenis, identitas IAM yang izinnya dibawa oleh token memerlukan izin `bedrock-mantle:CallWithBearerToken` dan `bedrock-mantle:CreateInference`.
+
+Untuk menggunakan bearer token:
 
 <Steps>
-  <Step title="Admin: batasi jenis token">
-    Blokir kunci jangka panjang dengan melampirkan kebijakan yang menolak `bedrock:CallWithBearerToken` kecuali kondisi `bedrock:BearerTokenType` cocok dengan token jangka pendek.
+  <Step title="Buat token">
+    Buat salah satu jenis token di konsol Amazon Bedrock. Anda juga dapat membuat token jangka pendek dengan salah satu pustaka pembuat token dari AWS. Untuk petunjuknya, lihat [API keys](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys.html) di Amazon Bedrock User Guide.
   </Step>
 
-  <Step title="Developer: buat token">
-    Gunakan CLI `aws-bedrock-token-generator` untuk membuat bearer token. Teruskan token tersebut dalam header `x-api-key` pada setiap permintaan.
+  <Step title="Kirim token">
+    Cara Anda mengirim token bergantung pada cara Anda memanggil endpoint:
+
+    * **Dengan SDK:** Atur variabel lingkungan `AWS_BEARER_TOKEN_BEDROCK`. Untuk cara klien menemukan kredensial, lihat [Membuat permintaan pertama Anda](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#making-your-first-request).
+    * **Dengan permintaan HTTP langsung:** Alih-alih menandatangani setiap permintaan, teruskan token dalam header `x-api-key` atau sebagai `Authorization: Bearer <token>`. Hilangkan bagian penandatanganan permintaan, seperti header `x-amz-security-token` serta opsi `--aws-sigv4` dan `-u` pada cURL.
   </Step>
 </Steps>
+
+#### Blokir bearer token jangka panjang
+
+Administrator dapat mencegah pengguna IAM memanggil Amazon Bedrock dengan token jangka panjang. Token berfungsi pada kedua endpoint Amazon Bedrock, dan setiap endpoint memiliki tindakan IAM dan kunci kondisi tersendiri:
+
+| Endpoint          | Tindakan yang ditolak                | Kunci kondisi                    |
+| ----------------- | ------------------------------------ | -------------------------------- |
+| `bedrock-mantle`  | `bedrock-mantle:CallWithBearerToken` | `bedrock-mantle:bearerTokenType` |
+| `bedrock-runtime` | `bedrock:CallWithBearerToken`        | `bedrock:bearerTokenType`        |
+
+Tulis kebijakan dengan satu pernyataan Deny untuk setiap endpoint. Pada setiap pernyataan, atur `Resource` ke `*`, dan gunakan `StringEquals` untuk mensyaratkan bahwa kunci kondisi bernilai `LONG_TERM`.
+
+Tempat Anda melampirkan kebijakan menentukan token mana yang diblokirnya:
+
+* **Satu pengguna IAM:** Kebijakan memblokir token milik pengguna tersebut. Konsol Amazon Bedrock membuat pengguna IAM baru untuk setiap token jangka panjang, sehingga cara ini tidak mencakup token yang dibuat di sana di kemudian hari.
+* **Akun anggota di AWS Organizations:** Sebagai service control policy (SCP), kebijakan memblokir token dari setiap pengguna IAM di akun tersebut, termasuk pengguna baru.
+
+Kebijakan ini memblokir penggunaan token jangka panjang, bukan pembuatannya. Untuk contoh kebijakan ini dan kebijakan yang mengontrol pembuatan token, lihat [Control permissions for generating and using Amazon Bedrock API keys](https://docs.aws.amazon.com/bedrock/latest/userguide/api-keys-permissions.html) di Amazon Bedrock User Guide.
 
 ## Instal SDK
 
@@ -137,9 +170,8 @@ Untuk akses jangka pendek tanpa IAM role (maksimum 12 jam, paling tidak disarank
 
   <Tab title="Ruby">
     ```bash
-    # Gemfile
-    gem "anthropic"
-    gem "aws-sdk-core"
+    bundle add anthropic
+    bundle add aws-sdk-core
     ```
   </Tab>
 </Tabs>
@@ -239,28 +271,39 @@ Untuk kredensial, klien menggunakan apa yang Anda teruskan saat membuatnya. Jika
 
   <Tab title="Go">
     ```go
-    client, err := bedrock.NewMantleClient(context.Background(), bedrock.MantleClientConfig{
-    	AWSRegion: "us-east-1",
-    })
-    if err != nil {
-    	panic(err)
-    }
+    import (
+    	"context"
+    	"fmt"
 
-    message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
-    	Model:     "anthropic.claude-opus-5-5",
-    	MaxTokens: 1024,
-    	Messages: []anthropic.MessageParam{
-    		anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
-    	},
-    })
-    if err != nil {
-    	panic(err)
-    }
+    	"github.com/anthropics/anthropic-sdk-go/v2"
+    	"github.com/anthropics/anthropic-sdk-go/v2/bedrock"
+    )
 
-    for _, block := range message.Content {
-    	if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
-    		fmt.Println(textBlock.Text)
-    		break
+    func main() {
+    	client, err := bedrock.NewMantleClient(
+    		context.Background(),
+    		bedrock.MantleClientConfig{AWSRegion: "us-east-1"},
+    	)
+    	if err != nil {
+    		panic(err)
+    	}
+
+    	message, err := client.Messages.New(context.Background(), anthropic.MessageNewParams{
+    		Model:     "anthropic.claude-opus-5-5",
+    		MaxTokens: 1024,
+    		Messages: []anthropic.MessageParam{
+    			anthropic.NewUserMessage(anthropic.NewTextBlock("Hello, Claude")),
+    		},
+    	})
+    	if err != nil {
+    		panic(err)
+    	}
+
+    	for _, block := range message.Content {
+    		if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
+    			fmt.Println(textBlock.Text)
+    			break
+    		}
     	}
     }
     ```
@@ -326,7 +369,8 @@ Untuk kredensial, klien menggunakan apa yang Anda teruskan saat membuatnya. Jika
       messages: [{role: "user", content: "Hello, Claude"}]
     )
 
-    puts message.content.find { it.type == :text }.text
+    text_block = message.content.grep(Anthropic::Models::TextBlock).first
+    puts text_block.text if text_block
     ```
   </Tab>
 </Tabs>
@@ -429,7 +473,7 @@ Kuota default adalah 2 juta token input per menit (TPM). Anda dapat meminta hing
 
 ## Retensi data
 
-Penanganan data untuk penawaran ini diatur oleh Amazon Bedrock. Untuk detailnya, lihat [Perlindungan data di Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html).
+Amazon Bedrock mengatur penanganan data untuk Claude di Amazon Bedrock. Untuk detailnya, lihat [Perlindungan data di Amazon Bedrock](https://docs.aws.amazon.com/bedrock/latest/userguide/data-protection.html).
 
 ## Pemantauan dan logging
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: eb4c30a7c55f107be9cf94dcd3dd20b3c0ed4d0ceef5a26af0b82db2adb58345
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: a8c8fd065ea54867d97f880fbf7fd03b0351801a1b9615c1a919199b2204f3fe
 ---
 
 ---
@@ -168,7 +168,7 @@ foreach ($page->getItems() as $item) {
 // ...
 foreach ($page->pagingEachItem() as $item) {
     echo $item->id, PHP_EOL;
-// ...
+    // ...
 }
 ```
 

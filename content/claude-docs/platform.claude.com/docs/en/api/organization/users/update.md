@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/users/update
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: f539003fabc29113f9af84d5adea86999c2979b53ee4cfbd501ab3f58109d2cd
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 3ad4a9dcf3397923208debb367b019b7cc8ce41aeccd08ebf01cc6cab59243bf
 ---
 
 ---
@@ -99,6 +99,16 @@ Update a member's organization role.
     - `"primary_owner"`
 
     - `"user"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

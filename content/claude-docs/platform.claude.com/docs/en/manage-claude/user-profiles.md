@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-profiles
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 9072fd2f1f6cb1ee5207585ad0bc077d1973448374ff15eb37f1661b1cf95e0e
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: f18bcec97872f7d63147e46b9b0f06efa2267d3ce9d462cd70ba76ed06d62e51
 ---
 
 ---
@@ -164,7 +164,7 @@ The following example registers a company that buys API access from you, so the 
       var profile = client.userProfiles().create(params);
 
       IO.println(profile.id());
-  // ...
+      // ...
   }
   ```
 
@@ -406,9 +406,9 @@ On Claude in Amazon Bedrock, put the ID at the top level of the request body:
 
 Link each AWS account that sends requests to Claude in Amazon Bedrock, and each Google Cloud project that sends requests to Claude Models on Google Cloud (Google managed), to the Anthropic organization that creates your profiles:
 
-1. An admin or owner of that organization starts the link in the Verification Portal at `portal.anthropic.com`, under **Linked accounts**.
+1. An admin of that organization starts the link in the Verification Portal at `portal.anthropic.com`, under **Linked accounts**.
 2. Someone who can manage IAM in the AWS account or Google Cloud project runs a command that the portal provides.
-3. The admin or owner completes the verification in the portal.
+3. The admin completes the verification in the portal.
 
 Programs that apply to a profile apply to an account’s requests only after the account is linked and the portal shows it as **Linked**. Those programs include the ones an end customer’s organization is approved for after the end customer [links the profile to that organization](https://platform.claude.com/docs/en/manage-claude/user-profiles-verification-portal) and, for Cyber Verification Program access levels, turns them on for the profile in the portal.
 

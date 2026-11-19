@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 22538e5e23785ee341ce7010a7b87e1a7c3ad0d99ebf16ec25b5d6281a0c7331
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 06445c361c615d85095e3a2d0e9215a0129d7fa2e0ad404284080d8820c506b9
 ---
 
 > ## Documentation Index
@@ -296,7 +296,7 @@ Three keys go in the per-OS [managed settings file](https://code.claude.com/docs
 
 The developer presses Enter to connect. The [first-connect TLS fingerprint prompt](#connect-developers) still appears. Once the file is on a machine, a developer who hasn't completed the gateway sign-in sees one of the messages described under [Administrator policy requires a Cloud gateway sign-in](https://code.claude.com/docs/en/errors.md#administrator-policy-requires-a-cloud-gateway-sign-in). Developers who select a cloud provider through an environment variable such as `CLAUDE_CODE_USE_BEDROCK` don't need the gateway sign-in.
 
-The login picker has no gateway option, and in managed settings `forceLoginMethod` alone, without a URL, leaves the developer at a "Contact your IT administrator" message. The login keys belong in the file you push to machines, not in the gateway's `managed.policies[].cli` block, which only reaches clients that are already connected.
+The terminal's login picker has no gateway option, and in managed settings `forceLoginMethod` alone, without a URL, leaves the developer at a "Contact your IT administrator" message. The login keys belong in the file you push to machines, because the gateway's `managed.policies[].cli` block only reaches clients that are already connected.
 
 #### Set the gateway URL in user settings
 

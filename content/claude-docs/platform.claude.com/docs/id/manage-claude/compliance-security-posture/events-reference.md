@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 9a667e97b758ecc33f7bae9dda823b67a166fa4407bd67dda854349abd8b5d4f
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 3c26fc340b8436416307cc14c140a712e98412f661217796ab98c96f1f341a51
 ---
 
 ---
@@ -39,13 +39,15 @@ Pada kontrol khusus informasi, nilai Ditinjau dicatat sebagai `completed`.
 
 ### Nilai `action`
 
-| `action`   | Arti                                                                                                                                         |
-| ---------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `attested` | Atestasi dicatat untuk kontrol yang sebelumnya belum memilikinya.                                                                            |
-| `changed`  | Atestasi disimpan ulang dengan nilai lain atau, jika `status` sama dengan `previous_status`, dengan nilai yang sama, seperti pada `renewed`. |
-| `renewed`  | Atestasi disimpan ulang dengan nilai yang sama.                                                                                              |
-| `cleared`  | Seseorang mencabut atestasi.                                                                                                                 |
-| `lapsed`   | Atestasi berhenti berlaku secara otomatis, bukan oleh seseorang.                                                                             |
+| `action`   | Arti                                                              |
+| ---------- | ----------------------------------------------------------------- |
+| `attested` | Atestasi dicatat untuk kontrol yang sebelumnya belum memilikinya. |
+| `changed`  | Atestasi disimpan ulang dengan nilai lain.                        |
+| `renewed`  | Atestasi disimpan ulang dengan nilai yang sama.                   |
+| `cleared`  | Seseorang mencabut atestasi.                                      |
+| `lapsed`   | Atestasi berhenti berlaku secara otomatis, bukan oleh seseorang.  |
+
+Pada atau sebelum 23 Oktober 2026 (UTC), aktivitas `changed` juga dapat mencatat penyimpanan dengan nilai yang sama. Aktivitas seperti itu memiliki `created_at` pada atau sebelum hari tersebut dan `status` yang sama dengan `previous_status`.
 
 Pada aktivitas `renewed` dan `lapsed`, `status` sama dengan `previous_status`. Penyimpanan dengan nilai yang sama setelah aktivitas `lapsed` dicatat sebagai `renewed`, bukan `attested`.
 

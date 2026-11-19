@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 4c1ad3d5d1e4150bda43c1301f126691a5b61c458d7ee9abc70c45e458649b9a
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 38c1cc1a18becc1162055bb23b848f64a20b4a47a8884e4a47d9d34dfad76093
 ---
 
 ---
@@ -225,6 +225,20 @@ Get Skill Version
     Unique identifier for the skill.
 
     The format and length of IDs may change over time.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `claude_code_key_creator_not_member` (HTTP status 400)
+
+  The API key belongs to the Claude Code workspace, and the user who created it is no longer a member of the organization or of that workspace.
+
+- `organization_on_hold` (HTTP status 400)
+
+  Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
 
 ## Example
 

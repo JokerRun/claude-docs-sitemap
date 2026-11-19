@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 9acf0c9120c235252b5c6217666f44b15e4f27ef7612c14e552ce15d03aa4f15
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 045d9152228bfdb30b2af29c09b6849318e4afc4171b23ce6844e418920a1942
 ---
 
 ---
@@ -18,23 +18,17 @@ url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag
 
 - `BetaAPIKeyScopeMissingErrorDetails object`
 
-  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
-
   - `error_code: "api_key_scope_missing"`
 
 ### Beta Bundle Attachment Not Supported Error Details
 
 - `BetaBundleAttachmentNotSupportedErrorDetails object`
 
-  The Bundle has an attachment this API does not support editing, so its instructions can be changed only in claude.ai.
-
   - `error_code: "bundle_attachment_not_supported"`
 
 ### Beta Bundle On Call Error Details
 
 - `BetaBundleOnCallErrorDetails object`
-
-  This Bundle's instructions are managed in claude.ai and can't be changed through the API.
 
   - `error_code: "bundle_on_call"`
 
@@ -668,15 +662,11 @@ url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag
 
 - `BetaClaudeTagWritesNotEnabledErrorDetails object`
 
-  Changes through the Claude Tag API are not enabled for the organization.
-
   - `error_code: "claude_tag_writes_not_enabled"`
 
 ### Beta Compliance Configuration Restricted Error Details
 
 - `BetaComplianceConfigurationRestrictedErrorDetails object`
-
-  The organization's compliance configuration does not let Claude Tag store anything new.
 
   - `error_code: "compliance_configuration_restricted"`
 
@@ -684,15 +674,11 @@ url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag
 
 - `BetaOrganizationLevelScopedAPIKeyRequiredErrorDetails object`
 
-  The credential is not a scoped API key that is bound at the organization level.
-
   - `error_code: "organization_level_scoped_api_key_required"`
 
 ### Beta Slack Channel Set Up Environment Not Found Error Details
 
 - `BetaSlackChannelSetUpEnvironmentNotFoundErrorDetails object`
-
-  `settings.environment_id` names no Environment within the organization's reach, and the request had set the channel up by then. The channel stays set up with every setting unset.
 
   - `error_code: "slack_channel_set_up_environment_not_found"`
 
@@ -703,8 +689,6 @@ url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag
 ### Beta Slack Channel Set Up Settings Conflict Error Details
 
 - `BetaSlackChannelSetUpSettingsConflictErrorDetails object`
-
-  The request set the channel up, and something else then changed the channel or removed it. Nothing of `settings` was stored.
 
   - `error_code: "slack_channel_set_up_settings_conflict"`
 
@@ -718,8 +702,6 @@ url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag
 
 - `BetaSlackChannelSetUpSettingsRefusedErrorDetails object`
 
-  The request set the channel up, and `settings` was then refused. The channel stays set up with every setting unset.
-
   - `error_code: "slack_channel_set_up_settings_refused"`
 
     A stable code that names the cause.
@@ -727,6 +709,132 @@ url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag
   - `slack_channel_id: string`
 
     The identifier of the channel the request set up, starting with `slch_`.
+
+## Errors
+
+### bundle_attachment_not_supported
+
+HTTP status 400
+
+- `"bundle_attachment_not_supported"`
+
+  The Bundle has an attachment this API does not support editing, so its instructions can be changed only in claude.ai.
+
+  - `details: BetaBundleAttachmentNotSupportedErrorDetails`
+
+    - `error_code: "bundle_attachment_not_supported"`
+
+### bundle_on_call
+
+HTTP status 400
+
+- `"bundle_on_call"`
+
+  This Bundle's instructions are managed in claude.ai and can't be changed through the API.
+
+  - `details: BetaBundleOnCallErrorDetails`
+
+    - `error_code: "bundle_on_call"`
+
+### slack_channel_set_up_settings_refused
+
+HTTP status 400
+
+- `"slack_channel_set_up_settings_refused"`
+
+  The request set the channel up, and `settings` was then refused. The channel stays set up with every setting unset.
+
+  - `details: BetaSlackChannelSetUpSettingsRefusedErrorDetails`
+
+    - `error_code: "slack_channel_set_up_settings_refused"`
+
+      A stable code that names the cause.
+
+    - `slack_channel_id: string`
+
+      The identifier of the channel the request set up, starting with `slch_`.
+
+### api_key_scope_missing
+
+HTTP status 403
+
+- `"api_key_scope_missing"`
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+  - `details: BetaAPIKeyScopeMissingErrorDetails`
+
+    - `error_code: "api_key_scope_missing"`
+
+### claude_tag_writes_not_enabled
+
+HTTP status 403
+
+- `"claude_tag_writes_not_enabled"`
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+  - `details: BetaClaudeTagWritesNotEnabledErrorDetails`
+
+    - `error_code: "claude_tag_writes_not_enabled"`
+
+### compliance_configuration_restricted
+
+HTTP status 403
+
+- `"compliance_configuration_restricted"`
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+  - `details: BetaComplianceConfigurationRestrictedErrorDetails`
+
+    - `error_code: "compliance_configuration_restricted"`
+
+### organization_level_scoped_api_key_required
+
+HTTP status 403
+
+- `"organization_level_scoped_api_key_required"`
+
+  The credential is not a scoped API key that is bound at the organization level.
+
+  - `details: BetaOrganizationLevelScopedAPIKeyRequiredErrorDetails`
+
+    - `error_code: "organization_level_scoped_api_key_required"`
+
+### slack_channel_set_up_environment_not_found
+
+HTTP status 404
+
+- `"slack_channel_set_up_environment_not_found"`
+
+  `settings.environment_id` names no Environment within the organization's reach, and the request had set the channel up by then. The channel stays set up with every setting unset.
+
+  - `details: BetaSlackChannelSetUpEnvironmentNotFoundErrorDetails`
+
+    - `error_code: "slack_channel_set_up_environment_not_found"`
+
+    - `slack_channel_id: string`
+
+      The identifier of the channel the request set up, starting with `slch_`.
+
+### slack_channel_set_up_settings_conflict
+
+HTTP status 409
+
+- `"slack_channel_set_up_settings_conflict"`
+
+  The request set the channel up, and something else then changed the channel or removed it. Nothing of `settings` was stored.
+
+  - `details: BetaSlackChannelSetUpSettingsConflictErrorDetails`
+
+    - `error_code: "slack_channel_set_up_settings_conflict"`
+
+      A stable code that names the cause.
+
+    - `slack_channel_id: string`
+
+      The identifier of the channel the request set up, starting with `slch_`.
 
 ## Claude Tag › Slack Channels
 
@@ -1189,6 +1297,44 @@ Set a Slack channel up for Claude Tag and return it with its identifier. If the 
     Time Claude Tag's record of the channel last changed. It moves on every change to a setting, and can also move when something no response holds changes, so a later value says to read the channel again, not that a setting changed. Attaching or detaching a Bundle does not by itself move it.
 
     format: date-time
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `slack_channel_set_up_settings_refused` (HTTP status 400)
+
+  The request set the channel up, and `settings` was then refused. The channel stays set up with every setting unset.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
+
+- `environment_not_found` (HTTP status 404)
+
+  `settings.environment_id` names no Environment within the organization's reach.
+
+- `slack_channel_set_up_environment_not_found` (HTTP status 404)
+
+  `settings.environment_id` names no Environment within the organization's reach, and the request had set the channel up by then. The channel stays set up with every setting unset.
+
+- `slack_channel_set_up_settings_conflict` (HTTP status 409)
+
+  The request set the channel up, and something else then changed the channel or removed it. Nothing of `settings` was stored.
 
 #### Example
 
@@ -1657,6 +1803,28 @@ List the set-up Slack channels of one Slack workspace, newest first by `created_
 
   Cursor for the next page. Null on the last page.
 
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
+
 #### Example
 
 ```bash
@@ -2105,6 +2273,28 @@ Get one Slack channel and its settings. By default `settings` holds what the cha
     Time Claude Tag's record of the channel last changed. It moves on every change to a setting, and can also move when something no response holds changes, so a later value says to read the channel again, not that a setting changed. Attaching or detaching a Bundle does not by itself move it.
 
     format: date-time
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
 
 #### Example
 
@@ -2620,6 +2810,40 @@ Change the settings a Slack channel stores. The update is partial: a setting lef
 
     format: date-time
 
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
+
+- `environment_not_found` (HTTP status 404)
+
+  `settings.environment_id` names no Environment within the organization's reach.
+
+- `slack_channel_set_up_environment_not_found` (HTTP status 404)
+
+  `settings.environment_id` names no Environment within the organization's reach, and the request had set the channel up by then. The channel stays set up with every setting unset.
+
+- `slack_channel_set_up_settings_conflict` (HTTP status 409)
+
+  The request set the channel up, and something else then changed the channel or removed it. Nothing of `settings` was stored.
+
 #### Example
 
 ```bash
@@ -2859,6 +3083,32 @@ Remove a Slack channel from Claude Tag. This deletes the channel's stored settin
   - `id: string`
 
     The removed channel's identifier.
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
+
+- `slack_channel_set_up_settings_conflict` (HTTP status 409)
+
+  The request set the channel up, and something else then changed the channel or removed it. Nothing of `settings` was stored.
 
 #### Example
 
@@ -3276,6 +3526,28 @@ List the set-up Slack workspaces the organization owns, newest first by `created
 - `next_page: string or null`
 
   Cursor for the next page. Null on the last page.
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
 
 #### Example
 
@@ -3728,6 +4000,28 @@ Get one Slack workspace and its settings. By default `settings` holds what the w
     Time Claude Tag's record of the workspace last changed. It moves on every change to a setting, and can also move when something no response holds changes, so a later value says to read the workspace again, not that a setting changed. Attaching or detaching a Bundle does not by itself move it.
 
     format: date-time
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
 
 #### Example
 
@@ -4246,6 +4540,40 @@ Change the settings a Slack workspace stores. The update is partial: a setting l
 
     format: date-time
 
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
+
+- `environment_not_found` (HTTP status 404)
+
+  `settings.environment_id` names no Environment within the organization's reach.
+
+- `slack_channel_set_up_environment_not_found` (HTTP status 404)
+
+  `settings.environment_id` names no Environment within the organization's reach, and the request had set the channel up by then. The channel stays set up with every setting unset.
+
+- `slack_channel_set_up_settings_conflict` (HTTP status 409)
+
+  The request set the channel up, and something else then changed the channel or removed it. Nothing of `settings` was stored.
+
 #### Example
 
 ```bash
@@ -4521,6 +4849,28 @@ List the organization's Bundles, newest first by `created_at`. A Bundle that Cla
 
   Cursor for the next page. Null on the last page.
 
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
+
 #### Example
 
 ```bash
@@ -4744,6 +5094,28 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
     Time of the last change to the Bundle.
 
     format: date-time
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
 
 #### Example
 
@@ -4969,6 +5341,40 @@ Change a Bundle's instructions. The update is partial: a field left out is uncha
     Time of the last change to the Bundle.
 
     format: date-time
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `bundle_attachment_not_supported` (HTTP status 400)
+
+  The Bundle has an attachment this API does not support editing, so its instructions can be changed only in claude.ai.
+
+- `bundle_on_call` (HTTP status 400)
+
+  This Bundle's instructions are managed in claude.ai and can't be changed through the API.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
+
+- `slack_channel_set_up_settings_conflict` (HTTP status 409)
+
+  The request set the channel up, and something else then changed the channel or removed it. Nothing of `settings` was stored.
 
 #### Example
 
@@ -5218,6 +5624,28 @@ List the Slack channels and Slack workspaces a Bundle is attached to, newest fir
 - `next_page: string or null`
 
   Cursor for the next page. Null on the last page.
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
 
 #### Example
 
@@ -5478,6 +5906,28 @@ Attach a Bundle to a Slack channel or a Slack workspace. A Bundle attached to a 
 
       The identifier of the Slack workspace the Bundle is attached to, starting with `slws_`.
 
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
+
 #### Example
 
 ```bash
@@ -5713,6 +6163,28 @@ Get one Bundle Target. Returns 404 when `target_id` is the identifier of another
 
       The identifier of the Slack workspace the Bundle is attached to, starting with `slws_`.
 
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
+
 #### Example
 
 ```bash
@@ -5908,6 +6380,28 @@ Detach a Bundle from a Slack channel or a Slack workspace. A repeated detach ret
   - `id: string`
 
     The identifier the Bundle Target had.
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `api_key_scope_missing` (HTTP status 403)
+
+  The API key lacks the scope the request needs: `read:claude_tag` for a read, `write:claude_tag` for a change.
+
+- `claude_tag_writes_not_enabled` (HTTP status 403)
+
+  Changes through the Claude Tag API are not enabled for the organization.
+
+- `compliance_configuration_restricted` (HTTP status 403)
+
+  The organization's compliance configuration does not let Claude Tag store anything new.
+
+- `organization_level_scoped_api_key_required` (HTTP status 403)
+
+  The credential is not a scoped API key that is bound at the organization level.
 
 #### Example
 

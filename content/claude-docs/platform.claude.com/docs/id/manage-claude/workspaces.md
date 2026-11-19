@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 75de361c2bc74c0abebdef694caf25c92df5eb694e822e993a03fb6efecfe90f
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 50f2505fb4cd28ad1ea5aa63b459c8882da2b1c871573d3f1fa7d3797b9a3a8d
 ---
 
 ---
@@ -865,14 +865,14 @@ Beberapa sumber daya dikelola secara berbeda:
 
   * Tunnels dibuat di workspace. Daftar **Tunnel MCP** Console serta pemilih server MCP untuk Claude Managed Agents menampilkan tunnels di workspace saat ini saja.
   * Batas 10 tunnels aktif berlaku di seluruh organisasi.
-  * Pengelolaan tunnel memerlukan izin Manage tunnels (mengelola tunnel), yang dimiliki oleh admin dan pemilik organisasi secara default. Developer organisasi dapat melihat tunnels tetapi tidak dapat mengubahnya.
+  * Di Claude Console, pengelolaan tunnel memerlukan peran organisasi admin. Developer organisasi dapat melihat tunnel di sana tetapi tidak dapat mengubahnya.
 
 * **Ruang kerja** itu sendiri dan **anggota organisasi** dikelola di tingkat organisasi melalui [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api), menggunakan kunci Admin API, token OAuth `org:admin`, atau kunci akun pribadi atau layanan yang tidak dicakupkan ke workspace tertentu.
 
 Untuk mencari ID workspace organisasi Anda, panggil endpoint [Daftar Workspace](https://platform.claude.com/docs/id/api/organization/workspaces/list) (teruskan `include_default=true` untuk menyertakan workspace default) atau temukan di halaman [Ruang kerja](https://platform.claude.com/settings/workspaces) di Claude Console.
 
 <Note>
-  [Cache prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) juga diisolasi per workspace di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, cache prompt diisolasi per organisasi.
+  Cache dari [caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching) juga diisolasi per workspace di Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, cache tersebut diisolasi per organisasi.
 </Note>
 
 ## Mengidentifikasi workspace di balik respons API
@@ -1057,10 +1057,12 @@ Batas workspace dapat menjaga workspace tetap di bawah batas organisasi Anda, te
 * **Batas laju:** Membatasi permintaan per menit, token input per menit, atau token output per menit. Untuk menetapkannya, buka [Batas laju di Claude Console](https://platform.claude.com/usage/limits), pilih workspace dari menu dropdown **Ruang kerja**, dan klik **Edit** di samping model.
 
 <Note>
-  - Anda tidak dapat menetapkan batas pengeluaran pada workspace default.
+  - Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), Anda tidak dapat menetapkan batas pengeluaran pada workspace default.
   - Jika tidak ditetapkan, batas workspace sama dengan batas organisasi.
   - Batas tingkat organisasi selalu berlaku, meskipun total batas workspace melebihinya.
 </Note>
+
+Batas pengeluaran pada workspace default mungkin tidak menghitung atau menghentikan sebagian penggunaan di workspace tersebut. Ini mencakup penggunaan dari Claude Console (seperti playground) dan dari sesi Claude Managed Agents. Ini juga mencakup penggunaan Claude Code atau Claude Desktop ketika anggota masuk dengan akun Claude Console dan menggunakan workspace default. [Batas pengeluaran](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) organisasi Anda berlaku untuk semua penggunaan ini.
 
 Untuk informasi terperinci tentang “rate limit” (batas laju) dan cara kerjanya, lihat [Batas laju](https://platform.claude.com/docs/id/api/rate-limits). Anda juga dapat membaca batas laju organisasi dan workspace Anda saat ini serta menetapkan batas laju workspace secara terprogram dengan [Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api), yang menyimpan nilai di atas batas organisasi tetapi tetap memberlakukan yang lebih rendah dari keduanya.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/system-prompts/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: c107b84c3592303cf97e66907fc13fcd2de8913ce5cab4d6b748959369bf08a5
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 0df3ea44e5296161228dcac0660ed1d1163b662110dce32715e6319e78d78253
 ---
 
 ---
@@ -11,7 +11,9 @@ url: https://platform.claude.com/docs/id/release-notes/system-prompts/overview
 description: Lihat pembaruan pada prompt sistem inti di [claude.ai](https://claude.ai), [aplikasi Claude iOS](https://anthropic.com/ios), dan [aplikasi Claude Android](https://anthropic.com/android).
 ---
 
-Antarmuka web Claude ([claude.ai](https://claude.ai)) dan aplikasi seluler menggunakan “system prompt” (prompt sistem) untuk memberikan informasi terkini, seperti tanggal saat ini, kepada Claude di awal setiap percakapan. Prompt sistem juga mendorong perilaku tertentu, seperti selalu menyediakan cuplikan kode dalam Markdown. Prompt ini diperbarui secara berkala untuk meningkatkan respons Claude. Pembaruan prompt sistem ini tidak berlaku untuk Claude API. Beberapa model memiliki beberapa entri bertanggal di halamannya.
+Antarmuka web Claude ([claude.ai](https://claude.ai)), aplikasi desktop, dan aplikasi seluler menggunakan “system prompt” (prompt sistem) di awal setiap percakapan. Prompt ini memberikan informasi terkini kepada Claude, seperti model dan produk Anthropic saat ini. Prompt sistem juga mendorong perilaku tertentu, seperti membahas topik secara faktual dan objektif. Anthropic memperbarui prompt sistem secara berkala untuk meningkatkan respons Claude. Pembaruan ini tidak berlaku untuk Claude API.
+
+Untuk model saat ini, halaman-halaman ini menerbitkan satu versi prompt sistem inti, yang digunakan dalam beberapa obrolan dengan pencarian web dinonaktifkan. Obrolan lainnya, termasuk yang pencarian webnya diaktifkan, menggunakan versi lain yang tidak diterbitkan di halaman-halaman ini. Beberapa model memiliki beberapa entri bertanggal di halamannya.
 
 <CardGroup cols={3}>
   <Card id="claude-fable-5-2" title="Claude Fable 5.2" icon="file" href="https://platform.claude.com/docs/id/release-notes/system-prompts/claude-fable-5-2" />

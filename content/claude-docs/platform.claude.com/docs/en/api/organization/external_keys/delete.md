@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/external_keys/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c1b73e1e3877f6c58d0c5cdfd719bb4ab264b092855e6f61e8a7c0124e02ceb9
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 004142af37301de209b66b8211c3e3e3280120a6c5548c0c438606873239fb3f
 ---
 
 ---
@@ -43,6 +43,20 @@ The request is rejected if any workspace still references this config.
 - `id: string`
 
   ID of the deleted External Key.
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `external_key_in_workspace_policy` (HTTP status 400)
+
+  The External Key can't be deleted or reconfigured while the organization's Workspace Policy lists it as an allowed key.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

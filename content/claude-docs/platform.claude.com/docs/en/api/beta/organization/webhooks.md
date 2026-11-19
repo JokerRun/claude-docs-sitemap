@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: a89cdaf50e794c2c5a9233bbb474200980a67e1520e234207fd708ac8ae4c6ab
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: ec12c987613cec96efa12004b4cddc8407409d5eedd1bcf3eb855ed9457ab550
 ---
 
 ---
@@ -1318,6 +1318,16 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     ID of the deleted webhook endpoint.
 
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
 ### Example
 
 ```bash
@@ -1511,6 +1521,16 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
   - `signing_secret: string`
 
     The new signing secret. Deliveries are signed with it from now on, and no other response returns it.
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 

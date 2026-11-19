@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: bdbeff4ee28f1d38fbc19a6ddbde39b37cff998248e76c7c1a641b8c4e823acc
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 2de6566c326ef149a214210d501be0467dda4fc3b76684d2f9c2b0898a2ae9ab
 ---
 
 ---
@@ -41,7 +41,9 @@ featureMetadata:
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-    Claude Models on Google Cloud (Anthropic managed): beta
+    Claude Models on Google Cloud (Anthropic managed):
+      availability: beta
+      note: Anda menulis worker Anda sendiri, yang memanggil endpoint Environments Work.
 ---
 
 “Self-hosted sandboxes” (sandbox yang di-host sendiri) memindahkan eksekusi alat agen dari sandbox cloud yang dikelola Anthropic ke infrastruktur yang Anda kendalikan, sementara Anthropic tetap menjalankan agen. Untuk mempelajari apa artinya dan memutuskan apakah ini cocok untuk agen Anda, lihat [Memilih lingkungan agen](https://platform.claude.com/docs/id/managed-agents/choosing-an-environment).
@@ -52,8 +54,8 @@ Untuk menjalankan seluruh layanan Managed Agents di infrastruktur Anda sendiri, 
 
 Lingkungan `self_hosted` berfungsi sebagai antrean kerja. Anda menjalankan **environment worker** (worker lingkungan), yaitu proses di infrastruktur Anda sendiri yang melayani antrean tersebut:
 
-1. Anda membuat [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang menargetkan lingkungan tersebut. Anthropic memasukkan sesi ke antrean sebagai item kerja.
-2. Worker Anda mengklaim item kerja dan mengunduh [skill](https://platform.claude.com/docs/id/managed-agents/skills) milik agen serta [memory store](https://platform.claude.com/docs/id/managed-agents/memory) milik sesi.
+1. Anda membuat [sesi](https://platform.claude.com/docs/id/managed-agents/sessions) yang menargetkan lingkungan tersebut. Anthropic memasukkan sesi ke antrean sebagai item pekerjaan.
+2. Worker Anda mengklaim item pekerjaan dan mengunduh [skill](https://platform.claude.com/docs/id/managed-agents/skills) milik agen serta [memory store](https://platform.claude.com/docs/id/managed-agents/memory) milik sesi.
 3. Claude berjalan di sisi Anthropic dan meminta pemanggilan alat. Worker Anda menjalankan setiap pemanggilan secara lokal dan mengirimkan hasilnya kembali.
 
 Input dan output alat tetap mengalir ke Managed Agents di sisi Anthropic, sehingga model dapat menerima hasil dan menentukan apa yang harus dilakukan selanjutnya. Anthropic menyimpan skill dan memory store. Sandbox Anda menyimpan salinannya untuk sesi tersebut. Untuk mengetahui di mana setiap bagian sesi berjalan, lihat [Apa yang dapat dan tidak dapat dilakukan oleh sandbox](https://platform.claude.com/docs/id/managed-agents/secure-deployment-risks#what-the-sandbox-can-and-cannot-do).
@@ -76,7 +78,9 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
 <Note>
   Di [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), worker melakukan autentikasi dengan AWS IAM (SigV4) atau [kunci API yang dibuat di AWS Console](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#api-key-authentication), bukan kunci lingkungan. Lampirkan kebijakan terkelola [`AnthropicSelfHostedEnvironmentAccess`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#managed-policies) ke principal IAM yang digunakan worker Anda. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Platform on AWS.
 
-  Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), worker melakukan autentikasi dengan [kredensial Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication), bukan dengan kunci lingkungan. Berikan identitas Google Cloud yang digunakan worker Anda peran `roles/claude.user` atau `roles/claude.admin` pada proyek. Kedua peran tersebut mencakup [`environments.processWork`](https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions#environments), yang dibutuhkan worker untuk melakukan polling dan mengelola item pekerjaan. Keduanya juga mencakup izin sesi dan skill yang dibutuhkan worker untuk menjalankan sesi. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Models on Google Cloud (Anthropic managed). Alih-alih menggunakan worker siap pakai, implementasikan worker Anda sendiri yang memanggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung. Lihat [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported).
+  Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), worker siap pakai di CLI `ant` serta SDK Python, TypeScript, dan Go tidak tersedia. Lihat bagian [Fitur yang tidak didukung](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#features-not-supported) di halaman tersebut. Implementasikan worker Anda sendiri yang memanggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung.
+
+  Worker tersebut melakukan autentikasi dengan [kredensial Google Cloud](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication), bukan dengan kunci lingkungan. Kunci lingkungan yang dibuat di Claude Console tidak berfungsi dengan endpoint Claude Models on Google Cloud (Anthropic managed). Berikan identitas Google Cloud yang digunakan worker Anda peran `roles/claude.user` atau `roles/claude.admin` pada proyek. Kedua peran tersebut mencakup [`environments.processWork`](https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions#environments), yang dibutuhkan worker untuk melakukan polling dan mengelola item pekerjaan. Keduanya juga mencakup izin sesi dan skill yang dibutuhkan worker untuk menjalankan sesi.
 </Note>
 
 <Note>
@@ -272,7 +276,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
 
     <Tabs>
       <Tab title="Linux">
-        Berikan `/workspace` agar sesuai dengan default sistem.
+        Gunakan `/workspace`, tempat sandbox cloud Anthropic menyimpan skill dan repositori.
 
         ```bash
         sudo mkdir -p /workspace && sudo chown "$USER" /workspace
@@ -596,13 +600,13 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
 
 ## Sumber daya sesi
 
-Sandbox yang di-host sendiri hanya mendukung sumber daya `memory_store`. Sesi pada lingkungan yang di-host sendiri yang menyertakan sumber daya `file` atau `github_repository` akan ditolak dengan error 400:
+Sandbox yang di-host sendiri hanya mendukung sumber daya `memory_store`. Jika sesi pada lingkungan yang di-host sendiri menyertakan sumber daya `file` atau `github_repository`, API akan menolaknya dengan error 400. Pesan error tersebut merujuk ke `resources` secara umum dan tidak menyebutkan jenisnya:
 
 ```text wrap
 Environment env_... is a self-hosted environment. `resources` are not supported with self-hosted environments.
 ```
 
-[Deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) yang menargetkan lingkungan yang di-host sendiri mengikuti aturan yang sama. Untuk memberikan file input tersendiri kepada sebuah sesi, lihat [Menyiapkan file untuk sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#stage-files-for-a-session).
+[Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) yang menargetkan lingkungan yang di-host sendiri mengikuti aturan yang sama. Untuk memberikan file input tersendiri kepada sebuah sesi, lihat [Menyiapkan file untuk sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#stage-files-for-a-session).
 
 ## Sandbox yang di-host sendiri dan tunnel MCP
 
@@ -615,7 +619,7 @@ Gunakan keduanya ketika Anda ingin eksekusi dan akses alat tetap berada di dalam
 
 ## Panduan platform
 
-Halaman-halaman sandbox yang di-host sendiri menjelaskan cara membangun worker di platform sandboxing apa pun. Penyedia berikut juga menerbitkan panduan untuk platform mereka sendiri:
+Halaman-halaman sandbox yang di-host sendiri menjelaskan cara membangun worker di platform sandboxing apa pun. Untuk Kubernetes, gunakan Helm chart di [Menjalankan sandbox di Kubernetes](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#run-sandboxes-on-kubernetes). Penyedia berikut juga menerbitkan panduan untuk platform mereka sendiri:
 
 * [AWS Lambda MicroVMs](https://docs.aws.amazon.com/lambda/latest/dg/microvms-integrations-claude-managed-agents.html)
 * [Blaxel](https://docs.blaxel.ai/Tutorials/Claude-Managed-Agents)
@@ -632,23 +636,27 @@ Halaman-halaman sandbox yang di-host sendiri menjelaskan cara membangun worker d
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
-  <Card title="Deploy worker" icon="play" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers">
-    Jalankan worker SDK, picu worker dari webhook, atau berikan sandbox tersendiri untuk setiap sesi.
+  <Card title="Menerapkan worker self-hosted" icon="play" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers">
+    Pilih pola deployment, jalankan worker always-on, atau picu worker dari webhook.
+  </Card>
+
+  <Card title="Menjalankan satu sandbox per sesi" icon="cube" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session">
+    Luncurkan sandbox dengan Helm chart di Kubernetes, skrip spawn, atau poller SDK.
   </Card>
 
   <Card title="Memory store di sandbox self-hosted" icon="brain" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory">
     Siapkan host, konfigurasikan sinkronisasi, dan tangani store hanya-baca serta konflik.
   </Card>
 
-  <Card title="Alat kustom dan server MCP" icon="tool" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools">
+  <Card title="Alat kustom di sandbox self-hosted" icon="tool" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools">
     Layani alat Anda sendiri dari worker, termasuk alat dari server MCP di dalam jaringan Anda.
   </Card>
 
-  <Card title="Pemantauan dan pemecahan masalah" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations">
+  <Card title="Memantau dan memecahkan masalah worker self-hosted" icon="lightning" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations">
     Baca kedalaman antrean, hentikan sesi dan worker dengan bersih, dan perbaiki kegagalan umum.
   </Card>
 
-  <Card title="Referensi worker" icon="book" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference">
+  <Card title="Referensi worker self-hosted" icon="book" href="https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference">
     Flag CLI, variabel lingkungan, path sistem file, dan opsi helper SDK.
   </Card>
 
@@ -667,9 +675,12 @@ Sandbox yang di-host sendiri dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                              |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status           | Platform cloud                                                                                                                                             | Model                                                              |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| Beta             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                         | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Beta<sup>1</sup> | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+
+1. Anda menulis worker Anda sendiri, yang memanggil endpoint Environments Work.
 
 ### Header beta yang diperlukan
 

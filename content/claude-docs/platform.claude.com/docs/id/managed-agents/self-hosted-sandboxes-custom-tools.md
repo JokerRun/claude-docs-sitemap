@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: dcf0d16bc183537fa55bef49ce14a68fd88c0b927ae842a97a29f60d104a4679
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 6e7377370264587f69214d1c3671888aba27b06d8b72aeb7513927c49e1aa28c
 ---
 
 ---
@@ -41,7 +41,6 @@ featureMetadata:
   supportedPlatforms:
     Claude API: beta
     Claude Platform on AWS: beta
-    Claude Models on Google Cloud (Anthropic managed): beta
 ---
 
 [Alat kustom](https://platform.claude.com/docs/id/managed-agents/tools#custom-tools) adalah alat yang dijalankan oleh kode Anda sendiri: agen memancarkan event `agent.custom_tool_use` dan menunggu `user.custom_tool_result` yang sesuai. Worker Anda dapat menjadi kode tersebut. Karena berjalan di dalam sandbox Anda, alat tersebut menjangkau layanan internal, kredensial, dan “network egress” (lalu lintas jaringan keluar) yang Anda konfigurasikan untuk sandbox, dan tidak lebih dari itu.
@@ -49,7 +48,7 @@ featureMetadata:
 Kunci lingkungan mengotorisasi pengiriman hasil alat kustom, sehingga kunci API Claude Anda tetap berada di luar host worker.
 
 <Note>
-  Untuk melayani alat kustom, Anda memerlukan worker SDK. Worker CLI `ant` tidak memiliki cara untuk mendaftarkan implementasi alat kustom. Dalam pola sandbox-per-sesi, [jalankan worker SDK di dalam sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-the-sdk-worker-inside-the-sandbox).
+  Untuk melayani alat kustom, Anda memerlukan worker SDK. Worker CLI `ant` tidak memiliki cara untuk mendaftarkan implementasi alat kustom. Dalam pola sandbox-per-sesi, [jalankan worker SDK di dalam sandbox](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session#run-the-sdk-worker-inside-the-sandbox).
 </Note>
 
 ## Melayani alat kustom
@@ -75,9 +74,17 @@ Kunci lingkungan mengotorisasi pengiriman hasil alat kustom, sehingga kunci API 
   </Step>
 
   <Step title="Daftarkan implementasi dengan worker">
-    Teruskan alat melalui factory `tools` (go: `ToolsFunc`) milik worker (lihat [`EnvironmentWorker`](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference#environment-worker)), bersama dengan toolset bawaan:
+    Langkah ini menggunakan [`EnvironmentWorker`](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference#environment-worker), yang hanya dimiliki oleh SDK Python, TypeScript, dan Go. Teruskan alat bersama dengan toolset bawaan melalui factory `tools` (go: `ToolsFunc`) milik worker. Contoh-contoh ini menggunakan `/workspace` sebagai direktori kerja, yang harus sudah ada sebelum worker dimulai. [Menjalankan worker always-on](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-an-always-on-worker) menjelaskan cara membuat direktori tersebut dan apa yang digunakan di macOS.
 
     <CodeGroup exclude="shell, csharp, java, php, ruby">
+      <CodeGroupItem language="cURL">
+        Worker adalah proses yang berjalan lama, bukan satu permintaan HTTP. Untuk melayani alat kustom, gunakan `EnvironmentWorker` di SDK Python, TypeScript, atau Go.
+      </CodeGroupItem>
+
+      <CodeGroupItem language="CLI">
+        Worker CLI `ant` tidak dapat melayani alat kustom. Gunakan `EnvironmentWorker` di SDK Python, TypeScript, atau Go.
+      </CodeGroupItem>
+
       ```python Python
       import asyncio
       import os
@@ -250,6 +257,14 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
     Ambil daftar alat server MCP dan deklarasikan masing-masing sebagai alat `custom`. `name`, `description`, dan `inputSchema` MCP dipetakan satu per satu ke field alat kustom. Jika server melakukan paginasi pada daftar alatnya, deklarasikan setiap halaman; worker harus mengambil daftar dari halaman yang sama.
 
     <CodeGroup exclude="shell">
+      <CodeGroupItem language="cURL">
+        Mengambil daftar alat server MCP dan mendeklarasikan masing-masing memerlukan lebih banyak logika daripada satu perintah shell. Gunakan SDK MCP dan SDK Anthropic untuk menjalankannya.
+      </CodeGroupItem>
+
+      <CodeGroupItem language="CLI">
+        Mengambil daftar alat server MCP dan mendeklarasikan masing-masing memerlukan lebih banyak logika daripada satu perintah shell. Gunakan SDK MCP dan SDK Anthropic untuk menjalankannya.
+      </CodeGroupItem>
+
       ```python Python
       import asyncio
       from typing import Any, cast
@@ -679,9 +694,19 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
   </Step>
 
   <Step title="Layani alat dari worker">
-    Hubungkan ke server MCP yang sama saat startup, konversikan alat-alatnya dengan `async_mcp_tool()` (typescript: `mcpTools()`; go: `mcp.NewBetaTools()`), dan daftarkan bersama dengan `beta_agent_toolset_20260401()` (typescript: `betaAgentToolset20260401()`; go: `agenttoolset.BetaAgentToolset20260401()`). Pertahankan satu sesi MCP tetap terbuka selama masa hidup worker.
+    Langkah ini menggunakan `EnvironmentWorker`, yang hanya dimiliki oleh SDK Python, TypeScript, dan Go. Hubungkan ke server MCP yang sama saat startup. Konversikan alat-alatnya dengan `async_mcp_tool()` (typescript: `mcpTools()`; go: `mcp.NewBetaTools()`), dan daftarkan bersama dengan `beta_agent_toolset_20260401()` (typescript: `betaAgentToolset20260401()`; go: `agenttoolset.BetaAgentToolset20260401()`). Pertahankan satu sesi MCP tetap terbuka selama masa hidup worker.
+
+    Contoh-contoh ini menggunakan `/workspace` sebagai direktori kerja, yang harus sudah ada sebelum worker dimulai. [Menjalankan worker always-on](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-an-always-on-worker) menjelaskan cara membuat direktori tersebut dan apa yang digunakan di macOS.
 
     <CodeGroup exclude="shell, csharp, java, php, ruby">
+      <CodeGroupItem language="cURL">
+        Worker adalah proses yang berjalan lama, bukan satu permintaan HTTP. Untuk melayani alat kustom, gunakan `EnvironmentWorker` di SDK Python, TypeScript, atau Go.
+      </CodeGroupItem>
+
+      <CodeGroupItem language="CLI">
+        Worker CLI `ant` tidak dapat melayani alat kustom. Gunakan `EnvironmentWorker` di SDK Python, TypeScript, atau Go.
+      </CodeGroupItem>
+
       ```python Python
       import asyncio
       import os
@@ -746,14 +771,14 @@ Contoh-contoh ini terhubung tanpa autentikasi. Untuk mengirim kredensial, konfig
       const controller = new AbortController();
       process.once("SIGTERM", () => controller.abort());
 
-      // Hubungkan ke server MCP sekali saat startup dan pertahankan koneksi tetap terbuka
-      // selama worker berjalan.
+      // Hubungkan ke server MCP sekali saat startup dan biarkan koneksi tetap terbuka selama
+      // masa hidup worker.
       const mcpClient = new Client({ name: "sandbox-worker", version: "1.0.0" });
       await mcpClient.connect(new StreamableHTTPClientTransport(new URL(MCP_SERVER_URL)));
       const { tools } = await mcpClient.listTools();
 
-      // Tipe kembalian callTool dari MCP SDK masih menyertakan bentuk hasil lawas yang
-      // tidak diterima mcpTools; persempit tipenya. Hapus ini setelah MCPClientLike diperluas.
+      // Tipe kembalian callTool dari SDK MCP mencakup bentuk hasil lama yang
+      // tidak diterima mcpTools, jadi persempit tipenya.
       const mcpClientForTools: MCPClientLike = {
         callTool: (params) => mcpClient.callTool(params) as Promise<MCPCallToolResultLike>
       };
@@ -877,7 +902,7 @@ Dua kasus memerlukan pekerjaan tambahan:
 
 Ketika server MCP melaporkan error alat, worker mengirimkan hasil alat error yang dapat ditanggapi oleh model. Konten MCP yang tidak memiliki padanan hasil alat, seperti blok audio dan tautan sumber daya, juga muncul sebagai error.
 
-Atur timeout pada klien MCP untuk kegagalan yang lebih cepat dan lebih jelas, seperti yang dilakukan contoh worker Python dengan `read_timeout_seconds`. Lihat [Panggilan alat MCP yang dibungkus macet](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#a-wrapped-mcp-tool-call-hangs) untuk mengetahui apa yang terjadi tanpa timeout.
+Atur timeout pada klien MCP untuk kegagalan yang lebih cepat dan lebih jelas. Lihat [Panggilan alat MCP yang dibungkus macet](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-operations#a-wrapped-mcp-tool-call-hangs) untuk mengetahui apa yang terjadi tanpa timeout.
 
 ### Bungkus hanya server yang Anda operasikan atau percayai
 

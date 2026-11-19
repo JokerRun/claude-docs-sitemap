@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/spend_limits/increase_requests/deny
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 8315589b1322ed24f54fb3fdaee36dba826e39350fb823a80c160af6941f2868
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 578e9b1e5173e335a80bba563a6be443828e6cec717a47db29a5f369c91ba395
 ---
 
 ---
@@ -262,6 +262,16 @@ Idempotent on `denied`; denying an already-`approved` request returns
     - `"denied"`
 
     - `"pending"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

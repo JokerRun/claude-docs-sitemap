@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/opentelemetry/spans
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 0f4ddaf8ca7d067bbad1e0c02cfa092f874bf91e66d55fdea5267ab41b593702
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: 53d64eab9efd1e8fe05c10842da170f103521b6ad714433a71570ae64e702013
 ---
 
 ---
@@ -39,7 +39,6 @@ featureMetadata:
     Amazon Bedrock: beta
     Amazon Bedrock (bedrock-runtime): beta
     Claude Platform on AWS: beta
-    Claude Models on Google Cloud (Anthropic managed): beta
     Claude Models on Google Cloud (Google managed): beta
     Microsoft Foundry: beta
 ---

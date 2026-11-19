@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 39b555022a3237b0577f272dc84594476521fe6ce845667071b0a1252c3f4f55
+fetched_at: 2026-11-19T02:13:30.221159Z
+sha256: e1088ebf733762431ec12588bedd9a5fb0c7934571d247b0496859b70e1506b7
 ---
 
 ---
@@ -100,7 +100,7 @@ Compaction sesuai permintaan dan perubahan alat di tengah percakapan membantu An
 
 [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) tersedia untuk Claude Fable 5.2 dalam permintaan Messages API di Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Claude in Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Di Claude in Microsoft Foundry, mode cepat tersedia untuk deployment yang di-hosting di Anthropic, dengan ID modelnya sendiri, `claude-fable-5-2-fast`.
 
-Mode cepat juga tersedia untuk Claude Mythos 5.2 dalam permintaan Messages API di Claude API. [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) mencantumkan setiap platform tempat Claude Mythos 5.2 memiliki mode cepat.
+Mode cepat juga tersedia untuk Claude Mythos 5.2 dalam permintaan Messages API. [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) mencantumkan setiap platform tempat Claude Mythos 5.2 memiliki mode cepat.
 
 ### Blok thinking tetap berada di akun yang menghasilkannya
 
