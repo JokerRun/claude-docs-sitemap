@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 5a0b07c75c2c67ef8b036591486e6f60ca927648ce7b3a898d2e170dccec58b9
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: e40584a2a41c84ad8844702f505f15478e8e0653362aedb6545eebb841b80441
 ---
 
 ---
@@ -36,6 +36,7 @@ featureMetadata:
     Amazon Bedrock: stable
     Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -261,14 +262,14 @@ Dukungan multibahasa tersedia di semua model.
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud               |
+| -------- | ---------------------------- |
+| Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Platform cloud                                                                                                     |
-| -------- | ------------------------------------------------------------------------------------------------------------------ |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status   | Platform cloud               |
+| -------- | ---------------------------- |
+| Tersedia | Semua platform yang didukung |

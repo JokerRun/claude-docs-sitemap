@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 83f0a357848f1e7d660af635ebe4c6f3d598837443ae5fd54b550b1161e361cd
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: eae22eba29efbd00b5b2592bd64774ffd337ad0efe7645c4c842954c2d9cbcdd
 ---
 
 > ## Documentation Index
@@ -41,9 +41,9 @@ Claude Code exits with code 0 on success and a non-zero code when the run fails,
 
 ### Start faster with bare mode
 
-Add `--bare` to reduce startup time by skipping auto-discovery of hooks, skills, custom commands, [subagents](https://code.claude.com/docs/en/sub-agents.md), installed plugins, MCP servers, auto memory, and CLAUDE.md. Without it, `claude -p` discovers and loads them as an interactive session would, including anything configured in the working directory or `~/.claude`.
+Add `--bare` to reduce startup time by skipping auto-discovery of your hooks, skills, custom commands, [subagents](https://code.claude.com/docs/en/sub-agents.md), installed plugins, MCP servers, auto memory, and CLAUDE.md. Without it, `claude -p` discovers and loads them as an interactive session would, including anything configured in the working directory or `~/.claude`.
 
-Bare mode is useful for CI and scripts where you need the same result on every machine. A hook in a teammate's `~/.claude` or an MCP server in the project's `.mcp.json` won't run, because bare mode never reads them. A directory you name with `--add-dir` is a partial exception: bare mode loads skills from its `.claude/skills/` folder, but still skips its `.claude/commands/` and `.claude/agents/` folders. [Skills from additional directories](https://code.claude.com/docs/en/skills.md#skills-from-additional-directories) covers what does and doesn't load.
+In bare mode, Claude Code still reads settings files and their [permission rules](https://code.claude.com/docs/en/permissions.md#what-runs-before-you-trust-a-folder), but a hook in `~/.claude/settings.json` or an MCP server in the project's `.mcp.json` won't run. A directory you name with `--add-dir` is a special case: bare mode loads skills from its `.claude/skills/` folder, but still skips its `.claude/commands/` and `.claude/agents/` folders. [Skills from additional directories](https://code.claude.com/docs/en/skills.md#skills-from-additional-directories) covers what does and doesn't load.
 
 Without `--bare`, a `-p` session runs the hooks in a project's `.claude/settings.json` and connects the servers in its `.mcp.json`, even in a folder you've never trusted. A `-p` session shows no workspace trust dialog and no per-server approval prompt. [What runs before you trust a folder](https://code.claude.com/docs/en/permissions.md#what-runs-before-you-trust-a-folder) covers each kind of repository content under `-p` and how to keep it out.
 

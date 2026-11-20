@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 722ad481e5c3e893fff4212ae012ae0130c031100bd7cfcd71c50d1be6a6a9f2
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 50f326f81160bb0fb9778d2d692f159692c2d82205b5993de891dc5f2dc7e119
 ---
 
 ---
@@ -1647,6 +1647,6 @@ Parallel tool use is available or in beta, depending on the API.
 
 * Availability: Always on
 
-| Status | Cloud platforms                                                                                                    |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
+| Status | Cloud platforms         |
+| ------ | ----------------------- |
+| Beta   | All supported platforms |

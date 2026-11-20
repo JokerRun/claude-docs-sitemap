@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/get-started
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 7b96c79a376aaf9cccc63e4ea3dab061099b1e94dd54aba61b856a4d9a32f69f
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: d637012715aa3bc16080c3d5ca4369c3e1598c059f571bfd909cceb45df5d083
 ---
 
 ---
@@ -40,7 +40,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
         Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.11.0
+        VERSION=2.12.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -187,7 +187,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
             ```bash
-            VERSION=2.11.0
+            VERSION=2.12.0
             OS=$(uname -s | tr '[:upper:]' '[:lower:]')
             case $(uname -m) in
               x86_64) ARCH=amd64 ;;
@@ -512,7 +512,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
             }
 
             dependencies {
-                implementation("com.anthropic:anthropic-java:3.10.0")
+                implementation("com.anthropic:anthropic-java:3.11.0")
             }
 
             application {
@@ -538,7 +538,7 @@ description: Lakukan panggilan API pertama Anda ke Claude dan bangun asisten pen
                 <dependency>
                   <groupId>com.anthropic</groupId>
                   <artifactId>anthropic-java</artifactId>
-                  <version>3.10.0</version>
+                  <version>3.11.0</version>
                 </dependency>
               </dependencies>
             </project>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/server-managed-settings
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 1938f2d93c183def5fe90e5c36ff4eb7d9b63ee88f506ceb184ab321e90a2869
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 1f6ba7b133f9f4189088d5226335c62c237680e29037186aaa7bc0d942cda9a9
 ---
 
 > ## Documentation Index
@@ -181,7 +181,7 @@ Server-managed settings have the following limitations:
 
 ### Settings precedence
 
-Server-managed settings and [endpoint-managed settings](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) both occupy the highest tier in the Claude Code [settings hierarchy](https://code.claude.com/docs/en/settings.md#settings-precedence). A key you set here takes precedence over the same key in a user's own settings files or in a `--settings` value, apart from the [exceptions to managed settings precedence](https://code.claude.com/docs/en/settings.md#exceptions-to-managed-settings-precedence).
+Server-managed settings and [endpoint-managed settings](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms) both occupy the highest tier in the Claude Code [settings hierarchy](https://code.claude.com/docs/en/settings.md#settings-precedence). A key you set here takes precedence over the same key in a user's own settings files or in a `--settings` value, apart from the [exceptions to managed settings precedence](https://code.claude.com/docs/en/settings.md#exceptions-to-managed-settings-precedence). Users' allow rules [merge with yours](https://code.claude.com/docs/en/settings.md#lists-merge-instead-of-overriding). To lock the list, see [What a developer can change](https://code.claude.com/docs/en/managed-settings.md#what-a-developer-can-change).
 
 Within the managed tier, Claude Code by default uses the first source that delivers at least one policy key, checking server-managed settings first and then endpoint-managed settings, apart from the [exception keys covered next](#per-key-exceptions-across-managed-sources). [How Claude Code combines managed sources](https://code.claude.com/docs/en/managed-settings.md#precedence-within-the-managed-tier) has the full ranking, the carve-out for the control keys, and the opt-in that applies every source.
 

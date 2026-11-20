@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cross-session-messaging
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: c3dbb1e59521596441eed3adf801b33c045a3c4b2a39be51e3179f8fbb429933
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: d68cba02a8597a58825ae954e0c25265c0108e3926c13fb5b0c72028b70a37f0
 ---
 
 > ## Documentation Index
@@ -148,7 +148,7 @@ How a message travels, and whether it passes through Anthropic servers, depends 
 | On another of your machines | Through Anthropic servers, arriving over that machine's [Remote Control](https://code.claude.com/docs/en/remote-control.md) connection |
 | In the [cloud](https://code.claude.com/docs/en/claude-code-on-the-web.md) | Through Anthropic servers, straight to the cloud session |
 
-Starting a conversation with a session on another of your machines requires Claude Code v2.1.225 or later and a target that [appears in the listing](#see-which-sessions-claude-can-reach).
+Starting a conversation with a session on another of your machines requires Claude Code v2.1.225 or later.
 
 A session's row in [the listing](#see-which-sessions-claude-can-reach) can show a condition that changes what happens when Claude messages that session:
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-mcp
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 8a9d2bca67647cdbf6a11fb81b21a16138d2c4a2c904d3651d09f0be944bf8b1
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: eac154aad2d3af22c3598bf2a619cd76f6d36728c33710187af4315fbb09811c
 ---
 
 > ## Documentation Index
@@ -383,7 +383,7 @@ A `managed-mcp.json` server that uses `${VAR}` expansion in its command, argumen
 
 ### Example configuration
 
-The configuration below sets up a hard allowlist with a denylist. The highlighted lines change how the rest of the list is evaluated, and the callouts after the block explain each one:
+The configuration below sets up an allowlist with a denylist. The highlighted lines change how the rest of the list is evaluated, and the callouts after the block explain each one:
 
 ```json {3,5,11} theme={null}
 {

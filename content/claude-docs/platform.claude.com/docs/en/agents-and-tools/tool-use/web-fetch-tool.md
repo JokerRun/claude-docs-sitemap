@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 069058423ec0447169e55971448d0a138587169fcf85159bc6f86c7a1e369491
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 605244c22df20fe46e4c05c1fced93a7e1f0e605e652cacb878f477a9fbbac4b
 ---
 
 ---
@@ -1092,9 +1092,9 @@ Web fetch tool is available on every model and eligible for zero data retention.
 * Availability: Available
 * Usage: Part of the agent toolset, and on by default once the toolset is added. Domain lists (with no paths) and `max_content_tokens` go on the toolset’s `web_fetch` entry; `max_uses`, `citations` and `cache_control` are not available.
 
-| Status    | Cloud platforms                                                                                                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------ |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
+| Status    | Cloud platforms                                                                                                                                                                                                                                                                |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ### Data handling
 

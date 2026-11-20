@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 15f4c186ecc5d2c1b4ac61650b6c3a858be65803dc5e93f52f394b4c9950b15f
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 2c56f4c8c3272281e935ce56008552350f2d56d2129b14d517c860b5d9d898c5
 ---
 
 ---
@@ -758,9 +758,9 @@ Alat pencarian web tersedia di semua model dan layak untuk retensi data nol dan 
 * Ketersediaan: Tersedia
 * Penggunaan: Bagian dari toolset agen, dan aktif secara default setelah toolset ditambahkan. Daftar domain dan `user_location` ditempatkan pada entri `web_search` di toolset; `max_uses`, `citations`, dan `cache_control` tidak tersedia.
 
-| Status   | Platform cloud                                                                                                     |
-| -------- | ------------------------------------------------------------------------------------------------------------------ |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ### Penanganan data
 

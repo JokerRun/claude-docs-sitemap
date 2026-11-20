@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: f2a1951856e6fb1dd7da995d838e1f1893e877a7abaed142ca2ff6e2e621c761
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 55145411e54f0c8d1a303e35233fa34d6e574af114ea3e9d1b263059368ad153
 ---
 
 ---
@@ -969,6 +969,6 @@ Alat kustom tersedia di semua model.
 * Ketersediaan: Tersedia
 * Penggunaan: Deklarasikan pada agen dengan `type` `"custom"`. Panggilan tiba sebagai event `agent.custom_tool_use`, dan Anda membalas dengan event `user.custom_tool_result`.
 
-| Status   | Platform cloud                                                                                                     |
-| -------- | ------------------------------------------------------------------------------------------------------------------ |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 0a2793e905daa533846295b295130bebd405980706de3431446bde5ea0e4f928
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: b6721da1fa411d1ee936191c62cc9eaa67ce9aa2d104b8494518c2484ee82a44
 ---
 
 ---
@@ -1092,9 +1092,9 @@ Alat web fetch tersedia di semua model dan layak untuk retensi data nol.
 * Ketersediaan: Tersedia
 * Penggunaan: Bagian dari toolset agen, dan aktif secara default setelah toolset ditambahkan. Daftar domain (tanpa path) dan `max_content_tokens` ditempatkan pada entri `web_fetch` di toolset; `max_uses`, `citations`, dan `cache_control` tidak tersedia.
 
-| Status   | Platform cloud                                                                                                     |
-| -------- | ------------------------------------------------------------------------------------------------------------------ |
-| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status   | Platform cloud                                                                                                                                                                                                                                                                 |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ### Penanganan data
 

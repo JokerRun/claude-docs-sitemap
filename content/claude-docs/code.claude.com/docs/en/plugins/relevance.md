@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/relevance
-fetched_at: 2026-10-27T02:22:08.565782Z
-sha256: 222a17e4589600bf9f8c0d55f4a3d93ddb3ecade10c6a7a7ab9835236b87ab09
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 7f523425adf9799d9b074f13882f44b93830574cc4f51a146c2a31fd64d6dba9
 ---
 
 > ## Documentation Index
@@ -22,7 +22,7 @@ A marketplace operator writes the `relevance` entries. An administrator then all
 > These cases are covered on other pages:
 >
 > * **You want to install plugins**: see [Install and manage plugins](https://code.claude.com/docs/en/plugins/install.md)
-> * **You want to turn suggestions off**: see [Understand how plugin relevance works](#understand-how-plugin-relevance-works), or for the suggestions Claude makes in a cloud session's conversation, [Turn off plugin suggestions](https://code.claude.com/docs/en/claude-code-on-the-web.md#turn-off-plugin-suggestions)
+> * **You want to turn suggestions off**: see [Understand how plugin relevance works](#understand-how-plugin-relevance-works), or for the suggestions Claude makes in the conversation, [Turn off plugin suggestions](https://code.claude.com/docs/en/claude-code-on-the-web.md#turn-off-plugin-suggestions)
 
 Start with the sections for your role:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 77760875998c1ed149a9637f9583368ccbbfe017bcd9e93a1e9a5a1c28486904
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: bd1b752d558c0ebcb616b401c52ca31bf505d087cc948977d63c82234542bf58
 ---
 
 ---
@@ -758,9 +758,9 @@ Web search tool is available on every model and eligible for zero data retention
 * Availability: Available
 * Usage: Part of the agent toolset, and on by default once the toolset is added. Domain lists and `user_location` go on the toolset’s `web_search` entry; `max_uses`, `citations` and `cache_control` are not available.
 
-| Status    | Cloud platforms                                                                                                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------ |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
+| Status    | Cloud platforms                                                                                                                                                                                                                                                                |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ### Data handling
 

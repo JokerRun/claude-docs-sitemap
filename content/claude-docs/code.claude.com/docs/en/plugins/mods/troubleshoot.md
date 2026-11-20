@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/troubleshoot
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 44d2ef238176063a3954adba17ee16e195c216d4f13973058e88ddca09c60d09
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 782ac923e4f73ee0bdb3a5512852310618c2666d6655dc230d953b5a543c12a4
 ---
 
 > ## Documentation Index
@@ -225,7 +225,7 @@ Look them up in [Messages from the built-in guard](#messages-from-the-built-in-g
 
 ## A toast appears after a turn is stopped
 
-### `Stopped: type a message to continue; a mod cannot resume work after Stop`
+### `stopped · type a message to continue`
 
 This toast means that after you stopped the turn, for example with Esc, a mod tried to start work on its own and Claude Code didn't let it. Nothing needs fixing. After your next message, mods can start work again and [some of that work comes back](https://code.claude.com/docs/en/plugins/mods/api.md#work-your-mod-started-before-the-interruption) on its own. If what you expected from the mod doesn't come back, ask for it again or run the mod's command again.
 

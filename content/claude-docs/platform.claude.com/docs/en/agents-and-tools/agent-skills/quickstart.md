@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: b2cb4460ddfcc83c44fc31bba50183c0398e5860363ea1622b205dca425d5808
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: e081dddab878adb4ed49707b48545ae0b51a4f4d74979543357742f0c2c8ff27
 ---
 
 ---
@@ -44,7 +44,7 @@ You need a [client SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/o
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.11.0
+        VERSION=2.12.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -113,7 +113,7 @@ To run the CLI examples, install the CLI:
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=2.11.0
+    VERSION=2.12.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;

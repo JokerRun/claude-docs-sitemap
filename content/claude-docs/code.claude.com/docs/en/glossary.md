@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/glossary
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: b5f13db2ad55c754d36e4596069c460caee58bde4ef8866228fb30a69745efab
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 9710e9dd45dfbb7bc5446cae9c7e560eb798451ecdcf49756a0e31d0797a5f75
 ---
 
 > ## Documentation Index
@@ -72,7 +72,7 @@ Learn more: [Eliminate prompts with auto mode](https://code.claude.com/docs/en/p
 
 ### Bare mode
 
-With `--bare`, Claude Code starts without loading hooks, skills, custom commands, subagents, installed plugins, MCP servers, auto memory, or CLAUDE.md, apart from skills in a directory you pass with `--add-dir`. Recommended for CI and scripted calls where you need the same result on every machine.
+With `--bare`, Claude Code starts without your hooks, skills, custom commands, subagents, installed plugins, MCP servers, auto memory, or CLAUDE.md, apart from skills in a directory you pass with `--add-dir`. Recommended for CI and scripted calls.
 
 Learn more: [Start faster with bare mode](https://code.claude.com/docs/en/headless.md#start-faster-with-bare-mode)
 

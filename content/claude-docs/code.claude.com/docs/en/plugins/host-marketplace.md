@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/host-marketplace
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: d7b5880de1a51c1731d7f979f55809942fa283e357af97e9b10c34f7ce77223f
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 3171e4023e590b260ff641a0ef9c916c959f679761309dfc4e5fcaf663cb26eb
 ---
 
 > ## Documentation Index
@@ -39,9 +39,7 @@ You can host the marketplace on GitHub, on another git host, as a hosted `market
 
 To pin a branch or tag of a GitHub or git-URL marketplace, tell users to append `#<ref>`, as in `your-org/your-marketplace#stable`. The [plugin commands reference](https://code.claude.com/docs/en/plugins/cli-reference.md#plugin-marketplace-add) lists every form the command accepts.
 
-A successful add prints `Successfully added marketplace: your-marketplace`. Claude Code takes that name from the `name` field in your `marketplace.json`, not from the repository name.
-
-Users then install a plugin by its entry's `name` and the marketplace's `name`, as in `/plugin install code-formatter@your-marketplace`.
+Users install a plugin by its entry's `name` and the top-level `name` in your `marketplace.json`, as in `/plugin install code-formatter@your-marketplace`.
 
 ### Register the marketplace for everyone in a repository
 
@@ -183,7 +181,7 @@ Your changes reach users through background auto-update, once it's turned on for
 
 Background auto-update is off for your marketplace by default, and `marketplace.json` has no field to turn it on. A user or an admin turns it on:
 
-* **Tell users to turn it on**: each user goes to **Marketplaces** in `/plugin`, selects your marketplace, and selects **Enable auto-update**.
+* **Tell users to turn it on**: each user goes to **Marketplaces** in `/plugin`, selects your marketplace, and turns on auto-update.
 * **Ask an admin to set it**: if an admin sets `"autoUpdate": true` on your marketplace's `extraKnownMarketplaces` entry in managed settings, it's on for everyone who receives those settings. See [Set update policy](https://code.claude.com/docs/en/plugins/org.md#set-update-policy).
 
 Without auto-update, users receive your changes when they run `/plugin marketplace update <name>` in a session or `claude plugin update <plugin>@<name>` in the shell.
@@ -300,7 +298,7 @@ To uninstall a removed plugin from users' machines rather than leave a copy behi
 
 1. Compares what users installed from your marketplace against the entries and the `renames` map, and treats any plugin that is neither listed nor renamed as removed.
 2. Uninstalls each removed plugin from the user, project, and local scopes. Plugins that only managed settings installed stay in place.
-3. Lists each removed plugin under a **Flagged** heading in `/plugin` with the status `Removed from marketplace`.
+3. Lists each uninstalled plugin under **Needs attention** on the **Installed** tab in `/plugin`.
 
 ## Authenticate archive downloads
 

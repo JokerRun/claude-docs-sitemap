@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/overview
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 9ce9882922f50ca511afd527700d8f9e0f2eb8830f2ef877df1f8599679a80ce
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 0a61535f5bdffff38a66521c6e86946c2dde83e595c37eddb02f9fed6184250c
 ---
 
 > ## Documentation Index
@@ -238,7 +238,7 @@ This table lists some of the **Built-in** entries by the name `/plugin` shows:
 | `cc-plugin-telemetry` | Sends the analytics records that Claude Code and its built-in mods log | Wherever Claude Code's own analytics are on | Disable it in `/plugin`, or turn analytics off, for example with [`DISABLE_TELEMETRY`](https://code.claude.com/docs/en/env-vars) |
 | `cc-plugin-you-should-know` | [You should know](https://code.claude.com/docs/en/interactive-mode.md#you-should-know-suggestions): a side agent shows a note above the prompt when it finds something you might have missed | Off until you [turn it on](https://code.claude.com/docs/en/interactive-mode.md#you-should-know-suggestions) | Disable it in `/plugin` |
 
-For a **Built-in** plugin that isn't in the table, [open its details in `/plugin`](https://code.claude.com/docs/en/plugins/install#manage-installed-plugins) to read what it does or to disable it.
+For a **Built-in** plugin that isn't in the table, [open its details in `/plugin`](https://code.claude.com/docs/en/plugins/install#manage-installed-plugins) to read what it does.
 
 The settings and flags that stop installed mods, such as `disableAllHooks`, `--bare`, and `--safe-mode`, don't stop built-in mods.
 

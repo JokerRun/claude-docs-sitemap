@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/org
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: fc2f41afdb4cca7d1e22a78ae88aa7c24627bbc99696c4d4b71fb676b69518c2
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 5cdc89aa61839c0fa4f8c30bff12852701a23bafebc75646f27443ea60067eef
 ---
 
 > ## Documentation Index
@@ -96,7 +96,7 @@ To cover one repository's contributors instead of your whole fleet, set `extraKn
 * **Interactive sessions**: Claude Code registers the marketplace only after the contributor accepts the [workspace trust dialog](https://code.claude.com/docs/en/permissions.md#what-runs-before-you-trust-a-folder) for that folder.
 * **[Non-interactive `-p` runs](https://code.claude.com/docs/en/headless)**: the entries apply only in a folder whose trust the user already accepted interactively, or whose `hasTrustDialogAccepted` flag you set in `~/.claude.json`.
 
-Setting `enabledPlugins` in the repository doesn't install the plugin. Once the marketplace is registered, ask each contributor to run `claude plugin install <name>@<marketplace> --scope project`. Until they do, the `/plugin` **Errors** tab can show `Plugin "<name>" is enabled in project settings but isn't installed here` or [`not cached`](https://code.claude.com/docs/en/plugins/troubleshooting#plugin-not-cached-at). Contributors don't need the install when a local `directory` or `file` marketplace lists the plugin with a [relative-path `source`](https://code.claude.com/docs/en/plugins/marketplace-reference#plugin-sources).
+Setting `enabledPlugins` in the repository doesn't install the plugin. Once the marketplace is registered, ask each contributor to run `claude plugin install <name>@<marketplace> --scope project`. Until they do, the `/plugin` **Errors** tab can show a line ending in [`isn't installed here`](https://code.claude.com/docs/en/plugins/troubleshooting#plugin-is-enabled-in-project-settings-but-isnt-installed-here). Contributors don't need the install when a local `directory` or `file` marketplace lists the plugin with a [relative-path `source`](https://code.claude.com/docs/en/plugins/marketplace-reference#plugin-sources).
 
 If you use a local `directory` or `file` source with a relative path, the path resolves against your repository's main checkout. When you run Claude Code from a git worktree, the path still points at the main checkout, so all worktrees share the same marketplace location.
 
@@ -374,7 +374,7 @@ Suggestions from a marketplace appear only when it's registered on the user's ma
 
 > [!NOTE]
 >
-> In a cloud session's conversation, Claude can suggest plugins whether or not you set `pluginSuggestionMarketplaces`. To turn those suggestions off, see [Turn off plugin suggestions](https://code.claude.com/docs/en/claude-code-on-the-web.md#turn-off-plugin-suggestions).
+> In a cloud session's conversation or the desktop app's Code tab, Claude can suggest plugins whether or not you set `pluginSuggestionMarketplaces`. To turn those suggestions off, see [Turn off plugin suggestions](https://code.claude.com/docs/en/claude-code-on-the-web.md#turn-off-plugin-suggestions).
 
 ## Audit and review
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: ff7e1495aa129c5ea64c331d382df5eaecc606000ed3f72c3376f71c48a56fa6
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 4cec5f4d01d2756b3de3d51fa8fc8e72e84020a51e008b866639104845fd704d
 ---
 
 > ## Documentation Index
@@ -311,7 +311,7 @@ Take three rules you might have in `CLAUDE.md` today: `Never read .env`, `Always
 * A tool call on one of your MCP servers
 * A [`prompt` or `agent` hook](https://code.claude.com/docs/en/hooks#hook-handler-fields), which lets a model decide
 
-A `prompt` or `agent` hook asks *another model* to decide, so it isn't deterministic either. For real enforcement, use a `command` or `http` hook, and add [`onFailure: "block"`](https://code.claude.com/docs/en/hooks#block-the-action-when-a-hook-fails) if the action should also be stopped when the hook itself crashes or times out. For a hook that scans commits for secrets, say, you'd rather block the commit than let it through unscanned while the scanner is down.
+A `prompt` or `agent` hook asks *another model* to decide, so it isn't deterministic either. For real enforcement, use a `command`, `http`, or `mcp_tool` hook, and add [`onFailure: "block"`](https://code.claude.com/docs/en/hooks#block-the-action-when-a-hook-fails) if the action should also be stopped when the hook itself crashes or times out. For a hook that scans commits for secrets, say, you'd rather block the commit than let it through unscanned while the scanner is down.
 
 Here's the formatter rule as a `PostToolUse` hook. It runs after every `Edit` or `Write`, and whether Claude remembers the rule no longer matters, because Claude isn't the one running it:
 
@@ -550,7 +550,7 @@ Once it's going, Claude will carry a long task through on its own. The parts tha
 
 In a script you'll almost always want a few more flags:
 
-* [`--bare`](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode) skips hooks, skills, plugins, MCP servers, and `CLAUDE.md` files, the repo's as well as the machine's, so the run does the same thing wherever it runs. It also never touches your claude.ai login: auth comes from `ANTHROPIC_API_KEY`, an `apiKeyHelper` in the file you pass with `--settings`, or your cloud provider's credentials.
+* [`--bare`](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode) skips your hooks, skills, plugins, MCP servers, and `CLAUDE.md` files from the repo and your home directory. It also doesn't use your claude.ai login: auth comes from `ANTHROPIC_API_KEY`, an `apiKeyHelper` in the file you pass with `--settings`, or your cloud provider's credentials.
 * `--append-system-prompt`, `--mcp-config`, and `--settings` explicitly pass in what the run *does* need. Hooks you pass with `--settings` [don't run under `--bare`](https://code.claude.com/docs/en/headless#start-faster-with-bare-mode), so don't use `--bare` for a run that needs them.
 * `--allowedTools` pre-approves its tools, and [`--permission-mode dontAsk`](https://code.claude.com/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode) refuses anything else that would have prompted.
 * `--output-format json` gives you a single result object to parse, and `stream-json` with `--verbose` streams events as they happen.

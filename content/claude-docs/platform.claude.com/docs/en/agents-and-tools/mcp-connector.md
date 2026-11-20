@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-connector
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: c2b26479959fb79dc95cf12cd1f9a23edc9584e1ed4918ea1a05ee6bba5619ba
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: fe60b4e87e6adf3cabd8125d341e2b0adc007d22dcbb72f0503cb8f50c649a5b
 ---
 
 ---
@@ -1313,8 +1313,8 @@ Install both the Anthropic SDK and the MCP SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.10.0")
-        implementation("com.anthropic:anthropic-java-mcp:3.10.0")
+        implementation("com.anthropic:anthropic-java:3.11.0")
+        implementation("com.anthropic:anthropic-java-mcp:3.11.0")
         ```
       </Tab>
 
@@ -1323,12 +1323,12 @@ Install both the Anthropic SDK and the MCP SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.10.0</version>
+            <version>3.11.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-mcp</artifactId>
-            <version>3.10.0</version>
+            <version>3.11.0</version>
         </dependency>
         ```
       </Tab>
@@ -2169,10 +2169,10 @@ MCP connector is in beta on every model.
 
 Beta headers allow you to access experimental features and new model capabilities before they become part of the standard API.
 
-| Header                                             | APIs                                                                                        | Cloud platforms                                                                                                                                                                                                                                                                                                                                                            |
-| -------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mcp-client-2026-09-15` or `mcp-client-2025-11-20` | [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) | Claude API                                                                                                                                                                                                                                                                                                                                                                 |
-| `mcp-client-2025-11-20`                            | [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) | [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) |
+| Header                                             | APIs                                                                                        | Cloud platforms                                                                                                                                                                                                |
+| -------------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mcp-client-2026-09-15` or `mcp-client-2025-11-20` | [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed)                                         |
+| `mcp-client-2025-11-20`                            | [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) | [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) |
 
 ### Data handling
 

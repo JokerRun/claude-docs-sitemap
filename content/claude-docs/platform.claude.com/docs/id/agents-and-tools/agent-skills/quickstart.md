@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/quickstart
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: e20b1b1a65731fb1f41a959c4750a9d3d4d50c7fdefb0ae1f928e75c072f8511
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 46337c6fd5ac1bc8c3489d9e5234c392405b21c06f61ac0d4842c6fe315beec3
 ---
 
 ---
@@ -44,7 +44,7 @@ Anda memerlukan [SDK klien](https://platform.claude.com/docs/id/cli-sdks-librari
         Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.11.0
+        VERSION=2.12.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -113,7 +113,7 @@ Untuk menjalankan contoh CLI, instal CLI:
     Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
     ```bash
-    VERSION=2.11.0
+    VERSION=2.12.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;

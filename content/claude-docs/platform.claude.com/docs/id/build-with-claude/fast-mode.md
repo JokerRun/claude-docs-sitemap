@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/fast-mode
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: f79e00175888c69936bbe55f1b9991094e7f6194d962a71986df8029cc1aaa39
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 9178caf51b32ce0d2f4b09ccca52757f5177638a25a73d67104acfd436d603ba
 ---
 
 ---
@@ -739,11 +739,11 @@ Untuk mengakses mode cepat pada Claude Opus 5, hubungi manajer akun Anda atau [b
 * Ketersediaan: Tersedia
 * Penggunaan: Atur `speed` pada objek model agen, misalnya `{"id": "claude-opus-5-5", "speed": "fast"}`.
 
-| Status                           | Platform cloud | Model                                                                           |
-| -------------------------------- | -------------- | ------------------------------------------------------------------------------- |
-| Tersedia                         | Claude API     | [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) |
-| Pratinjau riset                  | Claude API     | [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview)     |
-| Tidak digunakan lagi<sup>1</sup> | Claude API     | [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Status                           | Platform cloud                                                                                                                                                         | Model                                                                           |
+| -------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Tersedia                         | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) |
+| Pratinjau riset                  | Claude API                                                                                                                                                             | [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview)     |
+| Tidak digunakan lagi<sup>1</sup> | Claude API                                                                                                                                                             | [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
 
 1. Tanggal penghapusan: 30 November 2026. Setelah penghapusan, permintaan ke `claude-opus-4-8` dengan `speed: "fast"` akan mengembalikan error. Untuk terus menggunakan mode cepat, migrasikan ke Claude Opus 5.5. Lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8).
 

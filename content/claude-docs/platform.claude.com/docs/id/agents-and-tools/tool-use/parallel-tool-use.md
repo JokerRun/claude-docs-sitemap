@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 528bd32f6a8c780acaa63245945b88d39e8b31fbfce1efe7aa7de7aba15f7a47
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 42a2a3da868523e1630cc5680bb15b527fff7fbbf460d81f0870c8d76024d18c
 ---
 
 ---
@@ -1647,6 +1647,6 @@ Penggunaan alat paralel tersedia atau dalam versi beta, tergantung pada API.
 
 * Ketersediaan: Selalu aktif
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud               |
+| ------ | ---------------------------- |
+| Beta   | Semua platform yang didukung |

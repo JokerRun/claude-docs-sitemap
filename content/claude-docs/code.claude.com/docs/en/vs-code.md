@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/vs-code
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: a1362393afcf2453ef7faf77c90c51d9e8326f95e88071e74d9a6d29bdb0dc59
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 220bbe72b9c37145ad3596ac4be11a2a761e730821aebb21dc1a5a3dcb2c01fa
 ---
 
 > ## Documentation Index
@@ -226,6 +226,8 @@ Use @-mentions to give Claude context about specific files or folders. When you 
 Explain the logic in @auth (fuzzy matches auth.js, AuthService.ts, etc.)
 What's in @src/components/ (include a trailing slash for folders)
 ```
+
+To @-mention files or folders from the Explorer, right-click them and select **Claude Code: Add to Chat**. Requires Claude Code v2.1.327 or later.
 
 ### Read specific pages of a PDF
 

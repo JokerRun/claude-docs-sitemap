@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/goal
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 9f76fc8fc67771b934c70401dbb423ee25f2e52c8aa762871f9c7b0a81bd8739
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: dbf77b3a29ea1ea786f5ba35b031274dc4671cd7f264f0f5a5b2fbf0cf1ed78b
 ---
 
 > ## Documentation Index
@@ -29,7 +29,7 @@ Three approaches keep the current session running between prompts. Pick based on
 | Approach | Next turn starts when | Stops when |
 | :- | :- | :- |
 | `/goal` | The previous turn finishes, or, in an interactive session, an [idle check-in](#background-work-defers-evaluation) or an [automatic retry](#other-errors-retry-or-pause-the-goal) comes due | A model confirms the condition is met or judges it impossible, or a turn fails on [an error you have to fix](#errors-you-have-to-fix-clear-the-goal), or you run [`/goal clear`](#clear-a-goal) |
-| [`/loop`](https://code.claude.com/docs/en/scheduled-tasks#run-a-prompt-repeatedly-with-%2Floop) | A time interval elapses | You stop it, or Claude decides the work is done |
+| [`/loop`](https://code.claude.com/docs/en/scheduled-tasks#run-a-prompt-repeatedly-with-%2Floop) | A time interval elapses | You stop it, or [the loop ends on its own](https://code.claude.com/docs/en/scheduled-tasks.md#stop-a-loop) |
 | [Stop hook](https://code.claude.com/docs/en/hooks-guide.md#prompt-based-hooks) | The previous turn finishes | Your own script or prompt decides |
 
 `/goal` and a Stop hook both fire after every turn. `/goal` is a session-scoped shortcut: you type a condition and it's active for the current session only. A Stop hook lives in your settings file, applies to every session in its scope, and can run a script for deterministic checks or a prompt for model-evaluated ones.

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 027537644226c1592215c992c6091cc8bd333768c1e222c5ef036f0db126dd8b
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 5869e37fca1da097cb678b0c7471048479643367a6ed04c854dd4e72ec80301e
 ---
 
 > ## Documentation Index
@@ -285,7 +285,7 @@ When you run channels in non-interactive mode with `-p`, tools that need termina
 
 ## Security
 
-Every approved channel plugin maintains a sender allowlist: only IDs you've added can push messages, and everyone else is silently dropped.
+The Telegram, Discord, and iMessage channel plugins check direct messages against a sender allowlist. Other people's direct messages reach your session only after you add those people to the list.
 
 Telegram and Discord bootstrap the list by pairing:
 

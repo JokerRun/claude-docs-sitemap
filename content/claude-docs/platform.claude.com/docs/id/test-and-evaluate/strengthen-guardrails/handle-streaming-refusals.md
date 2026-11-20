@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 71306e047d495fcef4e2597ce516bb6a93c92ea84280572f899a9f54648b4fe7
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 30111a39c7efef68428ce8d97d9ff124f69e9436ce2123b7d9420fef3f9b33e3
 ---
 
 ---
@@ -35,6 +35,7 @@ featureMetadata:
     Amazon Bedrock: stable
     Amazon Bedrock (bedrock-runtime): stable
     Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
     Claude Models on Google Cloud (Google managed): stable
     Microsoft Foundry: stable
 ---
@@ -390,9 +391,9 @@ Penolakan streaming tersedia atau dalam versi beta, tergantung pada API.
 * Ketersediaan: Selalu aktif
 * Penggunaan: Stream berakhir dengan `stop_reason` `"refusal"`, dan `stop_details` (`category` dan `explanation`) tiba pada event `message_delta`.
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status   | Platform cloud               |
+| -------- | ---------------------------- |
+| Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

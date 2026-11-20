@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/interface
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: a7f910d0099fc1b2038a46d5dc689f8743fb27d1184d5b4eb32844a3da324b14
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 5203311695590ed2a1ee08b0eba3b73e7b0c47ccb411106942748b7b15260a05
 ---
 
 > ## Documentation Index
@@ -614,8 +614,8 @@ The [interface gallery](https://code.claude.com/docs/en/plugins/mods/gallery.md)
 
 | Element | What it draws | Where |
 | :- | :- | :- |
-| `Box` | A flex container that takes layout props such as `flexDirection`, [`borderStyle`](https://code.claude.com/docs/en/plugins/mods/reference#box-border-styles), and `width`. Spacing props such as `columnGap` and `padding` take a number or a [step name](https://code.claude.com/docs/en/plugins/mods/reference.md#box-spacing-steps) from `'xs'` to `'xl'`. | Everywhere |
-| `Text` | Styled text. Takes `color`, `bold`, `dimColor`, `italic`, `wrap`, and others such as [`weight`](https://code.claude.com/docs/en/plugins/mods/reference#text-typography). A `color` is a theme key or a color such as `'red'`. A `wrap` is `'wrap'`, `'truncate'`, `'truncate-start'`, `'truncate-middle'`, or `'truncate-end'`. | Everywhere |
+| `Box` | A flex container that takes layout props such as `flexDirection`, [`borderStyle`](https://code.claude.com/docs/en/plugins/mods/reference#box-border-styles), `width`, and `overflowX`. Spacing props such as `columnGap` and `padding` take a number or a [step name](https://code.claude.com/docs/en/plugins/mods/reference.md#box-spacing-steps) from `'xs'` to `'xl'`. `overflowX` requires Claude Code v2.1.326 or later. | Everywhere |
+| `Text` | Styled text. Takes `color`, `bold`, `dimColor`, `italic`, `wrap`, `maxLines`, and others such as [`weight`](https://code.claude.com/docs/en/plugins/mods/reference#text-typography). A `color` is a theme key or a color such as `'red'`. A `wrap` is a value such as `'wrap'`, `'truncate'`, `'truncate-start'`, `'truncate-middle'`, `'truncate-end'`, or `'clip'`. `maxLines` and `'clip'` require Claude Code v2.1.326 or later. | Everywhere |
 | `Button` | A control that calls `onPress` | Everywhere |
 | `Link`, `Code`, `Markdown` | A link with `href` and an optional `label`, a code block, and text formatted the way Claude's replies are. `Markdown` takes its content in a `text` prop, not in `children`, and needs a `key` when you pass `onLinkPress`. | Everywhere |
 | `Input`, `Select` | A text field and a dropdown | Terminal, Desktop, VS Code |

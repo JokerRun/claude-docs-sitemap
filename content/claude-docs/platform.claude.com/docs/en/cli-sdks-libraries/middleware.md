@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/middleware
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 7d73e752b9db00d1780457f46abf47521bd3f6fc4a795418d6a881ef6415ff12
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: d95b68e62e1b7f97892bde40814e4d2e40f12703a351ce1771d835ebc8b7ec99
 ---
 
 ---
@@ -238,6 +238,6 @@ SDK middleware is available or in beta, depending on the API.
 * Availability: Available
 * Usage: Runs on your SDK client’s calls to the Managed Agents API. It does not see the model calls the agent makes inside its loop.
 
-| Status | Cloud platforms                                                                                                    |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
+| Status | Cloud platforms         |
+| ------ | ----------------------- |
+| Beta   | All supported platforms |

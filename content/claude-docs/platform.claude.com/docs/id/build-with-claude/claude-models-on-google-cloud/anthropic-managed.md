@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: eeffbac8b983c8711e11e844a0dc17ae812a0be53a0566792ce1a8cafbfe78b9
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: a2837eda8d559dec751637089b65880e319c76084e94cf5b045385831b060915
 ---
 
 ---
@@ -184,8 +184,8 @@ Instal paket yang menyediakan klien tersebut:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.10.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.10.0")
+        implementation("com.anthropic:anthropic-java:3.11.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.11.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Instal paket yang menyediakan klien tersebut:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.10.0</version>
+            <version>3.11.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.10.0</version>
+            <version>3.11.0</version>
         </dependency>
         ```
       </Tab>
@@ -420,7 +420,9 @@ Claude Models on Google Cloud (Anthropic managed) menggunakan ID model yang sama
 | Claude Fable 5.2                                                                                      | `claude-fable-5-2`           |
 | Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-2`          |
 | Claude Fable 5.1                                                                                      | `claude-fable-5-1`           |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-1`          |
 | Claude Fable 5                                                                                        | `claude-fable-5`             |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))             | `claude-mythos-5`            |
 | Claude Opus 5.5                                                                                       | `claude-opus-5-5`            |
 | Claude Opus 5                                                                                         | `claude-opus-5`              |
 | Claude Opus 4.8                                                                                       | `claude-opus-4-8`            |
@@ -570,6 +572,7 @@ Untuk memeriksa model mana yang mendukung suatu fitur, lihat bagian **Ketersedia
   * [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) (Beta)
 * [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode)
 * [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
+* [Penggunaan alat paksa](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)
 * [Konektor MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector) (Beta)
   * [Helper MCP sisi klien](https://platform.claude.com/docs/id/agents-and-tools/mcp-connector#client-side-mcp-helpers) (Beta)
 * [Alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool)
@@ -580,6 +583,7 @@ Untuk memeriksa model mana yang mendukung suatu fitur, lihat bagian **Ketersedia
 * [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages)
   * [Perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) (Beta)
   * [Pesan sistem lingkup giliran](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (Beta)
+* [Dukungan multibahasa](https://platform.claude.com/docs/id/build-with-claude/multilingual-support)
 * [Compaction sesuai permintaan](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand) (Beta)
   * [Helper compaction tool runner](https://platform.claude.com/docs/id/build-with-claude/compaction-on-demand#compact-in-a-loop) (Beta)
 * [Penggunaan alat paralel](https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use)
@@ -590,8 +594,10 @@ Untuk memeriksa model mana yang mendukung suatu fitur, lihat bagian **Ketersedia
   * [Durasi 5 menit (default)](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#how-prompt-caching-works)
   * [Caching otomatis](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#automatic-caching)
   * [Diagnostik cache](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics)
+  * [Breakpoint cache eksplisit](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#explicit-cache-breakpoints)
 * [Middleware SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware)
 * [Hasil pencarian](https://platform.claude.com/docs/id/build-with-claude/search-results)
+* [Penolakan streaming](https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals)
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
   * [Penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use)
   * [Helper output terstruktur bertipe](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#usage)
@@ -606,6 +612,7 @@ Untuk memeriksa model mana yang mendukung suatu fitur, lihat bagian **Ketersedia
 * [Tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) (Beta)
 * [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)
 * [Vision (gambar)](https://platform.claude.com/docs/id/build-with-claude/vision)
+* [Pembatasan domain web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions)
 * [Alat web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool)
 * [Alat pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)
 
@@ -627,7 +634,6 @@ Untuk memeriksa model mana yang mendukung suatu fitur, lihat bagian **Ketersedia
 * [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) (Beta)
 * [Anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) (Beta)
 * [Vault](https://platform.claude.com/docs/id/managed-agents/vaults) (Beta)
-* [Pembatasan domain web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions) (Beta)
 
 Beberapa [fitur Messages API](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#messages-api-features), seperti Files API dan konektor MCP, juga berfungsi dengan Claude Managed Agents. Untuk detailnya, lihat bagian **Ketersediaan** di halaman fitur tersebut.
 

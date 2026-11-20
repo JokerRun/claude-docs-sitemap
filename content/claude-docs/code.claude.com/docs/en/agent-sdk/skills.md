@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/skills
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 0e24f8045898dfc7b0df4ac82be25518d2670a0a8122036d91edbd6579a89b3f
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 2f354b9ef0092b59ee87feb47048d185030bfbc566e323d84643dc68dc061cbe
 ---
 
 > ## Documentation Index
@@ -36,7 +36,7 @@ Unlike subagents, which you can define in the [`agents` option](https://code.cla
 
 ## Use skills with the Agent SDK
 
-Set the `skills` option on `query()` to control which skills Claude can invoke in the session. When omitted, discovered skills are enabled and the Skill tool is available, matching CLI behavior. Pass `"all"` to let Claude invoke every discovered skill, a list of skill names to allow only those, or `[]` to let Claude invoke none.
+Set the `skills` option on `query()` to control which skills Claude can invoke in the main conversation. When omitted, discovered skills are enabled and the Skill tool is available, matching CLI behavior. Pass `"all"` to let Claude invoke every discovered skill, a list of skill names to allow only those, or `[]` to let Claude invoke none.
 
 For example, to let Claude invoke only two named skills:
 
@@ -50,7 +50,7 @@ const options = { skills: ["pdf", "docx"] };
 
 ### Set up skills in a session
 
-When you set `skills`, the SDK adds the Skill tool to `allowedTools` automatically. If you also pass an explicit `tools` list, include `"Skill"` in that list so Claude can invoke skills.
+When you set `skills`, the SDK adds the skills you enable to `allowedTools` automatically. If you also pass an explicit `tools` list, include `"Skill"` in that list so Claude can invoke skills.
 
 Once configured, Claude automatically discovers skills from the filesystem and invokes them when relevant to the user's request.
 
@@ -112,7 +112,7 @@ To let Claude invoke only specific skills, pass their names in the `skills` list
 
 The list takes exact skill names only. If an entry can't work as an exact name, `query()` rejects the list before the session starts. See [Invalid skill name error](#invalid-skill-name-error) for the name rules and the error each SDK raises.
 
-The model doesn't see unlisted skills and the Skill tool rejects them, while their files remain on disk and stay reachable through Read and Bash. Restricting the list doesn't restrict [dispatch by name](#dispatch-commands-by-name).
+The model doesn't see unlisted skills and the Skill tool rejects them, while their files remain on disk and stay reachable through Read and Bash. Restricting the list doesn't restrict subagents or [dispatch by name](#dispatch-commands-by-name).
 
 To let Claude invoke every discovered skill, pass `skills: "all"` rather than a wildcard.
 

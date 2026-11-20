@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/manifest-reference
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 2cd1435b248ca3e037b0b62b2d4e6a720791829959483d6940c7c4e3596314ce
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 881277b37c7b02ec0c5212ee0d1a4498de38c52a3e83b9fc2f0853ed16a76504
 ---
 
 > ## Documentation Index
@@ -149,6 +149,7 @@ For component keys such as `commands` and `hooks`, [Component path forms](#compo
 | [`defaultEnabled`](#defaultenabled) | Boolean | Whether the plugin starts enabled when the user hasn't set it. Defaults to `true` |
 | `engines` | Object | The Claude Code versions that the plugin works on, as a [semver range](https://github.com/npm/node-semver#ranges) under the `claude-code` key, such as `"engines": { "claude-code": ">=2.1.400" }`. Requires Claude Code v2.1.323 or later. To keep the plugin working on v2.0.15 through v2.1.75, omit `engines`. Those versions reject the manifest with an `Unrecognized key` error when it has the field |
 | [`dependencies`](#dependencies) | Array of strings or objects | Plugins that must be enabled for this one to work |
+| `network` | Object | The hosts your plugin reaches, such as `"network": { "hosts": ["api.example.com"] }`, in [`sandbox.network.allowedDomains`](https://code.claude.com/docs/en/settings-reference#sandbox-network-alloweddomains) syntax. `claude plugin validate` lists them. The field doesn't allow or block any host. Requires Claude Code v2.1.328 or later |
 | [`userConfig`](#user-configuration) | Object | Values Claude Code prompts the user for when the plugin is enabled |
 | `types` | Path | A `.d.ts` file that declares the `$.state` values and `$` nouns of a [mod](https://code.claude.com/docs/en/plugins/mods/reference.md#files) |
 | [`channels`](#channels) | Array of objects | Message channels the plugin provides, each bound to one of its MCP servers |

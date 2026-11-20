@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: f18032a8b531055fe016ed86e57d5189edfb3385f9d0bf7f2f4bf96e5aad75d2
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 56c863e591692047ce92ded8abff73ec3a78d86a2f98b2e5f714b0ae538750ea
 ---
 
 > ## Documentation Index
@@ -129,7 +129,7 @@ To change your answer for later sessions, run `/chrome`.
 
 ### Manage site permissions
 
-Site-level permissions are inherited from the Chrome extension. Manage permissions in the Chrome extension settings to control which sites Claude can browse, click, and type on. In [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode), when the auto mode classifier itself approves a browser call to a site, the extension skips its own per-site check for that call, unless your permission rules deny any site to Claude in Chrome.
+To let Claude act on a site, approve it when Claude Code asks. In [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode), when the classifier itself approves a browser call to a site, the extension can skip its own per-site check for that call, unless your permission rules deny any site to Claude in Chrome.
 
 ### Permission prompts in VS Code sessions
 
@@ -302,7 +302,7 @@ Claude Code skips the setting because those files are stored in the project dire
 You can keep working as you are. If you want browser tools, or want the warning gone, do one of these:
 
 * **To get browser tools now**: exit and start again with `claude --chrome` in your shell.
-* **To get browser tools in later sessions**: run `/chrome` at the Claude Code prompt and select [**Enabled by default**](#enable-chrome-by-default). This applies to sessions you start afterward, not the one that's running.
+* **To get browser tools in later sessions**: run `/chrome` at the Claude Code prompt and [turn Chrome on by default](#enable-chrome-by-default).
 * **To stop the warning without browser tools**: remove the `CLAUDE_CODE_ENABLE_CFC` line from the project's settings file.
 
 ### Browser not responding

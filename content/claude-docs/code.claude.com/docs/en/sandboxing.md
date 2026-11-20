@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sandboxing
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 2df1b27e787a5c7919c328a565ee08e5cb34a706d0b89e1390f70c39a915e447
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 23b9ba15ebad247fa2322225307e688eb23e118406296a6d6d6beee51fed6798
 ---
 
 > ## Documentation Index
@@ -150,7 +150,7 @@ The dependency check runs at startup, so restart Claude Code after installing pa
 
 > [accordion] WSL2 notes
 >
-> Check your WSL version with `wsl -l -v` from PowerShell. If you see `Sandboxing requires WSL2`, your distribution is running WSL1. Upgrade it to WSL2 or run Claude Code without sandboxing.
+> Check your WSL version with `wsl -l -v` from PowerShell. If you see `Sandboxing needs WSL2` or `Sandboxing requires WSL2`, your distribution is running WSL1. Upgrade it to WSL2 or run Claude Code without sandboxing.
 >
 > On WSL2, WSL hands a launch of a Windows binary such as `cmd.exe`, `powershell.exe`, or anything under `/mnt/c/` to the Windows host over a Unix socket, so whether a sandboxed command can launch one follows the sandbox's [Unix-socket settings](https://code.claude.com/docs/en/settings-reference.md#sandbox-network-allowunixsockets): the optional seccomp filter has to be installed to block the socket in the first place. To allow these launches, set `allowAllUnixSockets`, which opens every Unix socket to sandboxed commands.
 
@@ -240,6 +240,8 @@ These rules and settings change who approves the retry:
 * **A matching allow rule**: if an allow rule such as `Bash(curl *)` matches the command, it also approves the retry, so the command runs outside the sandbox with no prompt
 * **An ask rule for the parameter**: add an [ask rule](https://code.claude.com/docs/en/permissions.md#match-by-input-parameter) for `Bash(dangerouslyDisableSandbox:true)` to be prompted on Bash retries. You get the prompt in auto mode and `bypassPermissions` mode too, and the rule takes precedence over a matching allow rule
 * **[`permissions.blockReadsOutsideWorkingDirectories`](https://code.claude.com/docs/en/settings-reference#permissions-blockreadsoutsideworkingdirectories)**: [Actions no mode auto-approves](https://code.claude.com/docs/en/permission-modes.md#actions-no-mode-auto-approves) covers the retries that prompt while it's on
+
+If you use Code Mode, retries in auto mode work differently. See [Limit shell commands with the sandbox](https://code.claude.com/docs/en/code-mode.md#limit-shell-commands-with-the-sandbox).
 
 While commands are refused with a [`Sandbox is required` message](#commands-refused-with-sandbox-is-required), Claude Code ignores the `dangerouslyDisableSandbox` parameter and refuses the retry too.
 
@@ -453,7 +455,7 @@ When you mask a credential, Claude Code shows sandboxed commands a per-session p
 Masking requires the following:
 
 * **TLS termination**: the proxy substitutes the real value inside request contents, so it has to see them. Set [`network.tlsTerminate`](https://code.claude.com/docs/en/settings-reference#sandbox-network-tlsterminate) so the proxy terminates TLS itself. Without it, masking fails without exposing anything: the command still sees only the sentinel, but the sentinel reaches the server unchanged and authentication fails. To check for this misconfiguration, run `claude doctor` in your terminal and look for the `TLS termination is unavailable` warning.
-* **An allowed destination**: each `mask` entry can list `injectHosts`, the hosts the real value is allowed to reach. The proxy injects only on connections the [domain allowlist](#network-isolation) admits, so each `injectHosts` host must also be reachable through `network.allowedDomains`. For a `mask` entry with no `injectHosts`, the proxy substitutes the real value on requests to every host in `network.allowedDomains`.
+* **An allowed destination**: each `mask` entry can list `injectHosts`, the hosts the real value is allowed to reach. The proxy injects only on connections the [domain allowlist](#network-isolation) admits, so each `injectHosts` host must also be reachable through `network.allowedDomains`. For most `mask` entries with no `injectHosts`, the proxy substitutes the real value on requests to every host in `network.allowedDomains`.
 * **A trusted settings scope**: masking authorizes the proxy to send your real credential somewhere, so Claude Code honors `mask` entries, `network.tlsTerminate`, [`credentials.allowPlaintextInject`](https://code.claude.com/docs/en/settings-reference#sandbox-credentials-allowplaintextinject), `awsPairs`, and `sigv4` only from user settings, managed settings, and the `--settings` flag. It ignores them in a repository's `.claude/settings.json` or `.claude/settings.local.json`. When your administrator delivers `mask` entries, `network.tlsTerminate`, or `credentials.allowPlaintextInject` through server-managed settings, they count as [settings that need approval](https://code.claude.com/docs/en/server-managed-settings.md#security-approval-dialogs).
 
 #### Mask environment variables
@@ -491,7 +493,7 @@ The proxy matches each `injectHosts` entry against the connection's bare destina
 
 #### Re-sign AWS requests
 
-AWS requests carry SigV4 signatures over the request contents, so mask `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` together. The proxy detects a SigV4 request by the access key's [sentinel](#mask-credentials) and re-signs the request with the real values, which requires Claude Code v2.1.221 or later. If you mask only the secret, requests are signed with a placeholder the proxy can't detect, so they fail at AWS.
+AWS requests carry SigV4 signatures over the request contents, so mask `AWS_ACCESS_KEY_ID` and `AWS_SECRET_ACCESS_KEY` together. The proxy detects a SigV4 request by the access key's [sentinel](#mask-credentials). Re-signing a request with the real values requires Claude Code v2.1.221 or later. If you mask only the secret, requests are signed with a placeholder the proxy can't detect, so they fail at AWS.
 
 Claude Code links the conventional `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_SESSION_TOKEN` variables into one credential automatically when you mask their whole values. If your AWS credential is in variables with other names, group them with [`credentials.awsPairs`](https://code.claude.com/docs/en/settings-reference#sandbox-credentials-awspairs), which requires Claude Code v2.1.224 or later.
 
@@ -1070,9 +1072,9 @@ Excluded commands and commands you type yourself keep running, and Claude can't 
 
 In a Linux session with `CLAUDE_CODE_SUBPROCESS_ENV_SCRUB` set, every command runs sandboxed, so excluded commands and commands you type are refused too.
 
-### `/sandbox` fails with `Sandbox settings are overridden by a higher-priority configuration`
+### `/sandbox` fails with `Sandbox settings can't be changed here`
 
-`/sandbox` prints `Error: Sandbox settings are overridden by a higher-priority configuration and cannot be changed locally.` instead of opening its panel when a higher [settings level](https://code.claude.com/docs/en/settings.md#settings-precedence) sets `sandbox.enabled`, `sandbox.autoAllowBashIfSandboxed`, or `sandbox.allowUnsandboxedCommands`. The panel saves your choices to `.claude/settings.local.json`, and a value saved there can't override those levels.
+When `sandbox.enabled`, `sandbox.autoAllowBashIfSandboxed`, or `sandbox.allowUnsandboxedCommands` is set above the local [settings level](https://code.claude.com/docs/en/settings.md#settings-precedence), `/sandbox` prints `Sandbox settings can't be changed here. Higher-priority settings override them.` and its panel stays closed. The panel saves your choices to `.claude/settings.local.json`, and a value saved there can't override higher levels.
 
 Managed settings and `--settings` rank above local settings. To see which of them this session loaded, run `/status` and read the `Setting sources` line:
 
@@ -1084,7 +1086,7 @@ Managed settings and `--settings` rank above local settings. To see which of the
 This line means `/sandbox` couldn't save the choice you made in its panel to your project's `.claude/settings.local.json`:
 
 ```text theme={null}
-✗ Sandbox settings not changed: /home/you/project/.claude/settings.local.json couldn't be updated (EACCES). Start Claude Code in a project folder you can write to.
+✗ Sandbox settings not changed: /home/you/project/.claude/settings.local.json couldn't be updated (EACCES). Start Claude Code in a project directory you can write to.
 ```
 
 If the reason in parentheses is `EACCES`, `EPERM`, or `EROFS`, start Claude Code in a project folder you can write to, then run `/sandbox` again in that session. If the reason begins with `Invalid JSON syntax in settings file`, correct the JSON in your project's `.claude/settings.local.json`, then run `/sandbox` again.

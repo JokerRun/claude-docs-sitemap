@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 268b69029801ceb67654c26931f85bfdf7e50348ae159de450eff98a4af035e7
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 313735d80501b736c8f5fe05e6b8217cad2ef2e7a83c1ef950e071ffa7fbfe28
 ---
 
 ---
@@ -184,8 +184,8 @@ Install the package that provides the client:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.10.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.10.0")
+        implementation("com.anthropic:anthropic-java:3.11.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.11.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Install the package that provides the client:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.10.0</version>
+            <version>3.11.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.10.0</version>
+            <version>3.11.0</version>
         </dependency>
         ```
       </Tab>
@@ -420,7 +420,9 @@ Claude Models on Google Cloud (Anthropic managed) uses the same model IDs as the
 | Claude Fable 5.2                                                                                      | `claude-fable-5-2`           |
 | Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-2`          |
 | Claude Fable 5.1                                                                                      | `claude-fable-5-1`           |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-1`          |
 | Claude Fable 5                                                                                        | `claude-fable-5`             |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))             | `claude-mythos-5`            |
 | Claude Opus 5.5                                                                                       | `claude-opus-5-5`            |
 | Claude Opus 5                                                                                         | `claude-opus-5`              |
 | Claude Opus 4.8                                                                                       | `claude-opus-4-8`            |
@@ -570,6 +572,7 @@ The [Messages API](https://platform.claude.com/docs/en/api/messages/create), the
   * [Per-message effort](https://platform.claude.com/docs/en/build-with-claude/effort-per-message) (Beta)
 * [Fast mode](https://platform.claude.com/docs/en/build-with-claude/fast-mode)
 * [Files API](https://platform.claude.com/docs/en/build-with-claude/files)
+* [Forced tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#forcing-tool-use)
 * [MCP connector](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector) (Beta)
   * [Client-side MCP helpers](https://platform.claude.com/docs/en/agents-and-tools/mcp-connector#client-side-mcp-helpers) (Beta)
 * [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool)
@@ -580,6 +583,7 @@ The [Messages API](https://platform.claude.com/docs/en/api/messages/create), the
 * [Mid-conversation system messages](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages)
   * [Mid-conversation tool changes](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes) (Beta)
   * [Turn-scoped system messages](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages#turn-scoped-system-messages) (Beta)
+* [Multilingual support](https://platform.claude.com/docs/en/build-with-claude/multilingual-support)
 * [On-demand compaction](https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand) (Beta)
   * [Tool runner compaction helper](https://platform.claude.com/docs/en/build-with-claude/compaction-on-demand#compact-in-a-loop) (Beta)
 * [Parallel tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use)
@@ -590,8 +594,10 @@ The [Messages API](https://platform.claude.com/docs/en/api/messages/create), the
   * [5-minute duration (default)](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#how-prompt-caching-works)
   * [Automatic caching](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#automatic-caching)
   * [Cache diagnostics](https://platform.claude.com/docs/en/build-with-claude/cache-diagnostics)
+  * [Explicit cache breakpoints](https://platform.claude.com/docs/en/build-with-claude/prompt-caching#explicit-cache-breakpoints)
 * [SDK middleware](https://platform.claude.com/docs/en/cli-sdks-libraries/middleware)
 * [Search results](https://platform.claude.com/docs/en/build-with-claude/search-results)
+* [Streaming refusals](https://platform.claude.com/docs/en/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals)
 * [Structured outputs](https://platform.claude.com/docs/en/build-with-claude/structured-outputs)
   * [Strict tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/strict-tool-use)
   * [Typed structured output helpers](https://platform.claude.com/docs/en/build-with-claude/structured-outputs#usage)
@@ -606,6 +612,7 @@ The [Messages API](https://platform.claude.com/docs/en/api/messages/create), the
 * [Tool runner](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner) (Beta)
 * [Tool search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-search-tool)
 * [Vision (images)](https://platform.claude.com/docs/en/build-with-claude/vision)
+* [Web domain restrictions](https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions)
 * [Web fetch tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-fetch-tool)
 * [Web search tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/web-search-tool)
 
@@ -627,7 +634,6 @@ The [Messages API](https://platform.claude.com/docs/en/api/messages/create), the
 * [Self-hosted sandboxes](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes) (Beta)
 * [Session budgets](https://platform.claude.com/docs/en/managed-agents/budgets) (Beta)
 * [Vaults](https://platform.claude.com/docs/en/managed-agents/vaults) (Beta)
-* [Web domain restrictions](https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions) (Beta)
 
 Some [Messages API features](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#messages-api-features), such as the Files API and the MCP connector, also work with Claude Managed Agents. For details, see the **Availability** section of the feature’s page.
 

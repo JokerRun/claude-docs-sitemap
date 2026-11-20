@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/tools-web-restrictions
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: ae5f9c7b9a326c442866d93655826eab611c1b64776ba1ee5c543364c1206bd7
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 6eabb04993daa8b4ff9ec61ce38a2ca71723b3fd921d59688c8de879dcae1158
 ---
 
 ---
@@ -37,7 +37,7 @@ featureMetadata:
   supportedPlatforms:
     Claude API: stable
     Claude Platform on AWS: beta
-    Claude Models on Google Cloud (Anthropic managed): beta
+    Claude Models on Google Cloud (Anthropic managed): stable
 ---
 
 **API support**: Usage differs by product.
@@ -567,9 +567,9 @@ Web domain restrictions are available or in beta, depending on the API.
 * Availability: Available
 * Usage: Set `allowed_domains` or `blocked_domains` on the `web_search` or `web_fetch` tool in the request.
 
-| Status    | Cloud platforms |
-| --------- | --------------- |
-| Available | Claude API      |
+| Status    | Cloud platforms                                                                                                                                                        |
+| --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Available | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 #### [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
 

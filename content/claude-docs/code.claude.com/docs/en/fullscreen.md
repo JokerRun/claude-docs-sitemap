@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fullscreen
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: fcca93fb4a7b13c5a1fe96cfbd3d55b33260873270ef6f2c61e10db2c51f01c2
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: d35a2ce0464cba98403410f28eb95cc369dabe17a8362f6a917d511213d8efd6
 ---
 
 > ## Documentation Index
@@ -27,7 +27,7 @@ The difference is most noticeable in terminal emulators where rendering throughp
 
 ## Enable fullscreen rendering
 
-Run `/tui fullscreen` inside any Claude Code conversation. The CLI saves the [`tui` setting](https://code.claude.com/docs/en/settings-reference#tui) and relaunches into fullscreen with your conversation intact, so you can switch mid-session without losing context. Run `/tui default` to switch back to the classic renderer, or `/tui` with no argument to print which renderer is active.
+Run `/tui fullscreen` inside any Claude Code conversation. The CLI saves the [`tui` setting](https://code.claude.com/docs/en/settings-reference#tui) and relaunches into fullscreen. Run `/tui default` to switch back to the classic renderer, or `/tui` with no argument to print which renderer is active.
 
 In [screen reader mode](https://code.claude.com/docs/en/accessibility.md), Claude Code always uses the classic renderer except in attached [background sessions](https://code.claude.com/docs/en/agent-view.md), which still render fullscreen. If you run `/tui fullscreen` in any other session, Claude Code prints an explanation instead of switching and doesn't change the saved `tui` setting.
 

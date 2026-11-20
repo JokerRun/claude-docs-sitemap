@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: c6d5c3044515d99d19c49dd45cf71e60e21fc95f8d2768c0604b233d73989ca7
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 5bd4ee199168d3aec69b7fbd99c5bf1e4dd2b759d187013bddd1bee44e79a5e3
 ---
 
 ---
@@ -238,6 +238,6 @@ Middleware SDK tersedia atau dalam versi beta, tergantung pada API.
 * Ketersediaan: Tersedia
 * Penggunaan: Berjalan pada panggilan klien SDK Anda ke Managed Agents API. Middleware ini tidak melihat panggilan model yang dilakukan agen di dalam loop-nya.
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud               |
+| ------ | ---------------------------- |
+| Beta   | Semua platform yang didukung |

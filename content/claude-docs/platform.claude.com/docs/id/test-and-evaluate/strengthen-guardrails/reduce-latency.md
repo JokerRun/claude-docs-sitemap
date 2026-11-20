@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-latency
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 68775fa3c3b28fdfe12f6e9f897860bfab4eeed4c6abb8e1d2da71863b06160e
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 7c136e17f93bc5ee2eb447e3478db24158ca1b3a2ed010a4ccda28396a5019e2
 ---
 
 ---
@@ -212,7 +212,7 @@ Minimalkan jumlah token baik dalam prompt input Anda maupun output yang diharapk
 Berikut beberapa tips untuk membantu Anda mengoptimalkan prompt dan output Anda:
 
 * **Jelas tetapi ringkas:** Usahakan untuk menyampaikan maksud Anda dengan jelas dan ringkas dalam prompt. Hindari detail yang tidak perlu atau informasi yang berulang, sambil tetap mengingat bahwa [Claude tidak memiliki konteks](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct) tentang kasus penggunaan Anda dan mungkin tidak membuat kesimpulan yang dimaksud jika instruksinya tidak jelas.
-* **Minta respons yang lebih pendek:** Minta Claude secara langsung untuk bersikap ringkas. Jika Claude menghasilkan output dengan panjang yang tidak diinginkan, minta Claude untuk [mengurangi verbositasnya](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct).
+* **Minta respons yang lebih pendek:** Minta Claude secara langsung untuk bersikap ringkas. Jika Claude menghasilkan output dengan panjang yang tidak diinginkan, minta Claude untuk [mengurangi verbositasnya](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#communication-style-and-verbosity).
   <Tip>
     Karena cara LLM menghitung 
 
@@ -244,11 +244,19 @@ Kunjungi [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude
 ## Langkah selanjutnya
 
 <CardGroup cols={2}>
+  <Card title="Claude Cookbook: optimasi latensi pada Claude API" icon="book" href="https://platform.claude.com/cookbook/latency-optimization-latency-optimization">
+    Ikuti notebook yang dapat dijalankan yang membangun eval latensi untuk agen contoh, menerapkan satu teknik dalam satu waktu, dan memeriksa bahwa kualitas output tetap berada di atas ambang batas.
+  </Card>
+
   <Card title="Mengurangi halusinasi" icon="shield" href="https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/reduce-hallucinations">
     Minimalkan halusinasi dalam output Claude dengan mengizinkan ketidakpastian, mendasarkan respons pada kutipan langsung, dan memverifikasi klaim dengan sitasi.
   </Card>
 
   <Card title="Streaming pesan" icon="bolt" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
     Lakukan streaming respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
+  </Card>
+
+  <Card title="Skill Claude API" icon="terminal" href="https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill">
+    Jalankan `/claude-api latency-optimize` di Claude Code untuk mengukur di mana aplikasi Anda menunggu Claude API, dan untuk menguji perubahan yang mempersingkat waktu tunggu tanpa menurunkan kualitas output.
   </Card>
 </CardGroup>

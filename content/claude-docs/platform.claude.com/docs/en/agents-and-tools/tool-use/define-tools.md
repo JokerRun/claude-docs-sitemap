@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: bc1d67f30f7e89b7470008d40486823218f77c888db34578fad99cc5e9e2ad4c
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 063c614ed5d8283394eb3f06287949a96f5ff300bc4ad43f393f05c5756dc7a5
 ---
 
 ---
@@ -969,6 +969,6 @@ Custom tools are available on every model.
 * Availability: Available
 * Usage: Declare them on the agent with `type` `"custom"`. Calls arrive as `agent.custom_tool_use` events, and you reply with `user.custom_tool_result` events.
 
-| Status    | Cloud platforms                                                                                                    |
-| --------- | ------------------------------------------------------------------------------------------------------------------ |
-| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
+| Status    | Cloud platforms                                                                                                                                                                                                                                                                |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |

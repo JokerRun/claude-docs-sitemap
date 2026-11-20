@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/events
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: a57a6c5d120c6320d60cc516932d9572744920992182a2636b229ef2043d4c67
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: b1a98246633f1352cfea4789628969e972a9fdb0b126114925ff98a69a589326
 ---
 
 > ## Documentation Index
@@ -94,7 +94,7 @@ on('tool.call', { tool: /^mcp__github__/ }, hook)
 
 `hook` runs once for a Bash, Edit, or Write call, and once for a call to a tool whose name starts with `mcp__github__`. A call to any other tool, such as Read, matches none of the three, so `hook` doesn't run for it.
 
-The event name can be a wildcard. `'classic.*'` matches every [settings hook event](#hook-the-settings-hook-events). `'*'` matches every event except the [telemetry events](https://code.claude.com/docs/en/plugins/mods/reference.md#telemetry), which take their own name and a `{ to: 'collector' }` filter.
+The event name can be a wildcard. `'classic.*'` matches every [settings hook event](#hook-the-settings-hook-events). `'*'` matches most events, but not the [telemetry events](https://code.claude.com/docs/en/plugins/mods/reference.md#telemetry), which take their own name and a `{ to: 'collector' }` filter.
 
 Register each event once per matcher. If you call `on` twice for `session.start` with no matcher, the module fails to load with `on("session.start") is registered twice without a matcher`. Put everything your mod does at session start in one hook.
 

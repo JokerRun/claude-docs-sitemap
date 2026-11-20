@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/feature-availability
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 6f3dc109860fb4c9966271dd34dc125b4f9cb756c7a6478f02957ac4879e70d7
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: cf69fad3a70dea9c865bcf59123970faef56745519c40b30383d8c9f4c230b38
 ---
 
 > ## Documentation Index
@@ -253,7 +253,7 @@ Organization-level controls and usage visibility.
 
 > [!NOTE]
 >
-> If you authenticate through an [LLM gateway](https://code.claude.com/docs/en/llm-gateway), feature availability matches the underlying provider the gateway forwards to, except for the features Claude Code itself turns off. Whenever `ANTHROPIC_BASE_URL` points at a host other than `api.anthropic.com`, Claude Code turns off features such as [Remote Control](https://code.claude.com/docs/en/remote-control.md#requirements) and [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md#platform-availability), whatever the gateway forwards. Some features, such as the [Advisor](https://code.claude.com/docs/en/advisor.md#requirements), work only if the gateway forwards requests intact.
+> If you authenticate through an [LLM gateway](https://code.claude.com/docs/en/llm-gateway), feature availability matches the underlying provider the gateway forwards to, except for the features Claude Code itself turns off. Whenever `ANTHROPIC_BASE_URL` points at a host other than `api.anthropic.com`, Claude Code turns off features such as [Remote Control](https://code.claude.com/docs/en/remote-control.md#requirements), whatever the gateway forwards. Some features, such as the [Advisor](https://code.claude.com/docs/en/advisor.md#requirements), work only if the gateway forwards requests intact.
 >
 > For how the requests Claude Code sends differ between an Amazon Bedrock- or Agent Platform-format gateway, an `ANTHROPIC_BASE_URL` gateway, and a Claude apps gateway sign-in, see [client behavior by connection method](https://code.claude.com/docs/en/llm-gateway-protocol.md#how-the-connection-method-changes-client-behavior).
 

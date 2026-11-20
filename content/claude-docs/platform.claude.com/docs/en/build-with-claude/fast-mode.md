@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 643e63108e43f813d72d8d7320254390166da8e73e3ac05cf291cb7ca26ee5f1
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 8df0dca1bc0b9e3cc467f094b67f91b1dda885a3124a5cd7a78e90a5eb2edf58
 ---
 
 ---
@@ -739,11 +739,11 @@ To access fast mode on Claude Opus 5, contact your account manager or [join the 
 * Availability: Available
 * Usage: Set `speed` on the agent’s model object, for example `{"id": "claude-opus-5-5", "speed": "fast"}`.
 
-| Status                 | Cloud platforms | Models                                                                          |
-| ---------------------- | --------------- | ------------------------------------------------------------------------------- |
-| Available              | Claude API      | [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview) |
-| Research preview       | Claude API      | [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/overview)     |
-| Deprecated<sup>1</sup> | Claude API      | [Claude Opus 4.8](https://platform.claude.com/docs/en/models/opus-4-8/overview) |
+| Status                 | Cloud platforms                                                                                                                                                        | Models                                                                          |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| Available              | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Claude Opus 5.5](https://platform.claude.com/docs/en/models/opus-5-5/overview) |
+| Research preview       | Claude API                                                                                                                                                             | [Claude Opus 5](https://platform.claude.com/docs/en/models/opus-5/overview)     |
+| Deprecated<sup>1</sup> | Claude API                                                                                                                                                             | [Claude Opus 4.8](https://platform.claude.com/docs/en/models/opus-4-8/overview) |
 
 1. Removal date: November 30, 2026. After removal, requests to `claude-opus-4-8` with `speed: "fast"` will return an error. To continue using fast mode, migrate to Claude Opus 5.5. See [Migrating to Claude Opus 5.5 from Claude Opus 4.8](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8).
 

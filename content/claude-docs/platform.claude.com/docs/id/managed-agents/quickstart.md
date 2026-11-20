@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: dc3f53789a064bdf9b225b3e0f572f542745f98359202a0a263eb07ce7be42fa
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 015697a049d3cc301d29775545229516cc664af128b8cfc9f3dc6c4ad4346168
 ---
 
 ---
@@ -90,7 +90,7 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
         Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.11.0
+        VERSION=2.12.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -159,7 +159,7 @@ Untuk menjalankan contoh CLI, instal CLI:
     Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
     ```bash
-    VERSION=2.11.0
+    VERSION=2.12.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -206,7 +206,7 @@ Untuk menjalankan contoh CLI, instal CLI:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.10.0")
+        implementation("com.anthropic:anthropic-java:3.11.0")
         ```
       </Tab>
 
@@ -215,7 +215,7 @@ Untuk menjalankan contoh CLI, instal CLI:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.10.0</version>
+            <version>3.11.0</version>
         </dependency>
         ```
       </Tab>

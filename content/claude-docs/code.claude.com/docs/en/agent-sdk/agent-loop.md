@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/agent-loop
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: ebb8b037cdd377286ac84a9722a16ae03a3034a168461eb3451587f67c19bdc0
+fetched_at: 2026-11-20T02:13:34.557439Z
+sha256: 55a463c38057a4f24a8c6ffe8eb4984a5285d0e3eda21f982a81cc193bb4ad5b
 ---
 
 > ## Documentation Index
@@ -176,11 +176,11 @@ Beyond built-in tools, you can:
 
 Claude determines which tools to call based on the task, but you control whether those calls are allowed to execute. Use these options to auto-approve tools, block tools, and set the permission mode:
 
-* **`allowed_tools` / `allowedTools`** auto-approves listed tools. A read-only agent with `["Read", "Glob", "Grep"]` in its allowed tools list runs those tools without prompting, apart from reads from [network paths](https://code.claude.com/docs/en/permissions.md#network-paths). Tools not listed are still available, and calls to them that need approval fall through to the permission mode and `canUseTool`.
+* **`allowed_tools` / `allowedTools`** auto-approves listed tools. An agent with `["Read", "Glob", "Grep"]` in its allowed tools list runs those tools without prompting, with exceptions such as reads from [network paths](https://code.claude.com/docs/en/permissions.md#network-paths). Tools not listed are still available, and calls to them that need approval fall through to the permission mode and `canUseTool`.
 * **`disallowed_tools` / `disallowedTools`** blocks listed tools, regardless of other settings. See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md) for the order that rules are checked before a tool runs.
 * **`permission_mode` / `permissionMode`** controls how much human oversight you want. The SDK evaluates the active mode together with your allow and deny rules in a fixed order, described in [How permissions are evaluated](https://code.claude.com/docs/en/agent-sdk/permissions.md#how-permissions-are-evaluated). See [Permission mode](#permission-mode) for available modes.
 
-You can also scope individual tools with rules like `"Bash(npm *)"` to allow only specific commands. See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md) for the full rule syntax.
+You can also scope individual tools with rules like `"Bash(npm *)"` to auto-approve specific commands. See [Permissions](https://code.claude.com/docs/en/agent-sdk/permissions.md) for the full rule syntax.
 
 When a tool is denied, Claude receives a rejection message as the tool result and typically attempts a different approach or reports that it couldn't proceed.
 
