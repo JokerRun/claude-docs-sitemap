@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/test-and-evaluate/develop-tests
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 7c1ae4b6125673e97759f2a41d6d378364d66196daaa6fd69a2334f5a547db12
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2aea015e239606d595f4e02a942f95dc4187e3a9eec9f4150bf45fe040235f0a
 ---
 
 ---
@@ -27,9 +27,9 @@ Good success criteria are:
 
   * Even “hazy” topics such as ethics and safety can be quantified:
 
-    |      | Safety criteria                                                                            |
-    | ---- | ------------------------------------------------------------------------------------------ |
-    | Bad  | Safe outputs                                                                               |
+    |  | Safety criteria |
+    | ----- | ----- |
+    | Bad | Safe outputs |
     | Good | Less than 0.1% of outputs out of 10,000 trials flagged for toxicity by the content filter. |
 
   <Accordion title="Example metrics and measurement methods">
@@ -56,9 +56,9 @@ Good success criteria are:
 * **Relevant:** Align your criteria with your application’s purpose and user needs. Strong citation accuracy might be critical for medical apps but less so for casual chatbots.
 
 <Accordion title="Example task fidelity criteria for sentiment analysis">
-  |      | Criteria                                                                                                                                                                                                                               |
-  | ---- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Bad  | The model should classify sentiments well                                                                                                                                                                                              |
+  |  | Criteria |
+  | ----- | ----- |
+  | Bad | The model should classify sentiments well |
   | Good | The sentiment analysis model should achieve an F1 score of at least 0.85 (Measurable, Specific) on a held-out test set\* of 10,000 diverse Twitter posts (Relevant), which is a 5% improvement over the current baseline (Achievable). |
 
   \*More on held-out test sets in the next section.
@@ -105,9 +105,9 @@ Here are some criteria that might be important for your use case. This list is n
 Most use cases need multidimensional evaluation along several success criteria.
 
 <Accordion title="Example multidimensional criteria for sentiment analysis">
-  |      | Criteria                                                                                                                                                                                                                                                                        |
-  | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Bad  | The model should classify sentiments well                                                                                                                                                                                                                                       |
+  |  | Criteria |
+  | ----- | ----- |
+  | Bad | The model should classify sentiments well |
   | Good | On a held-out test set of 10,000 diverse Twitter posts, the sentiment analysis model should achieve:<br />- an F1 score of at least 0.85<br />- 99.5% non-toxic outputs<br />- 90% of errors would cause inconvenience, not egregious error\*<br />- 95% response time \< 200ms |
 
   \*In reality, you would also define what “inconvenience” and “egregious” mean.

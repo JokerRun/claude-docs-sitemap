@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 4d6d4506c82e051c4bac9b8e72b94666fe5d49ad6bfa9ccd74d55f85e88e4a91
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: f28b10a9341775ba376fb0a328e19e48b0b65d5dc47830556a9763f30d26e8c3
 ---
 
 ---
@@ -2267,10 +2267,10 @@ Alat editor teks menggunakan struktur harga yang sama dengan alat lain yang digu
 
 Selain token dasar, token input tambahan berikut diperlukan untuk alat editor teks:
 
-| Alat                                                                                      | Token input tambahan |
-| ----------------------------------------------------------------------------------------- | -------------------- |
-| `text_editor_20250728` (Claude 4.7 dan model yang lebih baru serta Claude Mythos Preview) | 974 token            |
-| `text_editor_20250728` (Claude 4.6 dan model yang lebih lama)                             | 745 token            |
+| Alat | Token input tambahan |
+| ----- | ----- |
+| `text_editor_20250728` (Claude 4.7 dan model yang lebih baru serta Claude Mythos Preview) | 974 token |
+| `text_editor_20250728` (Claude 4.6 dan model yang lebih lama) | 745 token |
 
 Untuk informasi lebih rinci tentang harga alat, lihat [Harga penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing).
 
@@ -2283,11 +2283,11 @@ Anda dapat menggunakan alat editor teks bersama alat Claude lainnya. Saat mengga
 
 ## Log perubahan
 
-| Tanggal         | Versi                  | Perubahan                                                                                                                                                                                                                                                                                                               |
-| --------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 28 Juli 2025    | `text_editor_20250728` | Rilis alat editor teks yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter opsional `max_characters`. Selain itu, alat ini identik dengan `text_editor_20250429`.                                                                                                                               |
-| 29 April 2025   | `text_editor_20250429` | Rilis alat editor teks untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitekturnya yang berbasis `str_replace`.                                                                                                 |
-| 13 Maret 2025   | `text_editor_20250124` | Pengenalan dokumentasi alat editor teks mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan yang identik dengan versi sebelumnya.                                                                                                                                                         |
+| Tanggal | Versi | Perubahan |
+| ----- | ----- | ----- |
+| 28 Juli 2025 | `text_editor_20250728` | Rilis alat editor teks yang diperbarui yang memperbaiki beberapa masalah dan menambahkan parameter opsional `max_characters`. Selain itu, alat ini identik dengan `text_editor_20250429`. |
+| 29 April 2025 | `text_editor_20250429` | Rilis alat editor teks untuk Claude 4. Versi ini menghapus perintah `undo_edit` tetapi mempertahankan semua kemampuan lainnya. Nama alat telah diperbarui untuk mencerminkan arsitekturnya yang berbasis `str_replace`. |
+| 13 Maret 2025 | `text_editor_20250124` | Pengenalan dokumentasi alat editor teks mandiri. Versi ini dioptimalkan untuk Claude Sonnet 3.7 tetapi memiliki kemampuan yang identik dengan versi sebelumnya. |
 | 22 Oktober 2024 | `text_editor_20241022` | Rilis awal alat editor teks dengan Claude Sonnet 3.5 (sudah dipensiunkan; lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Menyediakan kemampuan untuk melihat, membuat, dan mengedit file melalui perintah `view`, `create`, `str_replace`, `insert`, dan `undo_edit`. |
 
 ## Langkah selanjutnya
@@ -2322,18 +2322,18 @@ Alat editor teks tersedia di semua model dan layak untuk retensi data nol dan ke
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
-| Detail | Alat sisi klien yang dijalankan di environment Anda.                                                                                                             | —     |
+| Detail | Alat sisi klien yang dijalankan di environment Anda. | — |
 
 Endpoint yang berlaku:
 

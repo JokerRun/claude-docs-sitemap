@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: a20c4bf869181ca55aa96f928f2919421791582531d9474f85815cb7e7e40176
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 3c6c05ec6bb2a8fad484affb66f1b9e09243839bfffddef8d7c26399e4692672
 ---
 
 ---
@@ -1834,15 +1834,15 @@ Tool runner is in beta on every model.
 
 * Availability: Available
 
-| Status | Cloud platforms         |
-| ------ | ----------------------- |
-| Beta   | All supported platforms |
+| Status | Cloud platforms |
+| ----- | ----- |
+| Beta | All supported platforms |
 
 #### [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
 
 * Availability: Available
 * Usage: The Python, TypeScript and Go SDKs have a session tool runner that runs your tools for a session’s custom tool calls. The session itself runs the agent loop.
 
-| Status | Cloud platforms                                                                                                    |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
+| Status | Cloud platforms |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |

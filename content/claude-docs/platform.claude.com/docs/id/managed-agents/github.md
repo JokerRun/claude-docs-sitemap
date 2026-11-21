@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/github
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 5aa44dea45382f10cdcb96f6f3c5b0d31ffea7eceebf69f84b6731c736b6f792
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4dce8050cec784fb757341e1890426a8cf26c3e3491e39cbdc1284487e8b98a5
 ---
 
 ---
@@ -467,13 +467,13 @@ Kemudian buat sesi yang memasang repositori GitHub. Dengan [lingkungan](https://
 
 Sumber daya `github_repository` menerima field berikut:
 
-| Field                                                                                     | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| ----------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type` (csharp, go: `Type`)                                                               | Wajib. Harus bernilai `"github_repository"`.                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `url` (csharp: `Url`; go: `URL`)                                                          | Wajib. URL HTTPS repositori dalam bentuk `https://github.com/<owner>/<repo>`, tanpa akhiran `.git`. Bentuk lain, termasuk URL SSH, akan ditolak dengan `invalid_request_error`.                                                                                                                                                                                                                                                                                  |
+| Field | Deskripsi |
+| ----- | ----- |
+| `type` (csharp, go: `Type`) | Wajib. Harus bernilai `"github_repository"`. |
+| `url` (csharp: `Url`; go: `URL`) | Wajib. URL HTTPS repositori dalam bentuk `https://github.com/<owner>/<repo>`, tanpa akhiran `.git`. Bentuk lain, termasuk URL SSH, akan ditolak dengan `invalid_request_error`. |
 | `authorization_token` (java, php: `authorizationToken`; csharp, go: `AuthorizationToken`) | Opsional. Token GitHub yang digunakan untuk mengkloning repositori dan melakukan push ke repositori tersebut. Tanpa token, repositori privat gagal dikloning setelah sesi dibuat. Repositori publik dapat dikloning tanpa token, dan agen dapat melakukan commit di kloningnya, tetapi `git push` gagal. Token ini tidak ditampilkan kembali dalam respons API. Lihat [Izin token](https://platform.claude.com/docs/id/managed-agents/github#token-permissions). |
-| `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`)                            | Opsional. Direktori di bawah `/workspace` tempat repositori akan di-clone. Default-nya adalah `/workspace/<repo-name>`.                                                                                                                                                                                                                                                                                                                                          |
-| `checkout` (csharp, go: `Checkout`)                                                       | Opsional. Branch (`{"type": "branch", "name": "main"}`) atau commit (`{"type": "commit", "sha": "..."}`) yang akan di-checkout. Default-nya adalah branch default repositori.                                                                                                                                                                                                                                                                                    |
+| `mount_path` (java, php: `mountPath`; csharp, go: `MountPath`) | Opsional. Direktori di bawah `/workspace` tempat repositori akan di-clone. Default-nya adalah `/workspace/<repo-name>`. |
+| `checkout` (csharp, go: `Checkout`) | Opsional. Branch (`{"type": "branch", "name": "main"}`) atau commit (`{"type": "commit", "sha": "..."}`) yang akan di-checkout. Default-nya adalah branch default repositori. |
 
 Me-mount repositori juga memuat skill apa pun yang disimpan di direktori `.claude/skills` pada root repositori. Skill ditemukan satu kali untuk setiap sesi, dari status repositori yang di-checkout saat sesi dimulai. Lihat [Memuat skill dari repositori GitHub](https://platform.claude.com/docs/id/managed-agents/skills#load-skills-from-a-github-repository).
 
@@ -481,12 +481,12 @@ Me-mount repositori juga memuat skill apa pun yang disimpan di direktori `.claud
 
 Saat menyediakan token GitHub, gunakan izin minimum yang diperlukan:
 
-| Tindakan          | Scope yang diperlukan              |
-| ----------------- | ---------------------------------- |
-| Clone repo privat | `repo`                             |
-| Membuat PR        | `repo`                             |
-| Membaca issue     | `repo` (privat) atau `public_repo` |
-| Membuat issue     | `repo` (privat) atau `public_repo` |
+| Tindakan | Scope yang diperlukan |
+| ----- | ----- |
+| Clone repo privat | `repo` |
+| Membuat PR | `repo` |
+| Membaca issue | `repo` (privat) atau `public_repo` |
+| Membuat issue | `repo` (privat) atau `public_repo` |
 
 <Warning>
   Gunakan fine-grained personal access token dengan izin minimum yang diperlukan. Hindari penggunaan token dengan akses luas ke akun GitHub Anda.
@@ -982,9 +982,9 @@ Akses GitHub dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |
 
 ### Header beta yang diperlukan
 
@@ -998,9 +998,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

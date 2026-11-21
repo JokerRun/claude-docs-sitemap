@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-threads
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 30b57a7b956f3d2b1047799a96740c58f9e0823bf8ae0b842d265439c70724ba
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ff356e7069087311bba9588abe129176d3c7aee4777ef9ffdf8bd0acbf4d7796
 ---
 
 ---
@@ -410,14 +410,14 @@ Pengarsipan hanya berhasil jika thread berstatus `idle`. Thread yang menunggu pa
 
 Event-event ini menampilkan aktivitas multiagen pada thread utama di `/v1/sessions/{session_id}/events/stream`. Event arah pesan dinamai relatif terhadap thread yang aliran event-nya menampilkan event tersebut: `agent.thread_message_received` berarti sebuah pesan tiba di thread ini dari thread lain, dan `agent.thread_message_sent` berarti thread ini mengirimkan pesan. Tugas yang didelegasikan oleh agen thread utama, misalnya, tiba di aliran milik thread anak itu sendiri sebagai event `agent.thread_message_received`.
 
-| Tipe                               | Deskripsi                                                                                                                                                                                                                                                                                                                                           |
-| ---------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `session.thread_created`           | Sebuah thread telah dibuat. Mencakup `session_thread_id` (java: `sessionThreadId`; php: `sessionThreadID`; csharp, go: `SessionThreadID`) dan `agent_name` (java, php: `agentName`; csharp, go: `AgentName`).                                                                                                                                       |
-| `session.thread_status_running`    | Sebuah thread memulai aktivitas.                                                                                                                                                                                                                                                                                                                    |
-| `session.thread_status_idle`       | Agen yang terkait dengan thread sedang menunggu input. Mencakup `stop_reason` (java, php: `stopReason`; csharp, go: `StopReason`) yang menunjukkan alasan agen berhenti.                                                                                                                                                                            |
-| `session.thread_status_terminated` | Sebuah thread dihentikan dan tidak menerima input lebih lanjut, misalnya, karena diarsipkan atau mengalami error yang tidak dapat dipulihkan. Thread advisor juga dihentikan ketika konsultasinya berakhir.                                                                                                                                         |
-| `agent.thread_message_received`    | Pada thread utama, sebuah subagen mengirimkan laporan atau pertanyaan kepada agen thread utama. Mencakup `from_session_thread_id` (java: `fromSessionThreadId`; php: `fromSessionThreadID`; csharp, go: `FromSessionThreadID`), `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`), dan `content` (csharp, go: `Content`). |
-| `agent.thread_message_sent`        | Pada thread utama, agen thread utama mengirimkan tugas atau pesan tindak lanjut kepada sebuah subagen. Mencakup `to_session_thread_id` (java: `toSessionThreadId`; php: `toSessionThreadID`; csharp, go: `ToSessionThreadID`), `to_agent_name` (java, php: `toAgentName`; csharp, go: `ToAgentName`), dan `content` (csharp, go: `Content`).        |
+| Tipe | Deskripsi |
+| ----- | ----- |
+| `session.thread_created` | Sebuah thread telah dibuat. Mencakup `session_thread_id` (java: `sessionThreadId`; php: `sessionThreadID`; csharp, go: `SessionThreadID`) dan `agent_name` (java, php: `agentName`; csharp, go: `AgentName`). |
+| `session.thread_status_running` | Sebuah thread memulai aktivitas. |
+| `session.thread_status_idle` | Agen yang terkait dengan thread sedang menunggu input. Mencakup `stop_reason` (java, php: `stopReason`; csharp, go: `StopReason`) yang menunjukkan alasan agen berhenti. |
+| `session.thread_status_terminated` | Sebuah thread dihentikan dan tidak menerima input lebih lanjut, misalnya, karena diarsipkan atau mengalami error yang tidak dapat dipulihkan. Thread advisor juga dihentikan ketika konsultasinya berakhir. |
+| `agent.thread_message_received` | Pada thread utama, sebuah subagen mengirimkan laporan atau pertanyaan kepada agen thread utama. Mencakup `from_session_thread_id` (java: `fromSessionThreadId`; php: `fromSessionThreadID`; csharp, go: `FromSessionThreadID`), `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`), dan `content` (csharp, go: `Content`). |
+| `agent.thread_message_sent` | Pada thread utama, agen thread utama mengirimkan tugas atau pesan tindak lanjut kepada sebuah subagen. Mencakup `to_session_thread_id` (java: `toSessionThreadId`; php: `toSessionThreadID`; csharp, go: `ToSessionThreadID`), `to_agent_name` (java, php: `toAgentName`; csharp, go: `ToAgentName`), dan `content` (csharp, go: `Content`). |
 
 Konsultasi advisor memancarkan event thread yang sama ini dengan nama cadangan `anthropic.advisor`. Nama tersebut muncul sebagai `agent_name` (java, php: `agentName`; csharp, go: `AgentName`) pada event siklus hidup thread dan sebagai `from_agent_name` (java, php: `fromAgentName`; csharp, go: `FromAgentName`) pada penyampaian saran. Lihat [Berikan advisor pada sesi](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) untuk urutannya.
 
@@ -822,9 +822,9 @@ Thread sesi dalam versi beta di semua model.
 
 * Ketersediaan: Selalu aktif
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |
 
 ### Header beta yang diperlukan
 
@@ -838,9 +838,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

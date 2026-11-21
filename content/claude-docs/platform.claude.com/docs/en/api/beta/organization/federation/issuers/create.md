@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/create
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 964964979f1bbb6b667f84c47c6132862b8dea51dbc3c831210b273056f74080
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 273857ecce14336577e270a815d6ff61fdbf9228ad18cb59e8d44da743f87fc6
 ---
 
 ---
@@ -133,6 +133,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -397,7 +399,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

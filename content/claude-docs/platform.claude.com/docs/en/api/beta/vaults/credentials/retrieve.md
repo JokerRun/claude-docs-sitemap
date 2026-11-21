@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: ebb3223b63431398eb59c820dd1c27bc9013d536a31018bf3f37f4a86d13bf6a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e3e51a3dd904100b2c9bd3dfed3e6178e955622acb8b6799ffe246019b381a9a
 ---
 
 ---
@@ -131,6 +131,8 @@ Retrieve a Credential
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

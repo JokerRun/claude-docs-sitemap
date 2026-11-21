@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: a2837eda8d559dec751637089b65880e319c76084e94cf5b045385831b060915
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 466a3f4a42a5a19a487ce54be81a41b4946551f52b7471c6fd1d9f0621130af3
 ---
 
 ---
@@ -86,11 +86,11 @@ Jika Anda mengalami salah satu masalah berikut saat menyiapkan Claude Models on 
 
 Claude Models on Google Cloud (Anthropic managed) memiliki tiga peran IAM yang telah ditentukan sebelumnya. Berikan peran pada proyek.
 
-| Peran                 | Nama tampilan | Apa yang diizinkan                                                                                                                                                                                                                            |
-| --------------------- | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `roles/claude.viewer` | Claude Viewer | Setiap izin `get` dan `list` pada sumber daya workspace<br />Peran ini bersifat hanya-baca.                                                                                                                                                   |
-| `roles/claude.user`   | Claude User   | Semua yang diizinkan `roles/claude.viewer`, ditambah membuat dan mengubah sumber daya workspace<br />Ini termasuk mengirim pesan dan menghitung token. Ini juga termasuk mengelola batch, file, skill, dan sumber daya Claude Managed Agents. |
-| `roles/claude.admin`  | Claude Admin  | Semua yang diizinkan `roles/claude.user`, ditambah izin yang diperiksa pada organisasi Anthropic Anda<br />Rute tingkat organisasi bertindak pada organisasi Anthropic Anda secara keseluruhan, bukan pada satu workspace.                    |
+| Peran | Nama tampilan | Apa yang diizinkan |
+| ----- | ----- | ----- |
+| `roles/claude.viewer` | Claude Viewer | Setiap izin `get` dan `list` pada sumber daya workspace<br />Peran ini bersifat hanya-baca. |
+| `roles/claude.user` | Claude User | Semua yang diizinkan `roles/claude.viewer`, ditambah membuat dan mengubah sumber daya workspace<br />Ini termasuk mengirim pesan dan menghitung token. Ini juga termasuk mengelola batch, file, skill, dan sumber daya Claude Managed Agents. |
+| `roles/claude.admin` | Claude Admin | Semua yang diizinkan `roles/claude.user`, ditambah izin yang diperiksa pada organisasi Anthropic Anda<br />Rute tingkat organisasi bertindak pada organisasi Anthropic Anda secara keseluruhan, bukan pada satu workspace. |
 
 Sebagai contoh, perintah berikut memungkinkan akun layanan memanggil Claude Models on Google Cloud (Anthropic managed):
 
@@ -184,8 +184,8 @@ Instal paket yang menyediakan klien tersebut:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.11.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.11.0")
+        implementation("com.anthropic:anthropic-java:3.12.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.12.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Instal paket yang menyediakan klien tersebut:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.11.0</version>
+            <version>3.12.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.11.0</version>
+            <version>3.12.0</version>
         </dependency>
         ```
       </Tab>
@@ -415,26 +415,26 @@ Untuk memanggil API melalui HTTP mentah, kirim token akses dari Application Defa
 
 Claude Models on Google Cloud (Anthropic managed) menggunakan ID model yang sama dengan Claude API. Model yang tersedia mencakup yang berikut:
 
-| Model                                                                                                 | Model ID                     |
-| :---------------------------------------------------------------------------------------------------- | :--------------------------- |
-| Claude Fable 5.2                                                                                      | `claude-fable-5-2`           |
-| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-2`          |
-| Claude Fable 5.1                                                                                      | `claude-fable-5-1`           |
-| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-1`          |
-| Claude Fable 5                                                                                        | `claude-fable-5`             |
-| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))             | `claude-mythos-5`            |
-| Claude Opus 5.5                                                                                       | `claude-opus-5-5`            |
-| Claude Opus 5                                                                                         | `claude-opus-5`              |
-| Claude Opus 4.8                                                                                       | `claude-opus-4-8`            |
-| Claude Opus 4.7                                                                                       | `claude-opus-4-7`            |
-| Claude Opus 4.6                                                                                       | `claude-opus-4-6`            |
-| Claude Opus 4.5                                                                                       | `claude-opus-4-5-20251101`   |
-| Claude Sonnet 5.5                                                                                     | `claude-sonnet-5-5`          |
-| Claude Sonnet 5                                                                                       | `claude-sonnet-5`            |
-| Claude Sonnet 4.6                                                                                     | `claude-sonnet-4-6`          |
+| Model | Model ID |
+| :---- | :---- |
+| Claude Fable 5.2 | `claude-fable-5-2` |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842)) | `claude-mythos-5-2` |
+| Claude Fable 5.1 | `claude-fable-5-1` |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | `claude-mythos-5-1` |
+| Claude Fable 5 | `claude-fable-5` |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842)) | `claude-mythos-5` |
+| Claude Opus 5.5 | `claude-opus-5-5` |
+| Claude Opus 5 | `claude-opus-5` |
+| Claude Opus 4.8 | `claude-opus-4-8` |
+| Claude Opus 4.7 | `claude-opus-4-7` |
+| Claude Opus 4.6 | `claude-opus-4-6` |
+| Claude Opus 4.5 | `claude-opus-4-5-20251101` |
+| Claude Sonnet 5.5 | `claude-sonnet-5-5` |
+| Claude Sonnet 5 | `claude-sonnet-5` |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` |
 | Claude Sonnet 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-sonnet-4-5-20250929` |
-| Claude Haiku 5.5                                                                                      | `claude-haiku-5-5`           |
-| Claude Haiku 4.5                                                                                      | `claude-haiku-4-5-20251001`  |
+| Claude Haiku 5.5 | `claude-haiku-5-5` |
+| Claude Haiku 4.5 | `claude-haiku-4-5-20251001` |
 
 Claude Models on Google Cloud (Anthropic managed) mengikuti jadwal siklus hidup Claude API. Untuk tanggal-tanggalnya, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Untuk membandingkan model, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
 
@@ -444,12 +444,12 @@ Di Claude Models on Google Cloud (Anthropic managed), permintaan untuk model yan
 
 Klien untuk Claude Models on Google Cloud (Anthropic managed) menerima pengaturan dalam tabel berikut. Nilai yang Anda berikan saat membuat klien lebih diutamakan daripada variabel lingkungan. Untuk menetapkan proyek dan ID workspace secara eksplisit, berikan `project` (go: `Project`; java: `.project()`; csharp: `GoogleCloudClientOptions.Project`; cli: `--google-cloud-project`) dan `workspace_id` (typescript, php: `workspaceId`; go: `WorkspaceID`; java: `.workspaceId()`; csharp: `GoogleCloudClientOptions.WorkspaceId`; cli: `--google-cloud-workspace-id`).
 
-| Pengaturan   | Variabel lingkungan                                           | Jika tidak ditetapkan                                                                                                                                                                                                                                                                                                           |
-| ------------ | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ID proyek    | `ANTHROPIC_GOOGLE_CLOUD_PROJECT`, lalu `GOOGLE_CLOUD_PROJECT` | Proyek yang dilaporkan Application Default Credentials, jika jenis kredensial membawanya                                                                                                                                                                                                                                        |
-| ID workspace | `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`                         | Klien memunculkan error kecuali Anda menetapkan base URL. [Rute tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) dan rute [profil pengguna](https://platform.claude.com/docs/id/manage-claude/user-profiles) tidak memerlukan ID workspace. |
-| Lokasi       | `ANTHROPIC_GOOGLE_CLOUD_LOCATION`                             | `global`                                                                                                                                                                                                                                                                                                                        |
-| Base URL     | `ANTHROPIC_GOOGLE_CLOUD_BASE_URL`                             | Diturunkan dari proyek, lokasi, dan ID workspace                                                                                                                                                                                                                                                                                |
+| Pengaturan | Variabel lingkungan | Jika tidak ditetapkan |
+| ----- | ----- | ----- |
+| ID proyek | `ANTHROPIC_GOOGLE_CLOUD_PROJECT`, lalu `GOOGLE_CLOUD_PROJECT` | Proyek yang dilaporkan Application Default Credentials, jika jenis kredensial membawanya |
+| ID workspace | `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID` | Klien memunculkan error kecuali Anda menetapkan base URL. [Rute tingkat organisasi](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#iam-roles) dan rute [profil pengguna](https://platform.claude.com/docs/id/manage-claude/user-profiles) tidak memerlukan ID workspace. |
+| Lokasi | `ANTHROPIC_GOOGLE_CLOUD_LOCATION` | `global` |
+| Base URL | `ANTHROPIC_GOOGLE_CLOUD_BASE_URL` | Diturunkan dari proyek, lokasi, dan ID workspace |
 
 Biarkan lokasi tetap `global`. Lokasi terpisah dari tempat inferensi dijalankan, jadi untuk inferensi khusus AS, tetapkan `inference_geo: "us"` pada setiap permintaan, seperti yang dijelaskan di [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency#inference-geo).
 

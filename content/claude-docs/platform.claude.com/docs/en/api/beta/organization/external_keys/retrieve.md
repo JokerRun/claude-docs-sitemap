@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 91607d1d4a7d3f71ed3d89b38947f533ee2c49afd6ff069e6eab0804fabe6903
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d5bb14c49f5166441b815fcfe40f67208c0b06add81de3c7e8835cb721c70887
 ---
 
 ---
@@ -88,7 +88,7 @@ Retrieve a single external key config in the caller's organization by ID.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key. On Claude Platform on AWS, alias ARNs are rejected, and your organization's own key must be a single-Region key in your organization's AWS account.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS, alias ARNs are rejected, and your organization's own key must be a single-Region key.
 
         maxLength: 2048
 

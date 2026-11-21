@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/message-threads
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 6c9530d2014b0459c0db6cc2408062f774870ac9c1f0c6b53d0a20b7a875f34d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 394b1debba348ab64b173e71337ef45b341f803497bb13feb06ba86e6afa61f1
 ---
 
 ---
@@ -595,11 +595,11 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
 
 ## Apa yang dikirim pada setiap permintaan
 
-| Grup          | Field                                                                                                                                                                                                                             | Aturan                                                                                                                                                                                                                                  |
-| ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Khusus create | `system`, `tools`                                                                                                                                                                                                                 | Kirim hanya pada permintaan create, beserta breakpoint `cache_control` apa pun pada field tersebut. Mengirim salah satunya pada permintaan continue, bahkan sebagai `null`, mengembalikan error 400.                                    |
-| Tetap         | `model`, `tool_choice`, `thinking`, `mcp_servers` (selain token otorisasi setiap server), `context_management`, `output_config`, `skills` di dalam `container`, `cache_control` tingkat atas, dan kumpulan nilai `anthropic-beta` | Kirim pada setiap permintaan dalam thread, dengan nilai yang sama seperti pada permintaan create. Nilai yang berbeda mengembalikan error 400 dengan kode `thread_fingerprint_mismatch`, dan pesan error menyebutkan field yang berbeda. |
-| Bebas         | `max_tokens`, `stop_sequences`, `stream`, `metadata`, `service_tier`, dan field lain yang tidak disebutkan di halaman ini                                                                                                         | Field ini dapat berubah dari giliran ke giliran.                                                                                                                                                                                        |
+| Grup | Field | Aturan |
+| ----- | ----- | ----- |
+| Khusus create | `system`, `tools` | Kirim hanya pada permintaan create, beserta breakpoint `cache_control` apa pun pada field tersebut. Mengirim salah satunya pada permintaan continue, bahkan sebagai `null`, mengembalikan error 400. |
+| Tetap | `model`, `tool_choice`, `thinking`, `mcp_servers` (selain token otorisasi setiap server), `context_management`, `output_config`, `skills` di dalam `container`, `cache_control` tingkat atas, dan kumpulan nilai `anthropic-beta` | Kirim pada setiap permintaan dalam thread, dengan nilai yang sama seperti pada permintaan create. Nilai yang berbeda mengembalikan error 400 dengan kode `thread_fingerprint_mismatch`, dan pesan error menyebutkan field yang berbeda. |
+| Bebas | `max_tokens`, `stop_sequences`, `stream`, `metadata`, `service_tier`, dan field lain yang tidak disebutkan di halaman ini | Field ini dapat berubah dari giliran ke giliran. |
 
 API tidak menyimpan URL server MCP, token otorisasi MCP, atau `id` container. Kirim `mcp_servers` dan `container` pada setiap permintaan yang menggunakannya. Token otorisasi MCP dapat berubah antar permintaan.
 
@@ -720,18 +720,18 @@ Tool runner beta pada SDK juga menggunakan thread secara default. Anda dapat men
 
 ### Metode helper lainnya
 
-| Untuk melakukan ini                                         | Gunakan                                                                                                                                                                                                                                                                                                                              |
-| ----------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Melakukan streaming satu giliran                            | `thread.stream(...)` (csharp: `thread.SendStreaming(...)`; go: `thread.SendStreaming(ctx, params)`; java: `thread.sendStreaming(...)`; php: `$thread->sendStream(...)`)                                                                                                                                                              |
-| Respons akhir dari giliran yang di-streaming                | `stream.get_final_message()` (typescript: `stream.finalMessage()`; csharp: `thread.LastMessage`; go: `thread.LastMessage()`; java: `thread.lastMessage()`; php: `$thread->lastMessage()`; ruby: `stream.accumulated_message`)                                                                                                        |
-| Seluruh percakapan                                          | `thread.messages` (csharp: `thread.Messages`; go: `thread.Messages()`; java: `thread.messages()`; php: `$thread->messages()`)                                                                                                                                                                                                        |
-| `id` respons yang menjadi titik lanjutan giliran berikutnya | `thread.previous_message_id` (typescript: `thread.previousMessageId`; csharp: `thread.PreviousMessageID`; go: `thread.PreviousMessageID()`; java: `thread.previousMessageId()`; php: `$thread->previousMessageId()`)                                                                                                                 |
-| Menambahkan pesan tanpa mengirim                            | `thread.append(...)` (csharp, go: `thread.Append(...)`; php: `$thread->append(...)`)                                                                                                                                                                                                                                                 |
-| Mengubah field untuk giliran berikutnya                     | `thread.update(...)` (csharp: `thread.Update(p => p with { ... })`; go: `thread.Params.MaxTokens = ...`; java: `thread.update(b -> ...)`; php: `$thread->update([...])`)                                                                                                                                                             |
-| Menyalin thread                                             | `thread.fork()` (csharp, go: `thread.Fork()`; php: `$thread->fork()`; ruby: `thread.fork`)                                                                                                                                                                                                                                           |
-| Field dan percakapan untuk memulai thread baru              | `thread.params` (csharp, go: `thread.Params`; java: `thread.params()`; php: `$thread->params()`)                                                                                                                                                                                                                                     |
-| Tool runner pada thread ini                                 | `thread.tool_runner()` (typescript, java: `thread.toolRunner()`; csharp: `thread.ToolRunner(tools)`; go: `thread.NewToolRunner(tools)`; php: `$thread->toolRunner()`; ruby: `thread.tool_runner`)                                                                                                                                    |
-| Tool runner tanpa thread                                    | `tool_runner(..., thread=False)` (typescript: `toolRunner({ ..., thread: false })`; csharp: `ToolRunner(parameters, tools, thread: false)`; go: `BetaToolRunnerParams{DisableThread: true}`; java: `ToolRunnerCreateParams.builder().thread(false)`; php: `toolRunner(..., thread: false)`; ruby: `tool_runner(..., thread: false)`) |
+| Untuk melakukan ini | Gunakan |
+| ----- | ----- |
+| Melakukan streaming satu giliran | `thread.stream(...)` (csharp: `thread.SendStreaming(...)`; go: `thread.SendStreaming(ctx, params)`; java: `thread.sendStreaming(...)`; php: `$thread->sendStream(...)`) |
+| Respons akhir dari giliran yang di-streaming | `stream.get_final_message()` (typescript: `stream.finalMessage()`; csharp: `thread.LastMessage`; go: `thread.LastMessage()`; java: `thread.lastMessage()`; php: `$thread->lastMessage()`; ruby: `stream.accumulated_message`) |
+| Seluruh percakapan | `thread.messages` (csharp: `thread.Messages`; go: `thread.Messages()`; java: `thread.messages()`; php: `$thread->messages()`) |
+| `id` respons yang menjadi titik lanjutan giliran berikutnya | `thread.previous_message_id` (typescript: `thread.previousMessageId`; csharp: `thread.PreviousMessageID`; go: `thread.PreviousMessageID()`; java: `thread.previousMessageId()`; php: `$thread->previousMessageId()`) |
+| Menambahkan pesan tanpa mengirim | `thread.append(...)` (csharp, go: `thread.Append(...)`; php: `$thread->append(...)`) |
+| Mengubah field untuk giliran berikutnya | `thread.update(...)` (csharp: `thread.Update(p => p with { ... })`; go: `thread.Params.MaxTokens = ...`; java: `thread.update(b -> ...)`; php: `$thread->update([...])`) |
+| Menyalin thread | `thread.fork()` (csharp, go: `thread.Fork()`; php: `$thread->fork()`; ruby: `thread.fork`) |
+| Field dan percakapan untuk memulai thread baru | `thread.params` (csharp, go: `thread.Params`; java: `thread.params()`; php: `$thread->params()`) |
+| Tool runner pada thread ini | `thread.tool_runner()` (typescript, java: `thread.toolRunner()`; csharp: `thread.ToolRunner(tools)`; go: `thread.NewToolRunner(tools)`; php: `$thread->toolRunner()`; ruby: `thread.tool_runner`) |
+| Tool runner tanpa thread | `tool_runner(..., thread=False)` (typescript: `toolRunner({ ..., thread: false })`; csharp: `ToolRunner(parameters, tools, thread: false)`; go: `BetaToolRunnerParams{DisableThread: true}`; java: `ToolRunnerCreateParams.builder().thread(false)`; php: `toolRunner(..., thread: false)`; ruby: `tool_runner(..., thread: false)`) |
 
 **Streaming.** Helper mencatat respons ketika stream mencapai `message_stop`, jadi baca stream hingga akhir. Jika Anda berhenti membaca lebih awal, akhiri stream agar thread bebas untuk giliran berikutnya:
 
@@ -765,13 +765,13 @@ Di C#, Go, Java, dan PHP, setelah penolakan, `thread.LastMessage` (go: `thread.L
 
 API mengembalikan error dalam tabel ini sebelum model berjalan. Permintaan tidak menggunakan token, dan thread serta waktu kedaluwarsanya tidak berubah. `error.type` adalah `invalid_request_error` untuk error 400 dan `not_found_error` untuk error 404.
 
-| Status | `error_code`                  | Arti                                                                                                                                          | Yang harus dilakukan                                                                                                   |
-| ------ | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| 404    | `thread_not_found`            | API tidak dapat melanjutkan thread.                                                                                                           | Kirim seluruh percakapan dalam permintaan create baru.                                                                 |
-| 400    | `thread_fingerprint_mismatch` | Field tetap berbeda dari nilai yang disimpan bersama thread. Pesan error menyebutkan field-field tersebut.                                    | Pertahankan field tetap tetap sama atau mulai thread baru untuk mengubahnya.                                           |
-| 400    | `thread_already_continued`    | Setiap `id` respons hanya dapat dilanjutkan satu kali.                                                                                        | Lanjutkan dari `id` respons terbaru dalam thread. Jika klien Anda tidak pernah menerima respons tersebut, putar ulang. |
-| 400    | `thread_continue_in_flight`   | Permintaan continue lain dari `id` respons ini masih berjalan. Biasanya ini adalah percobaan Anda sendiri sebelumnya.                         | Biarkan selesai dan lanjutkan dari `id` responsnya, atau putar ulang.                                                  |
-| 400    | `thread_unsupported_request`  | Permintaan menggunakan fitur atau pengaturan organisasi yang tidak didukung oleh thread. `error.details.unsupported` menyebutkannya jika ada. | Hapus fitur tersebut dari permintaan atau kirim seluruh percakapan tanpa `thread`.                                     |
+| Status | `error_code` | Arti | Yang harus dilakukan |
+| ----- | ----- | ----- | ----- |
+| 404 | `thread_not_found` | API tidak dapat melanjutkan thread. | Kirim seluruh percakapan dalam permintaan create baru. |
+| 400 | `thread_fingerprint_mismatch` | Field tetap berbeda dari nilai yang disimpan bersama thread. Pesan error menyebutkan field-field tersebut. | Pertahankan field tetap tetap sama atau mulai thread baru untuk mengubahnya. |
+| 400 | `thread_already_continued` | Setiap `id` respons hanya dapat dilanjutkan satu kali. | Lanjutkan dari `id` respons terbaru dalam thread. Jika klien Anda tidak pernah menerima respons tersebut, putar ulang. |
+| 400 | `thread_continue_in_flight` | Permintaan continue lain dari `id` respons ini masih berjalan. Biasanya ini adalah percobaan Anda sendiri sebelumnya. | Biarkan selesai dan lanjutkan dari `id` responsnya, atau putar ulang. |
+| 400 | `thread_unsupported_request` | Permintaan menggunakan fitur atau pengaturan organisasi yang tidak didukung oleh thread. `error.details.unsupported` menyebutkannya jika ada. | Hapus fitur tersebut dari permintaan atau kirim seluruh percakapan tanpa `thread`. |
 
 Beberapa permintaan dengan `thread` mengembalikan error 400 tanpa `error_code`. Misalnya, permintaan continue mengembalikan error ini jika tidak memiliki `previous_message_id` atau jika menyertakan `system` atau `tools`.
 
@@ -805,13 +805,13 @@ Thread tidak mendukung fitur-fitur berikut:
 
 API menolak sebagian besar permintaan yang tidak didukung oleh thread dengan error 400 dan kode `thread_unsupported_request`. Jika `error.details.unsupported` ada, field tersebut berisi salah satu nilai berikut:
 
-| Nilai                | Arti                                                                                                                                                                                   |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `context_management` | Permintaan menggunakan manajemen konteks atau compaction yang tidak didukung oleh thread.                                                                                              |
-| `cache_control`      | Permintaan memiliki lebih dari 4 breakpoint `cache_control`. Lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching). |
-| `fallbacks`          | Permintaan mengatur `fallbacks`, dan organisasi Anda tidak dapat menggunakan `fallbacks` dengan thread.                                                                                |
-| `hipaa`              | Organisasi Anda mengaktifkan kesiapan HIPAA.                                                                                                                                           |
-| `inference_hooks`    | Organisasi Anda mengaktifkan Inference hooks.                                                                                                                                          |
+| Nilai | Arti |
+| ----- | ----- |
+| `context_management` | Permintaan menggunakan manajemen konteks atau compaction yang tidak didukung oleh thread. |
+| `cache_control` | Permintaan memiliki lebih dari 4 breakpoint `cache_control`. Lihat [Caching prompt pada thread](https://platform.claude.com/docs/id/build-with-claude/message-threads#prompt-caching). |
+| `fallbacks` | Permintaan mengatur `fallbacks`, dan organisasi Anda tidak dapat menggunakan `fallbacks` dengan thread. |
+| `hipaa` | Organisasi Anda mengaktifkan kesiapan HIPAA. |
+| `inference_hooks` | Organisasi Anda mengaktifkan Inference hooks. |
 
 API dapat menambahkan nilai ke daftar ini. Jika Anda mendapatkan nilai yang tidak Anda kenali, kirim seluruh percakapan tanpa `thread`. Permintaan yang memenuhi beberapa kondisi ini mendapatkan error yang hanya menyebutkan salah satunya.
 
@@ -848,9 +848,9 @@ Thread pesan dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                         |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 ### Header beta yang diperlukan
 
@@ -864,10 +864,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                                                                                                                                                                       | HIPAA       |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                                                                                                                                                                            | Tidak layak |
-| Detail | Isi thread (percakapan, prompt sistem, dan alat) disimpan di memori, dienkripsi dengan kunci yang dikelola server, tidak pernah ditulis ke penyimpanan permanen, dan dihapus paling lambat 1 jam setelah thread terakhir digunakan. Menggunakan fitur ini tidak memengaruhi penggunaan Anda atas fitur lain yang memiliki kelayakan ZDR. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/message-threads#data-retention) | —           |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
+| Detail | Isi thread (percakapan, prompt sistem, dan alat) disimpan di memori, dienkripsi dengan kunci yang dikelola server, tidak pernah ditulis ke penyimpanan permanen, dan dihapus paling lambat 1 jam setelah thread terakhir digunakan. Menggunakan fitur ini tidak memengaruhi penggunaan Anda atas fitur lain yang memiliki kelayakan ZDR. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/message-threads#data-retention) | — |
 
 Endpoint yang berlaku:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/skills
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 589a9676e6ac260ec2dbc60c8693b619744b45c93dfeaebd6d0cb288182df61c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2c52b43366462ef7817a9e4653c429f6d0ea36110420fcb494c04d6481dd09e8
 ---
 
 ---
@@ -244,11 +244,11 @@ Lampirkan skill saat membuat agen. Setiap [sesi](https://platform.claude.com/doc
 
 Setiap entri dalam array `skills` (csharp, go: `Skills`) menggunakan field berikut:
 
-| Field                                                               | Deskripsi                                                                                                                                                                                                                                                                         |
-| ------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type` (csharp, go: `Type`)                                         | `anthropic` untuk skill bawaan atau `custom` untuk skill yang ditulis di workspace.                                                                                                                                                                                               |
+| Field | Deskripsi |
+| ----- | ----- |
+| `type` (csharp, go: `Type`) | `anthropic` untuk skill bawaan atau `custom` untuk skill yang ditulis di workspace. |
 | `skill_id` (java: `skillId`; php: `skillID`; csharp, go: `SkillID`) | Pengidentifikasi skill. Untuk skill Anthropic, gunakan nama pendek (misalnya, `xlsx`). Untuk skill kustom, gunakan ID `skill_*` yang dikembalikan saat pembuatan (lihat [Membuat skill kustom](https://platform.claude.com/docs/id/managed-agents/skills#create-a-custom-skill)). |
-| `version` (csharp, go: `Version`)                                   | Sematkan ke versi tertentu atau gunakan `latest`. Opsional. Default ke `latest` jika dihilangkan. Berlaku untuk skill Anthropic maupun kustom.                                                                                                                                    |
+| `version` (csharp, go: `Version`) | Sematkan ke versi tertentu atau gunakan `latest`. Opsional. Default ke `latest` jika dihilangkan. Berlaku untuk skill Anthropic maupun kustom. |
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 2c56f4c8c3272281e935ce56008552350f2d56d2129b14d517c860b5d9d898c5
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d8855f0e4d3a713649c6c3f49ef15008bbba5751ccb2b0d1b82f54b15b5b08d7
 ---
 
 ---
@@ -746,10 +746,10 @@ Alat pencarian web tersedia di semua model dan layak untuk retensi data nol dan 
 * Ketersediaan: Tersedia
 * Penggunaan: Tambahkan alat `web_search` ke `tools` permintaan. Pengaturan seperti `max_uses`, daftar domain, dan `user_location` ditempatkan pada alat tersebut.
 
-| Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                               |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
-| Tersedia<sup>1</sup> | [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry (hosted on Azure)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                               |
+| Status | Platform cloud |
+| ----- | ----- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Tersedia<sup>1</sup> | [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry (hosted on Azure)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 1. Hanya alat pencarian web dasar (`web_search_20250305`), tanpa pemfilteran dinamis.
 
@@ -758,18 +758,18 @@ Alat pencarian web tersedia di semua model dan layak untuk retensi data nol dan 
 * Ketersediaan: Tersedia
 * Penggunaan: Bagian dari toolset agen, dan aktif secara default setelah toolset ditambahkan. Daftar domain dan `user_location` ditempatkan pada entri `web_search` di toolset; `max_uses`, `citations`, dan `cache_control` tidak tersedia.
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                 |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA                                                                                   |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak                                                                                   |
-| Detail | Hasil pencarian web real-time dikembalikan dalam respons API. Pemfilteran dinamis untuk pencarian web tidak memenuhi syarat kelayakan ZDR atau HIPAA.            | Pemfilteran dinamis untuk pencarian web tidak memenuhi syarat kelayakan ZDR atau HIPAA. |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
+| Detail | Hasil pencarian web real-time dikembalikan dalam respons API. Pemfilteran dinamis untuk pencarian web tidak memenuhi syarat kelayakan ZDR atau HIPAA. | Pemfilteran dinamis untuk pencarian web tidak memenuhi syarat kelayakan ZDR atau HIPAA. |
 
 Endpoint yang berlaku:
 

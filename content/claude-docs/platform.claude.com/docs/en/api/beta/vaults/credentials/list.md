@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: dcff807a5fdf6cc5c6c3933cbc66995bc522f080a0ce3dbc5e5f94d3abded80d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2647ff50b034bc2061a339fef2fc58e1fda62262431be86bdc422e7826f7a4c0
 ---
 
 ---
@@ -143,6 +143,8 @@ List Credentials
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 94085b6218b2e002df5b0c1580672c3c7f24f4237a564894721c6ec5d02bda09
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c7dc7302afc8a6cab229aedb0d74fe40cb179fc9968a5fdcfe465403a1d02484
 ---
 
 ---
@@ -1191,17 +1191,17 @@ Penggunaan alat ketat tersedia di semua model dan layak untuk kesiapan HIPAA.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud               | Model                                                              |
-| -------- | ---------------------------- | ------------------------------------------------------------------ |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
 | Tersedia | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                                                                         | HIPAA                                                                                                                                                                                                          |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Status | Layak (bersyarat; tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                                                              | Layak                                                                                                                                                                                                          |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Layak (bersyarat; tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
 | Detail | Prompt Anda dan output Claude tidak disimpan. Hanya JSON schema yang di-cache, hingga 24 jam sejak terakhir digunakan. Ini juga mencakup penggunaan alat ketat (`strict: true` pada alat), yang menggunakan pipeline grammar yang sama. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#data-retention) | PHI tidak boleh disertakan dalam definisi JSON schema; lihat panduan penanganan PHI. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#phi-handling-guidelines) |
 
 Endpoint yang berlaku:

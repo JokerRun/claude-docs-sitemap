@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/create
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 057429167b622ad8c047401d15250271d3da645d4e92003e10630a796c5eb58c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0c46a43d56b8fcc08eca6beb9f53a26d7df0b52f4f56705e4ebf45ceac4c1bca
 ---
 
 ---
@@ -121,6 +121,8 @@ Create Session
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

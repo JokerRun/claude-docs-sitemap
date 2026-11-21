@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: ef3d8d45009a8030efb4af9750f7d4a95812d481db22c020a1f0025b6c1e65ca
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: eafe8da18a2935136d864914ef44d39f10729cf42f3d49985de2c4ce54d64852
 ---
 
 ---
@@ -123,6 +123,8 @@ Create Agent
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -2150,6 +2152,8 @@ List Agents
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -3198,6 +3202,8 @@ Get Agent
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -4228,6 +4234,8 @@ Update Agent
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -6223,6 +6231,8 @@ Archive Agent
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -13689,6 +13699,8 @@ List Agent Versions
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

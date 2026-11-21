@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/analytics-api
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: aec1af7361a41f668f733a37b31a20254bcebdfec50342697811b07b8e19c756
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 70e880330f52682f4ca27bf25e7ceeb2b3e7b39dab13777b74f17d1ab2fbdbe6
 ---
 
 ---
@@ -20,10 +20,10 @@ The two APIs use different key types, created in different places by different r
 
 ## Which API do you need?
 
-| API                                 | Key type          | Created in                                                                               | Who can create it  | What it covers                                                                                                                                     |
-| ----------------------------------- | ----------------- | ---------------------------------------------------------------------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Claude Code Analytics API**       | Admin API key     | [Admin keys](https://platform.claude.com/settings/admin-keys) page in the Claude Console | Organization admin | Daily Claude Code metrics for each user: sessions, lines of code, commits, pull requests, tool acceptance, and estimated cost by model             |
-| **Claude Enterprise Analytics API** | Analytics API key | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access)   | Primary owner      | Organization-wide engagement and adoption (user activity, active-user summaries, project, skill, and connector usage), plus cost and usage reports |
+| API | Key type | Created in | Who can create it | What it covers |
+| ----- | ----- | ----- | ----- | ----- |
+| **Claude Code Analytics API** | Admin API key | [Admin keys](https://platform.claude.com/settings/admin-keys) page in the Claude Console | Organization admin | Daily Claude Code metrics for each user: sessions, lines of code, commits, pull requests, tool acceptance, and estimated cost by model |
+| **Claude Enterprise Analytics API** | Analytics API key | [claude.ai > Organization settings > API](https://claude.ai/admin-settings/api-access) | Primary owner | Organization-wide engagement and adoption (user activity, active-user summaries, project, skill, and connector usage), plus cost and usage reports |
 
 The two key types differ in what they can call:
 

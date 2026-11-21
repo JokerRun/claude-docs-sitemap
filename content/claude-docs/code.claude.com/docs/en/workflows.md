@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 0854f460f06e03fd7edccc1cb277fd29b0535a10c03d2c5560fd449c0c7f4c52
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d13690659e13c6fa0f6da1f1d01c3d96118ee1923451523a371535d003d62dd6
 ---
 
 > ## Documentation Index
@@ -182,7 +182,7 @@ Whether you see this prompt depends on your [permission mode](https://code.claud
 | Bypass permissions | Claude Code doesn't prompt you. The run starts immediately |
 | `claude -p`, Agent SDK | Claude Code doesn't prompt you |
 
-In `claude -p` and the Agent SDK, Claude Code never shows this prompt. It runs the Workflow tool call through the same [permission evaluation](https://code.claude.com/docs/en/agent-sdk/permissions.md#how-permissions-are-evaluated) as the rest of the session, so deny rules, ask rules, and `dontAsk` mode apply to the launch as they apply to every tool call. To let the workflow start in these runs, use one of these:
+In `claude -p` and the Agent SDK, the Workflow tool call goes through the same [permission evaluation](https://code.claude.com/docs/en/agent-sdk/permissions.md#how-permissions-are-evaluated) as the rest of the session. Deny rules, ask rules, and `dontAsk` mode apply to the call. To let the workflow start in these runs, use one of these:
 
 * **Permission rule**: add `Workflow` to your allow rules to approve every workflow, or `Workflow(<name>)` to approve one saved workflow by name.
 * **Auto permission mode**: run in [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode), where the classifier reviews the call and can approve it.
@@ -496,7 +496,7 @@ To turn workflows off for your whole organization, set `"disableWorkflows": true
 
 When workflows are disabled:
 
-* `/workflows`, the workflow commands, and the `/workflow-authoring` skill are unavailable
+* The `/workflows` progress view, the workflow commands, and the `/workflow-authoring` skill are unavailable
 * The `ultracode` keyword no longer triggers a run, and the **Ultracode** toggle is removed from `/effort`
 
 A run that was already in progress keeps going.

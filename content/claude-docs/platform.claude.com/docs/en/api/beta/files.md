@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 39d97d17f40ef455577843c00622072f092eb25728bf3481fb19fa2b92461746
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 036933dbf2801397c77e88c3ebd7fcc5240b49012129f404ccbf2b7a49579c1e
 ---
 
 ---
@@ -123,6 +123,8 @@ Upload File
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -439,6 +441,8 @@ List Files
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -729,6 +733,8 @@ Download File
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -932,6 +938,8 @@ Get File Metadata
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1211,6 +1219,8 @@ Delete File
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions/download
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: fc79acdff93d4caf31ec2b981de48093a155c7772abd4e88b80fb0cea99a10f4
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0ed9fed7157adbf5357e6750060839a71cdea087065488b3cdf474f650c15d9c
 ---
 
 ---
@@ -152,6 +152,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -207,6 +209,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `cmek_key_network_blocked` (HTTP status 400)
 
   The key management service's network access controls blocked the request to the workspace's customer-managed encryption key. The key itself may be healthy.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

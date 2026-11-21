@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/usage_report
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 97f76c1e0cdae491731352c32a737e3ab8e4bea35c614eb0c5e47b589b9b3eed
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d413fa4012d261990ac486271ed52d4760b6bde8d63f54495915cee94843de3a
 ---
 
 ---
@@ -249,6 +249,8 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

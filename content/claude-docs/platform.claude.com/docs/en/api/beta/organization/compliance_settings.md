@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/compliance_settings
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 48033898ecc5641fd2bd3777f67c60c4d843c99ab66ebad7e73f5f312b455f95
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d3a94ddb82cddfdbdd4372aab82eba1c02ad1365996cd6196d50b1d076c0dd8f
 ---
 
 ---
@@ -150,7 +150,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 

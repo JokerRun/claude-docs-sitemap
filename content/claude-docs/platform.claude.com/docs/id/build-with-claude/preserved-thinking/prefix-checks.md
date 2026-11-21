@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 30439295aa18bb818d381140600d7d84b3ae8c55fa497dfa29c207bdfb671a9a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 119fc402253e2b9940049310d7c870f1275126f42b9b20bb1d7e52e1297fcb35
 ---
 
 ---
@@ -66,11 +66,11 @@ Sebuah perubahan hanya membuat pemikiran yang sudah ada setelahnya menjadi tidak
 
 ## Jika kode Anda mengubah prompt sistem, alat, atau riwayat
 
-| Jika kode Anda…                                                                                                     | Apa yang harus dilakukan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Membangun ulang prompt sistem dengan tanggal, sebuah mode, atau file instruksi                                      | Berhenti mengubah `system`. [Tambahkan instruksi Anda sendiri sebagai pesan sistem](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#new-instructions), yaitu entri `role: "system"` di `messages`, dan [nyatakan nilai baru di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#changing-context). Untuk teks yang dapat diedit orang lain, lihat [Teks yang dapat diedit orang lain](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#untrusted-text) sebagai gantinya. |
-| Menambahkan, menghapus, atau mengubah kata-kata sebuah alat, atau mendapatkan alat baru ketika server MCP terhubung | Berhenti mengubah `tools`, dan [tambahkan atau hapus alat dalam pesan sistem](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#tool-changes).                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| Memangkas, menciutkan, atau meringkas giliran lama, dan mempertahankan giliran terbaru tanpa perubahan              | [Biarkan API yang menulis ringkasan, atau hapus pemikiran dari giliran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#server-side-trimming).                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| Jika kode Anda… | Apa yang harus dilakukan |
+| ----- | ----- |
+| Membangun ulang prompt sistem dengan tanggal, sebuah mode, atau file instruksi | Berhenti mengubah `system`. [Tambahkan instruksi Anda sendiri sebagai pesan sistem](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#new-instructions), yaitu entri `role: "system"` di `messages`, dan [nyatakan nilai baru di giliran terbaru](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#changing-context). Untuk teks yang dapat diedit orang lain, lihat [Teks yang dapat diedit orang lain](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#untrusted-text) sebagai gantinya. |
+| Menambahkan, menghapus, atau mengubah kata-kata sebuah alat, atau mendapatkan alat baru ketika server MCP terhubung | Berhenti mengubah `tools`, dan [tambahkan atau hapus alat dalam pesan sistem](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#tool-changes). |
+| Memangkas, menciutkan, atau meringkas giliran lama, dan mempertahankan giliran terbaru tanpa perubahan | [Biarkan API yang menulis ringkasan, atau hapus pemikiran dari giliran yang dipertahankan](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions#server-side-trimming). |
 
 Penyebab lain, seperti melewatkan blok pemikiran yang teksnya kosong atau membangun ulang percakapan yang tersimpan, memiliki perbaikannya sendiri: lihat [Ubah alat atau instruksi tanpa gagal dalam pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions). Untuk menemukan penyebab Anda, [minta agen memeriksa kode Anda](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#hand-to-an-agent).
 
@@ -78,15 +78,15 @@ Penyebab lain, seperti melewatkan blok pemikiran yang teksnya kosong atau memban
 
 Di Claude API dan [beberapa platform cloud](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#feature-availability), hasil dari gagal dalam pemeriksaan prefiks ketika permintaan tidak menyertakan [`prefix_mismatch_behavior`](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#preserved-thinking-controls) bergantung pada modelnya:
 
-| Model dengan pemikiran yang dipertahankan | Hasil                                                                                                                              |
-| ----------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| Claude Fable 5.2                          | Error 400                                                                                                                          |
-| Claude Mythos 5.2                         | Error 400                                                                                                                          |
-| Claude Mythos 5.1                         | Error 400                                                                                                                          |
-| Claude Fable 5.1                          | [Kemungkinan error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#possible-400-error) |
-| Claude Opus 5.5                           | [Kemungkinan error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#possible-400-error) |
-| Claude Sonnet 5.5                         | [Kemungkinan error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#possible-400-error) |
-| Claude Haiku 5.5                          | [Kemungkinan error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#possible-400-error) |
+| Model dengan pemikiran yang dipertahankan | Hasil |
+| ----- | ----- |
+| Claude Fable 5.2 | Error 400 |
+| Claude Mythos 5.2 | Error 400 |
+| Claude Mythos 5.1 | Error 400 |
+| Claude Fable 5.1 | [Kemungkinan error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#possible-400-error) |
+| Claude Opus 5.5 | [Kemungkinan error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#possible-400-error) |
+| Claude Sonnet 5.5 | [Kemungkinan error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#possible-400-error) |
+| Claude Haiku 5.5 | [Kemungkinan error 400](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#possible-400-error) |
 
 Jika tabel menyebutkan “Kemungkinan error 400,” ada dua kasus: permintaan yang gagal dalam pemeriksaan prefiks mungkin mendapatkan error 400 atau tidak mendapatkan error. Ketika tidak ada error yang dikembalikan, blok yang gagal dalam pemeriksaan prefiks sampai ke model. Claude membacanya seperti input lainnya, Anda ditagih untuk blok-blok tersebut, dan Claude bekerja berdasarkan penalaran tentang konten yang sejak itu telah berubah.
 
@@ -128,22 +128,22 @@ Sebuah perubahan bisa sekecil satu kata dalam deskripsi alat. Mengubah, menyisip
 
 ### Apa yang tidak dihitung
 
-| Ini tidak dihitung                                                                                    | Karena                                                                                    |
-| ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `model`, `effort`, `max_tokens`, `tool_choice`, `metadata`, `thinking.display`, dan parameter lainnya | Hanya `system`, `tools`, dan pesan yang dibandingkan                                      |
-| Format JSON atau urutan kunci                                                                         | API membandingkan JSON yang telah di-parse, bukan teksnya                                 |
-| Penanda `cache_control`                                                                               | Penanda ini menyatakan di mana harus melakukan cache, dan bukan konten yang dibaca Claude |
-| Alat dengan `defer_loading: true` yang belum dirujuk oleh apa pun                                     | Alat tersebut tidak berada dalam konteks Claude sampai ada sesuatu yang merujuknya        |
+| Ini tidak dihitung | Karena |
+| ----- | ----- |
+| `model`, `effort`, `max_tokens`, `tool_choice`, `metadata`, `thinking.display`, dan parameter lainnya | Hanya `system`, `tools`, dan pesan yang dibandingkan |
+| Format JSON atau urutan kunci | API membandingkan JSON yang telah di-parse, bukan teksnya |
+| Penanda `cache_control` | Penanda ini menyatakan di mana harus melakukan cache, dan bukan konten yang dibaca Claude |
+| Alat dengan `defer_loading: true` yang belum dirujuk oleh apa pun | Alat tersebut tidak berada dalam konteks Claude sampai ada sesuatu yang merujuknya |
 
 ### Atur `prefix_mismatch_behavior`
 
 [Beta header](https://platform.claude.com/docs/id/api/beta-headers#beta-features-on-other-platforms) `thinking-binding-controls-2026-08-01` menambahkan pengaturan `thinking.block_binding.prefix_mismatch_behavior` dan array `input_transformations` pada respons.
 
-| Nilai                         | Jika sebuah blok gagal dalam pemeriksaan prefiks                                                                                                                                                                                                                                                                |
-| ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"error"`                     | API menolak permintaan dengan error 400 yang menyebutkan blok tidak valid pertama                                                                                                                                                                                                                               |
-| `"drop_block"`                | API tidak menyertakan blok yang tidak valid, dan permintaan berhasil. Anda tidak ditagih untuk blok tersebut, tetapi [tidak menyertakannya dapat menimbulkan biaya lebih besar](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#drop-block-cost) |
-| Tidak disertakan, atau `null` | [Tergantung pada modelnya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#outcomes)                                                                                                                                                                                     |
+| Nilai | Jika sebuah blok gagal dalam pemeriksaan prefiks |
+| ----- | ----- |
+| `"error"` | API menolak permintaan dengan error 400 yang menyebutkan blok tidak valid pertama |
+| `"drop_block"` | API tidak menyertakan blok yang tidak valid, dan permintaan berhasil. Anda tidak ditagih untuk blok tersebut, tetapi [tidak menyertakannya dapat menimbulkan biaya lebih besar](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#drop-block-cost) |
+| Tidak disertakan, atau `null` | [Tergantung pada modelnya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#outcomes) |
 
 Blok yang gagal dalam pemeriksaan prefiks tetap tidak valid pada setiap permintaan berikutnya yang mengirimkannya, selama perubahan tersebut masih ada. Pengaturan ini berlaku pada satu permintaan yang membawanya. Dengan pemikiran dinonaktifkan (`"disabled"` atau `"between_tools"`), mengirimkannya menghasilkan error 400 pada setiap model.
 

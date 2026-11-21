@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: de4c029d096047ac3d36a17934947dbf54bcd594da619f1ff7c8bccdd2386023
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1a2abb9f5f316938cfd67e87afee36a03d2bb3c40d1b30bde75172ec794d63be
 ---
 
 ---
@@ -149,6 +149,8 @@ List Agents
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

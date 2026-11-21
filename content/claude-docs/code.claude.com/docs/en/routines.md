@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/routines
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 9377bc3e62c3bed0f909f35a4dedffee77fb9250f8d02f0650333901aa97c0e3
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 22558399d66c1783e675b13ef45fcf257ed593ace58ded808eddc3573a23c4e1
 ---
 
 > ## Documentation Index
@@ -57,7 +57,7 @@ Each example pairs a trigger type with the kind of work scheduled tasks are suit
 
 Create a scheduled task from the web at [claude.ai/code/routines](https://claude.ai/code/routines), from the Desktop app, or from the CLI. All three surfaces write to the same cloud account, so a scheduled task you create in one shows up in the others immediately. In the Desktop app's **Code** tab, click **Scheduled** in the sidebar or in the sidebar's **More** menu, then **New task**, and continue with [Create from the web](#create-from-the-web).
 
-Scheduled tasks run autonomously as full Claude Code cloud sessions. The session runs shell commands, uses [skills](https://code.claude.com/docs/en/skills.md), and calls any connectors you include. Outside a [project](https://code.claude.com/docs/en/claude-projects.md#what-threads-pick-up-from-your-repositories)'s threads, those skills include the ones committed to the cloned repository. You don't choose a permission mode when you create the task: see [Permission prompts during a run](#permission-prompts-during-a-run) for when a run stops to wait for you.
+Scheduled tasks run autonomously as full Claude Code cloud sessions. The session runs shell commands, uses [skills](https://code.claude.com/docs/en/skills.md), and calls any connectors you include. Those skills include the ones committed to the cloned repository. For a task in a project, check [which threads load them](https://code.claude.com/docs/en/claude-projects.md#what-threads-pick-up-from-your-repositories). You don't choose a permission mode when you create the task: see [Permission prompts during a run](#permission-prompts-during-a-run) for when a run stops to wait for you.
 
 What a scheduled task can reach is determined by:
 

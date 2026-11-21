@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: b6721da1fa411d1ee936191c62cc9eaa67ce9aa2d104b8494518c2484ee82a44
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1a126f265d9da989140390db2caeb0d54014869bd7123c7ab530cd3610989fd5
 ---
 
 ---
@@ -1080,10 +1080,10 @@ Alat web fetch tersedia di semua model dan layak untuk retensi data nol.
 * Ketersediaan: Tersedia
 * Penggunaan: Tambahkan alat `web_fetch` ke `tools` permintaan. Pengaturan seperti `max_uses`, daftar domain, `citations`, dan `max_content_tokens` ditempatkan pada alat tersebut.
 
-| Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                               |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
-| Tersedia<sup>1</sup> | [Microsoft Foundry (hosted on Azure)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                                                                                                                                     |
+| Status | Platform cloud |
+| ----- | ----- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Tersedia<sup>1</sup> | [Microsoft Foundry (hosted on Azure)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 1. Deployment yang di-host di Azure hanya mendukung `web_fetch_20250910`: tanpa pemfilteran dinamis, penyertaan respons, atau bypass cache.
 
@@ -1092,18 +1092,18 @@ Alat web fetch tersedia di semua model dan layak untuk retensi data nol.
 * Ketersediaan: Tersedia
 * Penggunaan: Bagian dari toolset agen, dan aktif secara default setelah toolset ditambahkan. Daftar domain (tanpa path) dan `max_content_tokens` ditempatkan pada entri `web_fetch` di toolset; `max_uses`, `citations`, dan `cache_control` tidak tersedia.
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                 |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                     | HIPAA       |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                     | Tidak layak |
-| Detail | Konten web yang diambil dikembalikan dalam respons API. Pemfilteran dinamis untuk web fetch tidak memenuhi syarat kelayakan ZDR atau HIPAA. Penerbit situs web mungkin menyimpan data permintaan (seperti URL yang diambil dan metadata permintaan) sesuai kebijakan mereka sendiri. | —           |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Tidak layak |
+| Detail | Konten web yang diambil dikembalikan dalam respons API. Pemfilteran dinamis untuk web fetch tidak memenuhi syarat kelayakan ZDR atau HIPAA. Penerbit situs web mungkin menyimpan data permintaan (seperti URL yang diambil dan metadata permintaan) sesuai kebijakan mereka sendiri. | — |
 
 Endpoint yang berlaku:
 

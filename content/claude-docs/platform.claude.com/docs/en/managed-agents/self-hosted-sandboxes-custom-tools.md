@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 3da20ba46dc5857906c4b733971c4efc900bd47b99a5a599481081c5a658f712
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 257dca44a01730bc0fc20110c875fc3556356e6bd27715366fd5bf2f87d33253
 ---
 
 ---
@@ -886,12 +886,12 @@ The worker lists the MCP server’s tools once at startup and cannot add tools t
 
 The MCP helpers keep the server’s names and descriptions, and most schemas pass through unchanged. Rename, trim, or inline where a declaration breaks one of these rules:
 
-| Field                     | Rule                                                                                                                                                                                                                                                                                          |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`                    | Unique within the agent. Letters, digits, underscores, and hyphens, 1–128 characters. Cannot match a built-in agent tool such as `bash` or `read`, or use the reserved `mcp__` or `ant__` prefix.                                                                                             |
-| `description`             | Required and non-empty.                                                                                                                                                                                                                                                                       |
-| `input_schema`            | Accepts the JSON Schema keywords MCP servers commonly emit, such as `additionalProperties` and `title`. Rejects reference keywords such as `$ref` anywhere, and top-level `oneOf`, `anyOf`, and `allOf`. Property names use letters, digits, underscores, dots, and hyphens, 1–64 characters. |
-| The agent’s `tools` array | At most 256 entries. Each wrapped tool is one entry, and the built-in toolset is one more.                                                                                                                                                                                                    |
+| Field | Rule |
+| ----- | ----- |
+| `name` | Unique within the agent. Letters, digits, underscores, and hyphens, 1–128 characters. Cannot match a built-in agent tool such as `bash` or `read`, or use the reserved `mcp__` or `ant__` prefix. |
+| `description` | Required and non-empty. |
+| `input_schema` | Accepts the JSON Schema keywords MCP servers commonly emit, such as `additionalProperties` and `title`. Rejects reference keywords such as `$ref` anywhere, and top-level `oneOf`, `anyOf`, and `allOf`. Property names use letters, digits, underscores, dots, and hyphens, 1–64 characters. |
+| The agent’s `tools` array | At most 256 entries. Each wrapped tool is one entry, and the built-in toolset is one more. |
 
 Two cases need extra work:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry/api
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 075df1cf9f814ba2c322abb0f353b04252a7c51877810723f04ea6fea1596ece
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 7d3750ec133093a043b2696500a87dc30ca42bd9b5df2fe0b55c30989eb6bf26
 ---
 
 ---
@@ -62,15 +62,15 @@ API memancarkan span untuk permintaan Messages API dan sesi Managed Agents Anda.
 
 2. Konfigurasikan tujuan:
 
-   | Kolom                               | Yang dimasukkan                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-   | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-   | **Penyedia**                        | Platform observabilitas Anda, atau **Kustom** jika tidak tercantum. Jika Anda memilih platform yang tercantum, Console akan meminta detailnya, seperti kunci API, sebagai pengganti **URL endpoint OTLP**, **Header permintaan**, dan **URL endpoint trace OTLP**.                                                                                                                                                                                               |
-   | **Nama**                            | Opsional. Misalnya, “Platform observabilitas Acme.”                                                                                                                                                                                                                                                                                                                                                                                                              |
-   | **URL endpoint OTLP**               | URL HTTPS dasar dari endpoint OTLP/HTTP platform observabilitas Anda, dengan hostname, bukan alamat IP. URL ini dapat memiliki prefiks path, misalnya `https://gateway.example.com/otlp`. Jangan tambahkan `/v1/traces`, karena API akan menambahkannya. Jika Anda menetapkan **URL endpoint trace OTLP**, API akan menggunakan URL tersebut sebagai gantinya.                                                                                                   |
-   | **Header permintaan**               | Header yang dikirim API bersama setiap permintaan, misalnya header kunci API dari platform observabilitas Anda. Letakkan kredensial hanya di nilai header. Setelah Anda menyimpan, Console tidak menampilkan nilai tersebut lagi.                                                                                                                                                                                                                                |
-   | **Mode konten**                     | **Hanya metadata** atau **Konten lengkap**. Lihat [perbedaan mode konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode).                                                                                                                                                                                                                                                                                                |
-   | **Ruang kerja**                     | Workspace yang span-nya diterima oleh tujuan: **Semua**, **Yang dipilih**, atau **Semua kecuali**. Lihat [Pilih workspace untuk tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#choose-workspaces-for-a-destination).                                                                                                                                                                                                                |
-   | **URL endpoint trace OTLP**         | Opsional, di bawah **Pengaturan lanjutan**. URL lengkap endpoint trace platform observabilitas Anda, misalnya `https://gateway.example.com/custom/traces`. Tetapkan ini ketika platform tersebut menerima trace di URL selain OTLP endpoint URL ditambah `/v1/traces`. URL ini harus memiliki host yang sama dengan OTLP endpoint URL.                                                                                                                           |
+   | Kolom | Yang dimasukkan |
+   | ----- | ----- |
+   | **Penyedia** | Platform observabilitas Anda, atau **Kustom** jika tidak tercantum. Jika Anda memilih platform yang tercantum, Console akan meminta detailnya, seperti kunci API, sebagai pengganti **URL endpoint OTLP**, **Header permintaan**, dan **URL endpoint trace OTLP**. |
+   | **Nama** | Opsional. Misalnya, “Platform observabilitas Acme.” |
+   | **URL endpoint OTLP** | URL HTTPS dasar dari endpoint OTLP/HTTP platform observabilitas Anda, dengan hostname, bukan alamat IP. URL ini dapat memiliki prefiks path, misalnya `https://gateway.example.com/otlp`. Jangan tambahkan `/v1/traces`, karena API akan menambahkannya. Jika Anda menetapkan **URL endpoint trace OTLP**, API akan menggunakan URL tersebut sebagai gantinya. |
+   | **Header permintaan** | Header yang dikirim API bersama setiap permintaan, misalnya header kunci API dari platform observabilitas Anda. Letakkan kredensial hanya di nilai header. Setelah Anda menyimpan, Console tidak menampilkan nilai tersebut lagi. |
+   | **Mode konten** | **Hanya metadata** atau **Konten lengkap**. Lihat [perbedaan mode konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode). |
+   | **Ruang kerja** | Workspace yang span-nya diterima oleh tujuan: **Semua**, **Yang dipilih**, atau **Semua kecuali**. Lihat [Pilih workspace untuk tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#choose-workspaces-for-a-destination). |
+   | **URL endpoint trace OTLP** | Opsional, di bawah **Pengaturan lanjutan**. URL lengkap endpoint trace platform observabilitas Anda, misalnya `https://gateway.example.com/custom/traces`. Tetapkan ini ketika platform tersebut menerima trace di URL selain OTLP endpoint URL ditambah `/v1/traces`. URL ini harus memiliki host yang sama dengan OTLP endpoint URL. |
    | **Ukuran konten maksimum dalam MB** | Opsional, di bawah **Pengaturan lanjutan** jika mode konten adalah **Konten lengkap**. Jumlah konten maksimum yang dikirim API di setiap span. Console mengisinya berdasarkan **Penyedia** yang Anda pilih. Ubah nilainya agar sesuai dengan yang diterima platform observabilitas Anda. Biarkan kosong untuk mengirim konten sebanyak yang diizinkan API. Lihat [Batas konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#content-limits). |
 
 3. Klik **Tambahkan tujuan** untuk menyimpan.
@@ -669,12 +669,12 @@ Aturan berikut berlaku untuk span yang dikirim API ke tujuan Anda.
 
 Kolom **Pengiriman** menampilkan status setiap tujuan. Status dapat terlambat hingga satu menit.
 
-| Status pengiriman  | Arti                                                                                             |
-| ------------------ | ------------------------------------------------------------------------------------------------ |
-| **Sehat**          | Pengiriman terakhir berhasil.                                                                    |
-| **Gagal**          | Pengiriman terakhir gagal. Untuk melihat kesalahannya, arahkan penunjuk ke atas **Gagal**.       |
-| **Tidak ada data** | API belum mencoba pengiriman.                                                                    |
-| **Dinonaktifkan**  | Tujuan tidak menerima span. Untuk melihat alasannya, arahkan penunjuk ke atas **Dinonaktifkan**. |
+| Status pengiriman | Arti |
+| ----- | ----- |
+| **Sehat** | Pengiriman terakhir berhasil. |
+| **Gagal** | Pengiriman terakhir gagal. Untuk melihat kesalahannya, arahkan penunjuk ke atas **Gagal**. |
+| **Tidak ada data** | API belum mencoba pengiriman. |
+| **Dinonaktifkan** | Tujuan tidak menerima span. Untuk melihat alasannya, arahkan penunjuk ke atas **Dinonaktifkan**. |
 
 API menonaktifkan tujuan ketika:
 
@@ -687,15 +687,15 @@ Untuk mengubah sebuah tujuan, buka menu **Tindakan lainnya** miliknya saat filte
 
 ## Batas
 
-| Batas                                                       | Nilai          |
-| ----------------------------------------------------------- | -------------- |
-| Tujuan untuk setiap organisasi, termasuk yang dinonaktifkan | 10             |
-| Workspace yang Anda pilih untuk sebuah tujuan               | 1.000          |
-| Header permintaan untuk setiap tujuan                       | 20             |
-| Panjang nama header                                         | 128 byte       |
-| Panjang nilai header                                        | 4.096 byte     |
-| Panjang semua nama dan nilai header secara keseluruhan      | 16.384 byte    |
-| Panjang URL endpoint                                        | 2.048 karakter |
+| Batas | Nilai |
+| ----- | ----- |
+| Tujuan untuk setiap organisasi, termasuk yang dinonaktifkan | 10 |
+| Workspace yang Anda pilih untuk sebuah tujuan | 1.000 |
+| Header permintaan untuk setiap tujuan | 20 |
+| Panjang nama header | 128 byte |
+| Panjang nilai header | 4.096 byte |
+| Panjang semua nama dan nilai header secara keseluruhan | 16.384 byte |
+| Panjang URL endpoint | 2.048 karakter |
 
 ## Zero data retention
 
@@ -703,29 +703,29 @@ Span memiliki kelayakan “zero data retention” (retensi data nol), atau ZDR, 
 
 ## Pemecahan masalah
 
-| Masalah                                                                             | Yang perlu diperiksa                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tidak ada span API                                                                  | Workspace memerlukan tujuan aktif yang mencakupnya. Lihat [Pilih workspace untuk tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#choose-workspaces-for-a-destination). Setelah tujuan mulai mencakup workspace, span dari workspace tersebut dapat memerlukan waktu hingga satu menit untuk tiba. API tidak memancarkan span untuk permintaan yang header `traceparent`-nya memiliki flag sampled dalam keadaan nonaktif, atau untuk permintaan ke [endpoint yang kompatibel dengan OpenAI](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk). |
-| Kolom **Pengiriman** menampilkan **Gagal**                                          | Arahkan pointer ke atasnya untuk melihat error terakhir. Untuk menemukan kemungkinan penyebabnya, lihat [Error pengiriman](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-errors).                                                                                                                                                                                                                                                                                                                                                                                      |
-| Kolom **Pengiriman** menampilkan **Dinonaktifkan**                                  | Arahkan pointer ke atasnya untuk melihat alasannya. Untuk alasan-alasannya, lihat [kapan API menonaktifkan tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health).                                                                                                                                                                                                                                                                                                                                                                                          |
-| Span tidak memiliki prompt atau respons, tetapi tujuan diatur ke **Konten lengkap** | Organisasi Anda mungkin memiliki pembatasan penanganan data HIPAA, FERPA, atau K-12 dengan Anthropic. Lihat [Mode konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode).                                                                                                                                                                                                                                                                                                                                                                                     |
+| Masalah | Yang perlu diperiksa |
+| ----- | ----- |
+| Tidak ada span API | Workspace memerlukan tujuan aktif yang mencakupnya. Lihat [Pilih workspace untuk tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#choose-workspaces-for-a-destination). Setelah tujuan mulai mencakup workspace, span dari workspace tersebut dapat memerlukan waktu hingga satu menit untuk tiba. API tidak memancarkan span untuk permintaan yang header `traceparent`-nya memiliki flag sampled dalam keadaan nonaktif, atau untuk permintaan ke [endpoint yang kompatibel dengan OpenAI](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk). |
+| Kolom **Pengiriman** menampilkan **Gagal** | Arahkan pointer ke atasnya untuk melihat error terakhir. Untuk menemukan kemungkinan penyebabnya, lihat [Error pengiriman](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-errors). |
+| Kolom **Pengiriman** menampilkan **Dinonaktifkan** | Arahkan pointer ke atasnya untuk melihat alasannya. Untuk alasan-alasannya, lihat [kapan API menonaktifkan tujuan](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health). |
+| Span tidak memiliki prompt atau respons, tetapi tujuan diatur ke **Konten lengkap** | Organisasi Anda mungkin memiliki pembatasan penanganan data HIPAA, FERPA, atau K-12 dengan Anthropic. Lihat [Mode konten](https://platform.claude.com/docs/id/manage-claude/opentelemetry#choose-a-content-mode). |
 
 ### Error pengiriman
 
 Ketika pengiriman gagal, kolom **Pengiriman** menampilkan **Gagal**. Arahkan pointer ke atasnya untuk melihat error-nya, lalu temukan kemungkinan penyebabnya:
 
-| Error                                                | Kemungkinan penyebab                                                                                                                                          |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| HTTP error (status 401) atau HTTP error (status 403) | Header autentikasi yang salah                                                                                                                                 |
-| HTTP error (status 404)                              | Path yang salah di **URL endpoint OTLP** atau **URL endpoint trace OTLP**                                                                                     |
-| Invalid address                                      | Hostname endpoint tidak ada atau tidak di-resolve ke alamat IP publik                                                                                         |
-| Temporary DNS failure                                | Pencarian DNS untuk hostname endpoint gagal, misalnya karena server DNS-nya mengembalikan error                                                               |
-| TLS failure                                          | Masalah TLS, misalnya dengan sertifikat endpoint                                                                                                              |
-| Timeout                                              | Endpoint tidak merespons tepat waktu. Lihat [batas waktu pengiriman](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health) |
-| Connection failure                                   | API tidak dapat terhubung ke endpoint                                                                                                                         |
-| Redirect (status 3xx)                                | Endpoint me-redirect permintaan. API tidak mengikuti redirect, jadi gunakan URL tujuan redirect tersebut                                                      |
-| HTTP error (status 408, 429, atau 5xx)               | Endpoint kelebihan beban, membatasi laju permintaan, atau mengalami error                                                                                     |
-| HTTP error (status 4xx lainnya)                      | Endpoint menolak permintaan, misalnya karena ukuran atau formatnya                                                                                            |
+| Error | Kemungkinan penyebab |
+| ----- | ----- |
+| HTTP error (status 401) atau HTTP error (status 403) | Header autentikasi yang salah |
+| HTTP error (status 404) | Path yang salah di **URL endpoint OTLP** atau **URL endpoint trace OTLP** |
+| Invalid address | Hostname endpoint tidak ada atau tidak di-resolve ke alamat IP publik |
+| Temporary DNS failure | Pencarian DNS untuk hostname endpoint gagal, misalnya karena server DNS-nya mengembalikan error |
+| TLS failure | Masalah TLS, misalnya dengan sertifikat endpoint |
+| Timeout | Endpoint tidak merespons tepat waktu. Lihat [batas waktu pengiriman](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#delivery-and-health) |
+| Connection failure | API tidak dapat terhubung ke endpoint |
+| Redirect (status 3xx) | Endpoint me-redirect permintaan. API tidak mengikuti redirect, jadi gunakan URL tujuan redirect tersebut |
+| HTTP error (status 408, 429, atau 5xx) | Endpoint kelebihan beban, membatasi laju permintaan, atau mengalami error |
+| HTTP error (status 4xx lainnya) | Endpoint menolak permintaan, misalnya karena ukuran atau formatnya |
 
 ## Ketersediaan
 
@@ -737,25 +737,25 @@ Tracing API dalam versi beta di semua model dan layak untuk retensi data nol.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                                                  | HIPAA                                       |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                                                  | Tidak layak                                 |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Tidak layak |
 | Detail | Beta. Span memiliki kelayakan ZDR yang sama dengan fitur yang menghasilkannya. Organisasi HIPAA dapat mengekspor metadata. Span SDK dikirim langsung dari environment Anda ke exporter Anda. Setelah dikirim, data disimpan oleh layanan yang Anda pilih, di luar Anthropic, di bawah kontrol retensi dan akses layanan tersebut. | Organisasi HIPAA dapat mengekspor metadata. |
 
 Endpoint yang berlaku:

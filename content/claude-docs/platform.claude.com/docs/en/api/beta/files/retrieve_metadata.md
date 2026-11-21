@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/retrieve_metadata
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: efa5550530dc2abc16c4bb44ec92f4a626b752e7320ec628d3c6b701bf621307
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 82a70d73dd95de514d5e846e635c0758e782239488c1700496191af56f997df1
 ---
 
 ---
@@ -127,6 +127,8 @@ Get File Metadata
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

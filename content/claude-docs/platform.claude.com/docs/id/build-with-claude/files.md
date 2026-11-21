@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: abafd22470cc0a5d9e85bd404ec4d5c9b27a6816f077a7bf874a59674cc1a762
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 61466fda3c103bbebc31ee4c231e7365ca852bf19eb0ce5c64323437f0bdc474
 ---
 
 ---
@@ -63,9 +63,9 @@ Files API menyediakan pendekatan buat-sekali, gunakan-berkali-kali untuk bekerja
 
 <Warning id="workspace-scoped-access" title="File yang diunggah dapat diakses oleh seluruh workspace Anda">
   File tidak dibatasi pada pengguna akhir, percakapan, atau sesi tertentu. Kunci API apa pun yang memiliki akses ke sebuah workspace dapat mengakses file apa pun yang diunggah ke workspace tersebut. Setiap akun layanan, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan workspace default selain workspace mana pun tempat Anda menambahkan mereka, jadi simpan file yang harus tetap terpisah di workspace tersendiri dan akses file tersebut hanya dengan [kunci yang dibatasi pada workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping). Jangan pernah menerima nilai `file_id` dari pengguna akhir atau sumber tidak tepercaya lainnya: ID file yang diberikan pengguna dapat memungkinkan satu pengguna aplikasi Anda membaca konten yang diunggah oleh pengguna lain. Perlakukan ID file sebagai referensi sisi server, dan simpan pemetaan antara pengguna Anda dan file mereka di aplikasi Anda.
-
-  Jika Anda membangun aplikasi “multitenant” (multi-penyewa) di atas Files API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk file, sehingga satu workspace untuk setiap tenant memberikan isolasi ketat bagi data tenant tersebut dari setiap tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace; hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
 </Warning>
+
+Jika Anda membangun aplikasi “multitenant” (multi-penyewa) di atas Files API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk file, sehingga satu workspace untuk setiap tenant memberikan isolasi ketat bagi data tenant tersebut dari setiap tenant lainnya. Setiap organisasi dapat memiliki hingga 1.000 workspace secara default. Hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
 
 ## Cara menggunakan Files API
 
@@ -415,12 +415,12 @@ Setelah diunggah, referensikan file dengan meneruskan `id` dari respons unggahan
 
 Files API mendukung berbagai jenis file yang sesuai dengan berbagai jenis blok konten:
 
-| Jenis file                                                                                                                                                                                    | Jenis MIME                                           | Jenis blok konten  | Kasus penggunaan                  |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- | ------------------ | --------------------------------- |
-| PDF                                                                                                                                                                                           | `application/pdf`                                    | `document`         | Analisis teks, pemrosesan dokumen |
-| Teks biasa                                                                                                                                                                                    | `text/plain`                                         | `document`         | Analisis teks, pemrosesan         |
-| Gambar                                                                                                                                                                                        | `image/jpeg`, `image/png`, `image/gif`, `image/webp` | `image`            | Analisis gambar, tugas visual     |
-| Dataset, lainnya (lihat [Mengunggah dan menganalisis file Anda sendiri](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files)) | Bervariasi                                           | `container_upload` | Analisis data, visualisasi        |
+| Jenis file | Jenis MIME | Jenis blok konten | Kasus penggunaan |
+| ----- | ----- | ----- | ----- |
+| PDF | `application/pdf` | `document` | Analisis teks, pemrosesan dokumen |
+| Teks biasa | `text/plain` | `document` | Analisis teks, pemrosesan |
+| Gambar | `image/jpeg`, `image/png`, `image/gif`, `image/webp` | `image` | Analisis gambar, tugas visual |
+| Dataset, lainnya (lihat [Mengunggah dan menganalisis file Anda sendiri](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#upload-and-analyze-your-own-files)) | Bervariasi | `container_upload` | Analisis data, visualisasi |
 
 #### Blok dokumen
 
@@ -1041,12 +1041,12 @@ Jika organisasi Anda telah mengaktifkan [Compliance API](https://platform.claude
 
 Files API telah keluar dari beta dan tidak memerlukan header beta. Migrasi dari `files-api-2025-04-14` bersifat opsional: permintaan yang mengirimkannya tetap berfungsi dan tetap mengembalikan bentuk respons beta, sehingga integrasi yang ada tetap berfungsi hingga Anda mengubahnya. Menghapus header tersebut akan mengalihkan permintaan itu ke bentuk yang didokumentasikan di halaman ini:
 
-|                                               | Dengan `files-api-2025-04-14`           | Tanpa header                                                                         |
-| --------------------------------------------- | --------------------------------------- | ------------------------------------------------------------------------------------ |
-| Respons list                                  | `{ data, has_more, first_id, last_id }` | `{ data, next_page }`; teruskan `next_page` kembali sebagai parameter query `page`   |
-| Kursor list                                   | `before_id`, `after_id`                 | `page`, atau hingga 100 `ids[]` (`before_id` dan `after_id` mengembalikan error 400) |
-| `expires_at` pada objek file                  | Tidak dikembalikan                      | Selalu ada; `null` ketika file tidak memiliki kedaluwarsa                            |
-| `Content-Type` pada bagian file yang diunggah | Wajib                                   | Opsional; jenisnya dideteksi jika dihilangkan                                        |
+|  | Dengan `files-api-2025-04-14` | Tanpa header |
+| ----- | ----- | ----- |
+| Respons list | `{ data, has_more, first_id, last_id }` | `{ data, next_page }`; teruskan `next_page` kembali sebagai parameter query `page` |
+| Kursor list | `before_id`, `after_id` | `page`, atau hingga 100 `ids[]` (`before_id` dan `after_id` mengembalikan error 400) |
+| `expires_at` pada objek file | Tidak dikembalikan | Selalu ada; `null` ketika file tidak memiliki kedaluwarsa |
+| `Content-Type` pada bagian file yang diunggah | Wajib | Opsional; jenisnya dideteksi jika dihilangkan |
 
 Untuk bermigrasi:
 
@@ -1065,15 +1065,15 @@ Mulai dari rilis SDK Anda dalam tabel berikut, namespace beta berbeda dari names
 
 Tabel ini juga mencantumkan nama namespace setiap SDK dan tempat namespace beta menerima nilai `anthropic-beta`:
 
-| SDK        | Namespace stabil | Namespace beta                                               | Namespace beta berubah di | Nilai `anthropic-beta` diteruskan di |
-| ---------- | ---------------- | ------------------------------------------------------------ | ------------------------- | ------------------------------------ |
-| Python     | `client.files`   | `client.beta.files`                                          | 1.2.0                     | `betas`                              |
-| TypeScript | `client.files`   | `client.beta.files`                                          | 0.122.0                   | `betas`                              |
-| C#         | `client.Files`   | `client.Beta.Files`                                          | 12.44.0                   | `Betas`                              |
-| Go         | `client.Files`   | `client.Beta.Files`                                          | 1.68.0                    | `Betas`                              |
-| Java       | `client.files()` | `client.beta().files()`                                      | 2.59.0                    | `.addBeta()`                         |
-| PHP        | `$client->files` | `$client->beta->files` (kelas berada dalam `Anthropic\Beta`) | 0.45.0                    | `betas`                              |
-| Ruby       | `client.files`   | `client.beta.files`                                          | 1.67.0                    | `betas`                              |
+| SDK | Namespace stabil | Namespace beta | Namespace beta berubah di | Nilai `anthropic-beta` diteruskan di |
+| ----- | ----- | ----- | ----- | ----- |
+| Python | `client.files` | `client.beta.files` | 1.2.0 | `betas` |
+| TypeScript | `client.files` | `client.beta.files` | 0.122.0 | `betas` |
+| C# | `client.Files` | `client.Beta.Files` | 12.44.0 | `Betas` |
+| Go | `client.Files` | `client.Beta.Files` | 1.68.0 | `Betas` |
+| Java | `client.files()` | `client.beta().files()` | 2.59.0 | `.addBeta()` |
+| PHP | `$client->files` | `$client->beta->files` (kelas berada dalam `Anthropic\Beta`) | 0.45.0 | `betas` |
+| Ruby | `client.files` | `client.beta.files` | 1.67.0 | `betas` |
 
 Untuk fitur Files yang masih dalam beta, gunakan namespace beta dan teruskan nilai `anthropic-beta` fitur tersebut seperti yang ditunjukkan tabel. Misalnya, di bawah header beta Managed Agents, `scope_id` membatasi daftar file pada file dari satu sesi. Untuk menggunakan `scope_id`, lihat [Mendaftarkan dan mengunduh file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files).
 
@@ -1147,8 +1147,8 @@ Files API tersedia di semua model.
 * Ketersediaan: Tersedia
 * Penggunaan: Rujuk file yang diunggah dengan `file_id`-nya dalam blok `document`, `image`, atau `container_upload`.
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                               |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -1156,18 +1156,18 @@ Files API tersedia di semua model.
 * Ketersediaan: Tersedia
 * Penggunaan: Mount file yang diunggah di sandbox sesi sebagai sumber daya sesi (hanya baca, di bawah `/mnt/session/uploads`), atau rujuk `file_id` dalam blok `image` atau `document` pada event `user.message`. File yang ditulis agen ke `/mnt/session/outputs/` dapat diunduh dengan Files API.
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                     | HIPAA       |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Status | Tidak layak                                                                                                                                                                                          | Tidak layak |
-| Detail | File disimpan hingga dihapus secara eksplisit atau mencapai masa kedaluwarsa yang dikonfigurasi. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/files#data-retention) | —           |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
+| Detail | File disimpan hingga dihapus secara eksplisit atau mencapai masa kedaluwarsa yang dikonfigurasi. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/files#data-retention) | — |
 
 Endpoint yang berlaku:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/api-credits-for-subscribers
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: eaa5139124963577485789a0820ad52833097651c88999464363b8c92b8baa7c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 5b2bbea2ae8af55fc34aa35a975f6d75b54eaf28df3eb7fe786832c29df537d5
 ---
 
 ---
@@ -19,24 +19,24 @@ Paket Claude Max, Ultra, dan Team menyertakan kredit bulanan untuk Claude API. U
 
 ## Ringkasan
 
-| Topik                                       | Detail                                                                                                       |
-| ------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| **Paket yang memenuhi syarat**              | Max, Ultra, dan Team, termasuk paket Team dengan diskon                                                      |
-| **Jumlah bulanan**                          | $100 USD (Max), $200 USD (Ultra), hingga $500 USD (Team, digabungkan\*)                                      |
-| **Mencakup**                                | Claude API, Claude Managed Agents, Claude Agent SDK, dan playground                                          |
-| **Tidak mencakup**                          | Claude Code, penggunaan tambahan di aplikasi Claude                                                          |
-| **Pembaruan**                               | Setiap siklus penagihan (atau setiap bulan untuk paket tahunan)                                              |
-| **Kedaluwarsa**                             | Akhir setiap siklus penagihan (atau setiap bulan untuk paket tahunan), tanpa akumulasi ke periode berikutnya |
-| **Metode pembayaran untuk Claude Platform** | Tidak diperlukan                                                                                             |
+| Topik | Detail |
+| ----- | ----- |
+| **Paket yang memenuhi syarat** | Max, Ultra, dan Team, termasuk paket Team dengan diskon |
+| **Jumlah bulanan** | $100 USD (Max), $200 USD (Ultra), hingga $500 USD (Team, digabungkan\*) |
+| **Mencakup** | Claude API, Claude Managed Agents, Claude Agent SDK, dan playground |
+| **Tidak mencakup** | Claude Code, penggunaan tambahan di aplikasi Claude |
+| **Pembaruan** | Setiap siklus penagihan (atau setiap bulan untuk paket tahunan) |
+| **Kedaluwarsa** | Akhir setiap siklus penagihan (atau setiap bulan untuk paket tahunan), tanpa akumulasi ke periode berikutnya |
+| **Metode pembayaran untuk Claude Platform** | Tidak diperlukan |
 
 ## Jumlah kredit API
 
-| Paket                                                  | Kredit bulanan                                                             |
-| ------------------------------------------------------ | -------------------------------------------------------------------------- |
-| Max                                                    | $100 USD                                                                   |
-| Ultra                                                  | $200 USD                                                                   |
-| Team, kursi Standar                                    | $20 USD per kursi\*                                                        |
-| Team, kursi Premium                                    | $100 USD per kursi\*                                                       |
+| Paket | Kredit bulanan |
+| ----- | ----- |
+| Max | $100 USD |
+| Ultra | $200 USD |
+| Team, kursi Standar | $20 USD per kursi\* |
+| Team, kursi Premium | $100 USD per kursi\* |
 | Paket Team dengan diskon (organisasi nirlaba, ilmuwan) | Sama seperti Team: $20 USD per kursi Standar, $100 USD per kursi Premium\* |
 
 \*Pada paket Team, kredit untuk semua kursi digabungkan menjadi satu saldo bulanan, dengan batas maksimum $500 USD. Setiap kredit bulanan, termasuk yang pertama, didasarkan pada jumlah kursi di paket Anda pada awal bulan penagihan tersebut. Misalnya, tim dengan tiga kursi Standar dan dua kursi Premium menerima $260 USD per bulan. Menambahkan satu kursi Premium lagi akan menaikkan kredit bulan berikutnya menjadi $360 USD.
@@ -54,10 +54,10 @@ Paket Claude Max, Ultra, dan Team menyertakan kredit bulanan untuk Claude API. U
 
 Anda memerlukan kedua peran berikut:
 
-| Tempat                        | Peran yang diperlukan                                     |
-| ----------------------------- | --------------------------------------------------------- |
-| **Paket Claude**              | Max atau Ultra: pelanggan<br />Team: Primary Owner, Owner |
-| **Organisasi Claude Console** | Admin atau Penagihan                                      |
+| Tempat | Peran yang diperlukan |
+| ----- | ----- |
+| **Paket Claude** | Max atau Ultra: pelanggan<br />Team: Primary Owner, Owner |
+| **Organisasi Claude Console** | Admin atau Penagihan |
 
 Jika Anda belum memiliki organisasi Claude Console, buat terlebih dahulu di Console di [platform.claude.com](https://platform.claude.com/), atau buat selama alur klaim.
 
@@ -87,15 +87,15 @@ Pelanggan yang tidak memenuhi syarat tidak melihat kredit API di halaman pengatu
 
 Kredit API ini hanya dapat digunakan di Claude Platform. Tabel berikut menunjukkan produk mana yang dicakup:
 
-| Produk                                                                                          | Dicakup |
-| ----------------------------------------------------------------------------------------------- | ------- |
-| [Claude API](https://platform.claude.com/docs/id/api/overview)                                  | Ya      |
-| [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)            | Ya      |
-| [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview)                          | Ya      |
-| [Playground](https://platform.claude.com/playground) di Claude Console                          | Ya      |
-| Claude Code                                                                                     | Tidak   |
-| Penggunaan tambahan di aplikasi Claude                                                          | Tidak   |
-| [Platform cloud](https://platform.claude.com/docs/id/api/overview#cloud-platform-apis) mana pun | Tidak   |
+| Produk | Dicakup |
+| ----- | ----- |
+| [Claude API](https://platform.claude.com/docs/id/api/overview) | Ya |
+| [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) | Ya |
+| [Claude Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview) | Ya |
+| [Playground](https://platform.claude.com/playground) di Claude Console | Ya |
+| Claude Code | Tidak |
+| Penggunaan tambahan di aplikasi Claude | Tidak |
+| [Platform cloud](https://platform.claude.com/docs/id/api/overview#cloud-platform-apis) mana pun | Tidak |
 
 ## Cara kredit diterapkan
 
@@ -134,12 +134,12 @@ Credit balance too low · Add funds: https://platform.claude.com/settings/billin
 
 ## Jika paket Anda berubah
 
-| Perubahan                                                                         | Apa yang terjadi                                                                                                                                                                                                                                                   |
-| --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Pembatalan, penurunan ke paket yang tidak memenuhi syarat, atau pengembalian dana | Kredit baru berhenti ketika paket Anda berakhir. Kredit yang sudah Anda miliki tetap dapat digunakan hingga kedaluwarsa.                                                                                                                                           |
-| Peningkatan dari Max ke Ultra                                                     | Anda langsung menerima kredit API yang diprorata, kemudian $200 USD setiap siklus penagihan. Jika Anda berlangganan melalui Google Play, kredit $200 USD masuk belakangan, paling lambat pada perpanjangan berikutnya.                                             |
-| Peningkatan dari Max atau Ultra ke Team                                           | Tautan ke paket Max atau Ultra Anda berakhir. Owner Team dapat mengklaim kredit tim setelah paket Team aktif selama 7 hari.                                                                                                                                        |
-| Menambah atau mengurangi kursi Team                                               | Kursi yang ditambahkan ke paket Anda dihitung mulai dari kredit bulan penagihan berikutnya. Kursi yang Anda hapus tetap ada di paket Anda hingga diperpanjang, sehingga kredit mungkin lebih rendah setelah itu. Gabungan kredit tetap dibatasi maksimum $500 USD. |
+| Perubahan | Apa yang terjadi |
+| ----- | ----- |
+| Pembatalan, penurunan ke paket yang tidak memenuhi syarat, atau pengembalian dana | Kredit baru berhenti ketika paket Anda berakhir. Kredit yang sudah Anda miliki tetap dapat digunakan hingga kedaluwarsa. |
+| Peningkatan dari Max ke Ultra | Anda langsung menerima kredit API yang diprorata, kemudian $200 USD setiap siklus penagihan. Jika Anda berlangganan melalui Google Play, kredit $200 USD masuk belakangan, paling lambat pada perpanjangan berikutnya. |
+| Peningkatan dari Max atau Ultra ke Team | Tautan ke paket Max atau Ultra Anda berakhir. Owner Team dapat mengklaim kredit tim setelah paket Team aktif selama 7 hari. |
+| Menambah atau mengurangi kursi Team | Kursi yang ditambahkan ke paket Anda dihitung mulai dari kredit bulan penagihan berikutnya. Kursi yang Anda hapus tetap ada di paket Anda hingga diperpanjang, sehingga kredit mungkin lebih rendah setelah itu. Gabungan kredit tetap dibatasi maksimum $500 USD. |
 
 ## Gunakan kredit Anda secara efisien
 

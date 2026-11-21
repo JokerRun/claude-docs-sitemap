@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/archive
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 9d5de79a0791833d99734b3c6beb5c0d83aa41f9f3966e7b648fd165f08a97b7
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1923ed0f9bbb413f9ce701845cab57c1c306c765827f2dc07faf54f3d1195bde
 ---
 
 ---
@@ -140,6 +140,8 @@ certificate is added.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -232,7 +234,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

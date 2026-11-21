@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/delete
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 7a3325d8f15679d12f3ab8fab188dc13ce9c3d1a78708af5ab4f5ec69b11b96c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a1ed0dba31dfd939cd4be3f397f7de226ab16375548741cdd6dcfc953ec5f7dc
 ---
 
 ---
@@ -53,7 +53,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 - `spend_limits_admin_api_writes_not_enabled` (HTTP status 403)
 

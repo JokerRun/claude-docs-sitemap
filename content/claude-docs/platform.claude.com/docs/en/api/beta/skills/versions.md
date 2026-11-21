@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 7590b9b296007464894eb5eeccce56529ad07c75e765f403dd3373585952d1a9
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e89625973aa6dc9725dba12d2894f4870c8ed3773f9ea9e8db5dc9e4ae7a63c8
 ---
 
 ---
@@ -131,6 +131,8 @@ Create Skill Version
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -413,6 +415,8 @@ List Skill Versions
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -677,6 +681,8 @@ Download a skill version's content as a zip archive.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -858,6 +864,8 @@ Get Skill Version
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1109,6 +1117,8 @@ Delete Skill Version
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 6dca5df00e2925af8d1dc6fdd84ad722252580405add0e8ee3eeb97895d2473d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 8d609b8224768bb8d63db4d4bf02a22f06e2c09c80e2ec48e77dd670833a95b1
 ---
 
 ---
@@ -385,17 +385,17 @@ except anthropic.APIStatusError as e:
 
 Kode error adalah sebagai berikut:
 
-| Kode status | Jenis error                |
-| ----------- | -------------------------- |
-| 400         | `BadRequestError`          |
-| 401         | `AuthenticationError`      |
-| 403         | `PermissionDeniedError`    |
-| 404         | `NotFoundError`            |
-| 409         | `ConflictError`            |
-| 422         | `UnprocessableEntityError` |
-| 429         | `RateLimitError`           |
-| >=500       | `InternalServerError`      |
-| T/A         | `APIConnectionError`       |
+| Kode status | Jenis error |
+| ----- | ----- |
+| 400 | `BadRequestError` |
+| 401 | `AuthenticationError` |
+| 403 | `PermissionDeniedError` |
+| 404 | `NotFoundError` |
+| 409 | `ConflictError` |
+| 422 | `UnprocessableEntityError` |
+| 429 | `RateLimitError` |
+| >=500 | `InternalServerError` |
+| T/A | `APIConnectionError` |
 
 ## ID permintaan
 
@@ -762,14 +762,14 @@ response = client.beta.messages.create(
 
 Keenam kelas klien disertakan dalam paket dasar `anthropic`:
 
-| Penyedia                                          | Klien                                          | Dependensi tambahan                     |
-| ------------------------------------------------- | ---------------------------------------------- | --------------------------------------- |
-| Claude Models on Google Cloud (Google managed)    | `from anthropic import AnthropicVertex`        | `pip install "anthropic[vertex]"`       |
-| Bedrock                                           | `from anthropic import AnthropicBedrockMantle` | `pip install "anthropic[bedrock]"`      |
-| Bedrock (jalur `bedrock-runtime`)                 | `from anthropic import AnthropicBedrock`       | `pip install "anthropic[bedrock]"`      |
-| Claude Platform on AWS                            | `from anthropic import AnthropicAWS`           | `pip install "anthropic[aws]"`          |
-| Claude Models on Google Cloud (Anthropic managed) | `from anthropic import AnthropicGoogleCloud`   | `pip install "anthropic[google_cloud]"` |
-| Foundry                                           | `from anthropic import AnthropicFoundry`       | Tidak ada                               |
+| Penyedia | Klien | Dependensi tambahan |
+| ----- | ----- | ----- |
+| Claude Models on Google Cloud (Google managed) | `from anthropic import AnthropicVertex` | `pip install "anthropic[vertex]"` |
+| Bedrock | `from anthropic import AnthropicBedrockMantle` | `pip install "anthropic[bedrock]"` |
+| Bedrock (jalur `bedrock-runtime`) | `from anthropic import AnthropicBedrock` | `pip install "anthropic[bedrock]"` |
+| Claude Platform on AWS | `from anthropic import AnthropicAWS` | `pip install "anthropic[aws]"` |
+| Claude Models on Google Cloud (Anthropic managed) | `from anthropic import AnthropicGoogleCloud` | `pip install "anthropic[google_cloud]"` |
+| Foundry | `from anthropic import AnthropicFoundry` | Tidak ada |
 
 Klien `AnthropicAWS` masih dalam tahap beta. Berikan `workspace_id` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_AWS_WORKSPACE_ID`. Klien `AnthropicGoogleCloud` juga masih dalam tahap beta. Berikan `workspace_id` ke konstruktor atau atur variabel lingkungan `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. Lihat [Resolusi proyek, lokasi, dan workspace](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution) untuk mengetahui cara klien menentukan ID workspace.
 

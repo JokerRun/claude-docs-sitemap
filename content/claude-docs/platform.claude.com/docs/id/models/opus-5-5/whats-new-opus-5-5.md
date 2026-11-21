@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-5-5/whats-new-opus-5-5
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c8eb80337f2173c2a9d68bbdb7f7ba5ffb84313a4f0bab225724f7efd418c690
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 5b58774e934298ed56390bda6795d1d316ad6ce1ad017232abbca35a84ba00c3
 ---
 
 ---
@@ -22,8 +22,8 @@ Tiga perubahan pertama juga berlaku pada Claude Fable 5.1. Perubahan lainnya men
 
 ## Model baru
 
-| Model           | ID Claude API   | Deskripsi                                                                  |
-| --------------- | --------------- | -------------------------------------------------------------------------- |
+| Model | ID Claude API | Deskripsi |
+| ----- | ----- | ----- |
 | Claude Opus 5.5 | claude-opus-5-5 | Untuk coding agentik dan pekerjaan berbasis pengetahuan yang berjalan lama |
 
 [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) selalu aktif, dan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) mengontrol kedalaman pemikiran; nilai default-nya pada model ini adalah `medium`. Untuk “context window” (jendela konteks), batas output, batas pengetahuan, dan harga, lihat halaman model [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview); untuk semua model saat ini, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview).
@@ -60,14 +60,14 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 Setiap blok pemikiran mencatat model mana yang menghasilkannya. Percakapan yang beralih model mempertahankan penalaran sebelumnya hanya jika model tujuan peralihan dapat membaca blok pemikiran dari model sebelumnya:
 
-| Peralihan                                                                                                                                     | Mempertahankan penalarannya                                                |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Ke Claude Opus 5.5, dari Claude Opus 5 atau yang lebih lama, Claude Sonnet 5 atau yang lebih lama, atau Claude Haiku 4.5 atau yang lebih lama | Ya                                                                         |
-| Ke Claude Opus 5.5, dari Claude Sonnet 5.5 atau Claude Haiku 5.5                                                                              | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
-| Ke Claude Opus 5.5, dari model Claude Fable atau Claude Mythos                                                                                | Tidak                                                                      |
-| Dari Claude Opus 5.5, ke Claude Fable 5.2 atau Claude Mythos 5.2                                                                              | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
-| Dari Claude Opus 5.5, ke Claude Fable 5.1 atau Claude Mythos 5.1                                                                              | Ya, hanya di Claude API                                                    |
-| Dari Claude Opus 5.5, ke model lain mana pun                                                                                                  | Tidak                                                                      |
+| Peralihan | Mempertahankan penalarannya |
+| ----- | ----- |
+| Ke Claude Opus 5.5, dari Claude Opus 5 atau yang lebih lama, Claude Sonnet 5 atau yang lebih lama, atau Claude Haiku 4.5 atau yang lebih lama | Ya |
+| Ke Claude Opus 5.5, dari Claude Sonnet 5.5 atau Claude Haiku 5.5 | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
+| Ke Claude Opus 5.5, dari model Claude Fable atau Claude Mythos | Tidak |
+| Dari Claude Opus 5.5, ke Claude Fable 5.2 atau Claude Mythos 5.2 | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
+| Dari Claude Opus 5.5, ke Claude Fable 5.1 atau Claude Mythos 5.1 | Ya, hanya di Claude API |
+| Dari Claude Opus 5.5, ke model lain mana pun | Tidak |
 
 Ketika sebuah permintaan membawa blok yang tidak dapat dibaca oleh model tujuan, API tidak menyertakannya sebelum model menerimanya. Permintaan tetap berhasil, dan blok yang tidak disertakan tidak ditagih. Dengan header beta `thinking-binding-controls-2026-08-01`, API melaporkan blok yang tidak disertakan tersebut dalam array `input_transformations` tingkat atas. Lihat [Beralih model dan kembali lagi](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models). Untuk peralihan yang tidak melibatkan Claude Opus 5.5, lihat [Peralihan model mana yang mempertahankan penalaran di Claude API](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#which-model-switches-keep-reasoning).
 

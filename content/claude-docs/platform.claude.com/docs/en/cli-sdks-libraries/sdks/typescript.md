@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: dc6bed395da2eb44b4087d772664155db41f85c8ee8ab4a900070c1929cd0464
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: bb6bf567fc7bf89fcbb88d30aaed0e92282e7dc005f08620d2ef83e06d2cabe8
 ---
 
 ---
@@ -403,17 +403,17 @@ const message = await client.messages
 
 Error codes are as follows:
 
-| Status code | Error type                 |
-| ----------- | -------------------------- |
-| 400         | `BadRequestError`          |
-| 401         | `AuthenticationError`      |
-| 403         | `PermissionDeniedError`    |
-| 404         | `NotFoundError`            |
-| 409         | `ConflictError`            |
-| 422         | `UnprocessableEntityError` |
-| 429         | `RateLimitError`           |
-| >=500       | `InternalServerError`      |
-| N/A         | `APIConnectionError`       |
+| Status code | Error type |
+| ----- | ----- |
+| 400 | `BadRequestError` |
+| 401 | `AuthenticationError` |
+| 403 | `PermissionDeniedError` |
+| 404 | `NotFoundError` |
+| 409 | `ConflictError` |
+| 422 | `UnprocessableEntityError` |
+| 429 | `RateLimitError` |
+| >=500 | `InternalServerError` |
+| N/A | `APIConnectionError` |
 
 ## Request IDs
 

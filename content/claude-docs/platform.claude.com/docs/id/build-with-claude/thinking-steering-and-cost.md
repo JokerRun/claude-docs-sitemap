@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-steering-and-cost
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: d1fbdf13eb9342f7f509252d0b828c925782a01be9279eab04aea291738586c7
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 28417361fd53896cc7e1f575d4ef7c1858582eda581cdc42b1a6b84c746efc98
 ---
 
 ---
@@ -54,13 +54,13 @@ Untuk panduan prompting yang lebih luas terkait pemikiran, lihat [memanfaatkan k
 
 Effort adalah pengungkit pengarahan utama untuk pemikiran. Setiap tingkat menetapkan default yang berbeda untuk seberapa sering dan seberapa dalam Claude berpikir:
 
-| Tingkat effort                                               | Perilaku pemikiran                                                                                                                     |
-| ------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `max`                                                        | Claude paling mudah berpikir dan dengan kedalaman terbesar, tanpa batasan pada panjang pemikiran.                                      |
-| `xhigh`                                                      | Claude lebih mudah berpikir dan dengan kedalaman lebih besar dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang.       |
-| `high` (default pada sebagian besar model)                   | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas-tugas kompleks. |
-| `medium` (default pada Claude Opus 5.5 dan Claude Haiku 5.5) | Claude menggunakan pemikiran sedang. Mungkin melewatkan pemikiran untuk kueri sederhana.                                               |
-| `low`                                                        | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting.                            |
+| Tingkat effort | Perilaku pemikiran |
+| ----- | ----- |
+| `max` | Claude paling mudah berpikir dan dengan kedalaman terbesar, tanpa batasan pada panjang pemikiran. |
+| `xhigh` | Claude lebih mudah berpikir dan dengan kedalaman lebih besar dibandingkan pada `high`, cocok untuk eksplorasi yang diperpanjang. |
+| `high` (default pada sebagian besar model) | Claude berpikir pada sebagian besar permintaan yang mendapat manfaat darinya. Memberikan penalaran mendalam pada tugas-tugas kompleks. |
+| `medium` (default pada Claude Opus 5.5 dan Claude Haiku 5.5) | Claude menggunakan pemikiran sedang. Mungkin melewatkan pemikiran untuk kueri sederhana. |
+| `low` | Claude meminimalkan pemikiran. Melewatkan pemikiran untuk tugas sederhana di mana kecepatan paling penting. |
 
 Pada setiap tingkat, Claude menentukan untuk setiap permintaan apakah akan berpikir. Dalam loop penggunaan alat, permintaan pertama setelah input pengguna baru biasanya membawa sebagian besar penalaran, dan permintaan lanjutan yang hanya memproses hasil alat dapat melewatkan pemikiran, termasuk pada `xhigh` dan `max`. Pemikiran per permintaan juga cenderung berkurang seiring percakapan menjadi lebih panjang. Tidak ada tingkat yang menjamin adanya blok pemikiran pada setiap permintaan.
 
@@ -883,12 +883,12 @@ Pemikiran dikenakan biaya untuk:
 
 Apa yang ditagihkan kepada Anda sama terlepas dari pengaturan `display`; hanya apa yang Anda lihat yang berubah:
 
-|                             | `display: "summarized"`                                        | `display: "omitted"`                           |
-| --------------------------- | -------------------------------------------------------------- | ---------------------------------------------- |
-| **Token input**             | Token dalam permintaan asli Anda                               | Sama seperti summarized                        |
-| **Token output (ditagih)**  | Seluruh token pemikiran yang dihasilkan Claude secara internal | Sama seperti summarized                        |
-| **Token output (terlihat)** | Teks pemikiran yang diringkas                                  | Nol token pemikiran (bidang `thinking` kosong) |
-| **Pembuatan ringkasan**     | Tanpa biaya                                                    | Tidak berlaku                                  |
+|  | `display: "summarized"` | `display: "omitted"` |
+| ----- | ----- | ----- |
+| **Token input** | Token dalam permintaan asli Anda | Sama seperti summarized |
+| **Token output (ditagih)** | Seluruh token pemikiran yang dihasilkan Claude secara internal | Sama seperti summarized |
+| **Token output (terlihat)** | Teks pemikiran yang diringkas | Nol token pemikiran (bidang `thinking` kosong) |
+| **Pembuatan ringkasan** | Tanpa biaya | Tidak berlaku |
 
 <Warning>
   Jumlah token output yang ditagih **tidak** sama dengan jumlah token yang terlihat dalam respons. Anda ditagih untuk seluruh proses pemikiran, bukan konten pemikiran yang terlihat dalam respons.

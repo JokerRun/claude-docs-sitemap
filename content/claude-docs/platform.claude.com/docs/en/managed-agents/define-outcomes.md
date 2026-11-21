@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/define-outcomes
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: a64daec6e2946a7d8ecb9cc0cc5ad97ecabf6bdf5a98ca8d7448c94c4702061a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 39a600cf8bdec40cae1a0751dfe0abe78902fc0d7db5ef386087a69a771a23bf
 ---
 
 ---
@@ -610,13 +610,13 @@ Heartbeat emitted while the grader runs. The grader’s internal reasoning is op
 
 Emitted when an outcome evaluation cycle ends: after the grader finishes evaluating one iteration, or when the session is interrupted while an outcome is active. The `result` field indicates what occurs next.
 
-| Result                   | Next                                                                                                                                                                                                                      |
-| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `satisfied`              | Session transitions to `idle`.                                                                                                                                                                                            |
-| `needs_revision`         | Agent starts a new iteration cycle.                                                                                                                                                                                       |
-| `max_iterations_reached` | One final acknowledgment turn follows before the session transitions to `idle`. No further evaluation runs.                                                                                                               |
-| `failed`                 | Session transitions to `idle`. Returned when the rubric does not apply to the deliverables, for example if the description and rubric contradict each other.                                                              |
-| `interrupted`            | Emitted when the session is interrupted while an outcome is active, even if evaluation hadn’t started yet. If no `outcome_evaluation_start` fired before the interrupt, `outcome_evaluation_start_id` is an empty string. |
+| Result | Next |
+| ----- | ----- |
+| `satisfied` | Session transitions to `idle`. |
+| `needs_revision` | Agent starts a new iteration cycle. |
+| `max_iterations_reached` | One final acknowledgment turn follows before the session transitions to `idle`. No further evaluation runs. |
+| `failed` | Session transitions to `idle`. Returned when the rubric does not apply to the deliverables, for example if the description and rubric contradict each other. |
+| `interrupted` | Emitted when the session is interrupted while an outcome is active, even if evaluation hadn’t started yet. If no `outcome_evaluation_start` fired before the interrupt, `outcome_evaluation_start_id` is an empty string. |
 
 ```json
 {
@@ -912,9 +912,9 @@ Outcomes are in beta on every model.
 
 * Availability: Available
 
-| Status | Cloud platforms         |
-| ------ | ----------------------- |
-| Beta   | All supported platforms |
+| Status | Cloud platforms |
+| ----- | ----- |
+| Beta | All supported platforms |
 
 ### Required beta headers
 
@@ -928,9 +928,9 @@ Beta headers allow you to access experimental features and new model capabilitie
 
 [Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                                                                                                                         | HIPAA                                                               |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Status  | Not eligible                                                                                                                                                                                                                                                | Not eligible                                                        |
+| Item | Zero data retention | HIPAA |
+| ----- | ----- | ----- |
+| Status | Not eligible | Not eligible |
 | Details | Not eligible for ZDR, except for self-hosted Managed Agents. Sessions are stateful resources; transcripts persist until you delete them. [Learn more](https://platform.claude.com/docs/en/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Not eligible for HIPAA. Applies to all Managed Agents sub-features. |
 
 Applicable endpoints:

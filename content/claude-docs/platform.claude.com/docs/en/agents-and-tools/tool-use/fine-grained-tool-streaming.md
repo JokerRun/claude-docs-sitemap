@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 0f4490a2002d89999b4cf1677dedcf6f9dfdbbb0bf467775500d61b0af6e1286
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 40ff7c78dcc0fc20ead93a145ec61f8253d03302a840455535c17d73a3564c96
 ---
 
 ---
@@ -983,16 +983,16 @@ Fine-grained tool streaming is available on every model and eligible for zero da
 
 * Availability: Available
 
-| Status    | Cloud platforms         |
-| --------- | ----------------------- |
+| Status | Cloud platforms |
+| ----- | ----- |
 | Available | All supported platforms |
 
 ### Data handling
 
 [Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Zero data retention                                                                                                                                       | HIPAA    |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Item | Zero data retention | HIPAA |
+| ----- | ----- | ----- |
 | Status | Eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
 
 Applicable endpoints:

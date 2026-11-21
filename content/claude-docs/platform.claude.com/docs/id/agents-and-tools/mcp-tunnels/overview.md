@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 301e3132e51de4221bd39f4b776322b99e163a7b95f390b5f413e20ac3484efd
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2b3c7612e162b8634e4e934edf6897c7c5820a397d0581d1d0cc60f3bf00345a
 ---
 
 ---
@@ -77,11 +77,11 @@ Sebelum melakukan deployment, pastikan Anda memiliki:
 
 ### Persyaratan jaringan
 
-| Komponen       | Tujuan                                               | Port / protokol    | Digunakan selama              |
-| -------------- | ---------------------------------------------------- | ------------------ | ----------------------------- |
-| Komponen setup | `api.anthropic.com`                                  | 443 TCP            | Provisioning dan rotasi token |
-| cloudflared    | Tunnel edge (`198.41.192.0/19`, `2606:4700:a0::/44`) | 7844 TCP dan UDP   | Runtime                       |
-| Proxy          | Server MCP upstream Anda                             | Sesuai konfigurasi | Runtime                       |
+| Komponen | Tujuan | Port / protokol | Digunakan selama |
+| ----- | ----- | ----- | ----- |
+| Komponen setup | `api.anthropic.com` | 443 TCP | Provisioning dan rotasi token |
+| cloudflared | Tunnel edge (`198.41.192.0/19`, `2606:4700:a0::/44`) | 7844 TCP dan UDP | Runtime |
+| Proxy | Server MCP upstream Anda | Sesuai konfigurasi | Runtime |
 
 ## Model keamanan
 
@@ -89,25 +89,25 @@ Sebelum melakukan deployment, pastikan Anda memiliki:
 
 Tiga lapisan independen melindungi setiap permintaan:
 
-| Lapisan                                                               | Melindungi dari                                                                  |
-| --------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| mTLS luar antara Anthropic dan penyedia transport, dengan validasi IP | Klien tidak sah yang menjangkau tunnel                                           |
-| TLS dalam dari back end Anthropic ke proxy Anda                       | Inspeksi payload oleh penyedia transport atau perantara jaringan mana pun        |
-| OAuth pada setiap server MCP                                          | Penggunaan alat MCP secara tidak sah oleh lalu lintas tunnel yang terautentikasi |
+| Lapisan | Melindungi dari |
+| ----- | ----- |
+| mTLS luar antara Anthropic dan penyedia transport, dengan validasi IP | Klien tidak sah yang menjangkau tunnel |
+| TLS dalam dari back end Anthropic ke proxy Anda | Inspeksi payload oleh penyedia transport atau perantara jaringan mana pun |
+| OAuth pada setiap server MCP | Penggunaan alat MCP secara tidak sah oleh lalu lintas tunnel yang terautentikasi |
 
 Transport tunnel berjalan di jaringan Cloudflare. Karena proxy mengakhiri TLS dalam menggunakan sertifikat yang hanya Anda miliki, Cloudflare tidak dapat membaca payload permintaan atau respons. Anthropic tidak terhubung ke tunnel sampai sertifikat CA terdaftar, sehingga payload selalu terenkripsi saat melintasi jaringan Cloudflare. Cloudflare memang menerima metadata koneksi; lihat [Apa yang dapat diamati oleh penyedia transport](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview#what-the-transport-provider-can-observe).
 
 ### Model tanggung jawab bersama
 
-| Ditangani Anthropic                                                                 | Ditangani organisasi Anda                                                                                                                                                             |
-| ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Kontrol akses tunnel                                                                | Semua konten dan lalu lintas yang melintasi tunnel Anda, serta kepatuhan terhadap kebijakan penggunaan yang dapat diterima dari pihak ketiga yang berlaku (termasuk milik Cloudflare) |
-| Memvalidasi sertifikat CA Anda sebelum terhubung ke proxy Anda                      | Kepatuhan terhadap panduan deployment di halaman-halaman ini                                                                                                                          |
-| Memastikan Claude hanya mengirim permintaan ke tunnel yang dimiliki organisasi Anda | Mengamankan token tunnel dan kunci privat TLS                                                                                                                                         |
-|                                                                                     | Mengelola sertifikat server dan memperbaruinya sebelum kedaluwarsa                                                                                                                    |
-|                                                                                     | Mengonfigurasi OAuth pada setiap server MCP                                                                                                                                           |
-|                                                                                     | Membatasi akses jaringan untuk proxy dan server MCP                                                                                                                                   |
-|                                                                                     | Memberi tahu Anthropic jika Anda mencurigai adanya pelanggaran keamanan                                                                                                               |
+| Ditangani Anthropic | Ditangani organisasi Anda |
+| ----- | ----- |
+| Kontrol akses tunnel | Semua konten dan lalu lintas yang melintasi tunnel Anda, serta kepatuhan terhadap kebijakan penggunaan yang dapat diterima dari pihak ketiga yang berlaku (termasuk milik Cloudflare) |
+| Memvalidasi sertifikat CA Anda sebelum terhubung ke proxy Anda | Kepatuhan terhadap panduan deployment di halaman-halaman ini |
+| Memastikan Claude hanya mengirim permintaan ke tunnel yang dimiliki organisasi Anda | Mengamankan token tunnel dan kunci privat TLS |
+|  | Mengelola sertifikat server dan memperbaruinya sebelum kedaluwarsa |
+|  | Mengonfigurasi OAuth pada setiap server MCP |
+|  | Membatasi akses jaringan untuk proxy dan server MCP |
+|  | Memberi tahu Anthropic jika Anda mencurigai adanya pelanggaran keamanan |
 
 <Warning>
   Jika penyerang memperoleh token tunnel Anda **dan** salah satu kunci privat TLS Anda, mereka dapat menyamar sebagai proxy Anda dan membaca payload permintaan MCP. Perlakukan keduanya sebagai rahasia bernilai tinggi. Lihat [Keamanan tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security) untuk panduan hardening.
@@ -446,17 +446,17 @@ Tunnel MCP dalam pratinjau riset di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status          | Platform cloud |
-| --------------- | -------------- |
-| Pratinjau riset | Claude API     |
+| Status | Platform cloud |
+| ----- | ----- |
+| Pratinjau riset | Claude API |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Tersedia
 
-| Status          | Platform cloud |
-| --------------- | -------------- |
-| Pratinjau riset | Claude API     |
+| Status | Platform cloud |
+| ----- | ----- |
+| Pratinjau riset | Claude API |
 
 ### Header beta yang diperlukan
 
@@ -464,18 +464,18 @@ Tunnel MCP dalam pratinjau riset di semua model.
 
 Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
-| Header                                               | API                                                                                         |
-| ---------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Header | API |
+| ----- | ----- |
 | `mcp-client-2026-09-15` atau `mcp-client-2025-11-20` | [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                      | HIPAA       |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Status | Tidak layak                                                                                                                                                                                           | Tidak layak |
-| Detail | Pratinjau riset. Halaman keamanan Tunnel MCP menjelaskan batas aliran data dan detail subprosesor. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security) | —           |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
+| Detail | Pratinjau riset. Halaman keamanan Tunnel MCP menjelaskan batas aliran data dan detail subprosesor. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/security) | — |
 
 Endpoint yang berlaku:
 

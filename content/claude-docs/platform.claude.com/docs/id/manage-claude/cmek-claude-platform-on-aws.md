@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: ee55b31252114651093127ceee7e17f2b0c954347c9b962b0d95ebf7ec5f3dee
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e6260c4ca75917c112f43bd1080be2ff3f8b4c928b88feb9463a6952200f28d5
 ---
 
 ---
@@ -93,10 +93,10 @@ Pertahankan `aws:SourceArn` pada kedua pernyataan service principal. Setiap orga
 
 Kondisi-kondisi ini menentukan workspace mana yang dapat menggunakan kunci. Contoh ini mengikuti baris kedua:
 
-| Workspace yang dapat menggunakan kunci                                                  | Yang perlu dilakukan                                                                                                                                                                                                                            |
-| --------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Setiap workspace di akun                                                                | Hapus entri `StringEquals` dan pertahankan entri `ArnLike`.                                                                                                                                                                                     |
-| Hanya workspace yang Anda cantumkan, untuk enkripsi dan dekripsi                        | Cantumkan ID kompartemen setiap workspace dalam entri `StringEquals`.                                                                                                                                                                           |
+| Workspace yang dapat menggunakan kunci | Yang perlu dilakukan |
+| ----- | ----- |
+| Setiap workspace di akun | Hapus entri `StringEquals` dan pertahankan entri `ArnLike`. |
+| Hanya workspace yang Anda cantumkan, untuk enkripsi dan dekripsi | Cantumkan ID kompartemen setiap workspace dalam entri `StringEquals`. |
 | Hanya workspace yang Anda cantumkan, untuk setiap panggilan, termasuk `kms:DescribeKey` | Di kedua pernyataan, ganti nilai `aws:SourceArn` dengan array JSON berisi [ARN workspace](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#service-details) lengkap. Entri `StringEquals` kemudian bersifat opsional. |
 
 ARN workspace lengkap memiliki bentuk ini:

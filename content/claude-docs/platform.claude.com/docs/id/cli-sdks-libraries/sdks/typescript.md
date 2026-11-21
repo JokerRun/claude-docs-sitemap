@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: b9ce7391ce24aa16ac9b99ac0277d38b4598efe0f09c6176af0d6cb3ec09080f
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 7a7682a17f81b96cbf43ad99c2573454d4379bd0afc1687c276e363d54fe2a35
 ---
 
 ---
@@ -403,17 +403,17 @@ const message = await client.messages
 
 Kode error adalah sebagai berikut:
 
-| Kode status | Tipe error                 |
-| ----------- | -------------------------- |
-| 400         | `BadRequestError`          |
-| 401         | `AuthenticationError`      |
-| 403         | `PermissionDeniedError`    |
-| 404         | `NotFoundError`            |
-| 409         | `ConflictError`            |
-| 422         | `UnprocessableEntityError` |
-| 429         | `RateLimitError`           |
-| >=500       | `InternalServerError`      |
-| T/A         | `APIConnectionError`       |
+| Kode status | Tipe error |
+| ----- | ----- |
+| 400 | `BadRequestError` |
+| 401 | `AuthenticationError` |
+| 403 | `PermissionDeniedError` |
+| 404 | `NotFoundError` |
+| 409 | `ConflictError` |
+| 422 | `UnprocessableEntityError` |
+| 429 | `RateLimitError` |
+| >=500 | `InternalServerError` |
+| T/A | `APIConnectionError` |
 
 ## ID permintaan
 

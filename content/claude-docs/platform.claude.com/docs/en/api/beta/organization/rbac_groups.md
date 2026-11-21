@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rbac_groups
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 143e2db385e08ac3fce2b009eae9a68b0f6338edc2418f26982190057a304129
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 31e7d9eee25724a2cc6c699379dbf97ffa2c491ceb34f47e691b77b6d072e781
 ---
 
 ---
@@ -88,7 +88,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 
@@ -402,7 +402,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 
@@ -486,7 +486,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 
@@ -567,6 +567,26 @@ curl https://api.anthropic.com/v1/organizations/rbac_groups/$RBAC_GROUP_ID \
     RFC 3339 timestamp of when the RBAC Group was last updated.
 
     format: date-time
+
+### Beta RBAC Group Not Found Error Details
+
+- `BetaRBACGroupNotFoundErrorDetails object`
+
+  - `error_code: "rbac_group_not_found"`
+
+## Errors
+
+### rbac_group_not_found
+
+HTTP status 404
+
+- `"rbac_group_not_found"`
+
+  The RBAC Group is not one of the organization's groups.
+
+  - `details: BetaRBACGroupNotFoundErrorDetails`
+
+    - `error_code: "rbac_group_not_found"`
 
 ## RBAC Groups › Members
 
@@ -744,7 +764,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 #### Example
 
@@ -830,7 +850,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 #### Example
 

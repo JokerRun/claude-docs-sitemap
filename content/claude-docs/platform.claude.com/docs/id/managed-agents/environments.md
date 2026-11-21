@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/environments
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 6bc1986db4c5af8856de3c25487ab39f72a28f7d8b5697a967d031f053150321
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: bc3bdaf41f0e394d4b66144d59b3a256d4d483829b9cc04438d9ff3780750e6c
 ---
 
 ---
@@ -432,14 +432,14 @@ Field `packages` (csharp, go: `Packages`) menginstal paket ke dalam sandbox sebe
 
 Manajer paket yang didukung:
 
-| Field   | Manajer paket          | Contoh                                      |
-| ------- | ---------------------- | ------------------------------------------- |
-| `apt`   | Paket sistem (apt-get) | `"graphviz"`                                |
-| `cargo` | Rust (cargo)           | `"hyperfine@1.18.0"`                        |
-| `gem`   | Ruby (gem)             | `"rails:7.1.0"`                             |
-| `go`    | Modul Go               | `"golang.org/x/tools/cmd/goimports@latest"` |
-| `npm`   | Node.js (npm)          | `"express@4.18.0"`                          |
-| `pip`   | Python (pip)           | `"sqlalchemy==2.0.30"`                      |
+| Field | Manajer paket | Contoh |
+| ----- | ----- | ----- |
+| `apt` | Paket sistem (apt-get) | `"graphviz"` |
+| `cargo` | Rust (cargo) | `"hyperfine@1.18.0"` |
+| `gem` | Ruby (gem) | `"rails:7.1.0"` |
+| `go` | Modul Go | `"golang.org/x/tools/cmd/goimports@latest"` |
+| `npm` | Node.js (npm) | `"express@4.18.0"` |
+| `pip` | Python (pip) | `"sqlalchemy==2.0.30"` |
 
 ### Jaringan
 
@@ -447,10 +447,10 @@ Field `networking` (csharp, go: `Networking`) mengontrol akses jaringan keluar s
 
 Dengan jaringan `limited`, `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) juga berlaku untuk alat `web_search` dan `web_fetch`, yang berjalan di server Anthropic. Panggilan `web_fetch` untuk URL pada host yang tidak cocok dengan `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) akan mengembalikan hasil error kepada agen. `web_search` menghilangkan hasil dari host yang tidak cocok dengan `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) dan `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) tidak menambahkan host apa pun untuk alat-alat ini. Ketika `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) tidak mencantumkan host apa pun, tidak ada panggilan `web_fetch` atau `web_search` yang mengembalikan halaman atau hasil pencarian. Host yang Anda tambahkan ke `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`) untuk alat-alat ini juga terbuka bagi sandbox. Jaringan `unrestricted` dan environment self-hosted tidak membatasi alat-alat ini. Untuk membatasinya lebih lanjut, atur `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) atau `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`) pada entri alat tersebut di toolset agen. Lihat [Membatasi domain pencarian web dan web fetch](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions).
 
-| Mode           | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `limited`      | Membatasi akses jaringan sandbox ke host di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Atur `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) dan `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true` untuk mengizinkan akses tambahan. Gunakan mode ini kecuali agen harus menjangkau situs yang tidak dapat Anda cantumkan sebelumnya. |
-| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Sebelum Anda menggunakannya, baca [Risiko jaringan tanpa batasan](https://platform.claude.com/docs/id/managed-agents/environments#risks-of-unrestricted-networking).                                                                                                                                                                                                                                                        |
+| Mode | Deskripsi |
+| ----- | ----- |
+| `limited` | Membatasi akses jaringan sandbox ke host di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Atur `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) dan `allow_mcp_servers` (java: `allowMcpServers`; php: `allowMCPServers`; csharp: `AllowMcpServers`; go: `AllowMCPServers`) ke `true` untuk mengizinkan akses tambahan. Gunakan mode ini kecuali agen harus menjangkau situs yang tidak dapat Anda cantumkan sebelumnya. |
+| `unrestricted` | Akses jaringan keluar penuh, kecuali untuk daftar blokir keamanan umum. Sebelum Anda menggunakannya, baca [Risiko jaringan tanpa batasan](https://platform.claude.com/docs/id/managed-agents/environments#risks-of-unrestricted-networking). |
 
 <Note>
   Atur `networking` (csharp, go: `Networking`) secara eksplisit dalam permintaan API; permintaan pembuatan yang menghilangkannya akan mendapatkan `unrestricted`. Formulir Claude Console untuk membuat environment dimulai dengan **Terbatas** terpilih dan tidak ada hal lain yang diizinkan.
@@ -631,18 +631,18 @@ Saat menggunakan jaringan `limited`:
 
 Ketika `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) bernilai `true`, sandbox dapat menjangkau host berikut selain yang ada di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`). Anthropic memelihara daftar ini dan dapat mengubahnya.
 
-| Ekosistem    | Host                                                                                                                                                                                       |
-| ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Ekosistem | Host |
+| ----- | ----- |
 | Hosting kode | `github.com`, `api.github.com`, `codeload.github.com`, `raw.githubusercontent.com`, `objects.githubusercontent.com`, `release-assets.githubusercontent.com`, `gitlab.com`, `bitbucket.org` |
-| Node.js      | `registry.npmjs.org`, `registry.yarnpkg.com`, `nodejs.org`                                                                                                                                 |
-| Python       | `pypi.org`, `files.pythonhosted.org`                                                                                                                                                       |
-| Rust         | `crates.io`, `index.crates.io`, `static.crates.io`, `static.rust-lang.org`                                                                                                                 |
-| Go           | `proxy.golang.org`, `sum.golang.org`                                                                                                                                                       |
-| Java         | `repo1.maven.org`, `repo.maven.apache.org`, `services.gradle.org`, `plugins.gradle.org`, `plugins-artifacts.gradle.org`                                                                    |
-| Ruby         | `rubygems.org`, `index.rubygems.org`                                                                                                                                                       |
-| PHP          | `packagist.org`, `repo.packagist.org`                                                                                                                                                      |
-| Ubuntu (apt) | `archive.ubuntu.com`, `security.ubuntu.com`, `ppa.launchpad.net`                                                                                                                           |
-| Container    | `registry-1.docker.io`, `auth.docker.io`, `production.cloudflare.docker.com`, `download.docker.com`, `ghcr.io`                                                                             |
+| Node.js | `registry.npmjs.org`, `registry.yarnpkg.com`, `nodejs.org` |
+| Python | `pypi.org`, `files.pythonhosted.org` |
+| Rust | `crates.io`, `index.crates.io`, `static.crates.io`, `static.rust-lang.org` |
+| Go | `proxy.golang.org`, `sum.golang.org` |
+| Java | `repo1.maven.org`, `repo.maven.apache.org`, `services.gradle.org`, `plugins.gradle.org`, `plugins-artifacts.gradle.org` |
+| Ruby | `rubygems.org`, `index.rubygems.org` |
+| PHP | `packagist.org`, `repo.packagist.org` |
+| Ubuntu (apt) | `archive.ubuntu.com`, `security.ubuntu.com`, `ppa.launchpad.net` |
+| Container | `registry-1.docker.io`, `auth.docker.io`, `production.cloudflare.docker.com`, `download.docker.com`, `ghcr.io` |
 
 <Warning>
   Akses jaringan diberikan berdasarkan host, bukan berdasarkan operasi. Sandbox dapat mengirim permintaan apa pun ke host yang diizinkan, termasuk unggahan seperti `git push` dan publikasi paket, dengan kredensial apa pun yang diberikan oleh perintah. Jika agen memproses input yang tidak tepercaya (file repositori, konten web yang diambil, atau output alat pihak ketiga), “prompt injection” (injeksi prompt) yang berhasil dapat menggunakan host yang diizinkan untuk menyalin file keluar dari sandbox. Untuk mengurangi risiko ini, atur [kebijakan izin](https://platform.claude.com/docs/id/managed-agents/permission-policies) alat `bash` ke `always_ask` atau `auto`. Jika lingkungan tidak menentukan `packages` (csharp, go: `Packages`), Anda dapat sebagai gantinya membiarkan `allow_package_managers` (java, php: `allowPackageManagers`; csharp, go: `AllowPackageManagers`) diatur ke `false` dan hanya mencantumkan host yang dibutuhkan agen Anda di `allowed_hosts` (java, php: `allowedHosts`; csharp, go: `AllowedHosts`).
@@ -845,9 +845,9 @@ Sandbox cloud dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                              |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Header beta yang diperlukan
 
@@ -861,9 +861,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

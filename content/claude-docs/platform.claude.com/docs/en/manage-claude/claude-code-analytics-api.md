@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 4b0df690d175251e2ed69a6390ac2b4f7f43cd9a1171a8c55aaabe5e7c792135
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 62e5159837354f6ffbf2842dbb49ea18eb7b5f527916625abcb61d7e97e8aaa1
 ---
 
 ---
@@ -105,11 +105,11 @@ page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
 
 ### Request parameters
 
-| Parameter     | Type    | Required | Description                                                             |
-| ------------- | ------- | -------- | ----------------------------------------------------------------------- |
-| `starting_at` | string  | Yes      | UTC date in YYYY-MM-DD format; returns metrics for this single day only |
-| `limit`       | integer | No       | Number of records per page (default: 20, max: 1000)                     |
-| `page`        | string  | No       | Opaque cursor token from previous response’s `next_page` field          |
+| Parameter | Type | Required | Description |
+| ----- | ----- | ----- | ----- |
+| `starting_at` | string | Yes | UTC date in YYYY-MM-DD format; returns metrics for this single day only |
+| `limit` | integer | No | Number of records per page (default: 20, max: 1000) |
+| `page` | string | No | Opaque cursor token from previous response’s `next_page` field |
 
 ### Available metrics
 

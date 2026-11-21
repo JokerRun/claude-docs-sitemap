@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 58398a7a4472749cee10be3c8e3ce116a23754fd5e74381b1146385cac305850
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: f02200a6e2632ae6a62053ae4e0febe7440e6d71d643b79daf926e4f764268b0
 ---
 
 ---
@@ -255,6 +255,8 @@ List Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1024,9 +1026,9 @@ List Events
 
       Unique identifier for this event.
 
-    - `error: BetaManagedAgentsUnknownError or BetaManagedAgentsModelOverloadedError or BetaManagedAgentsModelRateLimitedError or 12 more`
+    - `error: BetaManagedAgentsUnknownErrorObject or BetaManagedAgentsModelOverloadedErrorObject or BetaManagedAgentsModelRateLimitedErrorObject or 12 more`
 
-      - `BetaManagedAgentsUnknownError object`
+      - `BetaManagedAgentsUnknownErrorObject object`
 
         An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
 
@@ -1058,7 +1060,7 @@ List Events
 
             - `type: "terminal"`
 
-      - `BetaManagedAgentsModelOverloadedError object`
+      - `BetaManagedAgentsModelOverloadedErrorObject object`
 
         The model is currently overloaded. Emitted after automatic retries are exhausted.
 
@@ -1084,7 +1086,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsModelRateLimitedError object`
+      - `BetaManagedAgentsModelRateLimitedErrorObject object`
 
         The model request was rate-limited.
 
@@ -1110,7 +1112,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsModelRequestFailedError object`
+      - `BetaManagedAgentsModelRequestFailedErrorObject object`
 
         A model request failed for a reason other than overload or rate-limiting.
 
@@ -1136,7 +1138,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsMCPConnectionFailedError object`
+      - `BetaManagedAgentsMCPConnectionFailedErrorObject object`
 
         Failed to connect to an MCP server.
 
@@ -1166,7 +1168,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsMCPAuthenticationFailedError object`
+      - `BetaManagedAgentsMCPAuthenticationFailedErrorObject object`
 
         Authentication to an MCP server failed.
 
@@ -1196,7 +1198,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsBillingError object`
+      - `BetaManagedAgentsBillingErrorObject object`
 
         The caller's organization or workspace cannot make model requests — out of credits or spend limit reached. Retrying with the same credentials will not succeed; the caller must resolve the billing state.
 
@@ -1222,7 +1224,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsCredentialHostUnreachableError object`
+      - `BetaManagedAgentsCredentialHostUnreachableErrorObject object`
 
         An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
 
@@ -1256,7 +1258,7 @@ List Events
 
           ID of the vault containing the affected credential.
 
-      - `BetaManagedAgentsToolUseLimitReachedError object`
+      - `BetaManagedAgentsToolUseLimitReachedErrorObject object`
 
         The turn stopped because the agent loop reached its limit on tool-use rounds (one model response that calls tools, plus running those tools, is one round), not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -1282,7 +1284,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsCompactionLimitReachedError object`
+      - `BetaManagedAgentsCompactionLimitReachedErrorObject object`
 
         The turn stopped because the context was compacted the maximum number of times in a row without the model producing a message or a tool call, not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -1308,7 +1310,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryAuthenticationError object`
+      - `BetaManagedAgentsRepositoryAuthenticationErrorObject object`
 
         The repository host rejected the credentials, or required credentials and received none.
 
@@ -1338,7 +1340,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryForbiddenError object`
+      - `BetaManagedAgentsRepositoryForbiddenErrorObject object`
 
         The repository host refused access to the repository.
 
@@ -1368,7 +1370,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryNotFoundError object`
+      - `BetaManagedAgentsRepositoryNotFoundErrorObject object`
 
         The repository host reported the repository as not found.
 
@@ -1398,7 +1400,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryCheckoutError object`
+      - `BetaManagedAgentsRepositoryCheckoutErrorObject object`
 
         The requested branch or commit does not exist in the repository.
 
@@ -1428,7 +1430,7 @@ List Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryCloneError object`
+      - `BetaManagedAgentsRepositoryCloneErrorObject object`
 
         The repository could not be cloned.
 
@@ -3104,17 +3106,17 @@ List Events
 
         - `type: "completed"`
 
-      - `BetaManagedAgentsWorkflowRunResultError object`
+      - `BetaManagedAgentsWorkflowRunResultErrorObject object`
 
         The run failed or reached its time limit.
 
         - `type: "error"`
 
-        - `error: BetaManagedAgentsWorkflowRunError`
+        - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
           Why the run did not finish.
 
-          - `BetaManagedAgentsTimeoutWorkflowRunError object`
+          - `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
 
             The run reached its time limit.
 
@@ -3124,7 +3126,7 @@ List Events
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsProgramWorkflowRunError object`
+          - `BetaManagedAgentsProgramWorkflowRunErrorObject object`
 
             The plan, a program that the agent wrote, failed, or the server refused it.
 
@@ -3134,7 +3136,7 @@ List Events
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsUnknownWorkflowRunError object`
+          - `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
 
             A failure that has no type of its own.
 
@@ -3144,7 +3146,7 @@ List Events
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsThreadLimitWorkflowRunError object`
+          - `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
 
             The run exceeded the limit on the number of threads that a run can create.
 
@@ -3154,7 +3156,7 @@ List Events
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
+          - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
 
             No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
 
@@ -3276,7 +3278,7 @@ List Events
 
       Unique identifier for this event.
 
-    - `error: BetaManagedAgentsWorkflowRunError`
+    - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
       Why the run did not finish, or was not created.
 
@@ -3450,6 +3452,8 @@ Send Events
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -4478,6 +4482,8 @@ Stream Events
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -5246,9 +5252,9 @@ Stream Events
 
       Unique identifier for this event.
 
-    - `error: BetaManagedAgentsUnknownError or BetaManagedAgentsModelOverloadedError or BetaManagedAgentsModelRateLimitedError or 12 more`
+    - `error: BetaManagedAgentsUnknownErrorObject or BetaManagedAgentsModelOverloadedErrorObject or BetaManagedAgentsModelRateLimitedErrorObject or 12 more`
 
-      - `BetaManagedAgentsUnknownError object`
+      - `BetaManagedAgentsUnknownErrorObject object`
 
         An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
 
@@ -5280,7 +5286,7 @@ Stream Events
 
             - `type: "terminal"`
 
-      - `BetaManagedAgentsModelOverloadedError object`
+      - `BetaManagedAgentsModelOverloadedErrorObject object`
 
         The model is currently overloaded. Emitted after automatic retries are exhausted.
 
@@ -5306,7 +5312,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsModelRateLimitedError object`
+      - `BetaManagedAgentsModelRateLimitedErrorObject object`
 
         The model request was rate-limited.
 
@@ -5332,7 +5338,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsModelRequestFailedError object`
+      - `BetaManagedAgentsModelRequestFailedErrorObject object`
 
         A model request failed for a reason other than overload or rate-limiting.
 
@@ -5358,7 +5364,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsMCPConnectionFailedError object`
+      - `BetaManagedAgentsMCPConnectionFailedErrorObject object`
 
         Failed to connect to an MCP server.
 
@@ -5388,7 +5394,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsMCPAuthenticationFailedError object`
+      - `BetaManagedAgentsMCPAuthenticationFailedErrorObject object`
 
         Authentication to an MCP server failed.
 
@@ -5418,7 +5424,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsBillingError object`
+      - `BetaManagedAgentsBillingErrorObject object`
 
         The caller's organization or workspace cannot make model requests — out of credits or spend limit reached. Retrying with the same credentials will not succeed; the caller must resolve the billing state.
 
@@ -5444,7 +5450,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsCredentialHostUnreachableError object`
+      - `BetaManagedAgentsCredentialHostUnreachableErrorObject object`
 
         An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
 
@@ -5478,7 +5484,7 @@ Stream Events
 
           ID of the vault containing the affected credential.
 
-      - `BetaManagedAgentsToolUseLimitReachedError object`
+      - `BetaManagedAgentsToolUseLimitReachedErrorObject object`
 
         The turn stopped because the agent loop reached its limit on tool-use rounds (one model response that calls tools, plus running those tools, is one round), not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -5504,7 +5510,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsCompactionLimitReachedError object`
+      - `BetaManagedAgentsCompactionLimitReachedErrorObject object`
 
         The turn stopped because the context was compacted the maximum number of times in a row without the model producing a message or a tool call, not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -5530,7 +5536,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryAuthenticationError object`
+      - `BetaManagedAgentsRepositoryAuthenticationErrorObject object`
 
         The repository host rejected the credentials, or required credentials and received none.
 
@@ -5560,7 +5566,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryForbiddenError object`
+      - `BetaManagedAgentsRepositoryForbiddenErrorObject object`
 
         The repository host refused access to the repository.
 
@@ -5590,7 +5596,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryNotFoundError object`
+      - `BetaManagedAgentsRepositoryNotFoundErrorObject object`
 
         The repository host reported the repository as not found.
 
@@ -5620,7 +5626,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryCheckoutError object`
+      - `BetaManagedAgentsRepositoryCheckoutErrorObject object`
 
         The requested branch or commit does not exist in the repository.
 
@@ -5650,7 +5656,7 @@ Stream Events
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryCloneError object`
+      - `BetaManagedAgentsRepositoryCloneErrorObject object`
 
         The repository could not be cloned.
 
@@ -7376,17 +7382,17 @@ Stream Events
 
         - `type: "completed"`
 
-      - `BetaManagedAgentsWorkflowRunResultError object`
+      - `BetaManagedAgentsWorkflowRunResultErrorObject object`
 
         The run failed or reached its time limit.
 
         - `type: "error"`
 
-        - `error: BetaManagedAgentsWorkflowRunError`
+        - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
           Why the run did not finish.
 
-          - `BetaManagedAgentsTimeoutWorkflowRunError object`
+          - `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
 
             The run reached its time limit.
 
@@ -7396,7 +7402,7 @@ Stream Events
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsProgramWorkflowRunError object`
+          - `BetaManagedAgentsProgramWorkflowRunErrorObject object`
 
             The plan, a program that the agent wrote, failed, or the server refused it.
 
@@ -7406,7 +7412,7 @@ Stream Events
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsUnknownWorkflowRunError object`
+          - `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
 
             A failure that has no type of its own.
 
@@ -7416,7 +7422,7 @@ Stream Events
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsThreadLimitWorkflowRunError object`
+          - `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
 
             The run exceeded the limit on the number of threads that a run can create.
 
@@ -7426,7 +7432,7 @@ Stream Events
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
+          - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
 
             No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
 
@@ -7548,7 +7554,7 @@ Stream Events
 
       Unique identifier for this event.
 
-    - `error: BetaManagedAgentsWorkflowRunError`
+    - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
       Why the run did not finish, or was not created.
 
@@ -8897,9 +8903,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     minLength: 1
 
-### Beta Managed Agents Billing Error
+### Beta Managed Agents Billing Error Object
 
-- `BetaManagedAgentsBillingError object`
+- `BetaManagedAgentsBillingErrorObject object`
 
   The caller's organization or workspace cannot make model requests — out of credits or spend limit reached. Retrying with the same credentials will not succeed; the caller must resolve the billing state.
 
@@ -8931,9 +8937,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Compaction Limit Reached Error
+### Beta Managed Agents Compaction Limit Reached Error Object
 
-- `BetaManagedAgentsCompactionLimitReachedError object`
+- `BetaManagedAgentsCompactionLimitReachedErrorObject object`
 
   The turn stopped because the context was compacted the maximum number of times in a row without the model producing a message or a tool call, not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -8965,9 +8971,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Credential Host Unreachable Error
+### Beta Managed Agents Credential Host Unreachable Error Object
 
-- `BetaManagedAgentsCredentialHostUnreachableError object`
+- `BetaManagedAgentsCredentialHostUnreachableErrorObject object`
 
   An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
 
@@ -9555,9 +9561,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         minLength: 1
 
-### Beta Managed Agents Max Workflow Runs Workflow Run Error
+### Beta Managed Agents Max Workflow Runs Workflow Run Error Object
 
-- `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
+- `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
 
   No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
 
@@ -9567,9 +9573,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     Short explanation written by the server. It never contains content from the run or its agents.
 
-### Beta Managed Agents MCP Authentication Failed Error
+### Beta Managed Agents MCP Authentication Failed Error Object
 
-- `BetaManagedAgentsMCPAuthenticationFailedError object`
+- `BetaManagedAgentsMCPAuthenticationFailedErrorObject object`
 
   Authentication to an MCP server failed.
 
@@ -9605,9 +9611,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents MCP Connection Failed Error
+### Beta Managed Agents MCP Connection Failed Error Object
 
-- `BetaManagedAgentsMCPConnectionFailedError object`
+- `BetaManagedAgentsMCPConnectionFailedErrorObject object`
 
   Failed to connect to an MCP server.
 
@@ -9643,9 +9649,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Model Overloaded Error
+### Beta Managed Agents Model Overloaded Error Object
 
-- `BetaManagedAgentsModelOverloadedError object`
+- `BetaManagedAgentsModelOverloadedErrorObject object`
 
   The model is currently overloaded. Emitted after automatic retries are exhausted.
 
@@ -9677,9 +9683,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Model Rate Limited Error
+### Beta Managed Agents Model Rate Limited Error Object
 
-- `BetaManagedAgentsModelRateLimitedError object`
+- `BetaManagedAgentsModelRateLimitedErrorObject object`
 
   The model request was rate-limited.
 
@@ -9711,9 +9717,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Model Request Failed Error
+### Beta Managed Agents Model Request Failed Error Object
 
-- `BetaManagedAgentsModelRequestFailedError object`
+- `BetaManagedAgentsModelRequestFailedErrorObject object`
 
   A model request failed for a reason other than overload or rate-limiting.
 
@@ -9763,9 +9769,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     MIME type of the text content. Must be "text/plain".
 
-### Beta Managed Agents Program Workflow Run Error
+### Beta Managed Agents Program Workflow Run Error Object
 
-- `BetaManagedAgentsProgramWorkflowRunError object`
+- `BetaManagedAgentsProgramWorkflowRunErrorObject object`
 
   The plan, a program that the agent wrote, failed, or the server refused it.
 
@@ -9783,9 +9789,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
   - `type: "redacted"`
 
-### Beta Managed Agents Repository Authentication Error
+### Beta Managed Agents Repository Authentication Error Object
 
-- `BetaManagedAgentsRepositoryAuthenticationError object`
+- `BetaManagedAgentsRepositoryAuthenticationErrorObject object`
 
   The repository host rejected the credentials, or required credentials and received none.
 
@@ -9821,9 +9827,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Repository Checkout Error
+### Beta Managed Agents Repository Checkout Error Object
 
-- `BetaManagedAgentsRepositoryCheckoutError object`
+- `BetaManagedAgentsRepositoryCheckoutErrorObject object`
 
   The requested branch or commit does not exist in the repository.
 
@@ -9859,9 +9865,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Repository Clone Error
+### Beta Managed Agents Repository Clone Error Object
 
-- `BetaManagedAgentsRepositoryCloneError object`
+- `BetaManagedAgentsRepositoryCloneErrorObject object`
 
   The repository could not be cloned.
 
@@ -9897,9 +9903,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Repository Forbidden Error
+### Beta Managed Agents Repository Forbidden Error Object
 
-- `BetaManagedAgentsRepositoryForbiddenError object`
+- `BetaManagedAgentsRepositoryForbiddenErrorObject object`
 
   The repository host refused access to the repository.
 
@@ -9935,9 +9941,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Repository Not Found Error
+### Beta Managed Agents Repository Not Found Error Object
 
-- `BetaManagedAgentsRepositoryNotFoundError object`
+- `BetaManagedAgentsRepositoryNotFoundErrorObject object`
 
   The repository host reported the repository as not found.
 
@@ -10553,9 +10559,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     Unique identifier for this event.
 
-  - `error: BetaManagedAgentsUnknownError or BetaManagedAgentsModelOverloadedError or BetaManagedAgentsModelRateLimitedError or 12 more`
+  - `error: BetaManagedAgentsUnknownErrorObject or BetaManagedAgentsModelOverloadedErrorObject or BetaManagedAgentsModelRateLimitedErrorObject or 12 more`
 
-    - `BetaManagedAgentsUnknownError object`
+    - `BetaManagedAgentsUnknownErrorObject object`
 
       An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
 
@@ -10587,7 +10593,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           - `type: "terminal"`
 
-    - `BetaManagedAgentsModelOverloadedError object`
+    - `BetaManagedAgentsModelOverloadedErrorObject object`
 
       The model is currently overloaded. Emitted after automatic retries are exhausted.
 
@@ -10613,7 +10619,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsModelRateLimitedError object`
+    - `BetaManagedAgentsModelRateLimitedErrorObject object`
 
       The model request was rate-limited.
 
@@ -10639,7 +10645,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsModelRequestFailedError object`
+    - `BetaManagedAgentsModelRequestFailedErrorObject object`
 
       A model request failed for a reason other than overload or rate-limiting.
 
@@ -10665,7 +10671,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsMCPConnectionFailedError object`
+    - `BetaManagedAgentsMCPConnectionFailedErrorObject object`
 
       Failed to connect to an MCP server.
 
@@ -10695,7 +10701,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsMCPAuthenticationFailedError object`
+    - `BetaManagedAgentsMCPAuthenticationFailedErrorObject object`
 
       Authentication to an MCP server failed.
 
@@ -10725,7 +10731,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsBillingError object`
+    - `BetaManagedAgentsBillingErrorObject object`
 
       The caller's organization or workspace cannot make model requests — out of credits or spend limit reached. Retrying with the same credentials will not succeed; the caller must resolve the billing state.
 
@@ -10751,7 +10757,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsCredentialHostUnreachableError object`
+    - `BetaManagedAgentsCredentialHostUnreachableErrorObject object`
 
       An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
 
@@ -10785,7 +10791,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         ID of the vault containing the affected credential.
 
-    - `BetaManagedAgentsToolUseLimitReachedError object`
+    - `BetaManagedAgentsToolUseLimitReachedErrorObject object`
 
       The turn stopped because the agent loop reached its limit on tool-use rounds (one model response that calls tools, plus running those tools, is one round), not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -10811,7 +10817,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsCompactionLimitReachedError object`
+    - `BetaManagedAgentsCompactionLimitReachedErrorObject object`
 
       The turn stopped because the context was compacted the maximum number of times in a row without the model producing a message or a tool call, not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -10837,7 +10843,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsRepositoryAuthenticationError object`
+    - `BetaManagedAgentsRepositoryAuthenticationErrorObject object`
 
       The repository host rejected the credentials, or required credentials and received none.
 
@@ -10867,7 +10873,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsRepositoryForbiddenError object`
+    - `BetaManagedAgentsRepositoryForbiddenErrorObject object`
 
       The repository host refused access to the repository.
 
@@ -10897,7 +10903,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsRepositoryNotFoundError object`
+    - `BetaManagedAgentsRepositoryNotFoundErrorObject object`
 
       The repository host reported the repository as not found.
 
@@ -10927,7 +10933,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsRepositoryCheckoutError object`
+    - `BetaManagedAgentsRepositoryCheckoutErrorObject object`
 
       The requested branch or commit does not exist in the repository.
 
@@ -10957,7 +10963,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           The session encountered a terminal error and will transition to `terminated` state.
 
-    - `BetaManagedAgentsRepositoryCloneError object`
+    - `BetaManagedAgentsRepositoryCloneErrorObject object`
 
       The repository could not be cloned.
 
@@ -11713,9 +11719,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       Unique identifier for this event.
 
-    - `error: BetaManagedAgentsUnknownError or BetaManagedAgentsModelOverloadedError or BetaManagedAgentsModelRateLimitedError or 12 more`
+    - `error: BetaManagedAgentsUnknownErrorObject or BetaManagedAgentsModelOverloadedErrorObject or BetaManagedAgentsModelRateLimitedErrorObject or 12 more`
 
-      - `BetaManagedAgentsUnknownError object`
+      - `BetaManagedAgentsUnknownErrorObject object`
 
         An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
 
@@ -11747,7 +11753,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             - `type: "terminal"`
 
-      - `BetaManagedAgentsModelOverloadedError object`
+      - `BetaManagedAgentsModelOverloadedErrorObject object`
 
         The model is currently overloaded. Emitted after automatic retries are exhausted.
 
@@ -11773,7 +11779,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsModelRateLimitedError object`
+      - `BetaManagedAgentsModelRateLimitedErrorObject object`
 
         The model request was rate-limited.
 
@@ -11799,7 +11805,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsModelRequestFailedError object`
+      - `BetaManagedAgentsModelRequestFailedErrorObject object`
 
         A model request failed for a reason other than overload or rate-limiting.
 
@@ -11825,7 +11831,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsMCPConnectionFailedError object`
+      - `BetaManagedAgentsMCPConnectionFailedErrorObject object`
 
         Failed to connect to an MCP server.
 
@@ -11855,7 +11861,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsMCPAuthenticationFailedError object`
+      - `BetaManagedAgentsMCPAuthenticationFailedErrorObject object`
 
         Authentication to an MCP server failed.
 
@@ -11885,7 +11891,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsBillingError object`
+      - `BetaManagedAgentsBillingErrorObject object`
 
         The caller's organization or workspace cannot make model requests — out of credits or spend limit reached. Retrying with the same credentials will not succeed; the caller must resolve the billing state.
 
@@ -11911,7 +11917,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsCredentialHostUnreachableError object`
+      - `BetaManagedAgentsCredentialHostUnreachableErrorObject object`
 
         An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
 
@@ -11945,7 +11951,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           ID of the vault containing the affected credential.
 
-      - `BetaManagedAgentsToolUseLimitReachedError object`
+      - `BetaManagedAgentsToolUseLimitReachedErrorObject object`
 
         The turn stopped because the agent loop reached its limit on tool-use rounds (one model response that calls tools, plus running those tools, is one round), not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -11971,7 +11977,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsCompactionLimitReachedError object`
+      - `BetaManagedAgentsCompactionLimitReachedErrorObject object`
 
         The turn stopped because the context was compacted the maximum number of times in a row without the model producing a message or a tool call, not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -11997,7 +12003,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryAuthenticationError object`
+      - `BetaManagedAgentsRepositoryAuthenticationErrorObject object`
 
         The repository host rejected the credentials, or required credentials and received none.
 
@@ -12027,7 +12033,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryForbiddenError object`
+      - `BetaManagedAgentsRepositoryForbiddenErrorObject object`
 
         The repository host refused access to the repository.
 
@@ -12057,7 +12063,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryNotFoundError object`
+      - `BetaManagedAgentsRepositoryNotFoundErrorObject object`
 
         The repository host reported the repository as not found.
 
@@ -12087,7 +12093,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryCheckoutError object`
+      - `BetaManagedAgentsRepositoryCheckoutErrorObject object`
 
         The requested branch or commit does not exist in the repository.
 
@@ -12117,7 +12123,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryCloneError object`
+      - `BetaManagedAgentsRepositoryCloneErrorObject object`
 
         The repository could not be cloned.
 
@@ -13793,17 +13799,17 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         - `type: "completed"`
 
-      - `BetaManagedAgentsWorkflowRunResultError object`
+      - `BetaManagedAgentsWorkflowRunResultErrorObject object`
 
         The run failed or reached its time limit.
 
         - `type: "error"`
 
-        - `error: BetaManagedAgentsWorkflowRunError`
+        - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
           Why the run did not finish.
 
-          - `BetaManagedAgentsTimeoutWorkflowRunError object`
+          - `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
 
             The run reached its time limit.
 
@@ -13813,7 +13819,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsProgramWorkflowRunError object`
+          - `BetaManagedAgentsProgramWorkflowRunErrorObject object`
 
             The plan, a program that the agent wrote, failed, or the server refused it.
 
@@ -13823,7 +13829,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsUnknownWorkflowRunError object`
+          - `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
 
             A failure that has no type of its own.
 
@@ -13833,7 +13839,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsThreadLimitWorkflowRunError object`
+          - `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
 
             The run exceeded the limit on the number of threads that a run can create.
 
@@ -13843,7 +13849,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
+          - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
 
             No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
 
@@ -13965,7 +13971,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       Unique identifier for this event.
 
-    - `error: BetaManagedAgentsWorkflowRunError`
+    - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
       Why the run did not finish, or was not created.
 
@@ -15493,9 +15499,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       Unique identifier for this event.
 
-    - `error: BetaManagedAgentsUnknownError or BetaManagedAgentsModelOverloadedError or BetaManagedAgentsModelRateLimitedError or 12 more`
+    - `error: BetaManagedAgentsUnknownErrorObject or BetaManagedAgentsModelOverloadedErrorObject or BetaManagedAgentsModelRateLimitedErrorObject or 12 more`
 
-      - `BetaManagedAgentsUnknownError object`
+      - `BetaManagedAgentsUnknownErrorObject object`
 
         An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
 
@@ -15527,7 +15533,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             - `type: "terminal"`
 
-      - `BetaManagedAgentsModelOverloadedError object`
+      - `BetaManagedAgentsModelOverloadedErrorObject object`
 
         The model is currently overloaded. Emitted after automatic retries are exhausted.
 
@@ -15553,7 +15559,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsModelRateLimitedError object`
+      - `BetaManagedAgentsModelRateLimitedErrorObject object`
 
         The model request was rate-limited.
 
@@ -15579,7 +15585,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsModelRequestFailedError object`
+      - `BetaManagedAgentsModelRequestFailedErrorObject object`
 
         A model request failed for a reason other than overload or rate-limiting.
 
@@ -15605,7 +15611,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsMCPConnectionFailedError object`
+      - `BetaManagedAgentsMCPConnectionFailedErrorObject object`
 
         Failed to connect to an MCP server.
 
@@ -15635,7 +15641,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsMCPAuthenticationFailedError object`
+      - `BetaManagedAgentsMCPAuthenticationFailedErrorObject object`
 
         Authentication to an MCP server failed.
 
@@ -15665,7 +15671,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsBillingError object`
+      - `BetaManagedAgentsBillingErrorObject object`
 
         The caller's organization or workspace cannot make model requests — out of credits or spend limit reached. Retrying with the same credentials will not succeed; the caller must resolve the billing state.
 
@@ -15691,7 +15697,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsCredentialHostUnreachableError object`
+      - `BetaManagedAgentsCredentialHostUnreachableErrorObject object`
 
         An `environment_variable` credential's `auth.networking.allowed_hosts` includes a host the environment's network policy does not permit.
 
@@ -15725,7 +15731,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           ID of the vault containing the affected credential.
 
-      - `BetaManagedAgentsToolUseLimitReachedError object`
+      - `BetaManagedAgentsToolUseLimitReachedErrorObject object`
 
         The turn stopped because the agent loop reached its limit on tool-use rounds (one model response that calls tools, plus running those tools, is one round), not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -15751,7 +15757,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsCompactionLimitReachedError object`
+      - `BetaManagedAgentsCompactionLimitReachedErrorObject object`
 
         The turn stopped because the context was compacted the maximum number of times in a row without the model producing a message or a tool call, not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -15777,7 +15783,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryAuthenticationError object`
+      - `BetaManagedAgentsRepositoryAuthenticationErrorObject object`
 
         The repository host rejected the credentials, or required credentials and received none.
 
@@ -15807,7 +15813,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryForbiddenError object`
+      - `BetaManagedAgentsRepositoryForbiddenErrorObject object`
 
         The repository host refused access to the repository.
 
@@ -15837,7 +15843,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryNotFoundError object`
+      - `BetaManagedAgentsRepositoryNotFoundErrorObject object`
 
         The repository host reported the repository as not found.
 
@@ -15867,7 +15873,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryCheckoutError object`
+      - `BetaManagedAgentsRepositoryCheckoutErrorObject object`
 
         The requested branch or commit does not exist in the repository.
 
@@ -15897,7 +15903,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             The session encountered a terminal error and will transition to `terminated` state.
 
-      - `BetaManagedAgentsRepositoryCloneError object`
+      - `BetaManagedAgentsRepositoryCloneErrorObject object`
 
         The repository could not be cloned.
 
@@ -17623,17 +17629,17 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         - `type: "completed"`
 
-      - `BetaManagedAgentsWorkflowRunResultError object`
+      - `BetaManagedAgentsWorkflowRunResultErrorObject object`
 
         The run failed or reached its time limit.
 
         - `type: "error"`
 
-        - `error: BetaManagedAgentsWorkflowRunError`
+        - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
           Why the run did not finish.
 
-          - `BetaManagedAgentsTimeoutWorkflowRunError object`
+          - `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
 
             The run reached its time limit.
 
@@ -17643,7 +17649,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsProgramWorkflowRunError object`
+          - `BetaManagedAgentsProgramWorkflowRunErrorObject object`
 
             The plan, a program that the agent wrote, failed, or the server refused it.
 
@@ -17653,7 +17659,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsUnknownWorkflowRunError object`
+          - `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
 
             A failure that has no type of its own.
 
@@ -17663,7 +17669,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsThreadLimitWorkflowRunError object`
+          - `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
 
             The run exceeded the limit on the number of threads that a run can create.
 
@@ -17673,7 +17679,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
               Short explanation written by the server. It never contains content from the run or its agents.
 
-          - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
+          - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
 
             No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
 
@@ -17795,7 +17801,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       Unique identifier for this event.
 
-    - `error: BetaManagedAgentsWorkflowRunError`
+    - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
       Why the run did not finish, or was not created.
 
@@ -17869,9 +17875,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     maxLength: 262144
 
-### Beta Managed Agents Thread Limit Workflow Run Error
+### Beta Managed Agents Thread Limit Workflow Run Error Object
 
-- `BetaManagedAgentsThreadLimitWorkflowRunError object`
+- `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
 
   The run exceeded the limit on the number of threads that a run can create.
 
@@ -17881,9 +17887,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     Short explanation written by the server. It never contains content from the run or its agents.
 
-### Beta Managed Agents Timeout Workflow Run Error
+### Beta Managed Agents Timeout Workflow Run Error Object
 
-- `BetaManagedAgentsTimeoutWorkflowRunError object`
+- `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
 
   The run reached its time limit.
 
@@ -17893,9 +17899,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     Short explanation written by the server. It never contains content from the run or its agents.
 
-### Beta Managed Agents Tool Use Limit Reached Error
+### Beta Managed Agents Tool Use Limit Reached Error Object
 
-- `BetaManagedAgentsToolUseLimitReachedError object`
+- `BetaManagedAgentsToolUseLimitReachedErrorObject object`
 
   The turn stopped because the agent loop reached its limit on tool-use rounds (one model response that calls tools, plus running those tools, is one round), not because a request failed. The thread goes idle with `stop_reason: retries_exhausted` (a child thread then terminates); the next `user.message` starts a new turn.
 
@@ -17927,9 +17933,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Unknown Error
+### Beta Managed Agents Unknown Error Object
 
-- `BetaManagedAgentsUnknownError object`
+- `BetaManagedAgentsUnknownErrorObject object`
 
   An unknown or unexpected error occurred during session execution. A fallback variant; clients that don't recognize a new error code can match on `retry_status` and `message` alone.
 
@@ -17961,9 +17967,9 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "terminal"`
 
-### Beta Managed Agents Unknown Workflow Run Error
+### Beta Managed Agents Unknown Workflow Run Error Object
 
-- `BetaManagedAgentsUnknownWorkflowRunError object`
+- `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
 
   A failure that has no type of its own.
 
@@ -19187,62 +19193,6 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     Identifier of the run. The same value is on all of the run's `workflow_run.*` events.
 
-### Beta Managed Agents Workflow Run Error
-
-- `BetaManagedAgentsWorkflowRunError = BetaManagedAgentsTimeoutWorkflowRunError or BetaManagedAgentsProgramWorkflowRunError or BetaManagedAgentsUnknownWorkflowRunError or 2 more`
-
-  Why a workflow run did not finish, or was not created. More types may be added. On `workflow_run.status_ended`, for a `type` you do not recognize, rely on the event's `result.type`.
-
-  - `BetaManagedAgentsTimeoutWorkflowRunError object`
-
-    The run reached its time limit.
-
-    - `type: "timeout_error"`
-
-    - `message: string`
-
-      Short explanation written by the server. It never contains content from the run or its agents.
-
-  - `BetaManagedAgentsProgramWorkflowRunError object`
-
-    The plan, a program that the agent wrote, failed, or the server refused it.
-
-    - `type: "program_error"`
-
-    - `message: string`
-
-      Short explanation written by the server. It never contains content from the run or its agents.
-
-  - `BetaManagedAgentsUnknownWorkflowRunError object`
-
-    A failure that has no type of its own.
-
-    - `type: "unknown_error"`
-
-    - `message: string`
-
-      Short explanation written by the server. It never contains content from the run or its agents.
-
-  - `BetaManagedAgentsThreadLimitWorkflowRunError object`
-
-    The run exceeded the limit on the number of threads that a run can create.
-
-    - `type: "thread_limit_error"`
-
-    - `message: string`
-
-      Short explanation written by the server. It never contains content from the run or its agents.
-
-  - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
-
-    No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
-
-    - `type: "max_workflow_runs_error"`
-
-    - `message: string`
-
-      Short explanation written by the server. It never contains content from the run or its agents.
-
 ### Beta Managed Agents Workflow Run Error Event
 
 - `BetaManagedAgentsWorkflowRunErrorEvent object`
@@ -19255,11 +19205,11 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     Unique identifier for this event.
 
-  - `error: BetaManagedAgentsWorkflowRunError`
+  - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
     Why the run did not finish, or was not created.
 
-    - `BetaManagedAgentsTimeoutWorkflowRunError object`
+    - `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
 
       The run reached its time limit.
 
@@ -19269,7 +19219,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         Short explanation written by the server. It never contains content from the run or its agents.
 
-    - `BetaManagedAgentsProgramWorkflowRunError object`
+    - `BetaManagedAgentsProgramWorkflowRunErrorObject object`
 
       The plan, a program that the agent wrote, failed, or the server refused it.
 
@@ -19279,7 +19229,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         Short explanation written by the server. It never contains content from the run or its agents.
 
-    - `BetaManagedAgentsUnknownWorkflowRunError object`
+    - `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
 
       A failure that has no type of its own.
 
@@ -19289,7 +19239,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         Short explanation written by the server. It never contains content from the run or its agents.
 
-    - `BetaManagedAgentsThreadLimitWorkflowRunError object`
+    - `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
 
       The run exceeded the limit on the number of threads that a run can create.
 
@@ -19299,7 +19249,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         Short explanation written by the server. It never contains content from the run or its agents.
 
-    - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
+    - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
 
       No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
 
@@ -19318,6 +19268,62 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
   - `workflow_run_id: string or null`
 
     Identifier of the run that met the error, or `null` when the error kept a run from being created.
+
+### Beta Managed Agents Workflow Run Error Object
+
+- `BetaManagedAgentsWorkflowRunErrorObject = BetaManagedAgentsTimeoutWorkflowRunErrorObject or BetaManagedAgentsProgramWorkflowRunErrorObject or BetaManagedAgentsUnknownWorkflowRunErrorObject or 2 more`
+
+  Why a workflow run did not finish, or was not created. More types may be added. On `workflow_run.status_ended`, for a `type` you do not recognize, rely on the event's `result.type`.
+
+  - `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
+
+    The run reached its time limit.
+
+    - `type: "timeout_error"`
+
+    - `message: string`
+
+      Short explanation written by the server. It never contains content from the run or its agents.
+
+  - `BetaManagedAgentsProgramWorkflowRunErrorObject object`
+
+    The plan, a program that the agent wrote, failed, or the server refused it.
+
+    - `type: "program_error"`
+
+    - `message: string`
+
+      Short explanation written by the server. It never contains content from the run or its agents.
+
+  - `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
+
+    A failure that has no type of its own.
+
+    - `type: "unknown_error"`
+
+    - `message: string`
+
+      Short explanation written by the server. It never contains content from the run or its agents.
+
+  - `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
+
+    The run exceeded the limit on the number of threads that a run can create.
+
+    - `type: "thread_limit_error"`
+
+    - `message: string`
+
+      Short explanation written by the server. It never contains content from the run or its agents.
+
+  - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
+
+    No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
+
+    - `type: "max_workflow_runs_error"`
+
+    - `message: string`
+
+      Short explanation written by the server. It never contains content from the run or its agents.
 
 ### Beta Managed Agents Workflow Run Phase
 
@@ -19395,7 +19401,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
 ### Beta Managed Agents Workflow Run Result
 
-- `BetaManagedAgentsWorkflowRunResult = BetaManagedAgentsWorkflowRunResultCompleted or BetaManagedAgentsWorkflowRunResultError or BetaManagedAgentsWorkflowRunResultStopped`
+- `BetaManagedAgentsWorkflowRunResult = BetaManagedAgentsWorkflowRunResultCompleted or BetaManagedAgentsWorkflowRunResultErrorObject or BetaManagedAgentsWorkflowRunResultStopped`
 
   How a workflow run ended.
 
@@ -19405,17 +19411,17 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
     - `type: "completed"`
 
-  - `BetaManagedAgentsWorkflowRunResultError object`
+  - `BetaManagedAgentsWorkflowRunResultErrorObject object`
 
     The run failed or reached its time limit.
 
     - `type: "error"`
 
-    - `error: BetaManagedAgentsWorkflowRunError`
+    - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
       Why the run did not finish.
 
-      - `BetaManagedAgentsTimeoutWorkflowRunError object`
+      - `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
 
         The run reached its time limit.
 
@@ -19425,7 +19431,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           Short explanation written by the server. It never contains content from the run or its agents.
 
-      - `BetaManagedAgentsProgramWorkflowRunError object`
+      - `BetaManagedAgentsProgramWorkflowRunErrorObject object`
 
         The plan, a program that the agent wrote, failed, or the server refused it.
 
@@ -19435,7 +19441,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           Short explanation written by the server. It never contains content from the run or its agents.
 
-      - `BetaManagedAgentsUnknownWorkflowRunError object`
+      - `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
 
         A failure that has no type of its own.
 
@@ -19445,7 +19451,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           Short explanation written by the server. It never contains content from the run or its agents.
 
-      - `BetaManagedAgentsThreadLimitWorkflowRunError object`
+      - `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
 
         The run exceeded the limit on the number of threads that a run can create.
 
@@ -19455,7 +19461,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
           Short explanation written by the server. It never contains content from the run or its agents.
 
-      - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
+      - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
 
         No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
 
@@ -19479,19 +19485,19 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
   - `type: "completed"`
 
-### Beta Managed Agents Workflow Run Result Error
+### Beta Managed Agents Workflow Run Result Error Object
 
-- `BetaManagedAgentsWorkflowRunResultError object`
+- `BetaManagedAgentsWorkflowRunResultErrorObject object`
 
   The run failed or reached its time limit.
 
   - `type: "error"`
 
-  - `error: BetaManagedAgentsWorkflowRunError`
+  - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
     Why the run did not finish.
 
-    - `BetaManagedAgentsTimeoutWorkflowRunError object`
+    - `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
 
       The run reached its time limit.
 
@@ -19501,7 +19507,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         Short explanation written by the server. It never contains content from the run or its agents.
 
-    - `BetaManagedAgentsProgramWorkflowRunError object`
+    - `BetaManagedAgentsProgramWorkflowRunErrorObject object`
 
       The plan, a program that the agent wrote, failed, or the server refused it.
 
@@ -19511,7 +19517,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         Short explanation written by the server. It never contains content from the run or its agents.
 
-    - `BetaManagedAgentsUnknownWorkflowRunError object`
+    - `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
 
       A failure that has no type of its own.
 
@@ -19521,7 +19527,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         Short explanation written by the server. It never contains content from the run or its agents.
 
-    - `BetaManagedAgentsThreadLimitWorkflowRunError object`
+    - `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
 
       The run exceeded the limit on the number of threads that a run can create.
 
@@ -19531,7 +19537,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
         Short explanation written by the server. It never contains content from the run or its agents.
 
-    - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
+    - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
 
       No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
 
@@ -19577,17 +19583,17 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
       - `type: "completed"`
 
-    - `BetaManagedAgentsWorkflowRunResultError object`
+    - `BetaManagedAgentsWorkflowRunResultErrorObject object`
 
       The run failed or reached its time limit.
 
       - `type: "error"`
 
-      - `error: BetaManagedAgentsWorkflowRunError`
+      - `error: BetaManagedAgentsWorkflowRunErrorObject`
 
         Why the run did not finish.
 
-        - `BetaManagedAgentsTimeoutWorkflowRunError object`
+        - `BetaManagedAgentsTimeoutWorkflowRunErrorObject object`
 
           The run reached its time limit.
 
@@ -19597,7 +19603,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             Short explanation written by the server. It never contains content from the run or its agents.
 
-        - `BetaManagedAgentsProgramWorkflowRunError object`
+        - `BetaManagedAgentsProgramWorkflowRunErrorObject object`
 
           The plan, a program that the agent wrote, failed, or the server refused it.
 
@@ -19607,7 +19613,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             Short explanation written by the server. It never contains content from the run or its agents.
 
-        - `BetaManagedAgentsUnknownWorkflowRunError object`
+        - `BetaManagedAgentsUnknownWorkflowRunErrorObject object`
 
           A failure that has no type of its own.
 
@@ -19617,7 +19623,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             Short explanation written by the server. It never contains content from the run or its agents.
 
-        - `BetaManagedAgentsThreadLimitWorkflowRunError object`
+        - `BetaManagedAgentsThreadLimitWorkflowRunErrorObject object`
 
           The run exceeded the limit on the number of threads that a run can create.
 
@@ -19627,7 +19633,7 @@ curl https://api.anthropic.com/v1/sessions/$SESSION_ID/events/stream \
 
             Short explanation written by the server. It never contains content from the run or its agents.
 
-        - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunError object`
+        - `BetaManagedAgentsMaxWorkflowRunsWorkflowRunErrorObject object`
 
           No run was created, because the session was at its limit of open workflow runs, which are runs that have not ended. Only `workflow_run.error` carries this type.
 

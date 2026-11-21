@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/manifest-reference
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 881277b37c7b02ec0c5212ee0d1a4498de38c52a3e83b9fc2f0853ed16a76504
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6d2d7ad4b87c4af44ee5fa43ceeac553bca3cdab47e76fea5cfc0cc1e68c66d8
 ---
 
 > ## Documentation Index
@@ -136,7 +136,7 @@ For component keys such as `commands` and `hooks`, [Component path forms](#compo
 | [`version`](#version) | String | Version string. Setting it keeps users on that version until you change it |
 | `description` | String | Short explanation of what the plugin provides |
 | `author` | Object | `name`, which is required, plus optional `email` and `url` |
-| `homepage` | String | Documentation URL. Must parse as a URL, or the plugin fails to load |
+| `homepage` | String | Documentation URL. Must parse as a URL |
 | `repository` | String | Source repository URL. Not validated |
 | `license` | String | SPDX identifier such as `MIT` or `Apache-2.0` |
 | `keywords` | Array of strings | Discovery tags |

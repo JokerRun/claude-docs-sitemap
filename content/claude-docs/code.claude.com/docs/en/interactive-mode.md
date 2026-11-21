@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/interactive-mode
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 7b5afca9ec3484326860990d84aa08bc1feabd53c165c5331b0678c54bb21024
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 8c7e3c3b67bfa537534b0ce728d896fd9ad27957582897ad783f048082797991
 ---
 
 > ## Documentation Index
@@ -755,7 +755,7 @@ Usage limit reached · limit resets 3:45pm
 Continuing automatically at 3:45pm · Esc to cancel
 ```
 
-Either line can carry more after these words, such as a help link on the first or `/usage-credits to continue now` on the second. When the wait starts on its own, the conversation also records it with a line that reads `Usage limit reached · continuing automatically at 3:45pm · esc to cancel`.
+Either line can carry more after these words, such as a help link on the first or `/usage-credits to continue now` on the second.
 
 Keep the session open. What happens next depends on how the wait ends:
 

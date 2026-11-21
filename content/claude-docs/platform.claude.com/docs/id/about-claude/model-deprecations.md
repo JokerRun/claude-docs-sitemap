@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 2b37c04479f800fd0085252d608b3e2f2a172450e4da0403799c80e264e92592
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 829220dae623131bff62b47197281fcdbb63df89a8c3f2ec67923cd8a5dcb49a
 ---
 
 ---
@@ -77,33 +77,33 @@ Pada suatu saat, Anthropic berharap dapat membuat model-model lama tersedia kemb
 
 Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut beserta statusnya:
 
-| API model name             | Current state | Deprecated         | Tentative retirement date          |
-| :------------------------- | :------------ | :----------------- | :--------------------------------- |
-| claude-fable-5-2           | Active        | N/A                | Not sooner than November 9, 2027   |
-| claude-mythos-5-2          | Active        | N/A                | Not sooner than November 9, 2027   |
-| claude-fable-5-1           | Active        | N/A                | Not sooner than September 1, 2027  |
-| claude-mythos-5-1          | Active        | N/A                | Not sooner than September 1, 2027  |
-| claude-fable-5             | Active        | N/A                | Not sooner than June 9, 2027       |
-| claude-mythos-5            | Active        | N/A                | Not sooner than June 9, 2027       |
-| claude-mythos-preview      | Deprecated    | June 9, 2026       | To be announced                    |
-| claude-opus-5-5            | Active        | N/A                | Not sooner than September 22, 2027 |
-| claude-opus-5              | Active        | N/A                | Not sooner than July 24, 2027      |
-| claude-opus-4-8            | Active        | N/A                | Not sooner than May 28, 2027       |
-| claude-opus-4-7            | Active        | N/A                | Not sooner than April 16, 2027     |
-| claude-opus-4-6            | Active        | N/A                | Not sooner than February 5, 2027   |
-| claude-opus-4-5-20251101   | Active        | N/A                | Not sooner than November 24, 2026  |
-| claude-opus-4-1-20250805   | Retired       | June 5, 2026       | August 5, 2026                     |
-| claude-opus-4-20250514     | Retired       | April 14, 2026     | June 15, 2026                      |
-| claude-sonnet-5-5          | Active        | N/A                | Not sooner than September 28, 2027 |
-| claude-sonnet-5            | Active        | N/A                | Not sooner than June 30, 2027      |
-| claude-sonnet-4-6          | Active        | N/A                | Not sooner than February 17, 2027  |
-| claude-sonnet-4-5-20250929 | Deprecated    | September 30, 2026 | November 30, 2026                  |
-| claude-sonnet-4-20250514   | Retired       | April 14, 2026     | June 15, 2026                      |
-| claude-3-7-sonnet-20250219 | Retired       | October 28, 2025   | February 19, 2026                  |
-| claude-haiku-5-5           | Active        | N/A                | Not sooner than October 7, 2027    |
-| claude-haiku-4-5-20251001  | Active        | N/A                | Not sooner than October 15, 2026   |
-| claude-3-5-haiku-20241022  | Retired       | December 19, 2025  | February 19, 2026                  |
-| claude-3-haiku-20240307    | Retired       | February 19, 2026  | April 20, 2026                     |
+| API model name | Current state | Deprecated | Tentative retirement date |
+| :---- | :---- | :---- | :---- |
+| claude-fable-5-2 | Active | N/A | Not sooner than November 9, 2027 |
+| claude-mythos-5-2 | Active | N/A | Not sooner than November 9, 2027 |
+| claude-fable-5-1 | Active | N/A | Not sooner than September 1, 2027 |
+| claude-mythos-5-1 | Active | N/A | Not sooner than September 1, 2027 |
+| claude-fable-5 | Active | N/A | Not sooner than June 9, 2027 |
+| claude-mythos-5 | Active | N/A | Not sooner than June 9, 2027 |
+| claude-mythos-preview | Deprecated | June 9, 2026 | To be announced |
+| claude-opus-5-5 | Active | N/A | Not sooner than September 22, 2027 |
+| claude-opus-5 | Active | N/A | Not sooner than July 24, 2027 |
+| claude-opus-4-8 | Active | N/A | Not sooner than May 28, 2027 |
+| claude-opus-4-7 | Active | N/A | Not sooner than April 16, 2027 |
+| claude-opus-4-6 | Active | N/A | Not sooner than February 5, 2027 |
+| claude-opus-4-5-20251101 | Active | N/A | Not sooner than November 24, 2026 |
+| claude-opus-4-1-20250805 | Retired | June 5, 2026 | August 5, 2026 |
+| claude-opus-4-20250514 | Retired | April 14, 2026 | June 15, 2026 |
+| claude-sonnet-5-5 | Active | N/A | Not sooner than September 28, 2027 |
+| claude-sonnet-5 | Active | N/A | Not sooner than June 30, 2027 |
+| claude-sonnet-4-6 | Active | N/A | Not sooner than February 17, 2027 |
+| claude-sonnet-4-5-20250929 | Deprecated | September 30, 2026 | November 30, 2026 |
+| claude-sonnet-4-20250514 | Retired | April 14, 2026 | June 15, 2026 |
+| claude-3-7-sonnet-20250219 | Retired | October 28, 2025 | February 19, 2026 |
+| claude-haiku-5-5 | Active | N/A | Not sooner than October 7, 2027 |
+| claude-haiku-4-5-20251001 | Active | N/A | Not sooner than October 15, 2026 |
+| claude-3-5-haiku-20241022 | Retired | December 19, 2025 | February 19, 2026 |
+| claude-3-haiku-20240307 | Retired | February 19, 2026 | April 20, 2026 |
 
 ## Riwayat penghentian
 
@@ -113,9 +113,9 @@ Semua penghentian tercantum di bagian-bagian berikut, dengan pengumuman terbaru 
 
 Pada 30 September 2026, Anthropic memberi tahu developer yang menggunakan Claude Sonnet 4.5 tentang pensiunnya yang akan datang di Claude API.
 
-| Tanggal pensiun  | Model yang dihentikan        | Pengganti yang direkomendasikan |
-| ---------------- | ---------------------------- | ------------------------------- |
-| 30 November 2026 | `claude-sonnet-4-5-20250929` | `claude-sonnet-5-5`             |
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 30 November 2026 | `claude-sonnet-4-5-20250929` | `claude-sonnet-5-5` |
 
 Pensiun ini mencakup `claude-sonnet-4-5`, yaitu ID model yang sama tanpa tanggal.
 
@@ -129,9 +129,9 @@ Jika Anda menggunakan Claude Code, lihat [Ikhtisar](https://platform.claude.com/
 
 Pada 5 Juni 2026, Anthropic memberi tahu developer yang menggunakan Claude Opus 4.1 tentang pensiunnya yang akan datang di Claude API.
 
-| Tanggal pensiun | Model yang dihentikan      | Pengganti yang direkomendasikan |
-| --------------- | -------------------------- | ------------------------------- |
-| 5 Agustus 2026  | `claude-opus-4-1-20250805` | `claude-opus-4-8`               |
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 5 Agustus 2026 | `claude-opus-4-1-20250805` | `claude-opus-4-8` |
 
 ### 2026-04-14: Model Claude Sonnet 4 dan Claude Opus 4
 
@@ -141,10 +141,10 @@ Pada 5 Juni 2026, Anthropic memberi tahu developer yang menggunakan Claude Opus 
 
 Pada 14 April 2026, Anthropic memberi tahu developer yang menggunakan model Claude Sonnet 4 dan Claude Opus 4 tentang pensiunnya yang akan datang di Claude API.
 
-| Tanggal pensiun | Model yang dihentikan      | Pengganti yang direkomendasikan |
-| --------------- | -------------------------- | ------------------------------- |
-| 15 Juni 2026    | `claude-sonnet-4-20250514` | `claude-sonnet-5-5`             |
-| 15 Juni 2026    | `claude-opus-4-20250514`   | `claude-opus-4-8`               |
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 15 Juni 2026 | `claude-sonnet-4-20250514` | `claude-sonnet-5-5` |
+| 15 Juni 2026 | `claude-opus-4-20250514` | `claude-opus-4-8` |
 
 ### 2026-02-19: Model Claude Haiku 3
 
@@ -154,9 +154,9 @@ Pada 14 April 2026, Anthropic memberi tahu developer yang menggunakan model Clau
 
 Pada 19 Februari 2026, Anthropic memberi tahu developer yang menggunakan Claude Haiku 3 tentang pensiunnya yang akan datang di Claude API.
 
-| Tanggal pensiun | Model yang dihentikan     | Pengganti yang direkomendasikan |
-| --------------- | ------------------------- | ------------------------------- |
-| 20 April 2026   | `claude-3-haiku-20240307` | `claude-haiku-4-5-20251001`     |
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 20 April 2026 | `claude-3-haiku-20240307` | `claude-haiku-4-5-20251001` |
 
 ### 2025-12-19: Model Claude Haiku 3.5
 
@@ -166,9 +166,9 @@ Pada 19 Februari 2026, Anthropic memberi tahu developer yang menggunakan Claude 
 
 Pada 19 Desember 2025, Anthropic memberi tahu developer yang menggunakan Claude Haiku 3.5 tentang pensiunnya yang akan datang di Claude API.
 
-| Tanggal pensiun  | Model yang dihentikan       | Pengganti yang direkomendasikan |
-| ---------------- | --------------------------- | ------------------------------- |
-| 19 Februari 2026 | `claude-3-5-haiku-20241022` | `claude-haiku-4-5-20251001`     |
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 19 Februari 2026 | `claude-3-5-haiku-20241022` | `claude-haiku-4-5-20251001` |
 
 ### 2025-10-28: Model Claude Sonnet 3.7
 
@@ -178,9 +178,9 @@ Pada 19 Desember 2025, Anthropic memberi tahu developer yang menggunakan Claude 
 
 Pada 28 Oktober 2025, Anthropic memberi tahu developer yang menggunakan Claude Sonnet 3.7 tentang pensiunnya yang akan datang di Claude API.
 
-| Tanggal pensiun  | Model yang dihentikan        | Pengganti yang direkomendasikan |
-| ---------------- | ---------------------------- | ------------------------------- |
-| 19 Februari 2026 | `claude-3-7-sonnet-20250219` | `claude-sonnet-5-5`             |
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 19 Februari 2026 | `claude-3-7-sonnet-20250219` | `claude-sonnet-5-5` |
 
 ### 2025-08-13: Model Claude Sonnet 3.5
 
@@ -190,10 +190,10 @@ Pada 28 Oktober 2025, Anthropic memberi tahu developer yang menggunakan Claude S
 
 Pada 13 Agustus 2025, Anthropic memberi tahu developer yang menggunakan model Claude Sonnet 3.5 tentang pensiunnya yang akan datang.
 
-| Tanggal pensiun | Model yang dihentikan        | Pengganti yang direkomendasikan |
-| --------------- | ---------------------------- | ------------------------------- |
-| 28 Oktober 2025 | `claude-3-5-sonnet-20240620` | `claude-sonnet-5-5`             |
-| 28 Oktober 2025 | `claude-3-5-sonnet-20241022` | `claude-sonnet-5-5`             |
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 28 Oktober 2025 | `claude-3-5-sonnet-20240620` | `claude-sonnet-5-5` |
+| 28 Oktober 2025 | `claude-3-5-sonnet-20241022` | `claude-sonnet-5-5` |
 
 ### 2025-06-30: Model Claude Opus 3
 
@@ -203,9 +203,9 @@ Pada 13 Agustus 2025, Anthropic memberi tahu developer yang menggunakan model Cl
 
 Pada 30 Juni 2025, Anthropic memberi tahu developer yang menggunakan Claude Opus 3 tentang pensiunnya yang akan datang.
 
-| Tanggal pensiun | Model yang dihentikan    | Pengganti yang direkomendasikan |
-| --------------- | ------------------------ | ------------------------------- |
-| 5 Januari 2026  | `claude-3-opus-20240229` | `claude-opus-4-8`               |
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 5 Januari 2026 | `claude-3-opus-20240229` | `claude-opus-4-8` |
 
 ### 2025-01-21: Model Claude 2, Claude 2.1, dan Claude Sonnet 3
 
@@ -215,11 +215,11 @@ Pada 30 Juni 2025, Anthropic memberi tahu developer yang menggunakan Claude Opus
 
 Pada 21 Januari 2025, Anthropic memberi tahu developer yang menggunakan model Claude 2, Claude 2.1, dan Claude Sonnet 3 tentang pensiunnya yang akan datang.
 
-| Tanggal pensiun | Model yang dihentikan      | Pengganti yang direkomendasikan |
-| --------------- | -------------------------- | ------------------------------- |
-| 21 Juli 2025    | `claude-2.0`               | `claude-opus-4-8`               |
-| 21 Juli 2025    | `claude-2.1`               | `claude-opus-4-8`               |
-| 21 Juli 2025    | `claude-3-sonnet-20240229` | `claude-sonnet-5-5`             |
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 21 Juli 2025 | `claude-2.0` | `claude-opus-4-8` |
+| 21 Juli 2025 | `claude-2.1` | `claude-opus-4-8` |
+| 21 Juli 2025 | `claude-3-sonnet-20240229` | `claude-sonnet-5-5` |
 
 ### 2024-09-04: Model Claude 1 dan Instant
 
@@ -230,21 +230,21 @@ Pada 21 Januari 2025, Anthropic memberi tahu developer yang menggunakan model Cl
 Pada 4 September 2024, Anthropic memberi tahu developer yang menggunakan model Claude 1 dan Instant tentang pensiunnya yang akan datang.
 
 | Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
-| --------------- | --------------------- | ------------------------------- |
-| 6 November 2024 | `claude-1.0`          | `claude-haiku-4-5-20251001`     |
-| 6 November 2024 | `claude-1.1`          | `claude-haiku-4-5-20251001`     |
-| 6 November 2024 | `claude-1.2`          | `claude-haiku-4-5-20251001`     |
-| 6 November 2024 | `claude-1.3`          | `claude-haiku-4-5-20251001`     |
-| 6 November 2024 | `claude-instant-1.0`  | `claude-haiku-4-5-20251001`     |
-| 6 November 2024 | `claude-instant-1.1`  | `claude-haiku-4-5-20251001`     |
-| 6 November 2024 | `claude-instant-1.2`  | `claude-haiku-4-5-20251001`     |
+| ----- | ----- | ----- |
+| 6 November 2024 | `claude-1.0` | `claude-haiku-4-5-20251001` |
+| 6 November 2024 | `claude-1.1` | `claude-haiku-4-5-20251001` |
+| 6 November 2024 | `claude-1.2` | `claude-haiku-4-5-20251001` |
+| 6 November 2024 | `claude-1.3` | `claude-haiku-4-5-20251001` |
+| 6 November 2024 | `claude-instant-1.0` | `claude-haiku-4-5-20251001` |
+| 6 November 2024 | `claude-instant-1.1` | `claude-haiku-4-5-20251001` |
+| 6 November 2024 | `claude-instant-1.2` | `claude-haiku-4-5-20251001` |
 
 ## Penghentian parameter API
 
 Anthropic sesekali menghentikan (deprecate) parameter permintaan yang tidak lagi berlaku untuk model saat ini. Model baru dapat menolak parameter yang dihentikan, dan [versi API](https://platform.claude.com/docs/id/api/versioning) baru dapat menghapusnya untuk semua model.
 
-| Parameter                       | Status                                                                                                                | Perilaku                                                                                                                                                                                                           | Pengganti yang direkomendasikan                                                                                                                                               |
-| ------------------------------- | --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Parameter | Status | Perilaku | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- | ----- |
 | `temperature`, `top_p`, `top_k` | Dihapus di [versi API `2026-10-21`](https://platform.claude.com/docs/id/api/migration-2026-10-21#sampling-parameters) | Mengembalikan error 400. Versi API sebelumnya mengembalikan error ini ketika diatur ke nilai non-default pada model Claude 4.7 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). | Hilangkan dan gunakan [prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices) untuk mengarahkan perilaku model. |
 
 Untuk langkah-langkah migrasi, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).

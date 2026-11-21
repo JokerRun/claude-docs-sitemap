@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 3e5fef49758fa92782d287649c1e2fe35be2e5704c68073a7d28188ccc1d9c3e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 8334c641287f8e2cddad03177eb68f5314bc8bb058f85fb79f7dac6dfde74659
 ---
 
 ---
@@ -127,6 +127,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -633,6 +635,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1016,6 +1020,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1393,6 +1399,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1906,6 +1914,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -2096,6 +2106,8 @@ Send one test span, named `anthropic.test`, to the destination with its register
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -3058,6 +3070,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -3279,6 +3293,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -3493,6 +3509,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

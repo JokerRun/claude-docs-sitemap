@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/choosing-a-model
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 661d5d06d7adafaf6383811eed2eba5a75079d59d5ef8794610acaca3f800080
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4286f6e0d128cfeae34202349a73c2ea0e515b82049d32f5a8465d5edcb0928e
 ---
 
 ---
@@ -70,12 +70,12 @@ Untuk jendela konteks, batas output, dan harga, lihat tabel [Semua model](https:
 
 Sebagian besar beban kerja dimulai dengan Claude Opus 5.5.
 
-| Ketika Anda membutuhkan...                                                         | Pertimbangkan untuk memulai dengan... | Contoh kasus penggunaan                                                                                                                                          |
-| ---------------------------------------------------------------------------------- | ------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Kemampuan tertinggi yang tersedia                                                  | Claude Fable 5.2                      | Sesi agen yang berjalan berjam-jam, riset mendalam multilangkah, analisis yang dituntaskan hingga menjadi dokumen, spreadsheet, atau deck yang selesai           |
-| Coding agentik yang kompleks dan pekerjaan enterprise                              | Claude Opus 5.5                       | Agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, penggunaan komputer |
-| Kecepatan dan kemampuan untuk beban kerja coding, agen, dan enterprise sehari-hari | Claude Sonnet 5.5                     | Pembuatan kode, analisis data, pembuatan konten, pemahaman visual, penggunaan alat agentik                                                                       |
-| Latensi dan harga terendah                                                         | Claude Haiku 5.5                      | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, deployment yang sensitif terhadap biaya yang membutuhkan penalaran kuat, tugas subagen                   |
+| Ketika Anda membutuhkan... | Pertimbangkan untuk memulai dengan... | Contoh kasus penggunaan |
+| ----- | ----- | ----- |
+| Kemampuan tertinggi yang tersedia | Claude Fable 5.2 | Sesi agen yang berjalan berjam-jam, riset mendalam multilangkah, analisis yang dituntaskan hingga menjadi dokumen, spreadsheet, atau deck yang selesai |
+| Coding agentik yang kompleks dan pekerjaan enterprise | Claude Opus 5.5 | Agen coding otonom yang berjalan berjam-jam, refactoring skala besar, rekayasa sistem yang kompleks, alur kerja yang banyak melibatkan visi, penggunaan komputer |
+| Kecepatan dan kemampuan untuk beban kerja coding, agen, dan enterprise sehari-hari | Claude Sonnet 5.5 | Pembuatan kode, analisis data, pembuatan konten, pemahaman visual, penggunaan alat agentik |
+| Latensi dan harga terendah | Claude Haiku 5.5 | Aplikasi real-time, pemrosesan cerdas bervolume tinggi, deployment yang sensitif terhadap biaya yang membutuhkan penalaran kuat, tugas subagen |
 
 ***
 

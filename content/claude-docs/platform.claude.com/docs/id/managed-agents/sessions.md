@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/sessions
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 5ed35ee0ba570a840e019c73613136edeeffb5662bdc56c2e3bf666527fafa3e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 57a573c4c9096848f5c4862a0074ab3e12269a88a3fd9b8ae990562b6fe3ba00
 ---
 
 ---
@@ -446,12 +446,12 @@ Setiap event di `initial_events` (java, php: `initialEvents`; csharp, go: `Initi
 
 Permintaan pembuatan ditolak dalam kasus-kasus berikut:
 
-| Kondisi                                                                                                                                                         | Status |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| Lebih dari satu event `user.define_outcome`                                                                                                                     | 400    |
-| Event `user.define_outcome` tanpa `rubric`                                                                                                                      | 400    |
-| Lebih dari 100 [blok konten `document`](https://platform.claude.com/docs/id/build-with-claude/files#document-blocks) yang bersumber dari file di seluruh daftar | 400    |
-| Body permintaan lebih dari 32 MB                                                                                                                                | 413    |
+| Kondisi | Status |
+| ----- | ----- |
+| Lebih dari satu event `user.define_outcome` | 400 |
+| Event `user.define_outcome` tanpa `rubric` | 400 |
+| Lebih dari 100 [blok konten `document`](https://platform.claude.com/docs/id/build-with-claude/files#document-blocks) yang bersumber dari file di seluruh daftar | 400 |
+| Body permintaan lebih dari 32 MB | 413 |
 
 Event `user.define_outcome` di `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) diterima dengan kondisi yang sama seperti mengirimkannya ke sesi yang sudah ada; lihat [Mendefinisikan hasil](https://platform.claude.com/docs/id/managed-agents/define-outcomes).
 

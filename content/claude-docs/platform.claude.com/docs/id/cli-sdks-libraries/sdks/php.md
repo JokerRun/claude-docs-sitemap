@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: a8c8fd065ea54867d97f880fbf7fd03b0351801a1b9615c1a919199b2204f3fe
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 04ab74007252d5b28d0065d630529cb4447a2952af03ccb05be2159c4d411c8f
 ---
 
 ---
@@ -111,19 +111,19 @@ try {
 
 Kode error adalah sebagai berikut:
 
-| Penyebab           | Jenis error                    |
-| ------------------ | ------------------------------ |
-| HTTP 400           | `BadRequestException`          |
-| HTTP 401           | `AuthenticationException`      |
-| HTTP 403           | `PermissionDeniedException`    |
-| HTTP 404           | `NotFoundException`            |
-| HTTP 409           | `ConflictException`            |
-| HTTP 422           | `UnprocessableEntityException` |
-| HTTP 429           | `RateLimitException`           |
-| HTTP >= 500        | `InternalServerException`      |
-| Error HTTP lainnya | `APIStatusException`           |
-| Timeout            | `APITimeoutException`          |
-| Error jaringan     | `APIConnectionException`       |
+| Penyebab | Jenis error |
+| ----- | ----- |
+| HTTP 400 | `BadRequestException` |
+| HTTP 401 | `AuthenticationException` |
+| HTTP 403 | `PermissionDeniedException` |
+| HTTP 404 | `NotFoundException` |
+| HTTP 409 | `ConflictException` |
+| HTTP 422 | `UnprocessableEntityException` |
+| HTTP 429 | `RateLimitException` |
+| HTTP >= 500 | `InternalServerException` |
+| Error HTTP lainnya | `APIStatusException` |
+| Timeout | `APITimeoutException` |
+| Error jaringan | `APIConnectionException` |
 
 ## Percobaan ulang
 

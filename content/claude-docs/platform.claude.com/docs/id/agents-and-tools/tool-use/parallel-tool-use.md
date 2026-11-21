@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 42a2a3da868523e1630cc5680bb15b527fff7fbbf460d81f0870c8d76024d18c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e1f42241916ac7c516341d2d5b10d09a6af2bc93cba1c6082e48cb6f61f92685
 ---
 
 ---
@@ -1639,14 +1639,14 @@ Penggunaan alat paralel tersedia atau dalam versi beta, tergantung pada API.
 * Ketersediaan: Aktif secara default
 * Penggunaan: Untuk menonaktifkannya, atur `disable_parallel_tool_use: true` di dalam `tool_choice`.
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Selalu aktif
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |

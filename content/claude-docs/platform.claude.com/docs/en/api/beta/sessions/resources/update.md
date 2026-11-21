@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources/update
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: ffade9ce6de2ac6fad930728c1cc4f5b6e2f7aa902d54d4f1fcd7d826cbda3d0
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6b0e67b8d0800b4d3f6fd839f92babe04e654fb12234581fa1aba971b2a1b589
 ---
 
 ---
@@ -127,6 +127,8 @@ Update Session Resource
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/usage-cost-api
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: bba5d7639a0116c2746e844c2f6805c197eb1c38a8b52b9c37b52d2d4505bc9a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4f93c53fe1cb250576cd385b44dbe8c20d28541789b7925faf4c0dc5f03e3d9c
 ---
 
 ---
@@ -55,11 +55,11 @@ API ini memungkinkan Anda untuk memantau, menganalisis, dan mengoptimalkan imple
 
 API yang dapat Anda panggil, beserta kunci yang diterima masing-masing, bergantung pada produk Claude yang digunakan organisasi Anda:
 
-| API                                                                                                                                         | Claude Console (Claude Platform)                                                                                                                       | Claude Enterprise (claude.ai) |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
-| [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) (direkomendasikan)               | Kunci Admin API (`sk-ant-admin01-...`) atau [kredensial Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) lainnya | Kunci API Analytics           |
-| Usage and Cost API (lama), yang didokumentasikan di halaman ini                                                                             | Kunci Admin API atau kredensial Admin API lainnya                                                                                                      | Kunci API Analytics           |
-| Endpoint biaya dan penggunaan [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/beta/organization/analytics) (lama) | Tidak tersedia                                                                                                                                         | Kunci API Analytics           |
+| API | Claude Console (Claude Platform) | Claude Enterprise (claude.ai) |
+| ----- | ----- | ----- |
+| [Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api) (direkomendasikan) | Kunci Admin API (`sk-ant-admin01-...`) atau [kredensial Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api#authentication) lainnya | Kunci API Analytics |
+| Usage and Cost API (lama), yang didokumentasikan di halaman ini | Kunci Admin API atau kredensial Admin API lainnya | Kunci API Analytics |
+| Endpoint biaya dan penggunaan [Claude Enterprise Analytics API](https://platform.claude.com/docs/id/api/beta/organization/analytics) (lama) | Tidak tersedia | Kunci API Analytics |
 
 Organisasi induk Claude Enterprise tidak muncul di Claude Console dan tidak memiliki kunci Admin API, sehingga bagi mereka kunci API Analytics adalah satu-satunya jalur untuk mengakses data ini. Lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api) untuk cara membuat setiap jenis kunci dan paket mana yang berlaku untuk data biaya Claude Enterprise.
 
@@ -258,11 +258,11 @@ bucket_width=1d" \
 
 ### Batas granularitas waktu
 
-| Granularitas | Batas default | Batas maksimum | Kasus penggunaan         |
-| ------------ | ------------- | -------------- | ------------------------ |
-| `1m`         | 60 bucket     | 1.440 bucket   | Pemantauan real-time     |
-| `1h`         | 24 bucket     | 168 bucket     | Pola harian              |
-| `1d`         | 7 bucket      | 31 bucket      | Laporan mingguan/bulanan |
+| Granularitas | Batas default | Batas maksimum | Kasus penggunaan |
+| ----- | ----- | ----- | ----- |
+| `1m` | 60 bucket | 1.440 bucket | Pemantauan real-time |
+| `1h` | 24 bucket | 168 bucket | Pola harian |
+| `1d` | 7 bucket | 31 bucket | Laporan mingguan/bulanan |
 
 ## Cost API
 

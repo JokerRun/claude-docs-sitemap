@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 01a96497531ff72b8f7cd4ff7b27abd64cc862e0c1656781e23223e7b40a3982
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c4f75e2ba66dd09582773c9842decd8aff7a77a8edb1983397be9c4f464a8ed3
 ---
 
 ---
@@ -1083,14 +1083,14 @@ Setiap tipe alat dapat mengembalikan kesalahan tertentu:
 
 **Kode kesalahan berdasarkan tipe alat:**
 
-| Alat         | Kode kesalahan            | Deskripsi                                       |
-| ------------ | ------------------------- | ----------------------------------------------- |
-| Semua alat   | `unavailable`             | Alat untuk sementara tidak tersedia             |
-| Semua alat   | `execution_time_exceeded` | Panggilan alat melebihi waktu eksekusi maksimum |
-| Semua alat   | `invalid_tool_input`      | Parameter yang tidak valid diberikan ke alat    |
-| Semua alat   | `too_many_requests`       | Batas laju terlampaui untuk penggunaan alat     |
-| bash         | `output_file_too_large`   | Output perintah melebihi ukuran maksimum        |
-| text\_editor | `file_not_found`          | File tidak ada (untuk operasi lihat/edit)       |
+| Alat | Kode kesalahan | Deskripsi |
+| ----- | ----- | ----- |
+| Semua alat | `unavailable` | Alat untuk sementara tidak tersedia |
+| Semua alat | `execution_time_exceeded` | Panggilan alat melebihi waktu eksekusi maksimum |
+| Semua alat | `invalid_tool_input` | Parameter yang tidak valid diberikan ke alat |
+| Semua alat | `too_many_requests` | Batas laju terlampaui untuk penggunaan alat |
+| bash | `output_file_too_large` | Output perintah melebihi ukuran maksimum |
+| text\_editor | `file_not_found` | File tidak ada (untuk operasi lihat/edit) |
 
 Container yang sudah kedaluwarsa tidak dapat digunakan kembali: permintaan yang merujuknya mengembalikan kesalahan alih-alih memulihkannya. Kirim permintaan lagi tanpa parameter `container` untuk mendapatkan container baru.
 
@@ -1507,12 +1507,12 @@ Bagian selanjutnya dari bagian ini membahas migrasi dari `code_execution_2025052
 
 ### Apa yang berubah
 
-| Komponen     | Lama                        | Saat ini                                                            |
-| ------------ | --------------------------- | ------------------------------------------------------------------- |
-| Header beta  | `code-execution-2025-05-22` | Tidak diperlukan                                                    |
-| Tipe alat    | `code_execution_20250522`   | `code_execution_20250825` atau yang lebih baru                      |
-| Kemampuan    | Hanya Python                | Perintah Bash, operasi file                                         |
-| Tipe respons | `code_execution_result`     | `bash_code_execution_result`, `text_editor_code_execution_*_result` |
+| Komponen | Lama | Saat ini |
+| ----- | ----- | ----- |
+| Header beta | `code-execution-2025-05-22` | Tidak diperlukan |
+| Tipe alat | `code_execution_20250522` | `code_execution_20250825` atau yang lebih baru |
+| Kemampuan | Hanya Python | Perintah Bash, operasi file |
+| Tipe respons | `code_execution_result` | `bash_code_execution_result`, `text_editor_code_execution_*_result` |
 
 ### Kompatibilitas mundur
 
@@ -1567,18 +1567,18 @@ Alat eksekusi kode tersedia di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                               |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                  | HIPAA       |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Status | Tidak layak                                                                                                                                                       | Tidak layak |
-| Detail | Data kontainer disimpan hingga 30 hari. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#data-retention) | —           |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
+| Detail | Data kontainer disimpan hingga 30 hari. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#data-retention) | — |
 
 Endpoint yang berlaku:
 

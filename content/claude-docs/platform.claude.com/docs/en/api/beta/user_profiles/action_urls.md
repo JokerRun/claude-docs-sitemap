@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/action_urls
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: a45616b3ed34bad86ad9b656ec3d3353f47e4240d276314fa06433a85c633be6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 8d3e391947fd210e77b4966b88ebf40af71e4326c66816ca32297c284d76ad19
 ---
 
 ---
@@ -129,6 +129,8 @@ Create Action URL
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

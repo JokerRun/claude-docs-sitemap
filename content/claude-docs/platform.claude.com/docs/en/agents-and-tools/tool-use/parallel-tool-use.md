@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/parallel-tool-use
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 50f326f81160bb0fb9778d2d692f159692c2d82205b5993de891dc5f2dc7e119
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ea79277ad7986a32e17591b2554893508890ce5e0fbf78539116b63b95ebafa6
 ---
 
 ---
@@ -1639,14 +1639,14 @@ Parallel tool use is available or in beta, depending on the API.
 * Availability: On by default
 * Usage: To turn it off, set `disable_parallel_tool_use: true` inside `tool_choice`.
 
-| Status    | Cloud platforms         |
-| --------- | ----------------------- |
+| Status | Cloud platforms |
+| ----- | ----- |
 | Available | All supported platforms |
 
 #### [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
 
 * Availability: Always on
 
-| Status | Cloud platforms         |
-| ------ | ----------------------- |
-| Beta   | All supported platforms |
+| Status | Cloud platforms |
+| ----- | ----- |
+| Beta | All supported platforms |

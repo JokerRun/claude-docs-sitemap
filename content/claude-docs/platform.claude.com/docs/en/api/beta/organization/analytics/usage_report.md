@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/usage_report
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: fba6c32ebddc0e4370590fc9456b68aecd1a53d0a2bd90881a2f1cbe9e37cd81
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 762a0ac4c35d3ab62812660787eede933cfd5500eda2dc04c81128390b474acf
 ---
 
 ---
@@ -270,7 +270,7 @@ This endpoint is one of the legacy Claude Enterprise usage and cost reports. For
 
     - `product: string or null`
 
-      Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. Some unattributed usage is reported as "other".
+      Product surface that produced the usage or cost. Null unless product is in `group_by[]`; it can also be null on grouped rows whose usage cannot be attributed to a known surface. Values include `chat`, `claude_code`, `cowork`, `office_agent`, `claude_in_chrome`, `claude_design`, `claude-tag`, and `chat_cowork_unified`. `claude-tag` is Claude Tag, the Claude product in Slack. `chat_cowork_unified` is Chat and Cowork unified, Cowork's features inside claude.ai chat: chat and Cowork usage by a member who has it turned on is reported under this value instead of `chat` or `cowork`. It is accepted as a filter only where Chat and Cowork unified is available. `cc_security_autopatch` is work that Claude Security runs for the organization. Some unattributed usage is reported as "other".
 
     - `rbac_group_id: string or null`
 

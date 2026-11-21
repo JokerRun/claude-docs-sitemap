@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/strengthen-guardrails/handle-streaming-refusals
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 30111a39c7efef68428ce8d97d9ff124f69e9436ce2123b7d9420fef3f9b33e3
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a1613b204c0c0e5098aa80fa886056fa55e753348e6dec3b78fb39882a8ad173
 ---
 
 ---
@@ -45,7 +45,7 @@ featureMetadata:
 * **Messages API**: Stream berakhir dengan `stop_reason` `"refusal"`, dan `stop_details` (`category` dan `explanation`) tiba pada event `message_delta`.
 * **Managed Agents**: Giliran yang ditolak berakhir, dan sesi menjadi idle. Anggap giliran ditolak jika `stop_details.type` atau `stop_reason.type` bernilai `"refusal"`.
 
-Mulai dari model Claude 4, respons streaming dari API Claude mengembalikan **`stop_reason`: `"refusal"`** ketika pengklasifikasi streaming melakukan intervensi untuk menangani potensi pelanggaran kebijakan. Fitur keamanan ini membantu menjaga kepatuhan konten selama streaming real-time.
+Pada model Claude 4 dan yang lebih baru, respons streaming dari Claude API mengembalikan **`stop_reason`: `"refusal"`** ketika pengklasifikasi streaming melakukan intervensi untuk menangani potensi pelanggaran kebijakan. Fitur keamanan ini membantu menjaga kepatuhan konten selama streaming real-time.
 
 <Tip>
   Halaman ini membahas bagaimana penolakan muncul dalam respons streaming. Untuk setiap nilai `stop_reason` dan cara menanganinya, lihat [Alasan berhenti dan fallback](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons). Untuk mencoba ulang permintaan yang ditolak pada model Claude lain, lihat [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).
@@ -92,6 +92,8 @@ Ketika Anda menerima **`stop_reason`: `refusal`**, Anda harus mereset konteks pe
 <Tip>
   Mereset konteks bukan satu-satunya cara untuk memulihkan. Anda juga dapat mencoba ulang permintaan yang ditolak pada model Claude yang berbeda, dan halaman [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkannya dengan fallback sisi server, middleware SDK, atau percobaan ulang manual.
 </Tip>
+
+Penolakan `reasoning_extraction` merupakan pengecualian: ubahlah prompt alih-alih mencoba ulang pada model lain, seperti yang dijelaskan di [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 
 ## Panduan implementasi
 
@@ -335,11 +337,11 @@ Berikut cara mendeteksi dan menangani penolakan streaming dalam aplikasi Anda:
 
 API saat ini menangani penolakan dengan tiga cara berbeda:
 
-| Jenis penolakan                     | Format respons               | Kapan terjadi                                      |
-| ----------------------------------- | ---------------------------- | -------------------------------------------------- |
+| Jenis penolakan | Format respons | Kapan terjadi |
+| ----- | ----- | ----- |
 | Penolakan pengklasifikasi streaming | **`stop_reason`: `refusal`** | Selama streaming ketika konten melanggar kebijakan |
-| Validasi input dan hak cipta API    | Kode error 400               | Ketika input gagal dalam pemeriksaan validasi      |
-| Penolakan yang dihasilkan model     | Respons teks standar         | Ketika model itu sendiri menolak                   |
+| Validasi input dan hak cipta API | Kode error 400 | Ketika input gagal dalam pemeriksaan validasi |
+| Penolakan yang dihasilkan model | Respons teks standar | Ketika model itu sendiri menolak |
 
 ## Praktik terbaik
 
@@ -352,13 +354,13 @@ API saat ini menangani penolakan dengan tiga cara berbeda:
 
 ## Catatan migrasi
 
-Jika Anda membangun penanganan penolakan saat fitur ini pertama kali dirilis, atau Anda menambahkannya ke integrasi yang sudah ada, periksa hal-hal berikut:
+Jika Anda menambahkan penanganan penolakan ke integrasi yang sudah ada, periksa hal-hal berikut:
 
 * **Penolakan adalah respons, bukan error.** Penolakan tiba sebagai respons HTTP 200 yang berhasil dengan `stop_reason`: `"refusal"`, sehingga pemantauan yang hanya dibangun berdasarkan tingkat error tidak akan menampilkannya. Lacak penolakan sebagai sinyal tersendiri.
 * **Penolakan menyertakan detail terstruktur.** Pada setiap model, penolakan juga menyertakan objek `stop_details` yang mengidentifikasi kategori kebijakan di balik penolakan tersebut. Lihat [Seperti apa bentuk penolakan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk bentuk respons lengkap.
 * **Coba ulang pada model yang berbeda.** Mengirim ulang permintaan yang ditolak ke model yang sama biasanya menghasilkan penolakan lagi. Alih-alih hanya mereset konteks, coba ulang pada model fallback dengan [fallback sisi server, middleware SDK, atau percobaan ulang manual](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), dan tukarkan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri. Claude Haiku 5.5 tidak memiliki fallback sisi server, dan penolakannya tidak membawa kredit fallback, jadi siapkan percobaan ulangnya di klien Anda.
 * **Periksa hasil batch untuk penolakan.** Permintaan yang ditolak dalam [Message Batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) dikembalikan sebagai hasil yang berhasil dengan `stop_reason`: `"refusal"`, bukan sebagai hasil yang error.
-* **Pusatkan penanganan pada `stop_reason`.** API terus mengonsolidasikan penanganan penolakan di sekitar `stop_reason`: `"refusal"`, jadi lakukan percabangan berdasarkan alasan berhenti alih-alih perilaku spesifik model.
+* **Pusatkan penanganan pada `stop_reason`.** Lakukan percabangan berdasarkan `stop_reason`: `"refusal"` alih-alih perilaku spesifik model.
 
 ## Langkah selanjutnya
 
@@ -391,8 +393,8 @@ Penolakan streaming tersedia atau dalam versi beta, tergantung pada API.
 * Ketersediaan: Selalu aktif
 * Penggunaan: Stream berakhir dengan `stop_reason` `"refusal"`, dan `stop_details` (`category` dan `explanation`) tiba pada event `message_delta`.
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -400,6 +402,6 @@ Penolakan streaming tersedia atau dalam versi beta, tergantung pada API.
 * Ketersediaan: Selalu aktif
 * Penggunaan: Giliran yang ditolak berakhir, dan sesi menjadi idle. Anggap giliran ditolak jika `stop_details.type` atau `stop_reason.type` pada event `session.status_idle` bernilai `"refusal"`. Pada giliran yang ditolak, `stop_reason.type` dapat bernilai `"end_turn"`. `stop_details` bernilai `null` pada giliran lainnya, dan juga dapat bernilai `null` pada giliran yang ditolak.
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |

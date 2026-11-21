@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/middleware
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 5bd4ee199168d3aec69b7fbd99c5bf1e4dd2b759d187013bddd1bee44e79a5e3
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: eb2fd0f4064debb92b3512813275f84970e77e9543c166911ddeb411afcc33a0
 ---
 
 ---
@@ -229,8 +229,8 @@ Middleware SDK tersedia atau dalam versi beta, tergantung pada API.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -238,6 +238,6 @@ Middleware SDK tersedia atau dalam versi beta, tergantung pada API.
 * Ketersediaan: Tersedia
 * Penggunaan: Berjalan pada panggilan klien SDK Anda ke Managed Agents API. Middleware ini tidak melihat panggilan model yang dilakukan agen di dalam loop-nya.
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |

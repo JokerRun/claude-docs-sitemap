@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 84d56f095c6250fb8cd935f6b86b1d753ec10e09f72394751fa9d375e71da577
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6089ed814ce0572706ac7b4229a17392454cd7603fa0eac8842e361149057cc5
 ---
 
 ---
@@ -80,12 +80,12 @@ Aktivitas dikembalikan dari yang terbaru terlebih dahulu, dengan nilai `created_
 
 Compliance API menggunakan dua skema “pagination” (paginasi) tergantung pada keluarga endpoint:
 
-| Keluarga endpoint                                                                    | Urutan pengurutan                                                          | Skema         | Parameter                                                            |
-| ------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- | ------------- | -------------------------------------------------------------------- |
-| Aktivitas                                                                            | Terbaru terlebih dahulu                                                    | Kursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
-| Chat dan pesan chat                                                                  | Terlama terlebih dahulu                                                    | Kursor        | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
-| Organisasi, proyek, lampiran proyek, pengguna, peran, izin peran, grup, anggota grup | Spesifik per endpoint                                                      | Token halaman | `page` (dikembalikan sebagai `next_page`)                            |
-| Sesi lokal dan jarak jauh serta pesan sesi                                           | Sesi terbaru terlebih dahulu; pesan terlama terlebih dahulu secara default | Token halaman | `page` (dikembalikan sebagai `next_page`)                            |
+| Keluarga endpoint | Urutan pengurutan | Skema | Parameter |
+| ----- | ----- | ----- | ----- |
+| Aktivitas | Terbaru terlebih dahulu | Kursor | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
+| Chat dan pesan chat | Terlama terlebih dahulu | Kursor | `after_id`, `before_id` (dikembalikan sebagai `first_id`, `last_id`) |
+| Organisasi, proyek, lampiran proyek, pengguna, peran, izin peran, grup, anggota grup | Spesifik per endpoint | Token halaman | `page` (dikembalikan sebagai `next_page`) |
+| Sesi lokal dan jarak jauh serta pesan sesi | Sesi terbaru terlebih dahulu; pesan terlama terlebih dahulu secara default | Token halaman | `page` (dikembalikan sebagai `next_page`) |
 
 File tidak dipaginasi: file diambil satu per satu berdasarkan ID.
 
@@ -145,27 +145,27 @@ persist(cursor)
 
 Setiap entri dalam `data` adalah Activity dengan bentuk tingkat atas berikut:
 
-| Field               | Tipe             | Deskripsi                                                                                                                                                                                                                                                                   |
-| ------------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`                | string           | Pengidentifikasi unik untuk aktivitas.                                                                                                                                                                                                                                      |
-| `created_at`        | string RFC 3339  | Waktu aktivitas terjadi.                                                                                                                                                                                                                                                    |
-| `organization_id`   | string atau null | Organisasi tempat aktivitas terjadi, atau `null` untuk peristiwa yang tidak terkait dengan organisasi.                                                                                                                                                                      |
-| `organization_uuid` | string atau null | Cakupan yang sama dengan `organization_id`, dinyatakan sebagai UUID.                                                                                                                                                                                                        |
-| `actor`             | union Actor      | Siapa atau apa yang melakukan aktivitas. Lihat tabel aktor berikut.                                                                                                                                                                                                         |
-| `type`              | string           | Jenis aktivitas, misalnya `claude_chat_created`.                                                                                                                                                                                                                            |
-| *field tambahan*    | bervariasi       | Field spesifik per jenis, misalnya `claude_chat_id` pada peristiwa chat atau `claude_file_id` pada peristiwa file. Lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list) di referensi API untuk daftar field per jenis. |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `id` | string | Pengidentifikasi unik untuk aktivitas. |
+| `created_at` | string RFC 3339 | Waktu aktivitas terjadi. |
+| `organization_id` | string atau null | Organisasi tempat aktivitas terjadi, atau `null` untuk peristiwa yang tidak terkait dengan organisasi. |
+| `organization_uuid` | string atau null | Cakupan yang sama dengan `organization_id`, dinyatakan sebagai UUID. |
+| `actor` | union Actor | Siapa atau apa yang melakukan aktivitas. Lihat tabel aktor berikut. |
+| `type` | string | Jenis aktivitas, misalnya `claude_chat_created`. |
+| *field tambahan* | bervariasi | Field spesifik per jenis, misalnya `claude_chat_id` pada peristiwa chat atau `claude_file_id` pada peristiwa file. Lihat [Mengkueri aktivitas kepatuhan](https://platform.claude.com/docs/id/api/compliance/activities/list) di referensi API untuk daftar field per jenis. |
 
 Field `actor` adalah “discriminated union” (union terdiskriminasi). Diskriminator `type` memberi tahu Anda field lain mana yang ada:
 
-| `actor.type`                 | Kapan muncul                                                                                                                                                                                                           | Field utama                                                                                                                                               |
-| ---------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `user_actor`                 | Pengguna claude.ai atau Claude Console yang sudah masuk melakukan tindakan tersebut. Proses yang dijalankan Anthropic atas nama pengguna juga dapat muncul sebagai tipe ini; lihat paragraf setelah tabel ini.         | `email_address`, `user_id`, `ip_address`, `user_agent`                                                                                                    |
-| `api_actor`                  | Sebuah permintaan memanggil Claude API atau Compliance API dengan kunci API yang diterbitkan pelanggan. Panggilan Compliance API menghasilkan jenis aktor ini baik untuk Compliance Access Key maupun kunci Admin API. | `api_key_id`, `ip_address`, `user_agent`                                                                                                                  |
-| `admin_api_key_actor`        | Admin organisasi menggunakan kunci Admin API untuk mengelola pengguna, undangan, workspace, atau kunci API.                                                                                                            | `admin_api_key_id`, `ip_address`, `user_agent`                                                                                                            |
-| `unauthenticated_user_actor` | Suatu tindakan terjadi sebelum proses masuk selesai, misalnya `sso_login_initiated`.                                                                                                                                   | `unauthenticated_email_address`, `ip_address`, `user_agent`                                                                                               |
-| `anthropic_actor`            | Anthropic bertindak terhadap organisasi, misalnya melalui perkakas internal.                                                                                                                                           | `email_address` (selalu `null`; ada demi konsistensi bentuk dengan `user_actor`, karena operator Anthropic tidak direpresentasikan dengan email individu) |
-| `system_actor`               | Pemrosesan latar belakang otomatis yang dilakukan oleh sistem Anthropic, bertindak tanpa kredensial pengguna atau pelanggan.                                                                                           | `service` (nullable; nama proses otomatis yang melakukan tindakan, jika diketahui)                                                                        |
-| `scim_directory_sync_actor`  | Penyedia identitas (seperti Okta, Microsoft Entra ID, atau JumpCloud) mendorong perubahan melalui sinkronisasi direktori SCIM.                                                                                         | `workos_event_id`, `directory_id`, `idp_connection_type` (nullable; misalnya `OktaSCIMV2`, `AzureSCIMV2`)                                                 |
+| `actor.type` | Kapan muncul | Field utama |
+| ----- | ----- | ----- |
+| `user_actor` | Pengguna claude.ai atau Claude Console yang sudah masuk melakukan tindakan tersebut. Proses yang dijalankan Anthropic atas nama pengguna juga dapat muncul sebagai tipe ini; lihat paragraf setelah tabel ini. | `email_address`, `user_id`, `ip_address`, `user_agent` |
+| `api_actor` | Sebuah permintaan memanggil Claude API atau Compliance API dengan kunci API yang diterbitkan pelanggan. Panggilan Compliance API menghasilkan jenis aktor ini baik untuk Compliance Access Key maupun kunci Admin API. | `api_key_id`, `ip_address`, `user_agent` |
+| `admin_api_key_actor` | Admin organisasi menggunakan kunci Admin API untuk mengelola pengguna, undangan, workspace, atau kunci API. | `admin_api_key_id`, `ip_address`, `user_agent` |
+| `unauthenticated_user_actor` | Suatu tindakan terjadi sebelum proses masuk selesai, misalnya `sso_login_initiated`. | `unauthenticated_email_address`, `ip_address`, `user_agent` |
+| `anthropic_actor` | Anthropic bertindak terhadap organisasi, misalnya melalui perkakas internal. | `email_address` (selalu `null`; ada demi konsistensi bentuk dengan `user_actor`, karena operator Anthropic tidak direpresentasikan dengan email individu) |
+| `system_actor` | Pemrosesan latar belakang otomatis yang dilakukan oleh sistem Anthropic, bertindak tanpa kredensial pengguna atau pelanggan. | `service` (nullable; nama proses otomatis yang melakukan tindakan, jika diketahui) |
+| `scim_directory_sync_actor` | Penyedia identitas (seperti Okta, Microsoft Entra ID, atau JumpCloud) mendorong perubahan melalui sinkronisasi direktori SCIM. | `workos_event_id`, `directory_id`, `idp_connection_type` (nullable; misalnya `OktaSCIMV2`, `AzureSCIMV2`) |
 
 Aktivitas `user_actor` tidak selalu berarti pengguna yang melakukan tindakan tersebut. Proses yang dijalankan Anthropic atas nama pengguna saat ini dapat muncul sebagai `user_actor` untuk pengguna yang terdampak alih-alih sebagai `system_actor`, dan atribusi ini dapat berubah. Misalnya, aktivitas memori dari suatu migrasi, seperti `platform_memory_store_created`, `platform_memory_created`, dan `platform_memory_deleted`, diatribusikan dengan cara ini. Aktivitas memori `platform_memory_store_created`, `platform_memory_created`, `platform_memory_updated`, dan `platform_memory_deleted` saat ini menampilkan `ip_address` bernilai `0.0.0.0` siapa pun yang melakukannya. Akibatnya, nilai ini saja tidak mengidentifikasi proses yang dijalankan Anthropic atas nama pengguna.
 

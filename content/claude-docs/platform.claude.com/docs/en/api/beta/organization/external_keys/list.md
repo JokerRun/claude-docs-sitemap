@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 7672c40310e21afa39de810c0da800772011a1813bd2f773abeb31f01b4a1674
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 34d9c36f18696781057291fbe8c9f7979cc2759f6d044e4a5b629456292508ac
 ---
 
 ---
@@ -89,7 +89,7 @@ Results are ordered by creation time (newest first). Use the
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key. On Claude Platform on AWS, alias ARNs are rejected, and your organization's own key must be a single-Region key in your organization's AWS account.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS, alias ARNs are rejected, and your organization's own key must be a single-Region key.
 
         maxLength: 2048
 

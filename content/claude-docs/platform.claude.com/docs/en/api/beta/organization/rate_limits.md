@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rate_limits
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 1df2a0bb86b2576a66d2e20d80ef8483a416eee25f0599f494ac72c9479d2496
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 676570d6059b9ac62909d1b1595d7196779dd38bcd2f0d9b51c331eee386f6a3
 ---
 
 ---
@@ -170,7 +170,7 @@ the remaining entries.
 
     - `type: string`
 
-      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`).
 
     - `value: number`
 
@@ -322,7 +322,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 
     - `type: string`
 
-      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`).
 
     - `value: number`
 
@@ -412,7 +412,7 @@ curl https://api.anthropic.com/v1/organizations/rate_limits \
 
   - `type: string`
 
-    The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+    The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`).
 
   - `value: number`
 

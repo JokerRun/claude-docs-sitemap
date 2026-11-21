@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/archive
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 21d99d7d706515d22fa11cc60d458592aa33864c63f5f8d0137bcf933cabcd8a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 77b3ed5b88014a8729ce9e55d9089f5cb118236703982bcf73964e92f2f554c9
 ---
 
 ---
@@ -133,6 +133,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_workspaces/update
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 46085fa17091f2d937dd1baad5effffeb92ee0d420df70e11f9b0b4c4bac3721
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 7f8e5d7662a75b2a327209062e3cd0a1d8f8b2ebda47285419b484a036d3cfb4
 ---
 
 ---
@@ -127,6 +127,8 @@ Change the settings a Slack workspace stores. The update is partial: a setting l
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

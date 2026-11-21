@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/php
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: fc9088bc8152d81cbd00fbfc0a4e70b0b7dfdf49b74b0efeeb166b7f7b52dbc1
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 79533486941360598a5d12ee1600ac9ca10d7748beea7aaccbf263383b681846
 ---
 
 ---
@@ -111,19 +111,19 @@ try {
 
 Error codes are as follows:
 
-| Cause            | Error type                     |
-| ---------------- | ------------------------------ |
-| HTTP 400         | `BadRequestException`          |
-| HTTP 401         | `AuthenticationException`      |
-| HTTP 403         | `PermissionDeniedException`    |
-| HTTP 404         | `NotFoundException`            |
-| HTTP 409         | `ConflictException`            |
-| HTTP 422         | `UnprocessableEntityException` |
-| HTTP 429         | `RateLimitException`           |
-| HTTP >= 500      | `InternalServerException`      |
-| Other HTTP error | `APIStatusException`           |
-| Timeout          | `APITimeoutException`          |
-| Network error    | `APIConnectionException`       |
+| Cause | Error type |
+| ----- | ----- |
+| HTTP 400 | `BadRequestException` |
+| HTTP 401 | `AuthenticationException` |
+| HTTP 403 | `PermissionDeniedException` |
+| HTTP 404 | `NotFoundException` |
+| HTTP 409 | `ConflictException` |
+| HTTP 422 | `UnprocessableEntityException` |
+| HTTP 429 | `RateLimitException` |
+| HTTP >= 500 | `InternalServerException` |
+| Other HTTP error | `APIStatusException` |
+| Timeout | `APITimeoutException` |
+| Network error | `APIConnectionException` |
 
 ## Retries
 

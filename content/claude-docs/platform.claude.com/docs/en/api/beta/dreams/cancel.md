@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: cbb2606c156034a44140b65765521d6bde83679bfb8caf65c12164477a3057ae
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: da80b9886829b0755f6d458272564f079b26fa87400671e94a1eeecb6ba083d0
 ---
 
 ---
@@ -132,6 +132,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -218,7 +220,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
     format: date-time
 
-  - `error: BetaDreamError or null`
+  - `error: BetaDreamErrorObject or null`
 
     Why the dream failed, or `null` if `status` isn't `failed`.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/manage-tool-context
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 16a985ba7555931bc95c8dac9d9b698a28a1f7acb3649a66d9ccf10add62235f
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 47465db3820252377bc392c9a82179f2fd3c9cc6bed9a20af6b45060e28e6756
 ---
 
 ---
@@ -17,12 +17,12 @@ Definisi alat dan blok `tool_result` yang terakumulasi menghabiskan “context w
 
 Setiap pendekatan menargetkan sumber tekanan konteks yang berbeda. Pilih pendekatan yang sesuai dengan ke mana token Anda mengalir.
 
-| Pendekatan                         | Apa yang dikurangi                           | Kapan cocok digunakan                                                  | Pelajari lebih lanjut                                                                                                               |
-| ---------------------------------- | -------------------------------------------- | ---------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| Pencarian alat                     | Definisi alat yang dimuat di awal            | Banyak alat (10+), yang sebagian besar tidak diperlukan setiap giliran | [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)                               |
-| Pemanggilan alat secara terprogram | Bolak-balik `tool_result`                    | Rangkaian pemanggilan alat yang dapat dijalankan sebagai satu skrip    | [Pemanggilan alat secara terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling)       |
-| Caching prompt                     | Biaya token dari definisi alat yang berulang | Definisi alat yang stabil di banyak permintaan                         | [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching) |
-| Pengeditan konteks                 | Blok `tool_result` lama dalam riwayat        | Percakapan panjang di mana hasil awal tidak lagi relevan               | [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing)                                         |
+| Pendekatan | Apa yang dikurangi | Kapan cocok digunakan | Pelajari lebih lanjut |
+| ----- | ----- | ----- | ----- |
+| Pencarian alat | Definisi alat yang dimuat di awal | Banyak alat (10+), yang sebagian besar tidak diperlukan setiap giliran | [Alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool) |
+| Pemanggilan alat secara terprogram | Bolak-balik `tool_result` | Rangkaian pemanggilan alat yang dapat dijalankan sebagai satu skrip | [Pemanggilan alat secara terprogram](https://platform.claude.com/docs/id/agents-and-tools/tool-use/programmatic-tool-calling) |
+| Caching prompt | Biaya token dari definisi alat yang berulang | Definisi alat yang stabil di banyak permintaan | [Penggunaan alat dengan caching prompt](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching) |
+| Pengeditan konteks | Blok `tool_result` lama dalam riwayat | Percakapan panjang di mana hasil awal tidak lagi relevan | [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) |
 
 ### Pencarian alat
 

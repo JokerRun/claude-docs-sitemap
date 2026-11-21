@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/validate_archive
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: c88e05b34918b747a3c1d1657fb42b436b6d97de6f3dff2b19d3dd873f97343e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ad2d9dfd55bbf7cc416726c4f794a918fd8d877875ebac3f21b59174b168a488
 ---
 
 ---
@@ -135,6 +135,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -210,7 +212,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     A stable identifier for `manifest_error`; null when that is.
 
-  - `plugin_errors: array of BetaPluginMarketplaceValidationPluginError`
+  - `plugin_errors: array of BetaPluginMarketplaceValidationPluginErrorObject`
 
     One entry per plugin a synchronization would skip entirely, keyed by the plugin's name in marketplace.json.
 
@@ -267,6 +269,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `unsupported_charset` (HTTP status 400)
 
   The request's `Content-Type` header names a charset other than UTF-8, ISO-8859-1 or US-ASCII. Send the request with no charset, or with one of these.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

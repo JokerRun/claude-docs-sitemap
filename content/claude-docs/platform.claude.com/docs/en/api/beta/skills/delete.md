@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/delete
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: d63c1eb83bac99cf7b0e7af3597e97928780086fb279390985ba6f82b71280f6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 814c3a4cedbaec5219bac8cf520483f87da3655e4c5162e558443f5048eceafe
 ---
 
 ---
@@ -129,6 +129,8 @@ Delete Skill
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

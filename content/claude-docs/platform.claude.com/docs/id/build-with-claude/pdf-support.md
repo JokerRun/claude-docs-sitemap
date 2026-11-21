@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/pdf-support
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 7adba94b688c797235bcea3ce18f3f8bcc7d35a740d9d3de639e29a8a8fbe853
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 7fbf07c84cab477aa044433812c3faac60d9d9c6843a3fff0295255e96b86972
 ---
 
 ---
@@ -65,11 +65,11 @@ Anda dapat bertanya kepada Claude tentang teks, gambar, grafik, dan tabel apa pu
 
 Claude bekerja dengan PDF standar apa pun. Pastikan ukuran permintaan Anda memenuhi persyaratan berikut:
 
-| Persyaratan                     | Batas                                                                                                                                                                     |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ukuran permintaan maksimum      | 128 MB pada Claude API pihak pertama (bervariasi menurut platform; lihat [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
-| Halaman maksimum per permintaan | 600 (100 jika jendela konteks permintaan di bawah 1 juta token)                                                                                                           |
-| Format                          | PDF standar (tanpa kata sandi/enkripsi)                                                                                                                                   |
+| Persyaratan | Batas |
+| ----- | ----- |
+| Ukuran permintaan maksimum | 128 MB pada Claude API pihak pertama (bervariasi menurut platform; lihat [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits)) |
+| Halaman maksimum per permintaan | 600 (100 jika jendela konteks permintaan di bawah 1 juta token) |
+| Format | PDF standar (tanpa kata sandi/enkripsi) |
 
 Kedua batas tersebut berlaku untuk seluruh payload permintaan, termasuk konten lain apa pun yang dikirim bersama PDF. Untuk PDF berukuran besar, pertimbangkan untuk mengunggahnya dengan [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan mereferensikannya melalui `file_id` agar payload permintaan tetap kecil.
 
@@ -2007,12 +2007,12 @@ Dukungan PDF tersedia di semua model dan layak untuk retensi data nol dan kesiap
 
 * Ketersediaan: Selalu aktif
 
-| Status               | Platform cloud                                                                                                                                                                                                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
-| Tersedia<sup>1</sup> | [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                                         |
-| Tersedia<sup>2</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                      |
-| Tersedia<sup>2</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)                         |
+| Status | Platform cloud |
+| ----- | ----- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
+| Tersedia<sup>1</sup> | [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Tersedia<sup>2</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) |
+| Tersedia<sup>2</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) |
 
 1. Sumber `file_id` memerlukan deployment Hosted on Anthropic.
 2. Hanya sumber base64.
@@ -2021,18 +2021,18 @@ Dukungan PDF tersedia di semua model dan layak untuk retensi data nol dan kesiap
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA                                                                                                       |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak                                                                                                       |
-| Detail | —                                                                                                                                                                | Kelayakan HIPAA berlaku untuk PDF yang dikirim secara inline melalui Messages API, bukan melalui Files API. |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
+| Detail | — | Kelayakan HIPAA berlaku untuk PDF yang dikirim secara inline melalui Messages API, bukan melalui Files API. |
 
 Endpoint yang berlaku:
 

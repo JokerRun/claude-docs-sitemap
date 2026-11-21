@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 1aff6b06633a5a31eae7e4d8ed1974d9156937873b1a529d03183d99eed14c26
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: deb46e76e228216dc63d32948561aad71163f927baf19e060e5308b86152c12e
 ---
 
 ---
@@ -54,15 +54,15 @@ Secara opsional, tinjau event setiap sesi dengan job offline. Pantau webhook unt
 
 Berlangganan webhook yang memberi tahu Anda ketika sebuah sesi memerlukan perhatian, dan hapus sesi yang tidak lagi Anda perlukan. Verifikasi tanda tangan pada setiap pengiriman. Lihat [Memverifikasi tanda tangan](https://platform.claude.com/docs/id/managed-agents/webhooks#verify-the-signature).
 
-| Apa yang dipantau                                           | Di mana melihatnya                                                                                                                                                                                                                                                                                   |
-| ----------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sesi yang menjadi idle, misalnya untuk menunggu persetujuan | Webhook `session.status_idled`. Webhook ini dipicu setiap kali sesi menjadi idle, karena alasan apa pun                                                                                                                                                                                              |
-| Sesi yang mencapai anggaran atau berhenti                   | Webhook `session.budget_reached` dan `session.status_terminated`                                                                                                                                                                                                                                     |
-| Eksekusi terjadwal yang gagal memulai sesi                  | Webhook `deployment_run.failed` dan `deployment.paused`                                                                                                                                                                                                                                              |
-| Kredensial OAuth MCP yang tidak dapat diperbarui            | Webhook `vault_credential.refresh_failed`                                                                                                                                                                                                                                                            |
-| Panggilan alat yang ditolak atau dijeda oleh server         | `evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`) pada event `agent.tool_use` dan `agent.mcp_tool_use`. Dalam sesi multiagen, ambil juga daftar event setiap thread                                                                                       |
-| Apa yang dilakukan agen dalam sebuah sesi                   | Penampil sesi Claude Console                                                                                                                                                                                                                                                                         |
-| Perilaku di luar apa yang Anda berikan kepada agen          | Job tinjauan offline opsional yang Anda jalankan yang membaca event setiap sesi. Lihat [Secara opsional, minta peninjau offline membaca setiap transkrip](https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring#optionally-have-an-offline-reviewer-read-every-transcript) |
+| Apa yang dipantau | Di mana melihatnya |
+| ----- | ----- |
+| Sesi yang menjadi idle, misalnya untuk menunggu persetujuan | Webhook `session.status_idled`. Webhook ini dipicu setiap kali sesi menjadi idle, karena alasan apa pun |
+| Sesi yang mencapai anggaran atau berhenti | Webhook `session.budget_reached` dan `session.status_terminated` |
+| Eksekusi terjadwal yang gagal memulai sesi | Webhook `deployment_run.failed` dan `deployment.paused` |
+| Kredensial OAuth MCP yang tidak dapat diperbarui | Webhook `vault_credential.refresh_failed` |
+| Panggilan alat yang ditolak atau dijeda oleh server | `evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`) pada event `agent.tool_use` dan `agent.mcp_tool_use`. Dalam sesi multiagen, ambil juga daftar event setiap thread |
+| Apa yang dilakukan agen dalam sebuah sesi | Penampil sesi Claude Console |
+| Perilaku di luar apa yang Anda berikan kepada agen | Job tinjauan offline opsional yang Anda jalankan yang membaca event setiap sesi. Lihat [Secara opsional, minta peninjau offline membaca setiap transkrip](https://platform.claude.com/docs/id/managed-agents/secure-deployment-monitoring#optionally-have-an-offline-reviewer-read-every-transcript) |
 
 Untuk melihat mengapa sebuah sesi menjadi idle, ambil daftar event-nya dengan `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) diatur ke `session.status_idle`, `order` (csharp, go: `Order`) diatur ke `desc`, dan `limit` (csharp, go: `Limit`) diatur ke `1`. Event tersebut bernama `session.status_idle`, dan webhook-nya bernama `session.status_idled`. Jika `stop_reason.type` adalah `requires_action`, sesi sedang menunggu Anda, dan `stop_reason.event_ids` mencantumkan event yang sedang ditunggunya. Untuk menjawabnya, lihat [Menjawab panggilan alat yang menjeda sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session). Dalam sandbox self-hosted, event `agent.tool_use` dapat menunggu sandbox Anda mengembalikan hasil alat. Dengan eksekusi workflow yang terbuka, panggilan alat dapat menunggu jawaban Anda sementara sesi tetap `running`. Jawab setiap panggilan ketika event-nya tiba. Lihat [Selama eksekusi terbuka](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: f03cfc10a497fc20bc56c5e068dd5a1ecef359d1f163f2e316aa373bb6f68293
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 48818b224e62f49250ad67360f15ea7205ff686c9c8786b8a79db5bdbcbb5617
 ---
 
 ---
@@ -259,9 +259,9 @@ API bersifat “stateless” (tanpa state). Tidak ada apa pun tentang sesi shell
 
 Definisi alat bash memiliki dua field wajib, `type` dan `name`, dan `name` harus `bash`. Alat ini tanpa skema: Anda tidak menyediakan `input_schema`, karena skema sudah tertanam dalam model Claude dan tidak dapat diubah. Tabel berikut mencantumkan field input yang ditetapkan Claude saat memanggil alat.
 
-| Parameter | Wajib | Deskripsi                                    |
-| --------- | ----- | -------------------------------------------- |
-| `command` | Ya\*  | Perintah bash yang akan dijalankan           |
+| Parameter | Wajib | Deskripsi |
+| ----- | ----- | ----- |
+| `command` | Ya\* | Perintah bash yang akan dijalankan |
 | `restart` | Tidak | Atur ke `true` untuk memulai ulang sesi bash |
 
 \*Wajib kecuali menggunakan `restart`
@@ -1948,10 +1948,10 @@ Selain isolasi, tambahkan kontrol berikut:
 
 Definisi alat bash menambahkan token input berikut ke permintaan Anda. Ini merupakan tambahan dari [prompt sistem penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing) per model yang berlaku setiap kali ada alat yang disertakan.
 
-| Model                                                            | Token input tambahan |
-| ---------------------------------------------------------------- | -------------------- |
-| Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview | 325 token            |
-| Model Claude 4.6 dan yang lebih lama                             | 244 token            |
+| Model | Token input tambahan |
+| ----- | ----- |
+| Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview | 325 token |
+| Model Claude 4.6 dan yang lebih lama | 244 token |
 
 Token tambahan dikonsumsi oleh:
 
@@ -2021,18 +2021,18 @@ Alat bash tersedia di semua model dan layak untuk retensi data nol dan kesiapan 
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
-| Detail | Alat sisi klien yang dijalankan di environment Anda.                                                                                                             | —     |
+| Detail | Alat sisi klien yang dijalankan di environment Anda. | — |
 
 Endpoint yang berlaku:
 

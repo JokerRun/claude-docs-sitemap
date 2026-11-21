@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 1a8497c2ab3cfcf25a70c6b655eeb6e72f2ad42d268bd4854d0e7c9edea4e66d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4a73b5c2fca284fb73bd0e1ccc611b6b1288f6ae453a3d6239f393709ade03be
 ---
 
 ---
@@ -89,27 +89,27 @@ Jika Claude menggunakan alat, pemikiran juga dapat muncul di antara pemanggilan 
 
 Pada sebagian besar model, pemikiran aktif secara default atau hanya memerlukan satu parameter. Tabel berikut menunjukkan apa yang dilakukan setiap model dengan setiap nilai `thinking` yang dapat dikirim oleh permintaan. Error 400 berarti API menolak permintaan tersebut, dan [Pemecahan masalah pemikiran](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting) memuat setiap error beserta perbaikannya.
 
-| Model                 | Tanpa field `thinking` | `"adaptive"`      | `"enabled"` dengan `budget_tokens` | `"between_tools"`                                               | `"disabled"`                                            |
-| --------------------- | ---------------------- | ----------------- | ---------------------------------- | --------------------------------------------------------------- | ------------------------------------------------------- |
-| Claude Opus 5.5       | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Error 400                                               |
-| Claude Sonnet 5.5     | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Pemikiran di awal nonaktif pada effort `high` atau lebih rendah | Error 400                                               |
-| Claude Haiku 5.5      | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Pemikiran nonaktif pada effort `high` atau lebih rendah |
-| Claude Fable 5.2      | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Error 400                                               |
-| Claude Mythos 5.2     | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Error 400                                               |
-| Claude Fable 5.1      | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Error 400                                               |
-| Claude Mythos 5.1     | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Error 400                                               |
-| Claude Fable 5        | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Error 400                                               |
-| Claude Mythos 5       | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Error 400                                               |
-| Claude Opus 5         | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Pemikiran nonaktif pada effort `high` atau lebih rendah |
-| Claude Sonnet 5       | Pemikiran adaptif      | Pemikiran adaptif | Error 400                          | Error 400                                                       | Pemikiran nonaktif                                      |
-| Claude Opus 4.8       | Pemikiran nonaktif     | Pemikiran adaptif | Error 400                          | Error 400                                                       | Pemikiran nonaktif                                      |
-| Claude Opus 4.7       | Pemikiran nonaktif     | Pemikiran adaptif | Error 400                          | Error 400                                                       | Pemikiran nonaktif                                      |
-| Claude Mythos Preview | Pemikiran adaptif      | Pemikiran adaptif | Pemikiran diperpanjang             | Error 400                                                       | Error 400                                               |
-| Claude Opus 4.6       | Pemikiran nonaktif     | Pemikiran adaptif | Pemikiran diperpanjang (usang)     | Error 400                                                       | Pemikiran nonaktif                                      |
-| Claude Sonnet 4.6     | Pemikiran nonaktif     | Pemikiran adaptif | Pemikiran diperpanjang (usang)     | Error 400                                                       | Pemikiran nonaktif                                      |
-| Claude Opus 4.5       | Pemikiran nonaktif     | Error 400         | Pemikiran diperpanjang             | Error 400                                                       | Pemikiran nonaktif                                      |
-| Claude Sonnet 4.5     | Pemikiran nonaktif     | Error 400         | Pemikiran diperpanjang             | Error 400                                                       | Pemikiran nonaktif                                      |
-| Claude Haiku 4.5      | Pemikiran nonaktif     | Error 400         | Pemikiran diperpanjang             | Error 400                                                       | Pemikiran nonaktif                                      |
+| Model | Tanpa field `thinking` | `"adaptive"` | `"enabled"` dengan `budget_tokens` | `"between_tools"` | `"disabled"` |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| Claude Opus 5.5 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Error 400 |
+| Claude Sonnet 5.5 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Pemikiran di awal nonaktif pada effort `high` atau lebih rendah | Error 400 |
+| Claude Haiku 5.5 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Pemikiran nonaktif pada effort `high` atau lebih rendah |
+| Claude Fable 5.2 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Error 400 |
+| Claude Mythos 5.2 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Error 400 |
+| Claude Fable 5.1 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Error 400 |
+| Claude Mythos 5.1 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Error 400 |
+| Claude Fable 5 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Error 400 |
+| Claude Mythos 5 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Error 400 |
+| Claude Opus 5 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Pemikiran nonaktif pada effort `high` atau lebih rendah |
+| Claude Sonnet 5 | Pemikiran adaptif | Pemikiran adaptif | Error 400 | Error 400 | Pemikiran nonaktif |
+| Claude Opus 4.8 | Pemikiran nonaktif | Pemikiran adaptif | Error 400 | Error 400 | Pemikiran nonaktif |
+| Claude Opus 4.7 | Pemikiran nonaktif | Pemikiran adaptif | Error 400 | Error 400 | Pemikiran nonaktif |
+| Claude Mythos Preview | Pemikiran adaptif | Pemikiran adaptif | Pemikiran diperpanjang | Error 400 | Error 400 |
+| Claude Opus 4.6 | Pemikiran nonaktif | Pemikiran adaptif | Pemikiran diperpanjang (usang) | Error 400 | Pemikiran nonaktif |
+| Claude Sonnet 4.6 | Pemikiran nonaktif | Pemikiran adaptif | Pemikiran diperpanjang (usang) | Error 400 | Pemikiran nonaktif |
+| Claude Opus 4.5 | Pemikiran nonaktif | Error 400 | Pemikiran diperpanjang | Error 400 | Pemikiran nonaktif |
+| Claude Sonnet 4.5 | Pemikiran nonaktif | Error 400 | Pemikiran diperpanjang | Error 400 | Pemikiran nonaktif |
+| Claude Haiku 4.5 | Pemikiran nonaktif | Error 400 | Pemikiran diperpanjang | Error 400 | Pemikiran nonaktif |
 
 Dalam tabel, “pada effort `high` atau lebih rendah” berarti permintaan berfungsi pada effort `low`, `medium`, dan `high` serta mengembalikan error 400 pada `xhigh` atau `max`.
 
@@ -568,7 +568,7 @@ Perhatikan hal-hal berikut saat bekerja dengan pemikiran yang diringkas:
   Dalam kasus langka di mana Anda memerlukan akses ke output pemikiran lengkap, [hubungi tim penjualan Anthropic](mailto:sales@anthropic.com).
 </Note>
 
-Untuk melihat penalaran model, baca blok `thinking` alih-alih meminta penalaran dalam teks respons melalui prompt. Pada Claude Fable 5.2, Claude Fable 5.1, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Fable 5, permintaan yang mencoba memancing penalaran internal model sebagai bagian dari teks respons dapat ditolak dengan `stop_details.category: "reasoning_extraction"`. Lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) untuk referensi field dan [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks) untuk apa yang sebaiknya diminta sebagai gantinya.
+Untuk melihat penalaran model, baca blok `thinking` alih-alih meminta penalaran dalam teks respons melalui prompt. Beberapa model dapat menolak permintaan yang meminta penalaran internal mereka sebagai bagian dari teks respons. Penolakan tersebut memiliki `stop_details.category: "reasoning_extraction"`. Untuk contoh model-model tersebut dan apa yang sebaiknya diminta sebagai gantinya, lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks). Untuk referensi field, lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response).
 
 ### Streaming pemikiran
 
@@ -1023,11 +1023,11 @@ Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, C
 
 Isi blok pembaruan progres bergantung pada [`display`](https://platform.claude.com/docs/id/build-with-claude/thinking#controlling-thinking-display):
 
-| `display`                                  | Blok penalaran          | Blok pembaruan progres                                    |
-| ------------------------------------------ | ----------------------- | --------------------------------------------------------- |
-| `"omitted"` (default pada model-model ini) | Field `thinking` kosong | Field `thinking` kosong                                   |
-| `"updates"` (beta)                         | Field `thinking` kosong | Teks ringkasan                                            |
-| `"summarized"`                             | Teks ringkasan          | Teks ringkasan, tidak dapat dibedakan dari blok penalaran |
+| `display` | Blok penalaran | Blok pembaruan progres |
+| ----- | ----- | ----- |
+| `"omitted"` (default pada model-model ini) | Field `thinking` kosong | Field `thinking` kosong |
+| `"updates"` (beta) | Field `thinking` kosong | Teks ringkasan |
+| `"summarized"` | Teks ringkasan | Teks ringkasan, tidak dapat dibedakan dari blok penalaran |
 
 Pada Claude Sonnet 5.5, pengaturan pemikiran terendah adalah `thinking: {type: "between_tools"}`. Pengaturan ini menonaktifkan pemikiran di awal, dan setiap pembaruan progres dikembalikan dengan teks ringkasannya, seperti di bawah `display: "updates"`. `between_tools` hanya diterima pada [effort](https://platform.claude.com/docs/id/build-with-claude/effort) `high` atau lebih rendah. Pada `xhigh` atau `max`, permintaan dengan pengaturan ini mengembalikan error 400. `between_tools` tidak menerima field lain: `display`, `budget_tokens`, atau `block_binding` yang dikirim bersamanya mengembalikan error 400. Pengaturan ini berfungsi di setiap platform yang menawarkan Claude Sonnet 5.5. Kirimkan kembali blok-blok tersebut tanpa diubah: blok pembaruan progres yang Anda kirim kembali memberi model catatan lengkap yang ditulisnya, bukan ringkasannya.
 
@@ -1244,27 +1244,27 @@ Model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview menolak giliran
 
 Setiap model menerima `max_tokens` hingga batas atas yang tercantum di sini. Pada [Message Batches API](https://platform.claude.com/docs/id/build-with-claude/batch-processing#extended-output-beta), [header beta](https://platform.claude.com/docs/id/api/beta-headers) `output-300k-2026-03-24` menaikkan batas atas tersebut untuk model-model yang memiliki batas atas batch yang tercantum.
 
-| Model                 | Max output tokens | Batches beta ceiling |
-| :-------------------- | :---------------- | :------------------- |
-| Claude Fable 5.2      | 128K              | —                    |
-| Claude Mythos 5.2     | 128K              | —                    |
-| Claude Fable 5.1      | 128K              | —                    |
-| Claude Mythos 5.1     | 128K              | —                    |
-| Claude Fable 5        | 128K              | —                    |
-| Claude Mythos 5       | 128K              | —                    |
-| Claude Mythos Preview | 128K              | Not available        |
-| Claude Opus 5.5       | 128K              | 300K                 |
-| Claude Opus 5         | 128K              | 300K                 |
-| Claude Opus 4.8       | 128K              | 300K                 |
-| Claude Opus 4.7       | 128K              | 300K                 |
-| Claude Opus 4.6       | 128K              | 300K                 |
-| Claude Opus 4.5       | 64K               | Not available        |
-| Claude Sonnet 5.5     | 128K              | 300K                 |
-| Claude Sonnet 5       | 128K              | 300K                 |
-| Claude Sonnet 4.6     | 128K              | 300K                 |
-| Claude Sonnet 4.5     | 64K               | Not available        |
-| Claude Haiku 5.5      | 128K              | 300K                 |
-| Claude Haiku 4.5      | 64K               | Not available        |
+| Model | Max output tokens | Batches beta ceiling |
+| :---- | :---- | :---- |
+| Claude Fable 5.2 | 128K | — |
+| Claude Mythos 5.2 | 128K | — |
+| Claude Fable 5.1 | 128K | — |
+| Claude Mythos 5.1 | 128K | — |
+| Claude Fable 5 | 128K | — |
+| Claude Mythos 5 | 128K | — |
+| Claude Mythos Preview | 128K | Not available |
+| Claude Opus 5.5 | 128K | 300K |
+| Claude Opus 5 | 128K | 300K |
+| Claude Opus 4.8 | 128K | 300K |
+| Claude Opus 4.7 | 128K | 300K |
+| Claude Opus 4.6 | 128K | 300K |
+| Claude Opus 4.5 | 64K | Not available |
+| Claude Sonnet 5.5 | 128K | 300K |
+| Claude Sonnet 5 | 128K | 300K |
+| Claude Sonnet 4.6 | 128K | 300K |
+| Claude Sonnet 4.5 | 64K | Not available |
+| Claude Haiku 5.5 | 128K | 300K |
+| Claude Haiku 4.5 | 64K | Not available |
 
 Untuk membaca batasan model secara terprogram, lihat [Menggunakan Models API](https://platform.claude.com/docs/id/models/overview#using-the-models-api).
 
@@ -1307,8 +1307,8 @@ Pemikiran tersedia di semua model dan layak untuk retensi data nol dan kesiapan 
 * Ketersediaan: Aktif secara default
 * Penggunaan: `thinking: {"type": "disabled"}` menonaktifkannya pada model yang menerima nilai tersebut. Jika nonaktif secara default, atur `thinking` untuk mengaktifkannya.
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -1316,16 +1316,16 @@ Pemikiran tersedia di semua model dan layak untuk retensi data nol dan kesiapan 
 * Ketersediaan: Selalu aktif
 * Penggunaan: Managed Agents yang mengatur konfigurasi pemikiran; definisi agen tidak memiliki field `thinking`.
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
 
 Endpoint yang berlaku:

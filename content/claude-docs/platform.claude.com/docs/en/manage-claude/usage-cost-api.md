@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/usage-cost-api
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: ff37e1cb27f2ea77d6faf931a3d02aed35b6cd007f65d957d6b1a2e467a6f5f7
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 50a5d6fcb5477a4010f16c8b47b2c287178a1b07b58c3d46ec5625c88f44669c
 ---
 
 ---
@@ -55,11 +55,11 @@ This API allows you to better monitor, analyze, and optimize your Claude impleme
 
 The APIs you can call, and the key each one takes, depend on which Claude product your organization uses:
 
-| API                                                                                                                                      | Claude Console (Claude Platform)                                                                                                                   | Claude Enterprise (claude.ai) |
-| ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| [Usage and Cost Analytics API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api) (recommended)                 | Admin API key (`sk-ant-admin01-...`) or another [Admin API credential](https://platform.claude.com/docs/en/manage-claude/admin-api#authentication) | Analytics API key             |
-| Usage and Cost API (legacy), which this page documents                                                                                   | Admin API key or another Admin API credential                                                                                                      | Analytics API key             |
-| [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/api/beta/organization/analytics) cost and usage endpoints (legacy) | Not available                                                                                                                                      | Analytics API key             |
+| API | Claude Console (Claude Platform) | Claude Enterprise (claude.ai) |
+| ----- | ----- | ----- |
+| [Usage and Cost Analytics API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api) (recommended) | Admin API key (`sk-ant-admin01-...`) or another [Admin API credential](https://platform.claude.com/docs/en/manage-claude/admin-api#authentication) | Analytics API key |
+| Usage and Cost API (legacy), which this page documents | Admin API key or another Admin API credential | Analytics API key |
+| [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/api/beta/organization/analytics) cost and usage endpoints (legacy) | Not available | Analytics API key |
 
 Claude Enterprise parent organizations do not appear in Claude Console and carry no Admin API keys, so for them the Analytics API key is the only path to this data. See [Analytics APIs](https://platform.claude.com/docs/en/manage-claude/analytics-api) for how to create each key type and which plans the Claude Enterprise cost data applies to.
 
@@ -258,11 +258,11 @@ bucket_width=1d" \
 
 ### Time granularity limits
 
-| Granularity | Default limit | Maximum limit | Use case               |
-| ----------- | ------------- | ------------- | ---------------------- |
-| `1m`        | 60 buckets    | 1,440 buckets | Real-time monitoring   |
-| `1h`        | 24 buckets    | 168 buckets   | Daily patterns         |
-| `1d`        | 7 buckets     | 31 buckets    | Weekly/monthly reports |
+| Granularity | Default limit | Maximum limit | Use case |
+| ----- | ----- | ----- | ----- |
+| `1m` | 60 buckets | 1,440 buckets | Real-time monitoring |
+| `1h` | 24 buckets | 168 buckets | Daily patterns |
+| `1d` | 7 buckets | 31 buckets | Weekly/monthly reports |
 
 ## Cost API
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/delete
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 893418bf9f70f84db414364c50507f2fa41a86755eaa45eaaada244ec31d71bc
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c59b2f41522ef35074f712d631f0a1b8ea06fea14e0db410638ffa13e5143a3d
 ---
 
 ---
@@ -132,6 +132,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -198,7 +200,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

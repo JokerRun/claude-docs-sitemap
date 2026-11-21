@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 5a1dd74c2df6055776f559a04bd784416c8e14a275478fe12cfd1fc50591190a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: de00e43608ec14f430ac143805d3df603bf1b66954a736d6ecee4e79bf8a597d
 ---
 
 ---
@@ -29,9 +29,9 @@ Untuk *pelaporan* penggunaan dan biaya per pengguna dan per rentang waktu, lihat
 
 API ini menyediakan delapan endpoint pada dua sumber daya:
 
-| Sumber daya                               | Endpoint                                                                                                                                                                                                                                                             | Digunakan untuk                                                                                                                                                      |
-| ----------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Batas pengeluaran**                     | `GET /v1/organizations/spend_limits/effective`<br />`GET /v1/organizations/spend_limits/{spend_limit_id}`<br />`POST /v1/organizations/spend_limits`<br />`DELETE /v1/organizations/spend_limits/{spend_limit_id}`                                                   | Membaca batas pengeluaran efektif setiap anggota dan pengeluaran periode berjalan; menetapkan atau menghapus override per pengguna.                                  |
+| Sumber daya | Endpoint | Digunakan untuk |
+| ----- | ----- | ----- |
+| **Batas pengeluaran** | `GET /v1/organizations/spend_limits/effective`<br />`GET /v1/organizations/spend_limits/{spend_limit_id}`<br />`POST /v1/organizations/spend_limits`<br />`DELETE /v1/organizations/spend_limits/{spend_limit_id}` | Membaca batas pengeluaran efektif setiap anggota dan pengeluaran periode berjalan; menetapkan atau menghapus override per pengguna. |
 | **Permintaan kenaikan batas pengeluaran** | `GET /v1/organizations/spend_limit_increase_requests`<br />`GET /v1/organizations/spend_limit_increase_requests/{id}`<br />`POST /v1/organizations/spend_limit_increase_requests/{id}/approve`<br />`POST /v1/organizations/spend_limit_increase_requests/{id}/deny` | Mendaftar permintaan anggota untuk batas pengeluaran yang lebih tinggi, beserta konteks yang diperlukan untuk memutuskan; menyetujui atau menolak setiap permintaan. |
 
 Gunakan endpoint **batas pengeluaran** untuk menjawab “batas pengeluaran apa yang berlaku untuk setiap anggota, dari mana asalnya, dan seberapa dekat mereka dengan batas tersebut?” serta untuk menetapkan override per pengguna. Gunakan endpoint **permintaan kenaikan batas pengeluaran** untuk memproses antrean permintaan yang diajukan anggota.
@@ -203,11 +203,11 @@ Semua nilai moneter berupa string dalam **satuan terkecil (minor units) dari mat
 
 Sebuah **spend limit increase request** (permintaan kenaikan batas pengeluaran) dibuat ketika seorang anggota mengklik **Request more usage** di claude.ai. Permintaan tidak dibuat melalui API ini. `status` sebuah permintaan adalah salah satu dari:
 
-| Status     | Arti                                                                                                                                                                                                                                                                               |
-| ---------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `pending`  | Menunggu tindakan admin. Permintaan biasanya membawa `spend_summary` langsung sehingga Anda dapat melihat batas pengeluaran efektif anggota saat ini dan pengeluaran periode berjalan saat mengambil keputusan; `spend_summary` mungkin bernilai `null` jika tidak dapat dihitung. |
-| `approved` | Permintaan diselesaikan dengan persetujuan: baik admin menyetujuinya secara eksplisit, tindakan admin lain menaikkan batas pengeluaran anggota, atau dukungan Anthropic menaikkan batas pengeluaran atas nama organisasi. `spend_summary` bernilai `null`.                         |
-| `denied`   | Admin menolak. `spend_summary` bernilai `null`. Anggota dapat langsung mengirim permintaan baru; hanya permintaan `pending` yang memblokir permintaan baru. Admin tetap dapat menaikkan batas pengeluaran anggota secara langsung kapan saja.                                      |
+| Status | Arti |
+| ----- | ----- |
+| `pending` | Menunggu tindakan admin. Permintaan biasanya membawa `spend_summary` langsung sehingga Anda dapat melihat batas pengeluaran efektif anggota saat ini dan pengeluaran periode berjalan saat mengambil keputusan; `spend_summary` mungkin bernilai `null` jika tidak dapat dihitung. |
+| `approved` | Permintaan diselesaikan dengan persetujuan: baik admin menyetujuinya secara eksplisit, tindakan admin lain menaikkan batas pengeluaran anggota, atau dukungan Anthropic menaikkan batas pengeluaran atas nama organisasi. `spend_summary` bernilai `null`. |
+| `denied` | Admin menolak. `spend_summary` bernilai `null`. Anggota dapat langsung mengirim permintaan baru; hanya permintaan `pending` yang memblokir permintaan baru. Admin tetap dapat menaikkan batas pengeluaran anggota secara langsung kapan saja. |
 
 Baik `approved` maupun `denied` bersifat terminal. Seorang anggota memiliki paling banyak satu permintaan `pending` pada satu waktu.
 

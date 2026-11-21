@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: bf2ccf018df1b4bc1b6aea89ec210942fad0f36bc5dbad913b6e3751d4291469
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 74db15007cd6e43281fe6f2c5b521ba7ba854b85df899219f0848ba5c49533c7
 ---
 
 ---
@@ -169,6 +169,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -471,6 +473,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -762,6 +766,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -917,6 +923,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
     - `"in_progress"`
 
     - `"success"`
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 
@@ -1075,6 +1091,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1156,7 +1174,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     A stable identifier for `manifest_error`; null when that is.
 
-  - `plugin_errors: array of BetaPluginMarketplaceValidationPluginError`
+  - `plugin_errors: array of BetaPluginMarketplaceValidationPluginErrorObject`
 
     One entry per plugin a synchronization would skip entirely, keyed by the plugin's name in marketplace.json.
 
@@ -1203,6 +1221,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `valid: boolean`
 
     True when marketplace.json is well-formed and no plugin would be skipped; warnings never make it false.
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 
@@ -1375,6 +1403,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1450,7 +1480,7 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
     A stable identifier for `manifest_error`; null when that is.
 
-  - `plugin_errors: array of BetaPluginMarketplaceValidationPluginError`
+  - `plugin_errors: array of BetaPluginMarketplaceValidationPluginErrorObject`
 
     One entry per plugin a synchronization would skip entirely, keyed by the plugin's name in marketplace.json.
 
@@ -1507,6 +1537,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `unsupported_charset` (HTTP status 400)
 
   The request's `Content-Type` header names a charset other than UTF-8, ISO-8859-1 or US-ASCII. Send the request with no charset, or with one of these.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 
@@ -1653,9 +1687,9 @@ curl https://api.anthropic.com/v1/organizations/plugin_marketplaces/validate_arc
 
     - `"success"`
 
-### Beta Plugin Marketplace Validation Plugin Error
+### Beta Plugin Marketplace Validation Plugin Error Object
 
-- `BetaPluginMarketplaceValidationPluginError object`
+- `BetaPluginMarketplaceValidationPluginErrorObject object`
 
   - `error: string`
 
@@ -1726,7 +1760,7 @@ curl https://api.anthropic.com/v1/organizations/plugin_marketplaces/validate_arc
 
     A stable identifier for `manifest_error`; null when that is.
 
-  - `plugin_errors: array of BetaPluginMarketplaceValidationPluginError`
+  - `plugin_errors: array of BetaPluginMarketplaceValidationPluginErrorObject`
 
     One entry per plugin a synchronization would skip entirely, keyed by the plugin's name in marketplace.json.
 

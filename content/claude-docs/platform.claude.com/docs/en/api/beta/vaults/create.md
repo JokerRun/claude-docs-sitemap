@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/create
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 3874f34276d0c0c0967ee411c1d5e6c210f819341cdd2276d1624f5539d18e89
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 471e682cd640e313894404ff8129b60bd3bfd5bace44ced24e7224219fcdd293
 ---
 
 ---
@@ -121,6 +121,8 @@ Create a Vault
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

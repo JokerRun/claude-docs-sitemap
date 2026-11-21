@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/onboarding
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 255bebe6e11fe5cd48da2fe9ffaa13ad6a1893e624da5a1486aa79de7f442083
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 676f5cb29f73952bae754fa8ad029c58bc13d0635aec6e310afe5daee23cd53d
 ---
 
 ---
@@ -163,9 +163,9 @@ Pembuat agen Console dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 ### Header beta yang diperlukan
 
@@ -179,9 +179,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

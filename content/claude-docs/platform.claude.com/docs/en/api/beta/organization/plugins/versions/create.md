@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/versions/create
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 52a25994f300942f03d3c2d1fd9d95ac9d47ec0ad49d4765f8df430cdf48e300
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1e08e3562b4636ee5c56638e593b045512f6f6838996109ddf1727a9ed30941f
 ---
 
 ---
@@ -143,6 +143,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -355,6 +357,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `unsupported_charset` (HTTP status 400)
 
   The request's `Content-Type` header names a charset other than UTF-8, ISO-8859-1 or US-ASCII. Send the request with no charset, or with one of these.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 - `skill_name_taken` (HTTP status 409)
 

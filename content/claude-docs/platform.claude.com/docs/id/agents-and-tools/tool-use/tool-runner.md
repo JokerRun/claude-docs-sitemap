@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 4a3b34f20f4229a19ec849db5742b74e48caaff71f5adfca555b92565aea6529
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e637daec73db6dbd3b627864ece015ce8cd7ea830e59a6fadf024eab616135d6
 ---
 
 ---
@@ -1831,15 +1831,15 @@ Tool runner dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Tersedia
 * Penggunaan: SDK Python, TypeScript, dan Go memiliki tool runner sesi yang menjalankan alat Anda untuk panggilan alat kustom sesi. Sesi itu sendiri yang menjalankan loop agen.
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |

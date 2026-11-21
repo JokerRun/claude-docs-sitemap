@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployment_runs/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: fb3f44a4d03dd5eae7d502d812e90a0f6333578f289c04fdbc9bcc3081ab6f79
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c0195e1f9534d75c33b57f3c3c77a56f5f30c33012ad38350dd34581f86baf96
 ---
 
 ---
@@ -128,6 +128,8 @@ Get Deployment Run
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -210,11 +212,11 @@ Get Deployment Run
 
     ID of the deployment that produced this run.
 
-  - `error: BetaManagedAgentsEnvironmentArchivedRunError or BetaManagedAgentsAgentArchivedRunError or BetaManagedAgentsEnvironmentNotFoundRunError or 13 more or null`
+  - `error: BetaManagedAgentsEnvironmentArchivedRunErrorObject or BetaManagedAgentsAgentArchivedRunErrorObject or BetaManagedAgentsEnvironmentNotFoundRunErrorObject or 13 more or null`
 
     Populated on creation failure. Null on success. Exactly one of `session_id` or `error` is non-null.
 
-    - `BetaManagedAgentsEnvironmentArchivedRunError object`
+    - `BetaManagedAgentsEnvironmentArchivedRunErrorObject object`
 
       The deployment's environment was archived.
 
@@ -224,7 +226,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsAgentArchivedRunError object`
+    - `BetaManagedAgentsAgentArchivedRunErrorObject object`
 
       The deployment's agent was archived.
 
@@ -234,7 +236,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsEnvironmentNotFoundRunError object`
+    - `BetaManagedAgentsEnvironmentNotFoundRunErrorObject object`
 
       The deployment's environment no longer exists.
 
@@ -244,7 +246,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsVaultNotFoundRunError object`
+    - `BetaManagedAgentsVaultNotFoundRunErrorObject object`
 
       A vault referenced by the deployment no longer exists.
 
@@ -254,7 +256,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsVaultArchivedRunError object`
+    - `BetaManagedAgentsVaultArchivedRunErrorObject object`
 
       A vault referenced by the deployment is archived.
 
@@ -264,7 +266,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsFileNotFoundRunError object`
+    - `BetaManagedAgentsFileNotFoundRunErrorObject object`
 
       A file resource referenced by the deployment no longer exists.
 
@@ -274,7 +276,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsMemoryStoreArchivedRunError object`
+    - `BetaManagedAgentsMemoryStoreArchivedRunErrorObject object`
 
       A memory store referenced by the deployment is archived.
 
@@ -284,7 +286,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsSkillNotFoundRunError object`
+    - `BetaManagedAgentsSkillNotFoundRunErrorObject object`
 
       A skill referenced by the deployment's agent no longer exists.
 
@@ -294,7 +296,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsSessionResourceNotFoundRunError object`
+    - `BetaManagedAgentsSessionResourceNotFoundRunErrorObject object`
 
       A referenced resource no longer exists and its kind was not reported.
 
@@ -304,7 +306,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsWorkspaceArchivedRunError object`
+    - `BetaManagedAgentsWorkspaceArchivedRunErrorObject object`
 
       The deployment's workspace was archived.
 
@@ -314,7 +316,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsOrganizationDisabledRunError object`
+    - `BetaManagedAgentsOrganizationDisabledRunErrorObject object`
 
       The deployment's organization is disabled.
 
@@ -324,7 +326,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsSessionRateLimitedRunError object`
+    - `BetaManagedAgentsSessionRateLimitedRunErrorObject object`
 
       Session creation was rejected due to rate limiting. The schedule keeps firing; subsequent runs may succeed.
 
@@ -334,7 +336,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsSessionCreationRejectedRunError object`
+    - `BetaManagedAgentsSessionCreationRejectedRunErrorObject object`
 
       The session create request was rejected with a non-retryable validation error.
 
@@ -344,7 +346,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsUnknownRunError object`
+    - `BetaManagedAgentsUnknownRunErrorObject object`
 
       An unknown or unexpected error caused the run to fail. A fallback variant; clients that do not recognize a new error type can match on message alone.
 
@@ -354,7 +356,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsSelfHostedResourcesUnsupportedRunError object`
+    - `BetaManagedAgentsSelfHostedResourcesUnsupportedRunErrorObject object`
 
       The deployment configures resources, but its environment is self-hosted and cannot mount them.
 
@@ -364,7 +366,7 @@ Get Deployment Run
 
         Human-readable error description.
 
-    - `BetaManagedAgentsMCPEgressBlockedRunError object`
+    - `BetaManagedAgentsMCPEgressBlockedRunErrorObject object`
 
       An MCP server host used by the deployment's agent is blocked by the environment's network policy.
 

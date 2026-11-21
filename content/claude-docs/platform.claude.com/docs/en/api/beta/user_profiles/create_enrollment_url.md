@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 09d195b08b41023dee27434099f484cac425d98be34f295526d1769c17fe446e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c68a24474bc026568c5c719c4fd08b7b3e2fdecd621a406535ea7627d679df95
 ---
 
 ---
@@ -127,6 +127,8 @@ Create Enrollment URL
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

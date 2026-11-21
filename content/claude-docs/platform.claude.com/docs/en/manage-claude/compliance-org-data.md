@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-org-data
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: f5a5103bed7f09098dc669620a1353e670723025ff1949acb993eea5174bb3c0
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 7040b3c65fe1c6d0f19dd289f1578be5e547f616af0328a0995d0001bcf6519f
 ---
 
 ---
@@ -57,13 +57,13 @@ curl --fail-with-body -sS \
 
 The `uuid` field is the canonical identifier for downstream lookups. The following table maps it to the other organization identifiers across the Compliance API:
 
-| Field                | Where                                                                                                                                                                                                                                                                                                                                                                                                                                    | Relationship to `uuid`                                                                                                                                    |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `{org_uuid}`         | Path parameter on per-organization endpoints on this page                                                                                                                                                                                                                                                                                                                                                                                | Same value                                                                                                                                                |
-| `organization_uuid`  | Activity Feed, chat, project, and session records                                                                                                                                                                                                                                                                                                                                                                                        | Same value; join on these two fields directly                                                                                                             |
-| `organization_id`    | Activity Feed, chat, and project records                                                                                                                                                                                                                                                                                                                                                                                                 | Same organization, `org_`-prefixed. Deprecated on chat and project records; use `organization_uuid` instead.                                              |
-| `organization_ids[]` | Filter on [Query the Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed), [Retrieve chats and messages](https://platform.claude.com/docs/en/manage-claude/compliance-content-data#retrieve-chats-and-messages), and the [remote session list](https://platform.claude.com/docs/en/manage-claude/compliance-sessions#retrieve-remote-sessions) (the local session list has no organization filter) | Accepts `uuid` or the `org_`-prefixed form                                                                                                                |
-| `organization_id`    | [Effective organization settings](https://platform.claude.com/docs/en/manage-claude/compliance-org-data#get-effective-organization-settings) response                                                                                                                                                                                                                                                                                    | Same value, bare UUID; this response does **not** use the `org_`-prefixed form that `organization_id` carries on Activity Feed, chat, and project records |
+| Field | Where | Relationship to `uuid` |
+| ----- | ----- | ----- |
+| `{org_uuid}` | Path parameter on per-organization endpoints on this page | Same value |
+| `organization_uuid` | Activity Feed, chat, project, and session records | Same value; join on these two fields directly |
+| `organization_id` | Activity Feed, chat, and project records | Same organization, `org_`-prefixed. Deprecated on chat and project records; use `organization_uuid` instead. |
+| `organization_ids[]` | Filter on [Query the Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed), [Retrieve chats and messages](https://platform.claude.com/docs/en/manage-claude/compliance-content-data#retrieve-chats-and-messages), and the [remote session list](https://platform.claude.com/docs/en/manage-claude/compliance-sessions#retrieve-remote-sessions) (the local session list has no organization filter) | Accepts `uuid` or the `org_`-prefixed form |
+| `organization_id` | [Effective organization settings](https://platform.claude.com/docs/en/manage-claude/compliance-org-data#get-effective-organization-settings) response | Same value, bare UUID; this response does **not** use the `org_`-prefixed form that `organization_id` carries on Activity Feed, chat, and project records |
 
 Most other Anthropic APIs use the `org_`-prefixed form.
 

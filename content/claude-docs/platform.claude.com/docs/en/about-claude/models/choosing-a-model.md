@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/models/choosing-a-model
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 327ea712e3dfba5d74c1611a8c76160777cb6b294fa90ba8b5d424b4bd458237
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 636829f39c0e5b79e33fcc5f4dd78a58d131e039abfeea343db14f52c59be169
 ---
 
 ---
@@ -70,12 +70,12 @@ For context windows, output limits, and prices, see the [All models](https://pla
 
 Most workloads start with Claude Opus 5.5.
 
-| When you need...                                                          | Consider starting with... | Example use cases                                                                                                                 |
-| ------------------------------------------------------------------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| The highest available capability                                          | Claude Fable 5.2          | Agent sessions that run for hours, multistep deep research, analysis carried through to a finished document, spreadsheet, or deck |
-| Complex agentic coding and enterprise work                                | Claude Opus 5.5           | Multihour autonomous coding agents, large-scale refactoring, complex systems engineering, vision-heavy workflows, computer use    |
-| Speed and capability for everyday coding, agent, and enterprise workloads | Claude Sonnet 5.5         | Code generation, data analysis, content creation, visual understanding, agentic tool use                                          |
-| The lowest latency and price                                              | Claude Haiku 5.5          | Real-time applications, high-volume intelligent processing, cost-sensitive deployments needing strong reasoning, subagent tasks   |
+| When you need... | Consider starting with... | Example use cases |
+| ----- | ----- | ----- |
+| The highest available capability | Claude Fable 5.2 | Agent sessions that run for hours, multistep deep research, analysis carried through to a finished document, spreadsheet, or deck |
+| Complex agentic coding and enterprise work | Claude Opus 5.5 | Multihour autonomous coding agents, large-scale refactoring, complex systems engineering, vision-heavy workflows, computer use |
+| Speed and capability for everyday coding, agent, and enterprise workloads | Claude Sonnet 5.5 | Code generation, data analysis, content creation, visual understanding, agentic tool use |
+| The lowest latency and price | Claude Haiku 5.5 | Real-time applications, high-volume intelligent processing, cost-sensitive deployments needing strong reasoning, subagent tasks |
 
 ***
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 08abc9284b34c3da29e9a5d79db12d272db26a13c34119a2a413203e1a0f62f3
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: dce8b5351ae0131498086056e6f47820f9ce5f457801b89d28d75b3743d48434
 ---
 
 ---
@@ -141,11 +141,11 @@ Skills can bundle additional materials:
 
 Claude accesses these files only when referenced. The filesystem model means each content type has different strengths: instructions for flexible guidance, code for reliability, resources for factual lookup.
 
-| Level                     | When loaded             | Token cost             | Content                                                                                                                     |
-| ------------------------- | ----------------------- | ---------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| **Level 1: Metadata**     | Always (at startup)     | \~100 tokens per Skill | `name` and `description` from YAML frontmatter                                                                              |
-| **Level 2: Instructions** | When Skill is triggered | Under 5k tokens        | `SKILL.md` body with instructions and guidance                                                                              |
-| **Level 3+: Resources**   | As needed               | None until accessed    | Bundled files. Reference files load into context when read. Scripts run through bash, and only their output enters context. |
+| Level | When loaded | Token cost | Content |
+| ----- | ----- | ----- | ----- |
+| **Level 1: Metadata** | Always (at startup) | \~100 tokens per Skill | `name` and `description` from YAML frontmatter |
+| **Level 2: Instructions** | When Skill is triggered | Under 5k tokens | `SKILL.md` body with instructions and guidance |
+| **Level 3+: Resources** | As needed | None until accessed | Bundled files. Reference files load into context when read. Scripts run through bash, and only their output enters context. |
 
 Progressive disclosure ensures only relevant content occupies the context window at any given time.
 
@@ -382,10 +382,10 @@ Agent Skills are available on every model.
 * Availability: Available
 * Usage: List each Skill’s `type` and `skill_id` in `container.skills`, and include the code execution tool, whose container the Skills run in.
 
-| Status                | Cloud platforms                                                                                                                                                                                                                                                                |
-| --------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Available             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
-| Available<sup>1</sup> | [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                   |
+| Status | Cloud platforms |
+| ----- | ----- |
+| Available | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
+| Available<sup>1</sup> | [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) |
 
 1. Hosted on Anthropic deployments only; the skill version download endpoint (`GET /v1/skills/{skill_id}/versions/{version}/content`) is not supported on Foundry.
 
@@ -394,18 +394,18 @@ Agent Skills are available on every model.
 * Availability: Available
 * Usage: Attach skills in the agent’s `skills` array, or load them from a GitHub repository mounted on the session.
 
-| Status    | Cloud platforms         |
-| --------- | ----------------------- |
+| Status | Cloud platforms |
+| ----- | ----- |
 | Available | All supported platforms |
 
 ### Data handling
 
 [Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                       | HIPAA        |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ |
-| Status  | Not eligible                                                                                                                                              | Not eligible |
-| Details | Skill data retained according to standard policy. [Learn more](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#data-retention) | —            |
+| Item | Zero data retention | HIPAA |
+| ----- | ----- | ----- |
+| Status | Not eligible | Not eligible |
+| Details | Skill data retained according to standard policy. [Learn more](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/overview#data-retention) | — |
 
 Applicable endpoints:
 

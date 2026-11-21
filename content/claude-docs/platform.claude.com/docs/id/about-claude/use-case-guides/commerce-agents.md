@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/commerce-agents
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 8232af51235e44e392519bab823b21a14a88adaf6d97e7c8e2a727c73524c20e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 5eb939c19a4b8b4e040ae68b19a16ae0af8f9ca15b57c6fc3ce5674b1fcb08bf
 ---
 
 ---
@@ -56,12 +56,12 @@ Setiap penulisan yang diusulkan agen merchant, baik pembaruan listing, perubahan
 
 Setiap contoh mencakup etalase pelanggan dan portal merchant dengan data fiktif.
 
-| Vertikal       | Etalase                                                                                       | Portal merchant                                                                                                        |
-| -------------- | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| Ritel          | Pencarian, perbandingan, rencana, keranjang, checkout, dan memori menggunakan komponen bawaan | Ringkasan harian, restock dan perbaikan listing yang disiapkan, serta delegasi analisis di atas view SQL               |
-| Perjalanan     | Inventaris yang terikat tanggal dan komponen itinerary                                        | Kalender okupansi dan perubahan tarif berdasarkan rentang tanggal                                                      |
-| Telekomunikasi | Konteks akun, matriks paket, dan pengungkapan biaya yang ditulis server                       | Komposisi paket, perubahan harga yang menyebutkan jalur yang terdampak, dan biaya teregulasi yang dilindungi           |
-| Hiburan        | Penahanan berwaktu, daftar tunggu, transfer, peta venue, dan pengungkapan biaya all-in        | Laju penjualan acara, pelepasan penahanan yang menambah kapasitas nyata, dan perubahan harga yang mempertahankan biaya |
+| Vertikal | Etalase | Portal merchant |
+| ----- | ----- | ----- |
+| Ritel | Pencarian, perbandingan, rencana, keranjang, checkout, dan memori menggunakan komponen bawaan | Ringkasan harian, restock dan perbaikan listing yang disiapkan, serta delegasi analisis di atas view SQL |
+| Perjalanan | Inventaris yang terikat tanggal dan komponen itinerary | Kalender okupansi dan perubahan tarif berdasarkan rentang tanggal |
+| Telekomunikasi | Konteks akun, matriks paket, dan pengungkapan biaya yang ditulis server | Komposisi paket, perubahan harga yang menyebutkan jalur yang terdampak, dan biaya teregulasi yang dilindungi |
+| Hiburan | Penahanan berwaktu, daftar tunggu, transfer, peta venue, dan pengungkapan biaya all-in | Laju penjualan acara, pelepasan penahanan yang menambah kapasitas nyata, dan perubahan harga yang mempertahankan biaya |
 
 ## Tempat menjalankannya
 
@@ -71,12 +71,12 @@ Runtime Messages API dan Agent SDK berjalan pada Claude API, [Amazon Bedrock](ht
 
 Blueprint ini dilengkapi dengan plugin [Claude Code](https://code.claude.com/docs/id/overview) yang membaca repositori hasil clone sebagai referensinya dan membangun agen untuk sistem Anda sendiri. Empat perintahnya mencakup jalur dari nol hingga agen yang telah diuji:
 
-| Perintah                   | Fungsinya                                                                                                                                                    |
-| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Perintah | Fungsinya |
+| ----- | ----- |
 | `/scaffold-commerce-agent` | Mewawancarai Anda tentang stack Anda, memaparkan kembali rencananya, dan membuat kerangka agen belanja, agen merchant, atau keduanya di atas paket referensi |
-| `/add-commerce-flow`       | Menambahkan satu alur ke agen yang sudah ada dengan menyalin skill-nya, menghubungkan alat yang dipanggilnya, dan menulis kasus eval pertamanya              |
-| `/author-commerce-evals`   | Membangun rangkaian eval dengan runner, kasus pertama terhadap katalog Anda sendiri, dan gerbang pemutaran ulang untuk CI                                    |
-| `/review-commerce-agent`   | Memetakan agen yang sudah Anda jalankan, membandingkannya dengan referensi, dan mengonversi bagian yang Anda pilih                                           |
+| `/add-commerce-flow` | Menambahkan satu alur ke agen yang sudah ada dengan menyalin skill-nya, menghubungkan alat yang dipanggilnya, dan menulis kasus eval pertamanya |
+| `/author-commerce-evals` | Membangun rangkaian eval dengan runner, kasus pertama terhadap katalog Anda sendiri, dan gerbang pemutaran ulang untuk CI |
+| `/review-commerce-agent` | Memetakan agen yang sudah Anda jalankan, membandingkannya dengan referensi, dan mengonversi bagian yang Anda pilih |
 
 Plugin ini juga membawa enam skill tentang arsitektur, caching prompt, UI sebagai alat, kepercayaan dan keamanan, eval, serta operasional merchant, yang dimuat setiap kali percakapan Claude Code cocok dengannya. Instruksi instalasi tersedia di README repositori.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 94e670fd3e597182ebe1f8233116ecf0bf18c823e9719032c86bf4044ed555e5
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 5f55e52fe43afd669b20c0da83de8bc1672ac6c67e45fdba2007bffc83438777
 ---
 
 ---
@@ -143,19 +143,19 @@ end
 
 Kode error adalah sebagai berikut:
 
-| Penyebab           | Tipe Error                 |
-| ------------------ | -------------------------- |
-| HTTP 400           | `BadRequestError`          |
-| HTTP 401           | `AuthenticationError`      |
-| HTTP 403           | `PermissionDeniedError`    |
-| HTTP 404           | `NotFoundError`            |
-| HTTP 409           | `ConflictError`            |
-| HTTP 422           | `UnprocessableEntityError` |
-| HTTP 429           | `RateLimitError`           |
-| HTTP >= 500        | `InternalServerError`      |
-| Error HTTP lainnya | `APIStatusError`           |
-| Timeout            | `APITimeoutError`          |
-| Error jaringan     | `APIConnectionError`       |
+| Penyebab | Tipe Error |
+| ----- | ----- |
+| HTTP 400 | `BadRequestError` |
+| HTTP 401 | `AuthenticationError` |
+| HTTP 403 | `PermissionDeniedError` |
+| HTTP 404 | `NotFoundError` |
+| HTTP 409 | `ConflictError` |
+| HTTP 422 | `UnprocessableEntityError` |
+| HTTP 429 | `RateLimitError` |
+| HTTP >= 500 | `InternalServerError` |
+| Error HTTP lainnya | `APIStatusError` |
+| Timeout | `APITimeoutError` |
+| Error jaringan | `APIConnectionError` |
 
 ## Percobaan ulang
 

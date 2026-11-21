@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 08dbcaae2da4331810beaa72ff3520f76be8426df4be99deb1e4c04ef5cfe625
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 581583a7cecc4ae0c20e3af4b4475b3f248cd902f2e3a336e10bf85905523730
 ---
 
 ---
@@ -143,19 +143,19 @@ end
 
 Error codes are as follows:
 
-| Cause            | Error type                 |
-| ---------------- | -------------------------- |
-| HTTP 400         | `BadRequestError`          |
-| HTTP 401         | `AuthenticationError`      |
-| HTTP 403         | `PermissionDeniedError`    |
-| HTTP 404         | `NotFoundError`            |
-| HTTP 409         | `ConflictError`            |
-| HTTP 422         | `UnprocessableEntityError` |
-| HTTP 429         | `RateLimitError`           |
-| HTTP >= 500      | `InternalServerError`      |
-| Other HTTP error | `APIStatusError`           |
-| Timeout          | `APITimeoutError`          |
-| Network error    | `APIConnectionError`       |
+| Cause | Error type |
+| ----- | ----- |
+| HTTP 400 | `BadRequestError` |
+| HTTP 401 | `AuthenticationError` |
+| HTTP 403 | `PermissionDeniedError` |
+| HTTP 404 | `NotFoundError` |
+| HTTP 409 | `ConflictError` |
+| HTTP 422 | `UnprocessableEntityError` |
+| HTTP 429 | `RateLimitError` |
+| HTTP >= 500 | `InternalServerError` |
+| Other HTTP error | `APIStatusError` |
+| Timeout | `APITimeoutError` |
+| Network error | `APIConnectionError` |
 
 ## Retries
 

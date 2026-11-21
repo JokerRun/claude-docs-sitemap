@@ -1,23 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 96096d9e670dabf4470fd1349fad737fba95c796f4eb14e63182b43dcb591a5c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 61dd220129261667df2fdea76b01f3064a756378b3c28827f306e38df4d760a6
 ---
 
 ---
 title: Perutean tiket
 url: https://platform.claude.com/docs/id/about-claude/use-case-guides/ticket-routing
-description: Panduan ini menjelaskan cara menggunakan kemampuan pemahaman bahasa alami tingkat lanjut Claude untuk mengklasifikasikan tiket dukungan pelanggan dalam skala besar berdasarkan maksud pelanggan, urgensi, prioritas, profil pelanggan, dan lainnya.
+description: Klasifikasikan tiket dukungan pelanggan berdasarkan maksud, urgensi, dan kriteria lainnya dengan Claude, lalu evaluasi dan tingkatkan peruteannya.
 ---
+
+Panduan ini menunjukkan cara merutekan tiket dukungan pelanggan dengan Claude. Panduan ini membahas mengapa Claude cocok untuk tugas ini, cara menulis dan menerapkan prompt klasifikasi, serta cara mengevaluasi dan meningkatkannya.
 
 ## Prasyarat
 
-* Kunci API Claude dan Anthropic SDK yang sudah terinstal
+* Anthropic SDK yang sudah terinstal
+* Kredensial untuk Claude API, seperti [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation) untuk layanan atau [masuk melalui CLI](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication) di mesin Anda sendiri
 * Akses ke, dan pemahaman tentang, sistem tiket dukungan Anda yang sudah ada
 * Sekumpulan sampel tiket dukungan historis untuk pengujian
 
-## Tentukan apakah akan menggunakan Claude untuk perutean tiket
+## Mengapa menggunakan Claude untuk perutean tiket
 
 Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan “large language model” (model bahasa besar), atau LLM, seperti Claude alih-alih pendekatan ML tradisional untuk tugas klasifikasi Anda:
 
@@ -38,8 +41,8 @@ Berikut adalah beberapa indikator utama bahwa Anda sebaiknya menggunakan “larg
     Pendekatan ML tradisional sering bergantung pada model bag-of-words atau pencocokan pola sederhana. Claude unggul dalam menerapkan aturan dasar ketika kelas didefinisikan oleh kondisi, bukan oleh contoh.
   </Accordion>
 
-  <Accordion title="Anda memerlukan penalaran yang dapat diinterpretasikan untuk keputusan klasifikasi">
-    Banyak model ML tradisional memberikan sedikit wawasan tentang proses pengambilan keputusannya. Claude dapat memberikan penjelasan yang dapat dibaca manusia untuk keputusan klasifikasinya, membangun kepercayaan pada sistem otomatisasi dan memudahkan adaptasi jika diperlukan.
+  <Accordion title="Anda memerlukan penjelasan untuk keputusan klasifikasi">
+    Banyak model ML tradisional memberikan sedikit wawasan tentang proses pengambilan keputusannya. Claude dapat memberikan penjelasan singkat untuk setiap klasifikasi, yang membantu tim Anda memercayai otomatisasi dan menyesuaikannya bila diperlukan.
   </Accordion>
 
   <Accordion title="Anda ingin menangani kasus tepi dan tiket ambigu dengan lebih efektif">
@@ -248,7 +251,7 @@ Claude Haiku 5.5 (`claude-haiku-5-5`) cocok untuk perutean tiket: model ini adal
 
 Perutean tiket adalah jenis tugas klasifikasi. Claude menganalisis konten tiket dukungan dan mengklasifikasikannya ke dalam kategori yang telah ditentukan berdasarkan jenis masalah, urgensi, keahlian yang diperlukan, atau faktor relevan lainnya.
 
-Tulis prompt klasifikasi tiket. Prompt awal harus berisi konten permintaan pengguna dan mengembalikan penalaran serta maksudnya.
+Tulis prompt klasifikasi tiket. Prompt ini berisi teks permintaan dukungan dan meminta dua hal dari Claude: ringkasan satu kalimat dari permintaan tersebut dan maksudnya.
 
 <Tip>
   Coba [resep metaprompt dari Claude Cookbook](https://colab.research.google.com/github/anthropics/claude-cookbooks/blob/main/misc/metaprompt.ipynb) agar Claude menulis draf pertama untuk Anda.
@@ -268,17 +271,17 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
   ```python Python
   def classify_support_request(ticket_contents):
       # Definisikan prompt untuk tugas klasifikasi
-      classification_prompt = f"""You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with your reasoning.
+      classification_prompt = f"""You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with a one-sentence summary of the request.
 
           Here is the customer support request you need to classify:
 
           <request>{ticket_contents}</request>
 
-          Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for has concerns about.
+          Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for or has concerns about.
 
-          First, write out your reasoning and analysis of how to classify this request inside <reasoning> tags.
+          First, write a one-sentence summary of the request inside <summary> tags.
 
-          Then, output the appropriate classification label for the request inside a <intent> tag. The valid intents are:
+          Then, output the appropriate classification label for the request inside an <intent> tag. The valid intents are:
           <intents>
           <intent>Support, Feedback, Complaint</intent>
           <intent>Order Tracking</intent>
@@ -291,7 +294,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>Hello! I had high-speed fiber internet installed on Saturday and my installer, Kevin, was absolutely fantastic! Where can I send my positive review? Thanks for your help!</request>
 
           Here is an example of how your output should be formatted (for the above example request):
-          <reasoning>The user seeks information in order to leave positive feedback.</reasoning>
+          <summary>The user seeks information in order to leave positive feedback.</summary>
           <intent>Support, Feedback, Complaint</intent>
 
           Here are a few more examples:
@@ -301,7 +304,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>I wanted to write and personally thank you for the compassion you showed towards my family during my father's funeral this past weekend. Your staff was so considerate and helpful throughout this whole process; it really took a load off our shoulders. The visitation brochures were beautiful. We'll never forget the kindness you showed us and we are so appreciative of how smoothly the proceedings went. Thank you, again, Amarantha Hill on behalf of the Hill Family.</request>
 
           Example 2 Output:
-          <reasoning>User leaves a positive review of their experience.</reasoning>
+          <summary>User leaves a positive review of their experience.</summary>
           <intent>Support, Feedback, Complaint</intent>
           </example 2>
           <example 3>
@@ -314,28 +317,28 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>Your website keeps sending ad-popups that block the entire screen. It took me twenty minutes just to finally find the phone number to call and complain. How can I possibly access my account information with all of these popups? Can you access my account for me, since your website is broken? I need to know what the address is on file.</request>
 
           Example 9 Output:
-          <reasoning>The user requests help accessing their web account information.</reasoning>
+          <summary>The user requests help accessing their web account information.</summary>
           <intent>Support, Feedback, Complaint</intent>
           </example 9>
 
-          Remember to always include your classification reasoning before your actual intent output. The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          Remember to always include your one-sentence summary before your intent output. The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           """
   ```
 
   ```typescript TypeScript
   function classifySupportRequest(ticketContents: string) {
     // Definisikan prompt untuk tugas klasifikasi
-    const classificationPrompt = `You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with your reasoning.
+    const classificationPrompt = `You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with a one-sentence summary of the request.
 
       Here is the customer support request you need to classify:
 
       <request>${ticketContents}</request>
 
-      Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for has concerns about.
+      Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for or has concerns about.
 
-      First, write out your reasoning and analysis of how to classify this request inside <reasoning> tags.
+      First, write a one-sentence summary of the request inside <summary> tags.
 
-      Then, output the appropriate classification label for the request inside a <intent> tag. The valid intents are:
+      Then, output the appropriate classification label for the request inside an <intent> tag. The valid intents are:
       <intents>
       <intent>Support, Feedback, Complaint</intent>
       <intent>Order Tracking</intent>
@@ -348,7 +351,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
       <request>Hello! I had high-speed fiber internet installed on Saturday and my installer, Kevin, was absolutely fantastic! Where can I send my positive review? Thanks for your help!</request>
 
       Here is an example of how your output should be formatted (for the above example request):
-      <reasoning>The user seeks information in order to leave positive feedback.</reasoning>
+      <summary>The user seeks information in order to leave positive feedback.</summary>
       <intent>Support, Feedback, Complaint</intent>
 
       Here are a few more examples:
@@ -358,7 +361,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
       <request>I wanted to write and personally thank you for the compassion you showed towards my family during my father's funeral this past weekend. Your staff was so considerate and helpful throughout this whole process; it really took a load off our shoulders. The visitation brochures were beautiful. We'll never forget the kindness you showed us and we are so appreciative of how smoothly the proceedings went. Thank you, again, Amarantha Hill on behalf of the Hill Family.</request>
 
       Example 2 Output:
-      <reasoning>User leaves a positive review of their experience.</reasoning>
+      <summary>User leaves a positive review of their experience.</summary>
       <intent>Support, Feedback, Complaint</intent>
       </example 2>
       <example 3>
@@ -371,11 +374,11 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
       <request>Your website keeps sending ad-popups that block the entire screen. It took me twenty minutes just to finally find the phone number to call and complain. How can I possibly access my account information with all of these popups? Can you access my account for me, since your website is broken? I need to know what the address is on file.</request>
 
       Example 9 Output:
-      <reasoning>The user requests help accessing their web account information.</reasoning>
+      <summary>The user requests help accessing their web account information.</summary>
       <intent>Support, Feedback, Complaint</intent>
       </example 9>
 
-      Remember to always include your classification reasoning before your actual intent output. The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+      Remember to always include your one-sentence summary before your intent output. The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
       `;
   }
   ```
@@ -385,17 +388,17 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
   {
       // Definisikan prompt untuk tugas klasifikasi
       var classificationPrompt = $"""
-          You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with your reasoning.
+          You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with a one-sentence summary of the request.
 
           Here is the customer support request you need to classify:
 
           <request>{ticketContents}</request>
 
-          Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for has concerns about.
+          Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for or has concerns about.
 
-          First, write out your reasoning and analysis of how to classify this request inside <reasoning> tags.
+          First, write a one-sentence summary of the request inside <summary> tags.
 
-          Then, output the appropriate classification label for the request inside a <intent> tag. The valid intents are:
+          Then, output the appropriate classification label for the request inside an <intent> tag. The valid intents are:
           <intents>
           <intent>Support, Feedback, Complaint</intent>
           <intent>Order Tracking</intent>
@@ -408,7 +411,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>Hello! I had high-speed fiber internet installed on Saturday and my installer, Kevin, was absolutely fantastic! Where can I send my positive review? Thanks for your help!</request>
 
           Here is an example of how your output should be formatted (for the above example request):
-          <reasoning>The user seeks information in order to leave positive feedback.</reasoning>
+          <summary>The user seeks information in order to leave positive feedback.</summary>
           <intent>Support, Feedback, Complaint</intent>
 
           Here are a few more examples:
@@ -418,7 +421,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>I wanted to write and personally thank you for the compassion you showed towards my family during my father's funeral this past weekend. Your staff was so considerate and helpful throughout this whole process; it really took a load off our shoulders. The visitation brochures were beautiful. We'll never forget the kindness you showed us and we are so appreciative of how smoothly the proceedings went. Thank you, again, Amarantha Hill on behalf of the Hill Family.</request>
 
           Example 2 Output:
-          <reasoning>User leaves a positive review of their experience.</reasoning>
+          <summary>User leaves a positive review of their experience.</summary>
           <intent>Support, Feedback, Complaint</intent>
           </example 2>
           <example 3>
@@ -431,29 +434,29 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>Your website keeps sending ad-popups that block the entire screen. It took me twenty minutes just to finally find the phone number to call and complain. How can I possibly access my account information with all of these popups? Can you access my account for me, since your website is broken? I need to know what the address is on file.</request>
 
           Example 9 Output:
-          <reasoning>The user requests help accessing their web account information.</reasoning>
+          <summary>The user requests help accessing their web account information.</summary>
           <intent>Support, Feedback, Complaint</intent>
           </example 9>
 
-          Remember to always include your classification reasoning before your actual intent output. The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          Remember to always include your one-sentence summary before your intent output. The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           """;
   }
   ```
 
   ```go Go
   func classifySupportRequest(ticketContents string) {
-  	// Definisikan prompt untuk tugas klasifikasi
-  	classificationPrompt := `You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with your reasoning.
+  	// Tentukan prompt untuk tugas klasifikasi
+  	classificationPrompt := `You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with a one-sentence summary of the request.
 
   		Here is the customer support request you need to classify:
 
   		<request>` + ticketContents + `</request>
 
-  		Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for has concerns about.
+  		Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for or has concerns about.
 
-  		First, write out your reasoning and analysis of how to classify this request inside <reasoning> tags.
+  		First, write a one-sentence summary of the request inside <summary> tags.
 
-  		Then, output the appropriate classification label for the request inside a <intent> tag. The valid intents are:
+  		Then, output the appropriate classification label for the request inside an <intent> tag. The valid intents are:
   		<intents>
   		<intent>Support, Feedback, Complaint</intent>
   		<intent>Order Tracking</intent>
@@ -466,7 +469,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
   		<request>Hello! I had high-speed fiber internet installed on Saturday and my installer, Kevin, was absolutely fantastic! Where can I send my positive review? Thanks for your help!</request>
 
   		Here is an example of how your output should be formatted (for the above example request):
-  		<reasoning>The user seeks information in order to leave positive feedback.</reasoning>
+  		<summary>The user seeks information in order to leave positive feedback.</summary>
   		<intent>Support, Feedback, Complaint</intent>
 
   		Here are a few more examples:
@@ -476,7 +479,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
   		<request>I wanted to write and personally thank you for the compassion you showed towards my family during my father's funeral this past weekend. Your staff was so considerate and helpful throughout this whole process; it really took a load off our shoulders. The visitation brochures were beautiful. We'll never forget the kindness you showed us and we are so appreciative of how smoothly the proceedings went. Thank you, again, Amarantha Hill on behalf of the Hill Family.</request>
 
   		Example 2 Output:
-  		<reasoning>User leaves a positive review of their experience.</reasoning>
+  		<summary>User leaves a positive review of their experience.</summary>
   		<intent>Support, Feedback, Complaint</intent>
   		</example 2>
   		<example 3>
@@ -489,11 +492,11 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
   		<request>Your website keeps sending ad-popups that block the entire screen. It took me twenty minutes just to finally find the phone number to call and complain. How can I possibly access my account information with all of these popups? Can you access my account for me, since your website is broken? I need to know what the address is on file.</request>
 
   		Example 9 Output:
-  		<reasoning>The user requests help accessing their web account information.</reasoning>
+  		<summary>The user requests help accessing their web account information.</summary>
   		<intent>Support, Feedback, Complaint</intent>
   		</example 9>
 
-  		Remember to always include your classification reasoning before your actual intent output. The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+  		Remember to always include your one-sentence summary before your intent output. The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
   		`
   	// ...
   }
@@ -501,19 +504,19 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
 
   ```java Java
   void classifySupportRequest(String ticketContents) {
-      // Definisikan prompt untuk tugas klasifikasi
+      // Tentukan prompt untuk tugas klasifikasi
       String classificationPrompt = """
-          You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with your reasoning.
+          You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with a one-sentence summary of the request.
 
           Here is the customer support request you need to classify:
 
           <request>%s</request>
 
-          Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for has concerns about.
+          Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for or has concerns about.
 
-          First, write out your reasoning and analysis of how to classify this request inside <reasoning> tags.
+          First, write a one-sentence summary of the request inside <summary> tags.
 
-          Then, output the appropriate classification label for the request inside a <intent> tag. The valid intents are:
+          Then, output the appropriate classification label for the request inside an <intent> tag. The valid intents are:
           <intents>
           <intent>Support, Feedback, Complaint</intent>
           <intent>Order Tracking</intent>
@@ -526,7 +529,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>Hello! I had high-speed fiber internet installed on Saturday and my installer, Kevin, was absolutely fantastic! Where can I send my positive review? Thanks for your help!</request>
 
           Here is an example of how your output should be formatted (for the above example request):
-          <reasoning>The user seeks information in order to leave positive feedback.</reasoning>
+          <summary>The user seeks information in order to leave positive feedback.</summary>
           <intent>Support, Feedback, Complaint</intent>
 
           Here are a few more examples:
@@ -536,7 +539,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>I wanted to write and personally thank you for the compassion you showed towards my family during my father's funeral this past weekend. Your staff was so considerate and helpful throughout this whole process; it really took a load off our shoulders. The visitation brochures were beautiful. We'll never forget the kindness you showed us and we are so appreciative of how smoothly the proceedings went. Thank you, again, Amarantha Hill on behalf of the Hill Family.</request>
 
           Example 2 Output:
-          <reasoning>User leaves a positive review of their experience.</reasoning>
+          <summary>User leaves a positive review of their experience.</summary>
           <intent>Support, Feedback, Complaint</intent>
           </example 2>
           <example 3>
@@ -549,11 +552,11 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>Your website keeps sending ad-popups that block the entire screen. It took me twenty minutes just to finally find the phone number to call and complain. How can I possibly access my account information with all of these popups? Can you access my account for me, since your website is broken? I need to know what the address is on file.</request>
 
           Example 9 Output:
-          <reasoning>The user requests help accessing their web account information.</reasoning>
+          <summary>The user requests help accessing their web account information.</summary>
           <intent>Support, Feedback, Complaint</intent>
           </example 9>
 
-          Remember to always include your classification reasoning before your actual intent output. The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          Remember to always include your one-sentence summary before your intent output. The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           """.formatted(ticketContents);
   }
   ```
@@ -563,17 +566,17 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
   {
       // Definisikan prompt untuk tugas klasifikasi
       $classificationPrompt = <<<PROMPT
-          You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with your reasoning.
+          You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with a one-sentence summary of the request.
 
           Here is the customer support request you need to classify:
 
           <request>{$ticketContents}</request>
 
-          Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for has concerns about.
+          Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for or has concerns about.
 
-          First, write out your reasoning and analysis of how to classify this request inside <reasoning> tags.
+          First, write a one-sentence summary of the request inside <summary> tags.
 
-          Then, output the appropriate classification label for the request inside a <intent> tag. The valid intents are:
+          Then, output the appropriate classification label for the request inside an <intent> tag. The valid intents are:
           <intents>
           <intent>Support, Feedback, Complaint</intent>
           <intent>Order Tracking</intent>
@@ -586,7 +589,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>Hello! I had high-speed fiber internet installed on Saturday and my installer, Kevin, was absolutely fantastic! Where can I send my positive review? Thanks for your help!</request>
 
           Here is an example of how your output should be formatted (for the above example request):
-          <reasoning>The user seeks information in order to leave positive feedback.</reasoning>
+          <summary>The user seeks information in order to leave positive feedback.</summary>
           <intent>Support, Feedback, Complaint</intent>
 
           Here are a few more examples:
@@ -596,7 +599,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>I wanted to write and personally thank you for the compassion you showed towards my family during my father's funeral this past weekend. Your staff was so considerate and helpful throughout this whole process; it really took a load off our shoulders. The visitation brochures were beautiful. We'll never forget the kindness you showed us and we are so appreciative of how smoothly the proceedings went. Thank you, again, Amarantha Hill on behalf of the Hill Family.</request>
 
           Example 2 Output:
-          <reasoning>User leaves a positive review of their experience.</reasoning>
+          <summary>User leaves a positive review of their experience.</summary>
           <intent>Support, Feedback, Complaint</intent>
           </example 2>
           <example 3>
@@ -609,30 +612,30 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
           <request>Your website keeps sending ad-popups that block the entire screen. It took me twenty minutes just to finally find the phone number to call and complain. How can I possibly access my account information with all of these popups? Can you access my account for me, since your website is broken? I need to know what the address is on file.</request>
 
           Example 9 Output:
-          <reasoning>The user requests help accessing their web account information.</reasoning>
+          <summary>The user requests help accessing their web account information.</summary>
           <intent>Support, Feedback, Complaint</intent>
           </example 9>
 
-          Remember to always include your classification reasoning before your actual intent output. The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          Remember to always include your one-sentence summary before your intent output. The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           PROMPT;
   }
   ```
 
   ```ruby Ruby
   def classify_support_request(ticket_contents)
-    # Definisikan prompt untuk tugas klasifikasi
+    # Tentukan prompt untuk tugas klasifikasi
     classification_prompt = <<~PROMPT
-      You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with your reasoning.
+      You will be acting as a customer support ticket classification system. Your task is to analyze customer support requests and output the appropriate classification intent for each request, along with a one-sentence summary of the request.
 
       Here is the customer support request you need to classify:
 
       <request>#{ticket_contents}</request>
 
-      Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for has concerns about.
+      Please carefully analyze the above request to determine the customer's core intent and needs. Consider what the customer is asking for or has concerns about.
 
-      First, write out your reasoning and analysis of how to classify this request inside <reasoning> tags.
+      First, write a one-sentence summary of the request inside <summary> tags.
 
-      Then, output the appropriate classification label for the request inside a <intent> tag. The valid intents are:
+      Then, output the appropriate classification label for the request inside an <intent> tag. The valid intents are:
       <intents>
       <intent>Support, Feedback, Complaint</intent>
       <intent>Order Tracking</intent>
@@ -645,7 +648,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
       <request>Hello! I had high-speed fiber internet installed on Saturday and my installer, Kevin, was absolutely fantastic! Where can I send my positive review? Thanks for your help!</request>
 
       Here is an example of how your output should be formatted (for the above example request):
-      <reasoning>The user seeks information in order to leave positive feedback.</reasoning>
+      <summary>The user seeks information in order to leave positive feedback.</summary>
       <intent>Support, Feedback, Complaint</intent>
 
       Here are a few more examples:
@@ -655,7 +658,7 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
       <request>I wanted to write and personally thank you for the compassion you showed towards my family during my father's funeral this past weekend. Your staff was so considerate and helpful throughout this whole process; it really took a load off our shoulders. The visitation brochures were beautiful. We'll never forget the kindness you showed us and we are so appreciative of how smoothly the proceedings went. Thank you, again, Amarantha Hill on behalf of the Hill Family.</request>
 
       Example 2 Output:
-      <reasoning>User leaves a positive review of their experience.</reasoning>
+      <summary>User leaves a positive review of their experience.</summary>
       <intent>Support, Feedback, Complaint</intent>
       </example 2>
       <example 3>
@@ -668,35 +671,33 @@ Berikut adalah contoh prompt klasifikasi perutean tiket:
       <request>Your website keeps sending ad-popups that block the entire screen. It took me twenty minutes just to finally find the phone number to call and complain. How can I possibly access my account information with all of these popups? Can you access my account for me, since your website is broken? I need to know what the address is on file.</request>
 
       Example 9 Output:
-      <reasoning>The user requests help accessing their web account information.</reasoning>
+      <summary>The user requests help accessing their web account information.</summary>
       <intent>Support, Feedback, Complaint</intent>
       </example 9>
 
-      Remember to always include your classification reasoning before your actual intent output. The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+      Remember to always include your one-sentence summary before your intent output. The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
     PROMPT
   end
   ```
 </CodeGroup>
 
-<Note>
-  Prompt ini ditulis untuk Claude Haiku 5.5, yang di sini berjalan pada effort `low`. Pada Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, dan Claude Sonnet 5.5, mintalah maksud dan ringkasan satu kalimat dari permintaan tersebut sebagai gantinya. Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
-</Note>
-
 Berikut adalah komponen utama dari prompt ini:
 
 * Templat prompt menyisipkan `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`) ke dalam tag `<request>`.
 * Prompt memberikan Claude peran yang terdefinisi dengan jelas sebagai sistem klasifikasi yang menganalisis konten tiket dengan cermat untuk menentukan maksud dan kebutuhan inti pelanggan.
-* Prompt menginstruksikan Claude tentang format output yang tepat, dalam hal ini untuk memberikan penalaran dan analisisnya di dalam tag `<reasoning>`, diikuti oleh label klasifikasi yang sesuai di dalam tag `<intent>`.
+* Prompt memberi tahu Claude cara memformat outputnya: ringkasan satu kalimat dari permintaan di dalam tag `<summary>`, diikuti oleh label klasifikasi di dalam tag `<intent>`.
 * Prompt menentukan kategori maksud yang valid: `Support, Feedback, Complaint`, `Order Tracking`, dan `Refund/Exchange`.
 * Prompt menyertakan beberapa contoh (alias few-shot prompting) untuk mengilustrasikan bagaimana output harus diformat, yang meningkatkan akurasi dan konsistensi.
 
-Meminta Claude membagi responsnya ke dalam bagian-bagian tag XML terpisah memungkinkan Anda menggunakan ekspresi reguler untuk mengekstrak penalaran dan maksud dari output secara independen. Hal ini memungkinkan Anda membuat langkah selanjutnya yang terarah dalam alur kerja perutean tiket, seperti hanya menggunakan maksud untuk memutuskan kepada siapa tiket akan dirutekan.
+Karena setiap bagian respons berada dalam tag XML-nya sendiri, Anda dapat menggunakan ekspresi reguler untuk mengekstrak ringkasan dan maksud secara terpisah. Kemudian, Anda dapat menindaklanjuti setiap bagian secara tersendiri, seperti hanya menggunakan maksud untuk memutuskan siapa yang menerima tiket.
+
+Prompt ini meminta ringkasan permintaan, bukan penalaran Claude. [Beberapa model Claude](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks) mungkin menolak prompt yang meminta mereka menuliskan penalarannya. Anda tetap dapat meminta penjelasan singkat tentang suatu klasifikasi. Untuk melihat ringkasan tentang bagaimana Claude sampai pada klasifikasi tersebut, atur `thinking: {"type": "adaptive", "display": "summarized"}` dan baca [blok `thinking`](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking) pada respons. Claude dapat melewati pemikiran pada tiket yang sederhana, sehingga beberapa respons tidak memiliki blok `thinking`.
 
 ### Terapkan prompt Anda
 
 Sulit untuk mengetahui seberapa baik prompt Anda bekerja tanpa menerapkannya dalam lingkungan produksi uji dan [menjalankan evaluasi](https://platform.claude.com/docs/id/test-and-evaluate/develop-tests).
 
-Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk membungkus panggilan ke Claude. Perluas fungsi yang telah Anda mulai tulis sebelumnya, yang menerima `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`) sebagai input, sehingga sekarang fungsi tersebut mengembalikan penalaran dan maksud sebagai output. Jika Anda sudah memiliki otomatisasi yang menggunakan ML tradisional, sebaiknya ikuti signature tersebut.
+Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk membungkus panggilan ke Claude. Perluas fungsi yang telah Anda mulai tulis sebelumnya, yang menerima `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`) sebagai input, sehingga sekarang fungsi tersebut mengembalikan ringkasan dan maksud. Jika Anda sudah memiliki otomatisasi yang menggunakan ML tradisional, ikuti signature-nya.
 
 <CodeGroup exclude="shell">
   <CodeGroupItem language="cURL">
@@ -710,7 +711,7 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
   ```python Python
   import re
 
-  # Buat instance klien API Claude
+  # Buat instance klien Claude API
   client = anthropic.Anthropic()
 
   # Tetapkan model default
@@ -718,10 +719,10 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
 
 
   def classify_support_request(ticket_contents):
-      # Definisikan prompt untuk tugas klasifikasi
+      # Tentukan prompt untuk tugas klasifikasi
       classification_prompt = f"""You will be acting as a customer support ticket classification system.
           […]
-          ... The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           """
       # Kirim prompt ke API untuk mengklasifikasikan permintaan dukungan.
       message = client.messages.create(
@@ -731,25 +732,27 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
           messages=[{"role": "user", "content": classification_prompt}],
           stream=False,
       )
-      reasoning_and_intent = next(
+      if message.stop_reason == "refusal":
+          raise RuntimeError("Claude declined to classify this ticket.")
+      summary_and_intent = next(
           (block.text for block in message.content if block.type == "text"), ""
       )
 
-      # Gunakan pustaka ekspresi reguler Python untuk mengekstrak `reasoning`.
-      reasoning_match = re.search(
-          r"<reasoning>(.*?)</reasoning>", reasoning_and_intent, re.DOTALL
+      # Gunakan pustaka ekspresi reguler Python untuk mengekstrak `summary`.
+      summary_match = re.search(
+          r"<summary>(.*?)</summary>", summary_and_intent, re.DOTALL
       )
-      reasoning = reasoning_match.group(1).strip() if reasoning_match else ""
+      summary = summary_match.group(1).strip() if summary_match else ""
 
       # Dengan cara yang sama, ekstrak juga `intent`.
-      intent_match = re.search(r"<intent>(.*?)</intent>", reasoning_and_intent, re.DOTALL)
+      intent_match = re.search(r"<intent>(.*?)</intent>", summary_and_intent, re.DOTALL)
       intent = intent_match.group(1).strip() if intent_match else ""
 
-      return reasoning, intent
+      return summary, intent
   ```
 
   ```typescript TypeScript
-  // Buat instance klien API Claude
+  // Buat instance klien Claude API
   const client = new Anthropic();
 
   // Tetapkan model default
@@ -757,11 +760,11 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
 
   async function classifySupportRequest(
     ticketContents: string
-  ): Promise<{ reasoning: string; intent: string }> {
+  ): Promise<{ summary: string; intent: string }> {
     // Definisikan prompt untuk tugas klasifikasi
     const classificationPrompt = `You will be acting as a customer support ticket classification system.
       […]
-      ... The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+      ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
       `;
     // Kirim prompt ke API untuk mengklasifikasikan permintaan dukungan.
     const message = await client.messages.create({
@@ -770,18 +773,21 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
       output_config: { effort: "low" },
       messages: [{ role: "user", content: classificationPrompt }]
     });
+    if (message.stop_reason === "refusal") {
+      throw new Error("Claude declined to classify this ticket.");
+    }
     const textBlock = message.content.find((block) => block.type === "text");
-    const reasoningAndIntent = textBlock?.text ?? "";
+    const summaryAndIntent = textBlock?.text ?? "";
 
-    // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-    const reasoningMatch = /<reasoning>(.*?)<\/reasoning>/s.exec(reasoningAndIntent);
-    const reasoning = reasoningMatch?.[1].trim() ?? "";
+    // Gunakan ekspresi reguler untuk mengekstrak `summary`.
+    const summaryMatch = /<summary>(.*?)<\/summary>/s.exec(summaryAndIntent);
+    const summary = summaryMatch?.[1].trim() ?? "";
 
-    // Dengan cara serupa, ekstrak juga `intent`.
-    const intentMatch = /<intent>(.*?)<\/intent>/s.exec(reasoningAndIntent);
+    // Demikian pula, ekstrak juga `intent`.
+    const intentMatch = /<intent>(.*?)<\/intent>/s.exec(summaryAndIntent);
     const intent = intentMatch?.[1].trim() ?? "";
 
-    return { reasoning, intent };
+    return { summary, intent };
   }
   ```
 
@@ -789,19 +795,19 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
   using System.Text.RegularExpressions;
   // ...
 
-  // Buat instance klien API Claude
+  // Buat instans klien Claude API
   AnthropicClient client = new();
 
   // Tetapkan model default
   const Model DefaultModel = Model.ClaudeHaiku5_5;
 
-  async Task<(string Reasoning, string Intent)> ClassifySupportRequest(string ticketContents)
+  async Task<(string Summary, string Intent)> ClassifySupportRequest(string ticketContents)
   {
       // Definisikan prompt untuk tugas klasifikasi
       var classificationPrompt = """
           You will be acting as a customer support ticket classification system.
           […]
-          ... The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           """;
       // Kirim prompt ke API untuk mengklasifikasikan permintaan dukungan.
       var message = await client.Messages.Create(new MessageCreateParams
@@ -811,47 +817,52 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
           OutputConfig = new OutputConfig { Effort = Effort.Low },
           Messages = [new UserMessageParam { Content = classificationPrompt }],
       });
-      var reasoningAndIntent = "";
+      if (message.StopReason?.Value() == StopReason.Refusal)
+      {
+          throw new InvalidOperationException("Claude declined to classify this ticket.");
+      }
+      var summaryAndIntent = "";
       foreach (var block in message.Content)
       {
           if (block.TryPickText(out var textBlock))
           {
-              reasoningAndIntent = textBlock.Text;
+              summaryAndIntent = textBlock.Text;
               break;
           }
       }
 
-      // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-      var reasoningMatch = Regex.Match(reasoningAndIntent, "<reasoning>(.*?)</reasoning>", RegexOptions.Singleline);
-      var reasoning = reasoningMatch.Success ? reasoningMatch.Groups[1].Value.Trim() : "";
+      // Gunakan ekspresi reguler untuk mengekstrak `summary`.
+      var summaryMatch = Regex.Match(summaryAndIntent, "<summary>(.*?)</summary>", RegexOptions.Singleline);
+      var summary = summaryMatch.Success ? summaryMatch.Groups[1].Value.Trim() : "";
 
       // Dengan cara serupa, ekstrak juga `intent`.
-      var intentMatch = Regex.Match(reasoningAndIntent, "<intent>(.*?)</intent>", RegexOptions.Singleline);
+      var intentMatch = Regex.Match(summaryAndIntent, "<intent>(.*?)</intent>", RegexOptions.Singleline);
       var intent = intentMatch.Success ? intentMatch.Groups[1].Value.Trim() : "";
 
-      return (reasoning, intent);
+      return (summary, intent);
   }
   ```
 
   ```go Go
   import (
   	"context"
+  	"errors"
   	"regexp"
   	"strings"
   	// ...
   )
 
-  // Buat instance klien API Claude
+  // Buat instance klien Claude API
   var client = anthropic.NewClient()
 
   // Tetapkan model default
   const defaultModel = anthropic.ModelClaudeHaiku5_5
 
-  func classifySupportRequest(ctx context.Context, ticketContents string) (reasoning, intent string, err error) {
+  func classifySupportRequest(ctx context.Context, ticketContents string) (summary, intent string, err error) {
   	// Definisikan prompt untuk tugas klasifikasi
   	classificationPrompt := `You will be acting as a customer support ticket classification system.
   		[…]
-  		... The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+  		... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
   		`
   	// Kirim prompt ke API untuk mengklasifikasikan permintaan dukungan.
   	message, err := client.Messages.New(ctx, anthropic.MessageNewParams{
@@ -865,27 +876,30 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
   	if err != nil {
   		return "", "", err
   	}
-  	var reasoningAndIntent string
+  	if message.StopReason == anthropic.StopReasonRefusal {
+  		return "", "", errors.New("Claude declined to classify this ticket")
+  	}
+  	var summaryAndIntent string
   	for _, block := range message.Content {
   		if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
-  			reasoningAndIntent = textBlock.Text
+  			summaryAndIntent = textBlock.Text
   			break
   		}
   	}
 
-  	// Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-  	reasoningMatch := regexp.MustCompile(`(?s)<reasoning>(.*?)</reasoning>`).FindStringSubmatch(reasoningAndIntent)
-  	if reasoningMatch != nil {
-  		reasoning = strings.TrimSpace(reasoningMatch[1])
+  	// Gunakan ekspresi reguler untuk mengekstrak `summary`.
+  	summaryMatch := regexp.MustCompile(`(?s)<summary>(.*?)</summary>`).FindStringSubmatch(summaryAndIntent)
+  	if summaryMatch != nil {
+  		summary = strings.TrimSpace(summaryMatch[1])
   	}
 
-  	// Dengan cara serupa, ekstrak juga `intent`.
-  	intentMatch := regexp.MustCompile(`(?s)<intent>(.*?)</intent>`).FindStringSubmatch(reasoningAndIntent)
+  	// Dengan cara yang sama, ekstrak juga `intent`.
+  	intentMatch := regexp.MustCompile(`(?s)<intent>(.*?)</intent>`).FindStringSubmatch(summaryAndIntent)
   	if intentMatch != nil {
   		intent = strings.TrimSpace(intentMatch[1])
   	}
 
-  	return reasoning, intent, nil
+  	return summary, intent, nil
   }
   ```
 
@@ -893,20 +907,20 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
   import java.util.regex.Matcher;
   import java.util.regex.Pattern;
 
-  // Buat instance klien API Claude
+  // Buat instance klien Claude API
   final AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   // Tetapkan model default
   static final Model DEFAULT_MODEL = Model.CLAUDE_HAIKU_5_5;
 
-  record Classification(String reasoning, String intent) {}
+  record Classification(String summary, String intent) {}
 
   Classification classifySupportRequest(String ticketContents) {
       // Definisikan prompt untuk tugas klasifikasi
       String classificationPrompt = """
           You will be acting as a customer support ticket classification system.
           […]
-          ... The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           """;
       // Kirim prompt ke API untuk mengklasifikasikan permintaan dukungan.
       Message message = client.messages().create(MessageCreateParams.builder()
@@ -917,35 +931,38 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
               .build())
           .addUserMessage(classificationPrompt)
           .build());
-      String reasoningAndIntent = message.content().stream()
+      if (message.stopReason().filter(StopReason.REFUSAL::equals).isPresent()) {
+          throw new IllegalStateException("Claude declined to classify this ticket.");
+      }
+      String summaryAndIntent = message.content().stream()
           .flatMap(block -> block.text().stream())
           .map(textBlock -> textBlock.text())
           .findFirst()
           .orElse("");
 
-      // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-      Matcher reasoningMatch = Pattern.compile("<reasoning>(.*?)</reasoning>", Pattern.DOTALL)
-          .matcher(reasoningAndIntent);
-      String reasoning = reasoningMatch.find() ? reasoningMatch.group(1).strip() : "";
+      // Gunakan ekspresi reguler untuk mengekstrak `summary`.
+      Matcher summaryMatch = Pattern.compile("<summary>(.*?)</summary>", Pattern.DOTALL)
+          .matcher(summaryAndIntent);
+      String summary = summaryMatch.find() ? summaryMatch.group(1).strip() : "";
 
-      // Dengan cara serupa, ekstrak juga `intent`.
+      // Dengan cara yang sama, ekstrak juga `intent`.
       Matcher intentMatch = Pattern.compile("<intent>(.*?)</intent>", Pattern.DOTALL)
-          .matcher(reasoningAndIntent);
+          .matcher(summaryAndIntent);
       String intent = intentMatch.find() ? intentMatch.group(1).strip() : "";
 
-      return new Classification(reasoning, intent);
+      return new Classification(summary, intent);
   }
   ```
 
   ```php PHP
-  // Buat instance klien Claude API
+  // Buat instance klien API Claude
   $client = new Client();
 
   // Tetapkan model default
   const DEFAULT_MODEL = Model::CLAUDE_HAIKU_5_5;
 
   /**
-   * @return array{string, string} the reasoning and the intent
+   * @return array{string, string} the summary and the intent
    */
   function classifySupportRequest(Client $client, string $ticketContents): array
   {
@@ -953,7 +970,7 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
       $classificationPrompt = <<<PROMPT
           You will be acting as a customer support ticket classification system.
           […]
-          ... The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           PROMPT;
       // Kirim prompt ke API untuk mengklasifikasikan permintaan dukungan.
       $message = $client->messages->create(
@@ -962,25 +979,28 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
           outputConfig: ['effort' => 'low'],
           messages: [['role' => 'user', 'content' => $classificationPrompt]],
       );
-      $reasoningAndIntent = '';
+      if ($message->stopReason === 'refusal') {
+          throw new \RuntimeException('Claude declined to classify this ticket.');
+      }
+      $summaryAndIntent = '';
       foreach ($message->content as $block) {
           if ($block instanceof \Anthropic\Messages\TextBlock) {
-              $reasoningAndIntent = $block->text;
+              $summaryAndIntent = $block->text;
               break;
           }
       }
 
-      // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-      $reasoning = preg_match('/<reasoning>(.*?)<\/reasoning>/s', $reasoningAndIntent, $reasoningMatch)
-          ? trim($reasoningMatch[1])
+      // Gunakan ekspresi reguler untuk mengekstrak `summary`.
+      $summary = preg_match('/<summary>(.*?)<\/summary>/s', $summaryAndIntent, $summaryMatch)
+          ? trim($summaryMatch[1])
           : '';
 
-      // Dengan cara serupa, ekstrak juga `intent`.
-      $intent = preg_match('/<intent>(.*?)<\/intent>/s', $reasoningAndIntent, $intentMatch)
+      // Dengan cara yang sama, ekstrak juga `intent`.
+      $intent = preg_match('/<intent>(.*?)<\/intent>/s', $summaryAndIntent, $intentMatch)
           ? trim($intentMatch[1])
           : '';
 
-      return [$reasoning, $intent];
+      return [$summary, $intent];
   }
   ```
 
@@ -996,7 +1016,7 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
     classification_prompt = <<~PROMPT
       You will be acting as a customer support ticket classification system.
       […]
-      ... The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+      ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
     PROMPT
     # Kirim prompt ke API untuk mengklasifikasikan permintaan dukungan.
     message = client.messages.create(
@@ -1005,27 +1025,29 @@ Bangun struktur penerapan. Mulailah dengan mendefinisikan signature fungsi untuk
       output_config: { effort: "low" },
       messages: [{ role: "user", content: classification_prompt }]
     )
-    reasoning_and_intent = message.content.grep(Anthropic::Models::TextBlock).first&.text || ""
+    raise "Claude declined to classify this ticket." if message.stop_reason == :refusal
+    summary_and_intent = message.content.grep(Anthropic::Models::TextBlock).first&.text || ""
 
-    # Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-    reasoning = reasoning_and_intent[%r{<reasoning>(.*?)</reasoning>}m, 1]&.strip || ""
+    # Gunakan ekspresi reguler untuk mengekstrak `summary`.
+    summary = summary_and_intent[%r{<summary>(.*?)</summary>}m, 1]&.strip || ""
 
     # Dengan cara serupa, ekstrak juga `intent`.
-    intent = reasoning_and_intent[%r{<intent>(.*?)</intent>}m, 1]&.strip || ""
+    intent = summary_and_intent[%r{<intent>(.*?)</intent>}m, 1]&.strip || ""
 
-    [reasoning, intent]
+    [summary, intent]
   end
   ```
 </CodeGroup>
 
 Kode ini:
 
-* Membuat instance klien menggunakan kunci API Anda.
+* Membuat instance klien.
 * Mendefinisikan fungsi `classify_support_request()` (typescript, go, java, php: `classifySupportRequest()`; csharp: `ClassifySupportRequest()`) yang menerima string `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`).
 * Mengirimkan `ticket_contents` (typescript, csharp, go, java: `ticketContents`; php: `$ticketContents`) ke Claude untuk diklasifikasikan menggunakan `classification_prompt` (typescript, csharp, go, java: `classificationPrompt`; php: `$classificationPrompt`).
-* Mengembalikan penalaran dan maksud model yang diekstrak dari respons.
+* Berhenti dengan error jika Claude [menolak permintaan](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback), karena respons yang ditolak tidak memiliki teks lengkap untuk di-parse.
+* Mengembalikan ringkasan dan maksud yang diekstrak dari respons.
 
-Karena seluruh teks penalaran dan maksud harus dihasilkan sebelum parsing, contoh ini tidak melakukan streaming pada respons.
+Kode ini mem-parse seluruh respons sekaligus, sehingga contoh ini tidak melakukan streaming pada respons.
 
 ***
 
@@ -1058,10 +1080,10 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
   ```python Python
   import re
 
-  # Buat instance klien API Claude
+  # Buat instance klien Claude API
   client = anthropic.Anthropic()
 
-  # Atur model default
+  # Tetapkan model default
   DEFAULT_MODEL = "claude-haiku-5-5"
 
 
@@ -1069,7 +1091,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
       # Definisikan prompt untuk tugas klasifikasi
       classification_prompt = f"""You will be acting as a customer support ticket classification system.
           […]
-          ...The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           """
 
       message = client.messages.create(
@@ -1079,42 +1101,44 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
           messages=[{"role": "user", "content": classification_prompt}],
       )
       usage = message.usage  # Get the usage statistics for the API call for how many input and output tokens were used.
-      reasoning_and_intent = next(
+      if message.stop_reason == "refusal":
+          return "", "", False, usage
+      summary_and_intent = next(
           (block.text for block in message.content if block.type == "text"), ""
       )
 
-      # Gunakan pustaka ekspresi reguler Python untuk mengekstrak `reasoning`.
-      reasoning_match = re.search(
-          r"<reasoning>(.*?)</reasoning>", reasoning_and_intent, re.DOTALL
+      # Gunakan pustaka ekspresi reguler Python untuk mengekstrak `summary`.
+      summary_match = re.search(
+          r"<summary>(.*?)</summary>", summary_and_intent, re.DOTALL
       )
-      reasoning = reasoning_match.group(1).strip() if reasoning_match else ""
+      summary = summary_match.group(1).strip() if summary_match else ""
 
       # Demikian pula, ekstrak juga `intent`.
-      intent_match = re.search(r"<intent>(.*?)</intent>", reasoning_and_intent, re.DOTALL)
+      intent_match = re.search(r"<intent>(.*?)</intent>", summary_and_intent, re.DOTALL)
       intent = intent_match.group(1).strip() if intent_match else ""
 
       # Periksa apakah prediksi model sudah benar.
       correct = actual_intent.strip() == intent.strip()
 
-      # Kembalikan reasoning, intent, correct, dan usage.
-      return reasoning, intent, correct, usage
+      # Kembalikan summary, intent, correct, dan usage.
+      return summary, intent, correct, usage
   ```
 
   ```typescript TypeScript
-  // Buat instance klien API Claude
+  // Buat instans klien Claude API
   const client = new Anthropic();
 
-  // Tetapkan model default
+  // Atur model default
   const DEFAULT_MODEL = "claude-haiku-5-5";
 
   async function classifySupportRequest(
     ticketContents: string,
     actualIntent: string
-  ): Promise<{ reasoning: string; intent: string; correct: boolean; usage: Anthropic.Usage }> {
-    // Definisikan prompt untuk tugas klasifikasi
+  ): Promise<{ summary: string; intent: string; correct: boolean; usage: Anthropic.Usage }> {
+    // Tentukan prompt untuk tugas klasifikasi
     const classificationPrompt = `You will be acting as a customer support ticket classification system.
       […]
-      ...The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+      ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
       `;
 
     const message = await client.messages.create({
@@ -1123,24 +1147,27 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
       output_config: { effort: "low" },
       messages: [{ role: "user", content: classificationPrompt }]
     });
-    // Ambil statistik penggunaan panggilan API: berapa banyak token input dan output yang digunakan.
+    // Dapatkan statistik penggunaan panggilan API untuk jumlah token input dan output yang digunakan.
     const usage = message.usage;
+    if (message.stop_reason === "refusal") {
+      return { summary: "", intent: "", correct: false, usage };
+    }
     const textBlock = message.content.find((block) => block.type === "text");
-    const reasoningAndIntent = textBlock?.text ?? "";
+    const summaryAndIntent = textBlock?.text ?? "";
 
-    // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-    const reasoningMatch = /<reasoning>(.*?)<\/reasoning>/s.exec(reasoningAndIntent);
-    const reasoning = reasoningMatch?.[1].trim() ?? "";
+    // Gunakan regular expression untuk mengekstrak `summary`.
+    const summaryMatch = /<summary>(.*?)<\/summary>/s.exec(summaryAndIntent);
+    const summary = summaryMatch?.[1].trim() ?? "";
 
-    // Dengan cara serupa, ekstrak juga `intent`.
-    const intentMatch = /<intent>(.*?)<\/intent>/s.exec(reasoningAndIntent);
+    // Demikian pula, ekstrak juga `intent`.
+    const intentMatch = /<intent>(.*?)<\/intent>/s.exec(summaryAndIntent);
     const intent = intentMatch?.[1].trim() ?? "";
 
-    // Periksa apakah prediksi model sudah benar.
+    // Periksa apakah prediksi model benar.
     const correct = actualIntent.trim() === intent.trim();
 
-    // Kembalikan reasoning, intent, correct, dan usage.
-    return { reasoning, intent, correct, usage };
+    // Kembalikan summary, intent, correct, dan usage.
+    return { summary, intent, correct, usage };
   }
   ```
 
@@ -1148,19 +1175,19 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
   using System.Text.RegularExpressions;
   // ...
 
-  // Buat instance klien API Claude
+  // Buat instance klien Claude API
   AnthropicClient client = new();
 
   // Tetapkan model default
   const Model DefaultModel = Model.ClaudeHaiku5_5;
 
-  async Task<(string Reasoning, string Intent, bool Correct, Usage Usage)> ClassifySupportRequest(string ticketContents, string actualIntent)
+  async Task<(string Summary, string Intent, bool Correct, Usage Usage)> ClassifySupportRequest(string ticketContents, string actualIntent)
   {
       // Definisikan prompt untuk tugas klasifikasi
       var classificationPrompt = """
           You will be acting as a customer support ticket classification system.
           […]
-          ...The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           """;
 
       var message = await client.Messages.Create(new MessageCreateParams
@@ -1170,31 +1197,35 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
           OutputConfig = new OutputConfig { Effort = Effort.Low },
           Messages = [new UserMessageParam { Content = classificationPrompt }],
       });
-      // Dapatkan statistik penggunaan panggilan API untuk jumlah token input dan output yang digunakan.
+      // Dapatkan statistik penggunaan panggilan API, yaitu jumlah token input dan output yang digunakan.
       var usage = message.Usage;
-      var reasoningAndIntent = "";
+      if (message.StopReason?.Value() == StopReason.Refusal)
+      {
+          return ("", "", false, usage);
+      }
+      var summaryAndIntent = "";
       foreach (var block in message.Content)
       {
           if (block.TryPickText(out var textBlock))
           {
-              reasoningAndIntent = textBlock.Text;
+              summaryAndIntent = textBlock.Text;
               break;
           }
       }
 
-      // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-      var reasoningMatch = Regex.Match(reasoningAndIntent, "<reasoning>(.*?)</reasoning>", RegexOptions.Singleline);
-      var reasoning = reasoningMatch.Success ? reasoningMatch.Groups[1].Value.Trim() : "";
+      // Gunakan ekspresi reguler untuk mengekstrak `summary`.
+      var summaryMatch = Regex.Match(summaryAndIntent, "<summary>(.*?)</summary>", RegexOptions.Singleline);
+      var summary = summaryMatch.Success ? summaryMatch.Groups[1].Value.Trim() : "";
 
-      // Demikian pula, ekstrak juga `intent`.
-      var intentMatch = Regex.Match(reasoningAndIntent, "<intent>(.*?)</intent>", RegexOptions.Singleline);
+      // Dengan cara serupa, ekstrak juga `intent`.
+      var intentMatch = Regex.Match(summaryAndIntent, "<intent>(.*?)</intent>", RegexOptions.Singleline);
       var intent = intentMatch.Success ? intentMatch.Groups[1].Value.Trim() : "";
 
-      // Periksa apakah prediksi model sudah benar.
+      // Periksa apakah prediksi model benar.
       var correct = actualIntent.Trim() == intent.Trim();
 
-      // Kembalikan reasoning, intent, correct, dan usage.
-      return (reasoning, intent, correct, usage);
+      // Kembalikan ringkasan, intent, status kebenaran, dan penggunaan.
+      return (summary, intent, correct, usage);
   }
   ```
 
@@ -1206,17 +1237,17 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
   	// ...
   )
 
-  // Buat instance klien API Claude
+  // Buat instance klien Claude API
   var client = anthropic.NewClient()
 
-  // Tetapkan model default
+  // Atur model default
   const defaultModel = anthropic.ModelClaudeHaiku5_5
 
-  func classifySupportRequest(ctx context.Context, ticketContents, actualIntent string) (reasoning, intent string, correct bool, usage anthropic.Usage, err error) {
-  	// Definisikan prompt untuk tugas klasifikasi
+  func classifySupportRequest(ctx context.Context, ticketContents, actualIntent string) (summary, intent string, correct bool, usage anthropic.Usage, err error) {
+  	// Tentukan prompt untuk tugas klasifikasi
   	classificationPrompt := `You will be acting as a customer support ticket classification system.
   		[…]
-  		...The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+  		... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
   		`
   	message, err := client.Messages.New(ctx, anthropic.MessageNewParams{
   		Model:        defaultModel,
@@ -1229,24 +1260,27 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
   	if err != nil {
   		return "", "", false, anthropic.Usage{}, err
   	}
-  	// Ambil statistik penggunaan panggilan API: berapa banyak token input dan output yang digunakan.
+  	// Ambil statistik penggunaan panggilan API untuk jumlah token input dan output yang digunakan.
   	usage = message.Usage
-  	var reasoningAndIntent string
+  	if message.StopReason == anthropic.StopReasonRefusal {
+  		return "", "", false, usage, nil
+  	}
+  	var summaryAndIntent string
   	for _, block := range message.Content {
   		if textBlock, ok := block.AsAny().(anthropic.TextBlock); ok {
-  			reasoningAndIntent = textBlock.Text
+  			summaryAndIntent = textBlock.Text
   			break
   		}
   	}
 
-  	// Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-  	reasoningMatch := regexp.MustCompile(`(?s)<reasoning>(.*?)</reasoning>`).FindStringSubmatch(reasoningAndIntent)
-  	if reasoningMatch != nil {
-  		reasoning = strings.TrimSpace(reasoningMatch[1])
+  	// Gunakan ekspresi reguler untuk mengekstrak `summary`.
+  	summaryMatch := regexp.MustCompile(`(?s)<summary>(.*?)</summary>`).FindStringSubmatch(summaryAndIntent)
+  	if summaryMatch != nil {
+  		summary = strings.TrimSpace(summaryMatch[1])
   	}
 
-  	// Dengan cara serupa, ekstrak juga `intent`.
-  	intentMatch := regexp.MustCompile(`(?s)<intent>(.*?)</intent>`).FindStringSubmatch(reasoningAndIntent)
+  	// Dengan cara yang sama, ekstrak juga `intent`.
+  	intentMatch := regexp.MustCompile(`(?s)<intent>(.*?)</intent>`).FindStringSubmatch(summaryAndIntent)
   	if intentMatch != nil {
   		intent = strings.TrimSpace(intentMatch[1])
   	}
@@ -1254,8 +1288,8 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
   	// Periksa apakah prediksi model sudah benar.
   	correct = strings.TrimSpace(actualIntent) == strings.TrimSpace(intent)
 
-  	// Kembalikan reasoning, intent, correct, dan usage.
-  	return reasoning, intent, correct, usage, nil
+  	// Kembalikan summary, intent, correct, dan usage.
+  	return summary, intent, correct, usage, nil
   }
   ```
 
@@ -1263,20 +1297,20 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
   import java.util.regex.Matcher;
   import java.util.regex.Pattern;
 
-  // Buat instance klien API Claude
+  // Buat instans klien API Claude
   final AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   // Tetapkan model default
   static final Model DEFAULT_MODEL = Model.CLAUDE_HAIKU_5_5;
 
-  record Classification(String reasoning, String intent, boolean correct, Usage usage) {}
+  record Classification(String summary, String intent, boolean correct, Usage usage) {}
 
   Classification classifySupportRequest(String ticketContents, String actualIntent) {
       // Definisikan prompt untuk tugas klasifikasi
       String classificationPrompt = """
           You will be acting as a customer support ticket classification system.
           […]
-          ...The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           """;
 
       Message message = client.messages().create(MessageCreateParams.builder()
@@ -1287,41 +1321,44 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
               .build())
           .addUserMessage(classificationPrompt)
           .build());
-      // Ambil statistik penggunaan panggilan API: berapa banyak token input dan output yang digunakan.
+      // Dapatkan statistik penggunaan panggilan API, yaitu jumlah token input dan output yang digunakan.
       Usage usage = message.usage();
-      String reasoningAndIntent = message.content().stream()
+      if (message.stopReason().filter(StopReason.REFUSAL::equals).isPresent()) {
+          return new Classification("", "", false, usage);
+      }
+      String summaryAndIntent = message.content().stream()
           .flatMap(block -> block.text().stream())
           .map(textBlock -> textBlock.text())
           .findFirst()
           .orElse("");
 
-      // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-      Matcher reasoningMatch = Pattern.compile("<reasoning>(.*?)</reasoning>", Pattern.DOTALL)
-          .matcher(reasoningAndIntent);
-      String reasoning = reasoningMatch.find() ? reasoningMatch.group(1).strip() : "";
+      // Gunakan ekspresi reguler untuk mengekstrak `summary`.
+      Matcher summaryMatch = Pattern.compile("<summary>(.*?)</summary>", Pattern.DOTALL)
+          .matcher(summaryAndIntent);
+      String summary = summaryMatch.find() ? summaryMatch.group(1).strip() : "";
 
       // Dengan cara serupa, ekstrak juga `intent`.
       Matcher intentMatch = Pattern.compile("<intent>(.*?)</intent>", Pattern.DOTALL)
-          .matcher(reasoningAndIntent);
+          .matcher(summaryAndIntent);
       String intent = intentMatch.find() ? intentMatch.group(1).strip() : "";
 
       // Periksa apakah prediksi model sudah benar.
       boolean correct = actualIntent.strip().equals(intent.strip());
 
-      // Kembalikan reasoning, intent, correct, dan usage.
-      return new Classification(reasoning, intent, correct, usage);
+      // Kembalikan summary, intent, correct, dan usage.
+      return new Classification(summary, intent, correct, usage);
   }
   ```
 
   ```php PHP
-  // Buat instance klien API Claude
+  // Buat instance klien Claude API
   $client = new Client();
 
-  // Atur model default
+  // Tetapkan model default
   const DEFAULT_MODEL = Model::CLAUDE_HAIKU_5_5;
 
   /**
-   * @return array{string, string, bool, Usage} the reasoning, the intent, whether the intent is correct, and the usage
+   * @return array{string, string, bool, Usage} the summary, the intent, whether the intent is correct, and the usage
    */
   function classifySupportRequest(Client $client, string $ticketContents, string $actualIntent): array
   {
@@ -1329,7 +1366,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
       $classificationPrompt = <<<PROMPT
           You will be acting as a customer support ticket classification system.
           […]
-          ...The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+          ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
           PROMPT;
 
       $message = $client->messages->create(
@@ -1338,36 +1375,39 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
           outputConfig: ['effort' => 'low'],
           messages: [['role' => 'user', 'content' => $classificationPrompt]],
       );
-      // Ambil statistik penggunaan panggilan API untuk jumlah token input dan output yang digunakan.
+      // Dapatkan statistik penggunaan panggilan API, yaitu jumlah token input dan output yang digunakan.
       $usage = $message->usage;
-      $reasoningAndIntent = '';
+      if ($message->stopReason === 'refusal') {
+          return ['', '', false, $usage];
+      }
+      $summaryAndIntent = '';
       foreach ($message->content as $block) {
           if ($block instanceof \Anthropic\Messages\TextBlock) {
-              $reasoningAndIntent = $block->text;
+              $summaryAndIntent = $block->text;
               break;
           }
       }
 
-      // Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-      $reasoning = preg_match('/<reasoning>(.*?)<\/reasoning>/s', $reasoningAndIntent, $reasoningMatch)
-          ? trim($reasoningMatch[1])
+      // Gunakan ekspresi reguler untuk mengekstrak `summary`.
+      $summary = preg_match('/<summary>(.*?)<\/summary>/s', $summaryAndIntent, $summaryMatch)
+          ? trim($summaryMatch[1])
           : '';
 
-      // Demikian pula, ekstrak juga `intent`.
-      $intent = preg_match('/<intent>(.*?)<\/intent>/s', $reasoningAndIntent, $intentMatch)
+      // Dengan cara serupa, ekstrak juga `intent`.
+      $intent = preg_match('/<intent>(.*?)<\/intent>/s', $summaryAndIntent, $intentMatch)
           ? trim($intentMatch[1])
           : '';
 
-      // Periksa apakah prediksi model sudah benar.
+      // Periksa apakah prediksi model benar.
       $correct = trim($actualIntent) === trim($intent);
 
-      // Kembalikan reasoning, intent, correct, dan usage.
-      return [$reasoning, $intent, $correct, $usage];
+      // Kembalikan summary, intent, correct, dan usage.
+      return [$summary, $intent, $correct, $usage];
   }
   ```
 
   ```ruby Ruby
-  # Buat instance klien API Claude
+  # Buat instance klien Claude API
   client = Anthropic::Client.new
 
   # Tetapkan model default
@@ -1378,7 +1418,7 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
     classification_prompt = <<~PROMPT
       You will be acting as a customer support ticket classification system.
       […]
-      ...The reasoning should be enclosed in <reasoning> tags and the intent in <intent> tags. Return only the reasoning and the intent.
+      ... The summary should be enclosed in <summary> tags and the intent in <intent> tags. Return only the summary and the intent.
     PROMPT
 
     message = client.messages.create(
@@ -1387,21 +1427,22 @@ Untuk menilai hal ini, pertama-tama modifikasi skrip agar membandingkan maksud y
       output_config: { effort: "low" },
       messages: [{ role: "user", content: classification_prompt }]
     )
-    # Ambil statistik penggunaan panggilan API: berapa banyak token input dan output yang digunakan.
+    # Ambil statistik penggunaan panggilan API, yaitu jumlah token input dan output yang digunakan.
     usage = message.usage
-    reasoning_and_intent = message.content.grep(Anthropic::Models::TextBlock).first&.text || ""
+    return ["", "", false, usage] if message.stop_reason == :refusal
+    summary_and_intent = message.content.grep(Anthropic::Models::TextBlock).first&.text || ""
 
-    # Gunakan ekspresi reguler untuk mengekstrak `reasoning`.
-    reasoning = reasoning_and_intent[%r{<reasoning>(.*?)</reasoning>}m, 1]&.strip || ""
+    # Gunakan ekspresi reguler untuk mengekstrak `summary`.
+    summary = summary_and_intent[%r{<summary>(.*?)</summary>}m, 1]&.strip || ""
 
-    # Dengan cara serupa, ekstrak juga `intent`.
-    intent = reasoning_and_intent[%r{<intent>(.*?)</intent>}m, 1]&.strip || ""
+    # Dengan cara yang sama, ekstrak juga `intent`.
+    intent = summary_and_intent[%r{<intent>(.*?)</intent>}m, 1]&.strip || ""
 
     # Periksa apakah prediksi model sudah benar.
     correct = actual_intent.strip == intent.strip
 
-    # Kembalikan reasoning, intent, correct, dan usage.
-    [reasoning, intent, correct, usage]
+    # Kembalikan ringkasan, intent, status kebenaran, dan penggunaan.
+    [summary, intent, correct, usage]
   end
   ```
 </CodeGroup>
@@ -1410,13 +1451,14 @@ Berikut adalah rincian perubahannya:
 
 * Fungsi `classify_support_request()` (typescript, go, java, php: `classifySupportRequest()`; csharp: `ClassifySupportRequest()`) sekarang menerima `actual_intent` (typescript, csharp, go, java: `actualIntent`; php: `$actualIntent`) dari kasus uji dan membandingkannya dengan klasifikasi maksud Claude untuk menilai apakah keduanya cocok.
 * Fungsi ini mengekstrak statistik penggunaan untuk panggilan API guna menghitung biaya berdasarkan token input dan output yang digunakan.
+* Permintaan yang ditolak dihitung sebagai klasifikasi yang salah, sehingga satu penolakan tidak menghentikan evaluasi. Fungsi ini tetap mengembalikan penggunaannya, karena [beberapa penolakan dikenakan biaya](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
 
 ### Jalankan evaluasi Anda
 
 Evaluasi yang tepat memerlukan ambang batas dan tolok ukur yang jelas untuk menentukan hasil yang baik. Skrip sebelumnya mengembalikan nilai yang Anda perlukan untuk mengukur akurasi dan biaya per klasifikasi, tetapi Anda masih memerlukan ambang batas yang ditetapkan dengan jelas. Sebagai contoh:
 
-* **Akurasi:** 95% (dari 100 pengujian)
-* **Biaya per klasifikasi:** pengurangan rata-rata 50% (di seluruh 100 pengujian) dari metode perutean saat ini
+* **Akurasi:** 95 persen (dari 100 pengujian)
+* **Biaya per klasifikasi:** pengurangan rata-rata 50 persen (di seluruh 100 pengujian) dari metode perutean saat ini
 
 Dengan adanya ambang batas ini, Anda dapat mengetahui dalam skala besar, dan dengan empirisme yang tidak memihak, metode mana yang terbaik untuk Anda dan perubahan apa yang mungkin perlu Anda lakukan agar lebih sesuai dengan kebutuhan Anda.
 
@@ -1469,7 +1511,7 @@ flowchart LR
 
 ### Gunakan database vektor dan pengambilan pencarian kemiripan untuk menangani tiket yang sangat bervariasi
 
-Meskipun memberikan contoh merupakan cara paling efektif untuk meningkatkan performa, jika permintaan dukungan sangat bervariasi, mungkin sulit untuk menyertakan cukup contoh dalam satu prompt.
+Contoh merupakan cara paling efektif untuk meningkatkan performa, tetapi jika permintaan dukungan sangat bervariasi, mungkin sulit untuk menyertakan cukup contoh dalam satu prompt.
 
 Dalam skenario ini, Anda dapat menggunakan database vektor untuk melakukan pencarian kemiripan dari dataset contoh dan mengambil contoh yang paling relevan untuk kueri tertentu.
 
@@ -1483,7 +1525,7 @@ Berikut adalah beberapa skenario di mana Claude mungkin salah mengklasifikasikan
   <Accordion title="Pelanggan membuat permintaan implisit">
     Pelanggan sering mengungkapkan kebutuhan secara tidak langsung. Misalnya, “Saya sudah menunggu paket saya selama lebih dari dua minggu” mungkin merupakan permintaan tidak langsung untuk status pesanan.
 
-    * **Solusi:** Berikan Claude beberapa contoh pelanggan nyata dari jenis permintaan ini, beserta maksud yang mendasarinya. Anda dapat memperoleh hasil yang lebih baik lagi jika menyertakan alasan klasifikasi untuk maksud tiket yang sangat bernuansa, sehingga Claude dapat menggeneralisasi logikanya ke tiket lain dengan lebih baik.
+    * **Solusi:** Berikan Claude beberapa contoh pelanggan nyata dari jenis permintaan ini, beserta maksud yang mendasarinya. Untuk maksud yang sangat bernuansa, jelaskan juga dalam prompt apa yang membedakan masing-masing maksud, sehingga Claude dapat menerapkan pembedaan yang sama ke tiket lain.
   </Accordion>
 
   <Accordion title="Claude memprioritaskan emosi daripada maksud">

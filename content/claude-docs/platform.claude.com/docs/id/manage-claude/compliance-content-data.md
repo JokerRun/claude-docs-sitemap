@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-content-data
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 4a47030e3c32220279ac09d300961934cf88aeb38960951ff0dc4f81764da90e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ef27ba15a2c4673fddb919c853f24f68c41d7383e670f084fee5505826a586ea
 ---
 
 ---
@@ -188,16 +188,16 @@ File dan artifact diunduh berdasarkan ID. File dan artifact tidak dicantumkan se
 
 Pilih endpoint yang cocok dengan prefiks ID Anda dan data yang Anda butuhkan. Endpoint konten file yang sama melayani file chat, file proyek, dan entri `generated_files` yang ID-nya diawali dengan `claude_file_`. Endpoint file dan endpoint file yang dihasilkan masing-masing menolak ID milik yang lain dengan error 400; lihat [ID file tidak valid](https://platform.claude.com/docs/id/manage-claude/compliance-errors#invalid-file-id).
 
-| Anda memiliki                  | Anda menginginkan                        | Gunakan endpoint ini                                                                                                                |
-| ------------------------------ | ---------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| ID `claude_file_*`             | Konten file                              | [Mengunduh konten file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/download)                               |
-| ID `claude_file_*`             | Hanya metadata file                      | [Mendapatkan metadata file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/retrieve)                           |
-| ID `claude_gen_file_*`         | Konten biner file yang dihasilkan alat   | [Mengunduh file yang dihasilkan Claude](https://platform.claude.com/docs/id/api/compliance/apps/chats/generated_files/download)     |
-| ID `claude_gen_file_*`         | Hanya metadata file yang dihasilkan alat | [Mendapatkan metadata file yang dihasilkan](https://platform.claude.com/docs/id/api/compliance/apps/chats/generated_files/retrieve) |
-| ID `claude_artifact_version_*` | Teks satu versi artifact                 | [Mengunduh konten artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/download)                             |
-| ID `claude_artifact_version_*` | Hanya metadata versi artifact            | [Mendapatkan metadata artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/retrieve)                         |
-| ID `claude_proj_doc_*`         | Konten teks biasa dokumen proyek         | [Mendapatkan konten dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/retrieve)            |
-| ID `claude_proj_doc_*`         | Hanya metadata dokumen proyek            | [Mendapatkan metadata dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/metadata)          |
+| Anda memiliki | Anda menginginkan | Gunakan endpoint ini |
+| ----- | ----- | ----- |
+| ID `claude_file_*` | Konten file | [Mengunduh konten file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/download) |
+| ID `claude_file_*` | Hanya metadata file | [Mendapatkan metadata file](https://platform.claude.com/docs/id/api/compliance/apps/chats/files/retrieve) |
+| ID `claude_gen_file_*` | Konten biner file yang dihasilkan alat | [Mengunduh file yang dihasilkan Claude](https://platform.claude.com/docs/id/api/compliance/apps/chats/generated_files/download) |
+| ID `claude_gen_file_*` | Hanya metadata file yang dihasilkan alat | [Mendapatkan metadata file yang dihasilkan](https://platform.claude.com/docs/id/api/compliance/apps/chats/generated_files/retrieve) |
+| ID `claude_artifact_version_*` | Teks satu versi artifact | [Mengunduh konten artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/download) |
+| ID `claude_artifact_version_*` | Hanya metadata versi artifact | [Mendapatkan metadata artifact](https://platform.claude.com/docs/id/api/compliance/apps/artifacts/retrieve) |
+| ID `claude_proj_doc_*` | Konten teks biasa dokumen proyek | [Mendapatkan konten dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/retrieve) |
+| ID `claude_proj_doc_*` | Hanya metadata dokumen proyek | [Mendapatkan metadata dokumen proyek](https://platform.claude.com/docs/id/api/compliance/apps/projects/documents/metadata) |
 
 Endpoint konten file melakukan streaming konten yang disimpan claude.ai untuk file tersebut sebagai respons biner chunked. Konten itu tidak selalu identik dengan file yang diunggah pengguna. Gambar dapat disajikan sebagai salinan yang telah diproses, bukan byte yang diunggah. Beberapa dokumen yang dilampirkan ke chat (misalnya, file Word, file PowerPoint, dan beberapa PDF) disimpan sebagai teks yang diekstrak claude.ai darinya. Untuk dokumen ini, endpoint mengembalikan teks yang diekstrak dengan nama file asli, dan dokumen asli tidak tersedia melalui Compliance API. Bidang `size_bytes` dan `md5` mendeskripsikan konten yang disimpan, bukan file yang diunggah. Nama file dan `mime_type` masih dapat menyebut format dokumen yang diunggah. Identifikasi format file dari byte yang dikembalikan, bukan dari nama atau tipe yang dideklarasikan.
 

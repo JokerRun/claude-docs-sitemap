@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-operations
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: d203cbdc7f0ced2c47920f295fd06ff27a138940eec7c4024259f3df655d4552
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e86354f32704e677b5934b2e8d8593d96c823ae733a4b12005f190ce73c27e70
 ---
 
 ---
@@ -50,12 +50,12 @@ Setelah sebuah sesi ada, gunakan operasi-operasi ini untuk membaca, memperbarui,
 
 Sesi berkembang melalui status-status berikut. Lihat [Memulai sesi](https://platform.claude.com/docs/id/managed-agents/sessions) untuk siklus hidup sesi.
 
-| Status         | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `idle`         | Agen sedang menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi yang dibuat tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) dimulai dalam status `idle`. Sesi dapat berstatus `idle` saat sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) masih terbuka, sehingga `idle` saja tidak berarti pekerjaan telah selesai. Lihat [Mengetahui kapan pekerjaan selesai](https://platform.claude.com/docs/id/managed-agents/workflow-runs#know-when-the-work-is-done). |
-| `running`      | Agen sedang aktif mengeksekusi.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| `rescheduling` | Terjadi kesalahan sementara, mencoba ulang secara otomatis.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `terminated`   | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan atau karena telah diarsipkan. Sesi yang menyelesaikan pekerjaannya beralih ke `idle`, bukan `terminated`.                                                                                                                                                                                                                                                                                                                                                                                               |
+| Status | Deskripsi |
+| ----- | ----- |
+| `idle` | Agen sedang menunggu input, termasuk pesan pengguna atau konfirmasi alat. Sesi yang dibuat tanpa `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) dimulai dalam status `idle`. Sesi dapat berstatus `idle` saat sebuah [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#while-a-run-is-open) masih terbuka, sehingga `idle` saja tidak berarti pekerjaan telah selesai. Lihat [Mengetahui kapan pekerjaan selesai](https://platform.claude.com/docs/id/managed-agents/workflow-runs#know-when-the-work-is-done). |
+| `running` | Agen sedang aktif mengeksekusi. |
+| `rescheduling` | Terjadi kesalahan sementara, mencoba ulang secara otomatis. |
+| `terminated` | Sesi telah berakhir, baik karena kesalahan yang tidak dapat dipulihkan atau karena telah diarsipkan. Sesi yang menyelesaikan pekerjaannya beralih ke `idle`, bukan `terminated`. |
 
 ## Memperbarui konfigurasi agen
 

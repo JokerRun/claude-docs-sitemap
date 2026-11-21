@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/invites/delete
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: d15a82c9000e829b5be3d05ceb00d5e6c8c47cc0f6336a7cac171906dddabcc7
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a246e3155653d14062003643ada3090a28cc6785052a3d911c4264fd7497a6ac
 ---
 
 ---
@@ -52,7 +52,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

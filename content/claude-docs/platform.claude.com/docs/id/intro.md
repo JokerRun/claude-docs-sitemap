@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/intro
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: a9e5d457a947ebdf7bdeed3a47c1421d0774bb6d85fdb48f7d875c6ea4724240
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: b1b821671e423c3c61d132f16ba00e3027123da4273e8cc55385aecb8308386d
 ---
 
 ---
@@ -17,10 +17,10 @@ description: Claude adalah platform AI berkinerja tinggi, tepercaya, dan cerdas 
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
-|                        | Messages API                                    | Claude Managed Agents                                                                    |
-| ---------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Apa itu**            | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
-| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci    | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
+|  | Messages API | Claude Managed Agents |
+| ----- | ----- | ----- |
+| **Apa itu** | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
+| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci | Tugas yang berjalan lama dan pekerjaan asinkron |
 
 Untuk mempelajari lebih lanjut tentang masing-masing, lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) dan [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
 

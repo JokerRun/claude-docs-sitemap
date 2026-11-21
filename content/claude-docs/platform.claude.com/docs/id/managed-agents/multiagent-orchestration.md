@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 75171a1b6e957c7165d1f5d34e21cc493e65e43c025b0cd9c1c74bde7d73b74e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a3a174b337d658e92f7ae315fca6235d4fa29bfea169bf4cd97e6786eb5b57ae
 ---
 
 ---
@@ -56,11 +56,11 @@ Anda menentukan mana di antara ini yang dapat digunakan agen, dan agen menentuka
 
 Dengan subagen, agen itu sendiri yang menentukan apa yang terjadi selanjutnya. [Thread subagen](https://platform.claude.com/docs/id/managed-agents/session-threads) tetap tersedia hingga Anda mengarsipkannya, sehingga agen dapat mengirimkan pesan lanjutan kepadanya. Dengan alur kerja dinamis, Claude menulis program untuk mengorkestrasi agen tanpa keterlibatan langsung Claude. Konteks dan hasil diteruskan secara terprogram dari satu agen ke agen lain, sehingga thread sesi utama bebas untuk berkomunikasi dengan pengguna dan memeriksa satu atau beberapa workflow yang sedang berjalan untuk melaporkan kemajuan. Agen tidak dapat mengirim pesan lanjutan ke thread milik sebuah eksekusi, dan server mengarsipkan masing-masing thread tersebut paling lambat saat eksekusinya berakhir.
 
-| Pendekatan                                                                                                                             | Apa yang terjadi                                                                                                                                                                                                                                                                                               | Gunakan ketika                                                                                                                                                                                                                                     | Pertimbangkan                                                                                                                                                                                                                                                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Mendelegasikan ke subagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#delegate-to-subagents)         | Agen mendelegasikan tugas ke subagennya. Setiap subagen bekerja di [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads)-nya sendiri, yang dapat Anda daftarkan dan streaming.                                                                                                     | Agen perlu menindaklanjuti subagen setelah subagen melapor, atau agen membutuhkan spesialis yang Anda cantumkan, dengan prompt sistem dan alat mereka sendiri.                                                                                     | Delegasi hanya sedalam satu tingkat, dan sebuah sesi dapat memiliki paling banyak 25 thread anak pada satu waktu, termasuk yang idle. Thread advisor dan thread milik workflow run tidak dihitung.                                                                                                                                                           |
-| [Alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#dynamic-workflows)                    | Agen menulis sebuah workflow: program yang menjalankan banyak agen dalam beberapa fase dan menggabungkan hasilnya. Server menjalankannya di latar belakang sebagai satu eksekusi workflow, yang dapat Anda ikuti. Workflow tersebut mendefinisikan agen-agennya atau memilihnya dari daftar yang Anda berikan. | Sebagian besar pekerjaan yang membutuhkan lebih dari satu agen: pekerjaan dengan banyak bagian, pekerjaan paralel, atau tugas panjang yang sebaiknya selesai lebih cepat. Contohnya adalah audit, migrasi, riset mendalam, dan pemeriksaan silang. | Setiap agen dalam sebuah eksekusi menggunakan token, jadi tetapkan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) untuk membatasi pengeluaran sesi, termasuk eksekusi. Beri tahu agen dalam prompt sistemnya kapan harus menggunakan eksekusi. Anda mengikuti eksekusi berdasarkan fasenya dan dapat membaca setiap thread-nya. |
-| [Memberi sesi sebuah advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) | [Thread utama](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#how-it-works) sesi berkonsultasi dengan model advisor di tengah giliran untuk mendapatkan panduan, seperti merencanakan pendekatan atau meninjau pekerjaan, dan tetap mengerjakan pekerjaannya sendiri.             | Satu agen sebaiknya mengerjakan pekerjaan, dengan penilaian model advisor pada momen-momen kunci seperti perencanaan atau tinjauan akhir.                                                                                                          | Hanya thread utama yang dapat berkonsultasi dengan advisor, dan konsultasi ditagih sesuai tarif model advisor.                                                                                                                                                                                                                                               |
+| Pendekatan | Apa yang terjadi | Gunakan ketika | Pertimbangkan |
+| ----- | ----- | ----- | ----- |
+| [Mendelegasikan ke subagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#delegate-to-subagents) | Agen mendelegasikan tugas ke subagennya. Setiap subagen bekerja di [thread sesi](https://platform.claude.com/docs/id/managed-agents/session-threads)-nya sendiri, yang dapat Anda daftarkan dan streaming. | Agen perlu menindaklanjuti subagen setelah subagen melapor, atau agen membutuhkan spesialis yang Anda cantumkan, dengan prompt sistem dan alat mereka sendiri. | Delegasi hanya sedalam satu tingkat, dan sebuah sesi dapat memiliki paling banyak 25 thread anak pada satu waktu, termasuk yang idle. Thread advisor dan thread milik workflow run tidak dihitung. |
+| [Alur kerja dinamis](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#dynamic-workflows) | Agen menulis sebuah workflow: program yang menjalankan banyak agen dalam beberapa fase dan menggabungkan hasilnya. Server menjalankannya di latar belakang sebagai satu eksekusi workflow, yang dapat Anda ikuti. Workflow tersebut mendefinisikan agen-agennya atau memilihnya dari daftar yang Anda berikan. | Sebagian besar pekerjaan yang membutuhkan lebih dari satu agen: pekerjaan dengan banyak bagian, pekerjaan paralel, atau tugas panjang yang sebaiknya selesai lebih cepat. Contohnya adalah audit, migrasi, riset mendalam, dan pemeriksaan silang. | Setiap agen dalam sebuah eksekusi menggunakan token, jadi tetapkan [anggaran sesi](https://platform.claude.com/docs/id/managed-agents/budgets) untuk membatasi pengeluaran sesi, termasuk eksekusi. Beri tahu agen dalam prompt sistemnya kapan harus menggunakan eksekusi. Anda mengikuti eksekusi berdasarkan fasenya dan dapat membaca setiap thread-nya. |
+| [Memberi sesi sebuah advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) | [Thread utama](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#how-it-works) sesi berkonsultasi dengan model advisor di tengah giliran untuk mendapatkan panduan, seperti merencanakan pendekatan atau meninjau pekerjaan, dan tetap mengerjakan pekerjaannya sendiri. | Satu agen sebaiknya mengerjakan pekerjaan, dengan penilaian model advisor pada momen-momen kunci seperti perencanaan atau tinjauan akhir. | Hanya thread utama yang dapat berkonsultasi dengan advisor, dan konsultasi ditagih sesuai tarif model advisor. |
 
 Anda mengatur ini di blok `multiagent` pada definisi agen, yang memiliki sebuah `type`. Dengan tipe `multiagent_20261001`, sebuah agen dapat menggunakan ketiganya bersama-sama, dan Anda dapat mengaktifkan atau menonaktifkan masing-masing. Secara default, `subagents` dan `workflows` keduanya diaktifkan. `subagents` dan `workflows` masing-masing memiliki `inline_agents` yang diaktifkan, yaitu pengaturan untuk [agen yang didefinisikan sendiri oleh agen atau workflow](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents):
 
@@ -81,10 +81,10 @@ Setiap subagen, dan setiap agen dalam sebuah eksekusi workflow, adalah salah sat
 
 Kedua jenis berfungsi di bawah `subagents` dan di bawah `workflows`:
 
-| Jenis agen | Di bawah `subagents`                                                                                                      | Di bawah `workflows`                                                                                                                                            |
-| ---------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Predefined | Agen dapat mendelegasikan ke agen-agen yang Anda cantumkan di `subagents.predefined_agents`.                              | Sebuah workflow dapat menggunakan agen-agen yang Anda cantumkan di `workflows.predefined_agents`.                                                               |
-| Inline     | Agen dapat mendefinisikan agen inline saat mendelegasikan. `subagents.inline_agents` mengaktifkan atau menonaktifkan ini. | Sebuah workflow dapat mendefinisikan agen inline, dan menulis prompt sistem untuk masing-masing. `workflows.inline_agents` mengaktifkan atau menonaktifkan ini. |
+| Jenis agen | Di bawah `subagents` | Di bawah `workflows` |
+| ----- | ----- | ----- |
+| Predefined | Agen dapat mendelegasikan ke agen-agen yang Anda cantumkan di `subagents.predefined_agents`. | Sebuah workflow dapat menggunakan agen-agen yang Anda cantumkan di `workflows.predefined_agents`. |
+| Inline | Agen dapat mendefinisikan agen inline saat mendelegasikan. `subagents.inline_agents` mengaktifkan atau menonaktifkan ini. | Sebuah workflow dapat mendefinisikan agen inline, dan menulis prompt sistem untuk masing-masing. `workflows.inline_agents` mengaktifkan atau menonaktifkan ini. |
 
 `subagents.predefined_agents` dan `workflows.predefined_agents` adalah dua daftar terpisah. Agen di satu daftar tidak ditambahkan ke daftar lainnya. Kedua daftar kosong secara default. Entri di salah satu daftar mengambil salah satu bentuk berikut:
 
@@ -1108,11 +1108,11 @@ Agar workflow dapat menggunakan agen yang sudah Anda buat, cantumkan agen-agen t
 
 Setiap pengaturan diaktifkan atau dinonaktifkan secara terpisah:
 
-| Pengaturan  | Apa yang diaktifkannya                                                                            | Agen ditempatkan di                      | Default  |
-| ----------- | ------------------------------------------------------------------------------------------------- | ---------------------------------------- | -------- |
-| `workflows` | Alur kerja dinamis                                                                                | `workflows.predefined_agents`, hingga 20 | Aktif    |
-| `subagents` | Pendelegasian ke subagen: agen yang Anda cantumkan, dan agen yang didefinisikan sendiri oleh agen | `subagents.predefined_agents`, hingga 20 | Aktif    |
-| `advisor`   | Model advisor                                                                                     | Tidak ada. Atur `model`.                 | Nonaktif |
+| Pengaturan | Apa yang diaktifkannya | Agen ditempatkan di | Default |
+| ----- | ----- | ----- | ----- |
+| `workflows` | Alur kerja dinamis | `workflows.predefined_agents`, hingga 20 | Aktif |
+| `subagents` | Pendelegasian ke subagen: agen yang Anda cantumkan, dan agen yang didefinisikan sendiri oleh agen | `subagents.predefined_agents`, hingga 20 | Aktif |
+| `advisor` | Model advisor | Tidak ada. Atur `model`. | Nonaktif |
 
 Untuk mengetahui apa yang dimasukkan ke setiap daftar, dan cara mengizinkan hanya agen yang Anda cantumkan, lihat [Agen predefined dan inline](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#predefined-and-inline-agents).
 
@@ -1394,9 +1394,9 @@ Orkestrasi multiagen dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |
 
 ### Header beta yang diperlukan
 
@@ -1410,9 +1410,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

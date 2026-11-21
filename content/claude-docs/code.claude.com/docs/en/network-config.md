@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/network-config
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: f8f28e6270458179871d5f6e770cf50f012c6710bb61a1b2e9d28c0346cc8249
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2fafb9ca71c23b38b8ac9a139e1681c965c7ee6619b4a0cea524fb4c132ed55c
 ---
 
 > ## Documentation Index
@@ -265,6 +265,8 @@ The two Datadog intake hosts carry only optional operational telemetry, and sett
 ### Cloud provider and LLM gateway routing
 
 When using [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md), [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md), or a signed-in [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway) session, model traffic and authentication go to your provider or gateway instead of `api.anthropic.com`, `claude.ai`, or `platform.claude.com`. The WebFetch tool still calls `api.anthropic.com` for its [domain safety check](https://code.claude.com/docs/en/data-usage.md#webfetch-domain-safety-check) unless you set `skipWebFetchPreflight: true` in [settings](https://code.claude.com/docs/en/settings.md).
+
+If you set your provider or gateway in the Enterprise Admin Console, developers who sign in to your organization also need [these Anthropic hosts](https://claude.com/docs/third-party/claude-desktop/admin-console-claude-code#before-you-start).
 
 If your developers use [fast mode](https://code.claude.com/docs/en/fast-mode.md) behind an [LLM gateway](https://code.claude.com/docs/en/llm-gateway) set with [`ANTHROPIC_BASE_URL`](https://code.claude.com/docs/en/llm-gateway-connect#set-the-base-url-and-credential), keep `api.anthropic.com` reachable through your proxy. When Claude Code sends the fast mode availability check, it goes to that host through any configured HTTP proxy, never to the gateway. For when the check isn't sent, and the variable that restores fast mode in each case, see [Use fast mode behind proxies and LLM gateways](https://code.claude.com/docs/en/fast-mode.md#use-fast-mode-behind-proxies-and-llm-gateways).
 

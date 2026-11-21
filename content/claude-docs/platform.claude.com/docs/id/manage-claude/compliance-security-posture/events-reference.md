@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 3c26fc340b8436416307cc14c140a712e98412f661217796ab98c96f1f341a51
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: cf4725287bf1a0a2e64ac7c86f037648a99bd5fe39af73c3db6d4f6d62f48b30
 ---
 
 ---
@@ -27,25 +27,25 @@ Aktivitas `org_security_control_attestation_updated` mencatat bahwa seseorang me
 
 Tipe ini menambahkan field berikut, dengan `status` sebagai nilai atestasi dan `review_date` sebagai tanggal berakhirnya.
 
-| Field             | Tipe   | Deskripsi                                                                                                                                                            |
-| ----------------- | ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `control`         | string | Pengidentifikasi kontrol keamanan yang menjadi sasaran atestasi, misalnya `oauth_conditional_access`; perlakukan sebagai string opaque.                              |
-| `action`          | string | Apa yang berubah, sebagai salah satu [nilai `action`](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#action-values). |
-| `status`          | string | Nilai atestasi: Selesai (`completed`), Risiko diterima (`accepted_risk`), atau diatestasi sebagai Gagal (`control_failed`); tidak ada jika atestasi dicabut.         |
-| `previous_status` | string | Nilai atestasi sebelum perubahan ini, salah satu dari tiga nilai yang sama; tidak ada jika `action` adalah `attested`.                                               |
-| `review_date`     | string | Hari UTC (tanggal ISO 8601) saat atestasi dijadwalkan berhenti berlaku; tidak ada jika atestasi disimpan tanpa tanggal berakhir, atau dicabut.                       |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `control` | string | Pengidentifikasi kontrol keamanan yang menjadi sasaran atestasi, misalnya `oauth_conditional_access`; perlakukan sebagai string opaque. |
+| `action` | string | Apa yang berubah, sebagai salah satu [nilai `action`](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#action-values). |
+| `status` | string | Nilai atestasi: Selesai (`completed`), Risiko diterima (`accepted_risk`), atau diatestasi sebagai Gagal (`control_failed`); tidak ada jika atestasi dicabut. |
+| `previous_status` | string | Nilai atestasi sebelum perubahan ini, salah satu dari tiga nilai yang sama; tidak ada jika `action` adalah `attested`. |
+| `review_date` | string | Hari UTC (tanggal ISO 8601) saat atestasi dijadwalkan berhenti berlaku; tidak ada jika atestasi disimpan tanpa tanggal berakhir, atau dicabut. |
 
 Pada kontrol khusus informasi, nilai Ditinjau dicatat sebagai `completed`.
 
 ### Nilai `action`
 
-| `action`   | Arti                                                              |
-| ---------- | ----------------------------------------------------------------- |
+| `action` | Arti |
+| ----- | ----- |
 | `attested` | Atestasi dicatat untuk kontrol yang sebelumnya belum memilikinya. |
-| `changed`  | Atestasi disimpan ulang dengan nilai lain.                        |
-| `renewed`  | Atestasi disimpan ulang dengan nilai yang sama.                   |
-| `cleared`  | Seseorang mencabut atestasi.                                      |
-| `lapsed`   | Atestasi berhenti berlaku secara otomatis, bukan oleh seseorang.  |
+| `changed` | Atestasi disimpan ulang dengan nilai lain. |
+| `renewed` | Atestasi disimpan ulang dengan nilai yang sama. |
+| `cleared` | Seseorang mencabut atestasi. |
+| `lapsed` | Atestasi berhenti berlaku secara otomatis, bukan oleh seseorang. |
 
 Pada atau sebelum 23 Oktober 2026 (UTC), aktivitas `changed` juga dapat mencatat penyimpanan dengan nilai yang sama. Aktivitas seperti itu memiliki `created_at` pada atau sebelum hari tersebut dan `status` yang sama dengan `previous_status`.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/structured-outputs
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: c3c5068530257738397d6a1b9c557febc1a871e5d078695998d493c2feb87e60
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: dd7dc63abcf96d09f7f88791e5030fc8f0a0699e2d8eace593bc2d546b71b2b8
 ---
 
 ---
@@ -638,15 +638,15 @@ Output terstruktur menjamin respons yang sesuai skema melalui “constrained dec
     <Accordion title="Inferensi tipe">
       SDK memetakan tipe properti PHP 8 native ke JSON Schema:
 
-      | Tipe PHP                                               | JSON Schema                       |
-      | ------------------------------------------------------ | --------------------------------- |
-      | `string`                                               | `"string"`                        |
-      | `int`                                                  | `"integer"`                       |
-      | `float`                                                | `"number"`                        |
-      | `bool`                                                 | `"boolean"`                       |
-      | `array`                                                | `"array"` (lihat catatan berikut) |
-      | `?type` (nullable)                                     | Bidang opsional                   |
-      | Class yang mengimplementasikan `StructuredOutputModel` | Objek bersarang                   |
+      | Tipe PHP | JSON Schema |
+      | ----- | ----- |
+      | `string` | `"string"` |
+      | `int` | `"integer"` |
+      | `float` | `"number"` |
+      | `bool` | `"boolean"` |
+      | `array` | `"array"` (lihat catatan berikut) |
+      | `?type` (nullable) | Bidang opsional |
+      | Class yang mengimplementasikan `StructuredOutputModel` | Objek bersarang |
 
       Untuk properti `array`, SDK menambahkan skema `items` hanya ketika tipe elemennya adalah `StructuredOutputModel` bersarang, yang dideklarasikan dengan `#[Constrained(itemClass: MyModel::class)]` atau docblock `/** @var MyModel[] */`. Array skalar (`string[]`, `int[]`) menghasilkan `{"type":"array"}` tanpa batasan.
 
@@ -3026,11 +3026,11 @@ Output terstruktur bekerja dengan mengompilasi JSON schema Anda menjadi tata bah
 
 Batas berikut berlaku untuk semua permintaan dengan `output_config.format` atau `strict: true`:
 
-| Batas                       | Nilai | Deskripsi                                                                                                                                                                                           |
-| --------------------------- | ----- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Alat ketat per permintaan   | 20    | Jumlah maksimum alat dengan `strict: true`. Alat non-ketat tidak dihitung dalam batas ini.                                                                                                          |
-| Parameter opsional          | 24    | Total parameter opsional di semua skema alat ketat dan skema output JSON. Setiap parameter yang tidak tercantum dalam `required` dihitung dalam batas ini.                                          |
-| Parameter dengan tipe union | 16    | Total parameter yang menggunakan `anyOf` atau array tipe (misalnya, `"type": ["string", "null"]`) di semua skema ketat. Parameter ini sangat mahal karena menciptakan biaya kompilasi eksponensial. |
+| Batas | Nilai | Deskripsi |
+| ----- | ----- | ----- |
+| Alat ketat per permintaan | 20 | Jumlah maksimum alat dengan `strict: true`. Alat non-ketat tidak dihitung dalam batas ini. |
+| Parameter opsional | 24 | Total parameter opsional di semua skema alat ketat dan skema output JSON. Setiap parameter yang tidak tercantum dalam `required` dihitung dalam batas ini. |
+| Parameter dengan tipe union | 16 | Total parameter yang menggunakan `anyOf` atau array tipe (misalnya, `"type": ["string", "null"]`) di semua skema ketat. Parameter ini sangat mahal karena menciptakan biaya kompilasi eksponensial. |
 
 <Note>
   Batas ini berlaku untuk total gabungan di semua skema ketat dalam satu permintaan. Misalnya, jika Anda memiliki empat alat ketat dengan masing-masing enam parameter opsional, Anda akan mencapai batas 24 parameter meskipun tidak ada satu alat pun yang tampak kompleks.
@@ -3090,8 +3090,8 @@ Output terstruktur tersedia di semua model dan layak untuk kesiapan HIPAA.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud               | Model                                                              |
-| -------- | ---------------------------- | ------------------------------------------------------------------ |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
 | Tersedia | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -3102,9 +3102,9 @@ Output terstruktur tersedia di semua model dan layak untuk kesiapan HIPAA.
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                                                                         | HIPAA                                                                                                                                                                                                          |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Status | Layak (bersyarat; tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                                                              | Layak                                                                                                                                                                                                          |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Layak (bersyarat; tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
 | Detail | Prompt Anda dan output Claude tidak disimpan. Hanya JSON schema yang di-cache, hingga 24 jam sejak terakhir digunakan. Ini juga mencakup penggunaan alat ketat (`strict: true` pada alat), yang menggunakan pipeline grammar yang sama. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#data-retention) | PHI tidak boleh disertakan dalam definisi JSON schema; lihat panduan penanganan PHI. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#phi-handling-guidelines) |
 
 Endpoint yang berlaku:

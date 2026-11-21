@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 9d34276f20418847fca9b2a37cd74e20b5528bad442fa0f22b43389774dae557
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 9f1833c32904244b8cf4e6371031375a386c19bdee41db9064e1eb01e3e550fe
 ---
 
 ---
@@ -28,12 +28,12 @@ curl --fail-with-body -sS \
   -H "anthropic-version: 2026-10-21"
 ```
 
-| Item                | Aturan                                                                                                                                                                                                                                                                                     |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `organization_id`   | `uuid` dari [organisasi tertaut](https://platform.claude.com/docs/id/manage-claude/compliance-api#how-the-compliance-api-works) dari [Daftar organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organizations); nilai lain mana pun mengembalikan 404. |
-| Kunci               | [Kunci untuk organisasi induk](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) dapat menyebut organisasi tertaut mana pun, dan kunci untuk satu organisasi hanya dapat menyebut organisasi tersebut.                                    |
-| `anthropic-version` | Wajib; permintaan tanpanya mengembalikan 400.                                                                                                                                                                                                                                              |
-| Parameter kueri     | Tidak ada; permintaan dengan parameter kueri mana pun mengembalikan 400.                                                                                                                                                                                                                   |
+| Item | Aturan |
+| ----- | ----- |
+| `organization_id` | `uuid` dari [organisasi tertaut](https://platform.claude.com/docs/id/manage-claude/compliance-api#how-the-compliance-api-works) dari [Daftar organisasi](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#list-organizations); nilai lain mana pun mengembalikan 404. |
+| Kunci | [Kunci untuk organisasi induk](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) dapat menyebut organisasi tertaut mana pun, dan kunci untuk satu organisasi hanya dapat menyebut organisasi tersebut. |
+| `anthropic-version` | Wajib; permintaan tanpanya mengembalikan 400. |
+| Parameter kueri | Tidak ada; permintaan dengan parameter kueri mana pun mengembalikan 400. |
 
 ## Respons
 
@@ -114,27 +114,27 @@ Setiap field selalu ada, dan field tanpa nilai bernilai `null`; field tersebut t
 
 ### Field tingkat atas
 
-| Field             | Tipe                   | Deskripsi                                                                                                                                                                                                  |
-| ----------------- | ---------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`            | string                 | Selalu `security_posture`.                                                                                                                                                                                 |
-| `organization_id` | string                 | UUID organisasi.                                                                                                                                                                                           |
-| `evaluated_at`    | string (RFC 3339, UTC) | Waktu saat setiap kontrol dievaluasi.                                                                                                                                                                      |
-| `comments_status` | string                 | Apakah komentar atestasi dibaca; lihat [Siapa yang mengatestasi, dan komentar](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#who-attested-and-comments). |
-| `controls`        | array objek            | Kontrol-kontrol organisasi; array ini tidak pernah kosong.                                                                                                                                                 |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `type` | string | Selalu `security_posture`. |
+| `organization_id` | string | UUID organisasi. |
+| `evaluated_at` | string (RFC 3339, UTC) | Waktu saat setiap kontrol dievaluasi. |
+| `comments_status` | string | Apakah komentar atestasi dibaca; lihat [Siapa yang mengatestasi, dan komentar](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#who-attested-and-comments). |
+| `controls` | array objek | Kontrol-kontrol organisasi; array ini tidak pernah kosong. |
 
 ### Field `controls[]`
 
-| Field           | Tipe             | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                     |
-| --------------- | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`            | string           | Pengidentifikasi kontrol, yang sama untuk setiap organisasi dan tidak pernah berubah.                                                                                                                                                                                                                                                                                                         |
-| `display_name`  | string           | Nama tampilan kontrol, berupa teks tampilan dalam bahasa Inggris yang kata-katanya dapat berubah.                                                                                                                                                                                                                                                                                             |
-| `section`       | string           | Bagian tempat kontrol ini berada, salah satu dari 10 bagian yang dicantumkan setelah tabel ini; nilai lain dapat ditambahkan, jadi perlakukan nilai yang tidak dikenal sebagai bagian tersendiri.                                                                                                                                                                                             |
-| `setting_name`  | string atau null | `name` dari entri dalam pengaturan efektif organisasi yang dibaca kontrol ini; `null` jika kontrol tidak membaca entri semacam itu.                                                                                                                                                                                                                                                           |
-| `status`        | string           | Alasan hasil kontrol; lihat [Nilai status](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#status-values).                                                                                                                                                                                                                                    |
-| `rating`        | string           | Hasil kontrol, yang mengikuti dari `status`; lihat [Nilai status](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#status-values).                                                                                                                                                                                                             |
-| `current_value` | string atau null | Nilai saat ini, berupa teks tampilan dalam bahasa Inggris yang kata-katanya dapat berubah; `null` pada kontrol manual atau jika tidak ada nilai yang dibaca.                                                                                                                                                                                                                                  |
-| `desired_state` | string atau null | Nilai yang direkomendasikan, berupa teks tampilan dalam bahasa Inggris yang kata-katanya dapat berubah; `null` jika tidak ada untuk organisasi ini.                                                                                                                                                                                                                                           |
-| `attestation`   | objek atau null  | Atestasi yang respons tampilkan, juga selama atestasi tersebut tidak berlaku; `null` selama `status` bernilai `descriptive`, `not_applicable`, atau `not_evaluated`, dan dalam kasus-kasus di bawah [Bagaimana atestasi ditampilkan dalam respons](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#how-an-attestation-shows-in-the-response). |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `id` | string | Pengidentifikasi kontrol, yang sama untuk setiap organisasi dan tidak pernah berubah. |
+| `display_name` | string | Nama tampilan kontrol, berupa teks tampilan dalam bahasa Inggris yang kata-katanya dapat berubah. |
+| `section` | string | Bagian tempat kontrol ini berada, salah satu dari 10 bagian yang dicantumkan setelah tabel ini; nilai lain dapat ditambahkan, jadi perlakukan nilai yang tidak dikenal sebagai bagian tersendiri. |
+| `setting_name` | string atau null | `name` dari entri dalam pengaturan efektif organisasi yang dibaca kontrol ini; `null` jika kontrol tidak membaca entri semacam itu. |
+| `status` | string | Alasan hasil kontrol; lihat [Nilai status](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#status-values). |
+| `rating` | string | Hasil kontrol, yang mengikuti dari `status`; lihat [Nilai status](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#status-values). |
+| `current_value` | string atau null | Nilai saat ini, berupa teks tampilan dalam bahasa Inggris yang kata-katanya dapat berubah; `null` pada kontrol manual atau jika tidak ada nilai yang dibaca. |
+| `desired_state` | string atau null | Nilai yang direkomendasikan, berupa teks tampilan dalam bahasa Inggris yang kata-katanya dapat berubah; `null` jika tidak ada untuk organisasi ini. |
+| `attestation` | objek atau null | Atestasi yang respons tampilkan, juga selama atestasi tersebut tidak berlaku; `null` selama `status` bernilai `descriptive`, `not_applicable`, atau `not_evaluated`, dan dalam kasus-kasus di bawah [Bagaimana atestasi ditampilkan dalam respons](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#how-an-attestation-shows-in-the-response). |
 
 `section` adalah salah satu dari `identity_access`, `data_privacy`, `capabilities`, `connectors_integrations`, `chats_desktop_mdm`, `cowork_admin_console`, `cowork_desktop_mdm`, `claude_code_admin_console`, `claude_code_managed_settings`, dan `healthy_adoption`.
 
@@ -142,39 +142,39 @@ Untuk membandingkan nilai dalam kode, cari `setting_name` di [pengaturan efektif
 
 ### Field `attestation`
 
-| Field         | Tipe                   | Deskripsi                                                                                                                                                                                                                                                         |
-| ------------- | ---------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `state`       | string atau null       | Apakah atestasi berlaku (`null` berarti berlaku); lihat [Keadaan atestasi](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#attestation-states).                                                                   |
-| `attested_at` | string (RFC 3339, UTC) | Waktu atestasi dibuat.                                                                                                                                                                                                                                            |
-| `comment`     | string atau null       | Komentar yang disimpan bersama atestasi, paling banyak 2.000 karakter; `null` jika tidak ada, atau jika `comments_status` bukan `available`.                                                                                                                      |
-| `attested_by` | objek atau null        | Orang yang mengatestasi; `null` jika kunci tidak memiliki `read:compliance_user_data` maupun `read:org_audit`, jika akun orang tersebut telah dihapus atau sedang dihapus, atau jika, untuk organisasi ini, endpoint tidak mengembalikan siapa yang mengatestasi. |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `state` | string atau null | Apakah atestasi berlaku (`null` berarti berlaku); lihat [Keadaan atestasi](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#attestation-states). |
+| `attested_at` | string (RFC 3339, UTC) | Waktu atestasi dibuat. |
+| `comment` | string atau null | Komentar yang disimpan bersama atestasi, paling banyak 2.000 karakter; `null` jika tidak ada, atau jika `comments_status` bukan `available`. |
+| `attested_by` | objek atau null | Orang yang mengatestasi; `null` jika kunci tidak memiliki `read:compliance_user_data` maupun `read:org_audit`, jika akun orang tersebut telah dihapus atau sedang dihapus, atau jika, untuk organisasi ini, endpoint tidak mengembalikan siapa yang mengatestasi. |
 
 ### Field `attested_by`
 
-| Field     | Tipe   | Deskripsi                                 |
-| --------- | ------ | ----------------------------------------- |
-| `type`    | string | Selalu `user_actor`.                      |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `type` | string | Selalu `user_actor`. |
 | `user_id` | string | ID pengguna, yang diawali dengan `user_`. |
 
 ## Nilai status
 
 `status` memberikan alasan hasil suatu kontrol, dan setiap status memiliki satu `rating`.
 
-| `status`                     | Jenis kontrol        | Arti                                                                                                                         | `rating`       | Di halaman                                             |
-| ---------------------------- | -------------------- | ---------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------ |
-| `passed`                     | otomatis             | Nilai saat ini memenuhi nilai yang direkomendasikan.                                                                         | `passed`       | Lulus                                                  |
-| `matches_profile`            | otomatis             | Nilai saat ini sama dengan nilai yang direkomendasikan.                                                                      | `passed`       | Lulus                                                  |
-| `exceeds_baseline`           | otomatis             | Nilai saat ini lebih ketat daripada nilai yang direkomendasikan.                                                             | `passed`       | Lulus                                                  |
-| `failed_check_accepted_risk` | otomatis             | Pemeriksaan otomatis tidak berhasil, dan risiko diterima berlaku.                                                            | `passed`       | Lulus                                                  |
-| `failed`                     | otomatis atau manual | Nilai saat ini tidak memenuhi nilai yang direkomendasikan, atau atestasi yang dihilangkan dari respons memberikan hasil ini. | `failed`       | Gagal, atau Lulus dengan atestasi Selesai yang berlaku |
-| `review`                     | otomatis             | Nilai saat ini lebih longgar daripada nilai yang direkomendasikan.                                                           | `failed`       | Gagal                                                  |
-| `attested_completed`         | manual               | Atestasi dengan nilai Selesai (`completed`) berlaku.                                                                         | `passed`       | Lulus                                                  |
-| `attested_accepted_risk`     | manual               | Atestasi dengan nilai Risiko diterima (`accepted_risk`) berlaku.                                                             | `passed`       | Lulus                                                  |
-| `not_attested`               | manual               | Tidak ada atestasi yang berlaku.                                                                                             | `not_attested` | Belum diatestasi                                       |
-| `attestation_not_enabled`    | manual               | Tidak ada yang dapat mengatestasi kontrol ini.                                                                               | `not_attested` | Deskriptif                                             |
-| `descriptive`                | khusus informasi     | Kontrol ini dilaporkan, tidak diberi hasil.                                                                                  | `descriptive`  | Deskriptif                                             |
-| `not_applicable`             | mana pun             | Kontrol ini tidak berlaku bagi organisasi.                                                                                   | `descriptive`  | Deskriptif                                             |
-| `not_evaluated`              | mana pun             | Pengaturan, atau pengaturan lain yang menentukan apakah kontrol berlaku, tidak dapat dibaca.                                 | `descriptive`  | Deskriptif                                             |
+| `status` | Jenis kontrol | Arti | `rating` | Di halaman |
+| ----- | ----- | ----- | ----- | ----- |
+| `passed` | otomatis | Nilai saat ini memenuhi nilai yang direkomendasikan. | `passed` | Lulus |
+| `matches_profile` | otomatis | Nilai saat ini sama dengan nilai yang direkomendasikan. | `passed` | Lulus |
+| `exceeds_baseline` | otomatis | Nilai saat ini lebih ketat daripada nilai yang direkomendasikan. | `passed` | Lulus |
+| `failed_check_accepted_risk` | otomatis | Pemeriksaan otomatis tidak berhasil, dan risiko diterima berlaku. | `passed` | Lulus |
+| `failed` | otomatis atau manual | Nilai saat ini tidak memenuhi nilai yang direkomendasikan, atau atestasi yang dihilangkan dari respons memberikan hasil ini. | `failed` | Gagal, atau Lulus dengan atestasi Selesai yang berlaku |
+| `review` | otomatis | Nilai saat ini lebih longgar daripada nilai yang direkomendasikan. | `failed` | Gagal |
+| `attested_completed` | manual | Atestasi dengan nilai Selesai (`completed`) berlaku. | `passed` | Lulus |
+| `attested_accepted_risk` | manual | Atestasi dengan nilai Risiko diterima (`accepted_risk`) berlaku. | `passed` | Lulus |
+| `not_attested` | manual | Tidak ada atestasi yang berlaku. | `not_attested` | Belum diatestasi |
+| `attestation_not_enabled` | manual | Tidak ada yang dapat mengatestasi kontrol ini. | `not_attested` | Deskriptif |
+| `descriptive` | khusus informasi | Kontrol ini dilaporkan, tidak diberi hasil. | `descriptive` | Deskriptif |
+| `not_applicable` | mana pun | Kontrol ini tidak berlaku bagi organisasi. | `descriptive` | Deskriptif |
+| `not_evaluated` | mana pun | Pengaturan, atau pengaturan lain yang menentukan apakah kontrol berlaku, tidak dapat dibaca. | `descriptive` | Deskriptif |
 
 Tidak ada field yang menyebutkan jenis kontrol; untuk `failed`, `current_value` yang bernilai `null` menandakan kontrol manual. Nilai lain dapat ditambahkan, jadi hitung kontrol dengan `status` yang tidak dikenal berdasarkan `rating`-nya, dan anggap `rating` yang tidak dikenal sebagai tidak Lulus. Status `review` dan keadaan atestasi `review_due` tidak berkaitan.
 
@@ -182,13 +182,13 @@ Tidak ada field yang menyebutkan jenis kontrol; untuk `failed`, `current_value` 
 
 `state` menyatakan apakah atestasi yang respons tampilkan berlaku.
 
-| `state`           | Arti                                                                                                                                      |
-| ----------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| `in_force`        | Atestasi berlaku.                                                                                                                         |
-| `null`            | Atestasi berlaku, sama seperti `in_force`. Keadaan ini hanya muncul pada kontrol manual.                                                  |
-| `review_due`      | Tanggal berakhir telah tiba.                                                                                                              |
+| `state` | Arti |
+| ----- | ----- |
+| `in_force` | Atestasi berlaku. |
+| `null` | Atestasi berlaku, sama seperti `in_force`. Keadaan ini hanya muncul pada kontrol manual. |
+| `review_due` | Tanggal berakhir telah tiba. |
 | `setting_changed` | Pemeriksaan tidak berhasil pada nilai selain nilai yang risikonya diterima, atau risiko diterima sudah tercatat sebagai berhenti berlaku. |
-| `check_passing`   | Pemeriksaan berhasil, jadi tidak ada risiko yang perlu diterima.                                                                          |
+| `check_passing` | Pemeriksaan berhasil, jadi tidak ada risiko yang perlu diterima. |
 
 Jika lebih dari satu alasan berlaku, respons memberikan yang pertama dari `check_passing`, `setting_changed`, dan `review_due`. Sejak pukul 00.00 UTC pada tanggal berakhirnya, atestasi tidak berlaku. Respons tidak memuat tanggal berakhir, jadi `state` yang menentukan; tanggal berakhir yang tersimpan adalah [`review_date`](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/events-reference#attestation-activity) milik aktivitas atestasi. Anggap `state` yang tidak dikenal sebagai tidak berlaku.
 
@@ -196,23 +196,23 @@ Jika lebih dari satu alasan berlaku, respons memberikan yang pertama dari `check
 
 Respons menampilkan sebagian atestasi dan menghilangkan yang lain, jadi `attestation` yang bernilai `null` tidak membuktikan bahwa tidak ada yang mengatestasi.
 
-| Jenis kontrol                           | Diatestasi sebagai                              | `status`                                                                              | `rating`                    | `attestation`                                               |
-| --------------------------------------- | ----------------------------------------------- | ------------------------------------------------------------------------------------- | --------------------------- | ----------------------------------------------------------- |
-| Manual                                  | Tanpa atestasi                                  | `not_attested`, atau `attestation_not_enabled` jika tidak ada yang dapat mengatestasi | `not_attested`              | `null`                                                      |
-| Manual                                  | Selesai                                         | `attested_completed`                                                                  | `passed`                    | Ditampilkan                                                 |
-| Manual                                  | Risiko diterima                                 | `attested_accepted_risk`                                                              | `passed`                    | Ditampilkan                                                 |
-| Manual                                  | Gagal (`control_failed`)                        | `failed`                                                                              | `failed`                    | `null`: tidak pernah ditampilkan                            |
-| Otomatis, pemeriksaan tidak berhasil    | Tanpa atestasi                                  | `failed` atau `review`                                                                | `failed`                    | `null`                                                      |
-| Otomatis, pemeriksaan tidak berhasil    | Risiko diterima                                 | `failed_check_accepted_risk`                                                          | `passed`                    | Ditampilkan                                                 |
-| Otomatis, pemeriksaan tidak berhasil    | Selesai                                         | `failed`, bahkan jika pemeriksaan otomatis memberikan `review`                        | `failed`                    | `null`: tidak pernah ditampilkan                            |
-| Otomatis, pemeriksaan tidak berhasil    | Gagal                                           | `status` yang diberikan pemeriksaan otomatis                                          | `failed`                    | `null`: tidak pernah ditampilkan                            |
-| Otomatis, pemeriksaan berhasil          | Tanpa atestasi                                  | `passed`, `matches_profile`, atau `exceeds_baseline`                                  | `passed`                    | `null`                                                      |
-| Otomatis, pemeriksaan berhasil          | Selesai                                         | `status` yang diberikan pemeriksaan otomatis                                          | `passed`                    | `null`: tidak pernah ditampilkan                            |
-| Otomatis, pemeriksaan berhasil          | Risiko diterima                                 | `status` yang diberikan pemeriksaan otomatis                                          | `passed`                    | `null` selama pemeriksaan berhasil pada nilai yang diterima |
-| Otomatis, pemeriksaan berhasil          | Gagal                                           | `failed`                                                                              | `failed`                    | `null`: tidak pernah ditampilkan                            |
-| Khusus informasi                        | Nilai apa pun                                   | `descriptive`                                                                         | `descriptive`               | `null`: tidak pernah ditampilkan                            |
-| Mana pun, selama atestasi tidak berlaku | Nilai yang ditampilkan menurut baris sebelumnya | Sama seperti tanpa atestasi                                                           | Sama seperti tanpa atestasi | Ditampilkan, dengan `state` selain `in_force` atau `null`   |
-| Mana pun, selama atestasi tidak berlaku | Nilai yang dihilangkan oleh baris sebelumnya    | Sama seperti tanpa atestasi                                                           | Sama seperti tanpa atestasi | `null`                                                      |
+| Jenis kontrol | Diatestasi sebagai | `status` | `rating` | `attestation` |
+| ----- | ----- | ----- | ----- | ----- |
+| Manual | Tanpa atestasi | `not_attested`, atau `attestation_not_enabled` jika tidak ada yang dapat mengatestasi | `not_attested` | `null` |
+| Manual | Selesai | `attested_completed` | `passed` | Ditampilkan |
+| Manual | Risiko diterima | `attested_accepted_risk` | `passed` | Ditampilkan |
+| Manual | Gagal (`control_failed`) | `failed` | `failed` | `null`: tidak pernah ditampilkan |
+| Otomatis, pemeriksaan tidak berhasil | Tanpa atestasi | `failed` atau `review` | `failed` | `null` |
+| Otomatis, pemeriksaan tidak berhasil | Risiko diterima | `failed_check_accepted_risk` | `passed` | Ditampilkan |
+| Otomatis, pemeriksaan tidak berhasil | Selesai | `failed`, bahkan jika pemeriksaan otomatis memberikan `review` | `failed` | `null`: tidak pernah ditampilkan |
+| Otomatis, pemeriksaan tidak berhasil | Gagal | `status` yang diberikan pemeriksaan otomatis | `failed` | `null`: tidak pernah ditampilkan |
+| Otomatis, pemeriksaan berhasil | Tanpa atestasi | `passed`, `matches_profile`, atau `exceeds_baseline` | `passed` | `null` |
+| Otomatis, pemeriksaan berhasil | Selesai | `status` yang diberikan pemeriksaan otomatis | `passed` | `null`: tidak pernah ditampilkan |
+| Otomatis, pemeriksaan berhasil | Risiko diterima | `status` yang diberikan pemeriksaan otomatis | `passed` | `null` selama pemeriksaan berhasil pada nilai yang diterima |
+| Otomatis, pemeriksaan berhasil | Gagal | `failed` | `failed` | `null`: tidak pernah ditampilkan |
+| Khusus informasi | Nilai apa pun | `descriptive` | `descriptive` | `null`: tidak pernah ditampilkan |
+| Mana pun, selama atestasi tidak berlaku | Nilai yang ditampilkan menurut baris sebelumnya | Sama seperti tanpa atestasi | Sama seperti tanpa atestasi | Ditampilkan, dengan `state` selain `in_force` atau `null` |
+| Mana pun, selama atestasi tidak berlaku | Nilai yang dihilangkan oleh baris sebelumnya | Sama seperti tanpa atestasi | Sama seperti tanpa atestasi | `null` |
 
 Setiap baris kecuali dua baris terakhir berlaku selama atestasi masih berlaku. Pada kontrol otomatis, atestasi tidak berlaku selama nilai yang dibaca pemeriksaan berbeda dari nilai saat atestasi tersebut disimpan. Setiap atestasi yang respons tampilkan pada kontrol otomatis adalah risiko diterima. [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) juga mencatat atestasi dari jenis-jenis yang dihilangkan dari respons.
 
@@ -220,10 +220,10 @@ Setiap baris kecuali dua baris terakhir berlaku selama atestasi masih berlaku. P
 
 Respons tidak memuat skor maupun jumlah, baik secara keseluruhan maupun per kelompok. Di halaman Security posture, baris ringkasan menyebutkan berapa banyak kontrol yang lulus dan berapa banyak kontrol yang dihitung halaman tersebut. Untuk menghitung seperti baris ringkasan, hitung entri-entri berikut:
 
-| Angka              | Entri yang dihitungnya                                                                                                 |
-| ------------------ | ---------------------------------------------------------------------------------------------------------------------- |
-| Kontrol yang lulus | Entri dengan rating `passed`                                                                                           |
-| Total              | Entri dengan rating `passed`, `failed`, atau `not_attested`, kecuali entri yang `status`-nya `attestation_not_enabled` |
+| Angka | Entri yang dihitungnya |
+| ----- | ----- |
+| Kontrol yang lulus | Entri dengan rating `passed` |
+| Total | Entri dengan rating `passed`, `failed`, atau `not_attested`, kecuali entri yang `status`-nya `attestation_not_enabled` |
 
 Halaman menampilkan entri `attestation_not_enabled` sebagai Deskriptif dan tidak menghitungnya. Entri dengan rating `descriptive` tidak termasuk dalam kedua angka tersebut.
 
@@ -237,12 +237,12 @@ Kontrol yang dihilangkan dari respons tidak disebutkan di dalamnya. Jangan mengh
 
 Periksa empat hal saat Anda menghitung kontrol berdasarkan `rating`.
 
-| Jika Anda menghitung              | Periksa juga                                                                                                                                                                                                         |
-| --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Lulus (`passed`)                  | Ini mencakup setiap kontrol dengan risiko diterima yang berlaku, jadi cari `failed_check_accepted_risk` dan `attested_accepted_risk`.                                                                                |
-| Gagal (`failed`)                  | Ini mencakup kontrol yang diatestasi sebagai Gagal (`control_failed`), serta pemeriksaan otomatis yang tidak berhasil dengan atestasi Selesai yang berlaku, yang ditampilkan halaman Security posture sebagai Lulus. |
-| Belum diatestasi (`not_attested`) | Ini mencakup entri yang `status`-nya `attestation_not_enabled`, yang ditampilkan halaman Security posture sebagai Deskriptif.                                                                                        |
-| Deskriptif (`descriptive`)        | Ini dapat menyembunyikan kontrol yang tidak dapat dibaca, jadi cari `not_evaluated`.                                                                                                                                 |
+| Jika Anda menghitung | Periksa juga |
+| ----- | ----- |
+| Lulus (`passed`) | Ini mencakup setiap kontrol dengan risiko diterima yang berlaku, jadi cari `failed_check_accepted_risk` dan `attested_accepted_risk`. |
+| Gagal (`failed`) | Ini mencakup kontrol yang diatestasi sebagai Gagal (`control_failed`), serta pemeriksaan otomatis yang tidak berhasil dengan atestasi Selesai yang berlaku, yang ditampilkan halaman Security posture sebagai Lulus. |
+| Belum diatestasi (`not_attested`) | Ini mencakup entri yang `status`-nya `attestation_not_enabled`, yang ditampilkan halaman Security posture sebagai Deskriptif. |
+| Deskriptif (`descriptive`) | Ini dapat menyembunyikan kontrol yang tidak dapat dibaca, jadi cari `not_evaluated`. |
 
 Halaman Security posture mengelompokkan kontrol berdasarkan produk. Anda tidak dapat menyusun ulang kelompok tersebut dari respons. Satu-satunya field pengelompokan adalah `section`, dan halaman tidak membentuk kelompoknya hanya dari bagian. Menghitung berdasarkan `section` dapat dilakukan, tetapi menghasilkan baris yang berbeda dari baris di halaman.
 
@@ -252,13 +252,13 @@ Halaman Security posture mengelompokkan kontrol berdasarkan produk. Anda tidak d
 
 Endpoint ini tidak mengembalikan komentar, bahkan ketika halaman Security posture menampilkannya: setiap `comment` bernilai `null`, dan `comments_status` bernilai `not_enabled` atau `not_permitted`. Jadi, `not_enabled` dan komentar yang bernilai `null` tidak berarti atestasi tersebut tidak memiliki komentar. `comments_status` menjelaskan cara membaca komentar yang bernilai `null`, dan skema mendefinisikan nilai berikut.
 
-| `comments_status`           | Arti                                                                                                                                                             |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `not_permitted`             | Kunci API tidak memiliki `read:compliance_user_data` maupun `read:org_audit`, jadi setiap `comment` dan setiap `attested_by` bernilai `null`.                    |
-| `requires_organization_key` | Kunci API tidak dibuat di organisasi tersebut, seperti halnya kunci untuk organisasi induk, jadi setiap `comment` bernilai `null`. Mencoba lagi tidak membantu.  |
-| `available`                 | Komentar telah dibaca, jadi komentar yang bernilai `null` berarti tidak ada komentar, atau komentar tersebut baru disimpan beberapa saat lalu.                   |
-| `not_enabled`               | Endpoint ini tidak mengembalikan komentar untuk organisasi ini, jadi setiap `comment` bernilai `null`.                                                           |
-| `unavailable`               | Komentar tidak dapat dibaca untuk respons ini; permintaan berikutnya mungkin berhasil, tetapi beberapa penyebab berlangsung hingga pelanggan mengambil tindakan. |
+| `comments_status` | Arti |
+| ----- | ----- |
+| `not_permitted` | Kunci API tidak memiliki `read:compliance_user_data` maupun `read:org_audit`, jadi setiap `comment` dan setiap `attested_by` bernilai `null`. |
+| `requires_organization_key` | Kunci API tidak dibuat di organisasi tersebut, seperti halnya kunci untuk organisasi induk, jadi setiap `comment` bernilai `null`. Mencoba lagi tidak membantu. |
+| `available` | Komentar telah dibaca, jadi komentar yang bernilai `null` berarti tidak ada komentar, atau komentar tersebut baru disimpan beberapa saat lalu. |
+| `not_enabled` | Endpoint ini tidak mengembalikan komentar untuk organisasi ini, jadi setiap `comment` bernilai `null`. |
+| `unavailable` | Komentar tidak dapat dibaca untuk respons ini; permintaan berikutnya mungkin berhasil, tetapi beberapa penyebab berlangsung hingga pelanggan mengambil tindakan. |
 
 Nilai lain dapat ditambahkan; anggap nilai yang tidak dikenal sebagai `unavailable`.
 
@@ -266,15 +266,15 @@ Nilai lain dapat ditambahkan; anggap nilai yang tidak dikenal sebagai `unavailab
 
 Error menggunakan body yang sama seperti bagian lain dari Compliance API. [Menangani error Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-errors) menjelaskan body tersebut. Tabel ini mencantumkan error yang dikembalikan endpoint ini dengan caranya sendiri.
 
-| Status dan `error.type`                                                                        | Kapan                                                                                                                                  | Yang harus dilakukan                                                                                                                                   |
-| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 400 `invalid_request_error`                                                                    | `anthropic-version` tidak ada atau tidak valid, Compliance API tidak diaktifkan untuk organisasi induk, atau terdapat parameter kueri. | Perbaiki hal yang disebutkan `error.message`.                                                                                                          |
-| 401 `authentication_error`                                                                     | Kunci tidak ada, tidak dikenali, atau bukan Compliance Access Key maupun kunci Admin API.                                              | Kirim Compliance Access Key yang valid di `x-api-key`.                                                                                                 |
-| 403 `permission_error`                                                                         | Kunci tidak boleh memanggil endpoint ini, biasanya karena tidak memiliki `read:compliance_org_data` maupun `read:org_audit`.           | Gunakan kunci dengan salah satu scope tersebut.                                                                                                        |
-| 404 `not_found_error`                                                                          | Lihat penyebab yang tercantum setelah tabel ini.                                                                                       | Jangan langsung mencoba ulang. 404 tidak berarti organisasi tersebut tidak memiliki kontrol yang gagal.                                                |
-| 429 `rate_limit_error`                                                                         | Batas laju bersama Compliance API, atau batas endpoint ini yang lebih rendah, telah habis; `error.message` menyebutkan yang mana.      | Tunggu sesuai `retry-after`; lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests). |
-| 503 `overloaded_error`, dengan `error.details.error_code` bernilai `posture_evaluation_failed` | Hasil tidak dapat dihasilkan.                                                                                                          | Tunggu sesuai `retry-after`, lalu coba lagi; jika berulang untuk satu organisasi pada eksekusi berikutnya, hubungi dukungan Anthropic satu kali.       |
-| 503 tanpa `error_code`, atau 504 `timeout_error`                                               | Kegagalan sementara.                                                                                                                   | Coba lagi dengan exponential backoff.                                                                                                                  |
+| Status dan `error.type` | Kapan | Yang harus dilakukan |
+| ----- | ----- | ----- |
+| 400 `invalid_request_error` | `anthropic-version` tidak ada atau tidak valid, Compliance API tidak diaktifkan untuk organisasi induk, atau terdapat parameter kueri. | Perbaiki hal yang disebutkan `error.message`. |
+| 401 `authentication_error` | Kunci tidak ada, tidak dikenali, atau bukan Compliance Access Key maupun kunci Admin API. | Kirim Compliance Access Key yang valid di `x-api-key`. |
+| 403 `permission_error` | Kunci tidak boleh memanggil endpoint ini, biasanya karena tidak memiliki `read:compliance_org_data` maupun `read:org_audit`. | Gunakan kunci dengan salah satu scope tersebut. |
+| 404 `not_found_error` | Lihat penyebab yang tercantum setelah tabel ini. | Jangan langsung mencoba ulang. 404 tidak berarti organisasi tersebut tidak memiliki kontrol yang gagal. |
+| 429 `rate_limit_error` | Batas laju bersama Compliance API, atau batas endpoint ini yang lebih rendah, telah habis; `error.message` menyebutkan yang mana. | Tunggu sesuai `retry-after`; lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests). |
+| 503 `overloaded_error`, dengan `error.details.error_code` bernilai `posture_evaluation_failed` | Hasil tidak dapat dihasilkan. | Tunggu sesuai `retry-after`, lalu coba lagi; jika berulang untuk satu organisasi pada eksekusi berikutnya, hubungi dukungan Anthropic satu kali. |
+| 503 tanpa `error_code`, atau 504 `timeout_error` | Kegagalan sementara. | Coba lagi dengan exponential backoff. |
 
 Penyebab 404:
 

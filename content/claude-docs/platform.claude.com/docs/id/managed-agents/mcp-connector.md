@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/mcp-connector
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 158c6acd55220edaa616819866c69ae26940d09026ae1e1edcea750f68a909c7
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 886ef6d55f0cc5ec18746cb590882eea5fa625cd2948248a3e7924f37c84e388
 ---
 
 ---
@@ -252,11 +252,11 @@ Setiap server yang dideklarasikan juga memerlukan entri `mcp_toolset` yang sesua
 
 Setiap entri dalam array `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) mendefinisikan satu koneksi.
 
-| Field                            | Deskripsi                                                                                                                                                                                                                                                                                                                                                          |
-| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `type` (csharp, go: `Type`)      | Wajib. Harus bernilai `"url"`.                                                                                                                                                                                                                                                                                                                                     |
-| `name` (csharp, go: `Name`)      | Wajib. Nama unik untuk server ini di dalam agen (1–255 karakter). Digunakan sebagai `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) dalam array `tools` (csharp, go: `Tools`) dan ditampilkan pada event alat MCP dalam [aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming). |
-| `url` (csharp: `Url`; go: `URL`) | Wajib. Endpoint server MCP jarak jauh (hingga 2.048 karakter). Lihat [Jenis server MCP yang didukung](https://platform.claude.com/docs/id/managed-agents/reference#supported-mcp-server-types) untuk persyaratan transport.                                                                                                                                        |
+| Field | Deskripsi |
+| ----- | ----- |
+| `type` (csharp, go: `Type`) | Wajib. Harus bernilai `"url"`. |
+| `name` (csharp, go: `Name`) | Wajib. Nama unik untuk server ini di dalam agen (1–255 karakter). Digunakan sebagai `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) dalam array `tools` (csharp, go: `Tools`) dan ditampilkan pada event alat MCP dalam [aliran event sesi](https://platform.claude.com/docs/id/managed-agents/events-and-streaming). |
+| `url` (csharp: `Url`; go: `URL`) | Wajib. Endpoint server MCP jarak jauh (hingga 2.048 karakter). Lihat [Jenis server MCP yang didukung](https://platform.claude.com/docs/id/managed-agents/reference#supported-mcp-server-types) untuk persyaratan transport. |
 
 Batasan:
 
@@ -396,9 +396,9 @@ Kredensial dicocokkan berdasarkan URL, sehingga vault harus berisi kredensial ya
 
 Pembuatan sesi tidak memvalidasi konektivitas atau kredensial MCP. Pembuatan sesi memang memeriksa host setiap server yang dideklarasikan terhadap pengaturan jaringan environment. Dengan jaringan `limited`, pembuatan sesi gagal dengan error 400 ketika sebuah host tidak diizinkan, seperti yang dijelaskan di bagian [Menyediakan autentikasi saat pembuatan sesi](https://platform.claude.com/docs/id/managed-agents/mcp-connector#provide-authentication-at-session-creation). Jika server MCP tidak dapat dijangkau atau menolak kredensial yang diberikan, sesi tetap dimulai, dan Anda tetap dapat berinteraksi dengannya. Sesi memancarkan event [`session.error`](https://platform.claude.com/docs/id/managed-agents/reference#event-types) dengan `mcp_server_name` (java, php: `mcpServerName`; csharp: `McpServerName`; go: `MCPServerName`) dari server yang terdampak dan sebuah `retry_status` (java, php: `retryStatus`; csharp, go: `RetryStatus`):
 
-| Jenis error                       | Arti                                                                                                                                                                                                                  |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `mcp_connection_failed_error`     | Server MCP tidak dapat dijangkau (error jaringan, timeout, atau kegagalan HTTP non-autentikasi).                                                                                                                      |
+| Jenis error | Arti |
+| ----- | ----- |
+| `mcp_connection_failed_error` | Server MCP tidak dapat dijangkau (error jaringan, timeout, atau kegagalan HTTP non-autentikasi). |
 | `mcp_authentication_failed_error` | Autentikasi dengan server MCP gagal: server menolak kredensial dari vault yang dilampirkan, server memerlukan autentikasi padahal tidak ada kredensial yang cocok yang dikonfigurasi, atau refresh token OAuth gagal. |
 
 Anda dapat memutuskan apakah akan memblokir interaksi lebih lanjut pada error ini, memicu rotasi kredensial, atau membiarkan sesi berlanjut tanpa alat dari server yang terdampak. Koneksi dicoba ulang pada transisi `session.status_idle` ke `session.status_running` berikutnya.

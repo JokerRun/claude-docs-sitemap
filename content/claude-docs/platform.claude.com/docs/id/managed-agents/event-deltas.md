@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/event-deltas
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: b655cfb2086e95b0572c8e46a773aec57c5108d24f98b01872a5c8e1ed2207fe
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 055f2e61696ac8045c109712710309ccfaf00256ef5d3ba854c69ba9a86a93b6
 ---
 
 ---
@@ -896,12 +896,12 @@ Loop pembacaan keluar pada [`session.thread_status_idle`](https://platform.claud
 
 ## Memecahkan masalah pratinjau
 
-| Yang Anda lihat                                                                  | Artinya                                                                                                                                                                                                                                                                                                                                                                    |
-| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Aliran dengan event yang di-buffer tetapi tanpa `event_start` atau `event_delta` | Koneksi yang Anda baca tidak mengaktifkannya, atau giliran tidak pernah menyentuh thread yang Anda streaming. `event_deltas[]` berlaku per koneksi, bukan per sesi. Untuk mengetahui thread mana yang berjalan, daftarkan thread sesi (`GET /v1/sessions/{session_id}/threads`).                                                                                           |
-| Aliran yang terputus selama pratinjau                                            | Delta tidak diputar ulang. Ikuti [prosedur menyambung kembali](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#reconnect-without-missing-events): buka kembali aliran dan daftarkan riwayat event. Riwayat tersebut mencakup event buffer apa pun yang dipancarkan saat Anda terputus, termasuk `agent.message` yang ditunggu oleh pratinjau Anda. |
-| Error 404 pada URL aliran                                                        | Path atau ID salah, atau permintaan sama sekali tidak membawa header beta managed-agents. Endpoint thread dibatasi beta, jadi tanpa header tersebut endpoint itu tidak ada.                                                                                                                                                                                                |
-| Error 400 yang menyebutkan `event_deltas`                                        | Hanya `agent.message` dan `agent.thinking` yang diterima.                                                                                                                                                                                                                                                                                                                  |
+| Yang Anda lihat | Artinya |
+| ----- | ----- |
+| Aliran dengan event yang di-buffer tetapi tanpa `event_start` atau `event_delta` | Koneksi yang Anda baca tidak mengaktifkannya, atau giliran tidak pernah menyentuh thread yang Anda streaming. `event_deltas[]` berlaku per koneksi, bukan per sesi. Untuk mengetahui thread mana yang berjalan, daftarkan thread sesi (`GET /v1/sessions/{session_id}/threads`). |
+| Aliran yang terputus selama pratinjau | Delta tidak diputar ulang. Ikuti [prosedur menyambung kembali](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#reconnect-without-missing-events): buka kembali aliran dan daftarkan riwayat event. Riwayat tersebut mencakup event buffer apa pun yang dipancarkan saat Anda terputus, termasuk `agent.message` yang ditunggu oleh pratinjau Anda. |
+| Error 404 pada URL aliran | Path atau ID salah, atau permintaan sama sekali tidak membawa header beta managed-agents. Endpoint thread dibatasi beta, jadi tanpa header tersebut endpoint itu tidak ada. |
+| Error 400 yang menyebutkan `event_deltas` | Hanya `agent.message` dan `agent.thinking` yang diterima. |
 
 ## Langkah selanjutnya
 
@@ -925,9 +925,9 @@ Delta event dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud               | Model                                                              |
-| ------ | ---------------------------- | ------------------------------------------------------------------ |
-| Beta   | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Header beta yang diperlukan
 
@@ -941,9 +941,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

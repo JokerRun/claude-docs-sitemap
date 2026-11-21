@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/extended-thinking
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 7eeb7192ca6726e3b5862bb5ab15c34a180d02eda187e9508dd997db0f098b3b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1dd547c4994aa472212cdec0a0cf5372d1c93dc5a42f194e888bb018f6de2eda
 ---
 
 ---
@@ -434,10 +434,10 @@ Pemikiran diperpanjang tersedia atau tidak digunakan lagi di model tertentu.
 
 * Ketersediaan: Tersedia
 
-| Status               | Model                                                                                                                                                                                                                                                                          |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia             | Claude Mythos Preview, [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview) |
-| Tidak digunakan lagi | [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview)                                                                                                           |
+| Status | Model |
+| ----- | ----- |
+| Tersedia | Claude Mythos Preview, [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview) |
+| Tidak digunakan lagi | [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

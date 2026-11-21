@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/create
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 1275884e5b228217ab5f570d8c75909d16b36f093f8623533771937295ba28a4
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 72715daf6b4d03a8997eb197ef7f43f0e267a41fb5063cbd20f6042087204ea9
 ---
 
 ---
@@ -127,6 +127,8 @@ Create a Credential
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 597b5c3b4d50ee0f3eb89097fa20c840a43b01400726d09e4dabc5d9388f6bbe
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 697701a171d3bf165e5de1c7b1bc8a82b71bbb14cf935ef55d2b64360419f832
 ---
 
 ---
@@ -17,15 +17,15 @@ Untuk skema respons lengkap, lihat [referensi Messages API](https://platform.cla
 
 ## Referensi cepat
 
-| Nilai                                                                                                                                        | Kapan terjadi                                         | Apa yang harus dilakukan                                                                                                                                |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`end_turn`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#end-turn)                                           | Claude menyelesaikan responsnya secara alami.         | Gunakan responsnya.                                                                                                                                     |
-| [`max_tokens`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#max-tokens)                                       | Respons mencapai batas `max_tokens` Anda.             | Naikkan `max_tokens` atau [lanjutkan respons](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#ensuring-complete-responses). |
-| [`stop_sequence`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#stop-sequence)                                 | Claude mengeluarkan salah satu `stop_sequences` Anda. | Baca `stop_sequence` untuk melihat mana yang terpicu.                                                                                                   |
-| [`tool_use`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use)                                           | Claude sedang memanggil alat.                         | Jalankan alat dan kembalikan hasilnya. Panggilan alat server yang masih belum memiliki blok hasilnya akan selesai dalam respons berikutnya.             |
-| [`pause_turn`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn)                                       | Loop alat server mencapai batas iterasinya.           | Kirim kembali konten asisten untuk melanjutkan.                                                                                                         |
-| [`refusal`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#refusal)                                             | Claude menolak untuk merespons.                       | Baca `stop_details` dan [coba ulang pada model fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback).                  |
-| [`model_context_window_exceeded`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#model-context-window-exceeded) | Respons memenuhi jendela konteks model.               | Perlakukan respons sebagai terpotong.                                                                                                                   |
+| Nilai | Kapan terjadi | Apa yang harus dilakukan |
+| ----- | ----- | ----- |
+| [`end_turn`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#end-turn) | Claude menyelesaikan responsnya secara alami. | Gunakan responsnya. |
+| [`max_tokens`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#max-tokens) | Respons mencapai batas `max_tokens` Anda. | Naikkan `max_tokens` atau [lanjutkan respons](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#ensuring-complete-responses). |
+| [`stop_sequence`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#stop-sequence) | Claude mengeluarkan salah satu `stop_sequences` Anda. | Baca `stop_sequence` untuk melihat mana yang terpicu. |
+| [`tool_use`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#tool-use) | Claude sedang memanggil alat. | Jalankan alat dan kembalikan hasilnya. Panggilan alat server yang masih belum memiliki blok hasilnya akan selesai dalam respons berikutnya. |
+| [`pause_turn`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#pause-turn) | Loop alat server mencapai batas iterasinya. | Kirim kembali konten asisten untuk melanjutkan. |
+| [`refusal`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#refusal) | Claude menolak untuk merespons. | Baca `stop_details` dan [coba ulang pada model fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback). |
+| [`model_context_window_exceeded`](https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons#model-context-window-exceeded) | Respons memenuhi jendela konteks model. | Perlakukan respons sebagai terpotong. |
 
 ## Field stop\_reason
 
@@ -1548,13 +1548,13 @@ Dua kasus memerlukan satu field tambahan dalam permintaan lanjutan:
 
 Setiap kesalahan berikut dalam permintaan lanjutan akan gagal dengan 400 `invalid_request_error`. Pesan yang ditampilkan adalah untuk pencarian web. Untuk alat server lainnya, nama-nama di dalamnya berbeda.
 
-| Kesalahan                                                                                   | Pesan error mencakup                                                           |
-| ------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| `tools` tidak lagi mendefinisikan alat server yang menunggu                                 | ``but no `web_search` tool was provided``                                      |
-| Teks atau konten lain muncul setelah blok `tool_result`                                     | ``was found without a corresponding `web_search_tool_result` block``           |
-| Dengan pemanggilan alat terprogram, teks atau konten lain muncul setelah blok `tool_result` | `only tool_result blocks are allowed`                                          |
-| Teks atau konten lain muncul sebelum blok `tool_result`                                     | `` `tool_use` ids were found without `tool_result` blocks immediately after `` |
-| Sebuah blok `tool_result` hilang                                                            | `` `tool_use` ids were found without `tool_result` blocks immediately after `` |
+| Kesalahan | Pesan error mencakup |
+| ----- | ----- |
+| `tools` tidak lagi mendefinisikan alat server yang menunggu | ``but no `web_search` tool was provided`` |
+| Teks atau konten lain muncul setelah blok `tool_result` | ``was found without a corresponding `web_search_tool_result` block`` |
+| Dengan pemanggilan alat terprogram, teks atau konten lain muncul setelah blok `tool_result` | `only tool_result blocks are allowed` |
+| Teks atau konten lain muncul sebelum blok `tool_result` | `` `tool_use` ids were found without `tool_result` blocks immediately after `` |
+| Sebuah blok `tool_result` hilang | `` `tool_use` ids were found without `tool_result` blocks immediately after `` |
 
 Konten setelah blok `tool_result` akan gagal karena mengakhiri giliran Claude saat alat server masih menunggu. Untuk memberi Claude input tambahan, lanjutkan hingga `stop_reason` sebuah respons bukan `tool_use` maupun `pause_turn`. Kemudian, kirimkan input tersebut sebagai pesan pengguna baru dalam daftar `messages` yang sama.
 
@@ -1936,6 +1936,8 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
 Pada penolakan, objek [`stop_details`](https://platform.claude.com/docs/id/api/messages/create#message.stop_details) mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk lengkap respons penolakan dibahas dalam [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
 
 Anda biasanya dapat memperoleh respons atas permintaan yang ditolak dengan mencoba ulang pada model Claude lain. Cara ini berlaku untuk Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, di sisi server atau di klien Anda. Claude Haiku 5.5 tidak memiliki fallback sisi server, jadi siapkan percobaan ulangnya dengan [fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback). Jika Anda membangun sendiri percobaan ulang dari salah satu model ini kecuali Claude Haiku 5.5, [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) menjelaskan cara menghindari membayar biaya cache prompt dua kali.
+
+Penolakan `reasoning_extraction` merupakan salah satu pengecualian: ubah prompt alih-alih mencoba ulang pada model lain, seperti yang dijelaskan dalam [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 
 ### model\_context\_window\_exceeded
 

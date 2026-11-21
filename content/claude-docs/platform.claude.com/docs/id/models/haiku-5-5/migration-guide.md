@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 2ce170ad534c03ed6bcbaaf99af5623a56d5d4f73735ef7b7a69586dd678b8b4
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: bda299b2f9fc23d3510ca6c5adce8dc12ef8d3ddd2de1781437191243d7b9566
 ---
 
 ---
@@ -39,6 +39,7 @@ Kerjakan grup-grup ini secara berurutan dan berhenti setelah grup yang menyebutk
 8. Jika Anda memutar ulang percakapan yang tersimpan melalui akun yang berbeda, putar ulang masing-masing melalui akun yang menghasilkannya. Lihat [Putar ulang blok pemikiran melalui akun yang menghasilkannya](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#replay-thinking-blocks-through-the-producing-account).
 9. Jika kode Anda mengubah `system`, `tools`, atau `messages` sebelumnya di antara permintaan dalam sebuah percakapan dan mengirimkan kembali blok pemikiran, pertahankan percakapan agar bersifat append-only (hanya ditambahkan). Lihat [Pertahankan giliran sebelumnya tidak berubah](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide#keep-earlier-turns-unchanged).
 10. Tangani `stop_reason: "refusal"`. Claude Haiku 5.5 menjalankan pengklasifikasi keamanan yang dapat menolak permintaan, dan model ini tidak memiliki fallback di sisi server. Lihat [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals).
+11. Jika prompt Anda meminta model untuk menuliskan penalarannya di dalam respons, misalnya di dalam tag `<thinking>` atau `<reasoning>`, hapus instruksi tersebut. Claude Haiku 5.5 mungkin menolak permintaan yang menyertakannya dan mengembalikan kategori `reasoning_extraction`. Lihat [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals).
 
 Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers#supported-models) pada Claude Haiku 4.5, rencanakan kapasitas secara terpisah: Priority Tier tidak didukung pada Claude Haiku 5.5.
 
@@ -55,14 +56,14 @@ Jika organisasi Anda memiliki komitmen [Priority Tier](https://platform.claude.c
 
 Ganti ID model Claude Haiku 4.5 dengan ID Claude Haiku 5.5 untuk platform Anda.
 
-| Platform                                          | Claude Haiku 4.5                                    | Claude Haiku 5.5             |
-| ------------------------------------------------- | --------------------------------------------------- | ---------------------------- |
-| Claude API                                        | `claude-haiku-4-5-20251001` atau `claude-haiku-4-5` | `claude-haiku-5-5`           |
-| Amazon Bedrock                                    | `anthropic.claude-haiku-4-5`                        | `anthropic.claude-haiku-5-5` |
-| Claude Platform on AWS                            | `claude-haiku-4-5`                                  | `claude-haiku-5-5`           |
-| Claude Models on Google Cloud (Anthropic managed) | `claude-haiku-4-5-20251001`                         | `claude-haiku-5-5`           |
-| Claude Models on Google Cloud (Google managed)    | `claude-haiku-4-5@20251001`                         | `claude-haiku-5-5`           |
-| Microsoft Foundry                                 | `claude-haiku-4-5`                                  | `claude-haiku-5-5`           |
+| Platform | Claude Haiku 4.5 | Claude Haiku 5.5 |
+| ----- | ----- | ----- |
+| Claude API | `claude-haiku-4-5-20251001` atau `claude-haiku-4-5` | `claude-haiku-5-5` |
+| Amazon Bedrock | `anthropic.claude-haiku-4-5` | `anthropic.claude-haiku-5-5` |
+| Claude Platform on AWS | `claude-haiku-4-5` | `claude-haiku-5-5` |
+| Claude Models on Google Cloud (Anthropic managed) | `claude-haiku-4-5-20251001` | `claude-haiku-5-5` |
+| Claude Models on Google Cloud (Google managed) | `claude-haiku-4-5@20251001` | `claude-haiku-5-5` |
+| Microsoft Foundry | `claude-haiku-4-5` | `claude-haiku-5-5` |
 
 `claude-haiku-5-5` adalah ID model tetap tanpa akhiran tanggal dan tanpa alias terpisah.
 
@@ -118,12 +119,12 @@ Claude Haiku 5.5 menerima `tool_choice` yang dipaksakan (`any` atau alat bernama
 
 Percakapan yang Anda alihkan dari Claude Haiku 4.5 ke Claude Haiku 5.5 tetap mempertahankan penalarannya. Untuk peralihan lainnya, hal ini bergantung pada kedua model tersebut:
 
-| Peralihan                                                                                                                         | Mempertahankan penalarannya                                                |
-| --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Ke Claude Haiku 5.5, dari Claude Haiku 4.5 atau sebelumnya, Claude Sonnet 5 atau sebelumnya, atau Claude Opus 4.8 atau sebelumnya | Ya                                                                         |
-| Ke Claude Haiku 5.5, dari model lain mana pun                                                                                     | Tidak. API tidak menyertakan blok pemikiran model tersebut, tanpa error.   |
-| Dari Claude Haiku 5.5, ke Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2, atau Claude Mythos 5.2                            | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
-| Dari Claude Haiku 5.5, ke model lain mana pun                                                                                     | Tidak                                                                      |
+| Peralihan | Mempertahankan penalarannya |
+| ----- | ----- |
+| Ke Claude Haiku 5.5, dari Claude Haiku 4.5 atau sebelumnya, Claude Sonnet 5 atau sebelumnya, atau Claude Opus 4.8 atau sebelumnya | Ya |
+| Ke Claude Haiku 5.5, dari model lain mana pun | Tidak. API tidak menyertakan blok pemikiran model tersebut, tanpa error. |
+| Dari Claude Haiku 5.5, ke Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.2, atau Claude Mythos 5.2 | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
+| Dari Claude Haiku 5.5, ke model lain mana pun | Tidak |
 
 Lihat [Beralih model dan kembali lagi](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models). Untuk peralihan yang tidak melibatkan Claude Haiku 5.5, lihat [Peralihan model mana yang mempertahankan penalaran di Claude API](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#which-model-switches-keep-reasoning).
 

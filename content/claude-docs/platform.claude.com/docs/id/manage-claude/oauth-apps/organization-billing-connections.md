@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: b7e0b47420195852a6373b3dfff91852e6f307bcae12836a521493984f7bd351
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1e1f6be3492a4cf60db1902b6d2c9c3e253bb801f881b0d764126ac7d90c180e
 ---
 
 ---
@@ -68,11 +68,9 @@ Pada tab **Settings**, **Who can link** bertuliskan **Test users only** untuk ap
 
 Siapkan cara back end Anda membuktikan kepada `auth.claude.com` bahwa permintaannya berasal dari aplikasi Anda. Ini menggantikan client secret: Anthropic tidak menerbitkan client secret untuk aplikasi OAuth.
 
-Pada tab **Client authentication** aplikasi, pilih **Identity provider** Anda (penerbit yang menandatangani token back end Anda). Untuk menambahkannya, klik **Register a new issuer**. Kemudian atur **Subject pattern**, atau kondisi klaim di bawah **Advanced match options**, yang harus dipenuhi oleh token tersebut. Setelah Anda menyimpan, tab tersebut menampilkan audience yang diharapkan. Klaim `aud` pada client assertion Anda harus persis bernilai tersebut.
+Pada tab **Client authentication** aplikasi, pilih **Identity provider** Anda. Ini adalah penerbit yang menandatangani token back end Anda, seperti AWS, Google Cloud, atau Kubernetes. Untuk menambahkannya, klik **Register a new issuer** atau lihat [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation). Lalu, atur **Subject pattern** atau kondisi klaim di bawah **Advanced match options** yang harus dipenuhi oleh token-token tersebut. Setelah Anda menyimpan, tab tersebut menampilkan audience yang diharapkan. Klaim `aud` pada client assertion Anda harus sama persis dengan nilai tersebut.
 
-<Note>
-  Aplikasi Anda melakukan autentikasi ke endpoint PAR, token, dan pencabutan dengan variasi metode `private_key_jwt` (RFC 7523): pada setiap permintaan, back end Anda mengirimkan “client assertion” (asersi klien), yaitu JWT yang diterbitkan oleh penyedia identitas Anda. `auth.claude.com` memeriksa tanda tangan token dengan kunci yang terdaftar untuk penerbit tersebut, dan mencocokkannya dengan kondisi subject atau klaim yang Anda atur di sini. Untuk klaim yang harus dimuat oleh client assertion, lihat [Klaim client assertion](https://platform.claude.com/docs/id/manage-claude/oauth-apps/oauth-reference#client-assertion-claims).
-</Note>
+Aplikasi Anda melakukan autentikasi ke endpoint PAR, token, dan pencabutan dengan variasi metode `private_key_jwt` (RFC 7523). Pada setiap permintaan, back end Anda mengirimkan “client assertion” (asersi klien), yaitu JWT yang diterbitkan oleh penyedia identitas Anda. `auth.claude.com` memeriksa tanda tangan token dengan kunci yang terdaftar untuk penerbit tersebut. Selain itu, `auth.claude.com` juga mencocokkan token dengan kondisi subject atau klaim yang Anda atur di sini. Untuk klaim yang harus dimuat oleh client assertion, lihat [Klaim client assertion](https://platform.claude.com/docs/id/manage-claude/oauth-apps/oauth-reference#client-assertion-claims).
 
 ### Langkah 3: Siapkan identitas back end Anda
 
@@ -116,7 +114,7 @@ ID profil yang dikirim bergantung pada siapa yang membayar permintaan:
 
 Anda melakukan Langkah 4 hingga 8 untuk setiap pelanggan yang menautkan organisasinya. Cuplikan kode Python berikut memerlukan Anthropic SDK dan beberapa import standar; lihat [Inisialisasi cuplikan kode](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#code-snippet-initialization). Contoh dalam bahasa lain dan CLI mengambil kredensialnya dari environment. Pastikan `ANTHROPIC_API_KEY` tidak diatur, karena aplikasi Anda perlu melakukan autentikasi dengan Workload Identity Federation.
 
-Tambahkan tombol “Link your Claude organization” di tempat pelanggan Anda mengelola penagihan atau integrasi di produk Anda (untuk HTML, warna, dan logo tombol, lihat [Contoh branding](https://platform.claude.com/docs/id/manage-claude/oauth-apps/branding-samples#buttons)). Beri tahu mereka bahwa untuk menautkan, mereka harus memiliki peran Admin atau Billing di organisasi Claude mereka.
+Tambahkan tombol **Link your Claude organization** di tempat pelanggan Anda mengelola penagihan atau integrasi di produk Anda. Untuk HTML, warna, dan logo tombol, lihat [Contoh branding](https://platform.claude.com/docs/id/manage-claude/oauth-apps/branding-samples). Beri tahu pelanggan Anda bahwa untuk menautkan, mereka harus memiliki peran Admin atau Billing di organisasi Claude mereka.
 
 Untuk menjalankan langkah-langkah ini sendiri terlebih dahulu, lihat [Menguji sebagai pelanggan](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#test-as-a-customer).
 
@@ -493,9 +491,9 @@ Jika pengguna kembali ke produk Anda tanpa callback, mulai lagi dari Langkah 5. 
 
 Aplikasi Anda belum disiapkan untuk permintaan ini. Untuk masalah workspace, `error_description` menyebutkan penyebabnya. Untuk akun layanan operator yang tidak ada, nilainya hanya berbunyi `the client is not registered for this grant`. Penolakan tidak menghabiskan kode, sehingga Anda dapat menukarkan kode yang sama lagi hingga kedaluwarsa. Pertama, periksa hal-hal berikut di Claude Console:
 
-| Pemeriksaan                                     | Lokasi                                                                                                                                                         | Perbaikan                                                                                                |
-| ----------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
-| Aplikasi memiliki akun layanan operator         | **Operator service account** pada tab **Client authentication** aplikasi                                                                                       | Pilih satu dan klik **Save**. Langkah 3 menjelaskan cara menyiapkannya.                                  |
+| Pemeriksaan | Lokasi | Perbaikan |
+| ----- | ----- | ----- |
+| Aplikasi memiliki akun layanan operator | **Operator service account** pada tab **Client authentication** aplikasi | Pilih satu dan klik **Save**. Langkah 3 menjelaskan cara menyiapkannya. |
 | Workspace aplikasi tidak hilang atau diarsipkan | [Siapkan aplikasi Anda](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#settings-for-a-connections-oauth-tokens) | Pilih workspace. Selama aplikasi belum memilikinya, penukaran juga ditolak dengan `unauthorized_client`. |
 
 Akun layanan yang disimpan dapat memerlukan waktu satu atau dua menit untuk sampai ke `auth.claude.com`, jadi jika penukaran ditolak lagi, tunggu selama itu lalu coba lagi. Jika kode sudah kedaluwarsa pada saat itu, minta pengguna untuk menyetujui lagi (Langkah 5 hingga 8). Untuk penyebab yang disebutkan `error_description` terkait token koneksi, lihat [Simpan token](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#keep-the-tokens-from-step-8) dan [Segarkan token](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#refresh-the-connection).
@@ -1439,11 +1437,11 @@ Untuk membaca status tautan pelanggan dari back end Anda, minta profil pengguna 
 
 Dalam respons, `connection_status` menjelaskan tautan profil pengguna ke aplikasi Anda:
 
-| `connection_status.type` | Arti                                                                                                                                                                                                                                                                                                                        |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `connected`              | Setidaknya satu koneksi antara profil pengguna dan aplikasi Anda aktif.                                                                                                                                                                                                                                                     |
-| `disconnected`           | Profil pengguna pernah ditautkan, dan setiap koneksi telah berakhir. `last_revoked_at` menyatakan kapan koneksi terakhir berakhir. `last_revoked_reason.type` menyatakan alasannya, misalnya `revoked_by_admin` (administrator organisasi pelanggan) atau `revoked_by_app_owner` (organisasi Anda, termasuk back end Anda). |
-| `not_connected`          | Profil pengguna belum pernah ditautkan ke aplikasi Anda.                                                                                                                                                                                                                                                                    |
+| `connection_status.type` | Arti |
+| ----- | ----- |
+| `connected` | Setidaknya satu koneksi antara profil pengguna dan aplikasi Anda aktif. |
+| `disconnected` | Profil pengguna pernah ditautkan, dan setiap koneksi telah berakhir. `last_revoked_at` menyatakan kapan koneksi terakhir berakhir. `last_revoked_reason.type` menyatakan alasannya, misalnya `revoked_by_admin` (administrator organisasi pelanggan) atau `revoked_by_app_owner` (organisasi Anda, termasuk back end Anda). |
+| `not_connected` | Profil pengguna belum pernah ditautkan ke aplikasi Anda. |
 
 Perlakukan `connection_status` bernilai `null`, atau `type` yang tidak Anda kenali, sebagai tidak diketahui. Perlakukan alasan yang tidak Anda kenali sebagai `other`. `oauth_connections.data` mencantumkan koneksi-koneksi itu sendiri.
 
@@ -1714,12 +1712,12 @@ Untuk membatalkan tautan pelanggan dari back end Anda, kirim ID koneksi yang And
 
 Untuk membatalkan tautan pelanggan melalui Claude API sebagai gantinya, kirim client ID aplikasi Anda di `oauth_app_id` ke `POST /v1/user_profiles/{id}/unlink`. Ini mengakhiri koneksi yang sama seperti endpoint pencabutan dengan `user_profile_id`. Kedua permintaan tersebut berbeda sebagai berikut:
 
-|                   | Endpoint pencabutan                                                      | Unlink                                                                                                                                                                                                  |
-| ----------------- | ------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Host**          | `auth.claude.com`                                                        | `api.anthropic.com`                                                                                                                                                                                     |
-| **Autentikasi**   | Autentikasi klien aplikasi Anda (Langkah 2)                              | Akun layanan operator Anda (Langkah 3): token aksesnya, atau kunci API yang terikat padanya. Token akses harus berasal dari aturan federasi dengan scope `workspace:developer`, yang merupakan default. |
-| **Header beta**   | Tidak ada                                                                | `user-profiles-search-2026-08-30`                                                                                                                                                                       |
-| **Yang diakhiri** | Satu koneksi, atau semua koneksi aplikasi Anda pada satu profil pengguna | Semua koneksi aplikasi Anda pada satu profil pengguna                                                                                                                                                   |
+|  | Endpoint pencabutan | Unlink |
+| ----- | ----- | ----- |
+| **Host** | `auth.claude.com` | `api.anthropic.com` |
+| **Autentikasi** | Autentikasi klien aplikasi Anda (Langkah 2) | Akun layanan operator Anda (Langkah 3): token aksesnya, atau kunci API yang terikat padanya. Token akses harus berasal dari aturan federasi dengan scope `workspace:developer`, yang merupakan default. |
+| **Header beta** | Tidak ada | `user-profiles-search-2026-08-30` |
+| **Yang diakhiri** | Satu koneksi, atau semua koneksi aplikasi Anda pada satu profil pengguna | Semua koneksi aplikasi Anda pada satu profil pengguna |
 
 <CodeGroup exclude="shell:CLI, python, typescript, csharp, go, java, php, ruby">
   ```bash cURL
@@ -1799,7 +1797,7 @@ Pengguna Anda menyetujui di `auth.claude.com` setelah aplikasi Anda mengalihkan 
 * **Set a monthly spend limit:** Pengguna memasukkan batas untuk aplikasi Anda dalam dolar AS bulat dan mengklik **Continue**. Field jumlah dimulai dalam keadaan kosong, sehingga halaman tidak memilihkan batas untuk pengguna. **Continue without a limit** tidak menyimpan batas baru, dan batas atas atau default yang telah disimpan pelanggan sebelumnya tetap berlaku. Batas yang dimasukkan pengguna adalah batas atas pengeluaran yang dijelaskan di [Batas atas pengeluaran](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#spend-caps). Layar ini berbeda selama aplikasi Anda dalam tahap pengujian: lihat [Selama aplikasi Anda dalam tahap pengujian](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#while-your-app-is-in-testing).
 * **Layar terakhir:** Layar ini mencantumkan apa saja yang dapat dilakukan aplikasi Anda, termasuk batas yang dipilih pengguna. Pengguna mengklik **Link and authorize**.
 
-Halaman persetujuan menggunakan akun Claude mana pun yang sedang masuk di browser, dan hanya menawarkan organisasi Claude milik akun tersebut. Akun tersebut mungkin bukan akun yang diharapkan pengguna Anda, misalnya akun pribadi alih-alih akun kerja. Aplikasi Anda tidak dapat memilih akun tersebut. Parameter OpenID Connect `prompt=select_account` dan `login_hint` tidak mengubah akun yang digunakan halaman tersebut.
+Halaman persetujuan menggunakan akun Claude mana pun yang sedang masuk di browser, dan hanya menawarkan organisasi Claude milik akun tersebut. Akun tersebut mungkin bukan akun yang diharapkan pengguna Anda, misalnya akun pribadi alih-alih akun kerja. Aplikasi Anda tidak dapat memilih akun tersebut. Parameter `prompt=select_account` dan `login_hint` tidak mengubah akun yang digunakan halaman tersebut.
 
 ### Setelah menautkan
 
@@ -1838,13 +1836,13 @@ Batas atas dapat lebih tinggi daripada **Batas pengeluaran bulanan** organisasi,
 
 Batasan berikut berlaku setiap kali seseorang menautkan aplikasi Anda atau mengubah batas atasnya selama aplikasi dalam tahap pengujian, dalam peninjauan, atau tidak disetujui:
 
-|                                                     | Dalam pengujian, dalam peninjauan, atau tidak disetujui | Setelah aplikasi aktif       |
-| --------------------------------------------------- | ------------------------------------------------------- | ---------------------------- |
-| Batas pengeluaran bulanan di halaman persetujuan    | Wajib, $50 USD atau kurang                              | Opsional                     |
-| Field jumlah di halaman persetujuan                 | Dimulai dari $50 USD                                    | Dimulai dalam keadaan kosong |
-| **Continue without a limit** di halaman persetujuan | Tidak ditawarkan                                        | Ditawarkan                   |
-| Menghapus batas atas di Console                     | Tidak bisa                                              | Bisa                         |
-| Batas atas terbesar yang dapat ditetapkan pelanggan | $50 USD                                                 | Tanpa batas maksimum praktis |
+|  | Dalam pengujian, dalam peninjauan, atau tidak disetujui | Setelah aplikasi aktif |
+| ----- | ----- | ----- |
+| Batas pengeluaran bulanan di halaman persetujuan | Wajib, $50 USD atau kurang | Opsional |
+| Field jumlah di halaman persetujuan | Dimulai dari $50 USD | Dimulai dalam keadaan kosong |
+| **Continue without a limit** di halaman persetujuan | Tidak ditawarkan | Ditawarkan |
+| Menghapus batas atas di Console | Tidak bisa | Bisa |
+| Batas atas terbesar yang dapat ditetapkan pelanggan | $50 USD | Tanpa batas maksimum praktis |
 
 Setelah aplikasi Anda aktif, batas atas yang telah disimpan pelanggan sebelum itu tetap berlaku. Pelanggan kemudian dapat menaikkan atau menghapusnya.
 

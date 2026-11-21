@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 8ee7e5187e0bd8b215322665628b34751189339e58e1b27bf84fc17fd31242f6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 23891c1c03c0ded782b93f6b7753d2fed1008fd08580d4f3fbc8164913876a24
 ---
 
 > ## Documentation Index
@@ -74,7 +74,7 @@ When you run `claude` in a directory, Claude Code gains access to:
 * **Your terminal.** Any command you could run: build tools, git, package managers, system utilities, scripts. If you can do it from the command line, Claude can too.
 * **Your git state.** Current branch, uncommitted changes, and recent commit history.
 * **Your [CLAUDE.md](https://code.claude.com/docs/en/memory.md).** A markdown file where you store project-specific instructions, conventions, and context that Claude should know every session. If your repository has an AGENTS.md for other coding agents, Claude [can read that](https://code.claude.com/docs/en/memory.md#agents-md) in place of a CLAUDE.md.
-* **[Auto memory](https://code.claude.com/docs/en/memory.md#auto-memory).** Learnings Claude saves automatically as you work, like your preferences. The first 200 lines or 25KB of MEMORY.md, whichever comes first, load at the start of each session.
+* **[Auto memory](https://code.claude.com/docs/en/memory.md#auto-memory).** Learnings Claude saves automatically as you work, like your preferences. The first 200 lines or 25KB of MEMORY.md, whichever comes first, load at session start while auto memory is on.
 * **Extensions you configure.** [MCP servers](https://code.claude.com/docs/en/mcp.md) for external services, [skills](https://code.claude.com/docs/en/skills.md) for workflows, [subagents](https://code.claude.com/docs/en/sub-agents.md) for delegated work, and [Claude in Chrome](https://code.claude.com/docs/en/chrome.md) for browser interaction.
 
 Because Claude sees your whole project, it can work across it. When you ask Claude to "fix the authentication bug," it searches for relevant files, reads multiple files to understand context, makes coordinated edits across them, runs tests to verify the fix, and commits the changes if you ask. This is different from inline code assistants that only see the current file.

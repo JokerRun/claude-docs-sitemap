@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/service-tiers
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 2100f61ed78c3510bc45767e4c43ec45bd4cdccde74dbb0fa22fa556e376b4d8
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: b0f410dc92abe10c0da11edc565c7d1dc73c540857849d0a16a66f9b8376f055
 ---
 
 ---
@@ -266,9 +266,9 @@ Tingkat layanan tersedia di model tertentu.
 * Ketersediaan: Tersedia
 * Penggunaan: Memerlukan komitmen Priority Tier, yang tidak lagi dijual. Jika memilikinya, permintaan menggunakan Priority Tier secara default; atur `service_tier` ke `"standard_only"` untuk hanya menggunakan kapasitas standar.
 
-| Status   | Platform cloud | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| -------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia | Claude API     | [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Tersedia | Claude API | [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Haiku 4.5](https://platform.claude.com/docs/id/models/haiku-4-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Opus 4.6](https://platform.claude.com/docs/id/models/opus-4-6/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview), [Claude Opus 4.5](https://platform.claude.com/docs/id/models/opus-4-5/overview), [Claude Sonnet 4.5](https://platform.claude.com/docs/id/models/sonnet-4-5/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

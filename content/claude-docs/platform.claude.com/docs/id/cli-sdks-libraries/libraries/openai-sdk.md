@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 20470b9e06682b5b429063aab49c698f8c7763271eb51c37dbbfcd9ac8ea99cd
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 8fa67c81f7b94aeafa05f4d62144620bb0aac6f85d76459fc9397ad449170851
 ---
 
 ---
@@ -325,34 +325,34 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
 
 #### Field sederhana
 
-| Field                   | Status dukungan                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `model`                 | Gunakan nama model Claude                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `max_tokens`            | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `max_completion_tokens` | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `stream`                | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `stream_options`        | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `top_p`                 | Diteruskan ke model. Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview mengembalikan error 400 untuk nilai apa pun selain `0.99`, yaitu nilai default, jadi hilangkan parameter ini. Permintaan yang menetapkan `temperature` dan `top_p` sekaligus juga mengembalikan error 400. Lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).                                              |
-| `parallel_tool_calls`   | Didukung penuh                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| `tool_choice`           | Didukung dengan batasan. `"required"` dan fungsi bernama memaksa pemanggilan alat. Beberapa model mengembalikan error 400 untuk penggunaan alat yang dipaksakan: Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1. Gunakan `"auto"` pada model-model tersebut. Lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). |
-| `stop`                  | Semua stop sequence non-whitespace berfungsi                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| `temperature`           | Antara 0 dan 1 (inklusif). Nilai lebih besar dari 1 dibatasi menjadi 1. Pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, nilai apa pun di bawah 1 mengembalikan error 400, jadi hilangkan parameter ini. Lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).                                                                                                                |
-| `n`                     | Harus tepat 1. Nilai lain apa pun mengembalikan error 400.                                                                                                                                                                                                                                                                                                                                                                                                   |
-| `response_format`       | Didukung dengan batasan. Hanya `json_schema` dengan `strict: true` yang diterima, dan [batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations) output terstruktur berlaku. Nilai lain apa pun, termasuk `json_object` dan `text`, mengembalikan error 400.                                                                                                                                    |
-| `logprobs`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `metadata`              | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `prediction`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `presence_penalty`      | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `frequency_penalty`     | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `seed`                  | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `service_tier`          | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `audio`                 | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `logit_bias`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `store`                 | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `user`                  | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `modalities`            | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `top_logprobs`          | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| `reasoning_effort`      | Diabaikan                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Field | Status dukungan |
+| ----- | ----- |
+| `model` | Gunakan nama model Claude |
+| `max_tokens` | Didukung penuh |
+| `max_completion_tokens` | Didukung penuh |
+| `stream` | Didukung penuh |
+| `stream_options` | Didukung penuh |
+| `top_p` | Diteruskan ke model. Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview mengembalikan error 400 untuk nilai apa pun selain `0.99`, yaitu nilai default, jadi hilangkan parameter ini. Permintaan yang menetapkan `temperature` dan `top_p` sekaligus juga mengembalikan error 400. Lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages). |
+| `parallel_tool_calls` | Didukung penuh |
+| `tool_choice` | Didukung dengan batasan. `"required"` dan fungsi bernama memaksa pemanggilan alat. Beberapa model mengembalikan error 400 untuk penggunaan alat yang dipaksakan: Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan Claude Mythos 5.1. Gunakan `"auto"` pada model-model tersebut. Lihat [Memaksa penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use). |
+| `stop` | Semua stop sequence non-whitespace berfungsi |
+| `temperature` | Antara 0 dan 1 (inklusif). Nilai lebih besar dari 1 dibatasi menjadi 1. Pada model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview, nilai apa pun di bawah 1 mengembalikan error 400, jadi hilangkan parameter ini. Lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages). |
+| `n` | Harus tepat 1. Nilai lain apa pun mengembalikan error 400. |
+| `response_format` | Didukung dengan batasan. Hanya `json_schema` dengan `strict: true` yang diterima, dan [batasan JSON Schema](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#json-schema-limitations) output terstruktur berlaku. Nilai lain apa pun, termasuk `json_object` dan `text`, mengembalikan error 400. |
+| `logprobs` | Diabaikan |
+| `metadata` | Diabaikan |
+| `prediction` | Diabaikan |
+| `presence_penalty` | Diabaikan |
+| `frequency_penalty` | Diabaikan |
+| `seed` | Diabaikan |
+| `service_tier` | Diabaikan |
+| `audio` | Diabaikan |
+| `logit_bias` | Diabaikan |
+| `store` | Diabaikan |
+| `user` | Diabaikan |
+| `modalities` | Diabaikan |
+| `top_logprobs` | Diabaikan |
+| `reasoning_effort` | Diabaikan |
 
 #### Field `tools` / `functions`
 
@@ -361,12 +361,12 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
     <Tab title="Tools">
       Field `tools[n].function`
 
-      | Field         | Status dukungan                                                                                                                                                             |
-      | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-      | `name`        | Didukung penuh                                                                                                                                                              |
-      | `description` | Didukung penuh                                                                                                                                                              |
-      | `parameters`  | Didukung penuh                                                                                                                                                              |
-      | `strict`      | Diabaikan. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
+      | Field | Status dukungan |
+      | ----- | ----- |
+      | `name` | Didukung penuh |
+      | `description` | Didukung penuh |
+      | `parameters` | Didukung penuh |
+      | `strict` | Diabaikan. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
     </Tab>
 
     <Tab title="Functions">
@@ -376,12 +376,12 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
         OpenAI telah menghentikan (deprecated) field `functions` dan merekomendasikan penggunaan `tools` sebagai gantinya.
       </Info>
 
-      | Field         | Status dukungan                                                                                                                                                             |
-      | ------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-      | `name`        | Didukung penuh                                                                                                                                                              |
-      | `description` | Didukung penuh                                                                                                                                                              |
-      | `parameters`  | Didukung penuh                                                                                                                                                              |
-      | `strict`      | Diabaikan. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
+      | Field | Status dukungan |
+      | ----- | ----- |
+      | `name` | Didukung penuh |
+      | `description` | Didukung penuh |
+      | `parameters` | Didukung penuh |
+      | `strict` | Diabaikan. Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) dengan Claude API native untuk validasi skema yang ketat. |
     </Tab>
   </Tabs>
 </Accordion>
@@ -397,10 +397,10 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
         Pesan developer diangkat ke awal percakapan sebagai bagian dari pesan sistem awal.
       </Info>
 
-      | Field     | Status dukungan                 |
-      | --------- | ------------------------------- |
+      | Field | Status dukungan |
+      | ----- | ----- |
       | `content` | Didukung penuh, tetapi diangkat |
-      | `name`    | Diabaikan                       |
+      | `name` | Diabaikan |
     </Tab>
 
     <Tab title="Peran system">
@@ -410,86 +410,86 @@ OpenAI SDK tidak memiliki parameter `thinking`, sehingga contoh berikut mengirim
         Pesan sistem diangkat ke awal percakapan sebagai bagian dari pesan sistem awal.
       </Info>
 
-      | Field     | Status dukungan                 |
-      | --------- | ------------------------------- |
+      | Field | Status dukungan |
+      | ----- | ----- |
       | `content` | Didukung penuh, tetapi diangkat |
-      | `name`    | Diabaikan                       |
+      | `name` | Diabaikan |
     </Tab>
 
     <Tab title="Peran user">
       Field untuk `messages[n].role == "user"`
 
-      | Field     | Varian                           | Sub-field | Status dukungan         |
-      | --------- | -------------------------------- | --------- | ----------------------- |
-      | `content` | `string`                         |           | Didukung penuh          |
-      |           | `array`, `type == "text"`        |           | Didukung penuh          |
-      |           | `array`, `type == "image_url"`   | `url`     | Didukung penuh          |
-      |           |                                  | `detail`  | Diabaikan               |
-      |           | `array`, `type == "input_audio"` |           | Mengembalikan error 400 |
-      |           | `array`, `type == "file"`        |           | Mengembalikan error 400 |
-      | `name`    |                                  |           | Diabaikan               |
+      | Field | Varian | Sub-field | Status dukungan |
+      | ----- | ----- | ----- | ----- |
+      | `content` | `string` |  | Didukung penuh |
+      |  | `array`, `type == "text"` |  | Didukung penuh |
+      |  | `array`, `type == "image_url"` | `url` | Didukung penuh |
+      |  |  | `detail` | Diabaikan |
+      |  | `array`, `type == "input_audio"` |  | Mengembalikan error 400 |
+      |  | `array`, `type == "file"` |  | Mengembalikan error 400 |
+      | `name` |  |  | Diabaikan |
     </Tab>
 
     <Tab title="Peran assistant">
       Field untuk `messages[n].role == "assistant"`
 
-      | Field           | Varian                       | Status dukungan |
-      | --------------- | ---------------------------- | --------------- |
-      | `content`       | `string`                     | Didukung penuh  |
-      |                 | `array`, `type == "text"`    | Didukung penuh  |
-      |                 | `array`, `type == "refusal"` | Diabaikan       |
-      | `tool_calls`    |                              | Didukung penuh  |
-      | `function_call` |                              | Didukung penuh  |
-      | `audio`         |                              | Diabaikan       |
-      | `refusal`       |                              | Diabaikan       |
+      | Field | Varian | Status dukungan |
+      | ----- | ----- | ----- |
+      | `content` | `string` | Didukung penuh |
+      |  | `array`, `type == "text"` | Didukung penuh |
+      |  | `array`, `type == "refusal"` | Diabaikan |
+      | `tool_calls` |  | Didukung penuh |
+      | `function_call` |  | Didukung penuh |
+      | `audio` |  | Diabaikan |
+      | `refusal` |  | Diabaikan |
     </Tab>
 
     <Tab title="Peran tool">
       Field untuk `messages[n].role == "tool"`
 
-      | Field          | Varian                    | Status dukungan |
-      | -------------- | ------------------------- | --------------- |
-      | `content`      | `string`                  | Didukung penuh  |
-      |                | `array`, `type == "text"` | Didukung penuh  |
-      | `tool_call_id` |                           | Didukung penuh  |
-      | `name`         |                           | Diabaikan       |
+      | Field | Varian | Status dukungan |
+      | ----- | ----- | ----- |
+      | `content` | `string` | Didukung penuh |
+      |  | `array`, `type == "text"` | Didukung penuh |
+      | `tool_call_id` |  | Didukung penuh |
+      | `name` |  | Diabaikan |
     </Tab>
 
     <Tab title="Peran function">
       Field untuk `messages[n].role == "function"`
 
-      | Field     | Varian   | Status dukungan                  |
-      | --------- | -------- | -------------------------------- |
-      | `content` | `string` | Didukung penuh                   |
-      | `name`    |          | Wajib, tetapi nilainya diabaikan |
+      | Field | Varian | Status dukungan |
+      | ----- | ----- | ----- |
+      | `content` | `string` | Didukung penuh |
+      | `name` |  | Wajib, tetapi nilainya diabaikan |
     </Tab>
   </Tabs>
 </Accordion>
 
 ### Field respons
 
-| Field                             | Status dukungan           |
-| --------------------------------- | ------------------------- |
-| `id`                              | Didukung penuh            |
-| `choices[]`                       | Selalu memiliki panjang 1 |
-| `choices[].finish_reason`         | Didukung penuh            |
-| `choices[].index`                 | Didukung penuh            |
-| `choices[].message.role`          | Didukung penuh            |
-| `choices[].message.content`       | Didukung penuh            |
-| `choices[].message.tool_calls`    | Didukung penuh            |
-| `object`                          | Didukung penuh            |
-| `created`                         | Didukung penuh            |
-| `model`                           | Didukung penuh            |
-| `usage.completion_tokens`         | Didukung penuh            |
-| `usage.prompt_tokens`             | Didukung penuh            |
-| `usage.total_tokens`              | Didukung penuh            |
-| `usage.completion_tokens_details` | Selalu kosong             |
-| `usage.prompt_tokens_details`     | Selalu kosong             |
-| `choices[].message.refusal`       | Selalu kosong             |
-| `choices[].message.audio`         | Selalu kosong             |
-| `logprobs`                        | Selalu kosong             |
-| `service_tier`                    | Selalu kosong             |
-| `system_fingerprint`              | Selalu kosong             |
+| Field | Status dukungan |
+| ----- | ----- |
+| `id` | Didukung penuh |
+| `choices[]` | Selalu memiliki panjang 1 |
+| `choices[].finish_reason` | Didukung penuh |
+| `choices[].index` | Didukung penuh |
+| `choices[].message.role` | Didukung penuh |
+| `choices[].message.content` | Didukung penuh |
+| `choices[].message.tool_calls` | Didukung penuh |
+| `object` | Didukung penuh |
+| `created` | Didukung penuh |
+| `model` | Didukung penuh |
+| `usage.completion_tokens` | Didukung penuh |
+| `usage.prompt_tokens` | Didukung penuh |
+| `usage.total_tokens` | Didukung penuh |
+| `usage.completion_tokens_details` | Selalu kosong |
+| `usage.prompt_tokens_details` | Selalu kosong |
+| `choices[].message.refusal` | Selalu kosong |
+| `choices[].message.audio` | Selalu kosong |
+| `logprobs` | Selalu kosong |
+| `service_tier` | Selalu kosong |
+| `system_fingerprint` | Selalu kosong |
 
 ### Kompatibilitas pesan error
 
@@ -499,19 +499,19 @@ Lapisan kompatibilitas mempertahankan format error yang konsisten dengan OpenAI 
 
 Jika kode Anda membaca atau menetapkan header secara langsung, tabel berikut menunjukkan bagaimana Claude API menangani header OpenAI.
 
-| Header                           | Status dukungan                                                                                                                                     |
-| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `x-ratelimit-limit-requests`     | Tidak dikembalikan. Batas permintaan ada di `x-ratelimit-requests`.                                                                                 |
-| `x-ratelimit-limit-tokens`       | Tidak dikembalikan. Batas token ada di `x-ratelimit-tokens`.                                                                                        |
-| `x-ratelimit-remaining-requests` | Didukung penuh                                                                                                                                      |
-| `x-ratelimit-remaining-tokens`   | Didukung penuh                                                                                                                                      |
-| `x-ratelimit-reset-requests`     | Didukung penuh                                                                                                                                      |
-| `x-ratelimit-reset-tokens`       | Didukung penuh                                                                                                                                      |
-| `retry-after`                    | Didukung penuh                                                                                                                                      |
-| `x-request-id`                   | Didukung penuh. Berisi [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id) Claude API sebagai pengganti header `request-id`. |
-| `openai-version`                 | Tidak dikembalikan                                                                                                                                  |
-| `openai-processing-ms`           | Tidak dikembalikan                                                                                                                                  |
-| `authorization`                  | Didukung penuh                                                                                                                                      |
+| Header | Status dukungan |
+| ----- | ----- |
+| `x-ratelimit-limit-requests` | Tidak dikembalikan. Batas permintaan ada di `x-ratelimit-requests`. |
+| `x-ratelimit-limit-tokens` | Tidak dikembalikan. Batas token ada di `x-ratelimit-tokens`. |
+| `x-ratelimit-remaining-requests` | Didukung penuh |
+| `x-ratelimit-remaining-tokens` | Didukung penuh |
+| `x-ratelimit-reset-requests` | Didukung penuh |
+| `x-ratelimit-reset-tokens` | Didukung penuh |
+| `retry-after` | Didukung penuh |
+| `x-request-id` | Didukung penuh. Berisi [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id) Claude API sebagai pengganti header `request-id`. |
+| `openai-version` | Tidak dikembalikan |
+| `openai-processing-ms` | Tidak dikembalikan |
+| `authorization` | Didukung penuh |
 
 ## Ketersediaan
 
@@ -523,6 +523,6 @@ Kompatibilitas OpenAI SDK tersedia di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud |
-| -------- | -------------- |
-| Tersedia | Claude API     |
+| Status | Platform cloud |
+| ----- | ----- |
+| Tersedia | Claude API |

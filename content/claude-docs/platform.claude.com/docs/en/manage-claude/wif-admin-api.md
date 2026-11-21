@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-admin-api
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 552cbb2bfa8eb5ef09ee4c5b1243b23f32733254add7c61983d1801040d508af
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 58f0bc3ae52af91880df214b0545b6cec2e198a94d37a0791c2a7324e6251e09
 ---
 
 ---
@@ -503,11 +503,11 @@ For complete parameter details and response schemas, see the [Service accounts A
 
 A [federation issuer](https://platform.claude.com/docs/en/manage-claude/workload-identity-federation#federation-issuers) (`fdis_...`) registers an OIDC identity provider with your organization. The `jwks` field is a discriminated union that controls how Anthropic fetches the provider’s signing keys:
 
-| `jwks` value                             | When to use                                                                       |
-| ---------------------------------------- | --------------------------------------------------------------------------------- |
-| `{"type": "discovery"}`                  | The provider serves `/.well-known/openid-configuration` at the issuer URL.        |
-| `{"type": "explicit_url", "url": "..."}` | Point at a JWKS endpoint directly.                                                |
-| `{"type": "inline", "keys": [...]}`      | Upload the key set for providers that are not reachable from the public internet. |
+| `jwks` value | When to use |
+| ----- | ----- |
+| `{"type": "discovery"}` | The provider serves `/.well-known/openid-configuration` at the issuer URL. |
+| `{"type": "explicit_url", "url": "..."}` | Point at a JWKS endpoint directly. |
+| `{"type": "inline", "keys": [...]}` | Upload the key set for providers that are not reachable from the public internet. |
 
 Register an issuer. This example registers GitHub Actions with JWKS discovery:
 

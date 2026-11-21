@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 899e42b14759d630a25c42184e50564fa2cef03de59bf68ec6a0bff3786e8a86
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e33d05fc9f4f99d8834ef89d953a74b05e167339a397170fb7ded410bef8a854
 ---
 
 ---
@@ -64,16 +64,16 @@ Skill ini tidak aktif untuk tugas pemrograman umum, pekerjaan ML/data-science, a
 
 Skill ini mendeteksi bahasa proyek Anda secara otomatis dengan memeriksa file proyek (misalnya, `requirements.txt` untuk Python, `tsconfig.json` untuk TypeScript, `go.mod` untuk Go) dan memuat dokumentasi yang sesuai.
 
-| Bahasa     | SDK Messages API | Tool runner | Managed Agents |
-| ---------- | ---------------- | ----------- | -------------- |
-| Python     | Ya               | Ya (beta)   | Ya (beta)      |
-| TypeScript | Ya               | Ya (beta)   | Ya (beta)      |
-| C#         | Ya               | Ya (beta)   | Ya (beta)      |
-| Go         | Ya               | Ya (beta)   | Ya (beta)      |
-| Java       | Ya               | Ya (beta)   | Ya (beta)      |
-| PHP        | Ya               | Ya (beta)   | Ya (beta)      |
-| Ruby       | Ya               | Ya (beta)   | Ya (beta)      |
-| cURL       | Ya               | T/A         | Ya (beta)      |
+| Bahasa | SDK Messages API | Tool runner | Managed Agents |
+| ----- | ----- | ----- | ----- |
+| Python | Ya | Ya (beta) | Ya (beta) |
+| TypeScript | Ya | Ya (beta) | Ya (beta) |
+| C# | Ya | Ya (beta) | Ya (beta) |
+| Go | Ya | Ya (beta) | Ya (beta) |
+| Java | Ya | Ya (beta) | Ya (beta) |
+| PHP | Ya | Ya (beta) | Ya (beta) |
+| Ruby | Ya | Ya (beta) | Ya (beta) |
+| cURL | Ya | T/A | Ya (beta) |
 
 Jika proyek Anda menggunakan beberapa bahasa, Claude akan menanyakan bahasa mana yang berlaku. Untuk bahasa yang tidak didukung (Rust, Swift, C++), skill ini menyediakan contoh cURL/HTTP mentah.
 
@@ -172,7 +172,7 @@ Skill ini menangani:
     * [Fallback sisi klien dengan middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback).
     * Percobaan ulang yang menukarkan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit).
 
-Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inline. Setelah selesai, skill ini menghasilkan daftar periksa item yang memerlukan verifikasi manual (biasanya tes integrasi, penyetelan prompt kontrol panjang, dan penetapan ulang baseline biaya/”rate limit” (batas laju)).
+Saat mengedit, skill ini menjelaskan setiap perubahan dan motivasinya secara inline. Setelah selesai, skill ini menghasilkan daftar periksa item yang memerlukan verifikasi manual (biasanya tes integrasi, penyetelan prompt kontrol panjang, dan penetapan ulang baseline biaya/“rate limit” (batas laju)).
 
 Untuk daftar lengkap perubahan khusus model yang diterapkan skill ini, lihat [Migrasi ke Claude Opus 5.5 dari Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-5), [Migrasi ke Claude Opus 5.5 dari Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-4-8), [Migrasi ke Claude Sonnet 5.5 dari Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-claude-sonnet-5), [panduan migrasi Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/migration-guide), dan [panduan migrasi Claude Fable 5.2 dan Claude Mythos 5.2](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_workspaces/list
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 34f04a171e713010fb2b0493feb3c6ddbdd5a02ea1d8f7283596fe95b8798e8d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4e7350986b823b7b94a054373047638074f2fcc152f06c77cf5587cdac817348
 ---
 
 ---
@@ -141,6 +141,8 @@ List the set-up Slack workspaces the organization owns, newest first by `created
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

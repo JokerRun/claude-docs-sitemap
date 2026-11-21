@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-enterprise-server
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: a95056ddd35fffde4a68dd06d0dfb9f0a3150caa4041133b9d4827bbce22c6ff
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 155e4d6d2d2378bc508d07f6f5a860a38841ed5b5dc2bae8b20f909bcf1b804d
 ---
 
 > ## Documentation Index
@@ -115,7 +115,7 @@ The session clones your repository from GHES and pushes changes back to a branch
 
 ### Teleport sessions to your terminal
 
-Pull a cloud session into your local terminal with `claude --teleport`. Teleport verifies you're in a checkout of the same GHES repository before fetching the branch and loading the session history. See [teleport requirements](https://code.claude.com/docs/en/claude-code-on-the-web.md#teleport-requirements) for details.
+Pull a cloud session into your local terminal with `claude --teleport`. Teleport verifies you're in a checkout of the same GHES repository before loading the session history. See [teleport requirements](https://code.claude.com/docs/en/claude-code-on-the-web.md#teleport-requirements) for details.
 
 ## Plugin marketplaces on GHES
 

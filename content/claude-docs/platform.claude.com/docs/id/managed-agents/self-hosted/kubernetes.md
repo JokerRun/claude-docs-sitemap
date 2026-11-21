@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/kubernetes
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 99e6cf17c62a39608ced62dd058b9c9a0cf35248b3b97209ee30088e49cc7bc0
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 64f441b527c3d2bcfbd30d6cb97d1a727f3a444c208ab494e9ca5b69cb134bc2
 ---
 
 ---
@@ -26,7 +26,7 @@ Database PostgreSQL Anda tetap berada di luar keduanya. Pada jenis klaster lain,
 
 * **Sebuah klaster:** Kubernetes 1.30 atau lebih baru, dengan:
 
-  * Controller Agent Sandbox (di GKE, [add-on Agent Sandbox](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/how-install-agent-sandbox))
+  * Controller Agent Sandbox (di GKE, add-on Agent Sandbox; rilis 0.16.0 memerlukan GKE 1.35, seperti yang dijelaskan di [Menyiapkan add-on di GKE](https://platform.claude.com/docs/id/managed-agents/self-hosted/kubernetes#set-up-the-add-on-on-gke))
   * Node yang menjalankan gVisor (di GKE, [node pool GKE Sandbox](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/sandbox-pods))
   * Plugin jaringan yang menerapkan NetworkPolicy (di GKE, Dataplane V2 atau Calico)
 
@@ -237,11 +237,21 @@ Di `cma-values.yaml`, `egress.mode: publicInternet` memungkinkan sandbox menjang
 
 Tabel ini membandingkannya dengan dua mode lainnya:
 
-| `egress.mode`           | Apa yang dapat dijangkau sandbox                                                                                                                                                                                                         |
-| ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `closed`, nilai default | Server Anda dan dispatcher, tanpa server DNS                                                                                                                                                                                             |
-| `publicInternet`        | Server Anda, dispatcher, server DNS, dan internet publik                                                                                                                                                                                 |
-| `gateway`               | Server Anda, dispatcher, dan, melalui egress gateway, host yang Anda cantumkan. Lihat [Aktifkan gateway di Kubernetes](https://platform.claude.com/docs/id/managed-agents/self-hosted/agent-identity#turn-on-the-gateway-on-kubernetes). |
+| `egress.mode` | Apa yang dapat dijangkau sandbox |
+| ----- | ----- |
+| `closed`, nilai default | Server Anda dan dispatcher, tanpa server DNS |
+| `publicInternet` | Server Anda, dispatcher, server DNS, dan internet publik |
+| `gateway` | Server Anda, dispatcher, dan, melalui egress gateway, host yang Anda cantumkan. Lihat [Aktifkan gateway di Kubernetes](https://platform.claude.com/docs/id/managed-agents/self-hosted/agent-identity#turn-on-the-gateway-on-kubernetes). |
+
+## Menyiapkan add-on di GKE
+
+Rilis 0.16.0 memerlukan klaster pada GKE 1.35 dan API `v1alpha1` milik add-on Agent Sandbox. GKE tidak dapat memindahkan klaster kembali ke versi minor yang lebih lama. Jika klaster Anda berada pada 1.36 atau lebih baru, buat klaster baru. Klaster baru tidak memiliki volume `/workspace` dari sesi-sesi Anda yang sudah ada, jadi salin file apa pun yang Anda perlukan sebelum Anda menghapus klaster lama.
+
+Mulai dari GKE 1.36.3-gke.1767000, add-on tersebut beralih ke `v1beta1`, dan [workload `v1alpha1` yang sudah ada dapat gagal](https://docs.cloud.google.com/kubernetes-engine/docs/troubleshooting/known-issues#agentsandbox-v1alpha1-workload-failures) ketika klaster ditingkatkan ke versi tersebut atau yang lebih baru.
+
+1. Aktifkan add-on dengan `gcloud beta container clusters update <cluster> --enable-agent-sandbox`.
+2. Pastikan bahwa `kubectl api-versions | grep agents.x-k8s.io` mencantumkan `agents.x-k8s.io/v1alpha1`. Versi GKE yang lebih baru juga dapat mencantumkannya, jadi pastikan juga bahwa klaster berada pada 1.35.
+3. Tambahkan [pengecualian pemeliharaan](https://docs.cloud.google.com/kubernetes-engine/docs/how-to/maintenance-windows-and-exclusions#configuring_a_maintenance_exclusion) dengan cakupan `no_minor_upgrades`, karena GKE meningkatkan klaster secara otomatis.
 
 ## Klaster lain
 
@@ -257,25 +267,25 @@ Folder `kubernetes/chart/examples/` di dalam arsip berisi file values lengkap un
 
 Dengan default chart, setiap sesi memiliki volume 10 GiB untuk `/workspace`. Volume tersebut tetap ada setelah pod sesi hilang, sehingga pesan berikutnya dari sesi tersebut menemukan file-filenya.
 
-| Untuk membebaskan                                | Lakukan ini                                                                                                                                                                                                                                                                      |
-| ------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Volume satu sesi                                 | Arsipkan sesi setelah gilirannya berakhir. Dispatcher biasanya menghapus volume tersebut dalam sekitar 5 menit.                                                                                                                                                                  |
+| Untuk membebaskan | Lakukan ini |
+| ----- | ----- |
+| Volume satu sesi | Arsipkan sesi setelah gilirannya berakhir. Dispatcher biasanya menghapus volume tersebut dalam sekitar 5 menit. |
 | Volume sesi yang tidak diarsipkan oleh siapa pun | Atur `dispatcher.retentionDays` di `cma-values.yaml`. Dispatcher kemudian menghapus volume setelah sesinya menganggur selama jumlah hari tersebut, dan pesan berikutnya dari sesi tersebut dimulai dengan `/workspace` yang kosong. Default chart, `0`, menyimpan setiap volume. |
 
 Perintah-perintah di bagian ini ditujukan untuk GKE. Di klaster lain, gunakan `sandboxclaims` sebagai pengganti `sandboxes`.
 
-Menghapus sesi tidak membebaskan volumenya. Arsipkan sesi terlebih dahulu. Hapus sesi tersebut hanya setelah `kubectl -n cma get sandboxes -l anthropic.com/session-id=<session-id>` tidak menampilkan apa pun.
+Menghapus sesi mungkin tidak membebaskan volumenya, jadi arsipkan sesi terlebih dahulu. Hapus sesi tersebut hanya setelah `kubectl -n cma get sandboxes -l anthropic.com/session-id=<session-id>` tidak menampilkan apa pun. Peningkatan dapat menghapus volume dari sesi yang telah dihapus, seperti yang dijelaskan di [Kubernetes: volume dari sesi yang dihapus](https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade#deleted-sessions-volumes).
 
-Jika Anda menghapus sesi tanpa mengarsipkannya, bebaskan volumenya sendiri:
+Jika Anda menghapus sesi tanpa mengarsipkannya dan volumenya tetap ada, bebaskan volume tersebut sendiri:
 
-1. Temukan ID sesi di log dispatcher. Perintah ini mencetak satu baris untuk setiap sesi yang tampaknya telah dihapus dan masih memiliki volume, dengan ID setelah `session_id`:
+1. Temukan ID sesi di log dispatcher. Perintah ini dapat mencetak satu baris untuk setiap sesi yang tampaknya telah dihapus dan masih memiliki volume, dengan ID setelah `session_id`:
 
    ```bash
    kubectl -n cma logs deployment/cma-dispatcher --since=6m \
      | grep "could not check the claim's session" | grep "403 Forbidden"
    ```
 
-   Dispatcher menulis baris-baris ini setiap 5 menit. Jika sesi tersebut tidak tercantum, tunggu 5 menit lalu jalankan perintah itu lagi.
+   Dispatcher menulis baris-baris ini setiap 5 menit. Jika sesi tersebut tidak tercantum, tunggu 5 menit lalu jalankan perintah itu lagi. Jika sesi tersebut masih tidak tercantum, jalankan `kubectl -n cma get sandboxes -l anthropic.com/session-id=<session-id>`. Jika perintah itu tidak menampilkan apa pun, volume tersebut sudah hilang. Jika perintah itu menampilkan sebuah sandbox, lanjutkan ke langkah 2 dengan ID tersebut.
 
 2. Pastikan bahwa sesi tersebut telah dihapus. Dengan port yang di-forward dan `ANTHROPIC_API_KEY` yang diatur seperti di [Menjalankan sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted/kubernetes#run-a-session), jalankan `ant --base-url http://127.0.0.1:8400 beta:sessions retrieve --session-id <session-id>`. Lanjutkan hanya jika jawabannya adalah `404 Not Found` dengan `Session not found`. Jika perintah tersebut mencetak sebuah sesi, berhenti: sesi tersebut belum dihapus.
 

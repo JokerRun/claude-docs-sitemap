@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: aaba919c8c85e71ef1b460ecc0536cf4836cbaa149c56d7bbb21659f546f0c99
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 06b4b69d342441611d443ed07fc34ae5d4be9587a95b1771df89856f20539ec9
 ---
 
 ---
@@ -51,16 +51,16 @@ Claude Managed Agents juga mendukung alat kustom yang ditentukan pengguna. Aplik
 
 Toolset agen mencakup alat-alat berikut. Semuanya diaktifkan secara default saat Anda menyertakan toolset dalam konfigurasi agen.
 
-| Alat          | Nama         | Deskripsi                                                       |
-| ------------- | ------------ | --------------------------------------------------------------- |
-| Bash          | `bash`       | Menjalankan perintah bash dalam sesi shell                      |
-| Read          | `read`       | Membaca file dari filesystem sandbox                            |
-| Write         | `write`      | Menulis file ke filesystem sandbox                              |
-| Edit          | `edit`       | Melakukan penggantian string dalam sebuah file                  |
-| Glob          | `glob`       | Melakukan pencocokan pola file yang cepat menggunakan pola glob |
-| Grep          | `grep`       | Mencari teks menggunakan pola regex                             |
-| Web fetch     | `web_fetch`  | Mengambil konten dari sebuah URL                                |
-| Pencarian web | `web_search` | Mencari informasi di web                                        |
+| Alat | Nama | Deskripsi |
+| ----- | ----- | ----- |
+| Bash | `bash` | Menjalankan perintah bash dalam sesi shell |
+| Read | `read` | Membaca file dari filesystem sandbox |
+| Write | `write` | Menulis file ke filesystem sandbox |
+| Edit | `edit` | Melakukan penggantian string dalam sebuah file |
+| Glob | `glob` | Melakukan pencocokan pola file yang cepat menggunakan pola glob |
+| Grep | `grep` | Mencari teks menggunakan pola regex |
+| Web fetch | `web_fetch` | Mengambil konten dari sebuah URL |
+| Pencarian web | `web_search` | Mencari informasi di web |
 
 Ketika output alat melebihi 100.000 karakter (sekitar 25.000 token), output tersebut secara otomatis ditulis ke sebuah file di [sandbox](https://platform.claude.com/docs/id/managed-agents/environments). Model menerima pratinjau terpotong beserta path file dan dapat membaca konten lengkapnya dari sana.
 
@@ -545,9 +545,9 @@ Toolset agen dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 ### Header beta yang diperlukan
 
@@ -561,9 +561,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

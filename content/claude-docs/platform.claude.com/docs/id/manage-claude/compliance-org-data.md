@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-org-data
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: b16595f3756307c41900799b69ed3388cf44879f034f02ddffa1ece0ec69c6f0
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4b52903fe34b0007b104a55cd684293745d9315022135a1d07e4928c8e763864
 ---
 
 ---
@@ -57,13 +57,13 @@ curl --fail-with-body -sS \
 
 Field `uuid` adalah pengidentifikasi kanonis untuk pencarian lanjutan. Tabel berikut memetakannya ke pengidentifikasi organisasi lain di seluruh Compliance API:
 
-| Field                | Lokasi                                                                                                                                                                                                                                                                                                                                                                                                                          | Hubungan dengan `uuid`                                                                                                                                            |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `{org_uuid}`         | Parameter path pada endpoint per-organisasi di halaman ini                                                                                                                                                                                                                                                                                                                                                                      | Nilai yang sama                                                                                                                                                   |
-| `organization_uuid`  | Catatan Activity Feed, chat, proyek, dan sesi                                                                                                                                                                                                                                                                                                                                                                                   | Nilai yang sama; gabungkan langsung pada kedua field ini                                                                                                          |
-| `organization_id`    | Catatan Activity Feed, chat, dan proyek                                                                                                                                                                                                                                                                                                                                                                                         | Organisasi yang sama, dengan awalan `org_`. Tidak lagi digunakan pada catatan chat dan proyek; gunakan `organization_uuid` sebagai gantinya.                      |
-| `organization_ids[]` | Filter pada [Query Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), [Mengambil chat dan pesan](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages), dan [daftar sesi remote](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions) (daftar sesi lokal tidak memiliki filter organisasi) | Menerima `uuid` atau bentuk berawalan `org_`                                                                                                                      |
-| `organization_id`    | Respons [Pengaturan organisasi efektif](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#get-effective-organization-settings)                                                                                                                                                                                                                                                                              | Nilai yang sama, UUID polos; respons ini **tidak** menggunakan bentuk berawalan `org_` yang dibawa `organization_id` pada catatan Activity Feed, chat, dan proyek |
+| Field | Lokasi | Hubungan dengan `uuid` |
+| ----- | ----- | ----- |
+| `{org_uuid}` | Parameter path pada endpoint per-organisasi di halaman ini | Nilai yang sama |
+| `organization_uuid` | Catatan Activity Feed, chat, proyek, dan sesi | Nilai yang sama; gabungkan langsung pada kedua field ini |
+| `organization_id` | Catatan Activity Feed, chat, dan proyek | Organisasi yang sama, dengan awalan `org_`. Tidak lagi digunakan pada catatan chat dan proyek; gunakan `organization_uuid` sebagai gantinya. |
+| `organization_ids[]` | Filter pada [Query Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed), [Mengambil chat dan pesan](https://platform.claude.com/docs/id/manage-claude/compliance-content-data#retrieve-chats-and-messages), dan [daftar sesi remote](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-remote-sessions) (daftar sesi lokal tidak memiliki filter organisasi) | Menerima `uuid` atau bentuk berawalan `org_` |
+| `organization_id` | Respons [Pengaturan organisasi efektif](https://platform.claude.com/docs/id/manage-claude/compliance-org-data#get-effective-organization-settings) | Nilai yang sama, UUID polos; respons ini **tidak** menggunakan bentuk berawalan `org_` yang dibawa `organization_id` pada catatan Activity Feed, chat, dan proyek |
 
 Sebagian besar API Anthropic lainnya menggunakan bentuk berawalan `org_`.
 

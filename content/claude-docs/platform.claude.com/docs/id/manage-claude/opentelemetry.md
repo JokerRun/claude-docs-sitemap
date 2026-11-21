@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/opentelemetry
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 6fccb5c4f1bd1fa7ff9d7f77894dfaa963acbfb7c3ddb2c6e4dfb7541dfd6c0e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d5ac8f103f24dc8dd9c5772bf54a495d7fb24aaa6fa85dac1fe2cf724ad69f00
 ---
 
 ---
@@ -81,21 +81,21 @@ Siapkan tracing OpenTelemetry dengan Claude API dan Anthropic SDK
   </Card>
 </CardGroup>
 
-| Yang Anda dapatkan                                                                                                                | Penelusuran SDK                                                                                                                | Penelusuran API                                                                            | Keduanya bersama                                                                           |
-| --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| Permintaan [Messages API](https://platform.claude.com/docs/id/api/messages/create)                                                | ✅                                                                                                                              | ✅                                                                                          | ✅                                                                                          |
-| Permintaan [Sessions API](https://platform.claude.com/docs/id/managed-agents/sessions)                                            | ✅                                                                                                                              | ✅                                                                                          | ✅                                                                                          |
-| Penggunaan token (lihat [Penghitungan token](https://platform.claude.com/docs/id/manage-claude/opentelemetry#count-tokens))       | ✅                                                                                                                              | ✅                                                                                          | ✅                                                                                          |
-| Setiap eksekusi model dalam sebuah permintaan                                                                                     | —                                                                                                                              | ✅                                                                                          | ✅                                                                                          |
-| Giliran [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)                                             | —                                                                                                                              | ✅                                                                                          | ✅                                                                                          |
-| [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), dijalankan oleh API                    | —                                                                                                                              | ✅                                                                                          | ✅                                                                                          |
-| Alat klien, dijalankan oleh [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner)              | ✅                                                                                                                              | —                                                                                          | ✅                                                                                          |
-| Alat dalam [sandbox self-hosted](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#trace-a-self-hosted-sandbox) | ✅                                                                                                                              | —                                                                                          | ✅                                                                                          |
-| Permintaan API lainnya, seperti mengunggah file                                                                                   | ✅                                                                                                                              | —                                                                                          | ✅                                                                                          |
-| Penyiapan                                                                                                                         | [Kode](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk)                                                    | [Console](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api)             | Keduanya                                                                                   |
-| Izin yang diperlukan                                                                                                              | Tidak ada                                                                                                                      | [Admin](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#what-you-need) | [Admin](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#what-you-need) |
-| Cakupan                                                                                                                           | Klien yang menggunakan SDK                                                                                                     | Klien apa pun                                                                              | Klien apa pun                                                                              |
-| Dukungan platform cloud                                                                                                           | Lihat [Ketersediaan penelusuran SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#feature-availability) | Claude API<br />Claude Platform on AWS                                                     | Claude API<br />Claude Platform on AWS                                                     |
+| Yang Anda dapatkan | Penelusuran SDK | Penelusuran API | Keduanya bersama |
+| ----- | ----- | ----- | ----- |
+| Permintaan [Messages API](https://platform.claude.com/docs/id/api/messages/create) | ✅ | ✅ | ✅ |
+| Permintaan [Sessions API](https://platform.claude.com/docs/id/managed-agents/sessions) | ✅ | ✅ | ✅ |
+| Penggunaan token (lihat [Penghitungan token](https://platform.claude.com/docs/id/manage-claude/opentelemetry#count-tokens)) | ✅ | ✅ | ✅ |
+| Setiap eksekusi model dalam sebuah permintaan | — | ✅ | ✅ |
+| Giliran [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) | — | ✅ | ✅ |
+| [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools), dijalankan oleh API | — | ✅ | ✅ |
+| Alat klien, dijalankan oleh [tool runner](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner) | ✅ | — | ✅ |
+| Alat dalam [sandbox self-hosted](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#trace-a-self-hosted-sandbox) | ✅ | — | ✅ |
+| Permintaan API lainnya, seperti mengunggah file | ✅ | — | ✅ |
+| Penyiapan | [Kode](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk) | [Console](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api) | Keduanya |
+| Izin yang diperlukan | Tidak ada | [Admin](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#what-you-need) | [Admin](https://platform.claude.com/docs/id/manage-claude/opentelemetry/api#what-you-need) |
+| Cakupan | Klien yang menggunakan SDK | Klien apa pun | Klien apa pun |
+| Dukungan platform cloud | Lihat [Ketersediaan penelusuran SDK](https://platform.claude.com/docs/id/manage-claude/opentelemetry/sdk#feature-availability) | Claude API<br />Claude Platform on AWS | Claude API<br />Claude Platform on AWS |
 
 Untuk Claude Code, Agent SDK, atau Cowork, lihat [pemantauan Claude Code](https://code.claude.com/docs/en/monitoring-usage), [observabilitas Agent SDK](https://code.claude.com/docs/en/agent-sdk/observability), atau [pemantauan aktivitas Cowork](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry).
 
@@ -282,14 +282,14 @@ OpenTelemetry dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                | Model                                                              |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| Beta   | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                     | Model                                                              |
-| ------ | ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Semua model](https://platform.claude.com/docs/id/models/overview) |

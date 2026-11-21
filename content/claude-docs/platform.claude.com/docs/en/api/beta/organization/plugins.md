@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: d25cc6b1c48c08d27b4ca90eddaaa8b5a9063d560de290056de7b3feb4f192e8
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 137c4eb2e1a1f5613658e33339d252943553b161820e26a89c073199056256f3
 ---
 
 ---
@@ -146,6 +146,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -425,6 +427,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 
   The request's `Content-Type` header names a charset other than UTF-8, ISO-8859-1 or US-ASCII. Send the request with no charset, or with one of these.
 
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
 - `plugin_name_taken` (HTTP status 409)
 
   The marketplace already holds this name. `plugin_id` is the Plugin that holds it, and can be absent.
@@ -611,6 +617,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -913,8 +921,11 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID \
 
 Change which stored version of an organization-owned Plugin is served to members,
 for example to roll back to an earlier one. This pins the served version: later
-uploads are stored but no longer change what is served, and pinning cannot currently
-be undone, here or in claude.ai.
+uploads through this API are stored but no longer change what is served, and pinning
+cannot currently be undone, here or in claude.ai.
+
+A version from claude.ai might still change what is served: see [Versions and the served version](https://platform.claude.com/docs/en/manage-claude/plugins-api?sdk_languages=http#versions-and-the-served-version)
+in the Plugins API guide.
 
 Pass the version as `served_version_id`: an earlier one to roll back, a later one to
 start serving a version that was stored without being served, or the one already
@@ -1044,6 +1055,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1313,6 +1326,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 
   The version in `plugin_version_id` did not pass its content scan, so it cannot be served.
 
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
 - `scan_pending` (HTTP status 409)
 
   The content scan of the version in `plugin_version_id` is still running. Retry once the scan finishes.
@@ -1551,6 +1568,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1985,6 +2004,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -2050,6 +2071,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `cmek_key_disabled` (HTTP status 400)
 
   The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 
@@ -2692,6 +2717,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -2904,6 +2931,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 
   The request's `Content-Type` header names a charset other than UTF-8, ISO-8859-1 or US-ASCII. Send the request with no charset, or with one of these.
 
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
 - `skill_name_taken` (HTTP status 409)
 
   One of the Plugin's skills has the name of an organization skill. `skill_name` is that name.
@@ -3094,6 +3125,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -3453,6 +3486,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -3820,6 +3855,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -3875,6 +3912,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `cmek_key_network_blocked` (HTTP status 400)
 
   The key management service's network access controls blocked the request to the workspace's customer-managed encryption key. The key itself may be healthy.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 #### Example
 
@@ -4035,6 +4076,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -4317,6 +4360,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -4450,6 +4495,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
     When its setting last changed.
 
     format: date-time
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 #### Example
 
@@ -4615,6 +4670,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -4709,6 +4766,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
       - `user_id: string`
 
         The member's User ID.
+
+#### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 #### Example
 
@@ -4886,6 +4953,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

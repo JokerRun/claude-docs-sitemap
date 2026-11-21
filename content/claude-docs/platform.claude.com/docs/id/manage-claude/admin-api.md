@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: c16fbefa8a1875e957188fb8143ad292df0b2c870bc05becdba7de16f31ac7ce
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 714bac08e540613749c77a669fc076370c2c438bc181e61bdb2ed572e218ba58
 ---
 
 ---
@@ -241,13 +241,13 @@ Penggunaan umum mencakup otomatisasi onboarding dan offboarding, pengelolaan aks
 
 Organisasi Claude Console memiliki lima peran tingkat organisasi. Untuk detailnya, lihat [Peran dan izin API Console](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions).
 
-| Peran              | Izin                                                                                     |
-| ------------------ | ---------------------------------------------------------------------------------------- |
-| user               | Dapat menggunakan playground                                                             |
+| Peran | Izin |
+| ----- | ----- |
+| user | Dapat menggunakan playground |
 | claude\_code\_user | Dapat menggunakan playground dan [Claude Code](https://code.claude.com/docs/id/overview) |
-| developer          | Dapat menggunakan playground dan mengelola kunci API                                     |
-| billing            | Dapat menggunakan playground dan mengelola detail penagihan                              |
-| admin              | Dapat melakukan semua hal di atas, ditambah mengelola pengguna                           |
+| developer | Dapat menggunakan playground dan mengelola kunci API |
+| billing | Dapat menggunakan playground dan mengelola detail penagihan |
+| admin | Dapat melakukan semua hal di atas, ditambah mengelola pengguna |
 
 Organisasi Claude Enterprise memiliki kumpulan peran yang berbeda, termasuk pemilik dan pemilik utama. Lihat [Peran organisasi](https://platform.claude.com/docs/id/manage-claude/user-management#organization-roles).
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/batch-processing
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: ec0f55805c76e8a794271958ad9c0eb7e3a4081b7051835e5709a02b80951821
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a44b3b695e938580b9cd58dffb2061e11fe04f2a76d24fed75540409888c3d89
 ---
 
 ---
@@ -99,12 +99,12 @@ Karena setiap permintaan dalam batch diproses secara independen, Anda dapat menc
 
 Sejumlah kecil parameter Messages API **tidak** didukung dalam permintaan batch. Menyertakan salah satu dari parameter ini akan menghasilkan error validasi:
 
-| Parameter                                                                                                                              | Alasan                                                                                                                                                                                                                                         |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `stream: true`                                                                                                                         | Hasil batch dikembalikan sebagai satu file, bukan stream.                                                                                                                                                                                      |
-| `speed` ([Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode))                                                | Mode cepat menyetel latensi sinkron, yang tidak berlaku untuk pemrosesan batch asinkron.                                                                                                                                                       |
+| Parameter | Alasan |
+| ----- | ----- |
+| `stream: true` | Hasil batch dikembalikan sebagai satu file, bukan stream. |
+| `speed` ([Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode)) | Mode cepat menyetel latensi sinkron, yang tidak berlaku untuk pemrosesan batch asinkron. |
 | `fallbacks` ([Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback)) | Fallback sisi server tidak berlaku untuk batch. Untuk mencoba ulang permintaan yang ditolak, lihat [Penolakan dalam Message Batches](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusals-in-message-batches). |
-| `max_tokens: 0`                                                                                                                        | Lihat [Batasan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing#batch-limitations).                                                                                                                               |
+| `max_tokens: 0` | Lihat [Batasan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing#batch-limitations). |
 
 <Tip>
   Karena batch dapat memerlukan waktu lebih dari 5 menit untuk diproses, pertimbangkan untuk menggunakan [durasi cache 1 jam](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#1-hour-cache-duration) dengan caching prompt untuk tingkat cache hit yang lebih baik saat memproses batch dengan konteks bersama.
@@ -114,30 +114,30 @@ Sejumlah kecil parameter Messages API **tidak** didukung dalam permintaan batch.
 
 Batches API menawarkan penghematan biaya yang signifikan. Semua penggunaan dikenakan biaya sebesar 50 persen dari harga API standar.
 
-| Model                                                                                                                                                                  | Batch input  | Batch output  |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :------------ |
-| Claude Fable 5.2                                                                                                                                                       | $4 / MTok    | $20 / MTok    |
-| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $4 / MTok    | $20 / MTok    |
-| Claude Fable 5.1                                                                                                                                                       | $5 / MTok    | $25 / MTok    |
-| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $5 / MTok    | $25 / MTok    |
-| Claude Fable 5                                                                                                                                                         | $5 / MTok    | $25 / MTok    |
-| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                              | $5 / MTok    | $25 / MTok    |
-| Claude Opus 5.5                                                                                                                                                        | $2 / MTok    | $10 / MTok    |
-| Claude Opus 5                                                                                                                                                          | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.8                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.7                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.6                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.5                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
+| Model | Batch input | Batch output |
+| :---- | :---- | :---- |
+| Claude Fable 5.2 | $4 / MTok | $20 / MTok |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842)) | $4 / MTok | $20 / MTok |
+| Claude Fable 5.1 | $5 / MTok | $25 / MTok |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | $5 / MTok | $25 / MTok |
+| Claude Fable 5 | $5 / MTok | $25 / MTok |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842)) | $5 / MTok | $25 / MTok |
+| Claude Opus 5.5 | $2 / MTok | $10 / MTok |
+| Claude Opus 5 | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.8 | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.7 | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.6 | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.5 | $2.50 / MTok | $12.50 / MTok |
 | Claude Opus 4.1 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $7.50 / MTok | $37.50 / MTok |
-| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))               | $7.50 / MTok | $37.50 / MTok |
-| Claude Sonnet 5.5                                                                                                                                                      | $1 / MTok    | $5 / MTok     |
-| Claude Sonnet 5                                                                                                                                                        | $1 / MTok    | $5 / MTok     |
-| Claude Sonnet 4.6                                                                                                                                                      | $1.50 / MTok | $7.50 / MTok  |
-| Claude Sonnet 4.5                                                                                                                                                      | $1.50 / MTok | $7.50 / MTok  |
-| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $1.50 / MTok | $7.50 / MTok  |
-| Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.05 / MTok | $0.25 / MTok  |
-| Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.25 / MTok | $1.25 / MTok  |
-| Claude Haiku 4.5                                                                                                                                                       | $0.50 / MTok | $2.50 / MTok  |
+| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $7.50 / MTok | $37.50 / MTok |
+| Claude Sonnet 5.5 | $1 / MTok | $5 / MTok |
+| Claude Sonnet 5 | $1 / MTok | $5 / MTok |
+| Claude Sonnet 4.6 | $1.50 / MTok | $7.50 / MTok |
+| Claude Sonnet 4.5 | $1.50 / MTok | $7.50 / MTok |
+| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $1.50 / MTok | $7.50 / MTok |
+| Claude Haiku 5.5 (for prompts up to 100,000 tokens) | $0.05 / MTok | $0.25 / MTok |
+| Claude Haiku 5.5 (for prompts over 100,000 tokens) | $0.25 / MTok | $1.25 / MTok |
+| Claude Haiku 4.5 | $0.50 / MTok | $2.50 / MTok |
 
 * **MTok:** Million tokens. $5 / MTok is $5 for every million tokens.
 * **Limited access:** Available only to organizations verified through Anthropic’s verification programs, such as the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). To request access, apply to the program that covers your use case.
@@ -737,12 +737,12 @@ Anda dapat menampilkan daftar semua Message Batch di Workspace Anda menggunakan 
 
 Setelah pemrosesan batch berakhir, setiap permintaan Messages dalam batch memiliki hasil. Ada empat jenis hasil:
 
-| Jenis hasil | Deskripsi                                                                                                                                                                     |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `succeeded` | Permintaan berhasil. Menyertakan hasil pesan.                                                                                                                                 |
-| `errored`   | Permintaan mengalami error dan pesan tidak dibuat. Kemungkinan error meliputi permintaan yang tidak valid dan error server internal. Anda tidak ditagih untuk permintaan ini. |
-| `canceled`  | Pengguna membatalkan batch sebelum permintaan ini dapat dikirim ke model. Anda tidak ditagih untuk permintaan ini.                                                            |
-| `expired`   | Batch mencapai batas kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak ditagih untuk permintaan ini.                                               |
+| Jenis hasil | Deskripsi |
+| ----- | ----- |
+| `succeeded` | Permintaan berhasil. Menyertakan hasil pesan. |
+| `errored` | Permintaan mengalami error dan pesan tidak dibuat. Kemungkinan error meliputi permintaan yang tidak valid dan error server internal. Anda tidak ditagih untuk permintaan ini. |
+| `canceled` | Pengguna membatalkan batch sebelum permintaan ini dapat dikirim ke model. Anda tidak ditagih untuk permintaan ini. |
+| `expired` | Batch mencapai batas kedaluwarsa 24 jam sebelum permintaan ini dapat dikirim ke model. Anda tidak ditagih untuk permintaan ini. |
 
 Objek `request_counts` pada batch menghitung permintaan yang masih diproses dan permintaan untuk setiap jenis hasil.
 
@@ -1902,8 +1902,8 @@ Pemrosesan batch tersedia di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                 |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -1914,10 +1914,10 @@ Pemrosesan batch tersedia di semua model.
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA       |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Status | Tidak layak                                                                                                                                                      | Tidak layak |
-| Detail | Retensi 29 hari; penyimpanan asinkron diperlukan. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/batch-processing#data-retention) | —           |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
+| Detail | Retensi 29 hari; penyimpanan asinkron diperlukan. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/batch-processing#data-retention) | — |
 
 Endpoint yang berlaku:
 

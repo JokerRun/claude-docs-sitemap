@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/search-results
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: d87b1e21e04733705697b615913fc2d57e22a7a5fac5c323d92c60066a868b37
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 212d97b80195cb98fe6f99cd10e38c884276260016f6f66614183cee3755c86f
 ---
 
 ---
@@ -85,19 +85,19 @@ Hasil pencarian menggunakan struktur berikut:
 
 ### Field wajib
 
-| Field     | Tipe   | Deskripsi                                                                                                             |
-| --------- | ------ | --------------------------------------------------------------------------------------------------------------------- |
-| `type`    | string | Harus `"search_result"`                                                                                               |
-| `source`  | string | Sumber konten. String stabil apa pun dapat digunakan: URL, atau pengidentifikasi internal seperti `kb://article-1234` |
-| `title`   | string | Judul deskriptif untuk hasil pencarian                                                                                |
-| `content` | array  | Array blok teks yang berisi konten sebenarnya                                                                         |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `type` | string | Harus `"search_result"` |
+| `source` | string | Sumber konten. String stabil apa pun dapat digunakan: URL, atau pengidentifikasi internal seperti `kb://article-1234` |
+| `title` | string | Judul deskriptif untuk hasil pencarian |
+| `content` | array | Array blok teks yang berisi konten sebenarnya |
 
 ### Field opsional
 
-| Field           | Tipe   | Deskripsi                                                                                                                                                                                                                                                                                                                                                              |
-| --------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `citations`     | object | Konfigurasi sitasi dengan field boolean `enabled`. Sitasi dinonaktifkan secara default; setiap contoh di halaman ini menetapkan `"enabled": true` secara eksplisit. Semua hasil pencarian dalam satu permintaan harus menggunakan pengaturan yang sama (lihat [Kontrol sitasi](https://platform.claude.com/docs/id/build-with-claude/search-results#citation-control)) |
-| `cache_control` | object | Pengaturan kontrol cache (misalnya, `{"type": "ephemeral"}`)                                                                                                                                                                                                                                                                                                           |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `citations` | object | Konfigurasi sitasi dengan field boolean `enabled`. Sitasi dinonaktifkan secara default; setiap contoh di halaman ini menetapkan `"enabled": true` secara eksplisit. Semua hasil pencarian dalam satu permintaan harus menggunakan pengaturan yang sama (lihat [Kontrol sitasi](https://platform.claude.com/docs/id/build-with-claude/search-results#citation-control)) |
+| `cache_control` | object | Pengaturan kontrol cache (misalnya, `{"type": "ephemeral"}`) |
 
 Setiap item dalam array `content` harus berupa blok teks dengan:
 
@@ -1286,15 +1286,15 @@ Terlepas dari bagaimana hasil pencarian disediakan, Claude secara otomatis menye
 
 Setiap sitasi mencakup:
 
-| Field                 | Tipe             | Deskripsi                                                                                                                                                                     |
-| --------------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                | string           | Selalu `"search_result_location"` untuk sitasi hasil pencarian                                                                                                                |
-| `source`              | string           | Sumber dari hasil pencarian asli                                                                                                                                              |
-| `title`               | string atau null | Judul dari hasil pencarian asli                                                                                                                                               |
-| `cited_text`          | string           | Teks lengkap dari blok yang dikutip, digabungkan. Sama dengan isi `content[start_block_index:end_block_index]` yang digabungkan bersama. Tidak dihitung sebagai token output. |
-| `search_result_index` | integer          | Indeks berbasis 0 dari hasil pencarian yang dikutip di antara semua blok `search_result` dalam permintaan, sesuai urutan kemunculannya (di seluruh pesan dan hasil alat).     |
-| `start_block_index`   | integer          | Indeks berbasis 0 dari blok pertama yang dikutip dalam array `content` hasil pencarian.                                                                                       |
-| `end_block_index`     | integer          | Indeks akhir eksklusif dari rentang blok yang dikutip dalam array `content` hasil pencarian. Selalu lebih besar dari `start_block_index`.                                     |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `type` | string | Selalu `"search_result_location"` untuk sitasi hasil pencarian |
+| `source` | string | Sumber dari hasil pencarian asli |
+| `title` | string atau null | Judul dari hasil pencarian asli |
+| `cited_text` | string | Teks lengkap dari blok yang dikutip, digabungkan. Sama dengan isi `content[start_block_index:end_block_index]` yang digabungkan bersama. Tidak dihitung sebagai token output. |
+| `search_result_index` | integer | Indeks berbasis 0 dari hasil pencarian yang dikutip di antara semua blok `search_result` dalam permintaan, sesuai urutan kemunculannya (di seluruh pesan dan hasil alat). |
+| `start_block_index` | integer | Indeks berbasis 0 dari blok pertama yang dikutip dalam array `content` hasil pencarian. |
+| `end_block_index` | integer | Indeks akhir eksklusif dari rentang blok yang dikutip dalam array `content` hasil pencarian. Selalu lebih besar dari `start_block_index`. |
 
 Indeks blok mengidentifikasi potongan dari array `content` hasil pencarian, dan `cited_text` adalah teks lengkap dari potongan tersebut. Blok teks adalah unit terkecil yang dapat dikutip: Claude mengutip blok utuh, bukan substring di dalam blok. Untuk mendapatkan sitasi yang lebih terperinci, pecah konten hasil pencarian Anda menjadi blok-blok yang lebih kecil (lihat [Beberapa blok konten](https://platform.claude.com/docs/id/build-with-claude/search-results#multiple-content-blocks)).
 
@@ -2228,8 +2228,8 @@ Hasil pencarian tersedia di semua model dan layak untuk retensi data nol dan kes
 * Ketersediaan: Tersedia
 * Penggunaan: Kirim blok `search_result` dalam hasil alat atau langsung dalam pesan pengguna.
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -2237,16 +2237,16 @@ Hasil pencarian tersedia di semua model dan layak untuk retensi data nol dan kes
 * Ketersediaan: Tersedia
 * Penggunaan: Hanya diterima dalam hasil alat, seperti event `user.custom_tool_result`, bukan dalam event `user.message`.
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
 
 Endpoint yang berlaku:

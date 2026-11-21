@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: e73505a1cdaaa2498dda8176e476f7f9bab6b51eb4163ab50d5f3e06b8460737
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 73f37fe6ac209acb2f109899bccd5034b30f6356c185ef65293f0d52592e5702
 ---
 
 ---
@@ -81,21 +81,21 @@ Set up OpenTelemetry tracing with the Claude API and Anthropic SDK
   </Card>
 </CardGroup>
 
-| What you get                                                                                                                      | SDK tracing                                                                                                                 | API tracing                                                                                | Both together                                                                              |
-| --------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------ |
-| [Messages API](https://platform.claude.com/docs/en/api/messages/create) requests                                                  | ✅                                                                                                                           | ✅                                                                                          | ✅                                                                                          |
-| [Sessions API](https://platform.claude.com/docs/en/managed-agents/sessions) requests                                              | ✅                                                                                                                           | ✅                                                                                          | ✅                                                                                          |
-| Token usage (see [Counting tokens](https://platform.claude.com/docs/en/manage-claude/opentelemetry#count-tokens))                 | ✅                                                                                                                           | ✅                                                                                          | ✅                                                                                          |
-| Each model run within a request                                                                                                   | —                                                                                                                           | ✅                                                                                          | ✅                                                                                          |
-| [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) turns                                               | —                                                                                                                           | ✅                                                                                          | ✅                                                                                          |
-| [Server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), run by the API                        | —                                                                                                                           | ✅                                                                                          | ✅                                                                                          |
-| Client tools, run by the [tool runner](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner)                 | ✅                                                                                                                           | —                                                                                          | ✅                                                                                          |
-| Tools in a [self-hosted sandbox](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk#trace-a-self-hosted-sandbox) | ✅                                                                                                                           | —                                                                                          | ✅                                                                                          |
-| Other API requests, such as uploading files                                                                                       | ✅                                                                                                                           | —                                                                                          | ✅                                                                                          |
-| Setup                                                                                                                             | [Code](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk)                                                 | [Console](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api)             | Both                                                                                       |
-| Required permission                                                                                                               | None                                                                                                                        | [Admin](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#what-you-need) | [Admin](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#what-you-need) |
-| Coverage                                                                                                                          | Clients using the SDK                                                                                                       | Any client                                                                                 | Any client                                                                                 |
-| Cloud platform support                                                                                                            | See [Availability of SDK tracing](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk#feature-availability) | Claude API<br />Claude Platform on AWS                                                     | Claude API<br />Claude Platform on AWS                                                     |
+| What you get | SDK tracing | API tracing | Both together |
+| ----- | ----- | ----- | ----- |
+| [Messages API](https://platform.claude.com/docs/en/api/messages/create) requests | ✅ | ✅ | ✅ |
+| [Sessions API](https://platform.claude.com/docs/en/managed-agents/sessions) requests | ✅ | ✅ | ✅ |
+| Token usage (see [Counting tokens](https://platform.claude.com/docs/en/manage-claude/opentelemetry#count-tokens)) | ✅ | ✅ | ✅ |
+| Each model run within a request | — | ✅ | ✅ |
+| [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview) turns | — | ✅ | ✅ |
+| [Server tools](https://platform.claude.com/docs/en/agents-and-tools/tool-use/server-tools), run by the API | — | ✅ | ✅ |
+| Client tools, run by the [tool runner](https://platform.claude.com/docs/en/agents-and-tools/tool-use/tool-runner) | ✅ | — | ✅ |
+| Tools in a [self-hosted sandbox](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk#trace-a-self-hosted-sandbox) | ✅ | — | ✅ |
+| Other API requests, such as uploading files | ✅ | — | ✅ |
+| Setup | [Code](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk) | [Console](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api) | Both |
+| Required permission | None | [Admin](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#what-you-need) | [Admin](https://platform.claude.com/docs/en/manage-claude/opentelemetry/api#what-you-need) |
+| Coverage | Clients using the SDK | Any client | Any client |
+| Cloud platform support | See [Availability of SDK tracing](https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk#feature-availability) | Claude API<br />Claude Platform on AWS | Claude API<br />Claude Platform on AWS |
 
 For Claude Code, the Agent SDK, or Cowork, see [Claude Code monitoring](https://code.claude.com/docs/en/monitoring-usage), [Agent SDK observability](https://code.claude.com/docs/en/agent-sdk/observability), or [Cowork activity monitoring](https://support.claude.com/en/articles/14477985-monitor-claude-cowork-activity-with-opentelemetry).
 
@@ -282,14 +282,14 @@ OpenTelemetry is in beta on every model.
 
 * Availability: Available
 
-| Status | Cloud platforms                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Models                                                            |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Beta   | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) | [All models](https://platform.claude.com/docs/en/models/overview) |
+| Status | Cloud platforms | Models |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/en/build-with-claude/claude-in-microsoft-foundry) | [All models](https://platform.claude.com/docs/en/models/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
 
 * Availability: Available
 
-| Status | Cloud platforms                                                                                                    | Models                                                            |
-| ------ | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) | [All models](https://platform.claude.com/docs/en/models/overview) |
+| Status | Cloud platforms | Models |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) | [All models](https://platform.claude.com/docs/en/models/overview) |

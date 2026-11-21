@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/goal
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: dbf77b3a29ea1ea786f5ba35b031274dc4671cd7f264f0f5a5b2fbf0cf1ed78b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a967e8db746060a3efbe6496b088f7cc5185785b172c6167f01e9d74341bb5d5
 ---
 
 > ## Documentation Index
@@ -182,7 +182,7 @@ The evaluator runs on whichever provider your session is configured for. It does
 
 > [!NOTE]
 >
-> Evaluation tokens are billed on the small fast model configured for your provider and are typically negligible compared to main-turn spend.
+> Evaluation tokens are billed in addition to main-turn spend.
 
 ## Requirements
 

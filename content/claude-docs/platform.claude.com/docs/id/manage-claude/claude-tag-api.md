@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-tag-api
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 02658662dbc63eca2f316b918e1633df2a808098a0f75e15ebd6059fa744767c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4b74566440b321180c3eb10d97bf9e4c89c1f4fa8ec44d584f075113a47fe10e
 ---
 
 ---
@@ -31,12 +31,12 @@ Claude Tag adalah produk claude.ai. API ini mengelolanya untuk organisasi Claude
 
 API ini menyediakan 14 endpoint di empat resource:
 
-| Sumber daya                                                                                                                                                                                        | Endpoint                                                                                                                                                                                                                                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Channel Slack:** menyiapkan channel, mencantumkan channel dari sebuah workspace atau menemukan satu channel berdasarkan ID Slack-nya, membaca satu channel, mengubah pengaturannya, menghapusnya | `POST /v1/organizations/claude_tag/slack_channels`<br />`GET /v1/organizations/claude_tag/slack_channels`<br />`GET /v1/organizations/claude_tag/slack_channels/{id}`<br />`POST /v1/organizations/claude_tag/slack_channels/{id}`<br />`DELETE /v1/organizations/claude_tag/slack_channels/{id}`      |
-| **Workspace Slack:** mencantumkan workspace Anda atau menemukan satu workspace berdasarkan ID Slack-nya, membaca satu workspace, mengubah pengaturannya                                            | `GET /v1/organizations/claude_tag/slack_workspaces`<br />`GET /v1/organizations/claude_tag/slack_workspaces/{id}`<br />`POST /v1/organizations/claude_tag/slack_workspaces/{id}`                                                                                                                       |
-| **Bundle:** mencantumkan Paket akses organisasi Anda, membaca satu bundle (hanya-baca)                                                                                                             | `GET /v1/organizations/claude_tag/bundles`<br />`GET /v1/organizations/claude_tag/bundles/{bundle_id}`                                                                                                                                                                                                 |
-| **Target bundle:** mencantumkan di mana sebuah Bundle dilampirkan, melampirkannya ke channel atau workspace, membaca satu lampiran, melepaskannya                                                  | `GET /v1/organizations/claude_tag/bundles/{bundle_id}/targets`<br />`POST /v1/organizations/claude_tag/bundles/{bundle_id}/targets`<br />`GET /v1/organizations/claude_tag/bundles/{bundle_id}/targets/{target_id}`<br />`DELETE /v1/organizations/claude_tag/bundles/{bundle_id}/targets/{target_id}` |
+| Sumber daya | Endpoint |
+| ----- | ----- |
+| **Channel Slack:** menyiapkan channel, mencantumkan channel dari sebuah workspace atau menemukan satu channel berdasarkan ID Slack-nya, membaca satu channel, mengubah pengaturannya, menghapusnya | `POST /v1/organizations/claude_tag/slack_channels`<br />`GET /v1/organizations/claude_tag/slack_channels`<br />`GET /v1/organizations/claude_tag/slack_channels/{id}`<br />`POST /v1/organizations/claude_tag/slack_channels/{id}`<br />`DELETE /v1/organizations/claude_tag/slack_channels/{id}` |
+| **Workspace Slack:** mencantumkan workspace Anda atau menemukan satu workspace berdasarkan ID Slack-nya, membaca satu workspace, mengubah pengaturannya | `GET /v1/organizations/claude_tag/slack_workspaces`<br />`GET /v1/organizations/claude_tag/slack_workspaces/{id}`<br />`POST /v1/organizations/claude_tag/slack_workspaces/{id}` |
+| **Bundle:** mencantumkan Paket akses organisasi Anda, membaca satu bundle (hanya-baca) | `GET /v1/organizations/claude_tag/bundles`<br />`GET /v1/organizations/claude_tag/bundles/{bundle_id}` |
+| **Target bundle:** mencantumkan di mana sebuah Bundle dilampirkan, melampirkannya ke channel atau workspace, membaca satu lampiran, melepaskannya | `GET /v1/organizations/claude_tag/bundles/{bundle_id}/targets`<br />`POST /v1/organizations/claude_tag/bundles/{bundle_id}/targets`<br />`GET /v1/organizations/claude_tag/bundles/{bundle_id}/targets/{target_id}`<br />`DELETE /v1/organizations/claude_tag/bundles/{bundle_id}/targets/{target_id}` |
 
 Rilis ini mencakup Slack. Menghubungkan dan memutuskan workspace Slack atau Enterprise Grid, default Slack organisasi Anda, membuat dan mengedit Paket akses, batas pengeluaran, serta setiap pengaturan Claude Tag selain lima pengaturan di [Pengaturan](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#settings) tetap dilakukan di claude.ai.
 
@@ -186,9 +186,9 @@ Pengaturan yang bernilai `null` di `settings` tidak ditetapkan pada workspace in
 
 ## Scope
 
-| Scope              | Memberikan                                                                                                                                                     |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `read:claude_tag`  | Setiap endpoint `GET` di halaman ini.                                                                                                                          |
+| Scope | Memberikan |
+| ----- | ----- |
+| `read:claude_tag` | Setiap endpoint `GET` di halaman ini. |
 | `write:claude_tag` | Setiap endpoint `POST` dan `DELETE` di halaman ini. Scope ini tidak memberikan akses baca, meskipun respons terhadap perubahan berisi sumber daya yang diubah. |
 
 Sebuah kunci dapat membawa kedua cakupan. Integrasi yang mencari sebuah channel lalu mengubahnya memerlukan keduanya. Tidak ada cakupan lain yang memberikan akses ke endpoint ini, dan kunci yang dibuat di Claude Console tidak berfungsi di sini.
@@ -199,17 +199,17 @@ Kunci harus dimiliki oleh organisasi secara keseluruhan. Organisasi selalu merup
 
 ### Nama di halaman ini dan di claude.ai
 
-| API ini          | claude.ai dan Slack                                                                                                                                                                                                                   |
-| ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Workspace Slack  | Sebuah workspace Slack. API milik Slack sendiri menyebutnya team, sehingga ID workspace milik Slack sendiri di halaman ini adalah team ID di sana. Ini tidak terkait dengan workspace Claude Platform, yang ID-nya diawali `wrkspc_`. |
-| Default Slack    | **Akses Slack default**: pengaturan yang berlaku untuk setiap workspace dan channel. Pemilik organisasi mengubahnya di claude.ai; API ini menunjukkan di mana channel atau workspace mewarisinya.                                     |
-| Level pengaturan | Sebuah [cakupan](https://claude.com/docs/claude-tag/admins/customize): channel, workspace, atau default Slack                                                                                                                         |
-| Bundle           | Sebuah Paket akses ([glosarium Claude Tag](https://claude.com/docs/claude-tag/concepts/glossary#access-bundle))                                                                                                                       |
-| `enabled`        | Toggle **Enable Claude Tag in Slack (Aktifkan Claude Tag di Slack)**                                                                                                                                                                  |
-| `instructions`   | **Instruksi kustom**                                                                                                                                                                                                                  |
-| `model`          | **Model**                                                                                                                                                                                                                             |
-| `environment_id` | **Lingkungan**                                                                                                                                                                                                                        |
-| `guest_policy`   | **How should Claude work in channels with guests**: `restrict` adalah **Batasi**, `channel_only` adalah **Hanya channel**, dan `allow` adalah **Akses penuh**                                                                         |
+| API ini | claude.ai dan Slack |
+| ----- | ----- |
+| Workspace Slack | Sebuah workspace Slack. API milik Slack sendiri menyebutnya team, sehingga ID workspace milik Slack sendiri di halaman ini adalah team ID di sana. Ini tidak terkait dengan workspace Claude Platform, yang ID-nya diawali `wrkspc_`. |
+| Default Slack | **Akses Slack default**: pengaturan yang berlaku untuk setiap workspace dan channel. Pemilik organisasi mengubahnya di claude.ai; API ini menunjukkan di mana channel atau workspace mewarisinya. |
+| Level pengaturan | Sebuah [cakupan](https://claude.com/docs/claude-tag/admins/customize): channel, workspace, atau default Slack |
+| Bundle | Sebuah Paket akses ([glosarium Claude Tag](https://claude.com/docs/claude-tag/concepts/glossary#access-bundle)) |
+| `enabled` | Toggle **Enable Claude Tag in Slack (Aktifkan Claude Tag di Slack)** |
+| `instructions` | **Instruksi kustom** |
+| `model` | **Model** |
+| `environment_id` | **Lingkungan** |
+| `guest_policy` | **How should Claude work in channels with guests**: `restrict` adalah **Batasi**, `channel_only` adalah **Hanya channel**, dan `allow` adalah **Akses penuh** |
 
 ### Channel dan workspace yang sudah disiapkan
 
@@ -228,14 +228,14 @@ Channel yang dibagikan dengan seluruh Grid dapat disimpan di bawah ID Slack mili
 
 Anda mengenali sebuah channel dari ID yang ditampilkan Slack kepada Anda. Cari `id`-nya sekali dengan [Menemukan channel berdasarkan ID Slack-nya](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#find-a-channel-by-its-slack-ids), lalu simpan dan gunakan `id` tersebut.
 
-| ID                               | Prefiks                                                                                                                                                                                             | Tempat kemunculan                                                        |
-| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| Resource channel Slack           | `slch_`                                                                                                                                                                                             | `id` pada channel; `slack_channel_id` di body permintaan dan respons     |
-| Resource workspace Slack         | `slws_`                                                                                                                                                                                             | `id` pada workspace; `slack_workspace_id` di body permintaan dan respons |
-| Bundle                           | `capp_`                                                                                                                                                                                             | `id` pada Bundle; `{bundle_id}` di path                                  |
-| Target bundle                    | `btgt_`                                                                                                                                                                                             | `id` pada target Bundle; `{target_id}` di path                           |
-| ID workspace milik Slack sendiri | `T`, atau `E` untuk ID milik Grid itu sendiri (lihat [Channel dan workspace yang sudah disiapkan](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#set-up-channels-and-workspaces)) | `slack.workspace_id`; parameter query `slack_workspace_id`               |
-| ID channel milik Slack sendiri   | `C` atau `G`                                                                                                                                                                                        | `slack.channel_id`; parameter query `slack_channel_id`                   |
+| ID | Prefiks | Tempat kemunculan |
+| ----- | ----- | ----- |
+| Resource channel Slack | `slch_` | `id` pada channel; `slack_channel_id` di body permintaan dan respons |
+| Resource workspace Slack | `slws_` | `id` pada workspace; `slack_workspace_id` di body permintaan dan respons |
+| Bundle | `capp_` | `id` pada Bundle; `{bundle_id}` di path |
+| Target bundle | `btgt_` | `id` pada target Bundle; `{target_id}` di path |
+| ID workspace milik Slack sendiri | `T`, atau `E` untuk ID milik Grid itu sendiri (lihat [Channel dan workspace yang sudah disiapkan](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#set-up-channels-and-workspaces)) | `slack.workspace_id`; parameter query `slack_workspace_id` |
+| ID channel milik Slack sendiri | `C` atau `G` | `slack.channel_id`; parameter query `slack_channel_id` |
 
 <Warning>
   `slack_channel_id` dan `slack_workspace_id` masing-masing memiliki dua arti. Dalam **parameter query**, masing-masing adalah ID milik Slack sendiri (`C05HJKL6MNP`, `T01ABCD2EFG`). Dalam **body permintaan atau respons**, masing-masing adalah `id` yang diterbitkan API ini (`slch_...`, `slws_...`). ID milik Slack sendiri di body atau respons selalu berada di bawah `slack`.
@@ -249,13 +249,13 @@ Sebuah `id` tidak berubah selama channel atau workspace tersebut disiapkan, apa 
 
 Setiap tingkat pengaturan menyimpan lima pengaturan yang sama, semuanya opsional:
 
-| Pengaturan       | Tipe    | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ---------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `enabled`        | boolean | Apakah Claude aktif.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `instructions`   | string  | Panduan tetap yang dibaca Claude di setiap sesi. Paling banyak 8.192 karakter setelah spasi di awal dan akhir dipangkas. Teks kosong menghapus pengaturan ini.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `model`          | string  | Model yang digunakan saat sesi baru dimulai: sebuah [ID model](https://platform.claude.com/docs/id/models/overview) yang dapat digunakan organisasi Anda dengan Claude Tag. Paling banyak 128 karakter.                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| `environment_id` | string  | Lingkungan cloud tempat sesi berjalan, dengan prefiks `env_`. Lingkungan ini harus aktif dan dimiliki oleh organisasi Anda.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| `guest_policy`   | object  | Apa yang dilakukan Claude di sebuah channel selama ada tamu Slack di dalamnya, untuk semua orang di channel: `{"type": "allow"}` (Claude menjawab), `{"type": "restrict"}` (Claude tidak menjawab), atau `{"type": "channel_only"}` (Claude menjawab hanya dengan Bundle yang dilampirkan ke channel itu sendiri; jika `channel_only` tidak tersedia untuk organisasi Anda, permintaan yang menetapkannya mengembalikan `400`). Lihat [Membatasi channel dengan tamu](https://claude.com/docs/claude-tag/admins/restrict-access#restrict-guest-channels) untuk maknanya di channel yang dibagikan melalui Slack Connect atau di seluruh Enterprise Grid. |
+| Pengaturan | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `enabled` | boolean | Apakah Claude aktif. |
+| `instructions` | string | Panduan tetap yang dibaca Claude di setiap sesi. Paling banyak 8.192 karakter setelah spasi di awal dan akhir dipangkas. Teks kosong menghapus pengaturan ini. |
+| `model` | string | Model yang digunakan saat sesi baru dimulai: sebuah [ID model](https://platform.claude.com/docs/id/models/overview) yang dapat digunakan organisasi Anda dengan Claude Tag. Paling banyak 128 karakter. |
+| `environment_id` | string | Lingkungan cloud tempat sesi berjalan, dengan prefiks `env_`. Lingkungan ini harus aktif dan dimiliki oleh organisasi Anda. |
+| `guest_policy` | object | Apa yang dilakukan Claude di sebuah channel selama ada tamu Slack di dalamnya, untuk semua orang di channel: `{"type": "allow"}` (Claude menjawab), `{"type": "restrict"}` (Claude tidak menjawab), atau `{"type": "channel_only"}` (Claude menjawab hanya dengan Bundle yang dilampirkan ke channel itu sendiri; jika `channel_only` tidak tersedia untuk organisasi Anda, permintaan yang menetapkannya mengembalikan `400`). Lihat [Membatasi channel dengan tamu](https://claude.com/docs/claude-tag/admins/restrict-access#restrict-guest-channels) untuk maknanya di channel yang dibagikan melalui Slack Connect atau di seluruh Enterprise Grid. |
 
 `model` dan `environment_id` diperiksa saat Anda menuliskannya dan tidak diperiksa lagi: jika model atau lingkungan tersebut kemudian berubah, respons tetap mengembalikan nilai yang tersimpan.
 
@@ -272,13 +272,13 @@ Dalam kedua kasus, `sources` menyebutkan, untuk setiap pengaturan, level asal ni
 
 Setiap pengaturan ditentukan secara terpisah:
 
-| Pengaturan       | Aturan                                                                                                                                                                | Ketika tidak ada level yang menetapkannya       |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `enabled`        | Level terdekat yang menetapkannya menentukan nilainya, sehingga `true` pada sebuah channel mengaktifkan Claude di sana bahkan ketika workspace-nya menyimpan `false`. | `true`                                          |
-| `instructions`   | Aditif. Teks dari setiap level yang menetapkannya digabungkan, mulai dari yang paling luas, dengan satu baris kosong di antaranya.                                    | `null`                                          |
-| `model`          | Level terdekat yang menetapkannya menentukan nilainya.                                                                                                                | `null`: Claude menggunakan model default produk |
-| `environment_id` | Level terdekat yang menetapkannya menentukan nilainya.                                                                                                                | `null`                                          |
-| `guest_policy`   | Level terdekat yang menetapkannya menentukan nilainya.                                                                                                                | `restrict`                                      |
+| Pengaturan | Aturan | Ketika tidak ada level yang menetapkannya |
+| ----- | ----- | ----- |
+| `enabled` | Level terdekat yang menetapkannya menentukan nilainya, sehingga `true` pada sebuah channel mengaktifkan Claude di sana bahkan ketika workspace-nya menyimpan `false`. | `true` |
+| `instructions` | Aditif. Teks dari setiap level yang menetapkannya digabungkan, mulai dari yang paling luas, dengan satu baris kosong di antaranya. | `null` |
+| `model` | Level terdekat yang menetapkannya menentukan nilainya. | `null`: Claude menggunakan model default produk |
+| `environment_id` | Level terdekat yang menetapkannya menentukan nilainya. | `null` |
+| `guest_policy` | Level terdekat yang menetapkannya menentukan nilainya. | `restrict` |
 
 Sebagai contoh, sebuah organisasi menyimpan instruksi pada default Slack-nya, menonaktifkan Claude pada sebuah workspace, dan menetapkan model pada satu channel di workspace tersebut. Jika dibaca dengan `include_inherited=true`, channel tersebut menunjukkan ketiga nilai dan asal masing-masing:
 
@@ -319,14 +319,14 @@ Jika dibaca tanpa parameter tersebut, channel yang sama memiliki `model`-nya dan
 
 Sebuah sumber adalah salah satu dari:
 
-| `type`                 | Arti                                                                                                                                                                                                                                                                                                                                                                        |
-| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `slack_channel`        | Channel, disebutkan di `slack_channel_id`.                                                                                                                                                                                                                                                                                                                                  |
-| `slack_workspace`      | Workspace, disebutkan di `slack_workspace_id`.                                                                                                                                                                                                                                                                                                                              |
-| `slack_parent_channel` | Induk dari sebuah channel kode, disebutkan di `slack_channel_id`. Channel kode adalah channel yang dimulai dari channel lain. Selama induknya adalah channel publik di workspace yang sama, induk tersebut berada di antara channel dan workspace dan hanya menyumbangkan `instructions` dan `environment_id`.                                                              |
-| `slack_grid_channel`   | Channel Slack yang sama seperti yang disiapkan di bawah workspace lain dari Slack Enterprise Grid-nya, disebutkan dengan ID milik Slack sendiri di bawah `slack`. Ini hanya menyumbangkan `enabled`: ketika baik channel maupun workspace-nya tidak menetapkan `enabled`, nilai `true` yang disimpan untuk channel tersebut di bawah workspace lain dari Grid yang berlaku. |
-| `slack_default`        | Default Slack organisasi Anda, yang tidak memiliki ID.                                                                                                                                                                                                                                                                                                                      |
-| `default`              | Tidak ada level yang menetapkan nilai, sehingga default bawaan yang berlaku.                                                                                                                                                                                                                                                                                                |
+| `type` | Arti |
+| ----- | ----- |
+| `slack_channel` | Channel, disebutkan di `slack_channel_id`. |
+| `slack_workspace` | Workspace, disebutkan di `slack_workspace_id`. |
+| `slack_parent_channel` | Induk dari sebuah channel kode, disebutkan di `slack_channel_id`. Channel kode adalah channel yang dimulai dari channel lain. Selama induknya adalah channel publik di workspace yang sama, induk tersebut berada di antara channel dan workspace dan hanya menyumbangkan `instructions` dan `environment_id`. |
+| `slack_grid_channel` | Channel Slack yang sama seperti yang disiapkan di bawah workspace lain dari Slack Enterprise Grid-nya, disebutkan dengan ID milik Slack sendiri di bawah `slack`. Ini hanya menyumbangkan `enabled`: ketika baik channel maupun workspace-nya tidak menetapkan `enabled`, nilai `true` yang disimpan untuk channel tersebut di bawah workspace lain dari Grid yang berlaku. |
+| `slack_default` | Default Slack organisasi Anda, yang tidak memiliki ID. |
+| `default` | Tidak ada level yang menetapkan nilai, sehingga default bawaan yang berlaku. |
 
 `sources.instructions` mencantumkan setiap level yang menyumbangkan teks, mulai dari yang paling luas, yang merupakan urutan teksnya di `settings.instructions`, dan kosong ketika tidak ada yang menyumbang. Daftar ini memberi tahu teks siapa yang muncul lebih dulu, bukan di mana teks satu level berakhir: untuk mendapatkan teks milik satu level, baca channel atau workspace tersebut tanpa `include_inherited`, atau, untuk default Slack, lihat di claude.ai. Sumber yang menyebutkan channel atau workspace selalu membawa ID-nya, yang tidak pernah `null`: `id` dari API ini di `slack_channel_id` atau `slack_workspace_id`, atau, pada `slack_grid_channel`, ID milik Slack sendiri di bawah `slack` seperti pada objek channel.
 
@@ -391,14 +391,14 @@ Setiap anggota dapat mengundang Claude ke channel publik. Untuk menjaga Claude t
 
 Objek channel menggambarkan satu channel Slack:
 
-| Field        | Deskripsi                                                                                                                                                                                                                                                                                                                                                                                                                                                |
-| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`       | `slack_channel`.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| `id`         | Dengan prefiks `slch_`. Lihat [ID](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#ids).                                                                                                                                                                                                                                                                                                                                                |
-| `slack`      | ID milik Slack sendiri: `workspace_id` untuk workspace tempat channel berada, dan `channel_id` untuk channel.                                                                                                                                                                                                                                                                                                                                            |
-| `settings`   | Apa yang disimpan channel itu sendiri, atau, dengan `include_inherited=true`, apa yang berlaku di dalamnya. Selalu ada, dengan kelima [pengaturan](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#settings); pengaturan yang tidak ditetapkan bernilai `null`. Lihat [Nilai tersimpan dan nilai warisan](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#stored-and-inherited-values).                                |
-| `sources`    | Untuk setiap pengaturan, level asal nilai di `settings`. Selalu ada.                                                                                                                                                                                                                                                                                                                                                                                     |
-| `created_at` | Kapan channel disiapkan.                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Field | Deskripsi |
+| ----- | ----- |
+| `type` | `slack_channel`. |
+| `id` | Dengan prefiks `slch_`. Lihat [ID](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#ids). |
+| `slack` | ID milik Slack sendiri: `workspace_id` untuk workspace tempat channel berada, dan `channel_id` untuk channel. |
+| `settings` | Apa yang disimpan channel itu sendiri, atau, dengan `include_inherited=true`, apa yang berlaku di dalamnya. Selalu ada, dengan kelima [pengaturan](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#settings); pengaturan yang tidak ditetapkan bernilai `null`. Lihat [Nilai tersimpan dan nilai warisan](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#stored-and-inherited-values). |
+| `sources` | Untuk setiap pengaturan, level asal nilai di `settings`. Selalu ada. |
+| `created_at` | Kapan channel disiapkan. |
 | `updated_at` | Kapan catatan Claude Tag tentang channel terakhir berubah. Nilai ini bergerak pada setiap perubahan pengaturan, di sini, di claude.ai, atau di Slack, dan juga dapat bergerak karena perubahan yang tidak ditampilkan respons mana pun di sini. Anggap nilai yang lebih baru sebagai alasan untuk membaca channel lagi, bukan sebagai bukti bahwa sebuah pengaturan berubah. Melampirkan atau melepaskan Bundle tidak dengan sendirinya menggerakkannya. |
 
 `id` yang bukan pengidentifikasi `slch_` yang valid mengembalikan `400`. `id` valid yang tidak menyebutkan channel organisasi Anda mengembalikan `404`.
@@ -1576,12 +1576,12 @@ Objek workspace menggambarkan satu workspace Slack. Objek ini memiliki field yan
 
 Bundle adalah apa yang disebut claude.ai sebagai [Paket akses](https://claude.com/docs/claude-tag/admins/add-connections): sekumpulan akses bernama, seperti konektor, repositori, dan kredensial, yang dapat digunakan Claude di sebuah channel atau workspace. Pemilik organisasi membuat, mengedit, dan menghapus Bundle di claude.ai. API ini mencantumkan dan melampirkannya. API ini mengembalikan nama dan deskripsi Bundle dan tidak pernah mengembalikan apa yang diberikan oleh Bundle tersebut.
 
-| Field                      | Deskripsi                                |
-| -------------------------- | ---------------------------------------- |
-| `type`                     | `bundle`.                                |
-| `id`                       | Diawali dengan `capp_`.                  |
-| `display_name`             | Nama Bundle.                             |
-| `description`              | Kegunaan Bundle. `null` jika tidak ada.  |
+| Field | Deskripsi |
+| ----- | ----- |
+| `type` | `bundle`. |
+| `id` | Diawali dengan `capp_`. |
+| `display_name` | Nama Bundle. |
+| `description` | Kegunaan Bundle. `null` jika tidak ada. |
 | `created_at`, `updated_at` | Kapan Bundle dibuat dan terakhir diubah. |
 
 `bundle_id` yang bukan pengidentifikasi `capp_` yang valid mengembalikan `400`. `bundle_id` valid yang tidak ada atau dimiliki organisasi lain mengembalikan `404`, apa pun isi permintaan lainnya. Bundle yang dikelola Claude Tag untuk dirinya sendiri tidak dicantumkan dan mengembalikan `404`.
@@ -1793,13 +1793,13 @@ Bundle adalah apa yang disebut claude.ai sebagai [Paket akses](https://claude.co
 
 Target Bundle adalah catatan dari satu Bundle yang dilampirkan ke satu channel atau satu workspace. Bundle yang dilampirkan ke sebuah workspace dapat digunakan di workspace tersebut dan di setiap channel di dalamnya. Bundle yang dilampirkan ke sebuah channel hanya dapat digunakan di channel tersebut.
 
-| Field                | Deskripsi                                                                                                                              |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`               | `slack_channel` atau `slack_workspace`.                                                                                                |
-| `id`                 | Diawali dengan `btgt_`. Ini adalah `{target_id}` dalam path, dan tidak pernah merupakan `id` milik channel atau workspace itu sendiri. |
-| `slack_channel_id`   | Pada target `slack_channel`: `id` channel, diawali dengan `slch_`.                                                                     |
-| `slack_workspace_id` | Pada target `slack_workspace`: `id` workspace, diawali dengan `slws_`.                                                                 |
-| `created_at`         | Kapan Bundle dilampirkan.                                                                                                              |
+| Field | Deskripsi |
+| ----- | ----- |
+| `type` | `slack_channel` atau `slack_workspace`. |
+| `id` | Diawali dengan `btgt_`. Ini adalah `{target_id}` dalam path, dan tidak pernah merupakan `id` milik channel atau workspace itu sendiri. |
+| `slack_channel_id` | Pada target `slack_channel`: `id` channel, diawali dengan `slch_`. |
+| `slack_workspace_id` | Pada target `slack_workspace`: `id` workspace, diawali dengan `slws_`. |
+| `created_at` | Kapan Bundle dilampirkan. |
 
 Sebuah Bundle dilampirkan ke sebuah channel atau workspace paling banyak satu kali, dan pasangan yang sama selalu memiliki `id` yang sama, juga setelah dilepaskan dan dilampirkan kembali. `id` bersifat opaque: dapatkan dari respons pelampiran atau dari daftar. Target Bundle tidak menyimpan `id` Bundle-nya, yang juga diperlukan oleh path-nya, jadi simpan keduanya bersama-sama.
 
@@ -2449,10 +2449,10 @@ Lampiran ke sebuah channel memiliki kondisi yang menentukan kapan lampiran itu b
 
 Permintaan dibatasi untuk setiap organisasi, dalam dua anggaran yang digunakan bersama oleh semua kunci organisasi Anda dan terpisah dari batas Admin API lainnya milik organisasi Anda. Setiap anggaran mengizinkan lonjakan (burst) lalu terisi kembali dengan laju tetap:
 
-| Anggaran  | Permintaan                 | Lonjakan | Pengisian ulang |
-| --------- | -------------------------- | -------- | --------------- |
-| Pembacaan | Setiap `GET`               | 120      | 2 per detik     |
-| Perubahan | Setiap `POST` dan `DELETE` | 60       | 1 per detik     |
+| Anggaran | Permintaan | Lonjakan | Pengisian ulang |
+| ----- | ----- | ----- | ----- |
+| Pembacaan | Setiap `GET` | 120 | 2 per detik |
+| Perubahan | Setiap `POST` dan `DELETE` | 60 | 1 per detik |
 
 Permintaan yang melebihi anggaran mengembalikan **429 Too Many Requests** dengan header `retry-after`: tunggu selama jumlah detik tersebut, lalu kirim ulang permintaan. Permintaan yang sampai ke tahap anggarannya, apa pun hasilnya, mendapatkan header `anthropic-ratelimit-requests-limit`, `anthropic-ratelimit-requests-remaining`, dan `anthropic-ratelimit-requests-reset` untuk anggaran tersebut; permintaan yang ditolak sebelum tahap itu, misalnya karena kunci, cakupan, atau header-nya, atau karena API, perubahan, atau penyimpanan baru tidak diaktifkan untuk organisasi Anda, tidak mendapatkan header tersebut.
 
@@ -2466,16 +2466,16 @@ Endpoint daftar menggunakan **kursor opak**. Permintaan pertama mengembalikan hi
 
 Respons kesalahan mengikuti bentuk standar yang didokumentasikan di [Kesalahan Claude API](https://platform.claude.com/docs/id/api/errors). Sebutkan `request_id` dari body respons saat menghubungi dukungan.
 
-| Status | Arti                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 400    | Input tidak valid, atau operasi tidak berlaku untuk channel, workspace, atau Bundle ini (lihat bagian masing-masing endpoint).                                                                                                                                                                                                                                                                                                                                                                   |
-| 401    | Header `x-api-key` tidak ada, atau kunci tidak dikenali.                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| 403    | Kunci bukan kunci dengan cakupan tingkat organisasi, tidak memiliki cakupan yang diperlukan, atau organisasi Anda tidak dapat membuat perubahan ini.                                                                                                                                                                                                                                                                                                                                             |
-| 404    | Resource tidak ditemukan, atau bukan milik organisasi Anda. Juga dikembalikan ketika permintaan menghilangkan nilai `anthropic-beta`, atau API tidak diaktifkan untuk organisasi Anda, sehingga endpoint terbaca sebagai tidak ada.                                                                                                                                                                                                                                                              |
-| 409    | Sesuatu yang lain mengubah atau menghapus resource saat permintaan berjalan. Tidak ada yang diminta oleh permintaan yang dilakukan: tidak ada pengaturan yang disimpan, tidak ada yang dilampirkan, dilepaskan, atau dihapus. Satu-satunya pengecualian adalah permintaan penyiapan, yang mungkin telah menyiapkan channel sebelum `settings`-nya mengalami konflik (`slack_channel_set_up_settings_conflict`). Baca kembali resource tersebut dan kirim ulang permintaan jika masih diperlukan. |
-| 429    | “Rate limit” (batas laju) terlampaui. Lihat [Pembatasan laju](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#rate-limiting).                                                                                                                                                                                                                                                                                                                                                   |
-| 500    | Kesalahan internal.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| 503    | Sementara. Pada sebuah perubahan, status ini tidak mengatakan apakah perubahan sudah disimpan. Setiap perubahan aman untuk diulang, jadi kirim ulang permintaan tanpa diubah. Jika `DELETE` yang dikirim ulang kemudian mengembalikan `404`, channel atau target Bundle sudah tidak ada.                                                                                                                                                                                                         |
+| Status | Arti |
+| ----- | ----- |
+| 400 | Input tidak valid, atau operasi tidak berlaku untuk channel, workspace, atau Bundle ini (lihat bagian masing-masing endpoint). |
+| 401 | Header `x-api-key` tidak ada, atau kunci tidak dikenali. |
+| 403 | Kunci bukan kunci dengan cakupan tingkat organisasi, tidak memiliki cakupan yang diperlukan, atau organisasi Anda tidak dapat membuat perubahan ini. |
+| 404 | Resource tidak ditemukan, atau bukan milik organisasi Anda. Juga dikembalikan ketika permintaan menghilangkan nilai `anthropic-beta`, atau API tidak diaktifkan untuk organisasi Anda, sehingga endpoint terbaca sebagai tidak ada. |
+| 409 | Sesuatu yang lain mengubah atau menghapus resource saat permintaan berjalan. Tidak ada yang diminta oleh permintaan yang dilakukan: tidak ada pengaturan yang disimpan, tidak ada yang dilampirkan, dilepaskan, atau dihapus. Satu-satunya pengecualian adalah permintaan penyiapan, yang mungkin telah menyiapkan channel sebelum `settings`-nya mengalami konflik (`slack_channel_set_up_settings_conflict`). Baca kembali resource tersebut dan kirim ulang permintaan jika masih diperlukan. |
+| 429 | “Rate limit” (batas laju) terlampaui. Lihat [Pembatasan laju](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#rate-limiting). |
+| 500 | Kesalahan internal. |
+| 503 | Sementara. Pada sebuah perubahan, status ini tidak mengatakan apakah perubahan sudah disimpan. Setiap perubahan aman untuk diulang, jadi kirim ulang permintaan tanpa diubah. Jika `DELETE` yang dikirim ulang kemudian mengembalikan `404`, channel atau target Bundle sudah tidak ada. |
 
 Ketika satu status memiliki beberapa penyebab yang akan Anda tangani secara berbeda, error juga membawa `error.details.error_code`:
 
@@ -2494,18 +2494,18 @@ Ketika satu status memiliki beberapa penyebab yang akan Anda tangani secara berb
 }
 ```
 
-| `error_code`                                 | Status | Arti dan apa yang harus dilakukan                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| -------------------------------------------- | ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `organization_level_scoped_api_key_required` | 403    | Kredensial bukan kunci Admin API dengan cakupan yang dimiliki organisasi secara keseluruhan. Mintalah satu kepada pemilik utama Anda.                                                                                                                                                                                                                                                                                                                                         |
-| `api_key_scope_missing`                      | 403    | Kunci tidak memiliki `read:claude_tag` atau `write:claude_tag`, mana pun yang diperlukan endpoint.                                                                                                                                                                                                                                                                                                                                                                            |
-| `claude_tag_writes_not_enabled`              | 403    | Organisasi Anda dapat membaca melalui API ini tetapi tidak diaktifkan untuk melakukan perubahan.                                                                                                                                                                                                                                                                                                                                                                              |
-| `compliance_configuration_restricted`        | 403    | Organisasi Anda memiliki konfigurasi kepatuhan di mana Claude Tag tidak menyimpan hal baru apa pun, seperti zero data retention. Menyiapkan channel, memperbarui pengaturan (bahkan untuk menghapusnya), dan melampirkan Bundle ditolak. Melepaskan Bundle dan menghapus channel tidak ditolak, dan organisasi seperti itu dapat [menghapus](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#remove-a-channel) channel bahkan saat Claude aktif di dalamnya. |
-| `environment_not_found`                      | 404    | `environment_id` tidak menyebutkan lingkungan yang dapat digunakan organisasi Anda di sini. `id` di path tidak bermasalah.                                                                                                                                                                                                                                                                                                                                                    |
-| `environment_archived`                       | 400    | `environment_id` menyebutkan lingkungan yang diarsipkan.                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `slack_channel_set_up_settings_refused`      | 400    | Permintaan menyiapkan channel, lalu `settings` ditolak. `details.slack_channel_id` adalah channel tersebut. Lihat [Menyiapkan channel](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#set-up-a-channel).                                                                                                                                                                                                                                                    |
-| `slack_channel_set_up_environment_not_found` | 404    | Permintaan menyiapkan channel, lalu `environment_id` tidak ditemukan. `details.slack_channel_id` adalah channel tersebut. Lihat [Menyiapkan channel](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#set-up-a-channel).                                                                                                                                                                                                                                      |
-| `slack_channel_set_up_settings_conflict`     | 409    | Permintaan menyiapkan channel, lalu perubahan lain tumpang tindih dengan `settings`. Tidak ada bagian dari `settings` yang disimpan. `details.slack_channel_id` adalah channel tersebut. Lihat [Menyiapkan channel](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#set-up-a-channel).                                                                                                                                                                       |
-| `slack_channel_enabled`                      | 400    | Claude aktif di channel (`enabled` terselesaikan menjadi `true`), sehingga channel tidak dapat dihapus. Tetapkan `enabled` ke `false` terlebih dahulu. Lihat [Menghapus channel](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#remove-a-channel).                                                                                                                                                                                                          |
+| `error_code` | Status | Arti dan apa yang harus dilakukan |
+| ----- | ----- | ----- |
+| `organization_level_scoped_api_key_required` | 403 | Kredensial bukan kunci Admin API dengan cakupan yang dimiliki organisasi secara keseluruhan. Mintalah satu kepada pemilik utama Anda. |
+| `api_key_scope_missing` | 403 | Kunci tidak memiliki `read:claude_tag` atau `write:claude_tag`, mana pun yang diperlukan endpoint. |
+| `claude_tag_writes_not_enabled` | 403 | Organisasi Anda dapat membaca melalui API ini tetapi tidak diaktifkan untuk melakukan perubahan. |
+| `compliance_configuration_restricted` | 403 | Organisasi Anda memiliki konfigurasi kepatuhan di mana Claude Tag tidak menyimpan hal baru apa pun, seperti zero data retention. Menyiapkan channel, memperbarui pengaturan (bahkan untuk menghapusnya), dan melampirkan Bundle ditolak. Melepaskan Bundle dan menghapus channel tidak ditolak, dan organisasi seperti itu dapat [menghapus](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#remove-a-channel) channel bahkan saat Claude aktif di dalamnya. |
+| `environment_not_found` | 404 | `environment_id` tidak menyebutkan lingkungan yang dapat digunakan organisasi Anda di sini. `id` di path tidak bermasalah. |
+| `environment_archived` | 400 | `environment_id` menyebutkan lingkungan yang diarsipkan. |
+| `slack_channel_set_up_settings_refused` | 400 | Permintaan menyiapkan channel, lalu `settings` ditolak. `details.slack_channel_id` adalah channel tersebut. Lihat [Menyiapkan channel](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#set-up-a-channel). |
+| `slack_channel_set_up_environment_not_found` | 404 | Permintaan menyiapkan channel, lalu `environment_id` tidak ditemukan. `details.slack_channel_id` adalah channel tersebut. Lihat [Menyiapkan channel](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#set-up-a-channel). |
+| `slack_channel_set_up_settings_conflict` | 409 | Permintaan menyiapkan channel, lalu perubahan lain tumpang tindih dengan `settings`. Tidak ada bagian dari `settings` yang disimpan. `details.slack_channel_id` adalah channel tersebut. Lihat [Menyiapkan channel](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#set-up-a-channel). |
+| `slack_channel_enabled` | 400 | Claude aktif di channel (`enabled` terselesaikan menjadi `true`), sehingga channel tidak dapat dihapus. Tetapkan `enabled` ke `false` terlebih dahulu. Lihat [Menghapus channel](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#remove-a-channel). |
 
 Kode baru dapat ditambahkan. Perlakukan kode yang tidak Anda kenali seperti Anda memperlakukan statusnya. `404` tanpa `error_code` memiliki salah satu dari dua penyebab. Entah sesuatu yang disebutkan permintaan tidak ditemukan (`id` di path, atau channel atau workspace Slack di body atau query), atau setiap endpoint terbaca sebagai tidak ada karena permintaan menghilangkan nilai `anthropic-beta` atau API tidak diaktifkan untuk organisasi Anda. Untuk membedakannya, [cantumkan workspace Anda](https://platform.claude.com/docs/id/manage-claude/claude-tag-api#list-workspaces) dengan kunci dan header yang sama: permintaan tersebut tidak menyebutkan apa pun, sehingga hanya mengembalikan `404` pada kasus kedua.
 
@@ -2513,25 +2513,25 @@ Kode baru dapat ditambahkan. Perlakukan kode yang tidak Anda kenali seperti Anda
 
 Setiap perubahan melalui API ini dicatat di [Activity Feed Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) organisasi Anda, diatribusikan ke kunci API sebagai `api_actor` yang membawa ID `apikey_`-nya. Event tersebut sama dengan yang dicatat oleh feed ketika perubahan yang sama dilakukan di claude.ai, sehingga satu kueri dapat menemukan suatu perubahan dengan cara apa pun perubahan itu dilakukan.
 
-| Event                             | Dipancarkan ketika                                                                           |
-| --------------------------------- | -------------------------------------------------------------------------------------------- |
-| `ccr_agent_created`               | Sebuah channel disiapkan.                                                                    |
-| `ccr_agent_updated`               | Sebuah pengaturan berubah pada channel atau workspace.                                       |
-| `ccr_agent_deleted`               | Sebuah channel dihapus. Target Bundle-nya ikut terhapus dan tidak memancarkan event sendiri. |
-| `ccr_agent_proxy_profile_bound`   | Sebuah Bundle dilampirkan.                                                                   |
-| `ccr_agent_proxy_profile_unbound` | Sebuah Bundle dilepaskan.                                                                    |
+| Event | Dipancarkan ketika |
+| ----- | ----- |
+| `ccr_agent_created` | Sebuah channel disiapkan. |
+| `ccr_agent_updated` | Sebuah pengaturan berubah pada channel atau workspace. |
+| `ccr_agent_deleted` | Sebuah channel dihapus. Target Bundle-nya ikut terhapus dan tidak memancarkan event sendiri. |
+| `ccr_agent_proxy_profile_bound` | Sebuah Bundle dilampirkan. |
+| `ccr_agent_proxy_profile_unbound` | Sebuah Bundle dilepaskan. |
 
 Event menyebutkan channel atau workspace dengan pengidentifikasi milik feed itu sendiri, `agent_id` (dengan prefiks `cagt_`), yang tidak ada di respons mana pun dari API ini, sehingga Anda belum dapat mencocokkan event dengan `id` channel atau workspace. Kedua event Bundle menyebutkan Bundle di `profile_id` dan channel atau workspace, dengan `agent_id` yang sama, di `scope_id`.
 
 Event `ccr_agent_updated` mencantumkan apa yang berubah di `updated_fields`, menggunakan nama-nama milik feed itu sendiri:
 
-| Pengaturan       | Nama di `updated_fields` |
-| ---------------- | ------------------------ |
-| `enabled`        | `slackbot_version`       |
-| `instructions`   | `system_prompt_addendum` |
-| `model`          | `default_model`          |
+| Pengaturan | Nama di `updated_fields` |
+| ----- | ----- |
+| `enabled` | `slackbot_version` |
+| `instructions` | `system_prompt_addendum` |
+| `model` | `default_model` |
 | `environment_id` | `default_environment_id` |
-| `guest_policy`   | `guest_policy`           |
+| `guest_policy` | `guest_policy` |
 
 `updated_fields` juga dapat berisi `is_virtual`, yang tidak menyebutkan pengaturan apa pun. Nilai ini muncul di samping nama pengaturan yang berubah dalam event untuk perubahan melalui API ini yang merupakan hal pertama yang disimpan siapa pun pada channel atau workspace: channel yang disiapkan oleh penggunaan pertama Claude, atau yang disiapkan API ini tanpa `settings`, atau workspace di mana Claude belum pernah digunakan, dan yang belum pernah ada yang menyimpan pengaturan atau melampirkan Bundle padanya, di sini atau di claude.ai. `model` yang digunakan channel kode saat dimulai tidak dihitung sebagai tersimpan. Melampirkan Bundle hanya mencatat `ccr_agent_proxy_profile_bound`.
 

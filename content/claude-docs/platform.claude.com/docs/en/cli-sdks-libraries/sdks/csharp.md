@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 3be9f874a84fa6a6554dd7cb0532171e63755ad90e434fbad4be60e42da44fd4
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a1c71838ecff3d6bcf2905854753df2674f7aec52a2c14f68b25c6c9ead29574
 ---
 
 ---
@@ -85,11 +85,11 @@ Or using a combination of the two approaches.
 
 See this table for the available options:
 
-| Property    | Environment variable   | Required | Default value                 |
-| ----------- | ---------------------- | -------- | ----------------------------- |
-| `ApiKey`    | `ANTHROPIC_API_KEY`    | false    | -                             |
-| `AuthToken` | `ANTHROPIC_AUTH_TOKEN` | false    | -                             |
-| `BaseUrl`   | `ANTHROPIC_BASE_URL`   | true     | `"https://api.anthropic.com"` |
+| Property | Environment variable | Required | Default value |
+| ----- | ----- | ----- | ----- |
+| `ApiKey` | `ANTHROPIC_API_KEY` | false | - |
+| `AuthToken` | `ANTHROPIC_AUTH_TOKEN` | false | - |
+| `BaseUrl` | `ANTHROPIC_BASE_URL` | true | `"https://api.anthropic.com"` |
 
 ### Modifying configuration
 
@@ -149,15 +149,15 @@ The SDK throws custom unchecked exception types:
 
 * `AnthropicApiException`: Base class for API errors. See this table for which exception subclass is thrown for each HTTP status code:
 
-| Status | Exception                                |
-| ------ | ---------------------------------------- |
-| 400    | `AnthropicBadRequestException`           |
-| 401    | `AnthropicUnauthorizedException`         |
-| 403    | `AnthropicForbiddenException`            |
-| 404    | `AnthropicNotFoundException`             |
-| 422    | `AnthropicUnprocessableEntityException`  |
-| 429    | `AnthropicRateLimitException`            |
-| 5xx    | `Anthropic5xxException`                  |
+| Status | Exception |
+| ----- | ----- |
+| 400 | `AnthropicBadRequestException` |
+| 401 | `AnthropicUnauthorizedException` |
+| 403 | `AnthropicForbiddenException` |
+| 404 | `AnthropicNotFoundException` |
+| 422 | `AnthropicUnprocessableEntityException` |
+| 429 | `AnthropicRateLimitException` |
+| 5xx | `Anthropic5xxException` |
 | others | `AnthropicUnexpectedStatusCodeException` |
 
 Additionally, all 4xx errors inherit from `Anthropic4xxException`.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/create
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: d1ddce29acba926281e433dc6c76cef777934f5c21e86b5c0b409e26c854375c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 395cb92643c52e182402490c837414315f968f2274bbd8b2b4bc0174b8604027
 ---
 
 ---
@@ -263,7 +263,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

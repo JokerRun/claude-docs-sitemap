@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-view
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 5e2440d82d866cca105f93449bdec96c74e7b215fd5574017b1cd461c8ea8ac2
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d5a1edb972e9d95f48b65be829764bf142d93aeef5b3b3503ed27d48f6640051
 ---
 
 > ## Documentation Index
@@ -745,8 +745,6 @@ claude agents --permission-mode plan --model opus --effort high
 `claude agents` also accepts `--dangerously-skip-permissions` as shorthand for `--permission-mode bypassPermissions`, and `--allow-dangerously-skip-permissions` to make `bypassPermissions` available in each dispatched session's `Shift+Tab` cycle without starting in that mode. Both match the [top-level CLI flags](https://code.claude.com/docs/en/cli-reference.md).
 
 Pass `--restricted` to start every session you dispatch from the view in [restricted mode](https://code.claude.com/docs/en/cli-reference.md#cli-flags), as if each were launched with the top-level `--restricted` flag. Requires Claude Code v2.1.248 or later.
-
-The active defaults appear in the footer below the dispatch input.
 
 A background session started in `bypassPermissions` mode needs your [acceptance of the bypass disclaimer](https://code.claude.com/docs/en/permission-modes.md#skip-all-checks-with-bypasspermissions-mode) on record, since that mode lets a session you aren't watching act without approval. Passing `--dangerously-skip-permissions` or `--permission-mode bypassPermissions` to `claude agents` shows the same disclaimer when you haven't accepted it before, and accepting applies `bypassPermissions` to the sessions you launch from the view. Passing `--allow-dangerously-skip-permissions` shows the same disclaimer too, and accepting makes `bypassPermissions` available in the `Shift+Tab` cycle of those sessions without starting them in it.
 

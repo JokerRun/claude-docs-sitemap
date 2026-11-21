@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 5f557b54f2ace0e727f3e08d3817626174df50720dac83504fe70cf964c1202f
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a22773bcdfa773306f22f12859807944e09ef69074233e0d58273c6e49c640ef
 ---
 
 ---
@@ -61,13 +61,13 @@ Saat menerapkan worker, Anda perlu membuat dua pilihan: bagaimana worker mengkla
 
 Worker CLI dan SDK mendukung kombinasi yang berbeda:
 
-| Kemampuan                                                                                                | CLI `ant`                                  | SDK (Python, TypeScript, Go)                     |
-| -------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ------------------------------------------------ |
-| Polling always-on                                                                                        | Ya                                         | Ya                                               |
-| Dipicu webhook                                                                                           | Tidak                                      | Ya                                               |
-| [Sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session) | Ya                                         | Ya                                               |
-| [Memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory)          | Ya, dengan pengaturan sinkronisasi default | Ya, dengan sinkronisasi yang dapat dikonfigurasi |
-| [Alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools)     | Tidak                                      | Ya                                               |
+| Kemampuan | CLI `ant` | SDK (Python, TypeScript, Go) |
+| ----- | ----- | ----- |
+| Polling always-on | Ya | Ya |
+| Dipicu webhook | Tidak | Ya |
+| [Sandbox per sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session) | Ya | Ya |
+| [Memory store](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory) | Ya, dengan pengaturan sinkronisasi default | Ya, dengan sinkronisasi yang dapat dikonfigurasi |
+| [Alat kustom](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools) | Tidak | Ya |
 
 Lihat [Referensi worker self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-reference) untuk setiap flag CLI dan opsi SDK.
 
@@ -506,9 +506,9 @@ Worker self-hosted siap pakai dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 ### Header beta yang diperlukan
 
@@ -522,9 +522,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

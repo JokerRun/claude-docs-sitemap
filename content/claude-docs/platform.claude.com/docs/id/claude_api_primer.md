@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-11-10T02:13:26.049428Z
-sha256: 101448b23c4377fecf82b28d2aee8d9de51cc77c1773c12fccb14420c10bf8a1
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2d259221fd853d3fb55d7d1bfdc24a41e615b6b33d861626c5ce5e8122fedd7c
 ---
 
 ---
@@ -506,11 +506,11 @@ Dengan pemikiran berselang dan HANYA dengan pemikiran berselang (bukan pemikiran
 
 Alat klien ditentukan dalam parameter tingkat atas `tools` dari permintaan API. Setiap definisi alat mencakup:
 
-| Parameter      | Deskripsi                                                                                                               |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| `name`         | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,128}$`.                                                           |
-| `description`  | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan harus digunakan, dan bagaimana perilakunya. |
-| `input_schema` | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat.                 |
+| Parameter | Deskripsi |
+| ----- | ----- |
+| `name` | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,128}$`. |
+| `description` | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan harus digunakan, dan bagaimana perilakunya. |
+| `input_schema` | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat. |
 
 ```json
 {

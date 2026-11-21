@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/azure
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 62d731d3614ef976427e24e5fdf16d9316dd4e01e2c93b6cdb8dbc362fd8eea6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: f817327a496e8d1216b0acb8928a49f1dbdb3e503c20adc1eb963150d7034bc7
 ---
 
 ---
@@ -87,12 +87,12 @@ Use this path when your workload runs on a VM, a VM Scale Set, App Service, Func
     }
     ```
 
-    | Claim | Value                                                                                                                                                                                                 | Match this when                                                                                                                                                                                                    |
-    | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-    | `oid` | The managed identity’s object ID, identical to `sub`                                                                                                                                                  | You want to authorize one specific managed identity. This is the default. The rule in [Configure Anthropic](https://platform.claude.com/docs/en/manage-claude/wif-providers/azure#configure-anthropic) matches it. |
-    | `azp` | The calling identity’s client ID                                                                                                                                                                      | You want to authorize every workload that shares one app registration. For a managed identity, `azp` is unique to that identity, so it is equivalent to `oid`.                                                     |
-    | `aud` | The audience app registration’s client ID (the `<APP_ID>` GUID from [Register the token audience](https://platform.claude.com/docs/en/manage-claude/wif-providers/azure#register-the-token-audience)) | Always. The rule’s `audience` field must equal the token’s `aud` value exactly.                                                                                                                                    |
-    | `tid` | Your tenant ID                                                                                                                                                                                        | You want defense in depth. The issuer URL already pins the tenant.                                                                                                                                                 |
+    | Claim | Value | Match this when |
+    | ----- | ----- | ----- |
+    | `oid` | The managed identity’s object ID, identical to `sub` | You want to authorize one specific managed identity. This is the default. The rule in [Configure Anthropic](https://platform.claude.com/docs/en/manage-claude/wif-providers/azure#configure-anthropic) matches it. |
+    | `azp` | The calling identity’s client ID | You want to authorize every workload that shares one app registration. For a managed identity, `azp` is unique to that identity, so it is equivalent to `oid`. |
+    | `aud` | The audience app registration’s client ID (the `<APP_ID>` GUID from [Register the token audience](https://platform.claude.com/docs/en/manage-claude/wif-providers/azure#register-the-token-audience)) | Always. The rule’s `audience` field must equal the token’s `aud` value exactly. |
+    | `tid` | Your tenant ID | You want defense in depth. The issuer URL already pins the tenant. |
 
     If the decoded token’s `ver` claim is `1.0`, the claim names and values differ. See [If your tokens are v1.0](https://platform.claude.com/docs/en/manage-claude/wif-providers/azure#if-your-tokens-are-v1-0) before continuing.
   </Step>

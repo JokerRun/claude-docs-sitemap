@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c4c1bec1bb410a290ec0ca33c8985b418413072e1e1f4a5cae49ce6e53c23adc
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: b957e38c49832f877c30c43fcf752c2970ed7ec98e3c9fa4fedd6785edd9def2
 ---
 
 ---
@@ -54,15 +54,15 @@ An offline reviewer is a job you run, separate from the sessions it reviews, tha
 
 Subscribe to the webhooks that tell you when a session needs attention, and delete sessions you no longer need. Verify the signature on each delivery. See [Verify the signature](https://platform.claude.com/docs/en/managed-agents/webhooks#verify-the-signature).
 
-| What to watch                                           | Where to see it                                                                                                                                                                                                                                                                     |
-| ------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sessions that go idle, for example to wait for approval | The `session.status_idled` webhook. It fires each time a session goes idle, for any reason                                                                                                                                                                                          |
-| Sessions that reach a budget or terminate               | The `session.budget_reached` and `session.status_terminated` webhooks                                                                                                                                                                                                               |
-| Scheduled runs that fail to start a session             | The `deployment_run.failed` and `deployment.paused` webhooks                                                                                                                                                                                                                        |
-| MCP OAuth credentials that cannot refresh               | The `vault_credential.refresh_failed` webhook                                                                                                                                                                                                                                       |
-| Tool calls the server denied or paused                  | `evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`) on `agent.tool_use` and `agent.mcp_tool_use` events. In a multiagent session, also list each thread’s events                                                                           |
-| What an agent did in a session                          | The Claude Console session viewer                                                                                                                                                                                                                                                   |
-| Behavior beyond what you granted the agent              | An optional offline review job you run that reads each session’s events. See [Optionally have an offline reviewer read every transcript](https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring#optionally-have-an-offline-reviewer-read-every-transcript) |
+| What to watch | Where to see it |
+| ----- | ----- |
+| Sessions that go idle, for example to wait for approval | The `session.status_idled` webhook. It fires each time a session goes idle, for any reason |
+| Sessions that reach a budget or terminate | The `session.budget_reached` and `session.status_terminated` webhooks |
+| Scheduled runs that fail to start a session | The `deployment_run.failed` and `deployment.paused` webhooks |
+| MCP OAuth credentials that cannot refresh | The `vault_credential.refresh_failed` webhook |
+| Tool calls the server denied or paused | `evaluated_permission` (java, php: `evaluatedPermission`; csharp, go: `EvaluatedPermission`) on `agent.tool_use` and `agent.mcp_tool_use` events. In a multiagent session, also list each thread’s events |
+| What an agent did in a session | The Claude Console session viewer |
+| Behavior beyond what you granted the agent | An optional offline review job you run that reads each session’s events. See [Optionally have an offline reviewer read every transcript](https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring#optionally-have-an-offline-reviewer-read-every-transcript) |
 
 To see why a session went idle, list its events with `types` (curl: `types[]`; cli: `--type`; csharp, go: `Types`) set to `session.status_idle`, `order` (csharp, go: `Order`) set to `desc`, and `limit` (csharp, go: `Limit`) set to `1`. The event is named `session.status_idle`, and the webhook is named `session.status_idled`. If `stop_reason.type` is `requires_action`, the session is waiting on you, and `stop_reason.event_ids` lists the events it is waiting on. To answer them, see [Answer tool calls that pause the session](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session). In a self-hosted sandbox, an `agent.tool_use` event can be waiting for your sandbox to return the tool’s result. With workflow runs open, a tool call can wait for your answer while the session stays `running`. Answer each call when its event arrives. See [While a run is open](https://platform.claude.com/docs/en/managed-agents/workflow-runs#while-a-run-is-open).
 

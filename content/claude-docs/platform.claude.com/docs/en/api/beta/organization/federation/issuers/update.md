@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/update
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 53ee1b369a01fe71bdecef872c1c47f6ebed2422b6e74902661e66727134ec14
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1ec3b29e0f679afa6c8731372b951a193703a685070dc3e0ffa101d5b495e42a
 ---
 
 ---
@@ -136,6 +136,8 @@ session.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -404,7 +406,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

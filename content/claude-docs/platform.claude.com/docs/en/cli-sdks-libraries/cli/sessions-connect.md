@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/sessions-connect
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a12a00a1d07632b83d7d1a705d14e1010f5f884ea5af517c8470ae7c4c01f3d6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ad1f937f69cb7dfba11e76f28f61b2ad2872731830410284e8f59eebcea5a95a
 ---
 
 ---
@@ -31,13 +31,13 @@ Press Ctrl+C to detach. The session keeps running, and connecting again loads it
 
 The terminal view shows the conversation live: messages and tool calls, with each call’s duration and outcome. A status bar shows whether the session is running, idle, or waiting for your approval. In [multiagent](https://platform.claude.com/docs/en/managed-agents/multiagent-orchestration) sessions, the view follows the session’s primary thread, which includes the messages exchanged between the agent that the session runs and the agents it delegates to.
 
-| Key                | Action                                                                                                                     |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------- |
-| Enter              | Send your input as a `user.message` event. Alt+Enter or Ctrl+J starts a new line.                                          |
-| Esc                | Interrupt the agent while it’s running (`user.interrupt`).                                                                 |
-| Ctrl+O             | Show or hide detail: tool inputs and results, token usage, and status events. `--verbose` (`-v`) starts with detail shown. |
-| Page Up, Page Down | Scroll through the transcript. Scrolling up pauses following; End resumes it.                                              |
-| Ctrl+C             | Detach. Ctrl+D on an empty input line also detaches.                                                                       |
+| Key | Action |
+| ----- | ----- |
+| Enter | Send your input as a `user.message` event. Alt+Enter or Ctrl+J starts a new line. |
+| Esc | Interrupt the agent while it’s running (`user.interrupt`). |
+| Ctrl+O | Show or hide detail: tool inputs and results, token usage, and status events. `--verbose` (`-v`) starts with detail shown. |
+| Page Up, Page Down | Scroll through the transcript. Scrolling up pauses following; End resumes it. |
+| Ctrl+C | Detach. Ctrl+D on an empty input line also detaches. |
 
 When a tool call is waiting for your approval, the input line changes to **Allow tool call?** This occurs under an `always_ask` policy, or under `auto` when the server reaches no determination. Select **Yes**, **No**, or **No, and tell the agent why**. The CLI sends your choice as a [`user.tool_confirmation`](https://platform.claude.com/docs/en/managed-agents/permission-policies#respond-to-confirmation-requests) event, with any reason you type as its `deny_message`.
 

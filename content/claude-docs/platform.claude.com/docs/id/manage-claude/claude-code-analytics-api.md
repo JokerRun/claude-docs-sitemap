@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 07b11c01a230b282f7ac4386e6c17797e54a172ab7125c19042373ede17100f7
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4136af51c6463b7392b50e168b63fa0bef933fd132a60d0f1ee0ed2bcd9a0b02
 ---
 
 ---
@@ -105,11 +105,11 @@ page=page_MjAyNS0wNS0xNFQwMDowMDowMFo=" \
 
 ### Parameter permintaan
 
-| Parameter     | Tipe    | Wajib | Deskripsi                                                                           |
-| ------------- | ------- | ----- | ----------------------------------------------------------------------------------- |
-| `starting_at` | string  | Ya    | Tanggal UTC dalam format YYYY-MM-DD; mengembalikan metrik hanya untuk satu hari ini |
-| `limit`       | integer | Tidak | Jumlah record per halaman (default: 20, maks: 1000)                                 |
-| `page`        | string  | Tidak | Token kursor opaque dari field `next_page` pada respons sebelumnya                  |
+| Parameter | Tipe | Wajib | Deskripsi |
+| ----- | ----- | ----- | ----- |
+| `starting_at` | string | Ya | Tanggal UTC dalam format YYYY-MM-DD; mengembalikan metrik hanya untuk satu hari ini |
+| `limit` | integer | Tidak | Jumlah record per halaman (default: 20, maks: 1000) |
+| `page` | string | Tidak | Token kursor opaque dari field `next_page` pada respons sebelumnya |
 
 ### Metrik yang tersedia
 

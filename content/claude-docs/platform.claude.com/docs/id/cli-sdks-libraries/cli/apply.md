@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/apply
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 30524372c22b6c2adbc29d3db077f8baf4c1d49105c477598bd306cd46c084c6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d3d029a7d4e4256c1c53d99036f1f268741a2bfe7b880ccf8b240a9abdfaf586
 ---
 
 ---
@@ -339,15 +339,15 @@ Untuk membuat aturan federasi dan akun layanan yang disebutkan dalam blok `env`,
 
 ## Flag
 
-| Flag                 | Efek                                                                                                                                                                                                                                                         |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--dry-run`          | Mencetak rencana lalu keluar tanpa menerapkan perubahan atau menulis lockfile. Tetap keluar dengan kode 0 meskipun rencananya terblokir.                                                                                                                     |
-| `--yes`              | Menerapkan perubahan tanpa meminta konfirmasi. Wajib digunakan jika tidak ada terminal.                                                                                                                                                                      |
-| `--force`            | Tetap menerapkan perubahan meskipun ada sumber daya yang diubah, diarsipkan, atau dihapus di luar berkas-berkas ini.                                                                                                                                         |
-| `--prune`            | Menghapus sumber daya yang ada di lockfile tetapi tidak lagi dideklarasikan dalam berkas.                                                                                                                                                                    |
-| `--upgrade`          | Me-resolve ulang skill yang direferensikan melalui URL GitHub, yang jika tidak menggunakan flag ini akan tetap terkunci ke commit yang tercatat di lockfile.                                                                                                 |
+| Flag | Efek |
+| ----- | ----- |
+| `--dry-run` | Mencetak rencana lalu keluar tanpa menerapkan perubahan atau menulis lockfile. Tetap keluar dengan kode 0 meskipun rencananya terblokir. |
+| `--yes` | Menerapkan perubahan tanpa meminta konfirmasi. Wajib digunakan jika tidak ada terminal. |
+| `--force` | Tetap menerapkan perubahan meskipun ada sumber daya yang diubah, diarsipkan, atau dihapus di luar berkas-berkas ini. |
+| `--prune` | Menghapus sumber daya yang ada di lockfile tetapi tidak lagi dideklarasikan dalam berkas. |
+| `--upgrade` | Me-resolve ulang skill yang direferensikan melalui URL GitHub, yang jika tidak menggunakan flag ini akan tetap terkunci ke commit yang tercatat di lockfile. |
 | `--lock-file <path>` | Menggunakan lockfile ini alih-alih mencarinya ke atas mulai dari direktori saat ini. Simpan satu lockfile untuk setiap organisasi atau workspace, karena `ant apply` menolak lockfile yang organisasi atau workspace-nya tidak cocok dengan kredensial Anda. |
-| `--verbose`, `-v`    | Menampilkan sumber daya yang tidak berubah dan nilai bidang secara lengkap dalam rencana.                                                                                                                                                                    |
+| `--verbose`, `-v` | Menampilkan sumber daya yang tidak berubah dan nilai bidang secara lengkap dalam rencana. |
 
 ## Langkah selanjutnya
 

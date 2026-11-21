@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/define-outcomes
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 92578d00ede391aa469b77698989e56e9af662829b85763382d3d0c697110bda
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4508058721f33b947df99af86975fcbaa45cf89a4609715f0d5290a1cbd039ea
 ---
 
 ---
@@ -610,13 +610,13 @@ Heartbeat yang dipancarkan selama grader berjalan. Penalaran internal grader ber
 
 Dipancarkan saat siklus evaluasi outcome berakhir: setelah grader selesai mengevaluasi satu iterasi, atau saat sesi diinterupsi ketika sebuah outcome sedang aktif. Field `result` menunjukkan apa yang terjadi selanjutnya.
 
-| Hasil                    | Selanjutnya                                                                                                                                                                                                                             |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `satisfied`              | Sesi beralih ke `idle`.                                                                                                                                                                                                                 |
-| `needs_revision`         | Agen memulai siklus iterasi baru.                                                                                                                                                                                                       |
-| `max_iterations_reached` | Satu giliran pengakuan terakhir menyusul sebelum sesi beralih ke `idle`. Tidak ada evaluasi lebih lanjut yang dijalankan.                                                                                                               |
-| `failed`                 | Sesi beralih ke `idle`. Dikembalikan ketika rubrik tidak berlaku untuk deliverable, misalnya jika deskripsi dan rubrik saling bertentangan.                                                                                             |
-| `interrupted`            | Dipancarkan ketika sesi diinterupsi saat sebuah outcome sedang aktif, bahkan jika evaluasi belum dimulai. Jika tidak ada `outcome_evaluation_start` yang terpicu sebelum interupsi, `outcome_evaluation_start_id` berupa string kosong. |
+| Hasil | Selanjutnya |
+| ----- | ----- |
+| `satisfied` | Sesi beralih ke `idle`. |
+| `needs_revision` | Agen memulai siklus iterasi baru. |
+| `max_iterations_reached` | Satu giliran pengakuan terakhir menyusul sebelum sesi beralih ke `idle`. Tidak ada evaluasi lebih lanjut yang dijalankan. |
+| `failed` | Sesi beralih ke `idle`. Dikembalikan ketika rubrik tidak berlaku untuk deliverable, misalnya jika deskripsi dan rubrik saling bertentangan. |
+| `interrupted` | Dipancarkan ketika sesi diinterupsi saat sebuah outcome sedang aktif, bahkan jika evaluasi belum dimulai. Jika tidak ada `outcome_evaluation_start` yang terpicu sebelum interupsi, `outcome_evaluation_start_id` berupa string kosong. |
 
 ```json
 {
@@ -912,9 +912,9 @@ Outcome dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |
 
 ### Header beta yang diperlukan
 
@@ -928,9 +928,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

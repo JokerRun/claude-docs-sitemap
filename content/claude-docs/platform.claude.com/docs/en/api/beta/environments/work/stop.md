@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 6d0afb1488b1a6a59ee29c26077822d922714eb7901a00a7a243a3aed883d39e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2066698c3829b80a604b9a2a8f5d5674f8c3b16877d7f3ca1ce6c5ecbcfe34a7
 ---
 
 ---
@@ -13,8 +13,6 @@ url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
 # Stop Work
 
 **POST** `/v1/environments/{environment_id}/work/{work_id}/stop`
-
-Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly.
 
 Stop a work item, initiating graceful or forced shutdown.
 
@@ -129,6 +127,8 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

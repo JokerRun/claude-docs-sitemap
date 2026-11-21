@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: dd95f42c9b5fbaaab99be9364bd85aa85a33a158c7a67930d009829d8289dfdb
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0bc7e0cfec199e6c37d7b0860f6d700ebf0e2364a6661277fb6f1bbaba021352
 ---
 
 ---
@@ -141,6 +141,8 @@ See the [OpenTelemetry export guide](https://platform.claude.com/docs/en/manage-
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

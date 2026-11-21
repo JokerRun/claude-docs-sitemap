@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/cli/sessions-connect
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: dd69cb3e40783ad1c6e23a99b23b58034c28f0ee1897b123254c846acd0007b2
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 827d31f896902d24cd3af5ca0e0cb59333c5b3205d8401f6e2e1b6843d3234ff
 ---
 
 ---
@@ -31,13 +31,13 @@ Tekan Ctrl+C untuk memutuskan koneksi. Sesi tetap berjalan, dan menghubungkan ke
 
 Tampilan terminal menampilkan percakapan secara langsung: pesan dan panggilan alat, beserta durasi dan hasil setiap panggilan. Bilah status menunjukkan apakah sesi sedang berjalan, idle, atau menunggu persetujuan Anda. Dalam sesi [multiagen](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration), tampilan mengikuti thread utama sesi, yang mencakup pesan yang dipertukarkan antara agen yang dijalankan oleh sesi dan agen-agen yang menerima delegasi darinya.
 
-| Tombol             | Tindakan                                                                                                                                           |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Enter              | Kirim input Anda sebagai event `user.message`. Alt+Enter atau Ctrl+J memulai baris baru.                                                           |
-| Esc                | Interupsi agen saat sedang berjalan (`user.interrupt`).                                                                                            |
-| Ctrl+O             | Tampilkan atau sembunyikan detail: input dan hasil alat, penggunaan token, dan event status. `--verbose` (`-v`) memulai dengan detail ditampilkan. |
-| Page Up, Page Down | Gulir transkrip. Menggulir ke atas menjeda pengikutan; End melanjutkannya.                                                                         |
-| Ctrl+C             | Putuskan koneksi. Ctrl+D pada baris input kosong juga memutuskan koneksi.                                                                          |
+| Tombol | Tindakan |
+| ----- | ----- |
+| Enter | Kirim input Anda sebagai event `user.message`. Alt+Enter atau Ctrl+J memulai baris baru. |
+| Esc | Interupsi agen saat sedang berjalan (`user.interrupt`). |
+| Ctrl+O | Tampilkan atau sembunyikan detail: input dan hasil alat, penggunaan token, dan event status. `--verbose` (`-v`) memulai dengan detail ditampilkan. |
+| Page Up, Page Down | Gulir transkrip. Menggulir ke atas menjeda pengikutan; End melanjutkannya. |
+| Ctrl+C | Putuskan koneksi. Ctrl+D pada baris input kosong juga memutuskan koneksi. |
 
 Ketika pemanggilan alat sedang menunggu persetujuan Anda, baris input berubah menjadi **Allow tool call?** Hal ini terjadi di bawah kebijakan `always_ask`, atau di bawah `auto` ketika server tidak mencapai keputusan. Pilih **Yes**, **No**, atau **No, and tell the agent why**. CLI mengirimkan pilihan Anda sebagai event [`user.tool_confirmation`](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests), dengan alasan apa pun yang Anda ketik sebagai `deny_message`-nya.
 

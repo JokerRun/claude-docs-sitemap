@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/multilingual-support
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: e40584a2a41c84ad8844702f505f15478e8e0653362aedb6545eebb841b80441
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1ed26d19c54c95e22764202284e4e9d22215fc942971b458c93a78f8f206a40d
 ---
 
 ---
@@ -51,23 +51,23 @@ Claude mampu bekerja dalam banyak bahasa di luar yang diuji dalam tabel berikut.
 
 Tabel berikut menunjukkan skor zero-shot untuk model Claude pada [Global-MMLU](https://arxiv.org/abs/2412.03304), yang memperluas set pengujian [“Massive Multitask Language Understanding” (Pemahaman Bahasa Multitugas Masif), atau MMLU](https://en.wikipedia.org/wiki/MMLU) ke 42 bahasa. Setiap skor merupakan persentase dari skor bahasa Inggris model yang sama:
 
-| Bahasa               | Claude Fable 5.2 | Claude Opus 5.5 | Claude Sonnet 5.5 | Claude Haiku 5.5 |
-| -------------------- | ---------------- | --------------- | ----------------- | ---------------- |
-| Inggris              | 100%             | 100%            | 100%              | 100%             |
-| Spanyol              | 99,8%            | 99,3%           | 99,0%             | 98,1%            |
-| Portugis (Brasil)    | 99,4%            | 99,2%           | 98,7%             | 98,1%            |
-| Italia               | 99,5%            | 99,2%           | 98,4%             | 97,7%            |
-| Prancis              | 99,6%            | 99,3%           | 98,7%             | 97,7%            |
-| Indonesia            | 99,4%            | 99,1%           | 98,6%             | 97,1%            |
-| Jerman               | 99,5%            | 99,1%           | 98,5%             | 97,4%            |
-| Arab                 | 99,6%            | 99,3%           | 98,3%             | 96,6%            |
-| Tionghoa (Sederhana) | 99,6%            | 99,3%           | 98,5%             | 97,7%            |
-| Korea                | 99,6%            | 99,1%           | 98,3%             | 97,0%            |
-| Jepang               | 99,5%            | 99,2%           | 98,4%             | 97,4%            |
-| Hindi                | 99,4%            | 99,2%           | 98,5%             | 96,6%            |
-| Bengali              | 99,2%            | 98,6%           | 97,2%             | 95,4%            |
-| Swahili              | 99,2%            | 98,3%           | 96,9%             | 94,0%            |
-| Yoruba               | 98,5%            | 96,3%           | 93,6%             | 87,0%            |
+| Bahasa | Claude Fable 5.2 | Claude Opus 5.5 | Claude Sonnet 5.5 | Claude Haiku 5.5 |
+| ----- | ----- | ----- | ----- | ----- |
+| Inggris | 100% | 100% | 100% | 100% |
+| Spanyol | 99,8% | 99,3% | 99,0% | 98,1% |
+| Portugis (Brasil) | 99,4% | 99,2% | 98,7% | 98,1% |
+| Italia | 99,5% | 99,2% | 98,4% | 97,7% |
+| Prancis | 99,6% | 99,3% | 98,7% | 97,7% |
+| Indonesia | 99,4% | 99,1% | 98,6% | 97,1% |
+| Jerman | 99,5% | 99,1% | 98,5% | 97,4% |
+| Arab | 99,6% | 99,3% | 98,3% | 96,6% |
+| Tionghoa (Sederhana) | 99,6% | 99,3% | 98,5% | 97,7% |
+| Korea | 99,6% | 99,1% | 98,3% | 97,0% |
+| Jepang | 99,5% | 99,2% | 98,4% | 97,4% |
+| Hindi | 99,4% | 99,2% | 98,5% | 96,6% |
+| Bengali | 99,2% | 98,6% | 97,2% | 95,4% |
+| Swahili | 99,2% | 98,3% | 96,9% | 94,0% |
+| Yoruba | 98,5% | 96,3% | 93,6% | 87,0% |
 
 Semua skor menggunakan [“adaptive thinking” (pemikiran adaptif)](https://platform.claude.com/docs/id/build-with-claude/thinking) pada [tingkat effort](https://platform.claude.com/docs/id/build-with-claude/effort) `max`. Skor tidak mencakup pertanyaan yang diblokir oleh “safety classifier” (pengklasifikasi keamanan) atau yang tidak terjawab. Untuk setiap skor dalam tabel, paling banyak 1,7 persen pertanyaan dikecualikan.
 
@@ -262,14 +262,14 @@ Dukungan multibahasa tersedia di semua model.
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |

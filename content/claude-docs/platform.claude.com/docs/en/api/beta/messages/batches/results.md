@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/results
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: e24d24c5fa7a426e5c1cf9d81c482546ce95cfc86865a45725d502b85f5338ac
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ddba1d0a15ff4564a0cdbb4a1a545e8d5d0cedbf2126dfc184d9fa2d5a434a75
 ---
 
 ---
@@ -131,6 +131,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -561,7 +563,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `content: BetaWebSearchToolResultBlockContent`
 
-              - `BetaWebSearchToolResultError object`
+              - `BetaWebSearchToolResultErrorObject object`
 
                 - `type: "web_search_tool_result_error"`
 
@@ -721,9 +723,9 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: advisor_tool_result
 
-            - `content: BetaAdvisorToolResultError or BetaAdvisorResultBlock or BetaAdvisorRedactedResultBlock`
+            - `content: BetaAdvisorToolResultErrorObject or BetaAdvisorResultBlock or BetaAdvisorRedactedResultBlock`
 
-              - `BetaAdvisorToolResultError object`
+              - `BetaAdvisorToolResultErrorObject object`
 
                 - `type: "advisor_tool_result_error"`
 
@@ -783,7 +785,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
             - `content: BetaCodeExecutionToolResultBlockContent`
 
-              - `BetaCodeExecutionToolResultError object`
+              - `BetaCodeExecutionToolResultErrorObject object`
 
                 - `type: "code_execution_tool_result_error"`
 
@@ -855,9 +857,9 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: bash_code_execution_tool_result
 
-            - `content: BetaBashCodeExecutionToolResultError or BetaBashCodeExecutionResultBlock`
+            - `content: BetaBashCodeExecutionToolResultErrorObject or BetaBashCodeExecutionResultBlock`
 
-              - `BetaBashCodeExecutionToolResultError object`
+              - `BetaBashCodeExecutionToolResultErrorObject object`
 
                 - `type: "bash_code_execution_tool_result_error"`
 
@@ -905,9 +907,9 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: text_editor_code_execution_tool_result
 
-            - `content: BetaTextEditorCodeExecutionToolResultError or BetaTextEditorCodeExecutionViewResultBlock or BetaTextEditorCodeExecutionCreateResultBlock or BetaTextEditorCodeExecutionStrReplaceResultBlock`
+            - `content: BetaTextEditorCodeExecutionToolResultErrorObject or BetaTextEditorCodeExecutionViewResultBlock or BetaTextEditorCodeExecutionCreateResultBlock or BetaTextEditorCodeExecutionStrReplaceResultBlock`
 
-              - `BetaTextEditorCodeExecutionToolResultError object`
+              - `BetaTextEditorCodeExecutionToolResultErrorObject object`
 
                 - `type: "text_editor_code_execution_tool_result_error"`
 
@@ -983,9 +985,9 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: tool_search_tool_result
 
-            - `content: BetaToolSearchToolResultError or BetaToolSearchToolSearchResultBlock`
+            - `content: BetaToolSearchToolResultErrorObject or BetaToolSearchToolSearchResultBlock`
 
-              - `BetaToolSearchToolResultError object`
+              - `BetaToolSearchToolResultErrorObject object`
 
                 - `type: "tool_search_tool_result_error"`
 
@@ -4086,9 +4088,9 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
           default: error
 
-        - `error: BetaError`
+        - `error: BetaErrorObject`
 
-          - `BetaInvalidRequestError object`
+          - `BetaInvalidRequestErrorObject object`
 
             - `type: "invalid_request_error"`
 
@@ -4102,7 +4104,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: Invalid request
 
-          - `BetaAuthenticationError object`
+          - `BetaAuthenticationErrorObject object`
 
             - `type: "authentication_error"`
 
@@ -4116,7 +4118,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: Authentication error
 
-          - `BetaBillingError object`
+          - `BetaBillingErrorObject object`
 
             - `type: "billing_error"`
 
@@ -4130,7 +4132,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: Billing error
 
-          - `BetaPermissionError object`
+          - `BetaPermissionErrorObject object`
 
             - `type: "permission_error"`
 
@@ -4144,7 +4146,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: Permission denied
 
-          - `BetaNotFoundError object`
+          - `BetaNotFoundErrorObject object`
 
             - `type: "not_found_error"`
 
@@ -4158,7 +4160,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: Not found
 
-          - `BetaRateLimitError object`
+          - `BetaRateLimitErrorObject object`
 
             - `type: "rate_limit_error"`
 
@@ -4172,7 +4174,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: Rate limited
 
-          - `BetaGatewayTimeoutError object`
+          - `BetaGatewayTimeoutErrorObject object`
 
             - `type: "timeout_error"`
 
@@ -4186,7 +4188,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: Request timeout
 
-          - `BetaAPIError object`
+          - `BetaAPIErrorObject object`
 
             - `type: "api_error"`
 
@@ -4200,7 +4202,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
               default: Internal server error
 
-          - `BetaOverloadedError object`
+          - `BetaOverloadedErrorObject object`
 
             - `type: "overloaded_error"`
 

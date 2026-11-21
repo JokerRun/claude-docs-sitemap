@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/archive
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 80c285a36dbd81436f2d13eee33a0f02c3fc0a6f3a6b495e68c3cb51832cb7f6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ae8e0f7c3ba6657e80a4d13c1c87cefcbce4ddd352d2587d329da04f30844469
 ---
 
 ---
@@ -127,6 +127,8 @@ Archive a Vault
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

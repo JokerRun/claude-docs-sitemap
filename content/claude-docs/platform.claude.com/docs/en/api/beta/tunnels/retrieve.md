@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: c7a590da9e1dc26f38a057d1bc36fadb869341d1c2fd16ed38c5830fed8dc1c3
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 7d9b63ee443da41a4c6c4487dd9f0f71ca1d33589f4ff290d85a5a8f062672f5
 ---
 
 ---
@@ -129,6 +129,8 @@ Fetches a tunnel by ID.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

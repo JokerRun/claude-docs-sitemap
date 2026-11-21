@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 4ef6f6f579862ae0963236d2c5679462820cf5ddb60f0bf0073d5c9b7574df49
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4eae9378c4010d7e9d91765ef81294930f87798253e85d5e1d9aa79ccdb2334a
 ---
 
 ---
@@ -57,10 +57,10 @@ featureMetadata:
 * **Pembersihan blok pemikiran:** Untuk mengelola blok pemikiran dari giliran sebelumnya, dengan opsi untuk mempertahankan pemikiran terbaru demi kesinambungan konteks
 * **Compaction SDK sisi klien:** Alternatif berbasis SDK untuk manajemen konteks berbasis ringkasan (compaction sisi server umumnya lebih disarankan)
 
-| Pendekatan      | Tempat berjalan | Strategi                                                                                                        | Cara kerjanya                                                                                                                                                                                                                                                                                                                                                                                                          |
-| --------------- | --------------- | --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Sisi server** | API             | Pembersihan hasil alat (`clear_tool_uses_20250919`)<br />Pembersihan blok pemikiran (`clear_thinking_20251015`) | Diterapkan sebelum prompt mencapai Claude. Membersihkan konten tertentu dari riwayat percakapan. Setiap strategi dapat dikonfigurasi secara independen.                                                                                                                                                                                                                                                                |
-| **Sisi klien**  | SDK             | Kompaksi                                                                                                        | Tersedia di [SDK TypeScript dan Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan [`tool_runner`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Menghasilkan ringkasan dan menggantikan seluruh riwayat percakapan. Lihat [Kompaksi sisi klien](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk). |
+| Pendekatan | Tempat berjalan | Strategi | Cara kerjanya |
+| ----- | ----- | ----- | ----- |
+| **Sisi server** | API | Pembersihan hasil alat (`clear_tool_uses_20250919`)<br />Pembersihan blok pemikiran (`clear_thinking_20251015`) | Diterapkan sebelum prompt mencapai Claude. Membersihkan konten tertentu dari riwayat percakapan. Setiap strategi dapat dikonfigurasi secara independen. |
+| **Sisi klien** | SDK | Kompaksi | Tersedia di [SDK TypeScript dan Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) saat menggunakan [`tool_runner`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-runner). Menghasilkan ringkasan dan menggantikan seluruh riwayat percakapan. Lihat [Kompaksi sisi klien](https://platform.claude.com/docs/id/build-with-claude/context-editing#client-side-compaction-sdk). |
 
 ## Strategi sisi server
 
@@ -83,12 +83,12 @@ Strategi `clear_thinking_20251015` mengelola blok `thinking` dari giliran asiste
 <Tip>
   **Perilaku default:** Ketika permintaan tidak menyertakan strategi `clear_thinking_20251015`, default bervariasi menurut kelas model.
 
-  | Kelas model      | Simpan semua pemikiran sebelumnya     | Simpan pemikiran hanya untuk giliran yang sedang berlangsung |
-  | ---------------- | ------------------------------------- | ------------------------------------------------------------ |
-  | Opus             | Claude Opus 4.5 dan yang lebih baru   | Claude Opus 4.1 dan yang lebih lama                          |
-  | Sonnet           | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 (deprecated) dan yang lebih lama           |
-  | Haiku            | Claude Haiku 5.5 dan yang lebih baru  | Claude Haiku 4.5 dan yang lebih lama                         |
-  | Fable dan Mythos | Semua model                           | (tidak ada)                                                  |
+  | Kelas model | Simpan semua pemikiran sebelumnya | Simpan pemikiran hanya untuk giliran yang sedang berlangsung |
+  | ----- | ----- | ----- |
+  | Opus | Claude Opus 4.5 dan yang lebih baru | Claude Opus 4.1 dan yang lebih lama |
+  | Sonnet | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 (deprecated) dan yang lebih lama |
+  | Haiku | Claude Haiku 5.5 dan yang lebih baru | Claude Haiku 4.5 dan yang lebih lama |
+  | Fable dan Mythos | Semua model | (tidak ada) |
 
   Gunakan strategi ini untuk menimpa default. Jika kode Anda berjalan di beberapa kelas model, sertakan strategi ini dan atur `keep` secara eksplisit daripada mengandalkan default per model.
 </Tip>
@@ -956,9 +956,9 @@ Gunakan pembersihan blok pemikiran untuk mengelola konteks dan caching prompt da
 
 Strategi `clear_thinking_20251015` mendukung konfigurasi berikut:
 
-| Opsi konfigurasi | Default                              | Deskripsi                                                                                                                                                                                                                                       |
-| ---------------- | ------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `keep`           | `{type: "thinking_turns", value: 1}` | Menentukan berapa banyak giliran asisten terbaru yang mempertahankan blok pemikirannya. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok pemikiran. |
+| Opsi konfigurasi | Default | Deskripsi |
+| ----- | ----- | ----- |
+| `keep` | `{type: "thinking_turns", value: 1}` | Menentukan berapa banyak giliran asisten terbaru yang mempertahankan blok pemikirannya. Gunakan `{type: "thinking_turns", value: N}` di mana N harus > 0 untuk menyimpan N giliran terakhir, atau `"all"` untuk menyimpan semua blok pemikiran. |
 
 Permintaan yang menyertakan strategi ini tanpa `keep` mendapatkan `{type: "thinking_turns", value: 1}` pada setiap model, termasuk model yang [default per model](https://platform.claude.com/docs/id/build-with-claude/context-editing#thinking-block-clearing)-nya menyimpan semua pemikiran. Permintaan tanpa strategi ini mendapatkan default per model.
 
@@ -1766,13 +1766,13 @@ Anda dapat menggunakan pembersihan blok pemikiran dan pembersihan hasil alat sec
 
 ## Opsi konfigurasi untuk pembersihan hasil alat
 
-| Opsi konfigurasi    | Default             | Deskripsi                                                                                                                                                                                                                                                                      |
-| ------------------- | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `trigger`           | 100.000 token input | Menentukan kapan strategi pengeditan konteks diaktifkan. Setelah prompt melampaui ambang batas ini, pembersihan dimulai. Anda dapat menentukan nilai ini dalam `input_tokens` atau `tool_uses`.                                                                                |
-| `keep`              | 3 penggunaan alat   | Menentukan berapa banyak pasangan penggunaan/hasil alat terbaru yang disimpan setelah pembersihan terjadi. API menghapus interaksi alat terlama terlebih dahulu, mempertahankan yang terbaru.                                                                                  |
-| `clear_at_least`    | Tidak ada           | Memastikan jumlah minimum token dibersihkan setiap kali strategi diaktifkan. Jika API tidak dapat membersihkan setidaknya jumlah yang ditentukan, strategi tidak akan diterapkan. Ini membantu menentukan apakah pembersihan konteks sepadan dengan merusak cache prompt Anda. |
-| `exclude_tools`     | Tidak ada           | Daftar nama alat yang penggunaan dan hasil alatnya tidak boleh dibersihkan. Berguna untuk mempertahankan konteks penting.                                                                                                                                                      |
-| `clear_tool_inputs` | `false`             | Mengontrol apakah parameter panggilan alat dibersihkan bersama dengan hasil alat. Secara default, hanya hasil alat yang dibersihkan sementara panggilan alat asli Claude tetap terlihat.                                                                                       |
+| Opsi konfigurasi | Default | Deskripsi |
+| ----- | ----- | ----- |
+| `trigger` | 100.000 token input | Menentukan kapan strategi pengeditan konteks diaktifkan. Setelah prompt melampaui ambang batas ini, pembersihan dimulai. Anda dapat menentukan nilai ini dalam `input_tokens` atau `tool_uses`. |
+| `keep` | 3 penggunaan alat | Menentukan berapa banyak pasangan penggunaan/hasil alat terbaru yang disimpan setelah pembersihan terjadi. API menghapus interaksi alat terlama terlebih dahulu, mempertahankan yang terbaru. |
+| `clear_at_least` | Tidak ada | Memastikan jumlah minimum token dibersihkan setiap kali strategi diaktifkan. Jika API tidak dapat membersihkan setidaknya jumlah yang ditentukan, strategi tidak akan diterapkan. Ini membantu menentukan apakah pembersihan konteks sepadan dengan merusak cache prompt Anda. |
+| `exclude_tools` | Tidak ada | Daftar nama alat yang penggunaan dan hasil alatnya tidak boleh dibersihkan. Berguna untuk mempertahankan konteks penting. |
+| `clear_tool_inputs` | `false` | Mengontrol apakah parameter panggilan alat dibersihkan bersama dengan hasil alat. Secara default, hanya hasil alat yang dibersihkan sementara panggilan alat asli Claude tetap terlihat. |
 
 ## Respons pengeditan konteks
 
@@ -2493,12 +2493,12 @@ Claude melanjutkan pekerjaan dari ringkasan ini seolah-olah itu adalah riwayat p
 
 ### Opsi konfigurasi
 
-| Parameter                 | Tipe    | Wajib | Default                                                                                                                        | Deskripsi                                         |
-| ------------------------- | ------- | ----- | ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
-| `enabled`                 | boolean | Ya    | -                                                                                                                              | Apakah kompaksi otomatis diaktifkan               |
-| `context_token_threshold` | number  | Tidak | 100.000                                                                                                                        | Jumlah token saat kompaksi dipicu                 |
-| `model`                   | string  | Tidak | Sama dengan model utama                                                                                                        | Model yang digunakan untuk menghasilkan ringkasan |
-| `summary_prompt`          | string  | Tidak | Lihat [Prompt ringkasan default](https://platform.claude.com/docs/id/build-with-claude/context-editing#default-summary-prompt) | Prompt kustom untuk pembuatan ringkasan           |
+| Parameter | Tipe | Wajib | Default | Deskripsi |
+| ----- | ----- | ----- | ----- | ----- |
+| `enabled` | boolean | Ya | - | Apakah kompaksi otomatis diaktifkan |
+| `context_token_threshold` | number | Tidak | 100.000 | Jumlah token saat kompaksi dipicu |
+| `model` | string | Tidak | Sama dengan model utama | Model yang digunakan untuk menghasilkan ringkasan |
+| `summary_prompt` | string | Tidak | Lihat [Prompt ringkasan default](https://platform.claude.com/docs/id/build-with-claude/context-editing#default-summary-prompt) | Prompt kustom untuk pembuatan ringkasan |
 
 #### Memilih ambang batas token
 
@@ -2990,9 +2990,9 @@ Pengeditan konteks dalam versi beta di semua model dan layak untuk retensi data 
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |
 
 ### Header beta yang diperlukan
 
@@ -3006,10 +3006,10 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA       |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Tidak layak |
-| Detail | Edit konteks (penghapusan penggunaan alat dan penghapusan pemikiran) diterapkan secara real time.                                                                | —           |
+| Detail | Edit konteks (penghapusan penggunaan alat dan penghapusan pemikiran) diterapkan secara real time. | — |
 
 Endpoint yang berlaku:
 

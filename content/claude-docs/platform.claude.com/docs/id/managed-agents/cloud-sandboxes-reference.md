@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/cloud-sandboxes-reference
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: af1ad2b03a0019812ac8879a34d1dd431b70e79f11f6e27afa7f20171863c39f
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6fd6ed2221bd9c87849108624c2cac08b6aabcf828cbfdfd07bf291e14a3459b
 ---
 
 ---
@@ -50,26 +50,26 @@ Spesifikasi ini berlaku untuk lingkungan `cloud`. Sandbox self-hosted berjalan p
 
 ## Bahasa pemrograman
 
-| Bahasa  | Versi                       | Manajer paket        |
-| ------- | --------------------------- | -------------------- |
-| Python  | 3.10, 3.11, 3.12, dan 3.13  | pip, uv, poetry      |
-| Node.js | 20, 21, dan 22 (default)    | npm, yarn, pnpm, bun |
-| Go      | 1.24 (default) dan 1.25     | Modul Go             |
-| Rust    | Toolchain stabil (rustup)   | cargo                |
-| Java    | OpenJDK 21                  | maven, gradle        |
-| Ruby    | 3.1, 3.2, dan 3.3 (default) | bundler, gem         |
-| PHP     | 8.3                         | composer             |
-| C/C++   | GCC 13 dan Clang            | make, cmake, ninja   |
+| Bahasa | Versi | Manajer paket |
+| ----- | ----- | ----- |
+| Python | 3.10, 3.11, 3.12, dan 3.13 | pip, uv, poetry |
+| Node.js | 20, 21, dan 22 (default) | npm, yarn, pnpm, bun |
+| Go | 1.24 (default) dan 1.25 | Modul Go |
+| Rust | Toolchain stabil (rustup) | cargo |
+| Java | OpenJDK 21 | maven, gradle |
+| Ruby | 3.1, 3.2, dan 3.3 (default) | bundler, gem |
+| PHP | 8.3 | composer |
+| C/C++ | GCC 13 dan Clang | make, cmake, ninja |
 
 Pustaka data dan dokumen Python yang umum, termasuk NumPy, pandas, Matplotlib, openpyxl, python-docx, python-pptx, dan pypdf, terinstal untuk interpreter `python3`.
 
 ## Database
 
-| Database      | Deskripsi                                                                |
-| ------------- | ------------------------------------------------------------------------ |
+| Database | Deskripsi |
+| ----- | ----- |
 | PostgreSQL 16 | Server dan klien `psql` terinstal. Server tidak berjalan secara default. |
-| Redis 7       | Server dan `redis-cli` terinstal. Server tidak berjalan secara default.  |
-| SQLite        | Tersedia melalui binding bahasa, seperti modul `sqlite3` Python.         |
+| Redis 7 | Server dan `redis-cli` terinstal. Server tidak berjalan secara default. |
+| SQLite | Tersedia melalui binding bahasa, seperti modul `sqlite3` Python. |
 
 ## Utilitas
 
@@ -112,10 +112,10 @@ Sandbox menetapkan `PLAYWRIGHT_BROWSERS_PATH` ke `/opt/pw-browsers`, sehingga pa
 
 ## Spesifikasi sandbox
 
-| Properti       | Nilai                                                                                                                                                                                                                                                   |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sistem operasi | Ubuntu 24.04 LTS                                                                                                                                                                                                                                        |
-| Arsitektur     | x86\_64 (amd64)                                                                                                                                                                                                                                         |
-| Memori         | Hingga 8 GB                                                                                                                                                                                                                                             |
-| Ruang disk     | Hingga 10 GB                                                                                                                                                                                                                                            |
-| Jaringan       | Lingkungan yang dibuat melalui API secara default menggunakan [jaringan `unrestricted`](https://platform.claude.com/docs/id/managed-agents/environments#networking); sandbox yang disediakan melalui Claude Studio secara default menggunakan `limited` |
+| Properti | Nilai |
+| ----- | ----- |
+| Sistem operasi | Ubuntu 24.04 LTS |
+| Arsitektur | x86\_64 (amd64) |
+| Memori | Hingga 8 GB |
+| Ruang disk | Hingga 10 GB |
+| Jaringan | Lingkungan yang dibuat melalui API secara default menggunakan [jaringan `unrestricted`](https://platform.claude.com/docs/id/managed-agents/environments#networking); sandbox yang disediakan melalui Claude Studio secara default menggunakan `limited` |

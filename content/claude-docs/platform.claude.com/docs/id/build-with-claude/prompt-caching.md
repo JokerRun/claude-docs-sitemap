@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 919384c25e39f1dc2da8ac38292c87d7201df5a8ca931ebfd3aafe51fa68a4b9
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6d67668e4f01ff19d77903ebefac116a704aedbcdefcdcd07194cf337bac98f2
 ---
 
 ---
@@ -257,30 +257,30 @@ Caching prompt mencakup seluruh prefiks: `tools`, `system`, dan `messages` (dala
 
 Caching prompt memiliki harganya sendiri. Tabel berikut menunjukkan harga per juta token untuk setiap model yang didukung:
 
-| Model                                                                                                                                                                  | Base input tokens | 5m cache writes | 1h cache writes | Cache hits and refreshes | Output tokens |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------- | :-------------- | :-------------- | :----------------------- | :------------ |
-| Claude Fable 5.2                                                                                                                                                       | $8 / MTok         | $10 / MTok      | $16 / MTok      | $0.20 / MTok<sup>1</sup> | $40 / MTok    |
-| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $8 / MTok         | $10 / MTok      | $16 / MTok      | $0.20 / MTok<sup>1</sup> | $40 / MTok    |
-| Claude Fable 5.1                                                                                                                                                       | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $0.25 / MTok<sup>1</sup> | $50 / MTok    |
-| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $0.25 / MTok<sup>1</sup> | $50 / MTok    |
-| Claude Fable 5                                                                                                                                                         | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $1 / MTok                | $50 / MTok    |
-| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                              | $10 / MTok        | $12.50 / MTok   | $20 / MTok      | $1 / MTok                | $50 / MTok    |
-| Claude Opus 5.5                                                                                                                                                        | $4 / MTok         | $5 / MTok       | $8 / MTok       | $0.20 / MTok<sup>2</sup> | $20 / MTok    |
-| Claude Opus 5                                                                                                                                                          | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
-| Claude Opus 4.8                                                                                                                                                        | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
-| Claude Opus 4.7                                                                                                                                                        | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
-| Claude Opus 4.6                                                                                                                                                        | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
-| Claude Opus 4.5                                                                                                                                                        | $5 / MTok         | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok    |
-| Claude Opus 4.1 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok    |
-| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))               | $15 / MTok        | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok    |
-| Claude Sonnet 5.5                                                                                                                                                      | $2 / MTok         | $2.50 / MTok    | $4 / MTok       | $0.10 / MTok<sup>2</sup> | $10 / MTok    |
-| Claude Sonnet 5                                                                                                                                                        | $2 / MTok         | $2.50 / MTok    | $4 / MTok       | $0.20 / MTok             | $10 / MTok    |
-| Claude Sonnet 4.6                                                                                                                                                      | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok    |
-| Claude Sonnet 4.5                                                                                                                                                      | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok    |
-| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $3 / MTok         | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok    |
-| Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.10 / MTok      | $0.125 / MTok   | $0.20 / MTok    | $0.01 / MTok             | $0.50 / MTok  |
-| Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.50 / MTok      | $0.625 / MTok   | $1 / MTok       | $0.05 / MTok             | $2.50 / MTok  |
-| Claude Haiku 4.5                                                                                                                                                       | $1 / MTok         | $1.25 / MTok    | $2 / MTok       | $0.10 / MTok             | $5 / MTok     |
+| Model | Base input tokens | 5m cache writes | 1h cache writes | Cache hits and refreshes | Output tokens |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| Claude Fable 5.2 | $8 / MTok | $10 / MTok | $16 / MTok | $0.20 / MTok<sup>1</sup> | $40 / MTok |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842)) | $8 / MTok | $10 / MTok | $16 / MTok | $0.20 / MTok<sup>1</sup> | $40 / MTok |
+| Claude Fable 5.1 | $10 / MTok | $12.50 / MTok | $20 / MTok | $0.25 / MTok<sup>1</sup> | $50 / MTok |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | $10 / MTok | $12.50 / MTok | $20 / MTok | $0.25 / MTok<sup>1</sup> | $50 / MTok |
+| Claude Fable 5 | $10 / MTok | $12.50 / MTok | $20 / MTok | $1 / MTok | $50 / MTok |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842)) | $10 / MTok | $12.50 / MTok | $20 / MTok | $1 / MTok | $50 / MTok |
+| Claude Opus 5.5 | $4 / MTok | $5 / MTok | $8 / MTok | $0.20 / MTok<sup>2</sup> | $20 / MTok |
+| Claude Opus 5 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.8 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.7 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.6 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.5 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.1 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $15 / MTok | $18.75 / MTok | $30 / MTok | $1.50 / MTok | $75 / MTok |
+| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $15 / MTok | $18.75 / MTok | $30 / MTok | $1.50 / MTok | $75 / MTok |
+| Claude Sonnet 5.5 | $2 / MTok | $2.50 / MTok | $4 / MTok | $0.10 / MTok<sup>2</sup> | $10 / MTok |
+| Claude Sonnet 5 | $2 / MTok | $2.50 / MTok | $4 / MTok | $0.20 / MTok | $10 / MTok |
+| Claude Sonnet 4.6 | $3 / MTok | $3.75 / MTok | $6 / MTok | $0.30 / MTok | $15 / MTok |
+| Claude Sonnet 4.5 | $3 / MTok | $3.75 / MTok | $6 / MTok | $0.30 / MTok | $15 / MTok |
+| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $3 / MTok | $3.75 / MTok | $6 / MTok | $0.30 / MTok | $15 / MTok |
+| Claude Haiku 5.5 (for prompts up to 100,000 tokens) | $0.10 / MTok | $0.125 / MTok | $0.20 / MTok | $0.01 / MTok | $0.50 / MTok |
+| Claude Haiku 5.5 (for prompts over 100,000 tokens) | $0.50 / MTok | $0.625 / MTok | $1 / MTok | $0.05 / MTok | $2.50 / MTok |
+| Claude Haiku 4.5 | $1 / MTok | $1.25 / MTok | $2 / MTok | $0.10 / MTok | $5 / MTok |
 
 *<sup>1 Cache hits and refreshes on Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, and Claude Mythos 5.1 are priced at 0.025x the base input price.</sup>*
 
@@ -495,10 +495,10 @@ Caching otomatis mengaktifkan caching prompt dengan satu field. Alih-alih menemp
 
 Dengan caching otomatis, titik cache bergerak maju secara otomatis seiring percakapan bertambah. Setiap permintaan baru meng-cache semuanya hingga blok terakhir yang dapat di-cache, dan konten sebelumnya dibaca dari cache.
 
-| Permintaan   | Konten                                                                                                       | Perilaku cache                                                                   |
-| ------------ | ------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------- |
-| Permintaan 1 | System<br />+ User(1) + Asst(1)<br />+ **User(2)** ◀ cache                                                   | Semuanya ditulis ke cache                                                        |
-| Permintaan 2 | System<br />+ User(1) + Asst(1)<br />+ User(2) + Asst(2)<br />+ **User(3)** ◀ cache                          | System hingga User(2) dibaca dari cache;<br />Asst(2) + User(3) ditulis ke cache |
+| Permintaan | Konten | Perilaku cache |
+| ----- | ----- | ----- |
+| Permintaan 1 | System<br />+ User(1) + Asst(1)<br />+ **User(2)** ◀ cache | Semuanya ditulis ke cache |
+| Permintaan 2 | System<br />+ User(1) + Asst(1)<br />+ User(2) + Asst(2)<br />+ **User(3)** ◀ cache | System hingga User(2) dibaca dari cache;<br />Asst(2) + User(3) ditulis ke cache |
 | Permintaan 3 | System<br />+ User(1) + Asst(1)<br />+ User(2) + Asst(2)<br />+ User(3) + Asst(3)<br />+ **User(4)** ◀ cache | System hingga User(3) dibaca dari cache;<br />Asst(3) + User(4) ditulis ke cache |
 
 Breakpoint cache secara otomatis berpindah ke blok terakhir yang dapat di-cache dalam setiap permintaan, sehingga Anda tidak perlu memperbarui penanda `cache_control` apa pun seiring percakapan bertambah.
@@ -673,18 +673,18 @@ Seperti dijelaskan dalam [Menyusun prompt Anda](https://platform.claude.com/docs
 
 Tabel berikut menunjukkan bagian cache mana yang dibatalkan oleh berbagai jenis perubahan. ✘ menunjukkan bahwa cache dibatalkan, sedangkan ✓ menunjukkan bahwa cache tetap valid.
 
-| Apa yang berubah                                                  | Cache alat     | Cache sistem   | Cache pesan    | Dampak                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| ----------------------------------------------------------------- | -------------- | -------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Definisi alat**                                                 | ✘              | ✘              | ✘              | Memodifikasi definisi alat (nama, deskripsi, parameter) membatalkan seluruh cache                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| **Toggle pencarian web**                                          | ✓              | ✘              | ✘              | Mengaktifkan/menonaktifkan pencarian web memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Toggle kutipan**                                                | ✓              | ✘              | ✘              | Mengaktifkan/menonaktifkan kutipan memodifikasi prompt sistem                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| **Pengaturan kecepatan**                                          | ✓              | ✘              | ✘              | Beralih antara [`speed: "fast"` dan kecepatan standar](https://platform.claude.com/docs/id/build-with-claude/fast-mode) membatalkan cache sistem dan pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| **Pilihan alat**                                                  | ✓              | ✓              | ✘              | Perubahan pada parameter `tool_choice` hanya memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| **Gambar**                                                        | ✓              | ✓              | ✘              | Menambahkan/menghapus gambar di mana pun dalam prompt memengaruhi blok pesan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| **Parameter pemikiran**                                           | Spesifik model | Spesifik model | ✘              | Konfigurasi pemikiran (mode, dan `budget_tokens` dalam mode diperpanjang) dirender ke dalam prompt, sehingga mengubahnya selalu membatalkan blok pesan; cache alat dan sistem juga dibatalkan pada model yang merender konfigurasi sebelum keduanya. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching).                                                                                                                                                                                                                                                                                                            |
-| **Pengaturan effort**                                             | Spesifik model | Spesifik model | ✘              | Mengubah nilai [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort) dapat membatalkan blok pesan, dan pada beberapa model juga cache alat dan sistem (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching)). Mengatur effort secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak membatalkan cache. Pada model yang mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), perubahan effort yang dibawa dalam pesan `role: "system"` di dalam `messages` membiarkan prefiks yang di-cache tetap utuh. |
-| **Hasil non-alat yang diteruskan ke permintaan dengan pemikiran** | ✓              | ✓              | Spesifik model | Pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, Claude Haiku 5.5, serta setiap model Claude Fable dan Claude Mythos, blok pemikiran dipertahankan secara default, sehingga cache tetap valid (✓). Pada model lain, semua blok pemikiran yang sebelumnya di-cache dihapus dari konteks, dan pesan apa pun yang mengikuti blok pemikiran tersebut dihapus dari cache (✘). Untuk detail lebih lanjut, lihat [Caching dengan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#caching-with-thinking-blocks).                                                                                             |
-| **Blok pemikiran yang tidak disertakan**                          | ✓              | ✓              | ✘              | Ketika API tidak menyertakan blok pemikiran yang tidak [dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking) pada permintaan tersebut, prefiks yang di-cache berubah mulai dari posisi blok tersebut dan seterusnya pada permintaan tersebut. Blok yang dapat dibaca oleh model penerima, yang diteruskan kembali tanpa perubahan, menjaga cache tetap utuh.                                                                                                                                                                                                                                                                                         |
+| Apa yang berubah | Cache alat | Cache sistem | Cache pesan | Dampak |
+| ----- | ----- | ----- | ----- | ----- |
+| **Definisi alat** | ✘ | ✘ | ✘ | Memodifikasi definisi alat (nama, deskripsi, parameter) membatalkan seluruh cache |
+| **Toggle pencarian web** | ✓ | ✘ | ✘ | Mengaktifkan/menonaktifkan pencarian web memodifikasi prompt sistem |
+| **Toggle kutipan** | ✓ | ✘ | ✘ | Mengaktifkan/menonaktifkan kutipan memodifikasi prompt sistem |
+| **Pengaturan kecepatan** | ✓ | ✘ | ✘ | Beralih antara [`speed: "fast"` dan kecepatan standar](https://platform.claude.com/docs/id/build-with-claude/fast-mode) membatalkan cache sistem dan pesan |
+| **Pilihan alat** | ✓ | ✓ | ✘ | Perubahan pada parameter `tool_choice` hanya memengaruhi blok pesan |
+| **Gambar** | ✓ | ✓ | ✘ | Menambahkan/menghapus gambar di mana pun dalam prompt memengaruhi blok pesan |
+| **Parameter pemikiran** | Spesifik model | Spesifik model | ✘ | Konfigurasi pemikiran (mode, dan `budget_tokens` dalam mode diperpanjang) dirender ke dalam prompt, sehingga mengubahnya selalu membatalkan blok pesan; cache alat dan sistem juga dibatalkan pada model yang merender konfigurasi sebelum keduanya. Lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching). |
+| **Pengaturan effort** | Spesifik model | Spesifik model | ✘ | Mengubah nilai [`output_config.effort`](https://platform.claude.com/docs/id/build-with-claude/effort) dapat membatalkan blok pesan, dan pada beberapa model juga cache alat dan sistem (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching)). Mengatur effort secara eksplisit ke nilai default model setara dengan menghilangkannya dan tidak membatalkan cache. Pada model yang mendukung [effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message), perubahan effort yang dibawa dalam pesan `role: "system"` di dalam `messages` membiarkan prefiks yang di-cache tetap utuh. |
+| **Hasil non-alat yang diteruskan ke permintaan dengan pemikiran** | ✓ | ✓ | Spesifik model | Pada Claude Opus 4.5 dan model Opus yang lebih baru, Claude Sonnet 4.6 dan model Sonnet yang lebih baru, Claude Haiku 5.5, serta setiap model Claude Fable dan Claude Mythos, blok pemikiran dipertahankan secara default, sehingga cache tetap valid (✓). Pada model lain, semua blok pemikiran yang sebelumnya di-cache dihapus dari konteks, dan pesan apa pun yang mengikuti blok pemikiran tersebut dihapus dari cache (✘). Untuk detail lebih lanjut, lihat [Caching dengan blok pemikiran](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#caching-with-thinking-blocks). |
+| **Blok pemikiran yang tidak disertakan** | ✓ | ✓ | ✘ | Ketika API tidak menyertakan blok pemikiran yang tidak [dipertahankan](https://platform.claude.com/docs/id/build-with-claude/thinking#preserved-thinking) pada permintaan tersebut, prefiks yang di-cache berubah mulai dari posisi blok tersebut dan seterusnya pada permintaan tersebut. Blok yang dapat dibaca oleh model penerima, yang diteruskan kembali tanpa perubahan, menjaga cache tetap utuh. |
 
 Pada model yang mendukung [perubahan alat di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#mid-conversation-tool-changes), header beta `inline-tools-2026-09-15` memungkinkan Anda menambahkan alat, atau mengubah definisi alat, di tengah percakapan tanpa mengedit `tools`. Kirim definisi dalam blok `tool_addition` di pesan sistem di tengah percakapan dan biarkan `tools` persis seperti yang pertama kali Anda kirim. Prefiks yang di-cache tetap cocok, sehingga hanya pesan yang ditambahkan yang diproses sebagai input baru. Satu-satunya pengecualian adalah array `tools` tanpa alat non-deferred, di mana alat pertama yang didefinisikan dengan cara ini menyebabkan satu cache miss penuh pada permintaan tersebut. Lihat [Mendefinisikan alat dalam pesan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#define-tools-in-a-message-beta).
 
@@ -3510,8 +3510,8 @@ Caching prompt tersedia atau dalam versi beta, tergantung pada API, dan layak un
 * Ketersediaan: Tersedia
 * Penggunaan: Aktifkan dengan `cache_control`, di level teratas atau pada blok.
 
-| Status   | Platform cloud               | Model                                                              |
-| -------- | ---------------------------- | ------------------------------------------------------------------ |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
 | Tersedia | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -3519,18 +3519,18 @@ Caching prompt tersedia atau dalam versi beta, tergantung pada API, dan layak un
 * Ketersediaan: Selalu aktif
 * Penggunaan: Entri cache menggunakan masa berlaku 5 menit secara default, dan pembacaan serta penulisan cache muncul dalam penggunaan sesi.
 
-| Status | Platform cloud               | Model                                                              |
-| ------ | ---------------------------- | ------------------------------------------------------------------ |
-| Beta   | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                   | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
-| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                   | Layak |
-| Detail | Prompt Anda dan output Claude tidak disimpan. Representasi cache KV dan hash kriptografis disimpan di memori selama TTL cache dan segera dihapus setelah kedaluwarsa. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#data-retention) | —     |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
+| Detail | Prompt Anda dan output Claude tidak disimpan. Representasi cache KV dan hash kriptografis disimpan di memori selama TTL cache dan segera dihapus setelah kedaluwarsa. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#data-retention) | — |
 
 Endpoint yang berlaku:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/vision
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: a4cee52e5463b2e4fbac96e3d18ac4fe2072d7a1861f3b8ec5042ac82dad8a04
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d2786f1558f44cf25f78b21aa316b0e50f48a52dbf5b5be68079860a28276cc2
 ---
 
 ---
@@ -1317,23 +1317,23 @@ Claude memproses gambar dalam bentuk patch, bukan piksel. Setiap patch adalah bl
 
 Setiap model memiliki resolusi gambar native maksimum, yang dinyatakan sebagai batas sisi panjang dan batas token visual. Gambar yang lebih besar dari salah satu batas tersebut akan diperkecil sebelum diproses; lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images) untuk aturan persisnya. Pengecualiannya adalah tangkapan layar dan gambar zoom yang Anda kembalikan ke toolset [penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool#handle-coordinate-scaling-for-higher-resolutions) dan [penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool#targets-and-coordinates): API menolak gambar `tool_result` yang melebihi batas model dengan error validasi alih-alih memperkecilnya, jadi ubah ukuran gambar tersebut di aplikasi Anda sebelum mengembalikannya. Agar gambar berukuran berlebih lainnya ditolak dengan error alih-alih diperkecil, atur [field `transformations`](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#oversized-image-error) pada blok gambar.
 
-| Tingkat resolusi | Model                                | Sisi panjang maks | Token visual maks |
-| ---------------- | ------------------------------------ | ----------------- | ----------------- |
-| Resolusi tinggi  | Claude 4.7 dan model yang lebih baru | 2.576 px          | 4.784             |
-| Standar          | Semua model lainnya                  | 1.568 px          | 1.568             |
+| Tingkat resolusi | Model | Sisi panjang maks | Token visual maks |
+| ----- | ----- | ----- | ----- |
+| Resolusi tinggi | Claude 4.7 dan model yang lebih baru | 2.576 px | 4.784 |
+| Standar | Semua model lainnya | 1.568 px | 1.568 |
 
 Dukungan resolusi tinggi bersifat otomatis pada model yang tercantum dan tidak memerlukan header beta atau opt-in di sisi klien.
 
 Tabel berikut menunjukkan resolusi setelah diperkecil dan biaya token visual untuk beberapa ukuran gambar pada setiap tingkat:
 
-| Ukuran gambar                  | Tingkat standar: diperkecil menjadi | Tingkat standar: token | Tingkat resolusi tinggi: diperkecil menjadi | Tingkat resolusi tinggi: token |
-| ------------------------------ | ----------------------------------- | ---------------------- | ------------------------------------------- | ------------------------------ |
-| 200x200 px (0,04 megapiksel)   | Tidak diubah ukurannya              | 64                     | Tidak diubah ukurannya                      | 64                             |
-| 1000x1000 px (1 megapiksel)    | Tidak diubah ukurannya              | 1.296                  | Tidak diubah ukurannya                      | 1.296                          |
-| 1092x1092 px (1,19 megapiksel) | Tidak diubah ukurannya              | 1.521                  | Tidak diubah ukurannya                      | 1.521                          |
-| 1920x1080 px (2,07 megapiksel) | 1456x819 px                         | 1.560                  | Tidak diubah ukurannya                      | 2.691                          |
-| 2000x1500 px (3 megapiksel)    | 1269x952 px                         | 1.564                  | Tidak diubah ukurannya                      | 3.888                          |
-| 3840x2160 px (8,29 megapiksel) | 1456x819 px                         | 1.560                  | 2576x1449 px                                | 4.784                          |
+| Ukuran gambar | Tingkat standar: diperkecil menjadi | Tingkat standar: token | Tingkat resolusi tinggi: diperkecil menjadi | Tingkat resolusi tinggi: token |
+| ----- | ----- | ----- | ----- | ----- |
+| 200x200 px (0,04 megapiksel) | Tidak diubah ukurannya | 64 | Tidak diubah ukurannya | 64 |
+| 1000x1000 px (1 megapiksel) | Tidak diubah ukurannya | 1.296 | Tidak diubah ukurannya | 1.296 |
+| 1092x1092 px (1,19 megapiksel) | Tidak diubah ukurannya | 1.521 | Tidak diubah ukurannya | 1.521 |
+| 1920x1080 px (2,07 megapiksel) | 1456x819 px | 1.560 | Tidak diubah ukurannya | 2.691 |
+| 2000x1500 px (3 megapiksel) | 1269x952 px | 1.564 | Tidak diubah ukurannya | 3.888 |
+| 3840x2160 px (8,29 megapiksel) | 1456x819 px | 1.560 | 2576x1449 px | 4.784 |
 
 Ketika sebuah gambar diperkecil, Claude menskalakannya ke ukuran terbesar yang sesuai dengan batas tingkat tersebut sambil mempertahankan rasio aspeknya. Ini membatasi biaya token. Untuk aturan persis dan implementasi referensi, lihat [Cara Claude mengubah ukuran dan menambahkan padding pada gambar](https://platform.claude.com/docs/id/build-with-claude/vision-coordinates#how-claude-resizes-and-pads-images).
 
@@ -1444,10 +1444,10 @@ Vision (gambar) tersedia di semua model.
 
 * Ketersediaan: Selalu aktif
 
-| Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                         |
-| -------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
-| Tersedia<sup>1</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)      |
+| Status | Platform cloud |
+| ----- | ----- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Tersedia<sup>1</sup> | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) |
 
 1. Hanya sumber gambar base64; batas per gambar 5 MB (ter-encode base64) dan ukuran total permintaan yang lebih kecil.
 
@@ -1455,6 +1455,6 @@ Vision (gambar) tersedia di semua model.
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |

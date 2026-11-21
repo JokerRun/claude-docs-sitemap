@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-providers/azure
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 23c94204683a1a538bb98b32c79e953ece2fb218ebd4e0922239cdfb5902e1e4
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e9293d9daee6c2bc7ad644b3f748894a84fd2ef5b4581bd43b2e88eebf064af6
 ---
 
 ---
@@ -87,12 +87,12 @@ Gunakan jalur ini ketika workload Anda berjalan di VM, VM Scale Set, App Service
     }
     ```
 
-    | Klaim | Nilai                                                                                                                                                                                    | Cocokkan ini ketika                                                                                                                                                                                                          |
-    | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `oid` | ID objek managed identity, identik dengan `sub`                                                                                                                                          | Anda ingin mengotorisasi satu managed identity tertentu. Ini adalah default. Aturan di [Konfigurasikan Anthropic](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#configure-anthropic) mencocokkannya. |
-    | `azp` | Client ID identitas pemanggil                                                                                                                                                            | Anda ingin mengotorisasi setiap workload yang berbagi satu app registration. Untuk managed identity, `azp` unik untuk identitas tersebut, sehingga setara dengan `oid`.                                                      |
-    | `aud` | Client ID app registration audience (GUID `<APP_ID>` dari [Daftarkan audience token](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#register-the-token-audience)) | Selalu. Field `audience` pada rule harus sama persis dengan nilai `aud` token.                                                                                                                                               |
-    | `tid` | Tenant ID Anda                                                                                                                                                                           | Anda menginginkan pertahanan berlapis. URL issuer sudah mengunci tenant.                                                                                                                                                     |
+    | Klaim | Nilai | Cocokkan ini ketika |
+    | ----- | ----- | ----- |
+    | `oid` | ID objek managed identity, identik dengan `sub` | Anda ingin mengotorisasi satu managed identity tertentu. Ini adalah default. Aturan di [Konfigurasikan Anthropic](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#configure-anthropic) mencocokkannya. |
+    | `azp` | Client ID identitas pemanggil | Anda ingin mengotorisasi setiap workload yang berbagi satu app registration. Untuk managed identity, `azp` unik untuk identitas tersebut, sehingga setara dengan `oid`. |
+    | `aud` | Client ID app registration audience (GUID `<APP_ID>` dari [Daftarkan audience token](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#register-the-token-audience)) | Selalu. Field `audience` pada rule harus sama persis dengan nilai `aud` token. |
+    | `tid` | Tenant ID Anda | Anda menginginkan pertahanan berlapis. URL issuer sudah mengunci tenant. |
 
     Jika klaim `ver` pada token yang didekode adalah `1.0`, nama dan nilai klaim berbeda. Lihat [Jika token Anda v1.0](https://platform.claude.com/docs/id/manage-claude/wif-providers/azure#if-your-tokens-are-v1-0) sebelum melanjutkan.
   </Step>

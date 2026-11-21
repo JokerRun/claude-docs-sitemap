@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 0bd10c9e91b51c42ce9449e050cbafa789bd6cf3146abf34f41248fcb3a4e5c0
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e880a7c78deb276885924f8947dde6dff2273d3ec4e9607535e04029868365a4
 ---
 
 ---
@@ -19,15 +19,15 @@ A request through the tunnel can fail at one of three layers; diagnose them in o
 
 ## Quick reference
 
-| Symptom                                                                                                                                                        | Cause                                                                                               | Fix                                                                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tunnel doesn’t appear in the agent MCP server picker                                                                                                           | The picker only lists tunnels in the session’s workspace that have at least one active certificate. | Register a CA certificate, or open the session in the workspace the tunnel was created in.                                                                            |
-| Caller sees HTTP 500; [cloudflared](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) logs `No ingress rules were defined` | cloudflared has no local target.                                                                    | Add `--url http://localhost:8080` and `network_mode: "service:mcp-proxy"` to the cloudflared service.                                                                 |
-| Proxy logs `no route for host`                                                                                                                                 | `tunnel_domain` doesn’t match the assigned domain, or `config.yaml` was edited without restarting.  | Set `tunnel_domain` to the exact domain shown on the tunnel detail page, then restart the proxy (`docker compose restart mcp-proxy`).                                 |
-| Proxy logs `IP validation failed: <ip> is not a private address`                                                                                               | Upstream MCP server resolves outside RFC1918.                                                       | See [Upstream IP validation](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation).                                |
-| Proxy exits with `cannot unmarshal !!seq into map[string]string`                                                                                               | `routes` is a YAML list.                                                                            | Use `routes: { name: http://host:port }`.                                                                                                                             |
-| Proxy exits with `open /data/tls.key: permission denied`                                                                                                       | The key is `0600`; the proxy container runs non-root.                                               | `chmod 644 data/tls.key`.                                                                                                                                             |
-| `curl https://<proxy>:8080` fails with `wrong version number`                                                                                                  | Expected; the listener is plaintext WebSocket. TLS occurs inside the WS stream.                     | Verify through a [Managed Agent or the Messages API](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers) instead. |
+| Symptom | Cause | Fix |
+| ----- | ----- | ----- |
+| Tunnel doesn’t appear in the agent MCP server picker | The picker only lists tunnels in the session’s workspace that have at least one active certificate. | Register a CA certificate, or open the session in the workspace the tunnel was created in. |
+| Caller sees HTTP 500; [cloudflared](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/concepts#components) logs `No ingress rules were defined` | cloudflared has no local target. | Add `--url http://localhost:8080` and `network_mode: "service:mcp-proxy"` to the cloudflared service. |
+| Proxy logs `no route for host` | `tunnel_domain` doesn’t match the assigned domain, or `config.yaml` was edited without restarting. | Set `tunnel_domain` to the exact domain shown on the tunnel detail page, then restart the proxy (`docker compose restart mcp-proxy`). |
+| Proxy logs `IP validation failed: <ip> is not a private address` | Upstream MCP server resolves outside RFC1918. | See [Upstream IP validation](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/troubleshooting#upstream-ip-validation). |
+| Proxy exits with `cannot unmarshal !!seq into map[string]string` | `routes` is a YAML list. | Use `routes: { name: http://host:port }`. |
+| Proxy exits with `open /data/tls.key: permission denied` | The key is `0600`; the proxy container runs non-root. | `chmod 644 data/tls.key`. |
+| `curl https://<proxy>:8080` fails with `wrong version number` | Expected; the listener is plaintext WebSocket. TLS occurs inside the WS stream. | Verify through a [Managed Agent or the Messages API](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/overview#use-the-tunneled-mcp-servers) instead. |
 
 The following sections cover failures that need more than a one-line fix.
 

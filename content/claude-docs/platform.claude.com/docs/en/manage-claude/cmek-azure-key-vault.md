@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 2a2e27c9e4e80db4f2aa092bdfa4aaa849597a4b8382ca250c9179cfb9d43bba
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 093e1cddae597cf4908810cf1709779b37c583b9e542353c0d944cfc1701d387
 ---
 
 ---
@@ -53,12 +53,12 @@ az keyvault show --name <your-vault-name> \
   --query "{rbac:properties.enableRbacAuthorization, purge:properties.enablePurgeProtection, pub:properties.publicNetworkAccess, net:properties.networkAcls.defaultAction, ipRules:properties.networkAcls.ipRules, uri:properties.vaultUri, tenantId:properties.tenantId}"
 ```
 
-| Field   | Must be                                                                                                                                                  |
-| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rbac`  | `true`                                                                                                                                                   |
-| `purge` | `true`. If it’s `false` or `null`, turn on purge protection first. You can’t turn it off again.                                                          |
-| `pub`   | `"Enabled"`. Private endpoints aren’t supported.                                                                                                         |
-| `net`   | `"Allow"`, or `"Deny"` with [Anthropic’s outbound IP addresses](https://platform.claude.com/docs/en/api/ip-addresses#outbound-ip-addresses) in `ipRules` |
+| Field | Must be |
+| ----- | ----- |
+| `rbac` | `true` |
+| `purge` | `true`. If it’s `false` or `null`, turn on purge protection first. You can’t turn it off again. |
+| `pub` | `"Enabled"`. Private endpoints aren’t supported. |
+| `net` | `"Allow"`, or `"Deny"` with [Anthropic’s outbound IP addresses](https://platform.claude.com/docs/en/api/ip-addresses#outbound-ip-addresses) in `ipRules` |
 
 Copy `uri` (the vault URI) and `tenantId`.
 

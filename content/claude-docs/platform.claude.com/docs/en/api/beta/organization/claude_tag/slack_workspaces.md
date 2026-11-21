@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_workspaces
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 3c44de17cc32d1abc7d4db8a3c986084b1c104c42b5ac531a30030422b2b706f
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 5787e024083024e9eaf2e7176e3edadee1d6bab5c9c12d5da81eb8ae3a6db02a
 ---
 
 ---
@@ -143,6 +143,8 @@ List the set-up Slack workspaces the organization owns, newest first by `created
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -622,6 +624,8 @@ Get one Slack workspace and its settings. By default `settings` holds what the w
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1084,6 +1088,8 @@ Change the settings a Slack workspace stores. The update is partial: a setting l
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

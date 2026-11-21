@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 55145411e54f0c8d1a303e35233fa34d6e574af114ea3e9d1b263059368ad153
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a51fead09d16a626ad79c6a2765eff4e986816fe804fd1f4c6a102ad297b0c86
 ---
 
 ---
@@ -59,11 +59,11 @@ featureMetadata:
 
 “Client tools” (alat klien) ditentukan dalam parameter tingkat atas `tools` pada permintaan API. Alat klien berskema Anthropic, seperti alat bash dan editor teks, dideklarasikan dengan `type` berversi tanggal; lihat halaman masing-masing alat, yang ditautkan dari [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference), untuk field yang diterimanya. Alat penggunaan komputer dan penggunaan browser adalah [toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets): satu entri tanpa `name` yang mendeklarasikan sekumpulan alat anggota yang tetap. Definisi alat yang ditentukan pengguna mencakup:
 
-| Parameter        | Deskripsi                                                                                                                                                                                                                                           |
-| ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`           | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,128}$`.                                                                                                                                                                                       |
-| `description`    | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan alat harus digunakan, dan bagaimana alat berperilaku.                                                                                                                   |
-| `input_schema`   | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat.                                                                                                                                             |
+| Parameter | Deskripsi |
+| ----- | ----- |
+| `name` | Nama alat. Harus cocok dengan regex `^[a-zA-Z0-9_-]{1,128}$`. |
+| `description` | Deskripsi teks biasa yang terperinci tentang apa yang dilakukan alat, kapan alat harus digunakan, dan bagaimana alat berperilaku. |
+| `input_schema` | Objek [JSON Schema](https://json-schema.org/) yang mendefinisikan parameter yang diharapkan untuk alat. |
 | `input_examples` | (Opsional) Array berisi objek input contoh yang menunjukkan kepada Claude cara menggunakan alat. Lihat [Memberikan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples). |
 
 Untuk kumpulan lengkap properti opsional yang tersedia pada setiap definisi alat tunggal, termasuk `cache_control`, `strict`, `defer_loading`, dan `allowed_callers`, lihat [Properti definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#tool-definition-properties). Entri toolset klien menerima `cache_control` dan `allowed_callers` pada entri tersebut dan menetapkan `defer_loading` untuk setiap anggota; lihat [Toolset klien](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference#client-toolsets).
@@ -596,10 +596,10 @@ Dalam beberapa kasus, Anda mungkin ingin Claude menggunakan alat tertentu untuk 
 
 Tidak semua model dan pengaturan mendukung penggunaan alat yang dipaksakan. Jika tidak didukung, `tool_choice: {"type": "any"}` dan `tool_choice: {"type": "tool", "name": "..."}` akan gagal, sedangkan `tool_choice: {"type": "auto"}` (default) dan `tool_choice: {"type": "none"}` tetap berfungsi:
 
-| Model atau pengaturan                                                                                                                                                                                                                                | Batasan                                                                                                                                                              | Alternatif yang dapat digunakan                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`)                                                                                                             | `any` dan `tool` tidak didukung dan menghasilkan error                                                                                                               | `auto` atau `none`. [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) sendiri tidak memblokir penggunaan alat paksa (model dengan thinking aktif secara default, seperti Claude Opus 5 dan Claude Haiku 5.5, menerimanya, tetapi panggilan yang dipaksakan melewati thinking: respons dimulai dengan panggilan alat dan tidak memiliki blok `thinking`); model di baris berikutnya menolak penggunaan alat paksa terlepas dari pengaturan thinking |
-| Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) | `any` dan `tool` mengembalikan error 400. Lihat [Penggunaan alat paksa tidak didukung](https://platform.claude.com/docs/id/api/errors#forced-tool-use-not-supported) | `auto` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin input alat yang valid sesuai skema, atau [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda membutuhkan respons dalam bentuk JSON yang tetap. Prompting tetap memengaruhi alat mana yang dipilih oleh `auto`. `none` juga didukung                                                       |
+| Model atau pengaturan | Batasan | Alternatif yang dapat digunakan |
+| ----- | ----- | ----- |
+| [Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking) manual (`thinking: {type: "enabled"}`) | `any` dan `tool` tidak didukung dan menghasilkan error | `auto` atau `none`. [Pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking) sendiri tidak memblokir penggunaan alat paksa (model dengan thinking aktif secara default, seperti Claude Opus 5 dan Claude Haiku 5.5, menerimanya, tetapi panggilan yang dipaksakan melewati thinking: respons dimulai dengan panggilan alat dan tidak memiliki blok `thinking`); model di baris berikutnya menolak penggunaan alat paksa terlepas dari pengaturan thinking |
+| Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), Claude Opus 5.5, Claude Sonnet 5.5, Claude Fable 5.1, dan [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview) | `any` dan `tool` mengembalikan error 400. Lihat [Penggunaan alat paksa tidak didukung](https://platform.claude.com/docs/id/api/errors#forced-tool-use-not-supported) | `auto` dengan [penggunaan alat ketat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/strict-tool-use) untuk menjamin input alat yang valid sesuai skema, atau [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) ketika Anda membutuhkan respons dalam bentuk JSON yang tetap. Prompting tetap memengaruhi alat mana yang dipilih oleh `auto`. `none` juga didukung |
 
 Pada model yang mendukungnya, baris yang disorot adalah satu-satunya perbedaan dari permintaan penggunaan alat standar:
 
@@ -960,8 +960,8 @@ Alat kustom tersedia di semua model.
 * Ketersediaan: Tersedia
 * Penggunaan: Definisikan dalam `tools` permintaan. Respons Claude berisi blok `tool_use`, dan Anda mengirim hasilnya sebagai blok `tool_result` dalam permintaan berikutnya.
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -969,6 +969,6 @@ Alat kustom tersedia di semua model.
 * Ketersediaan: Tersedia
 * Penggunaan: Deklarasikan pada agen dengan `type` `"custom"`. Panggilan tiba sebagai event `agent.custom_tool_use`, dan Anda membalas dengan event `user.custom_tool_result`.
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                 |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |

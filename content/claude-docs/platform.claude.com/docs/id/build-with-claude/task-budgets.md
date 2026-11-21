@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/task-budgets
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 3013f3490c7d692f7007804341836725c2e7fb8425be6035f1d3a042f6cd5442
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 57ca03efb93e908e4a88e2acfdcfc4d6596ab648c21e59d827ec2ae2cb8505c2
 ---
 
 ---
@@ -387,11 +387,11 @@ Pesan yang dikirim ulang dari permintaan 1 tidak dihitung lagi, tetapi hasil ala
 Menempatkan ketiga permintaan secara berdampingan memperjelas perbedaan antara ukuran payload dan penggunaan anggaran:
 
 | Permintaan | Payload permintaan (perkiraan token input yang Anda kirim) | Token yang dihitung terhadap anggaran pada permintaan ini | `remaining` anggaran setelahnya |
-| ---------- | ---------------------------------------------------------- | --------------------------------------------------------- | ------------------------------- |
-| 1          | \~20                                                       | 5.000 (pemikiran + `tool_use`)                            | \~95.000                        |
-| 2          | \~7.800 (pesan dari permintaan 1 + hasil alat)             | 6.800 (2.800 hasil alat + 4.000 pemikiran dan `tool_use`) | \~88.200                        |
-| 3          | \~13.000 (seluruh riwayat + hasil alat kedua)              | 7.200 (1.200 hasil alat + 6.000 `text`)                   | \~81.000                        |
-| **Total**  | **\~20.820 dikirim di seluruh permintaan**                 | **19.000 dihitung terhadap anggaran**                     | T/A                             |
+| ----- | ----- | ----- | ----- |
+| 1 | \~20 | 5.000 (pemikiran + `tool_use`) | \~95.000 |
+| 2 | \~7.800 (pesan dari permintaan 1 + hasil alat) | 6.800 (2.800 hasil alat + 4.000 pemikiran dan `tool_use`) | \~88.200 |
+| 3 | \~13.000 (seluruh riwayat + hasil alat kedua) | 7.200 (1.200 hasil alat + 6.000 `text`) | \~81.000 |
+| **Total** | **\~20.820 dikirim di seluruh permintaan** | **19.000 dihitung terhadap anggaran** | T/A |
 
 Klien Anda mengirim pesan pengguna asli sebanyak tiga kali dan pesan asisten pertama sebanyak dua kali, tetapi masing-masing hanya dihitung sekali. Anggaran yang terpakai adalah 19.000 dari 100.000 token, meskipun payload kumulatif yang dikirimkan klien Anda lebih besar dan input yang di-cache melalui caching prompt pada permintaan 2 dan 3 bahkan lebih besar lagi.
 
@@ -674,24 +674,24 @@ Nilai minimum `task_budget.total` yang diterima adalah **20.000 token** pada set
 
 ## Dukungan fitur
 
-| Model             | Dukungan                                         |
-| ----------------- | ------------------------------------------------ |
-| Claude Fable 5.2  | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Model | Dukungan |
+| ----- | ----- |
+| Claude Fable 5.2 | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Mythos 5.2 | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Fable 5.1  | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Fable 5.1 | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Mythos 5.1 | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Opus 5.5   | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Opus 5     | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Fable 5    | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Mythos 5   | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 5.5 | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 5 | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Fable 5 | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Mythos 5 | Beta (tetapkan header `task-budgets-2026-03-13`) |
 | Claude Sonnet 5.5 | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Sonnet 5   | Tidak didukung                                   |
-| Claude Haiku 5.5  | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Opus 4.8   | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Opus 4.7   | Beta (tetapkan header `task-budgets-2026-03-13`) |
-| Claude Opus 4.6   | Tidak didukung                                   |
-| Claude Sonnet 4.6 | Tidak didukung                                   |
-| Claude Haiku 4.5  | Tidak didukung                                   |
+| Claude Sonnet 5 | Tidak didukung |
+| Claude Haiku 5.5 | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 4.8 | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 4.7 | Beta (tetapkan header `task-budgets-2026-03-13`) |
+| Claude Opus 4.6 | Tidak didukung |
+| Claude Sonnet 4.6 | Tidak didukung |
+| Claude Haiku 4.5 | Tidak didukung |
 
 Anggaran tugas tidak didukung di [Claude Code](https://code.claude.com/docs/id/overview) atau permukaan Cowork. Gunakan anggaran tugas secara langsung melalui Messages API pada [model yang didukung](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support).
 
@@ -726,10 +726,10 @@ Anggaran tugas dalam versi beta di model tertentu.
 * Ketersediaan: Tersedia
 * Penggunaan: Bersifat anjuran: atur di `output_config.task_budget`. API tidak menghentikan Claude saat anggaran tercapai.
 
-| Status | Platform cloud                                                                                                                                                                                                                                                                                                                                                                   | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) |
-| Beta   | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed)                                                                                                                                                                                                                       | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview)                        |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) |
+| Beta | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

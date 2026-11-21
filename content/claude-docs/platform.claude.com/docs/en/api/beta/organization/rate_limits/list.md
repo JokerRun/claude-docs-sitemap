@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/rate_limits/list
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: 1ff49aac2582d4c9961b81c8668352f7cc1a675df0dca5cb4bf98455f09a613b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 150e3eb6e1e9a58a82bbd34b0b6a1a62128a54c58fddc391c70e873db9e202d5
 ---
 
 ---
@@ -168,7 +168,7 @@ the remaining entries.
 
     - `type: string`
 
-      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`).
 
     - `value: number`
 

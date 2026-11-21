@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-per-session
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 39ddb6ee621c9b60047ec9abda1f06e99b1324e6d87f419d0a507275977ed634
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 524810c90da52070d0660e7bcc45f6c6e43c74d65fc93af6474c7f916875ed07
 ---
 
 ---
@@ -131,7 +131,7 @@ A poller on the host claims work and calls your script once for each work item. 
     <File filename="Dockerfile">
       ```dockerfile
       FROM your-base-image
-      ARG ANT_VERSION=2.12.0
+      ARG ANT_VERSION=2.12.1
       ARG TARGETARCH
       RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
           curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \
@@ -181,10 +181,10 @@ Each claimed work item can carry a `secret` (csharp, go: `Secret`) that Anthropi
 
 A worker that claims and runs sessions in one process passes the secret along itself. `EnvironmentWorker` with `run()` (go: `Run()`) is one such worker, and `ant beta:worker poll` without `--on-work` is another. When your own code sits between the claim and the worker, you forward the secret:
 
-| You claim work with                                                                                                      | The secret arrives as                                                    | Pass it to the worker as                                                                                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ant beta:worker poll --on-work`                                                                                         | The `secret` field of the work item JSON on your script’s standard input | `ANTHROPIC_WORK_SECRET` in the sandbox’s environment                                                                                                                                                |
-| The Python, TypeScript, or Go SDK’s `work.poller()` (typescript: `new WorkPoller()`; go: `environments.NewWorkPoller()`) | The `secret` (go: `Secret`) field of each claimed work item              | `ANTHROPIC_WORK_SECRET` in the sandbox’s environment or the `work_secret` (typescript: `workSecret`; go: `WorkSecret`) argument to `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
+| You claim work with | The secret arrives as | Pass it to the worker as |
+| ----- | ----- | ----- |
+| `ant beta:worker poll --on-work` | The `secret` field of the work item JSON on your script’s standard input | `ANTHROPIC_WORK_SECRET` in the sandbox’s environment |
+| The Python, TypeScript, or Go SDK’s `work.poller()` (typescript: `new WorkPoller()`; go: `environments.NewWorkPoller()`) | The `secret` (go: `Secret`) field of each claimed work item | `ANTHROPIC_WORK_SECRET` in the sandbox’s environment or the `work_secret` (typescript: `workSecret`; go: `WorkSecret`) argument to `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
 
 Pass the secret only into the sandbox that serves that session, and never log it. See [Security model](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-security) for how it relates to the environment key.
 

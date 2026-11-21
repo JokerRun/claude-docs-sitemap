@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/installation_settings
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 943f8d678486829d05cd9a5d49a22df158276d2bb7400dbc6553ab032e4d8225
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2e7918b030ef2d81a377db2473a1817ffc4af8b563b9a0bef758e440d7a71ba2
 ---
 
 ---
@@ -160,6 +160,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -442,6 +444,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -575,6 +579,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
     When its setting last changed.
 
     format: date-time
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 
@@ -740,6 +754,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -834,6 +850,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
       - `user_id: string`
 
         The member's User ID.
+
+### Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 

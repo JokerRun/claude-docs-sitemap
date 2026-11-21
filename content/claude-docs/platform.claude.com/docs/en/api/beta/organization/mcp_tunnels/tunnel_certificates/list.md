@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 5f59c4c80a3c7f572b259c18beed21d10e399bbf6a4a1d723d2b733ad7f2b6ad
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0941581e660d885e401235cf869f907d6de898b28f3ca61c74def8bcb8fcf9bd
 ---
 
 ---
@@ -153,6 +153,8 @@ Archived certificates are excluded unless `include_archived` is set.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

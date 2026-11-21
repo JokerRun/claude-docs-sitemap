@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 12c3c2c1f8d75829798b33e73dce7996e7cba9d729533d1d5806c0dfc7c833f4
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2be4502008914822bd08498e6c776b199607d86d1950d9b71be4dfc581f81a38
 ---
 
 ---
@@ -129,6 +129,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/count_tokens
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 940246aacbe7be27fa80cec55e5f9f4a5bdf7e0926aab2a495a6540ed22d5070
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0d04d6b4e7a899f9d47d3da615ea5a339d94fd6237dd0b05e9e0ca0bf6f1e73c
 ---
 
 ---
@@ -719,7 +719,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
               - `page_age: optional string or null`
 
-            - `WebSearchToolRequestError object`
+            - `WebSearchToolRequestErrorObject object`
 
               - `type: "web_search_tool_result_error"`
 

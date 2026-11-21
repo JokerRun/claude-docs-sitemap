@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/webhooks
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: ce7fff7db054edab59a334ea5a0dd43d55f97b4fd9f4c8ff52eb75c9c2ec9fa8
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c628c7ec638b89b23811af6df8ad9473d1347aad6595e9d7027f36d6021ddbee
 ---
 
 ---
@@ -53,80 +53,80 @@ Event webhook mengembalikan `type` dan `id` event, bukan objek lengkapnya. Saat 
   <Tab title="Event sesi">
     Beberapa event ini diberi nama yang berbeda dari event yang sesuai pada [aliran event](https://platform.claude.com/docs/id/managed-agents/events-and-streaming) sesi. Misalnya, `session.status_idle` dan `session.status_running` pada aliran tersebut sesuai dengan event webhook `session.status_idled` dan `session.status_run_started`.
 
-    | Event                              | Pemicu                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-    | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `session.status_run_started`       | Agen mulai berjalan. Ini dipicu pada setiap transisi status sesi ke `running`.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-    | `session.status_idled`             | Agen menunggu input, misalnya, persetujuan izin alat atau pesan pengguna baru.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-    | `session.budget_reached`           | Sesi mencapai [anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets) dan dijeda. Dipicu paling banyak sekali untuk setiap nilai anggaran yang Anda tetapkan; mengubah anggaran akan mengaktifkannya kembali.                                                                                                                                                                                                                                                                                                                                         |
-    | `session.status_rescheduled`       | Terjadi kesalahan sementara dan sesi mencoba ulang secara otomatis.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-    | `session.status_terminated`        | Sesi dihentikan, baik karena kesalahan yang tidak dapat dipulihkan atau karena diarsipkan.                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-    | `session.thread_created`           | [Thread multiagen](https://platform.claude.com/docs/id/managed-agents/session-threads) baru dibuka: agen tambahan yang dipanggil oleh agen yang dijalankan sesi mulai bekerja, atau [advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) sesi sedang dikonsultasikan. Event ini juga dipicu untuk setiap thread dari [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads), begitu pula dua event thread lainnya dalam tabel ini.                          |
-    | `session.thread_idled`             | Agen dalam [interaksi multiagen](https://platform.claude.com/docs/id/managed-agents/session-threads) sedang menunggu input.                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-    | `session.thread_terminated`        | [Thread multiagen](https://platform.claude.com/docs/id/managed-agents/session-threads) dihentikan, baik karena thread diarsipkan atau karena telah menghabiskan percobaan ulangnya. Subagen yang menyelesaikan pekerjaannya menjadi `idle`, bukan `terminated` (thread advisor dihentikan setelah konsultasinya selesai, dan thread dari eksekusi workflow dihentikan saat server mengarsipkannya, pada akhir eksekusi). Hanya dipicu untuk thread anak; berakhirnya thread utama, termasuk pengarsipan seluruh sesi, hanya muncul sebagai `session.status_terminated`. |
-    | `session.outcome_evaluation_ended` | [Evaluasi hasil](https://platform.claude.com/docs/id/managed-agents/define-outcomes) untuk satu iterasi selesai.                                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-    | `session.updated`                  | Properti sesi berubah (misalnya, nama atau konfigurasinya diperbarui).                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-    | `session.deleted`                  | Sesi dihapus secara permanen. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
+    | Event | Pemicu |
+    | ----- | ----- |
+    | `session.status_run_started` | Agen mulai berjalan. Ini dipicu pada setiap transisi status sesi ke `running`. |
+    | `session.status_idled` | Agen menunggu input, misalnya, persetujuan izin alat atau pesan pengguna baru. |
+    | `session.budget_reached` | Sesi mencapai [anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets) dan dijeda. Dipicu paling banyak sekali untuk setiap nilai anggaran yang Anda tetapkan; mengubah anggaran akan mengaktifkannya kembali. |
+    | `session.status_rescheduled` | Terjadi kesalahan sementara dan sesi mencoba ulang secara otomatis. |
+    | `session.status_terminated` | Sesi dihentikan, baik karena kesalahan yang tidak dapat dipulihkan atau karena diarsipkan. |
+    | `session.thread_created` | [Thread multiagen](https://platform.claude.com/docs/id/managed-agents/session-threads) baru dibuka: agen tambahan yang dipanggil oleh agen yang dijalankan sesi mulai bekerja, atau [advisor](https://platform.claude.com/docs/id/managed-agents/multiagent-orchestration#give-the-session-an-advisor) sesi sedang dikonsultasikan. Event ini juga dipicu untuk setiap thread dari [eksekusi workflow](https://platform.claude.com/docs/id/managed-agents/workflow-runs#a-runs-threads), begitu pula dua event thread lainnya dalam tabel ini. |
+    | `session.thread_idled` | Agen dalam [interaksi multiagen](https://platform.claude.com/docs/id/managed-agents/session-threads) sedang menunggu input. |
+    | `session.thread_terminated` | [Thread multiagen](https://platform.claude.com/docs/id/managed-agents/session-threads) dihentikan, baik karena thread diarsipkan atau karena telah menghabiskan percobaan ulangnya. Subagen yang menyelesaikan pekerjaannya menjadi `idle`, bukan `terminated` (thread advisor dihentikan setelah konsultasinya selesai, dan thread dari eksekusi workflow dihentikan saat server mengarsipkannya, pada akhir eksekusi). Hanya dipicu untuk thread anak; berakhirnya thread utama, termasuk pengarsipan seluruh sesi, hanya muncul sebagai `session.status_terminated`. |
+    | `session.outcome_evaluation_ended` | [Evaluasi hasil](https://platform.claude.com/docs/id/managed-agents/define-outcomes) untuk satu iterasi selesai. |
+    | `session.updated` | Properti sesi berubah (misalnya, nama atau konfigurasinya diperbarui). |
+    | `session.deleted` | Sesi dihapus secara permanen. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
   </Tab>
 
   <Tab title="Event vault">
-    | Event                             | Pemicu                                                                                                                                                                                             |
-    | --------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `vault.created`                   | Vault dibuat.                                                                                                                                                                                      |
-    | `vault.archived`                  | Vault diarsipkan. Event `vault_credential.archived` juga dipancarkan untuk setiap kredensial di dalamnya.                                                                                          |
-    | `vault.deleted`                   | Vault dihapus. Event `vault_credential.deleted` juga dipancarkan untuk setiap kredensial di dalamnya. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
-    | `vault_credential.created`        | Kredensial dibuat.                                                                                                                                                                                 |
-    | `vault_credential.archived`       | Kredensial diarsipkan, baik secara langsung atau sebagai akibat dari pengarsipan vault.                                                                                                            |
-    | `vault_credential.deleted`        | Kredensial dihapus, baik secara langsung atau sebagai akibat dari penghapusan vault. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final.                  |
-    | `vault_credential.refresh_failed` | Kredensial `mcp_oauth` tidak dapat diperbarui (refresh token tidak valid, atau kesalahan yang tidak dapat dipulihkan dari server OAuth).                                                           |
+    | Event | Pemicu |
+    | ----- | ----- |
+    | `vault.created` | Vault dibuat. |
+    | `vault.archived` | Vault diarsipkan. Event `vault_credential.archived` juga dipancarkan untuk setiap kredensial di dalamnya. |
+    | `vault.deleted` | Vault dihapus. Event `vault_credential.deleted` juga dipancarkan untuk setiap kredensial di dalamnya. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
+    | `vault_credential.created` | Kredensial dibuat. |
+    | `vault_credential.archived` | Kredensial diarsipkan, baik secara langsung atau sebagai akibat dari pengarsipan vault. |
+    | `vault_credential.deleted` | Kredensial dihapus, baik secara langsung atau sebagai akibat dari penghapusan vault. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
+    | `vault_credential.refresh_failed` | Kredensial `mcp_oauth` tidak dapat diperbarui (refresh token tidak valid, atau kesalahan yang tidak dapat dipulihkan dari server OAuth). |
   </Tab>
 
   <Tab title="Event agen">
     Event ini melacak siklus hidup sumber daya agen di workspace Anda, dan berbeda dari event agen yang dikirimkan pada aliran event sesi.
 
-    | Event            | Pemicu                                                                                                                                                                            |
-    | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `agent.created`  | Agen dibuat.                                                                                                                                                                      |
-    | `agent.updated`  | [Versi baru agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) dipublikasikan. Pembaruan yang tidak membuat versi baru tidak memicu event ini. |
-    | `agent.archived` | Agen diarsipkan.                                                                                                                                                                  |
-    | `agent.deleted`  | Agen dihapus secara permanen. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final.                                                        |
+    | Event | Pemicu |
+    | ----- | ----- |
+    | `agent.created` | Agen dibuat. |
+    | `agent.updated` | [Versi baru agen](https://platform.claude.com/docs/id/managed-agents/agent-setup#update-an-agent) dipublikasikan. Pembaruan yang tidak membuat versi baru tidak memicu event ini. |
+    | `agent.archived` | Agen diarsipkan. |
+    | `agent.deleted` | Agen dihapus secara permanen. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
   </Tab>
 
   <Tab title="Event deployment">
-    | Event                 | Pemicu                                                                                                                                                                                                                                                                                                                                                                                                            |
-    | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `deployment.created`  | [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) dibuat.                                                                                                                                                                                                                                                                                                          |
-    | `deployment.updated`  | Properti deployment berubah (misalnya, jadwalnya diperbarui).                                                                                                                                                                                                                                                                                                                                                     |
-    | `deployment.paused`   | Deployment dijeda, baik atas permintaan atau secara otomatis saat eksekusi terjadwal gagal dengan kesalahan yang tidak dapat dipulihkan, seperti subagen yang diarsipkan atau environment yang diarsipkan. Kegagalan yang dapat dipulihkan, termasuk batas laju, tidak menjeda deployment. Lihat [Perilaku kegagalan](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#failure-behavior). |
-    | `deployment.unpaused` | Jeda deployment dibatalkan, melanjutkan jadwalnya.                                                                                                                                                                                                                                                                                                                                                                |
-    | `deployment.archived` | Deployment diarsipkan, baik secara langsung atau karena agennya diarsipkan. Jika agen dihapus, deployment terjadwal diarsipkan pada eksekusi terjadwal berikutnya; deployment tanpa jadwal tidak diarsipkan secara otomatis.                                                                                                                                                                                      |
-    | `deployment.deleted`  | Deployment dihapus secara permanen. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final.                                                                                                                                                                                                                                                                                  |
+    | Event | Pemicu |
+    | ----- | ----- |
+    | `deployment.created` | [Deployment terjadwal](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments) dibuat. |
+    | `deployment.updated` | Properti deployment berubah (misalnya, jadwalnya diperbarui). |
+    | `deployment.paused` | Deployment dijeda, baik atas permintaan atau secara otomatis saat eksekusi terjadwal gagal dengan kesalahan yang tidak dapat dipulihkan, seperti subagen yang diarsipkan atau environment yang diarsipkan. Kegagalan yang dapat dipulihkan, termasuk batas laju, tidak menjeda deployment. Lihat [Perilaku kegagalan](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#failure-behavior). |
+    | `deployment.unpaused` | Jeda deployment dibatalkan, melanjutkan jadwalnya. |
+    | `deployment.archived` | Deployment diarsipkan, baik secara langsung atau karena agennya diarsipkan. Jika agen dihapus, deployment terjadwal diarsipkan pada eksekusi terjadwal berikutnya; deployment tanpa jadwal tidak diarsipkan secara otomatis. |
+    | `deployment.deleted` | Deployment dihapus secara permanen. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
   </Tab>
 
   <Tab title="Event eksekusi deployment">
-    | Event                      | Pemicu                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-    | -------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `deployment_run.started`   | Eksekusi terjadwal dimulai. Hanya eksekusi terjadwal yang memancarkan event `deployment_run`; [eksekusi manual](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#trigger-a-manual-run) tidak.                                                                                                                                                                                                                                                       |
+    | Event | Pemicu |
+    | ----- | ----- |
+    | `deployment_run.started` | Eksekusi terjadwal dimulai. Hanya eksekusi terjadwal yang memancarkan event `deployment_run`; [eksekusi manual](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#trigger-a-manual-run) tidak. |
     | `deployment_run.succeeded` | Eksekusi terjadwal membuat sesinya. Event ini membawa `data.id` (ID eksekusi) yang sama dengan event `deployment_run.started` milik eksekusi tersebut. Untuk mengikuti pekerjaan sesi, berlanggananlah ke event sesinya (tab **Event sesi**), atau ambil [eksekusi deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#deployment-runs) untuk mendapatkan `session_id` (java: `sessionId`; php: `sessionID`; csharp, go: `SessionID`)-nya. |
-    | `deployment_run.failed`    | Eksekusi terjadwal tidak membuat sesi. Event ini membawa `data.id` yang sama dengan event `deployment_run.started` milik eksekusi tersebut. Ambil [eksekusi deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#deployment-runs) untuk detail kesalahannya.                                                                                                                                                                                |
+    | `deployment_run.failed` | Eksekusi terjadwal tidak membuat sesi. Event ini membawa `data.id` yang sama dengan event `deployment_run.started` milik eksekusi tersebut. Ambil [eksekusi deployment](https://platform.claude.com/docs/id/managed-agents/scheduled-deployments#deployment-runs) untuk detail kesalahannya. |
   </Tab>
 
   <Tab title="Event environment">
-    | Event                  | Pemicu                                                                                                                                                                    |
-    | ---------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `environment.created`  | Environment dibuat.                                                                                                                                                       |
-    | `environment.updated`  | Environment diperbarui dengan setidaknya satu field yang berubah. Pembaruan tanpa perubahan tidak memancarkan apa pun.                                                    |
-    | `environment.archived` | Environment diarsipkan. Mengarsipkan ulang environment yang sudah diarsipkan tidak memancarkan apa pun.                                                                   |
-    | `environment.deleted`  | Environment dihapus, termasuk penghapusan environment yang sudah diarsipkan. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
+    | Event | Pemicu |
+    | ----- | ----- |
+    | `environment.created` | Environment dibuat. |
+    | `environment.updated` | Environment diperbarui dengan setidaknya satu field yang berubah. Pembaruan tanpa perubahan tidak memancarkan apa pun. |
+    | `environment.archived` | Environment diarsipkan. Mengarsipkan ulang environment yang sudah diarsipkan tidak memancarkan apa pun. |
+    | `environment.deleted` | Environment dihapus, termasuk penghapusan environment yang sudah diarsipkan. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
 
     [Item pekerjaan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) milik environment tidak memancarkan event webhook.
   </Tab>
 
   <Tab title="Event memory store">
-    | Event                   | Pemicu                                                                                                                                                                                                                                                                                                                                 |
-    | ----------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | `memory_store.created`  | Memory store dibuat, baik oleh Anda atau oleh proses yang dioperasikan Anthropic yang mengkloning salah satu store Anda yang sudah ada.                                                                                                                                                                                                |
-    | `memory_store.archived` | Memory store diarsipkan. Mengarsipkan ulang store yang sudah diarsipkan tidak memancarkan apa pun.                                                                                                                                                                                                                                     |
-    | `memory_store.deleted`  | Memory store dihapus, termasuk penghapusan store yang sudah diarsipkan. Menghapus store akan menghapus secara berantai memori dan versi memorinya tanpa memancarkan event per memori; satu event `memory_store.deleted` adalah sinyalnya. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
+    | Event | Pemicu |
+    | ----- | ----- |
+    | `memory_store.created` | Memory store dibuat, baik oleh Anda atau oleh proses yang dioperasikan Anthropic yang mengkloning salah satu store Anda yang sudah ada. |
+    | `memory_store.archived` | Memory store diarsipkan. Mengarsipkan ulang store yang sudah diarsipkan tidak memancarkan apa pun. |
+    | `memory_store.deleted` | Memory store dihapus, termasuk penghapusan store yang sudah diarsipkan. Menghapus store akan menghapus secara berantai memori dan versi memorinya tanpa memancarkan event per memori; satu event `memory_store.deleted` adalah sinyalnya. Tidak ada objek yang tersisa untuk diambil, jadi perlakukan event itu sendiri sebagai final. |
 
     [Memori](https://platform.claude.com/docs/id/managed-agents/memory) individual dan versi memori tidak memancarkan event webhook.
   </Tab>
@@ -456,9 +456,9 @@ Webhook dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 ### Header beta yang diperlukan
 
@@ -472,9 +472,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

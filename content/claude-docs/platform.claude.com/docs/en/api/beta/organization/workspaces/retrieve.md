@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/retrieve
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: ddcec300412211fc569409c211c0c0b4e3c218d9138434ae1413f73c1a336c7f
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: bb9ed3d48db0dd4bff9be67c06d6bbc59e1b3c36ffd3db9afd22a429fb315cb8
 ---
 
 ---
@@ -111,12 +111,13 @@ Get Workspace
     organization. When set, data stored for this Workspace is encrypted with the
     referenced key. Create key configurations with the External Keys API. On
     Claude Platform on AWS the value for an AWS KMS key is the key's ARN, and your
-    organization's own key must be a single-Region key in the same AWS account and
-    Region as the Workspace. On that platform the key is validated against this
-    Workspace when it is attached, so a key-policy problem is reported as an error
-    on this request. This field is write-once: once a key is attached to a Workspace
-    it cannot be detached or replaced. To rotate key material, rotate the underlying
-    key on your cloud KMS; the `external_key_id` stays the same.
+    organization's own key must be a single-Region key in the same Region as the
+    Workspace. If that key is outside the Workspace's AWS account, it can be attached
+    only by updating an active Workspace. On that platform the key is validated
+    against this Workspace when it is attached, so a key-policy problem is reported
+    as an error on this request. This field is write-once: once a key is attached to
+    a Workspace it cannot be detached or replaced. To rotate key material, rotate
+    the underlying key on your cloud KMS; the `external_key_id` stays the same.
 
   - `name: string`
 

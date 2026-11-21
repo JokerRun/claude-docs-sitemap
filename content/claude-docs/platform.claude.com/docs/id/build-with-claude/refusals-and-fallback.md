@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: ab32aa9e225189c431e37c197f5405e95a966d3e9472354ea3743cc802305e5f
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 292415b14425477b9638f3658771eabd4762c14b610d8fb2d237971621b0db55
 ---
 
 ---
@@ -206,13 +206,13 @@ Objek `stop_details` menjelaskan penolakan tersebut:
 * `category` dan `explanation` keduanya `null` ketika penolakan tidak terpetakan ke kategori bernama. Nilai `null` itu adalah nilai normal dan permanen, bukan placeholder.
 * `stop_details` sendiri bernilai `null` untuk setiap alasan berhenti selain `refusal`.
 
-| `category`               | Artinya                                                                                                                                                                                                                                                                                                                                                                                            | Ditagih sebelum ada output |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| `"cyber"`                | Permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini.                                                                                                                                                                                                                               | Tidak                      |
-| `"bio"`                  | Permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium yang berbahaya. Pekerjaan ilmu hayati yang bermanfaat juga dapat memicu kategori ini.                                                                                                                                                                                                                                   | Ya                         |
-| `"frontier_llm"`         | Permintaan dapat membantu pengembangan model AI pesaing, yang dibatasi berdasarkan [ketentuan komersial Anthropic](https://www.anthropic.com/legal/commercial-terms). Pekerjaan machine learning yang tidak berbahaya juga dapat memicu kategori ini.                                                                                                                                              | Ya                         |
-| `"reasoning_extraction"` | Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons. Untuk mendapatkan penalaran dalam bentuk terstruktur, gunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking). Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks). | Ya                         |
-| `"general_harms"`        | Permintaan termasuk dalam area kebijakan penggunaan di luar empat kategori bernama. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.                                                                                                                                                                                                                                                 | Tidak                      |
+| `category` | Artinya | Ditagih sebelum ada output |
+| ----- | ----- | ----- |
+| `"cyber"` | Permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini. | Tidak |
+| `"bio"` | Permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium yang berbahaya. Pekerjaan ilmu hayati yang bermanfaat juga dapat memicu kategori ini. | Ya |
+| `"frontier_llm"` | Permintaan dapat membantu pengembangan model AI pesaing, yang dibatasi berdasarkan [ketentuan komersial Anthropic](https://www.anthropic.com/legal/commercial-terms). Pekerjaan machine learning yang tidak berbahaya juga dapat memicu kategori ini. | Ya |
+| `"reasoning_extraction"` | Permintaan meminta model untuk mereproduksi penalaran internalnya dalam teks respons. Untuk mendapatkan penalaran dalam bentuk terstruktur, gunakan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking). Lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks). | Ya |
+| `"general_harms"` | Permintaan termasuk dalam area kebijakan penggunaan di luar empat kategori bernama. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini. | Tidak |
 
 Penolakan dapat tiba sebelum output apa pun, atau di tengah stream setelah output parsial. Dalam kedua kasus, perlakukan output parsial apa pun sebagai tidak lengkap dan buang.
 
@@ -227,7 +227,14 @@ Penolakan `reasoning_extraction` biasanya berasal dari prompt yang meminta model
 
 Kata-kata tersebut dapat berada di prompt sistem, skill, atau deskripsi alat, jadi periksa juga bagian-bagian itu.
 
-Anda tetap dapat meminta Claude untuk menjelaskan jawabannya. Mintalah penjelasan singkat, bukti di balik suatu hasil, atau ringkasan tindakan yang diambilnya. Untuk melihat bagaimana model bernalar, atur `display: "summarized"` dan baca [blok `thinking`](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking). Kategori ini tidak memiliki model fallback yang direkomendasikan, jadi ubah prompt alih-alih mencoba ulang permintaan. Jika permintaan yang sudah diubah kata-katanya masih ditolak, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support) dan sertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
+Model yang mungkin mengembalikan kategori ini meliputi yang berikut:
+
+* Claude Fable 5.2, Claude Fable 5.1, dan Claude Fable 5
+* Claude Opus 5.5 dan Claude Opus 5
+* Claude Sonnet 5.5
+* Claude Haiku 5.5
+
+Anda tetap dapat meminta Claude untuk menjelaskan jawabannya. Mintalah penjelasan singkat, bukti di balik suatu hasil, atau ringkasan tindakan yang diambilnya. Untuk melihat ringkasan penalaran model, atur `thinking: {"type": "adaptive", "display": "summarized"}` dan baca [blok `thinking`](https://platform.claude.com/docs/id/build-with-claude/thinking#summarized-thinking). Kategori ini tidak memiliki model fallback yang direkomendasikan, jadi ubah prompt alih-alih mencoba ulang permintaan. Jika permintaan yang sudah diubah kata-katanya masih ditolak, [hubungi dukungan](https://support.claude.com/en/articles/9015913-how-to-get-support) dan sertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id).
 
 ## Cara penolakan ditagih
 
@@ -245,11 +252,11 @@ Kategori yang ditagih dapat berubah seiring Anthropic terus mengukur dan menyemp
 
 Ada tiga cara untuk mencoba ulang permintaan yang ditolak pada model lain. Cara yang tepat bergantung pada di mana Anda menjalankannya dan seberapa banyak kontrol yang Anda butuhkan.
 
-| Situasi Anda                                                                                   | Gunakan                                                                                                                                                                                                            | Mengapa                                                                    |
-| ---------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------- |
-| Claude API atau Claude Models on Google Cloud (Anthropic managed), pengaturan paling sederhana | [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback)                                                                                           | Satu permintaan, satu respons. API menangani percobaan ulang.              |
-| Platform apa pun, menggunakan SDK Anthropic                                                    | [Fallback sisi klien dengan middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback)                                                                      | Konfigurasikan sekali pada klien. Percobaan ulang terjadi secara otomatis. |
-| HTTP mentah atau logika percobaan ulang kustom                                                 | [Percobaan ulang manual](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#manual-retry) dengan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) | Kontrol penuh. Kredit fallback menekan biaya.                              |
+| Situasi Anda | Gunakan | Mengapa |
+| ----- | ----- | ----- |
+| Claude API atau Claude Models on Google Cloud (Anthropic managed), pengaturan paling sederhana | [Fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback) | Satu permintaan, satu respons. API menangani percobaan ulang. |
+| Platform apa pun, menggunakan SDK Anthropic | [Fallback sisi klien dengan middleware SDK](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback) | Konfigurasikan sekali pada klien. Percobaan ulang terjadi secara otomatis. |
+| HTTP mentah atau logika percobaan ulang kustom | [Percobaan ulang manual](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#manual-retry) dengan [kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) | Kontrol penuh. Kredit fallback menekan biaya. |
 
 Fallback sisi server dan middleware SDK menerapkan kredit fallback untuk Anda. Anda hanya memerlukan halaman [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) ketika Anda membangun percobaan ulang sendiri. Claude Haiku 5.5 tidak memiliki fallback sisi server maupun kredit fallback, jadi gunakan middleware SDK atau percobaan ulang manual.
 
@@ -724,14 +731,14 @@ Array `usage.iterations` mencatat setiap percobaan. Model yang menolak muncul se
 
 Pada giliran berikutnya, kirim kembali konten asisten sebagaimana Anda menerimanya. Setelah fallback di tengah output, `content` dapat menyertakan tipe blok yang dihasilkan model yang menolak sebelum serah terima. Tabel berikut membahas mana yang dipertahankan dan mana yang dibuang ketika Anda menggemakan giliran tersebut.
 
-| Tipe blok                                                                               | Pada giliran berikutnya                                                                                                                                                                                                                      |
-| --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `fallback`                                                                              | Pertahankan tepat di tempat ia muncul. API menggunakan posisinya untuk memvalidasi blok thinking di sekitarnya, sehingga permintaan yang menggemakan blok thinking dari kedua sisi batas ditolak jika blok ini dihilangkan atau dipindahkan. |
-| `text`                                                                                  | Pertahankan.                                                                                                                                                                                                                                 |
-| Blok apa pun setelah blok `fallback` terakhir                                           | Pertahankan.                                                                                                                                                                                                                                 |
-| `thinking`, `redacted_thinking`, atau `connector_text` sebelum blok `fallback` terakhir | Buang.                                                                                                                                                                                                                                       |
-| `tool_use` sisi klien sebelum blok `fallback` terakhir                                  | Buang.                                                                                                                                                                                                                                       |
-| `server_tool_use` sebelum blok `fallback` terakhir                                      | Pertahankan jika berpasangan dengan hasilnya. Buang jika tidak memiliki hasil yang cocok.                                                                                                                                                    |
+| Tipe blok | Pada giliran berikutnya |
+| ----- | ----- |
+| `fallback` | Pertahankan tepat di tempat ia muncul. API menggunakan posisinya untuk memvalidasi blok thinking di sekitarnya, sehingga permintaan yang menggemakan blok thinking dari kedua sisi batas ditolak jika blok ini dihilangkan atau dipindahkan. |
+| `text` | Pertahankan. |
+| Blok apa pun setelah blok `fallback` terakhir | Pertahankan. |
+| `thinking`, `redacted_thinking`, atau `connector_text` sebelum blok `fallback` terakhir | Buang. |
+| `tool_use` sisi klien sebelum blok `fallback` terakhir | Buang. |
+| `server_tool_use` sebelum blok `fallback` terakhir | Pertahankan jika berpasangan dengan hasilnya. Buang jika tidak memiliki hasil yang cocok. |
 
 <Note>
   Blok `connector_text` membawa teks narasi yang disertakan oleh beberapa respons yang menggunakan alat di antara panggilan alat.
@@ -1215,14 +1222,14 @@ Penolakan pengklasifikasi tersedia atau dalam versi beta di model tertentu, terg
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status | Model |
+| ----- | ----- |
 | Tersedia | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Selalu aktif
 
-| Status | Platform cloud                                                                                                     | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |

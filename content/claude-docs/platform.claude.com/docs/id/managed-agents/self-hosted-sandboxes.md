@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: b6f3b307d5257a48fb3599f8dbde329b268ccee99fbda09ffe57c8055e95a418
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 761e152b7eb368f4280a3851a5d089cc62820bd0508e59d457babf91a734c636
 ---
 
 ---
@@ -236,7 +236,7 @@ Panduan mulai cepat ini menjalankan satu worker yang selalu aktif dengan CLI `an
         Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.12.0
+        VERSION=2.12.1
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -675,9 +675,9 @@ Sandbox yang di-host sendiri dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status           | Platform cloud                                                                                                                                             | Model                                                              |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| Beta             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                         | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 | Beta<sup>1</sup> | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 1. Anda menulis worker Anda sendiri, yang memanggil endpoint Environments Work.
@@ -694,9 +694,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

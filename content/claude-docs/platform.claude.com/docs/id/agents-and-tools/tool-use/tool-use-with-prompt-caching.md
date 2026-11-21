@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: a03fd119127f76af4650116fb4a2d91a72233b6707143e6a31f4869324ddc5cf
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0e06f30387d5ea7114b8ce14fde072fdc4e2f91c4e94d4fa63967eba38cdc2f5
 ---
 
 ---
@@ -63,15 +63,15 @@ Anda dapat memulai percakapan dengan sekumpulan kecil alat yang selalu dimuat (d
 
 Cache mengikuti hierarki prefiks (`tools` → `system` → `messages`), sehingga perubahan pada satu tingkat membatalkan tingkat tersebut dan semua yang ada setelahnya:
 
-| Perubahan                                             | Membatalkan                                                                                                                                                                                                                                                                                        |
-| ----------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Memodifikasi definisi alat                            | Seluruh cache (alat, sistem, pesan)                                                                                                                                                                                                                                                                |
-| Mengaktifkan/menonaktifkan pencarian web atau kutipan | Cache system dan messages                                                                                                                                                                                                                                                                          |
-| Mengubah `tool_choice`                                | Cache messages                                                                                                                                                                                                                                                                                     |
-| Mengubah `disable_parallel_tool_use`                  | Cache messages                                                                                                                                                                                                                                                                                     |
-| Mengubah ada/tidaknya gambar                          | Cache messages                                                                                                                                                                                                                                                                                     |
-| Mengubah parameter thinking                           | Cache messages selalu; cache alat dan system juga pada model yang merender konfigurasi thinking sebelum keduanya (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching))                                                |
-| Mengubah `output_config.effort`                       | Dapat membatalkan cache messages, dan pada beberapa model juga cache alat dan system (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching)); mengirimkan nilai default secara eksplisit setara dengan menghilangkannya |
+| Perubahan | Membatalkan |
+| ----- | ----- |
+| Memodifikasi definisi alat | Seluruh cache (alat, sistem, pesan) |
+| Mengaktifkan/menonaktifkan pencarian web atau kutipan | Cache system dan messages |
+| Mengubah `tool_choice` | Cache messages |
+| Mengubah `disable_parallel_tool_use` | Cache messages |
+| Mengubah ada/tidaknya gambar | Cache messages |
+| Mengubah parameter thinking | Cache messages selalu; cache alat dan system juga pada model yang merender konfigurasi thinking sebelum keduanya (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching)) |
+| Mengubah `output_config.effort` | Dapat membatalkan cache messages, dan pada beberapa model juga cache alat dan system (lihat [Pemikiran dan caching prompt](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-prompt-caching)); mengirimkan nilai default secara eksplisit setara dengan menghilangkannya |
 
 <Note>
   Jika Anda perlu memvariasikan `tool_choice` di tengah percakapan, pertimbangkan untuk menempatkan breakpoint cache sebelum titik variasi tersebut.
@@ -87,17 +87,17 @@ Perilaku ini hanya berlaku ketika permintaan Anda sudah memiliki setidaknya satu
 
 ## Tabel interaksi per alat
 
-| Alat                                                                                                   | Pertimbangan caching                                                                                                                                                                                                                                                       |
-| ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool)         | Mengaktifkan atau menonaktifkan membatalkan cache system dan messages                                                                                                                                                                                                      |
-| [Web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool)              | Mengaktifkan atau menonaktifkan membatalkan cache system dan messages                                                                                                                                                                                                      |
-| [Eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool)     | Status container independen dari cache prompt                                                                                                                                                                                                                              |
-| [Pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool)       | Alat yang ditemukan dimuat sebagai blok `tool_reference`, mempertahankan cache prefiks                                                                                                                                                                                     |
+| Alat | Pertimbangan caching |
+| ----- | ----- |
+| [Pencarian web](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool) | Mengaktifkan atau menonaktifkan membatalkan cache system dan messages |
+| [Web fetch](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool) | Mengaktifkan atau menonaktifkan membatalkan cache system dan messages |
+| [Eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) | Status container independen dari cache prompt |
+| [Pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool) | Alat yang ditemukan dimuat sebagai blok `tool_reference`, mempertahankan cache prefiks |
 | [Penggunaan komputer](https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool) | Keberadaan screenshot memengaruhi cache messages; `cache_control` ditempatkan pada entri toolset (lihat [cache\_control pada definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching#cache-control-on-tool-definitions)) |
-| [Penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool)   | Keberadaan screenshot memengaruhi cache messages; `cache_control` ditempatkan pada entri toolset (lihat [cache\_control pada definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching#cache-control-on-tool-definitions)) |
-| [Editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool)          | Alat klien standar, tidak ada interaksi caching khusus                                                                                                                                                                                                                     |
-| [Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool)                        | Alat klien standar, tidak ada interaksi caching khusus                                                                                                                                                                                                                     |
-| [Memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool)                    | Alat klien standar, tidak ada interaksi caching khusus                                                                                                                                                                                                                     |
+| [Penggunaan browser](https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-tool) | Keberadaan screenshot memengaruhi cache messages; `cache_control` ditempatkan pada entri toolset (lihat [cache\_control pada definisi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-use-with-prompt-caching#cache-control-on-tool-definitions)) |
+| [Editor teks](https://platform.claude.com/docs/id/agents-and-tools/tool-use/text-editor-tool) | Alat klien standar, tidak ada interaksi caching khusus |
+| [Bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) | Alat klien standar, tidak ada interaksi caching khusus |
+| [Memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool) | Alat klien standar, tidak ada interaksi caching khusus |
 
 ## Langkah selanjutnya
 

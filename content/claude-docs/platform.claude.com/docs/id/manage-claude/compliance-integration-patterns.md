@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: e9a08eb82f2db27b58416434dd6968ecf33b43425df005c36631d2e36f18b4f1
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d1064b1a078a41d0f7defbc5bc72566729fe302e3e2bee1445508fb3ac0d24ec
 ---
 
 ---
@@ -38,9 +38,9 @@ Kedua pola berbagi batasan berikut:
 * Nilai kursor adalah string opaque yang tidak boleh Anda parse.
 * Permintaan dibatasi hingga 600 per menit untuk setiap [organisasi induk](https://platform.claude.com/docs/id/manage-claude/compliance-api#how-the-compliance-api-works), yang dibagi di antara setiap kunci, setiap organisasi yang ditautkan, dan setiap endpoint `/v1/compliance/*`; tidak seperti endpoint sesi lokal, endpoint sesi jarak jauh memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan kontrak percobaan ulang.
 
-| Pola                                  | Pilih ketika                                                                                                                                                                                                                                           |
-| ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Polling jendela                       | Pipeline Anda berjalan pada jadwal tetap, Anda lebih menyukai worker stateless, dan Anda dapat menoleransi pemutaran ulang atau jendela yang tumpang tindih                                                                                            |
+| Pola | Pilih ketika |
+| ----- | ----- |
+| Polling jendela | Pipeline Anda berjalan pada jadwal tetap, Anda lebih menyukai worker stateless, dan Anda dapat menoleransi pemutaran ulang atau jendela yang tumpang tindih |
 | Pembacaan inkremental berbasis kursor | Anda menginginkan latensi terendah antara terjadinya aktivitas dan pipeline Anda mengingestnya, Anda ingin menghindari membaca ulang halaman yang sudah Anda kuras, dan Anda memiliki tempat yang tahan lama untuk menyimpan kursor di antara eksekusi |
 
 ### Polling jendela
@@ -102,13 +102,13 @@ Kursor tetap berlaku setelah rotasi kunci; lihat [Kelola dan rotasi kunci](https
 
 Setiap `Activity` membawa field yang dapat Anda gabungkan dengan event yang sudah ada di SIEM Anda (Splunk, Datadog, Microsoft Sentinel, Cribl, atau sejenisnya):
 
-| Field Compliance API  | Target join                                                                     |
-| --------------------- | ------------------------------------------------------------------------------- |
-| `actor.user_id`       | Pengidentifikasi pengguna stabil dari penyedia identitas Anda                   |
-| `actor.email_address` | Email direktori ketika ID stabil tidak tersedia                                 |
-| `actor.ip_address`    | Log jaringan, VPN, dan endpoint                                                 |
-| `actor.user_agent`    | Inventaris endpoint dan perangkat, serta aplikasi klien yang membuat permintaan |
-| `created_at`          | Korelasi jendela waktu di seluruh sumber apa pun                                |
+| Field Compliance API | Target join |
+| ----- | ----- |
+| `actor.user_id` | Pengidentifikasi pengguna stabil dari penyedia identitas Anda |
+| `actor.email_address` | Email direktori ketika ID stabil tidak tersedia |
+| `actor.ip_address` | Log jaringan, VPN, dan endpoint |
+| `actor.user_agent` | Inventaris endpoint dan perangkat, serta aplikasi klien yang membuat permintaan |
+| `created_at` | Korelasi jendela waktu di seluruh sumber apa pun |
 
 `actor.user_id` dan `actor.email_address` ada ketika `actor.type` adalah `user_actor`. `actor.ip_address` dan `actor.user_agent` tidak ada pada beberapa tipe aktor, seperti `anthropic_actor` dan `scim_directory_sync_actor`. Periksa diskriminator sebelum membaca field-field ini. `user_id` adalah pengidentifikasi stabil dan buram untuk akun pengguna: nilainya konsisten di seluruh endpoint Compliance API dan payload aktivitas, dan tidak berubah ketika email atau nama tampilan pengguna berubah. Gunakan `user_id`, bukan `email_address`, sebagai kunci join utama.
 
@@ -120,14 +120,14 @@ Beberapa panggilan ke Compliance API tidak meninggalkan aktivitas apa pun di Act
 
 Enam horizon retensi mengatur apa yang dapat Anda ambil nanti:
 
-| Data                                                          | Disimpan selama                                                                                                                                                                                             | Dikendalikan oleh                                                                                             |
-| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Catatan Activity Feed                                         | 6 tahun                                                                                                                                                                                                     | Anthropic                                                                                                     |
-| Konten chat, file, dan proyek                                 | Kebijakan retensi claude.ai organisasi Anda, kecuali pengguna menghapusnya lebih awal                                                                                                                       | Organisasi Anda                                                                                               |
-| Transkrip sesi lokal (sesi di mesin pengguna)                 | 6 tahun secara default, atau periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan; 30 hari di organisasi yang mengaktifkan kesiapan HIPAA                                   | Anthropic secara default; organisasi Anda ketika menetapkan periode kustom                                    |
-| Transkrip sesi jarak jauh (sesi di cloud), kecuali Claude Tag | Tidak ada periode default; lihat [Retensi dan penghapusan](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retention-and-deletion)                                                    | Pengguna Anda secara default; juga kebijakan retensi organisasi Anda untuk sesi yang dimulai Claude dari chat |
-| Transkrip sesi Claude Tag (sesi di cloud)                     | Tidak ada periode default; dihapus bersama channel atau workspace Slack-nya (lihat [Retensi dan penghapusan](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retention-and-deletion)) | Organisasi Anda                                                                                               |
-| Konten yang dihapus permanen melalui Compliance API           | Tidak disimpan; penghapusan bersifat langsung dan permanen                                                                                                                                                  | Pemanggil endpoint `DELETE`                                                                                   |
+| Data | Disimpan selama | Dikendalikan oleh |
+| ----- | ----- | ----- |
+| Catatan Activity Feed | 6 tahun | Anthropic |
+| Konten chat, file, dan proyek | Kebijakan retensi claude.ai organisasi Anda, kecuali pengguna menghapusnya lebih awal | Organisasi Anda |
+| Transkrip sesi lokal (sesi di mesin pengguna) | 6 tahun secara default, atau periode retensi percakapan kustom organisasi Anda ketika periode terbatas ditetapkan; 30 hari di organisasi yang mengaktifkan kesiapan HIPAA | Anthropic secara default; organisasi Anda ketika menetapkan periode kustom |
+| Transkrip sesi jarak jauh (sesi di cloud), kecuali Claude Tag | Tidak ada periode default; lihat [Retensi dan penghapusan](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retention-and-deletion) | Pengguna Anda secara default; juga kebijakan retensi organisasi Anda untuk sesi yang dimulai Claude dari chat |
+| Transkrip sesi Claude Tag (sesi di cloud) | Tidak ada periode default; dihapus bersama channel atau workspace Slack-nya (lihat [Retensi dan penghapusan](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retention-and-deletion)) | Organisasi Anda |
+| Konten yang dihapus permanen melalui Compliance API | Tidak disimpan; penghapusan bersifat langsung dan permanen | Pemanggil endpoint `DELETE` |
 
 Untuk mempelajari bagaimana bagian lain Claude Platform menangani retensi, lihat [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention).
 

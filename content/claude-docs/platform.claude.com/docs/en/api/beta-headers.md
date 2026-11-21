@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta-headers
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a5eaed2894dee4da4dc9f80f7e58383e53545b42eea69f9aa780c7048280245d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 45516251f30b78d6cc2306701a0313b9355e5d40ae6fdc71cd923d7f3e08f8b8
 ---
 
 ---
@@ -198,11 +198,11 @@ On Amazon Bedrock, where beta names go depends on the API you call:
 
 Some beta APIs are scoped to specific endpoints and require a feature-specific beta header on every request:
 
-| Endpoints                                        | Beta header                 |
-| ------------------------------------------------ | --------------------------- |
+| Endpoints | Beta header |
+| ----- | ----- |
 | `/v1/agents`, `/v1/sessions`, `/v1/environments` | `managed-agents-2026-04-01` |
-| `/v1/tunnels`                                    | `mcp-tunnels-2026-06-22`    |
-| `/v1/memory_stores` and sub-resources            | `agent-memory-2026-07-22`   |
+| `/v1/tunnels` | `mcp-tunnels-2026-06-22` |
+| `/v1/memory_stores` and sub-resources | `agent-memory-2026-07-22` |
 
 The SDK’s `client.beta` (csharp, go: `client.Beta`; java: `client.beta()`; php: `$client->beta`) namespace adds these headers automatically. Add them yourself only when making raw HTTP requests. See the [Managed Agents overview](https://platform.claude.com/docs/en/managed-agents/overview), [Using agent memory](https://platform.claude.com/docs/en/managed-agents/memory), and the [MCP tunnels reference](https://platform.claude.com/docs/en/agents-and-tools/mcp-tunnels/reference#tunnels-api) for details.
 

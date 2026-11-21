@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: fac5d0fc162a9f87d78c2b12d4ba2cba792797d2d82b8d339782a48939bf1d58
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 7f93a8ccdb1de040a80197e7caead1ceffaf8c024500efc649d33fad2d801ea9
 ---
 
 ---
@@ -69,26 +69,26 @@ Pencarian alat berjalan sebagai alat sisi server, tetapi Anda juga dapat mengimp
 
 Kedua varian pencarian alat tersedia pada model berikut:
 
-| Model                                                                                                                                                                 | Versi alat                                                          |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Claude Fable 5.2 (claude-fable-5-2)                                                                                                                                   | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Mythos 5.2 (claude-mythos-5-2)                                                                                                                                 | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Fable 5.1 (claude-fable-5-1)                                                                                                                                   | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Mythos 5.1 (claude-mythos-5-1)                                                                                                                                 | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Fable 5 (claude-fable-5)                                                                                                                                       | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Mythos 5 (claude-mythos-5)                                                                                                                                     | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Opus 5.5 (claude-opus-5-5)                                                                                                                                     | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Opus 5 (claude-opus-5)                                                                                                                                         | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Sonnet 5.5 (claude-sonnet-5-5)                                                                                                                                 | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Sonnet 5 (claude-sonnet-5)                                                                                                                                     | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Haiku 5.5 (claude-haiku-5-5)                                                                                                                                   | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Opus 4.8 (claude-opus-4-8)                                                                                                                                     | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Opus 4.7 (claude-opus-4-7)                                                                                                                                     | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Opus 4.6 (claude-opus-4-6)                                                                                                                                     | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Sonnet 4.6 (claude-sonnet-4-6)                                                                                                                                 | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Opus 4.5 (claude-opus-4-5-20251101)                                                                                                                            | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Model | Versi alat |
+| ----- | ----- |
+| Claude Fable 5.2 (claude-fable-5-2) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Mythos 5.2 (claude-mythos-5-2) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Fable 5.1 (claude-fable-5-1) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Mythos 5.1 (claude-mythos-5-1) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Fable 5 (claude-fable-5) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Mythos 5 (claude-mythos-5) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Opus 5.5 (claude-opus-5-5) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Opus 5 (claude-opus-5) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Sonnet 5.5 (claude-sonnet-5-5) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Sonnet 5 (claude-sonnet-5) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Haiku 5.5 (claude-haiku-5-5) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Opus 4.8 (claude-opus-4-8) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Opus 4.7 (claude-opus-4-7) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Opus 4.6 (claude-opus-4-6) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Sonnet 4.6 (claude-sonnet-4-6) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Opus 4.5 (claude-opus-4-5-20251101) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) (tidak digunakan lagi; lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Haiku 4.5 (claude-haiku-4-5-20251001)                                                                                                                          | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Haiku 4.5 (claude-haiku-4-5-20251001) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 
 Claude Opus 4.1 dan model yang lebih lama tidak mendukung alat pencarian alat.
 
@@ -916,10 +916,10 @@ Alat pencarian alat tersedia di semua model dan layak untuk retensi data nol.
 
 * Ketersediaan: Tersedia
 
-| Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 | Model                                                              |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| Tersedia             | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
-| Tersedia<sup>1</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Tersedia | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Tersedia<sup>1</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 1. Tersedia melalui InvokeModel API, bukan Converse API.
 
@@ -931,10 +931,10 @@ Alat pencarian alat tersedia di semua model dan layak untuk retensi data nol.
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA       |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Tidak layak |
-| Detail | Alat sisi server yang dijalankan oleh Anthropic; definisi alat dalam permintaan dicari di memori per panggilan dan tidak ada yang disimpan setelah respons.      | —           |
+| Detail | Alat sisi server yang dijalankan oleh Anthropic; definisi alat dalam permintaan dicari di memori per panggilan dan tidak ada yang disimpan setelah respons. | — |
 
 Endpoint yang berlaku:
 

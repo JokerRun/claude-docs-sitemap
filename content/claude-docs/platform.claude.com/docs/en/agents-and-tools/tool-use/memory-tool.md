@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 301d4e71eb5ff6c3a1267fcd7614f41bf668c91da24ee5dc39a78c35a7455a18
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0bc0ce5bc27632431ef4720e966752777d90c6e53d4ea81b36107eb6ee725ffa
 ---
 
 ---
@@ -1066,18 +1066,18 @@ Memory tool is available on every model and eligible for zero data retention and
 
 * Availability: Available
 
-| Status    | Models                                                            |
-| --------- | ----------------------------------------------------------------- |
+| Status | Models |
+| ----- | ----- |
 | Available | [All models](https://platform.claude.com/docs/en/models/overview) |
 
 ### Data handling
 
 [Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                       | HIPAA    |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| Status  | Eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
-| Details | Client-side memory storage where you control data retention.                                                                                              | —        |
+| Item | Zero data retention | HIPAA |
+| ----- | ----- | ----- |
+| Status | Eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
+| Details | Client-side memory storage where you control data retention. | — |
 
 Applicable endpoints:
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 6dd7b7540098e8cdfaa2d530c1a887d120f5e095624e8cac5e3821cf54736a54
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e464adca63cd5c66ebc9384e8f00b8ba37d638dcdc647e714e0d8c1a6a3e3699
 ---
 
 > ## Documentation Index
@@ -128,7 +128,7 @@ Without tool search, whether a mid-session server change invalidates the cache d
 | Mid-session change | Cache | Tool definitions in the next request |
 | - | - | - |
 | A server connects, or a [dynamic tool update](https://code.claude.com/docs/en/mcp.md#dynamic-tool-updates) adds tools | Invalidated | The new definitions are added |
-| A server drops out with no action on your part, such as a stdio server's process exiting | Kept | The server's definitions stay unchanged. A call to one of its tools returns an error instead of running, unless Claude Code [starts the server again](https://code.claude.com/docs/en/mcp.md#stdio-servers-that-exit-or-fail-to-start) for that call |
+| A server drops out with no action on your part, such as a stdio server's process exiting | Kept | The server's definitions stay unchanged |
 | A remote server [reconnects automatically](https://code.claude.com/docs/en/mcp.md#automatic-reconnection) after its connection drops | Kept, unless a request sent while the server reconnects adds the `WaitForMcpServers` tool, which invalidates the cache once | The server's definitions stay unchanged. A request sent while the server reconnects can add `WaitForMcpServers` when the conversation hasn't listed it yet, and the tool then stays listed for the rest of the conversation |
 | You remove a tool on purpose, such as with a [deny rule](#denying-an-entire-tool) or by disabling its server in `/mcp` | Invalidated | The definition is removed |
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 289923638722066d2930567f3f07412217eb1522afac8a301926a8b5bea9604b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: b6cec61ccee2e93a093f650430dd4da59aee8f6d6a4ec7a1f4d58d116a04c5c9
 ---
 
 ---
@@ -127,6 +127,8 @@ Update User Profile
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

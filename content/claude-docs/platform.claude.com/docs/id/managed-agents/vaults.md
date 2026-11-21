@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/vaults
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 191ca920112992004fc63309abe4dc7eec3537aa2023ba46770b555d6361df96
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ac2db2ebd6e3fad0e8a48fbcc897403b6a6662791ceeacdd96b84860a58ea841
 ---
 
 ---
@@ -723,10 +723,10 @@ Untuk mendapatkan perilaku yang sama dengan sandbox yang di-host sendiri, Anda d
 
     `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) berperilaku berbeda saat pembuatan dan saat pembaruan:
 
-    | Operasi                | Perilaku `injection_location`                                                                                                                                                                                                                 |
-    | ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | Membuat kredensial     | Jika Anda menyediakan objek tersebut, field apa pun yang Anda hilangkan di dalamnya akan bernilai default `false`: `{"header": true}` membuat kredensial khusus header. Hilangkan objek tersebut sepenuhnya dan kedua lokasi akan diaktifkan. |
-    | Memperbarui kredensial | Field digabungkan secara individual: `{"body": false}` menonaktifkan substitusi body dan membiarkan `header` tidak berubah.                                                                                                                   |
+    | Operasi | Perilaku `injection_location` |
+    | ----- | ----- |
+    | Membuat kredensial | Jika Anda menyediakan objek tersebut, field apa pun yang Anda hilangkan di dalamnya akan bernilai default `false`: `{"header": true}` membuat kredensial khusus header. Hilangkan objek tersebut sepenuhnya dan kedua lokasi akan diaktifkan. |
+    | Memperbarui kredensial | Field digabungkan secara individual: `{"body": false}` menonaktifkan substitusi body dan membiarkan `header` tidak berubah. |
 
     Kredensial harus memiliki setidaknya satu lokasi yang diaktifkan, sehingga pembuatan atau pembaruan yang akan menonaktifkan kedua lokasi mengembalikan error 400. Meneruskan `null` secara eksplisit untuk objek `injection_location` (java, php: `injectionLocation`; csharp, go: `InjectionLocation`) atau untuk salah satu field-nya juga mengembalikan error 400 (“omit the field instead”). Respons selalu mengembalikan kedua field dengan nilai yang telah diselesaikan.
 
@@ -998,12 +998,12 @@ Kredensial di-resolve ulang secara berkala, baik selama sesi maupun selama siklu
 
 Untuk mendapatkan notifikasi jika kredensial diarsipkan, dihapus, atau gagal di-refresh, Anda dapat berlangganan [webhook](https://platform.claude.com/docs/id/managed-agents/webhooks) vault dan kredensial yang terkait dengan perubahan siklus hidup tersebut.
 
-| Event                             | Pemicu                                                                                                                               |
-| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `vault.archived`                  | Vault diarsipkan. Event `vault_credential.archived` juga dipancarkan untuk setiap kredensial di dalamnya.                            |
-| `vault.deleted`                   | Vault dihapus. Event `vault_credential.deleted` juga dipancarkan untuk setiap kredensial di dalamnya.                                |
-| `vault_credential.archived`       | Kredensial diarsipkan, baik secara langsung maupun sebagai akibat dari pengarsipan vault.                                            |
-| `vault_credential.deleted`        | Kredensial dihapus, baik secara langsung maupun sebagai akibat dari penghapusan vault.                                               |
+| Event | Pemicu |
+| ----- | ----- |
+| `vault.archived` | Vault diarsipkan. Event `vault_credential.archived` juga dipancarkan untuk setiap kredensial di dalamnya. |
+| `vault.deleted` | Vault dihapus. Event `vault_credential.deleted` juga dipancarkan untuk setiap kredensial di dalamnya. |
+| `vault_credential.archived` | Kredensial diarsipkan, baik secara langsung maupun sebagai akibat dari pengarsipan vault. |
+| `vault_credential.deleted` | Kredensial dihapus, baik secara langsung maupun sebagai akibat dari penghapusan vault. |
 | `vault_credential.refresh_failed` | Kredensial `mcp_oauth` tidak dapat di-refresh (refresh token tidak valid, atau error yang tidak dapat dipulihkan dari server OAuth). |
 
 <Note>
@@ -1138,9 +1138,9 @@ Vault dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                              |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Header beta yang diperlukan
 
@@ -1154,9 +1154,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

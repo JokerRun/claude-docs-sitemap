@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/choosing-an-environment
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: b300492b131acad239b04401b36069b220e62f3438f4d80675a8ed53244857e8
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 52bfa9b1ecd87eea2ae274b690af849189d692169b73be5158793f234c0b1ddb
 ---
 
 ---
@@ -59,16 +59,16 @@ Jika Anda tidak yakin mana yang harus dipilih atau Anda baru mengenal Claude Man
 
 Tabel berikut membandingkan kedua opsi tersebut.
 
-|                                       | [Lingkungan cloud](https://platform.claude.com/docs/id/managed-agents/environments) (default)                                                                                                                                                            | [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes)                    |
-| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| Tempat alat dan kode berjalan         | Sandbox yang dikelola Anthropic                                                                                                                                                                                                                          | Worker Anda, di infrastruktur Anda                                                                                          |
-| Apa yang sampai ke Anthropic          | [Riwayat percakapan](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#list-past-events), [hasil alat](https://platform.claude.com/docs/id/managed-agents/tools#available-tools), file dan status sandbox, skill, dan memory store | Riwayat percakapan, hasil alat, skill, dan memory store. File dan proses sandbox tetap berada di worker Anda.               |
-| Apa yang Anda operasikan              | Tidak ada                                                                                                                                                                                                                                                | Host worker, pengerasan keamanannya, batasan jaringannya, dan kunci lingkungan yang digunakan worker Anda untuk autentikasi |
-| Jangkauan jaringan                    | Aturan jaringan yang Anda atur pada lingkungan                                                                                                                                                                                                           | Kebijakan jaringan Anda sendiri                                                                                             |
-| Pemasangan file dan repositori GitHub | Dikelola oleh Anthropic                                                                                                                                                                                                                                  | Dikelola oleh Anda                                                                                                          |
-| Memory store                          | Dipasang oleh Anthropic di `/mnt/memory/`                                                                                                                                                                                                                | Diunduh ke `/mnt/memory/` dan disinkronkan oleh worker                                                                      |
-| Siklus hidup sandbox                  | Dikelola oleh Anthropic                                                                                                                                                                                                                                  | Dikelola oleh Anda                                                                                                          |
-| Pilih ketika                          | Default. Alat tidak perlu berjalan di infrastruktur Anda sendiri.                                                                                                                                                                                        | Alat harus berjalan di infrastruktur yang Anda kendalikan.                                                                  |
+|  | [Lingkungan cloud](https://platform.claude.com/docs/id/managed-agents/environments) (default) | [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) |
+| ----- | ----- | ----- |
+| Tempat alat dan kode berjalan | Sandbox yang dikelola Anthropic | Worker Anda, di infrastruktur Anda |
+| Apa yang sampai ke Anthropic | [Riwayat percakapan](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#list-past-events), [hasil alat](https://platform.claude.com/docs/id/managed-agents/tools#available-tools), file dan status sandbox, skill, dan memory store | Riwayat percakapan, hasil alat, skill, dan memory store. File dan proses sandbox tetap berada di worker Anda. |
+| Apa yang Anda operasikan | Tidak ada | Host worker, pengerasan keamanannya, batasan jaringannya, dan kunci lingkungan yang digunakan worker Anda untuk autentikasi |
+| Jangkauan jaringan | Aturan jaringan yang Anda atur pada lingkungan | Kebijakan jaringan Anda sendiri |
+| Pemasangan file dan repositori GitHub | Dikelola oleh Anthropic | Dikelola oleh Anda |
+| Memory store | Dipasang oleh Anthropic di `/mnt/memory/` | Diunduh ke `/mnt/memory/` dan disinkronkan oleh worker |
+| Siklus hidup sandbox | Dikelola oleh Anthropic | Dikelola oleh Anda |
+| Pilih ketika | Default. Alat tidak perlu berjalan di infrastruktur Anda sendiri. | Alat harus berjalan di infrastruktur yang Anda kendalikan. |
 
 ## Kapan memilih sandbox yang di-host sendiri
 

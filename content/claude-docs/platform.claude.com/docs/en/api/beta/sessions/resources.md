@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/resources
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 8fa2ed5dd648f34c590bced11a11505cbe40b8e8d33c44e587cf693493c9f68a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ea84682590255ae79f01bd6b76b0c32106a37c1644edce27c242cd8ae47238d8
 ---
 
 ---
@@ -127,6 +127,8 @@ Add Session Resource
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -371,6 +373,8 @@ List Session Resources
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -691,6 +695,8 @@ Get Session Resource
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -988,6 +994,8 @@ Update Session Resource
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1298,6 +1306,8 @@ Delete Session Resource
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

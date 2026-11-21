@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/create
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 84a64bf2c8bc6416f8cbe32936fec4b650aff9e0913c74c1a47789c52776eb85
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: b65e054355e8392eab29a80804d8122daf425edbd7f01fdfed0cf7613d385049
 ---
 
 ---
@@ -36,7 +36,7 @@ Create an external key config owned by the caller's organization.
 
     - `kms_arn: string`
 
-      Full ARN of the AWS KMS key. On Claude Platform on AWS, alias ARNs are rejected, and your organization's own key must be a single-Region key in your organization's AWS account.
+      Full ARN of the AWS KMS key. On Claude Platform on AWS, alias ARNs are rejected, and your organization's own key must be a single-Region key.
 
       maxLength: 2048
 
@@ -150,7 +150,7 @@ Create an external key config owned by the caller's organization.
 
       - `kms_arn: string`
 
-        Full ARN of the AWS KMS key. On Claude Platform on AWS, alias ARNs are rejected, and your organization's own key must be a single-Region key in your organization's AWS account.
+        Full ARN of the AWS KMS key. On Claude Platform on AWS, alias ARNs are rejected, and your organization's own key must be a single-Region key.
 
         maxLength: 2048
 
@@ -212,7 +212,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

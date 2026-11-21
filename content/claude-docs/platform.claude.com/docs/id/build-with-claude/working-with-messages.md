@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: a2e3a626824b9a1f20eeb72e239d798c2d65b46fdad8390d6b0e6856634db74f
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 66a4493f3bfdcab426d0e02fae11baaefd2d504daade00493e60c131a0740a0c
 ---
 
 ---
@@ -46,10 +46,10 @@ featureMetadata:
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
-|                        | Messages API                                    | Claude Managed Agents                                                                    |
-| ---------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Apa itu**            | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
-| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci    | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
+|  | Messages API | Claude Managed Agents |
+| ----- | ----- | ----- |
+| **Apa itu** | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
+| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci | Tugas yang berjalan lama dan pekerjaan asinkron |
 
 Panduan ini mencakup pola umum untuk bekerja dengan Messages API, termasuk permintaan dasar, percakapan multi-giliran, teknik prefill, dan kemampuan vision. Untuk spesifikasi API lengkap, lihat [referensi Messages API](https://platform.claude.com/docs/id/api/messages/create). Jika Anda menginginkan harness agen terkelola, lihat [ikhtisar Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview).
 
@@ -1106,10 +1106,10 @@ Tersedia
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
-| Detail | Panggilan API standar untuk menghasilkan respons Claude.                                                                                                         | —     |
+| Detail | Panggilan API standar untuk menghasilkan respons Claude. | — |
 
 Endpoint yang berlaku:
 

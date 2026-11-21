@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: cee6841d5daa0a0cc4718be2972010672e9b26ae1ba5d1d530013481b5844988
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 195715d087f2a7216d528cb37815e7198f72b7a0539293119a302921a9c7df81
 ---
 
 ---
@@ -147,6 +147,8 @@ Retrieve a Memory
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

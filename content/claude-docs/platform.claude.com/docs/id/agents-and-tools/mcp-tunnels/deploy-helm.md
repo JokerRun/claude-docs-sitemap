@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/deploy-helm
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: e8d204931cb55631219c63746e4058025e9d9059abb0c76fad996f85e6af189d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: fac332a73c384826aa708013346414f61a37160d42b0c9d19bf2198d9d473feb
 ---
 
 ---
@@ -108,11 +108,11 @@ Langkah-langkah Instalasi berikut menunjukkan di mana menambahkan rute yang sesu
       <Step title="Siapkan Workload Identity Federation untuk klaster">
         Ikuti [Menggunakan WIF dengan Kubernetes](https://platform.claude.com/docs/id/manage-claude/wif-providers/kubernetes) untuk mendaftarkan OIDC issuer klaster Anda dan membuat aturan federasi. Komponen setup berjalan di bawah ServiceAccount-nya sendiri di namespace rilis; nama persisnya mengikuti konvensi `fullname` Helm, jadi untuk nama rilis apa pun selain `mcp-tunnel`, jalankan `helm template <release> ... | grep -A2 'kind: ServiceAccount'` untuk memastikannya sebelum membuat aturan. Bagian selanjutnya dari panduan ini mengasumsikan nama rilis `mcp-tunnel` di namespace `mcp-tunnel`, dengan ServiceAccount `mcp-tunnel-setup`.
 
-        | Bidang  | Nilai                                               |
-        | ------- | --------------------------------------------------- |
+        | Bidang | Nilai |
+        | ----- | ----- |
         | Subject | `system:serviceaccount:mcp-tunnel:mcp-tunnel-setup` |
-        | Audiens | `api.anthropic.com` (default chart; tanpa skema)    |
-        | Scope   | `workspace:manage_tunnels`                          |
+        | Audiens | `api.anthropic.com` (default chart; tanpa skema) |
+        | Scope | `workspace:manage_tunnels` |
 
         <Note>
           Audience default chart adalah `api.anthropic.com` tanpa skema, tetapi formulir federation rule di Console menyarankan `https://api.anthropic.com`. Keduanya harus cocok byte demi byte atau autentikasi akan gagal. Atur audience rule ke `api.anthropic.com`, atau atur `api.wif.audience` di `values.yaml` ke `https://api.anthropic.com`.

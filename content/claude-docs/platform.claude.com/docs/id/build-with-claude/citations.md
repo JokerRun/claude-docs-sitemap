@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/citations
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 651a96e52b860bd355f85c090b59e61a17cea5bc5b8064a3ff4c35a75d69e73a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c5702c25a6d9ea2085bebfbe0d4f4c30ca1cd33f0d63ea0c9b625cb4dcacd1ff
 ---
 
 ---
@@ -800,11 +800,11 @@ Dalam contoh ini:
 
 Tiga jenis dokumen didukung untuk kutipan. Dokumen dapat disediakan langsung dalam pesan (base64, teks, atau URL) atau diunggah melalui [Files API](https://platform.claude.com/docs/id/build-with-claude/files) dan dirujuk dengan `file_id`:
 
-| Jenis         | Terbaik untuk                                                      | Pemotongan                    | Format kutipan                          |
-| ------------- | ------------------------------------------------------------------ | ----------------------------- | --------------------------------------- |
-| Teks biasa    | Dokumen teks sederhana, prosa                                      | Kalimat                       | Indeks karakter (diindeks mulai dari 0) |
-| PDF           | File PDF dengan konten teks                                        | Kalimat                       | Nomor halaman (diindeks mulai dari 1)   |
-| Konten kustom | Daftar, transkrip, pemformatan khusus, kutipan yang lebih granular | Tidak ada pemotongan tambahan | Indeks blok (diindeks mulai dari 0)     |
+| Jenis | Terbaik untuk | Pemotongan | Format kutipan |
+| ----- | ----- | ----- | ----- |
+| Teks biasa | Dokumen teks sederhana, prosa | Kalimat | Indeks karakter (diindeks mulai dari 0) |
+| PDF | File PDF dengan konten teks | Kalimat | Nomor halaman (diindeks mulai dari 1) |
+| Konten kustom | Daftar, transkrip, pemformatan khusus, kutipan yang lebih granular | Tidak ada pemotongan tambahan | Indeks blok (diindeks mulai dari 0) |
 
 <Note>
   Untuk jenis file yang tidak didukung oleh blok `document` (misalnya, .docx dan .xlsx), konversikan file ke teks biasa dan sertakan konten langsung dalam konten pesan. File yang sudah berupa teks biasa, seperti file .csv dan .md, juga dapat diunggah dengan tipe konten `text/plain` yang eksplisit. Lihat [Bekerja dengan format file lain](https://platform.claude.com/docs/id/build-with-claude/files#working-with-other-file-formats).
@@ -2386,8 +2386,8 @@ Kutipan tersedia di semua model dan layak untuk retensi data nol dan kesiapan HI
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -2398,8 +2398,8 @@ Kutipan tersedia di semua model dan layak untuk retensi data nol dan kesiapan HI
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
 
 Endpoint yang berlaku:

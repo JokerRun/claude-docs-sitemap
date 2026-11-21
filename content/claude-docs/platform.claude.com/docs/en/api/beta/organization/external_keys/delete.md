@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/external_keys/delete
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: e90f6dbbac513a6bfee84bd6b6f7d97b21fe7e5e7b7c79447aeb1b33b818c6f6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 069573d22a3eabf4f05a7cf7888d81a732edb1b7bd87fb271384bab608a74aee
 ---
 
 ---
@@ -56,7 +56,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

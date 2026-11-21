@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/update
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 00c8ad40dbfd4fd2c83e1e62b68559786f9053d32650436a41d33b7759591df6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a0ee27f2b6f96ab70c813cb5fea557a9f545a522a1908c30c35d286bfb680179
 ---
 
 ---
@@ -67,12 +67,13 @@ Update Workspace
   organization. When set, data stored for this Workspace is encrypted with the
   referenced key. Create key configurations with the External Keys API. On
   Claude Platform on AWS the value for an AWS KMS key is the key's ARN, and your
-  organization's own key must be a single-Region key in the same AWS account and
-  Region as the Workspace. On that platform the key is validated against this
-  Workspace when it is attached, so a key-policy problem is reported as an error
-  on this request. This field is write-once: once a key is attached to a Workspace
-  it cannot be detached or replaced. To rotate key material, rotate the underlying
-  key on your cloud KMS; the `external_key_id` stays the same.
+  organization's own key must be a single-Region key in the same Region as the
+  Workspace. If that key is outside the Workspace's AWS account, it can be attached
+  only by updating an active Workspace. On that platform the key is validated
+  against this Workspace when it is attached, so a key-policy problem is reported
+  as an error on this request. This field is write-once: once a key is attached to
+  a Workspace it cannot be detached or replaced. To rotate key material, rotate
+  the underlying key on your cloud KMS; the `external_key_id` stays the same.
 
 - `name: optional string`
 
@@ -169,12 +170,13 @@ Update Workspace
     organization. When set, data stored for this Workspace is encrypted with the
     referenced key. Create key configurations with the External Keys API. On
     Claude Platform on AWS the value for an AWS KMS key is the key's ARN, and your
-    organization's own key must be a single-Region key in the same AWS account and
-    Region as the Workspace. On that platform the key is validated against this
-    Workspace when it is attached, so a key-policy problem is reported as an error
-    on this request. This field is write-once: once a key is attached to a Workspace
-    it cannot be detached or replaced. To rotate key material, rotate the underlying
-    key on your cloud KMS; the `external_key_id` stays the same.
+    organization's own key must be a single-Region key in the same Region as the
+    Workspace. If that key is outside the Workspace's AWS account, it can be attached
+    only by updating an active Workspace. On that platform the key is validated
+    against this Workspace when it is attached, so a key-policy problem is reported
+    as an error on this request. This field is write-once: once a key is attached to
+    a Workspace it cannot be detached or replaced. To rotate key material, rotate
+    the underlying key on your cloud KMS; the `external_key_id` stays the same.
 
   - `name: string`
 
@@ -216,7 +218,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 - `external_key_changed` (HTTP status 409)
 

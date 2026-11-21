@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/token-counting
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 72ac6d1d3d273a96ea2776885cca505c7b7e0c951cf06952ec791490a7eb2d82
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 32cf7a2f4d0a664fb38b171c01df6d065382407b6d7ad017957c78a046d3ee9c
 ---
 
 ---
@@ -1447,10 +1447,10 @@ Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude
 Penghitungan token **gratis digunakan** tetapi tunduk pada batas laju permintaan per menit berdasarkan [tingkat penggunaan](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda. Jika Anda memerlukan batas yang lebih tinggi, gunakan **Minta kenaikan tingkat** di halaman [Batas laju](https://platform.claude.com/usage/limits) di Claude Console.
 
 | Tingkat penggunaan | Permintaan per menit (RPM) |
-| ------------------ | -------------------------- |
-| Start              | 5.000                      |
-| Build              | 10.000                     |
-| Scale              | 20.000                     |
+| ----- | ----- |
+| Start | 5.000 |
+| Build | 10.000 |
+| Scale | 20.000 |
 
 <Note>
   Penghitungan token dan pembuatan pesan memiliki batas laju yang terpisah dan independen. Penggunaan salah satunya tidak dihitung terhadap batas yang lain.
@@ -1498,8 +1498,8 @@ Penghitungan token tersedia di semua model dan layak untuk retensi data nol dan 
 
 * Ketersediaan: Tersedia
 
-| Status   | Model                                                              |
-| -------- | ------------------------------------------------------------------ |
+| Status | Model |
+| ----- | ----- |
 | Tersedia | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -1510,10 +1510,10 @@ Penghitungan token tersedia di semua model dan layak untuk retensi data nol dan 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
-| Detail | Hitung token sebelum mengirim permintaan.                                                                                                                        | —     |
+| Detail | Hitung token sebelum mengirim permintaan. | — |
 
 Endpoint yang berlaku:
 

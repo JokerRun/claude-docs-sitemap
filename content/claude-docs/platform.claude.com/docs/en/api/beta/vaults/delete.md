@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/delete
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: dc07ae59b455942054bc4d883b7c72374e209f79072cff3c62e599fbec7922ea
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4b11f9db4756502853764621402eba8ee7c6c416228b419b8b187825730e8d40
 ---
 
 ---
@@ -127,6 +127,8 @@ Delete a Vault
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

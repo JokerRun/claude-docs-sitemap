@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 48667cc4ecb2d0222922bc7a4a140814d1f3d94d873caabeb23e026c9e9af647
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 7196c3842e5305f4a64b17fb5f929deeb1dea9928575ca7afc40edad7cc725e9
 ---
 
 ---
@@ -139,6 +139,8 @@ accounts cannot be added and are rejected.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -245,7 +247,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

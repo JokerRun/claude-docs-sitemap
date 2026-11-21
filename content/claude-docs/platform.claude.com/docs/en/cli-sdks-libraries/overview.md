@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/overview
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 9a954fa3e7996b1429956e52f65164b50f0f2e8ef32f99387df47862ef3025de
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: cff573ad017aede82565590f8c4c75bb48154ed2e92d2fe84e794249af91b11e
 ---
 
 ---
@@ -65,16 +65,16 @@ Each major version of a client SDK sends one [API version](https://platform.clau
 
 ## Latest versions
 
-| Tool       | Latest version | Package                                                                                                     |
-| ---------- | -------------- | ----------------------------------------------------------------------------------------------------------- |
-| ant CLI    | `2.12.0`       | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases)               |
-| Python     | `2.11.0`       | [`anthropic` on PyPI](https://pypi.org/project/anthropic/)                                                  |
-| TypeScript | `1.11.0`       | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk)                                      |
-| C#         | `13.11.0`      | [`Anthropic`](https://www.nuget.org/packages/Anthropic)                                                     |
-| Go         | `2.12.0`       | [`github.com/anthropics/anthropic-sdk-go/v2`](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go/v2) |
-| Java       | `3.11.0`       | [`com.anthropic:anthropic-java`](https://central.sonatype.com/artifact/com.anthropic/anthropic-java)        |
-| PHP        | `1.11.0`       | [`anthropic-ai/sdk`](https://packagist.org/packages/anthropic-ai/sdk)                                       |
-| Ruby       | `2.11.0`       | [`anthropic` on RubyGems](https://rubygems.org/gems/anthropic)                                              |
+| Tool | Latest version | Package |
+| ----- | ----- | ----- |
+| ant CLI | `2.12.1` | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases) |
+| Python | `2.12.0` | [`anthropic` on PyPI](https://pypi.org/project/anthropic/) |
+| TypeScript | `1.12.0` | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk) |
+| C# | `13.12.0` | [`Anthropic`](https://www.nuget.org/packages/Anthropic) |
+| Go | `2.13.0` | [`github.com/anthropics/anthropic-sdk-go/v2`](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go/v2) |
+| Java | `3.12.0` | [`com.anthropic:anthropic-java`](https://central.sonatype.com/artifact/com.anthropic/anthropic-java) |
+| PHP | `1.12.0` | [`anthropic-ai/sdk`](https://packagist.org/packages/anthropic-ai/sdk) |
+| Ruby | `2.12.0` | [`anthropic` on RubyGems](https://rubygems.org/gems/anthropic) |
 
 The same versions are available as JSON at `https://platform.claude.com/docs/sdk-versions.json`.
 

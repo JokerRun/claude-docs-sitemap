@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 81d1a0304d14d42be3700b119e031aef33a4ad2b51ffb7a6f7a347599f938a79
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: eb9655921d635c896a9bbde77767416b92026c43c2da7ae00ead553aa52f3428
 ---
 
 ---
@@ -53,12 +53,12 @@ az keyvault show --name <your-vault-name> \
   --query "{rbac:properties.enableRbacAuthorization, purge:properties.enablePurgeProtection, pub:properties.publicNetworkAccess, net:properties.networkAcls.defaultAction, ipRules:properties.networkAcls.ipRules, uri:properties.vaultUri, tenantId:properties.tenantId}"
 ```
 
-| Bidang  | Harus bernilai                                                                                                                                        |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rbac`  | `true`                                                                                                                                                |
-| `purge` | `true`. Jika nilainya `false` atau `null`, aktifkan perlindungan purge terlebih dahulu. Anda tidak dapat menonaktifkannya lagi.                       |
-| `pub`   | `"Enabled"`. Endpoint privat tidak didukung.                                                                                                          |
-| `net`   | `"Allow"`, atau `"Deny"` dengan [alamat IP keluar Anthropic](https://platform.claude.com/docs/id/api/ip-addresses#outbound-ip-addresses) di `ipRules` |
+| Bidang | Harus bernilai |
+| ----- | ----- |
+| `rbac` | `true` |
+| `purge` | `true`. Jika nilainya `false` atau `null`, aktifkan perlindungan purge terlebih dahulu. Anda tidak dapat menonaktifkannya lagi. |
+| `pub` | `"Enabled"`. Endpoint privat tidak didukung. |
+| `net` | `"Allow"`, atau `"Deny"` dengan [alamat IP keluar Anthropic](https://platform.claude.com/docs/id/api/ip-addresses#outbound-ip-addresses) di `ipRules` |
 
 Salin `uri` (URI vault) dan `tenantId`.
 

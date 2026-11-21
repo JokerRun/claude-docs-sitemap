@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/migration-2026-10-21
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: ec3bdff916a9cbd623a0cce12a9a4f7b2e5e29a800e36be164355ed98862fd86
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c0446c3ca0133dd7da918e7e5eba86acabb77aa670f7a3a24e33cdcc5a8dead6
 ---
 
 ---
@@ -147,20 +147,20 @@ Di `2026-10-21`, respons dari Admin API dan [Claude Enterprise Analytics API](ht
 
 Admin API:
 
-| Endpoint                                                                                                                                                                                                                                                                                                                                          | Nama lama      | Nama baru                                                                                                                                         |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [Grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/list): pembuatan, daftar, pengambilan, dan pembaruan                                                                                                                                                                                                            | `roles`        | `role_ids`                                                                                                                                        |
-| [Anggota grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/list): daftar dan penambahan, serta respons untuk [menghapus anggota](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/remove)                                                                                     | `group_id`     | `rbac_group_id`                                                                                                                                   |
-| [Peran RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/list): daftar dan pengambilan                                                                                                                                                                                                                                   | `name`         | `display_name`                                                                                                                                    |
-| Batas laju [organisasi](https://platform.claude.com/docs/id/api/organization/rate_limits/list) dan [workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list): daftar, serta respons untuk [mengatur batas laju workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/update) | `group_type`   | `group.type`                                                                                                                                      |
-| [Kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list): daftar, pengambilan, dan pembaruan                                                                                                                                                                                                                               | `workspace_id` | `scope` (nilai berbeda; lihat [`workspace_id` pada kunci API](https://platform.claude.com/docs/id/api/migration-2026-10-21#api-key-workspace-id)) |
+| Endpoint | Nama lama | Nama baru |
+| ----- | ----- | ----- |
+| [Grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/list): pembuatan, daftar, pengambilan, dan pembaruan | `roles` | `role_ids` |
+| [Anggota grup RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/list): daftar dan penambahan, serta respons untuk [menghapus anggota](https://platform.claude.com/docs/id/api/beta/organization/rbac_groups/members/remove) | `group_id` | `rbac_group_id` |
+| [Peran RBAC](https://platform.claude.com/docs/id/api/beta/organization/rbac_roles/list): daftar dan pengambilan | `name` | `display_name` |
+| Batas laju [organisasi](https://platform.claude.com/docs/id/api/organization/rate_limits/list) dan [workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/list): daftar, serta respons untuk [mengatur batas laju workspace](https://platform.claude.com/docs/id/api/organization/workspaces/rate_limits/update) | `group_type` | `group.type` |
+| [Kunci API](https://platform.claude.com/docs/id/api/organization/api_keys/list): daftar, pengambilan, dan pembaruan | `workspace_id` | `scope` (nilai berbeda; lihat [`workspace_id` pada kunci API](https://platform.claude.com/docs/id/api/migration-2026-10-21#api-key-workspace-id)) |
 
 Claude Enterprise Analytics API:
 
-| Endpoint                                                                                                                                                                                                                             | Nama lama     | Nama baru             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------- | --------------------- |
+| Endpoint | Nama lama | Nama baru |
+| ----- | ----- | ----- |
 | Laporan [penggunaan](https://platform.claude.com/docs/id/api/beta/organization/analytics/user_usage_report/list) dan [biaya](https://platform.claude.com/docs/id/api/beta/organization/analytics/user_cost_report/list) per pengguna | `actor.email` | `actor.email_address` |
-| [Ringkasan aktivitas](https://platform.claude.com/docs/id/api/beta/organization/analytics/summaries/list)                                                                                                                            | `summaries`   | `data`                |
+| [Ringkasan aktivitas](https://platform.claude.com/docs/id/api/beta/organization/analytics/summaries/list) | `summaries` | `data` |
 
 Parameter query `group_type` pada endpoint list batas laju dan filter `workspace_id` pada endpoint list kunci API tidak berubah.
 
@@ -358,11 +358,11 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap
 
     Metode yang menerima daftar blok konten memiliki nama baru pada builder dari `MessageCreateParams`, `StructuredMessageCreateParams`, `MessageCountTokensParams`, dan `BatchCreateParams.Request.Params`:
 
-    | v2                                 | v2 beta                                       | v3                                        |
-    | ---------------------------------- | --------------------------------------------- | ----------------------------------------- |
-    | `addUserMessageOfBlockParams`      | `addUserMessageOfBetaContentBlockParams`      | `addUserMessageOfContentBlockParams`      |
+    | v2 | v2 beta | v3 |
+    | ----- | ----- | ----- |
+    | `addUserMessageOfBlockParams` | `addUserMessageOfBetaContentBlockParams` | `addUserMessageOfContentBlockParams` |
     | `addAssistantMessageOfBlockParams` | `addAssistantMessageOfBetaContentBlockParams` | `addAssistantMessageOfContentBlockParams` |
-    | `addSystemMessageOfBlockParams`    | `addSystemMessageOfBetaContentBlockParams`    | `addSystemMessageOfBlocks`                |
+    | `addSystemMessageOfBlockParams` | `addSystemMessageOfBetaContentBlockParams` | `addSystemMessageOfBlocks` |
 
     Pada class konten, `BlockParams` (`BetaContentBlockParams` di beta) menjadi `ContentBlockParams` di `ofBlockParams`, `blockParams()`, `isBlockParams()`, `asBlockParams()`, dan `visitBlockParams` milik visitor.
 
@@ -433,11 +433,11 @@ Pada versi sebelumnya, `MessageParam` adalah satu tipe untuk semua peran. Setiap
 
     Modul enum `Role` tetap ada. Konstanta-konstanta berikut dipindahkan. Nama yang diawali dengan `Beta` berada di bawah `Anthropic::Beta`, dan yang lainnya berada di bawah `Anthropic`:
 
-    | Dihapus                     | Gunakan sebagai gantinya                                                             |
-    | --------------------------- | ------------------------------------------------------------------------------------ |
-    | `MessageParam::Content`     | `MessageContentParam`, atau `SystemMessageParam::Content` untuk pesan system         |
+    | Dihapus | Gunakan sebagai gantinya |
+    | ----- | ----- |
+    | `MessageParam::Content` | `MessageContentParam`, atau `SystemMessageParam::Content` untuk pesan system |
     | `BetaMessageParam::Content` | `BetaMessageContentParam`, atau `BetaSystemMessageParam::Content` untuk pesan system |
-    | `BetaMessageParam::ClearAt` | `BetaSystemMessageParam::ClearAt`                                                    |
+    | `BetaMessageParam::ClearAt` | `BetaSystemMessageParam::ClearAt` |
 
     Jika Anda melakukan pemeriksaan tipe dengan Sorbet, `MessageParam::OrHash` telah dihapus, dan `Anthropic::MessageParam` sebagai tipe tidak lagi menerima instance. Gunakan `Anthropic::MessageParam::Variants` untuk ketiga class tersebut, yang masing-masing memiliki `OrHash` sendiri. Di RBS, nilai bertipe `Anthropic::MessageParam` tidak memiliki `role` atau `content`. Gunakan alias `Anthropic::Models::message_param`, yang dahulu merupakan bentuk hash dari pesan dan sekarang merupakan union dari ketiga class tersebut. Nama beta-nya adalah `BetaMessageParam::Variants` dan `Anthropic::Models::Beta::beta_message_param`.
   </Tab>
@@ -457,10 +457,10 @@ Ini memengaruhi SDK C#, Go, Java, PHP, dan Ruby serta satu flag CLI. Pada versi 
 
     Properti opsional, seperti `BetaManagedAgentsGlobToolConfigParams.Type`, tetap mempertahankan enum-nya. Dua dari enum tersebut memiliki nama baru:
 
-    | v12                                         | v13                                       |
-    | ------------------------------------------- | ----------------------------------------- |
-    | `BetaManagedAgentsBashToolConfigParamsType` | `Anthropic.Models.Beta.Agents.Type`       |
-    | `BetaPackagesType`                          | `Anthropic.Models.Beta.Environments.Type` |
+    | v12 | v13 |
+    | ----- | ----- |
+    | `BetaManagedAgentsBashToolConfigParamsType` | `Anthropic.Models.Beta.Agents.Type` |
+    | `BetaPackagesType` | `Anthropic.Models.Beta.Environments.Type` |
 
     Saat Anda membuat objek, hapus properti tersebut:
 
@@ -1214,10 +1214,10 @@ Setiap perubahan ini memengaruhi satu SDK atau CLI.
   <Tab title="CLI">
     **`--api-key` dan `--auth-token` dihapus.** `ant` tidak lagi menerima kunci API atau token autentikasi sebagai nilai flag, karena nilai di baris perintah terlihat dalam riwayat shell dan daftar proses. Kedua flag telah mencetak peringatan penghentian sejak v1.27.0. Perintah yang masih meneruskan salah satunya akan berhenti dengan `flag provided but not defined`.
 
-    | Dihapus                | Gunakan sebagai gantinya                                      |
-    | ---------------------- | ------------------------------------------------------------- |
-    | `--api-key <key>`      | `ANTHROPIC_API_KEY`, `--api-key-stdin`, atau `ant auth login` |
-    | `--auth-token <token>` | `ANTHROPIC_AUTH_TOKEN` atau `--auth-token-stdin`              |
+    | Dihapus | Gunakan sebagai gantinya |
+    | ----- | ----- |
+    | `--api-key <key>` | `ANTHROPIC_API_KEY`, `--api-key-stdin`, atau `ant auth login` |
+    | `--auth-token <token>` | `ANTHROPIC_AUTH_TOKEN` atau `--auth-token-stdin` |
 
     ```bash
     # Sebelum

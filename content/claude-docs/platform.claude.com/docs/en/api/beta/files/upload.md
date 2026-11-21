@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/upload
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 621dc3fc9bc283235043f9530c70432a18d535fa4f1b6332c827b9e685fbe881
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 414c86c0118592e668c5f2b3deb1a8046277c0776436bd99bea48c42fe46dd7a
 ---
 
 ---
@@ -121,6 +121,8 @@ Upload File
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

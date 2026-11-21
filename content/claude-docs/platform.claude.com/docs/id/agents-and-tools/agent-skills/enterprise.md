@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 39f695a4cefaa2ce3751387ed4f71965c150e56ef85a6641a886d37146d22bdb
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1475c1bf626cecba6fc755b566e9891dfd3f5386112c2ef3a384ae6c7b7174a6
 ---
 
 ---
@@ -24,15 +24,15 @@ Menerapkan Skills di lingkungan enterprise memerlukan jawaban atas dua pertanyaa
 
 Evaluasi setiap Skill terhadap indikator risiko berikut sebelum menyetujui penerapan:
 
-| Indikator risiko            | Yang perlu diperhatikan                                                                                                            | Tingkat kekhawatiran                                                               |
-| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| Eksekusi kode               | Skrip dalam direktori Skill (`*.py`, `*.sh`, `*.js`)                                                                               | Tinggi: skrip berjalan dengan akses lingkungan penuh                               |
-| Manipulasi instruksi        | Arahan untuk mengabaikan aturan keselamatan, menyembunyikan tindakan dari pengguna, atau mengubah perilaku Claude secara bersyarat | Tinggi: dapat melewati kontrol keamanan                                            |
-| Referensi server MCP        | Instruksi yang mereferensikan alat MCP (`ServerName:tool_name`)                                                                    | Tinggi: memperluas akses melampaui Skill itu sendiri                               |
-| Pola akses jaringan         | URL, endpoint API, panggilan `fetch`, `curl`, atau `requests`                                                                      | Tinggi: potensi vektor eksfiltrasi data                                            |
-| Kredensial yang di-hardcode | Kunci API, token, atau kata sandi dalam file atau skrip Skill                                                                      | Tinggi: rahasia terekspos dalam riwayat Git dan “context window” (jendela konteks) |
-| Cakupan akses sistem file   | Path di luar direktori Skill, pola glob yang luas, path traversal (`../`)                                                          | Sedang: mungkin mengakses data yang tidak dimaksudkan                              |
-| Panggilan alat              | Instruksi yang mengarahkan Claude untuk menggunakan bash, operasi file, atau alat lainnya                                          | Sedang: tinjau operasi apa yang dilakukan                                          |
+| Indikator risiko | Yang perlu diperhatikan | Tingkat kekhawatiran |
+| ----- | ----- | ----- |
+| Eksekusi kode | Skrip dalam direktori Skill (`*.py`, `*.sh`, `*.js`) | Tinggi: skrip berjalan dengan akses lingkungan penuh |
+| Manipulasi instruksi | Arahan untuk mengabaikan aturan keselamatan, menyembunyikan tindakan dari pengguna, atau mengubah perilaku Claude secara bersyarat | Tinggi: dapat melewati kontrol keamanan |
+| Referensi server MCP | Instruksi yang mereferensikan alat MCP (`ServerName:tool_name`) | Tinggi: memperluas akses melampaui Skill itu sendiri |
+| Pola akses jaringan | URL, endpoint API, panggilan `fetch`, `curl`, atau `requests` | Tinggi: potensi vektor eksfiltrasi data |
+| Kredensial yang di-hardcode | Kunci API, token, atau kata sandi dalam file atau skrip Skill | Tinggi: rahasia terekspos dalam riwayat Git dan “context window” (jendela konteks) |
+| Cakupan akses sistem file | Path di luar direktori Skill, pola glob yang luas, path traversal (`../`) | Sedang: mungkin mengakses data yang tidak dimaksudkan |
+| Panggilan alat | Instruksi yang mengarahkan Claude untuk menggunakan bash, operasi file, atau alat lainnya | Sedang: tinjau operasi apa yang dilakukan |
 
 ### Daftar periksa tinjauan
 
@@ -77,13 +77,13 @@ Skills dapat menurunkan kinerja agen jika terpicu secara tidak tepat, berkonflik
 
 Tetapkan gerbang persetujuan untuk dimensi-dimensi berikut sebelum menerapkan Skill apa pun:
 
-| Dimensi             | Yang diukur                                                                                     | Contoh kegagalan                                                                                        |
-| ------------------- | ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| Akurasi pemicuan    | Apakah Skill aktif untuk kueri yang tepat dan tetap tidak aktif untuk kueri yang tidak terkait? | Skill terpicu pada setiap penyebutan spreadsheet, bahkan ketika pengguna hanya ingin mendiskusikan data |
-| Perilaku isolasi    | Apakah Skill berfungsi dengan benar secara mandiri?                                             | Skill mereferensikan file yang tidak ada di direktorinya                                                |
-| Koeksistensi        | Apakah penambahan Skill ini menurunkan kinerja Skills lain?                                     | Deskripsi Skill baru terlalu luas, sehingga merebut pemicu dari Skills yang sudah ada                   |
-| Kepatuhan instruksi | Apakah Claude mengikuti instruksi Skill dengan akurat?                                          | Claude melewatkan langkah validasi atau menggunakan library yang salah                                  |
-| Kualitas output     | Apakah Skill menghasilkan hasil yang benar dan berguna?                                         | Laporan yang dihasilkan memiliki kesalahan format atau data yang hilang                                 |
+| Dimensi | Yang diukur | Contoh kegagalan |
+| ----- | ----- | ----- |
+| Akurasi pemicuan | Apakah Skill aktif untuk kueri yang tepat dan tetap tidak aktif untuk kueri yang tidak terkait? | Skill terpicu pada setiap penyebutan spreadsheet, bahkan ketika pengguna hanya ingin mendiskusikan data |
+| Perilaku isolasi | Apakah Skill berfungsi dengan benar secara mandiri? | Skill mereferensikan file yang tidak ada di direktorinya |
+| Koeksistensi | Apakah penambahan Skill ini menurunkan kinerja Skills lain? | Deskripsi Skill baru terlalu luas, sehingga merebut pemicu dari Skills yang sudah ada |
+| Kepatuhan instruksi | Apakah Claude mengikuti instruksi Skill dengan akurat? | Claude melewatkan langkah validasi atau menggunakan library yang salah |
+| Kualitas output | Apakah Skill menghasilkan hasil yang benar dan berguna? | Laporan yang dihasilkan memiliki kesalahan format atau data yang hilang |
 
 ### Persyaratan evaluasi
 

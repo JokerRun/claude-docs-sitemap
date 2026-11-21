@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 7fc44338cac34478ca5ae113ac3667d7249a4d2e22df20d875e725549047e78a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: bcb13604728701ee0737f00ef4849184a5c1796016c9b6967140f216a639f9e9
 ---
 
 ---
@@ -411,12 +411,12 @@ Di Claude Console, tetapkan domain yang diizinkan atau diblokir dari baris `web_
 
 Selain `enabled` (csharp, go: `Enabled`) dan `permission_policy` (java, php: `permissionPolicy`; csharp, go: `PermissionPolicy`), entri alat web menerima pengaturan berikut:
 
-| Pengaturan                                                                           | Berlaku untuk             | Deskripsi                                                                                                                                                                                                                           |
-| ------------------------------------------------------------------------------------ | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`)        | `web_search`, `web_fetch` | Satu-satunya host yang dapat dijangkau alat. Lihat [Aturan daftar domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules).                                                             |
-| `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`)        | `web_search`, `web_fetch` | Host yang tidak dapat dijangkau alat. Lihat [Aturan daftar domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules).                                                                    |
-| `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`) | `web_fetch`               | Membatasi jumlah konten halaman yang diambil yang disertakan dalam konteks. Harus berupa bilangan bulat positif. Lihat [batas konten](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#content-limits). |
-| `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`)              | `web_search`              | Melokalkan hasil pencarian. Sebuah objek dengan field yang sama seperti parameter [`user_location`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#localization) pada Messages API.                  |
+| Pengaturan | Berlaku untuk | Deskripsi |
+| ----- | ----- | ----- |
+| `allowed_domains` (java, php: `allowedDomains`; csharp, go: `AllowedDomains`) | `web_search`, `web_fetch` | Satu-satunya host yang dapat dijangkau alat. Lihat [Aturan daftar domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules). |
+| `blocked_domains` (java, php: `blockedDomains`; csharp, go: `BlockedDomains`) | `web_search`, `web_fetch` | Host yang tidak dapat dijangkau alat. Lihat [Aturan daftar domain](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#domain-list-rules). |
+| `max_content_tokens` (java, php: `maxContentTokens`; csharp, go: `MaxContentTokens`) | `web_fetch` | Membatasi jumlah konten halaman yang diambil yang disertakan dalam konteks. Harus berupa bilangan bulat positif. Lihat [batas konten](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-fetch-tool#content-limits). |
+| `user_location` (java, php: `userLocation`; csharp, go: `UserLocation`) | `web_search` | Melokalkan hasil pencarian. Sebuah objek dengan field yang sama seperti parameter [`user_location`](https://platform.claude.com/docs/id/agents-and-tools/tool-use/web-search-tool#localization) pada Messages API. |
 
 Untuk tipe yang digunakan SDK untuk entri-entri ini, lihat [Jenis entri konfigurasi di SDK](https://platform.claude.com/docs/id/managed-agents/tools#config-entry-types-in-the-sdks).
 
@@ -445,16 +445,16 @@ Hostname dibandingkan tanpa memperhatikan huruf besar/kecil.
 
 Setiap domain adalah nama domain yang dapat didaftarkan, atau subdomainnya, yang ditulis sebagai hostname polos. Domain dapat berisi huruf ASCII, angka, tanda hubung, garis bawah, dan titik. Satu `/` di akhir akan diabaikan. Domain `web_search` juga dapat menyertakan path, sebagaimana dijelaskan dalam [Sufiks path pada domain pencarian web](https://platform.claude.com/docs/id/managed-agents/tools-web-restrictions#path-suffixes-on-web-search-domains).
 
-| Tidak diterima                                                                               | Contoh                   | Gunakan sebagai gantinya               |
-| -------------------------------------------------------------------------------------------- | ------------------------ | -------------------------------------- |
-| Skema                                                                                        | `https://example.com`    | `example.com`                          |
-| Port                                                                                         | `example.com:443`        | `example.com`                          |
-| Wildcard                                                                                     | `*.example.com`          | `example.com`                          |
-| Path pada domain `web_fetch`                                                                 | `example.com/*`          | `example.com`                          |
-| Alamat IP dalam bentuk apa pun, baik IPv4, IPv6, dalam kurung siku, maupun singkatan numerik | `127.1`                  | Nama domain situs                      |
-| Domain tingkat atas polos atau sufiks registri                                               | `com`, `co.uk`, `gov.uk` | Domain lengkap seperti `example.co.uk` |
-| Nama satu label                                                                              | `intranet`               | Domain lengkap seperti `example.co.uk` |
-| Karakter non-ASCII, seperti pada nama domain internasional                                   |                          | Bentuk `xn--` (Punycode)               |
+| Tidak diterima | Contoh | Gunakan sebagai gantinya |
+| ----- | ----- | ----- |
+| Skema | `https://example.com` | `example.com` |
+| Port | `example.com:443` | `example.com` |
+| Wildcard | `*.example.com` | `example.com` |
+| Path pada domain `web_fetch` | `example.com/*` | `example.com` |
+| Alamat IP dalam bentuk apa pun, baik IPv4, IPv6, dalam kurung siku, maupun singkatan numerik | `127.1` | Nama domain situs |
+| Domain tingkat atas polos atau sufiks registri | `com`, `co.uk`, `gov.uk` | Domain lengkap seperti `example.co.uk` |
+| Nama satu label | `intranet` | Domain lengkap seperti `example.co.uk` |
+| Karakter non-ASCII, seperti pada nama domain internasional |  | Bentuk `xn--` (Punycode) |
 
 API juga menolak domain yang berisi kredensial atau spasi, atau yang memiliki label yang diawali atau diakhiri dengan tanda hubung. API juga menolak `localhost` dan host yang berakhiran `.localhost`, `.local`, `.internal`, `.localdomain`, atau `.invalid`.
 
@@ -470,10 +470,10 @@ API memvalidasi pengaturan ini saat Anda [membuat agen](https://platform.claude.
 
 API menolak pelanggaran format dan batas dengan 400 `invalid_request_error`:
 
-| Pelanggaran                            | Pesan error                                                                                                                                                                        |
-| -------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Sebuah entri menetapkan kedua daftar.  | Menyertakan `Only one of allowed_domains or blocked_domains may be set.`                                                                                                           |
-| Sebuah daftar kosong.                  | Menyertakan `allowed_domains: Empty list of domains is ambiguous. Provide at least one domain or null.`                                                                            |
+| Pelanggaran | Pesan error |
+| ----- | ----- |
+| Sebuah entri menetapkan kedua daftar. | Menyertakan `Only one of allowed_domains or blocked_domains may be set.` |
+| Sebuah daftar kosong. | Menyertakan `allowed_domains: Empty list of domains is ambiguous. Provide at least one domain or null.` |
 | Sebuah domain melanggar aturan format. | Menyebutkan daftar domain tersebut dan posisinya yang berbasis nol, seperti dalam `allowed_domains.0: IP addresses are not supported; provide a plain hostname like "example.com"` |
 
 Pada permintaan yang sama, API juga menolak tiga pengaturan yang bergantung pada penyedia pencarian dan pengambilan:
@@ -504,10 +504,10 @@ Dalam [sesi multiagen](https://platform.claude.com/docs/id/managed-agents/multia
 
 Pengaturan digabungkan sebagai berikut:
 
-| Pengaturan                            | Cara penggabungannya                                                                                                                                                                                                             |
-| ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `allowed_domains`                     | Alat dapat menjangkau sebuah host hanya jika setiap daftar mencakupnya.                                                                                                                                                          |
-| `blocked_domains`                     | Daftar-daftar dijumlahkan.                                                                                                                                                                                                       |
+| Pengaturan | Cara penggabungannya |
+| ----- | ----- |
+| `allowed_domains` | Alat dapat menjangkau sebuah host hanya jika setiap daftar mencakupnya. |
+| `blocked_domains` | Daftar-daftar dijumlahkan. |
 | `max_content_tokens`, `user_location` | Tidak digabungkan. Sebuah thread menggunakan nilai dari konfigurasi alatnya sendiri jika ditetapkan. Jika tidak, thread menggunakan nilai dari agen yang memanggilnya, dan jika tidak juga, konfigurasi saat ini dari agen sesi. |
 
 Oleh karena itu, agen yang tercantum dapat mempersempit apa yang dijangkau alat tetapi tidak pernah memperluasnya:
@@ -567,8 +567,8 @@ Pembatasan domain web tersedia atau dalam versi beta, tergantung pada API.
 * Ketersediaan: Tersedia
 * Penggunaan: Atur `allowed_domains` atau `blocked_domains` pada alat `web_search` atau `web_fetch` dalam permintaan.
 
-| Status   | Platform cloud                                                                                                                                                         |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -576,9 +576,9 @@ Pembatasan domain web tersedia atau dalam versi beta, tergantung pada API.
 * Ketersediaan: Tersedia
 * Penggunaan: Atur field yang sama pada entri `web_search` dan `web_fetch` di toolset agen. Berbeda dengan Messages API, setiap daftar memuat paling banyak 64 domain ASCII, dan domain `web_fetch` tidak boleh menyertakan path.
 
-| Status | Platform cloud               | Model                                                              |
-| ------ | ---------------------------- | ------------------------------------------------------------------ |
-| Beta   | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Semua platform yang didukung | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Header beta yang diperlukan
 
@@ -586,6 +586,6 @@ Pembatasan domain web tersedia atau dalam versi beta, tergantung pada API.
 
 Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model baru sebelum menjadi bagian dari API standar.
 
-| Header                      | API                                                                           |
-| --------------------------- | ----------------------------------------------------------------------------- |
+| Header | API |
+| ----- | ----- |
 | `managed-agents-2026-04-01` | [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) |

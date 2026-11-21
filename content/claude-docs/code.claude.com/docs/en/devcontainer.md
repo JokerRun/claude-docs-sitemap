@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/devcontainer
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: c3f08346262f8e0c0824bca732af96214b896504ee961ecfc19b4f348bdd576e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: bf6a1f6dd2786d04c9179c645a6611e4ef53f8cdf4e07061846e35078dbc53af
 ---
 
 > ## Documentation Index
@@ -78,7 +78,7 @@ Open a terminal in the rebuilt container and run `claude`, then follow the authe
 What you see at the authentication prompt depends on your provider:
 
 * **Anthropic**: sign in through a browser with your Claude or Anthropic Console account
-* **[Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry](https://code.claude.com/docs/en/third-party-integrations.md)**: Claude Code uses your cloud provider credentials, with no browser prompt
+* **[Amazon Bedrock, Google Cloud's Agent Platform, or Microsoft Foundry](https://code.claude.com/docs/en/third-party-integrations.md)**: Claude Code uses your cloud provider credentials
 
 For cloud providers, pass credentials into the container as environment variables through `containerEnv`, a Codespaces secret, or your cloud's workload identity rather than mounting credential files from the host. See [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md) for the credential chain Claude Code reads.
 

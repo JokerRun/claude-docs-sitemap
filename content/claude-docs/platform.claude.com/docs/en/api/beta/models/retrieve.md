@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models/retrieve
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 3aa544153f068b82c906ad377d82e3f990ea270e73dc620d6d45455c920afb46
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 41b66c977b5ae2fd23dc74931c8be82830f811f4be4c9dc118cce7a165ccb2cf
 ---
 
 ---
@@ -129,6 +129,8 @@ The Models API response can be used to determine information about a specific mo
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

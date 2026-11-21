@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/batches/create
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 9592f945ebbf4c7ed3dac1b6b4a17bb26519ccc8ff6198d0b65e9f8323f24929
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6e20bffef0eacf3f395c95ceec6cdd5be252e76f6987569feb35aab79ac664a9
 ---
 
 ---
@@ -751,7 +751,7 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                   - `page_age: optional string or null`
 
-                - `WebSearchToolRequestError object`
+                - `WebSearchToolRequestErrorObject object`
 
                   - `type: "web_search_tool_result_error"`
 

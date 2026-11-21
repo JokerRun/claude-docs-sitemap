@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/rate_limits/update
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 05c705387ecfe88d881d1560fd2c94deecd6a7c1a9f7d4ada31cb725c4ea67aa
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6936e7dd269484710614c7b8e7c9324f309dbedf0dd1db9e10566d9cecc5e8e2
 ---
 
 ---
@@ -54,7 +54,7 @@ Changes take effect within about an hour.
 
   - `type: BetaWorkspaceRateLimitType`
 
-    Rate limiter type.
+    Rate limiter type. `input_tokens_per_minute` counts every input token, cache reads included. `input_tokens_per_minute_cache_aware` does not count cache reads, and on current models the organization's input-token limit usually has this type. A workspace limit of either type applies alongside the organization's limit, not in place of it. Because cache reads count toward an `input_tokens_per_minute` limit, it can reject requests that read mostly from the cache while the organization's limit still has room.
 
     - `"fast_itpmca"`
 
@@ -176,7 +176,7 @@ Changes take effect within about an hour.
 
     - `type: string`
 
-      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`).
 
     - `org_limit: number or null`
 
@@ -226,7 +226,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

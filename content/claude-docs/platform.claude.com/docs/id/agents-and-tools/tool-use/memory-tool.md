@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 158e96143f12b5c4fa1ebdba9c7be8cb3c4cb2d9f4dbf0a30ba5908e99b76978
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: fbab093e74aefb49bab98a69973d8ab379eb4155c9626485d132b7b7908a330d
 ---
 
 ---
@@ -1066,18 +1066,18 @@ Alat memori tersedia di semua model dan layak untuk retensi data nol dan kesiapa
 
 * Ketersediaan: Tersedia
 
-| Status   | Model                                                              |
-| -------- | ------------------------------------------------------------------ |
+| Status | Model |
+| ----- | ----- |
 | Tersedia | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
-| Detail | Penyimpanan memori sisi klien tempat Anda mengontrol retensi data.                                                                                               | —     |
+| Detail | Penyimpanan memori sisi klien tempat Anda mengontrol retensi data. | — |
 
 Endpoint yang berlaku:
 

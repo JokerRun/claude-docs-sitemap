@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/rate_limits
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 16b4fb8c811d8aeb27ab8fc19bf7c4d89bd6c7bc369a3ca9e7db14ce284dd1ca
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: f593c9312451868e4607b3ef83f10c4b7d3ce5ebcf37c366a255531e38420fd9
 ---
 
 ---
@@ -176,7 +176,7 @@ the remaining entries.
 
     - `type: string`
 
-      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`).
 
     - `org_limit: number or null`
 
@@ -307,7 +307,7 @@ Changes take effect within about an hour.
 
   - `type: WorkspaceRateLimitType`
 
-    Rate limiter type.
+    Rate limiter type. `input_tokens_per_minute` counts every input token, cache reads included. `input_tokens_per_minute_cache_aware` does not count cache reads, and on current models the organization's input-token limit usually has this type. A workspace limit of either type applies alongside the organization's limit, not in place of it. Because cache reads count toward an `input_tokens_per_minute` limit, it can reject requests that read mostly from the cache while the organization's limit still has room.
 
     - `"fast_itpmca"`
 
@@ -429,7 +429,7 @@ Changes take effect within about an hour.
 
     - `type: string`
 
-      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`).
 
     - `org_limit: number or null`
 
@@ -479,7 +479,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ### Example
 
@@ -624,7 +624,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
     - `type: string`
 
-      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+      The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`).
 
     - `org_limit: number or null`
 
@@ -680,7 +680,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
 - `WorkspaceRateLimitType = "fast_itpmca" or "fast_otpm" or "input_tokens_per_minute" or 6 more`
 
-  Rate limiter type.
+  Rate limiter type. `input_tokens_per_minute` counts every input token, cache reads included. `input_tokens_per_minute_cache_aware` does not count cache reads, and on current models the organization's input-token limit usually has this type. A workspace limit of either type applies alongside the organization's limit, not in place of it. Because cache reads count toward an `input_tokens_per_minute` limit, it can reject requests that read mostly from the cache while the organization's limit still has room.
 
   - `"fast_itpmca"`
 
@@ -706,7 +706,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
   - `type: WorkspaceRateLimitType`
 
-    Rate limiter type.
+    Rate limiter type. `input_tokens_per_minute` counts every input token, cache reads included. `input_tokens_per_minute_cache_aware` does not count cache reads, and on current models the organization's input-token limit usually has this type. A workspace limit of either type applies alongside the organization's limit, not in place of it. Because cache reads count toward an `input_tokens_per_minute` limit, it can reject requests that read mostly from the cache while the organization's limit still has room.
 
     - `"fast_itpmca"`
 
@@ -738,7 +738,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/rate_li
 
   - `type: string`
 
-    The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute`).
+    The limiter type (for example, `requests_per_minute` or `input_tokens_per_minute_cache_aware`).
 
   - `org_limit: number or null`
 

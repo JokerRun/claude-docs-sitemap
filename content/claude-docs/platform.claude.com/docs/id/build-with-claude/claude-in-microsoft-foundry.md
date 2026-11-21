@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: d808f5d84232fd12a80ad42fd7ff229e3b709825d8961e67795c1b7ed1f5b9b9
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 985be5f961027f7d1ecc2241a5952277246d78ebfc900329d4cea44746619bdb
 ---
 
 ---
@@ -19,12 +19,12 @@ Claude tersedia dalam jenis deployment Global Standard dan US Data Zone Standard
 
 Model Claude di Microsoft Foundry tersedia dalam dua opsi hosting. Anda memilih opsi hosting saat mengonfigurasi deployment.
 
-|                           | Hosted on Azure                                                                                                                                           | Hosted on Anthropic                                                                                                                                                                                                                                                                                                                                                                             |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tempat inferensi berjalan | Layanan yang dioperasikan Anthropic yang berjalan di infrastruktur Azure                                                                                  | Layanan yang dioperasikan Anthropic yang berjalan di infrastruktur Anthropic                                                                                                                                                                                                                                                                                                                    |
-| Ketersediaan model        | [Beberapa model Opus, Sonnet, dan Haiku](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) | [Semua model Claude yang tersedia di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments)                                                                                                                                                                                                                        |
-| Jenis deployment          | Global Standard, US Data Zone Standard                                                                                                                    | Global Standard                                                                                                                                                                                                                                                                                                                                                                                 |
-| Direkomendasikan untuk    | Sebagian besar beban kerja                                                                                                                                | Beban kerja yang memerlukan [model yang hanya di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) atau [fitur yang hanya tersedia saat di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) |
+|  | Hosted on Azure | Hosted on Anthropic |
+| ----- | ----- | ----- |
+| Tempat inferensi berjalan | Layanan yang dioperasikan Anthropic yang berjalan di infrastruktur Azure | Layanan yang dioperasikan Anthropic yang berjalan di infrastruktur Anthropic |
+| Ketersediaan model | [Beberapa model Opus, Sonnet, dan Haiku](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) | [Semua model Claude yang tersedia di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) |
+| Jenis deployment | Global Standard, US Data Zone Standard | Global Standard |
+| Direkomendasikan untuk | Sebagian besar beban kerja | Beban kerja yang memerlukan [model yang hanya di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) atau [fitur yang hanya tersedia saat di-hosting di Anthropic](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#additional-features-not-supported-when-hosted-on-azure) |
 
 Untuk deployment yang di-hosting di Azure, Anthropic memproses prompt dan completion di infrastruktur Azure dan menyimpan konten yang dipertahankan di sana. Konten yang dipertahankan mencakup konten yang ditandai oleh sistem keamanan Anthropic untuk ditinjau oleh Anthropic. Data operasional yang tidak berisi prompt atau completion disimpan di sistem Anthropic di luar Azure. Contohnya meliputi skor pengklasifikasi keamanan, pengidentifikasi, serta data penggunaan dan penagihan.
 
@@ -83,8 +83,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.11.0")
-        implementation("com.anthropic:anthropic-java-foundry:3.11.0")
+        implementation("com.anthropic:anthropic-java:3.12.0")
+        implementation("com.anthropic:anthropic-java-foundry:3.12.0")
         ```
       </Tab>
 
@@ -93,12 +93,12 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.11.0</version>
+            <version>3.12.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>3.11.0</version>
+            <version>3.12.0</version>
         </dependency>
         ```
       </Tab>
@@ -662,26 +662,26 @@ Istilah siklus hidup (Deprecated, Retired) didefinisikan di [Penghentian model](
 
 Model Claude berikut tersedia melalui Foundry:
 
-| Model                                                                                                 | Default deployment name | Hosted on Azure | Hosted on Anthropic |
-| :---------------------------------------------------------------------------------------------------- | :---------------------- | :-------------: | :-----------------: |
-| Claude Fable 5.2                                                                                      | `claude-fable-5-2`      |                 |          ✓          |
-| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-2`     |                 |          ✓          |
-| Claude Fable 5.1                                                                                      | `claude-fable-5-1`      |                 |          ✓          |
-| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-1`     |                 |          ✓          |
-| Claude Fable 5                                                                                        | `claude-fable-5`        |                 |          ✓          |
-| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))             | `claude-mythos-5`       |                 |          ✓          |
-| Claude Opus 5.5                                                                                       | `claude-opus-5-5`       |        ✓        |          ✓          |
-| Claude Opus 5                                                                                         | `claude-opus-5`         |        ✓        |          ✓          |
-| Claude Opus 4.8                                                                                       | `claude-opus-4-8`       |        ✓        |          ✓          |
-| Claude Opus 4.7                                                                                       | `claude-opus-4-7`       |                 |          ✓          |
-| Claude Opus 4.6                                                                                       | `claude-opus-4-6`       |                 |          ✓          |
-| Claude Opus 4.5                                                                                       | `claude-opus-4-5`       |                 |          ✓          |
-| Claude Sonnet 5.5                                                                                     | `claude-sonnet-5-5`     |        ✓        |          ✓          |
-| Claude Sonnet 5                                                                                       | `claude-sonnet-5`       |        ✓        |          ✓          |
-| Claude Sonnet 4.6                                                                                     | `claude-sonnet-4-6`     |                 |          ✓          |
-| Claude Sonnet 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-sonnet-4-5`     |                 |          ✓          |
-| Claude Haiku 5.5                                                                                      | `claude-haiku-5-5`      |        ✓        |          ✓          |
-| Claude Haiku 4.5                                                                                      | `claude-haiku-4-5`      |        ✓        |          ✓          |
+| Model | Default deployment name | Hosted on Azure | Hosted on Anthropic |
+| :---- | :---- | :---: | :---: |
+| Claude Fable 5.2 | `claude-fable-5-2` |  | ✓ |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842)) | `claude-mythos-5-2` |  | ✓ |
+| Claude Fable 5.1 | `claude-fable-5-1` |  | ✓ |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | `claude-mythos-5-1` |  | ✓ |
+| Claude Fable 5 | `claude-fable-5` |  | ✓ |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842)) | `claude-mythos-5` |  | ✓ |
+| Claude Opus 5.5 | `claude-opus-5-5` | ✓ | ✓ |
+| Claude Opus 5 | `claude-opus-5` | ✓ | ✓ |
+| Claude Opus 4.8 | `claude-opus-4-8` | ✓ | ✓ |
+| Claude Opus 4.7 | `claude-opus-4-7` |  | ✓ |
+| Claude Opus 4.6 | `claude-opus-4-6` |  | ✓ |
+| Claude Opus 4.5 | `claude-opus-4-5` |  | ✓ |
+| Claude Sonnet 5.5 | `claude-sonnet-5-5` | ✓ | ✓ |
+| Claude Sonnet 5 | `claude-sonnet-5` | ✓ | ✓ |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` |  | ✓ |
+| Claude Sonnet 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-sonnet-4-5` |  | ✓ |
+| Claude Haiku 5.5 | `claude-haiku-5-5` | ✓ | ✓ |
+| Claude Haiku 4.5 | `claude-haiku-4-5` | ✓ | ✓ |
 
 Secara default, nama deployment sama dengan ID model yang ditampilkan pada tabel di atas. Namun, Anda dapat membuat deployment kustom dengan nama berbeda di portal Foundry untuk mengelola konfigurasi, versi, atau batas laju yang berbeda. Gunakan nama deployment (tidak harus ID model) dalam permintaan API Anda.
 

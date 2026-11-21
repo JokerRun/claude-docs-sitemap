@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-security-posture/events-reference
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 69affb9b8a4ada1c5624524c3a16bc5f34a157eae8f949a8fd2971b218a24225
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a18080ee95141e0da7b76c9a1b266c789032a8371d8cf93c0968db9577dcc83e
 ---
 
 ---
@@ -27,25 +27,25 @@ An `org_security_control_attestation_updated` activity records that someone reco
 
 This type adds the following fields, where `status` is the attestation’s value and `review_date` is its end date.
 
-| Field             | Type   | Description                                                                                                                                                           |
-| ----------------- | ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `control`         | string | The identifier of the security control that the attestation applies to, for example, `oauth_conditional_access`; treat it as an opaque string.                        |
-| `action`          | string | What changed, as one of the [`action` values](https://platform.claude.com/docs/en/manage-claude/compliance-security-posture/events-reference#action-values).          |
-| `status`          | string | The attestation’s value: Completed (`completed`), Accepted risk (`accepted_risk`), or attested as Failed (`control_failed`); absent when the attestation was cleared. |
-| `previous_status` | string | The attestation’s value before this change, one of the same three; absent when `action` is `attested`.                                                                |
-| `review_date`     | string | The UTC day (ISO 8601 date) on which the attestation is due to end; absent if it was saved with no end date or cleared.                                               |
+| Field | Type | Description |
+| ----- | ----- | ----- |
+| `control` | string | The identifier of the security control that the attestation applies to, for example, `oauth_conditional_access`; treat it as an opaque string. |
+| `action` | string | What changed, as one of the [`action` values](https://platform.claude.com/docs/en/manage-claude/compliance-security-posture/events-reference#action-values). |
+| `status` | string | The attestation’s value: Completed (`completed`), Accepted risk (`accepted_risk`), or attested as Failed (`control_failed`); absent when the attestation was cleared. |
+| `previous_status` | string | The attestation’s value before this change, one of the same three; absent when `action` is `attested`. |
+| `review_date` | string | The UTC day (ISO 8601 date) on which the attestation is due to end; absent if it was saved with no end date or cleared. |
 
 On an information-only control, the value Reviewed is recorded as `completed`.
 
 ### `action` values
 
-| `action`   | Meaning                                                  |
-| ---------- | -------------------------------------------------------- |
+| `action` | Meaning |
+| ----- | ----- |
 | `attested` | An attestation was recorded for a control that had none. |
-| `changed`  | An attestation was saved again with another value.       |
-| `renewed`  | An attestation was saved again with the same value.      |
-| `cleared`  | A person cleared an attestation.                         |
-| `lapsed`   | An attestation ended automatically, not by a person.     |
+| `changed` | An attestation was saved again with another value. |
+| `renewed` | An attestation was saved again with the same value. |
+| `cleared` | A person cleared an attestation. |
+| `lapsed` | An attestation ended automatically, not by a person. |
 
 On or before October 23, 2026 (UTC), a `changed` activity can also record a save with the same value. Such an activity has a `created_at` on or before that day and a `status` that equals `previous_status`.
 

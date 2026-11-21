@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/budgets
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 4f191ecd95d2f53c1bebf73fac176c07f5e724f73b8e9f7a617cf54a55183a75
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6fd9e0c7a560e201884bc2a859f1fcf3cde8aac00e66da6b7e28cc2d463d5d4a
 ---
 
 ---
@@ -449,13 +449,13 @@ Jika penggunaan sesi beranggaran kemudian mencakup model tanpa harga daftar, ang
 
 Permintaan terkait anggaran ditolak dalam kasus-kasus berikut:
 
-| Kondisi                                                                                                                                                                                                                                                      | Status |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------ |
-| Event yang memulai pekerjaan (misalnya, `user.message`) dikirim saat sesi berada pada atau melebihi anggarannya; error menyebutkan [event penyelesaian yang diterima](https://platform.claude.com/docs/id/managed-agents/budgets#events-accepted-at-the-cap) | 400    |
-| Anggaran ditetapkan ke nilai yang sama dengan atau di bawah biaya daftar yang telah dikonsumsi sesi                                                                                                                                                          | 400    |
-| Anggaran ditambahkan ke sesi yang dibuat tanpa anggaran, atau ditambahkan kembali setelah dihapus                                                                                                                                                            | 400    |
-| `amount` (csharp, go: `Amount`) bukan bilangan bulat dalam sen (misalnya, `"25.00"`), bernilai nol atau negatif, atau `currency` (csharp, go: `Currency`) bukan `USD`                                                                                        | 400    |
-| Pembuatan beranggaran mereferensikan model [tanpa harga daftar publik](https://platform.claude.com/docs/id/managed-agents/budgets#models-without-a-list-price)                                                                                               | 400    |
+| Kondisi | Status |
+| ----- | ----- |
+| Event yang memulai pekerjaan (misalnya, `user.message`) dikirim saat sesi berada pada atau melebihi anggarannya; error menyebutkan [event penyelesaian yang diterima](https://platform.claude.com/docs/id/managed-agents/budgets#events-accepted-at-the-cap) | 400 |
+| Anggaran ditetapkan ke nilai yang sama dengan atau di bawah biaya daftar yang telah dikonsumsi sesi | 400 |
+| Anggaran ditambahkan ke sesi yang dibuat tanpa anggaran, atau ditambahkan kembali setelah dihapus | 400 |
+| `amount` (csharp, go: `Amount`) bukan bilangan bulat dalam sen (misalnya, `"25.00"`), bernilai nol atau negatif, atau `currency` (csharp, go: `Currency`) bukan `USD` | 400 |
+| Pembuatan beranggaran mereferensikan model [tanpa harga daftar publik](https://platform.claude.com/docs/id/managed-agents/budgets#models-without-a-list-price) | 400 |
 
 <Note>
   Anggaran sesi adalah batas ketat dalam dolar AS (ditulis dalam sen) pada satu sesi, yang diberlakukan oleh platform. Anggaran ini berbeda dari [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) pada Messages API, yang merupakan anggaran bersifat anjuran dalam satuan token yang digunakan model untuk mengatur dirinya sendiri dalam satu loop agentik.
@@ -476,9 +476,9 @@ Anggaran sesi dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |
 
 ### Header beta yang diperlukan
 
@@ -492,9 +492,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

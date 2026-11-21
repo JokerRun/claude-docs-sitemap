@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 35c244e9e126b1de6f6de73b8bc7366733e4d966e950c3e766d45108f04ef440
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 48befac302ffe28274006a9097fd31422263bf42bb91fb775c70a9e2b06e09af
 ---
 
 ---
@@ -19,19 +19,19 @@ description: Field konfigurasi proxy, Tunnels REST API, persyaratan sertifikat, 
 
 [Proxy](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/concepts#components) membaca konfigurasinya dari `/etc/mcp-gateway/config.yaml` (Compose) atau ConfigMap yang telah di-render (Helm, diisi dari `gateway.config.*`).
 
-| Field                             | Deskripsi                                                                                                                                                                                                                                                 | Default                                         |
-| --------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| `listen_addr`                     | Alamat dan port untuk mendengarkan.                                                                                                                                                                                                                       | Wajib                                           |
-| `log_level`                       | Tingkat verbositas logging: `debug`, `info`, `warn`, atau `error`.                                                                                                                                                                                        | `info`                                          |
-| `shutdown_timeout`                | Berapa lama menunggu permintaan yang sedang berjalan selama graceful shutdown.                                                                                                                                                                            | `30s`                                           |
-| `tunnel_domain`                   | Domain dasar yang ditetapkan untuk tunnel. Jika diatur, pencarian rute menghapus sufiks ini dari hostname yang masuk sehingga kunci `routes` dapat berupa subdomain saja (`wiki`). Jika kosong, kunci `routes` harus berupa hostname lengkap yang persis. | Wajib jika kunci `routes` berupa subdomain saja |
-| `tls.cert_file`                   | Path ke sertifikat TLS server.                                                                                                                                                                                                                            | Wajib                                           |
-| `tls.key_file`                    | Path ke kunci privat TLS server.                                                                                                                                                                                                                          | Wajib                                           |
-| `routes`                          | Peta dari subdomain atau hostname lengkap ke URL upstream. Lihat [Pencocokan rute](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#route-matching).                                                                            | Wajib                                           |
-| `upstream.allowed_ips`            | Rentang CIDR IPv4 atau alamat tunggal yang boleh dihubungi oleh proxy. Saling eksklusif dengan `disable_ip_validation`.                                                                                                                                   | Rentang privat RFC1918                          |
-| `upstream.disable_ip_validation`  | Menonaktifkan validasi IP upstream sepenuhnya. Saling eksklusif dengan `allowed_ips`.                                                                                                                                                                     | `false`                                         |
-| `upstream.tls.ca_file`            | Bundle CA untuk memvalidasi TLS upstream.                                                                                                                                                                                                                 | Tidak ada                                       |
-| `upstream.tls.include_system_cas` | Juga mempercayai bundle CA sistem untuk TLS upstream.                                                                                                                                                                                                     | `false`                                         |
+| Field | Deskripsi | Default |
+| ----- | ----- | ----- |
+| `listen_addr` | Alamat dan port untuk mendengarkan. | Wajib |
+| `log_level` | Tingkat verbositas logging: `debug`, `info`, `warn`, atau `error`. | `info` |
+| `shutdown_timeout` | Berapa lama menunggu permintaan yang sedang berjalan selama graceful shutdown. | `30s` |
+| `tunnel_domain` | Domain dasar yang ditetapkan untuk tunnel. Jika diatur, pencarian rute menghapus sufiks ini dari hostname yang masuk sehingga kunci `routes` dapat berupa subdomain saja (`wiki`). Jika kosong, kunci `routes` harus berupa hostname lengkap yang persis. | Wajib jika kunci `routes` berupa subdomain saja |
+| `tls.cert_file` | Path ke sertifikat TLS server. | Wajib |
+| `tls.key_file` | Path ke kunci privat TLS server. | Wajib |
+| `routes` | Peta dari subdomain atau hostname lengkap ke URL upstream. Lihat [Pencocokan rute](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#route-matching). | Wajib |
+| `upstream.allowed_ips` | Rentang CIDR IPv4 atau alamat tunggal yang boleh dihubungi oleh proxy. Saling eksklusif dengan `disable_ip_validation`. | Rentang privat RFC1918 |
+| `upstream.disable_ip_validation` | Menonaktifkan validasi IP upstream sepenuhnya. Saling eksklusif dengan `allowed_ips`. | `false` |
+| `upstream.tls.ca_file` | Bundle CA untuk memvalidasi TLS upstream. | Tidak ada |
+| `upstream.tls.include_system_cas` | Juga mempercayai bundle CA sistem untuk TLS upstream. | `false` |
 
 Untuk rute upstream `https://`, atur setidaknya salah satu dari `upstream.tls.ca_file` atau `upstream.tls.include_system_cas`; jika tidak, proxy tidak memiliki trust anchor untuk sertifikat upstream.
 
@@ -55,11 +55,11 @@ Tunnels REST API berada di `/v1/tunnels` dan mendukung pembuatan, pencantuman, d
 
 Header yang wajib pada setiap permintaan:
 
-| Header              | Nilai                                         |
-| ------------------- | --------------------------------------------- |
-| `Authorization`     | `Bearer <token>` (token hasil pertukaran WIF) |
-| `anthropic-version` | `2026-10-21`                                  |
-| `anthropic-beta`    | `mcp-tunnels-2026-06-22`                      |
+| Header | Nilai |
+| ----- | ----- |
+| `Authorization` | `Bearer <token>` (token hasil pertukaran WIF) |
+| `anthropic-version` | `2026-10-21` |
+| `anthropic-beta` | `mcp-tunnels-2026-06-22` |
 
 ## Persyaratan sertifikat
 
@@ -97,13 +97,13 @@ Komponen setup dikirimkan di dalam image `mcp-proxy` sebagai biner `setup`. Jala
 
 Menghubungkan ke tunnel yang sudah ada (atau membuat tunnel baru jika tidak ada ID tunnel yang diberikan), lalu menghasilkan CA dan sertifikat server, mendaftarkan CA, mengambil token tunnel, dan menulis semua output ke tujuan.
 
-| Flag              | Deskripsi                                                                                                                                                                                                    | Default                                                                                         |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| `--api-url`       | URL dasar Claude API. Juga dibaca dari `API_URL`.                                                                                                                                                            | Wajib                                                                                           |
-| `--tunnel-id`     | ID tunnel yang akan dihubungkan (`tnl_...`). Juga dibaca dari `TUNNEL_ID`. Jika dihilangkan, tunnel baru akan dibuat; ID tunnel yang sudah tersimpan di output akan digunakan kembali saat dijalankan ulang. | Tidak ada (membuat tunnel)                                                                      |
-| `--output`        | Tujuan output: `dir:/path` atau `k8s-secret:NAME`. Chart Helm meneruskan `k8s-secret:<release>`.                                                                                                             | `k8s-secret:mcp-tunnel` (terdeteksi otomatis saat berjalan di pod Kubernetes; wajib jika tidak) |
-| `--cert-duration` | Masa berlaku sertifikat server.                                                                                                                                                                              | `2160h` (90 hari)                                                                               |
-| `--token-version` | String pendeteksi perubahan. Nilai baru memicu rotasi token saat dijalankan ulang. Chart Helm dan contoh Compose sama-sama meneruskan `1` sebagai nilai awal.                                                | Tidak ada                                                                                       |
+| Flag | Deskripsi | Default |
+| ----- | ----- | ----- |
+| `--api-url` | URL dasar Claude API. Juga dibaca dari `API_URL`. | Wajib |
+| `--tunnel-id` | ID tunnel yang akan dihubungkan (`tnl_...`). Juga dibaca dari `TUNNEL_ID`. Jika dihilangkan, tunnel baru akan dibuat; ID tunnel yang sudah tersimpan di output akan digunakan kembali saat dijalankan ulang. | Tidak ada (membuat tunnel) |
+| `--output` | Tujuan output: `dir:/path` atau `k8s-secret:NAME`. Chart Helm meneruskan `k8s-secret:<release>`. | `k8s-secret:mcp-tunnel` (terdeteksi otomatis saat berjalan di pod Kubernetes; wajib jika tidak) |
+| `--cert-duration` | Masa berlaku sertifikat server. | `2160h` (90 hari) |
+| `--token-version` | String pendeteksi perubahan. Nilai baru memicu rotasi token saat dijalankan ulang. Chart Helm dan contoh Compose sama-sama meneruskan `1` sebagai nilai awal. | Tidak ada |
 
 Perintah ini melakukan autentikasi melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation). Perintah ini membaca `ANTHROPIC_FEDERATION_RULE_ID`, `ANTHROPIC_ORGANIZATION_ID`, `ANTHROPIC_WORKSPACE_ID` (opsional), dan tepat salah satu dari `ANTHROPIC_IDENTITY_TOKEN_FILE` atau `ANTHROPIC_IDENTITY_TOKEN`. Lihat [referensi WIF](https://platform.claude.com/docs/id/manage-claude/wif-reference) untuk semantik terkini dari variabel-variabel ini; komponen setup menurunkan akun layanan dari aturan federasi, sehingga tidak memerlukan `ANTHROPIC_SERVICE_ACCOUNT_ID` secara terpisah.
 
@@ -111,10 +111,10 @@ Perintah ini melakukan autentikasi melalui [Workload Identity Federation](https:
 
 Menerbitkan sertifikat server baru yang ditandatangani oleh CA yang tersimpan. Tidak melakukan panggilan API.
 
-| Flag              | Deskripsi                                                                                        | Default                                                                                         |
-| ----------------- | ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------- |
-| `--output`        | Tujuan output: `dir:/path` atau `k8s-secret:NAME`. Chart Helm meneruskan `k8s-secret:<release>`. | `k8s-secret:mcp-tunnel` (terdeteksi otomatis saat berjalan di pod Kubernetes; wajib jika tidak) |
-| `--cert-duration` | Masa berlaku sertifikat baru.                                                                    | `2160h` (90 hari)                                                                               |
-| `--renew-before`  | Lewati pembaruan jika sertifikat yang ada memiliki sisa masa berlaku lebih dari durasi ini.      | `0` (selalu perbarui)                                                                           |
+| Flag | Deskripsi | Default |
+| ----- | ----- | ----- |
+| `--output` | Tujuan output: `dir:/path` atau `k8s-secret:NAME`. Chart Helm meneruskan `k8s-secret:<release>`. | `k8s-secret:mcp-tunnel` (terdeteksi otomatis saat berjalan di pod Kubernetes; wajib jika tidak) |
+| `--cert-duration` | Masa berlaku sertifikat baru. | `2160h` (90 hari) |
+| `--renew-before` | Lewati pembaruan jika sertifikat yang ada memiliki sisa masa berlaku lebih dari durasi ini. | `0` (selalu perbarui) |
 
 Mengatur `--renew-before=720h` membuat perintah ini menjadi no-op ketika sisa masa berlaku lebih dari 30 hari, sehingga aman untuk dijalankan pada jadwal tetap.

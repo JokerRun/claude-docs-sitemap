@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/heartbeat
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: d1815e0b303909663991bfddcb1295f32f79ee5bd7f49c600c22a8828302c47d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 7ea39ee284ee182d399fc69dc5d85936e3538539b248c4b2ece64ce05bcea6ad
 ---
 
 ---
@@ -139,6 +139,8 @@ Record a heartbeat for a work item to maintain the lease.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

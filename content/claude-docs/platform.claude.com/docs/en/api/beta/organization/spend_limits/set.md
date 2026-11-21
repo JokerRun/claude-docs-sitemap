@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/set
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 7d3e3fb99cde189eb92ab7cd991388d83dd78d7805bc3c342eacdd162aa9ba04
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 5a58083df907b1ca7ab9144e3094ae88117ad23ad764d9318e60f292c17deb9a
 ---
 
 ---
@@ -129,6 +129,8 @@ Anthropic account team.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -358,7 +360,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 - `spend_limits_admin_api_writes_not_enabled` (HTTP status 403)
 

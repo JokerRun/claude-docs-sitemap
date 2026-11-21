@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 583003b821db725016c35e63818892c6d5e8b9d6e948321fd40fe6614e130cf4
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e644c7c14f5a6e0841a7c2dcea3eb8670cb2fe01f43cb361a791c1ec705303e4
 ---
 
 ---
@@ -24,11 +24,11 @@ Managed Agents memiliki dua bagian yang dapat Anda host:
 
 Sandbox yang di-host sendiri memindahkan bagian pertama kepada Anda. Managed Agents yang di-host sendiri memperluas hal tersebut: Anda juga meng-host layanannya. Nama setiap opsi menunjukkan apa yang Anda host:
 
-| Opsi                                                                                                     | Sandbox   | Layanan   | Model                                    |
-| -------------------------------------------------------------------------------------------------------- | --------- | --------- | ---------------------------------------- |
-| Sandbox cloud (default)                                                                                  | Anthropic | Anthropic | Anthropic                                |
-| [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) | Anda      | Anthropic | Anthropic                                |
-| Managed Agents yang di-host sendiri                                                                      | Anda      | Anda      | Anthropic, atau penyedia yang Anda pilih |
+| Opsi | Sandbox | Layanan | Model |
+| ----- | ----- | ----- | ----- |
+| Sandbox cloud (default) | Anthropic | Anthropic | Anthropic |
+| [Sandbox yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes) | Anda | Anthropic | Anthropic |
+| Managed Agents yang di-host sendiri | Anda | Anda | Anthropic, atau penyedia yang Anda pilih |
 
 Di halaman-halaman ini, layanan yang di-hosting adalah layanan sebagaimana dijalankan oleh Anthropic, dan server Anda adalah layanan sebagaimana Anda jalankan, dengan database-nya sendiri. Keduanya memiliki API yang sama, sehingga SDK dan CLI `ant` berfungsi dengan server Anda, dan dokumentasi Managed Agents lainnya tetap berlaku. [Perbedaan dari layanan yang di-hosting](https://platform.claude.com/docs/id/managed-agents/self-hosted/differences) mencantumkan pengecualiannya.
 
@@ -80,11 +80,11 @@ flowchart LR
 
 ## Tiga kredensial
 
-| Kredensial               | Siapa yang memegangnya                       | Apa yang diautentikasi                                                                                                                                                                                                                |
-| ------------------------ | -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Kunci API server**     | Aplikasi Anda, CLI `ant`, dan admin CLI      | Permintaan ke server Anda. Proses penyiapan menghasilkan kunci ini. Kunci ini memainkan peran yang dimainkan kunci API Claude pada layanan yang di-hosting.                                                                           |
-| **Kredensial inferensi** | Server                                       | Panggilan model dari server ke penyedia inferensi Anda. Misalnya, kredensial ini dapat berupa kunci API Claude, kredensial penyedia cloud Anda, atau token yang diterima gateway model Anda. Aplikasi dan worker tidak memerlukannya. |
-| **Kunci environment**    | Worker Anda yang melakukan polling ke server | Antrean pekerjaan satu environment dan sesi-sesi environment tersebut.                                                                                                                                                                |
+| Kredensial | Siapa yang memegangnya | Apa yang diautentikasi |
+| ----- | ----- | ----- |
+| **Kunci API server** | Aplikasi Anda, CLI `ant`, dan admin CLI | Permintaan ke server Anda. Proses penyiapan menghasilkan kunci ini. Kunci ini memainkan peran yang dimainkan kunci API Claude pada layanan yang di-hosting. |
+| **Kredensial inferensi** | Server | Panggilan model dari server ke penyedia inferensi Anda. Misalnya, kredensial ini dapat berupa kunci API Claude, kredensial penyedia cloud Anda, atau token yang diterima gateway model Anda. Aplikasi dan worker tidak memerlukannya. |
+| **Kunci environment** | Worker Anda yang melakukan polling ke server | Antrean pekerjaan satu environment dan sesi-sesi environment tersebut. |
 
 ## Apa yang keluar dari jaringan Anda
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/feature-availability
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: cf69fad3a70dea9c865bcf59123970faef56745519c40b30383d8c9f4c230b38
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 46c5fbe9e3573e5d97f9ad20ad404a961bfc266498c040cfa7ec04e309fba0a0
 ---
 
 > ## Documentation Index
@@ -352,7 +352,7 @@ In Enterprise organizations with the [HIPAA configuration](https://code.claude.c
 | [Remote Control](https://code.claude.com/docs/en/remote-control.md) | ✓ | ✓ | ✓ | Admin-enabled | Admin-enabled |
 | [Channels](https://code.claude.com/docs/en/channels.md) | ✓ | ✓ | ✓ | Admin-enabled | Admin-enabled |
 | [Computer use](https://code.claude.com/docs/en/computer-use.md) | ✓ | ✓ | ✓ | ✗ | ✗ |
-| Dispatch ([Desktop](https://code.claude.com/docs/en/desktop.md#sessions-from-dispatch)) | ✓ | ✓ | ✓ | ✗ | ✗ |
+| Dispatch ([Desktop](https://code.claude.com/docs/en/desktop.md#sessions-from-dispatch)) | Not available to new users | Not available to new users | Not available to new users | ✗ | ✗ |
 | [Code Review](https://code.claude.com/docs/en/code-review.md) | ✗ | ✗ | ✗ | ✓ | ✓ |
 | [Artifacts](https://code.claude.com/docs/en/artifacts.md) | ✓ | ✓ | ✓ | ✓ | ✓ |
 | [Analytics dashboard and contribution metrics](https://code.claude.com/docs/en/analytics.md) | ✗ | ✗ | ✗ | ✓ | ✓ |

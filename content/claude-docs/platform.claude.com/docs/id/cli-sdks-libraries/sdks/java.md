@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 98189c6c211e58d0c996d071d5f480d83d67ed5f4c8ed3907365b058567b75be
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6c06a07c715f7dc5dac9e68e97b949c99e66b6af6bd1600496173f0aabf4da57
 ---
 
 ---
@@ -22,7 +22,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.11.0")
+    implementation("com.anthropic:anthropic-java:3.12.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ Anthropic Java SDK menyediakan akses yang mudah ke Claude API dari aplikasi yang
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.11.0</version>
+        <version>3.12.0</version>
     </dependency>
     ```
   </Tab>
@@ -44,8 +44,8 @@ Integrasi platform cloud dan helper MCP sisi klien tersedia sebagai artefak add-
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.11.0")
-    implementation("com.anthropic:anthropic-java-mcp:3.11.0")
+    implementation("com.anthropic:anthropic-java:3.12.0")
+    implementation("com.anthropic:anthropic-java-mcp:3.12.0")
     ```
   </Tab>
 
@@ -54,12 +54,12 @@ Integrasi platform cloud dan helper MCP sisi klien tersedia sebagai artefak add-
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.11.0</version>
+        <version>3.12.0</version>
     </dependency>
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java-mcp</artifactId>
-        <version>3.11.0</version>
+        <version>3.12.0</version>
     </dependency>
     ```
   </Tab>
@@ -140,11 +140,11 @@ Untuk opsi autentikasi termasuk “Workload Identity Federation” (federasi ide
 
 ### Opsi konfigurasi
 
-| Setter      | Properti sistem       | Variabel lingkungan    | Wajib | Nilai default                 |
-| ----------- | --------------------- | ---------------------- | ----- | ----------------------------- |
-| `apiKey`    | `anthropic.apiKey`    | `ANTHROPIC_API_KEY`    | false | -                             |
-| `authToken` | `anthropic.authToken` | `ANTHROPIC_AUTH_TOKEN` | false | -                             |
-| `baseUrl`   | `anthropic.baseUrl`   | `ANTHROPIC_BASE_URL`   | true  | `"https://api.anthropic.com"` |
+| Setter | Properti sistem | Variabel lingkungan | Wajib | Nilai default |
+| ----- | ----- | ----- | ----- | ----- |
+| `apiKey` | `anthropic.apiKey` | `ANTHROPIC_API_KEY` | false | - |
+| `authToken` | `anthropic.authToken` | `ANTHROPIC_AUTH_TOKEN` | false | - |
+| `baseUrl` | `anthropic.baseUrl` | `ANTHROPIC_BASE_URL` | true | `"https://api.anthropic.com"` |
 
 Properti sistem lebih diutamakan daripada variabel lingkungan.
 
@@ -613,15 +613,15 @@ SDK melempar tipe exception unchecked kustom:
 
 ### Pemetaan kode status
 
-| Status  | Exception                       |
-| ------- | ------------------------------- |
-| 400     | `BadRequestException`           |
-| 401     | `UnauthorizedException`         |
-| 403     | `PermissionDeniedException`     |
-| 404     | `NotFoundException`             |
-| 422     | `UnprocessableEntityException`  |
-| 429     | `RateLimitException`            |
-| 5xx     | `InternalServerException`       |
+| Status | Exception |
+| ----- | ----- |
+| 400 | `BadRequestException` |
+| 401 | `UnauthorizedException` |
+| 403 | `PermissionDeniedException` |
+| 404 | `NotFoundException` |
+| 422 | `UnprocessableEntityException` |
+| 429 | `RateLimitException` |
+| 5xx | `InternalServerException` |
 | lainnya | `UnexpectedStatusCodeException` |
 
 `SseException` dilempar untuk error yang terjadi selama streaming SSE setelah respons HTTP awal berhasil.

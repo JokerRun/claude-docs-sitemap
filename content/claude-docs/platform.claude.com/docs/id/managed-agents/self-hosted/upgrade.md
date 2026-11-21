@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: a62d3ad1cff8a8b282a4cc8397b32e92097df9f4665dd9f468e91505979e591e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 36086a030aa791102d19d0d45fe9f0f2914b396226feb147eb6177ea27d1f617
 ---
 
 ---
@@ -17,11 +17,11 @@ description: Tingkatkan deployment Claude Managed Agents yang di-host sendiri di
 
 Halaman ini menunjukkan cara meningkatkan deployment di Kubernetes atau Docker Compose, dan cara kembali ke rilis lama. Di Kubernetes, downtime bergantung pada seberapa jauh peningkatan tersebut:
 
-| Peningkatan                                                                        | Cadangkan database terlebih dahulu | Downtime di Kubernetes                                                                   |
-| ---------------------------------------------------------------------------------- | ---------------------------------- | ---------------------------------------------------------------------------------------- |
-| Patch: hanya angka ketiga yang berubah                                             | Tidak. Skema database tetap sama.  | Tidak ada                                                                                |
-| Minor: angka kedua naik satu, seperti `1.2.0` ke `1.3.0`                           | Ya. Skema berubah.                 | Tidak ada, kecuali sebuah bagian `CHANGELOG.md` menyatakan bahwa server harus dihentikan |
-| Melewati satu rilis minor, seperti `1.1.0` ke `1.3.0`, atau mengubah angka pertama | Ya. Skema berubah.                 | Sejak Anda menghentikan server lama hingga server baru siap                              |
+| Peningkatan | Cadangkan database terlebih dahulu | Downtime di Kubernetes |
+| ----- | ----- | ----- |
+| Patch: hanya angka ketiga yang berubah | Tidak. Skema database tetap sama. | Tidak ada |
+| Minor: angka kedua naik satu, seperti `1.2.0` ke `1.3.0` | Ya. Skema berubah. | Tidak ada, kecuali sebuah bagian `CHANGELOG.md` menyatakan bahwa server harus dihentikan |
+| Melewati satu rilis minor, seperti `1.1.0` ke `1.3.0`, atau mengubah angka pertama | Ya. Skema berubah. | Sejak Anda menghentikan server lama hingga server baru siap |
 
 Stack Docker Compose mati selama dimulai ulang, untuk setiap jenis peningkatan.
 
@@ -30,6 +30,10 @@ Stack Docker Compose mati selama dimulai ulang, untuk setiap jenis peningkatan.
 Baca bagian rilis baru di `CHANGELOG.md`, di tingkat teratas arsip yang diekstrak. Bagian tersebut dimulai dengan langkah-langkah peningkatan yang khusus untuk rilis itu. Jika Anda melewati beberapa rilis, ikuti setiap bagian yang lebih baru dari versi Anda, dimulai dari yang terlama.
 
 Kemudian telusuri [Pengaturan dan path yang perlu diperiksa](https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade#settings-and-paths-to-check).
+
+<Warning>
+  Di Kubernetes, peningkatan dapat menghapus file dari beberapa sesi, dan tidak ada yang melaporkan error. Sebelum Anda meningkatkan, lihat [Kubernetes: volume dari sesi yang dihapus](https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade#deleted-sessions-volumes).
+</Warning>
 
 Peningkatan minor atau mayor mencakup pencadangan database. Dump tersebut menyimpan setiap percakapan dalam bentuk plaintext, sehingga perintah di halaman ini mengenkripsinya dengan [alat enkripsi age](https://age-encryption.org). Buat pasangan kunci sekali saja, dan simpan kunci privat, `cma-backup.agekey`, terpisah dari cadangan:
 
@@ -173,11 +177,19 @@ Sebelum Anda kembali ke rilis lama, temukan penyebabnya di log:
 * **Kubernetes:** Jika Job migrasi gagal, `helm upgrade` menunggu beberapa menit selama Job mencoba ulang, lalu gagal. Selama menunggu tersebut, jalankan `kubectl -n cma-server logs job/$server-migrate` di terminal kedua, dengan `$server` diatur seperti di [Meningkatkan di Kubernetes](https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade#upgrade-on-kubernetes). Kubernetes menghapus log tersebut ketika Job berhenti mencoba ulang. Jika Anda melewatkannya, jalankan `helm upgrade` lagi, yang akan memulai Job kembali.
 * **Docker Compose:** Output `docker compose up --build -d` mungkin tidak menunjukkan alasannya. Jalankan `docker compose logs` untuk menemukannya.
 
-| Apa yang ditampilkan log                                                                                    | Artinya                                                                                                                                              | Yang harus dilakukan                                                                                                                                                                                                                                                                                                                                     |
-| ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Apa yang ditampilkan log | Artinya | Yang harus dilakukan |
+| ----- | ----- | ----- |
 | Baris yang berisi `refusing to migrate: servers of another release are still running against this database` | Beberapa peningkatan memerlukan setiap server dihentikan terlebih dahulu, dan server dari rilis lama masih berjalan. Migrasi tidak mengubah apa pun. | Hentikan setiap server, seperti di [Meningkatkan di Kubernetes](https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade#upgrade-on-kubernetes), lalu jalankan `helm upgrade` lagi. Jika sebuah server tidak dimatikan dengan bersih, tunggu 20 detik terlebih dahulu: hingga saat itu, migrasi masih menganggap server tersebut berjalan. |
-| Baris yang berisi `cannot downgrade`, saat Anda menerapkan ulang rilis lama                                 | Rilis lama tidak dapat berjalan pada skema yang telah diubah.                                                                                        | Pulihkan cadangan, seperti di [Kembali ke rilis lama](https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade#roll-back).                                                                                                                                                                                                                 |
-| Error lain dari migrasi                                                                                     | Anda tidak perlu kembali ke rilis lama. Di Kubernetes, server tetap seperti semula sampai migrasi berhasil.                                          | Perbaiki penyebabnya, lalu jalankan `helm upgrade` atau `docker compose up --build -d` lagi.                                                                                                                                                                                                                                                             |
+| Baris yang berisi `cannot downgrade`, saat Anda menerapkan ulang rilis lama | Rilis lama tidak dapat berjalan pada skema yang telah diubah. | Pulihkan cadangan, seperti di [Kembali ke rilis lama](https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade#roll-back). |
+| Error lain dari migrasi | Anda tidak perlu kembali ke rilis lama. Di Kubernetes, server tetap seperti semula sampai migrasi berhasil. | Perbaiki penyebabnya, lalu jalankan `helm upgrade` atau `docker compose up --build -d` lagi. |
+
+Di Docker Compose, `docker compose up` di direktori rilis baru dapat berhenti dengan `required variable CMA_PG_USER is missing a value`. Artinya, `.env` rilis baru tidak memiliki nama-nama tempat data stack Anda disimpan: proyek Compose-nya, volume-nya, serta role dan nama database-nya. Stack baru belum dimulai, stack lama mungkin sudah dihentikan, dan data Anda tidak tersentuh. Jangan tambahkan baris `CMA_PG_USER` ke `.env` secara manual. Hanya dengan baris tersebut, stack akan dimulai dalam keadaan kosong dengan nama-nama bawaan rilis. Data Anda kemudian tetap berada di volume lama. Sebagai gantinya, jalankan `docker compose up -d` di direktori Compose rilis lama. Kemudian jalankan baris ini di sana, di terminal yang memiliki variabel `$releases`. Sebagai pengganti `<archive>`, tulis nama arsip dari langkah “Ekstrak arsip baru”:
+
+```bash
+sh "$releases/<archive>/compose/keep-names.sh" && cp .env "$releases/<archive>/compose/"
+```
+
+Lakukan kembali setiap perubahan yang Anda buat pada `.env` rilis baru. Kemudian lanjutkan dengan langkah “Hentikan stack lama dan jalankan yang baru”.
 
 Migrasi dapat berhasil sementara server baru tidak menjadi siap. Untuk menemukan penyebabnya, baca log server:
 
@@ -356,27 +368,33 @@ Periksa file pengaturan untuk `inference.attribution`, dan environment server un
 
 Ketika Claude API adalah penyedia inferensi Anda, setiap panggilan model membawa ID sesinya serta ID agen dan environment sesi tersebut setelah peningkatan. Lihat [Apa yang dikirim server ke penyedia inferensinya](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#what-the-server-sends-to-its-inference-provider).
 
+### Kubernetes: volume dari sesi yang dihapus
+
+Peningkatan dapat menghapus volume `/workspace` dari setiap sesi yang telah Anda hapus, dan dari setiap sesi yang tidak ada di database server, seperti sesi yang hilang akibat pemulihan. Anda dapat kehilangan file sesi-sesi tersebut, dan tidak ada yang melaporkan error. Penghapusan tersebut dapat dimulai segera setelah server pertama dari rilis baru merespons. Dengan chart server, hal itu terjadi selama `helm upgrade`-nya.
+
+Temukan sesi-sesi tersebut selama server lama masih berjalan, sebelum Anda menghentikan salah satunya: jalankan perintah di langkah 1 dari [Membebaskan volume sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted/kubernetes#free-a-sessions-volume). Jika Anda menjalankan lebih dari satu environment, jalankan perintah tersebut di namespace setiap rilis sandbox. Jangan lakukan langkah-langkah lain di bagian tersebut untuk sesi yang file-nya Anda perlukan. Untuk mempertahankan file tersebut, salin keluar dengan alat Kubernetes Anda sendiri. Tidak ada panggilan API, perintah admin, atau halaman konsol di server Anda yang dapat menjangkau volume-volume ini.
+
 ### Kubernetes: nama objek Anda
 
 `cma-server-values.yaml` harus menyatakan nama mana yang dimiliki instalasi Anda, dalam pengaturan `earlierNames`-nya. Untuk menemukan nama Deployment server, jalankan `kubectl -n cma-server get deployment -l anthropic.com/role=server`.
 
 | Nama Deployment | Baris di `cma-server-values.yaml` |
-| --------------- | --------------------------------- |
-| `cma-onprem`    | `earlierNames: true`              |
-| `cma-server`    | `earlierNames: false`             |
+| ----- | ----- |
+| `cma-onprem` | `earlierNames: true` |
+| `cma-server` | `earlierNames: false` |
 
 Jika file tersebut tidak memiliki baris itu, tambahkan sebelum Anda meningkatkan, dan pertahankan untuk setiap peningkatan berikutnya. Tanpa baris tersebut, perintah `helm upgrade` untuk chart server berhenti dengan error yang menyebutkan `earlierNames`, dan tidak mengubah apa pun.
 
 Dengan `earlierNames: true`, objek chart mempertahankan nama `cma-onprem`-nya, dan server tetap menemukan Secret yang Anda buat dengan nama-nama tersebut. Halaman-halaman ini menggunakan nama di kolom tengah. Dengan `earlierNames: true`, gunakan nama di kolom terakhir sebagai gantinya:
 
-| Objek                                             | Nama di halaman-halaman ini     | Nama dengan `earlierNames: true` |
-| ------------------------------------------------- | ------------------------------- | -------------------------------- |
-| Deployment dan Service server                     | `cma-server`                    | `cma-onprem`                     |
-| Job migrasi                                       | `cma-server-migrate`            | `cma-onprem-migrate`             |
-| Job setiap environment                            | `cma-server-environment-<name>` | `cma-onprem-environment-<name>`  |
-| Secret dengan kata sandi database                 | `cma-server-db`                 | `cma-onprem-db`                  |
-| Secret dengan kredensial penyedia inferensi       | `cma-server-upstream`           | `cma-onprem-upstream`            |
-| Secret dengan kunci API server dan kunci enkripsi | `cma-server-keys`               | `cma-onprem-server`              |
+| Objek | Nama di halaman-halaman ini | Nama dengan `earlierNames: true` |
+| ----- | ----- | ----- |
+| Deployment dan Service server | `cma-server` | `cma-onprem` |
+| Job migrasi | `cma-server-migrate` | `cma-onprem-migrate` |
+| Job setiap environment | `cma-server-environment-<name>` | `cma-onprem-environment-<name>` |
+| Secret dengan kata sandi database | `cma-server-db` | `cma-onprem-db` |
+| Secret dengan kredensial penyedia inferensi | `cma-server-upstream` | `cma-onprem-upstream` |
+| Secret dengan kunci API server dan kunci enkripsi | `cma-server-keys` | `cma-onprem-server` |
 
 Apa pun nilai `earlierNames`, namespace-nya bernama `cma-server`, dan image server bernama `cma-server-image`.
 

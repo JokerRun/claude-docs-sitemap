@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/quickstart
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 5a64c544d832858ae0689e94d35ab116a1d3ad773178db612825771d808e433a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 696984073d26c55db5ac3bcd25afb088226633842b87c2e87dd5494ed5ce2583
 ---
 
 ---
@@ -221,6 +221,8 @@ docker compose down --remove-orphans
 Perintah ini menghapus container dan mempertahankan database. Untuk juga menghapus database, beserta setiap agen, sesi, dan riwayat sesi di dalamnya, jalankan `docker compose down --remove-orphans -v`.
 
 ## Pemecahan masalah
+
+* **`docker compose up` berhenti dengan `required variable CMA_PG_USER is missing a value`:** Pada instalasi baru, tambahkan baris `CMA_PG_USER=cma_server` ke `.env`, lalu jalankan `docker compose up --build -d` lagi. Untuk meningkatkan stack, jangan tambahkan baris tersebut. Lihat [Jika peningkatan gagal](https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade#if-the-upgrade-fails).
 
 * **Arsip Anda tidak memiliki direktori `compose`:** Arsip tersebut berisi rilis yang lebih lama, dan perintah di halaman ini tidak sesuai dengannya. Mintalah rilis terbaru kepada tim akun Anthropic Anda. Untuk memindahkan deployment yang sedang berjalan ke rilis terbaru, lihat [Meningkatkan Claude Managed Agents yang di-host sendiri](https://platform.claude.com/docs/id/managed-agents/self-hosted/upgrade).
 

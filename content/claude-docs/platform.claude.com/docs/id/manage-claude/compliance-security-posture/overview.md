@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 25530b1f05f13d6f17a07eba21902301b2b7e13f3488979b9503c3ae3fd9a359
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0c5845a5e3eda5ec52f237778fe833a30b4260b07430da845452d0299eaa8c75
 ---
 
 ---
@@ -41,11 +41,11 @@ Security posture mengevaluasi daftar kontrol, dan memberikan hasil untuk masing-
 
 Kontrol adalah satu pengaturan atau praktik yang direkomendasikan, seperti single sign-on. Setiap kontrol memiliki nama tampilan dan pengidentifikasi. Pengidentifikasi tersebut sama untuk setiap organisasi. Kontrol juga dapat memiliki nilai saat ini (`current_value`) dan nilai yang direkomendasikan (`desired_state`). Ada tiga jenis kontrol:
 
-| Jenis                    | Apa yang menentukan hasilnya                                                                                                      | Contoh                     |
-| ------------------------ | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| Kontrol otomatis         | Pemeriksaan otomatis atas nilai saat ini terhadap nilai yang direkomendasikan, kecuali ada atestasi yang berlaku.                 | `sso_enabled`              |
-| Kontrol manual           | Seseorang, karena Anthropic tidak dapat membaca pengaturan tersebut, misalnya ketika pengaturan itu berada di konsol vendor lain. | `oauth_conditional_access` |
-| Kontrol khusus informasi | Tidak ada: tidak ada nilai yang direkomendasikan, sehingga kontrol dilaporkan dan tidak diberi hasil.                             | `allowed_invite_domains`   |
+| Jenis | Apa yang menentukan hasilnya | Contoh |
+| ----- | ----- | ----- |
+| Kontrol otomatis | Pemeriksaan otomatis atas nilai saat ini terhadap nilai yang direkomendasikan, kecuali ada atestasi yang berlaku. | `sso_enabled` |
+| Kontrol manual | Seseorang, karena Anthropic tidak dapat membaca pengaturan tersebut, misalnya ketika pengaturan itu berada di konsol vendor lain. | `oauth_conditional_access` |
+| Kontrol khusus informasi | Tidak ada: tidak ada nilai yang direkomendasikan, sehingga kontrol dilaporkan dan tidak diberi hasil. | `allowed_invite_domains` |
 
 ### Atestasi
 
@@ -63,12 +63,12 @@ Saat seseorang menyimpan atestasi, Security posture memberi atestasi tersebut ta
 
 Setiap kontrol memiliki salah satu dari empat hasil.
 
-| Hasil                             | Arti                                                                                                                                      |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| Lulus (`passed`)                  | Memenuhi nilai yang direkomendasikan, atau atestasi Selesai atau Risiko diterima sedang berlaku.                                          |
-| Gagal (`failed`)                  | Tidak memenuhi nilai yang direkomendasikan, atau diatestasi sebagai Gagal (`control_failed`).                                             |
-| Belum diatestasi (`not_attested`) | Kontrol manual tanpa atestasi yang berlaku.                                                                                               |
-| Deskriptif (`descriptive`)        | Tidak diberi hasil, bahkan ketika diatestasi; mencakup kontrol khusus informasi serta kontrol yang tidak relevan atau tidak dapat dibaca. |
+| Hasil | Arti |
+| ----- | ----- |
+| Lulus (`passed`) | Memenuhi nilai yang direkomendasikan, atau atestasi Selesai atau Risiko diterima sedang berlaku. |
+| Gagal (`failed`) | Tidak memenuhi nilai yang direkomendasikan, atau diatestasi sebagai Gagal (`control_failed`). |
+| Belum diatestasi (`not_attested`) | Kontrol manual tanpa atestasi yang berlaku. |
+| Deskriptif (`descriptive`) | Tidak diberi hasil, bahkan ketika diatestasi; mencakup kontrol khusus informasi serta kontrol yang tidak relevan atau tidak dapat dibaca. |
 
 Risiko diterima yang berlaku dihitung sebagai Lulus pada kontrol otomatis atau manual, meskipun kontrol tersebut tidak diterapkan. Dalam respons, kontrol otomatis yang [diatestasi sebagai Selesai selama pemeriksaannya tidak berhasil](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/results-reference#how-an-attestation-shows-in-the-response) bernilai `failed`.
 

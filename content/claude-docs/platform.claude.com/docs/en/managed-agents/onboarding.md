@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/onboarding
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 9c65cca88c66fb07a2f0aa6d426cfadd63ccd467e55968b2bc705974050f454b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 48b3c6d62dcd09ef1f34855a016493f0d795b070b53c4b2b33531a55c099a4af
 ---
 
 ---
@@ -163,9 +163,9 @@ Console agent builder is in beta on every model.
 
 * Availability: Available
 
-| Status | Cloud platforms                                                                                                    |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
+| Status | Cloud platforms |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) |
 
 ### Required beta headers
 
@@ -179,9 +179,9 @@ Beta headers allow you to access experimental features and new model capabilitie
 
 [Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                                                                                                                         | HIPAA                                                               |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Status  | Not eligible                                                                                                                                                                                                                                                | Not eligible                                                        |
+| Item | Zero data retention | HIPAA |
+| ----- | ----- | ----- |
+| Status | Not eligible | Not eligible |
 | Details | Not eligible for ZDR, except for self-hosted Managed Agents. Sessions are stateful resources; transcripts persist until you delete them. [Learn more](https://platform.claude.com/docs/en/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Not eligible for HIPAA. Applies to all Managed Agents sub-features. |
 
 Applicable endpoints:

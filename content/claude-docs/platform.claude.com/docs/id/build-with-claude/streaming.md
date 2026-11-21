@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 7fcb0011e059c0480135f8e64eaa0ce7a80fc0b07eac07ca19675ef9f204028d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ac8640172892da2278b58453a695e30575ebd9a6c79582daed4c39515a4450ed
 ---
 
 ---
@@ -1580,9 +1580,9 @@ Streaming pesan tersedia di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status               | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tersedia             | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
-| Tersedia<sup>1</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| Status | Platform cloud |
+| ----- | ----- |
+| Tersedia | Claude API, [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
+| Tersedia<sup>1</sup> | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) |
 
 1. Endpoint `bedrock-runtime` Amazon Bedrock tidak melakukan streaming server-sent event biasa.

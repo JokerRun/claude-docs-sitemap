@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/oauth-apps/app-review
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: cc219b3c0bc0db4de2246dcb2627837afffa4b23c188cc51ee1b69715ef0c22c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e00ebbc2b619743a43a69951bd14cf9460823aefb3cd58a763c4937c9828b729
 ---
 
 ---
@@ -23,13 +23,13 @@ Aplikasi dianggap aktif ketika Anthropic telah menyetujuinya atau ketika Anda te
 
 Sampai aplikasi aktif, Console menampilkan salah satu status berikut untuk aplikasi tersebut:
 
-| Status           | Artinya                                                                               |
-| ---------------- | ------------------------------------------------------------------------------------- |
-| **Testing**      | Anda belum memublikasikan aplikasi.                                                   |
-| **In review**    | Anthropic sedang meninjau aplikasi atau perubahan yang Anda buat saat aplikasi aktif. |
-| **Not approved** | Anthropic telah meninjau aplikasi atau perubahan tersebut dan tidak menyetujuinya.    |
+| Status | Artinya |
+| ----- | ----- |
+| **Testing** | Anda belum memublikasikan aplikasi. |
+| **In review** | Anthropic sedang meninjau aplikasi atau perubahan yang Anda buat saat aplikasi aktif. |
+| **Not approved** | Anthropic telah meninjau aplikasi atau perubahan tersebut dan tidak menyetujuinya. |
 
-Aplikasi yang kembali ke peninjauan setelah suatu perubahan belum aktif kembali sampai Anthropic menyetujui perubahan tersebut. Setiap aplikasi Linked billing memiliki status dan pengguna ujinya sendiri. Lihat catatan di [Langkah 1: Buat aplikasi](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#step-1-create-the-app) dalam panduan Linked billing.
+Aplikasi yang kembali ke peninjauan setelah suatu perubahan belum aktif kembali sampai Anthropic menyetujui perubahan tersebut. Setiap aplikasi memiliki status dan pengguna ujinya sendiri. Lihat catatan di [Langkah 1: Buat aplikasi](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#step-1-create-the-app) dalam panduan Linked billing.
 
 ## Sebelum memulai
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/choosing-an-environment
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 6dd299030e28558ba589c2571ff5061b0d012ace6282f57dcac4d1efa7ca2efe
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 995678eec6d9b265bb26d3dc257c84f6c88dd1f98064d0813ec9e83712814949
 ---
 
 ---
@@ -59,16 +59,16 @@ If you’re not sure which to choose or you’re new to Claude Managed Agents, s
 
 The table compares the two options.
 
-|                                     | [Cloud environment](https://platform.claude.com/docs/en/managed-agents/environments) (default)                                                                                                                                                                           | [Self-hosted sandbox](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes)                           |
-| ----------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------- |
-| Where tools and code run            | An Anthropic-managed sandbox                                                                                                                                                                                                                                             | Your worker, on your infrastructure                                                                                       |
-| What reaches Anthropic              | The [conversation history](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#list-past-events), [tool results](https://platform.claude.com/docs/en/managed-agents/tools#available-tools), the sandbox’s files and state, skills, and memory stores | The conversation history, tool results, skills, and memory stores. The sandbox’s files and processes stay on your worker. |
-| What you operate                    | Nothing                                                                                                                                                                                                                                                                  | The worker hosts, their hardening, their network limits, and the environment key your worker authenticates with           |
-| Network reach                       | Network rules you set on the environment                                                                                                                                                                                                                                 | Your own network policy                                                                                                   |
-| File and GitHub repository mounting | Managed by Anthropic                                                                                                                                                                                                                                                     | Managed by you                                                                                                            |
-| Memory stores                       | Mounted by Anthropic at `/mnt/memory/`                                                                                                                                                                                                                                   | Downloaded to `/mnt/memory/` and synced by the worker                                                                     |
-| Sandbox lifecycle                   | Managed by Anthropic                                                                                                                                                                                                                                                     | Managed by you                                                                                                            |
-| Choose it when                      | The default. You don’t need tools to run on your own infrastructure.                                                                                                                                                                                                     | Tools must run on infrastructure you control.                                                                             |
+|  | [Cloud environment](https://platform.claude.com/docs/en/managed-agents/environments) (default) | [Self-hosted sandbox](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes) |
+| ----- | ----- | ----- |
+| Where tools and code run | An Anthropic-managed sandbox | Your worker, on your infrastructure |
+| What reaches Anthropic | The [conversation history](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#list-past-events), [tool results](https://platform.claude.com/docs/en/managed-agents/tools#available-tools), the sandbox’s files and state, skills, and memory stores | The conversation history, tool results, skills, and memory stores. The sandbox’s files and processes stay on your worker. |
+| What you operate | Nothing | The worker hosts, their hardening, their network limits, and the environment key your worker authenticates with |
+| Network reach | Network rules you set on the environment | Your own network policy |
+| File and GitHub repository mounting | Managed by Anthropic | Managed by you |
+| Memory stores | Mounted by Anthropic at `/mnt/memory/` | Downloaded to `/mnt/memory/` and synced by the worker |
+| Sandbox lifecycle | Managed by Anthropic | Managed by you |
+| Choose it when | The default. You don’t need tools to run on your own infrastructure. | Tools must run on infrastructure you control. |
 
 ## When to choose a self-hosted sandbox
 

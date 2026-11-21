@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 0d6f7ff3e68901e5bd484d29e7507cce3cd9b3810e31a614bd51756054b61b8c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 1a2dc3268a495eac02f95a7bd02cfde413f7dbc484d8f97bdff8b2af86914ab0
 ---
 
 ---
@@ -236,7 +236,7 @@ This quickstart runs one always-on worker with the `ant` CLI, sends it a session
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.12.0
+        VERSION=2.12.1
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -675,9 +675,9 @@ Self-hosted sandboxes are in beta on every model.
 
 * Availability: Available
 
-| Status           | Cloud platforms                                                                                                                                            | Models                                                            |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| Beta             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws)                                         | [All models](https://platform.claude.com/docs/en/models/overview) |
+| Status | Cloud platforms | Models |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws) | [All models](https://platform.claude.com/docs/en/models/overview) |
 | Beta<sup>1</sup> | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [All models](https://platform.claude.com/docs/en/models/overview) |
 
 1. You write your own worker, which calls the Environments Work endpoints.
@@ -694,9 +694,9 @@ Beta headers allow you to access experimental features and new model capabilitie
 
 [Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item    | Zero data retention                                                                                                                                                                                                                                         | HIPAA                                                               |
-| ------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| Status  | Not eligible                                                                                                                                                                                                                                                | Not eligible                                                        |
+| Item | Zero data retention | HIPAA |
+| ----- | ----- | ----- |
+| Status | Not eligible | Not eligible |
 | Details | Not eligible for ZDR, except for self-hosted Managed Agents. Sessions are stateful resources; transcripts persist until you delete them. [Learn more](https://platform.claude.com/docs/en/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Not eligible for HIPAA. Applies to all Managed Agents sub-features. |
 
 Applicable endpoints:

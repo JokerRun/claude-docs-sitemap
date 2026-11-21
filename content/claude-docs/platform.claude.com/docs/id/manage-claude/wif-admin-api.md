@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/wif-admin-api
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: a24b276b44228d06f42aa7ee9b014cb5e1f670dd9a8086f6d02911023dbb461b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 94e5ea58514bb15ee70dffeba8db31dac8b0b72d66994324c29911c88ae92d2f
 ---
 
 ---
@@ -503,11 +503,11 @@ Untuk detail parameter lengkap dan skema respons, lihat [Referensi API akun laya
 
 [Penerbit federasi](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#federation-issuers) (`fdis_...`) mendaftarkan penyedia identitas OIDC ke organisasi Anda. Field `jwks` adalah “discriminated union” (union terdiskriminasi) yang mengontrol cara Anthropic mengambil kunci penandatanganan penyedia:
 
-| Nilai `jwks`                             | Kapan digunakan                                                                  |
-| ---------------------------------------- | -------------------------------------------------------------------------------- |
-| `{"type": "discovery"}`                  | Penyedia menyajikan `/.well-known/openid-configuration` di URL penerbit.         |
-| `{"type": "explicit_url", "url": "..."}` | Arahkan langsung ke endpoint JWKS.                                               |
-| `{"type": "inline", "keys": [...]}`      | Unggah set kunci untuk penyedia yang tidak dapat dijangkau dari internet publik. |
+| Nilai `jwks` | Kapan digunakan |
+| ----- | ----- |
+| `{"type": "discovery"}` | Penyedia menyajikan `/.well-known/openid-configuration` di URL penerbit. |
+| `{"type": "explicit_url", "url": "..."}` | Arahkan langsung ke endpoint JWKS. |
+| `{"type": "inline", "keys": [...]}` | Unggah set kunci untuk penyedia yang tidak dapat dijangkau dari internet publik. |
 
 Daftarkan penerbit. Contoh ini mendaftarkan GitHub Actions dengan penemuan JWKS:
 

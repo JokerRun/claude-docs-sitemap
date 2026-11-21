@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 84a70868ebda1c4abbc5ebbf1b43478116d01bb7efb0e3f858ffd0992dcb5cdd
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a88c42dbd9edd8cecc5f4683552471309b18197a8e3d9e4ee31ff63694ade7b8
 ---
 
 ---
@@ -85,11 +85,11 @@ Atau menggunakan kombinasi kedua pendekatan tersebut.
 
 Lihat tabel ini untuk opsi yang tersedia:
 
-| Properti    | Variabel lingkungan    | Wajib | Nilai default                 |
-| ----------- | ---------------------- | ----- | ----------------------------- |
-| `ApiKey`    | `ANTHROPIC_API_KEY`    | false | -                             |
-| `AuthToken` | `ANTHROPIC_AUTH_TOKEN` | false | -                             |
-| `BaseUrl`   | `ANTHROPIC_BASE_URL`   | true  | `"https://api.anthropic.com"` |
+| Properti | Variabel lingkungan | Wajib | Nilai default |
+| ----- | ----- | ----- | ----- |
+| `ApiKey` | `ANTHROPIC_API_KEY` | false | - |
+| `AuthToken` | `ANTHROPIC_AUTH_TOKEN` | false | - |
+| `BaseUrl` | `ANTHROPIC_BASE_URL` | true | `"https://api.anthropic.com"` |
 
 ### Memodifikasi konfigurasi
 
@@ -149,15 +149,15 @@ SDK melempar tipe exception kustom yang tidak diperiksa (unchecked):
 
 * `AnthropicApiException`: Kelas dasar untuk error API. Lihat tabel ini untuk mengetahui subkelas exception mana yang dilempar untuk setiap kode status HTTP:
 
-| Status  | Exception                                |
-| ------- | ---------------------------------------- |
-| 400     | `AnthropicBadRequestException`           |
-| 401     | `AnthropicUnauthorizedException`         |
-| 403     | `AnthropicForbiddenException`            |
-| 404     | `AnthropicNotFoundException`             |
-| 422     | `AnthropicUnprocessableEntityException`  |
-| 429     | `AnthropicRateLimitException`            |
-| 5xx     | `Anthropic5xxException`                  |
+| Status | Exception |
+| ----- | ----- |
+| 400 | `AnthropicBadRequestException` |
+| 401 | `AnthropicUnauthorizedException` |
+| 403 | `AnthropicForbiddenException` |
+| 404 | `AnthropicNotFoundException` |
+| 422 | `AnthropicUnprocessableEntityException` |
+| 429 | `AnthropicRateLimitException` |
+| 5xx | `Anthropic5xxException` |
 | lainnya | `AnthropicUnexpectedStatusCodeException` |
 
 Selain itu, semua error 4xx mewarisi dari `Anthropic4xxException`.

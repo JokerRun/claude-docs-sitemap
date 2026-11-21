@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/oauth-apps/branding-samples
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 4f23d940861edc5ed1bf121c4dc7e63ca0dbc2896ff0eaafc3e16f60680146a6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0cfd9eb7924615666ab13911e559c746fb2c9dcb90eedd0cd51bf6333966ceb3
 ---
 
 ---
@@ -15,19 +15,15 @@ description: "Tombol Link your Claude organization untuk Linked billing: HTML da
   Claude Platform OAuth adalah Beta Service: perangkat lunak prarilis yang disediakan berdasarkan perjanjian Anda dengan Anthropic, seperti [Ketentuan Layanan Komersial](https://www.anthropic.com/legal/commercial-terms), dan [Ketentuan Khusus Layanan](https://www.anthropic.com/legal/service-specific-terms). Endpoint, parameter, dan perilaku dapat berubah selama beta. Ini mungkin tidak cocok untuk penggunaan produksi.
 </Warning>
 
-Halaman ini berisi contoh branding untuk produk yang menggunakan [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections): tombol Link your Claude organization.
-
-## Tombol-tombol
-
-Letakkan tombol **Link your Claude organization** di tempat pelanggan Anda mengelola penagihan atau integrasi. Ketika seseorang mengkliknya, back end Anda [memulai koneksi penagihan](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#runtime-step-2).
+Tambahkan tombol **Link your Claude organization** ke produk yang menggunakan [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections). Letakkan tombol di tempat pelanggan Anda mengelola penagihan atau integrasi. Ketika seseorang mengkliknya, back end Anda [memulai koneksi penagihan](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#runtime-step-2).
 
 <Frame caption="Tombol dalam versi light (terang) dan dark (gelap)">
   ![Tombol Link your Claude organization, terang dan gelap, dengan logo Claude sebelum teksnya](https://platform.claude.com/docs/images/claude-link-button.svg)
 </Frame>
 
-### Salin HTML tombol
+## Salin HTML dan CSS tombol
 
-Buka **CSS tombol** dan letakkan blok `<style>`-nya di `<head>` halaman Anda, atau pindahkan aturan di dalamnya ke lembar gaya Anda. Kemudian buka **Contoh HTML untuk tombol Link your Claude organization** dan letakkan tautan di tempat Anda menginginkan tombol. Ubah `/claude/billing/link` menjadi alamat di back end Anda yang memulai koneksi.
+Buka **CSS tombol** dan letakkan blok `<style>`-nya di `<head>` halaman Anda, atau pindahkan aturan di dalamnya ke lembar gaya Anda. Kemudian, buka **Contoh HTML untuk tombol Link your Claude organization** dan letakkan tautan di tempat Anda menginginkan tombol. Ubah `/claude/billing/link` menjadi alamat di back end Anda yang memulai koneksi.
 
 Bersama-sama, CSS dan HTML tersebut berisi logo dan semua gaya tombol, sehingga jika situs Anda memiliki Content Security Policy, Anda tidak perlu menambahkan host Anthropic ke dalamnya.
 
@@ -129,21 +125,19 @@ Bersama-sama, CSS dan HTML tersebut berisi logo dan semua gaya tombol, sehingga 
   Untuk tombol gelap, tambahkan kelas `claude-button-dark` ke tautan.
 </Accordion>
 
-<Note>
-  Jika halaman Anda memulai koneksi dengan mengirimkan formulir, gunakan `<button type="submit" class="claude-button">` sebagai pengganti tautan. Gaya yang sama berlaku. Aturan di lembar gaya Anda yang menata setiap tombol di dalam sebuah container masih dapat mengubah gayanya. Bandingkan hasilnya dengan gambar.
-</Note>
+Jika halaman Anda memulai koneksi dengan mengirimkan formulir, gunakan `<button type="submit" class="claude-button">` sebagai pengganti tautan. Gaya yang sama berlaku. Aturan di lembar gaya Anda yang menata setiap tombol di dalam sebuah container masih dapat mengubah gaya tombol tersebut. Bandingkan hasilnya dengan gambar.
 
-### Warna
+## Warna
 
-| Bagian                                            | Tombol terang | Tombol gelap |
-| ------------------------------------------------- | ------------- | ------------ |
-| Latar belakang                                    | `#FFFFFF`     | `#141413`    |
-| Teks                                              | `#141413`     | `#FAF9F5`    |
-| Garis tepi                                        | `#87867F`     | `#73726C`    |
-| Latar belakang saat pointer berada di atas tombol | `#F5F4ED`     | `#262624`    |
-| Logo                                              | `#D97757`     | `#D97757`    |
+| Bagian | Tombol terang | Tombol gelap |
+| ----- | ----- | ----- |
+| Latar belakang | `#FFFFFF` | `#141413` |
+| Teks | `#141413` | `#FAF9F5` |
+| Garis tepi | `#87867F` | `#73726C` |
+| Latar belakang saat pointer berada di atas tombol | `#F5F4ED` | `#262624` |
+| Logo | `#D97757` | `#D97757` |
 
-### Unduh logo
+## Unduh logo
 
 Untuk membuat tombol yang sama tanpa HTML, misalnya di aplikasi seluler atau desktop, simpan file berikut sebagai `claude-logo.svg`. Gunakan warna di [Warna](https://platform.claude.com/docs/id/manage-claude/oauth-apps/branding-samples#button-colors), dan sembunyikan logo dari pembaca layar, karena teksnya sudah menamai tombol tersebut.
 

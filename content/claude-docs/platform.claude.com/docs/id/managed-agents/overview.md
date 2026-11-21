@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/overview
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 930510677379b48408aeab2a6b12241365ca52d95d37aa88ada37671d133ca91
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6fdd3945333808ad1a786f7ee1b338247956ac5b067a0a5c37c8cb582dc01dc7
 ---
 
 ---
@@ -46,10 +46,10 @@ featureMetadata:
 
 Anthropic menawarkan dua cara untuk membangun dengan Claude, masing-masing cocok untuk kasus penggunaan yang berbeda:
 
-|                        | Messages API                                    | Claude Managed Agents                                                                    |
-| ---------------------- | ----------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| **Apa itu**            | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
-| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci    | Tugas yang berjalan lama dan pekerjaan asinkron                                          |
+|  | Messages API | Claude Managed Agents |
+| ----- | ----- | ----- |
+| **Apa itu** | Akses langsung untuk memberikan prompt ke model | Harness agen siap pakai yang dapat dikonfigurasi dan berjalan di infrastruktur terkelola |
+| **Paling cocok untuk** | Loop agen kustom dan kontrol yang terperinci | Tugas yang berjalan lama dan pekerjaan asinkron |
 
 Claude Managed Agents menyediakan harness dan infrastruktur untuk menjalankan Claude sebagai agen otonom. Alih-alih membangun loop agen, eksekusi alat, dan runtime Anda sendiri, Anda mendapatkan lingkungan yang sepenuhnya terkelola tempat Claude dapat membaca file, menjalankan perintah, menjelajahi web, dan menjalankan kode dengan aman. Harness ini mendukung “prompt caching” (caching prompt) bawaan, compaction (pemadatan), dan optimasi performa lainnya untuk output agen yang berkualitas tinggi dan efisien. Untuk membangun loop agen Anda sendiri dengan akses model langsung, lihat [Menggunakan Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages).
 
@@ -75,12 +75,12 @@ Claude Managed Agents menyediakan harness dan infrastruktur untuk menjalankan Cl
 
 Claude Managed Agents dibangun di atas empat konsep:
 
-| Konsep         | Deskripsi                                                                                                                                         |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Agen**       | Model, prompt sistem, alat, server MCP, dan skill                                                                                                 |
+| Konsep | Deskripsi |
+| ----- | ----- |
+| **Agen** | Model, prompt sistem, alat, server MCP, dan skill |
 | **Lingkungan** | Konfigurasi untuk tempat sesi berjalan: sandbox cloud yang dikelola Anthropic, atau sandbox yang di-hosting sendiri di infrastruktur Anda sendiri |
-| **Sesi**       | Instans agen yang sedang berjalan di dalam sebuah environment, melakukan tugas tertentu dan menghasilkan output                                   |
-| **Event**      | Pesan yang dipertukarkan antara aplikasi Anda dan agen (giliran pengguna, hasil alat, pembaruan status)                                           |
+| **Sesi** | Instans agen yang sedang berjalan di dalam sebuah environment, melakukan tugas tertentu dan menghasilkan output |
+| **Event** | Pesan yang dipertukarkan antara aplikasi Anda dan agen (giliran pengguna, hasil alat, pembaruan status) |
 
 ## Cara kerjanya
 
@@ -153,9 +153,9 @@ Managed Agents dalam versi beta di semua model.
 
 ### Dukungan API
 
-| Status | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                              |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Semua model](https://platform.claude.com/docs/id/models/overview) |
 
 ### Header beta yang diperlukan
 
@@ -169,9 +169,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

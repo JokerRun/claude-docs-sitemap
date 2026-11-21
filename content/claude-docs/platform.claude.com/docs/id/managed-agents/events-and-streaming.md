@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/events-and-streaming
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 1cd5fe491d7e863175afc80a422c295f5bd6ce17fad7b0fbf01b981cb9ca8104
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: cfcad0f78fa30ede085c009d266850578b45001d28452f1f64dfc1616dddf0f1
 ---
 
 ---
@@ -673,11 +673,11 @@ Setiap event dalam riwayat sesi menyertakan timestamp `processed_at` (java, php:
 
 Event `session.status_idle` berarti agen telah berhenti dan sedang menunggu input. `stop_reason.type`-nya menjelaskan alasannya:
 
-| `stop_reason.type` | Mengapa sesi berhenti                                                                                                                                     | Apa yang harus dilakukan                                                                                                                                               |
-| ------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `end_turn`         | Agen menyelesaikan gilirannya, atau [Anda menginterupsinya](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent). | [Kirim `user.message`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#resume-an-idle-session) ketika Anda memiliki pekerjaan lain untuk agen. |
-| `requires_action`  | Satu atau lebih panggilan alat memerlukan jawaban dari Anda, seperti panggilan alat kustom atau permintaan konfirmasi.                                    | [Jawab setiap panggilan alat yang memblokir](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session).        |
-| `budget_reached`   | Biaya daftar yang dilacak sesi telah mencapai [anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets).                                  | [Ubah atau hapus anggaran](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget).                                                 |
+| `stop_reason.type` | Mengapa sesi berhenti | Apa yang harus dilakukan |
+| ----- | ----- | ----- |
+| `end_turn` | Agen menyelesaikan gilirannya, atau [Anda menginterupsinya](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#interrupt-the-agent). | [Kirim `user.message`](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#resume-an-idle-session) ketika Anda memiliki pekerjaan lain untuk agen. |
+| `requires_action` | Satu atau lebih panggilan alat memerlukan jawaban dari Anda, seperti panggilan alat kustom atau permintaan konfirmasi. | [Jawab setiap panggilan alat yang memblokir](https://platform.claude.com/docs/id/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session). |
+| `budget_reached` | Biaya daftar yang dilacak sesi telah mencapai [anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets). | [Ubah atau hapus anggaran](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget). |
 
 Tidak ada event yang Anda kirim yang dapat melanjutkan sesi yang dijeda karena anggarannya. Pekerjaan yang dijeda oleh anggaran akan dilanjutkan secara otomatis ketika Anda mengubah anggaran ke nilai di atas biaya daftar yang telah terpakai, atau menghapusnya. Ketika pekerjaan dilanjutkan, sesi memancarkan event `workflow_run.status_running` untuk setiap [eksekusi workflow yang dijeda oleh anggaran](https://platform.claude.com/docs/id/managed-agents/workflow-runs#budgets-and-limits). Eksekusi yang dijeda oleh interupsi tetap dijeda; lihat [Melanjutkan sesi pada anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#resume-a-session-at-its-budget). Lihat [Ketika sesi mencapai anggarannya](https://platform.claude.com/docs/id/managed-agents/budgets#when-a-session-reaches-its-budget) untuk event yang menandai jeda dan event yang masih diterima sesi.
 

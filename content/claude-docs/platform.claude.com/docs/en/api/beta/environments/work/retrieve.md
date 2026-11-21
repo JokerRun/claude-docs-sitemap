@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 2ea752110d664efa6989f4595f475058ae4d192aeb26d971cbe7fa1fc906eff1
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6c162f30473f9fe1e44085e9538bdd79c8f48a3571a46b8dd76842302830ac54
 ---
 
 ---
@@ -14,9 +14,9 @@ url: https://platform.claude.com/docs/en/api/beta/environments/work/retrieve
 
 **GET** `/v1/environments/{environment_id}/work/{work_id}`
 
-Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly.
-
 Retrieve detailed information about a specific work item.
+
+This endpoint accepts a Claude API key. It rejects the environment key and the work item's `secret`. On [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws?sdk_languages=http) or [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed?sdk_languages=http), use that platform's credentials instead.
 
 ## Path parameters
 
@@ -129,6 +129,8 @@ Retrieve detailed information about a specific work item.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

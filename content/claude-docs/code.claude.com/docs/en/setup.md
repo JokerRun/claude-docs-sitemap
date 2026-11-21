@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/setup
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 27ddc5d3a7664856523f8f2d98861ffe6f091f825fd233dcb2d24d8da2a38294
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 5704a52d5c6988379f48f7dc1e3a1f8800e0f2d5bb0cd3fcde15c3fb20be9852
 ---
 
 > ## Documentation Index
@@ -47,7 +47,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 >
 > **macOS, Linux, WSL:**
 >
-> ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+> ```bash theme={null}
 > curl -fsSL https://claude.ai/install.sh | bash
 > ```
 >
@@ -55,13 +55,13 @@ To install Claude Code, open a terminal and run the command for your system. If 
 >
 > **Windows PowerShell:**
 >
-> ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+> ```powershell theme={null}
 > irm https://claude.ai/install.ps1 | iex
 > ```
 >
 > **Windows CMD:**
 >
-> ```batch theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+> ```batch theme={null}
 > curl -fsSL https://claude.ai/install.cmd -o install.cmd && install.cmd && del install.cmd
 > ```
 >
@@ -79,7 +79,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 
 > [tab] Homebrew
 >
-> ```bash theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+> ```bash theme={null}
 > brew install --cask claude-code
 > ```
 >
@@ -91,7 +91,7 @@ To install Claude Code, open a terminal and run the command for your system. If 
 
 > [tab] WinGet
 >
-> ```powershell theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null} theme={null}
+> ```powershell theme={null}
 > winget install Anthropic.ClaudeCode
 > ```
 >

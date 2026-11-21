@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: c81856e22468009d05efb5078b79b3dd9c6a9943ef8a478ec2b3e2ab0f67a463
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e66e065ad6ed66d8b1e3102ff0cc1252daab636d57afe6e3e3095dbd348108d1
 ---
 
 ---
@@ -1386,10 +1386,10 @@ Memory store dalam versi beta di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status           | Platform cloud                                                                                                                                             |
-| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Beta<sup>1</sup> | Claude API                                                                                                                                                 |
-| Beta<sup>2</sup> | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws)                                                     |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta<sup>1</sup> | Claude API |
+| Beta<sup>2</sup> | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 | Beta<sup>3</sup> | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 1. Mengirim `managed-agents-2026-04-01` bersama `agent-memory-2026-07-22` pada panggilan memory store akan menghasilkan error 400.
@@ -1408,9 +1408,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

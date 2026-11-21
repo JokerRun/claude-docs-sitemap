@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/quickstart
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 015697a049d3cc301d29775545229516cc664af128b8cfc9f3dc6c4ad4346168
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: f6671afcc973b936cac76d838881b15bf0a13172f94f6815205e8f9cd28d9f6a
 ---
 
 ---
@@ -54,12 +54,12 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
 
 ## Konsep inti
 
-| Konsep         | Deskripsi                                                                                                                                         |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Agen**       | Model, prompt sistem, alat, server MCP, dan skill                                                                                                 |
+| Konsep | Deskripsi |
+| ----- | ----- |
+| **Agen** | Model, prompt sistem, alat, server MCP, dan skill |
 | **Lingkungan** | Konfigurasi untuk tempat sesi berjalan: sandbox cloud yang dikelola Anthropic, atau sandbox yang di-hosting sendiri di infrastruktur Anda sendiri |
-| **Sesi**       | Instans agen yang sedang berjalan di dalam sebuah environment, melakukan tugas tertentu dan menghasilkan output                                   |
-| **Event**      | Pesan yang dipertukarkan antara aplikasi Anda dan agen (giliran pengguna, hasil alat, pembaruan status)                                           |
+| **Sesi** | Instans agen yang sedang berjalan di dalam sebuah environment, melakukan tugas tertentu dan menghasilkan output |
+| **Event** | Pesan yang dipertukarkan antara aplikasi Anda dan agen (giliran pengguna, hasil alat, pembaruan status) |
 
 ## Sebelum Anda memulai
 
@@ -90,7 +90,7 @@ Biarkan Claude Code menyiapkan agen Anda untuk Anda
         Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
         ```bash
-        VERSION=2.12.0
+        VERSION=2.12.1
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -159,7 +159,7 @@ Untuk menjalankan contoh CLI, instal CLI:
     Untuk lingkungan Linux, unduh biner rilis secara langsung.
 
     ```bash
-    VERSION=2.12.0
+    VERSION=2.12.1
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -206,7 +206,7 @@ Untuk menjalankan contoh CLI, instal CLI:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.11.0")
+        implementation("com.anthropic:anthropic-java:3.12.0")
         ```
       </Tab>
 
@@ -215,7 +215,7 @@ Untuk menjalankan contoh CLI, instal CLI:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.11.0</version>
+            <version>3.12.0</version>
         </dependency>
         ```
       </Tab>

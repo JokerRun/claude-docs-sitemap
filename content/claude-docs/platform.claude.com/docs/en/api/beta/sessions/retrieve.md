@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: c43788c81bd1143533013d25a55c235aec576ad6eef5d9a2bfc2617a6ffe6fcf
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 05bde29deaabf8200ad8f9bb84e7cdf27cf585aae954fd49b05b9c3d2dc320c8
 ---
 
 ---
@@ -125,6 +125,8 @@ Get Session
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

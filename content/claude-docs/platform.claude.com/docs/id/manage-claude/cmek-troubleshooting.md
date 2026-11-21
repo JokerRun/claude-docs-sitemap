@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 12a7019ea502d038fade41e6ec84140f48a7af972de277f4d2fb79b3e98dea90
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 3dd30db532c3c41c0faee488586f871c3d4ce8b47a3967ad14809e334ce27a47
 ---
 
 ---
@@ -52,11 +52,11 @@ Kesalahan 503 ini berarti [Anthropic tidak dapat menjangkau kunci Anda](https://
 
 ## Verifikasi gagal: AWS KMS
 
-| Penyebab                                           | Perbaikan                                                                                                                                                                                 |
-| -------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ID organisasi salah                                | Kondisi `org_uuid` harus mencantumkan [ID organisasi Anthropic Anda](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#prerequisites), yaitu UUID tanpa awalan `org_`.       |
-| Sebuah workspace tidak ada dalam kebijakan         | Kondisi `compartment_uuid` harus [mencantumkan ID kompartemen](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms-workspaces) dari setiap workspace tempat kunci dilampirkan. |
-| Akses diberikan melalui IAM, bukan kebijakan kunci | Peran Anthropic memerlukan akses di [kebijakan kunci itu sendiri](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy).                                             |
+| Penyebab | Perbaikan |
+| ----- | ----- |
+| ID organisasi salah | Kondisi `org_uuid` harus mencantumkan [ID organisasi Anthropic Anda](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#prerequisites), yaitu UUID tanpa awalan `org_`. |
+| Sebuah workspace tidak ada dalam kebijakan | Kondisi `compartment_uuid` harus [mencantumkan ID kompartemen](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms-workspaces) dari setiap workspace tempat kunci dilampirkan. |
+| Akses diberikan melalui IAM, bukan kebijakan kunci | Peran Anthropic memerlukan akses di [kebijakan kunci itu sendiri](https://platform.claude.com/docs/id/manage-claude/cmek-aws-kms#key-policy). |
 
 Untuk mencetak kebijakan kunci, jalankan:
 
@@ -90,11 +90,11 @@ Jika Anda [mengganti kebijakan pada kunci](https://platform.claude.com/docs/id/m
 
 ## Verifikasi gagal: Google Cloud KMS
 
-| Penyebab                                   | Perbaikan                                                                                                                                                                                      |
-| ------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Label organisasi salah                     | Kunci memerlukan [label organisasi](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#organization-label), dengan ID organisasi Anthropic Anda dalam huruf kecil.        |
-| Berbagi terbatas domain                    | Kebijakan organisasi ini memblokir pemberian akses ke akun layanan Anthropic. [Tambahkan pengecualian](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#prerequisites). |
-| Versi kunci dinonaktifkan atau dimusnahkan | Versi utama kunci harus diaktifkan.                                                                                                                                                            |
+| Penyebab | Perbaikan |
+| ----- | ----- |
+| Label organisasi salah | Kunci memerlukan [label organisasi](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#organization-label), dengan ID organisasi Anthropic Anda dalam huruf kecil. |
+| Berbagi terbatas domain | Kebijakan organisasi ini memblokir pemberian akses ke akun layanan Anthropic. [Tambahkan pengecualian](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms#prerequisites). |
+| Versi kunci dinonaktifkan atau dimusnahkan | Versi utama kunci harus diaktifkan. |
 
 Untuk memeriksa pemberian akses, jalankan:
 
@@ -107,24 +107,24 @@ gcloud kms keys get-iam-policy <your-key-name> \
 
 ## Verifikasi gagal: Azure Key Vault
 
-| Penyebab                                  | Perbaikan                                                                                                                                                                             |
-| ----------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tag organisasi salah                      | Versi kunci saat ini memerlukan [tag organisasi](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#organization-tag).                                            |
-| Penetapan peran belum berlaku             | Penetapan peran baru dapat memerlukan beberapa menit. Tunggu, lalu coba lagi.                                                                                                         |
+| Penyebab | Perbaikan |
+| ----- | ----- |
+| Tag organisasi salah | Versi kunci saat ini memerlukan [tag organisasi](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#organization-tag). |
+| Penetapan peran belum berlaku | Penetapan peran baru dapat memerlukan beberapa menit. Tunggu, lalu coba lagi. |
 | Aturan jaringan vault memblokir Anthropic | Periksa aturan tersebut terhadap [pengaturan vault yang dibutuhkan Anthropic](https://platform.claude.com/docs/id/manage-claude/cmek-azure-key-vault#check-your-vault-configuration). |
 
 ## Melampirkan gagal di Claude Platform on AWS
 
 Claude Platform on AWS tidak memiliki langkah **Verifikasi**, sehingga masalah pada kunci akan terlihat saat Anda melampirkannya.
 
-| Penyebab                                             | Perbaikan                                                                                                                                                                                                                                                                                                                                                                                                               |
-| ---------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Ketidakcocokan kebijakan kunci                       | Cetak kebijakan kunci dengan [perintah `get-key-policy`](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#aws-kms) dan bandingkan dengan [kebijakan di halaman penyiapan](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#prepare-the-key-policy).                                                                                                                  |
-| Kebijakan kunci tidak mencantumkan workspace ini     | Jika kebijakan kunci Anda mencantumkan workspace, [tambahkan workspace ini ke setiap daftar](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#add-a-workspace). Jika tidak, periksa bahwa [kondisi `aws:SourceArn`](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#source-arn-condition) cocok dengan ARN workspace ini. Jangan menghapus kondisi tersebut. |
-| Kebijakan kunci memiliki kondisi `aws:SourceAccount` | Hapus kondisi tersebut dari kedua pernyataan service principal dan pertahankan `aws:SourceArn`. Panggilan Anthropic ke kunci Anda hanya mengirimkan ARN sumber.                                                                                                                                                                                                                                                         |
-| Kunci dipilih saat membuat workspace                 | Kebijakan kunci yang mencantumkan workspace tidak dapat mencantumkan workspace yang belum ada. Buat workspace tanpa kunci, lalu [tambahkan workspace tersebut ke kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#add-a-workspace).                                                                                                                                       |
-| Status atau lokasi kunci                             | Kunci harus diaktifkan, bersifat single-Region, dan berada di akun AWS serta region yang sama dengan workspace.                                                                                                                                                                                                                                                                                                         |
-| Izin tidak ada                                       | Principal yang Anda gunakan untuk masuk memerlukan `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci.                                                                                                                                                                                                                                                                                                      |
+| Penyebab | Perbaikan |
+| ----- | ----- |
+| Ketidakcocokan kebijakan kunci | Cetak kebijakan kunci dengan [perintah `get-key-policy`](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#aws-kms) dan bandingkan dengan [kebijakan di halaman penyiapan](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#prepare-the-key-policy). |
+| Kebijakan kunci tidak mencantumkan workspace ini | Jika kebijakan kunci Anda mencantumkan workspace, [tambahkan workspace ini ke setiap daftar](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#add-a-workspace). Jika tidak, periksa bahwa [kondisi `aws:SourceArn`](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#source-arn-condition) cocok dengan ARN workspace ini. Jangan menghapus kondisi tersebut. |
+| Kebijakan kunci memiliki kondisi `aws:SourceAccount` | Hapus kondisi tersebut dari kedua pernyataan service principal dan pertahankan `aws:SourceArn`. Panggilan Anthropic ke kunci Anda hanya mengirimkan ARN sumber. |
+| Kunci dipilih saat membuat workspace | Kebijakan kunci yang mencantumkan workspace tidak dapat mencantumkan workspace yang belum ada. Buat workspace tanpa kunci, lalu [tambahkan workspace tersebut ke kebijakan kunci](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws#add-a-workspace). |
+| Status atau lokasi kunci | Kunci harus diaktifkan, bersifat single-Region, dan berada di akun AWS serta region yang sama dengan workspace. |
+| Izin tidak ada | Principal yang Anda gunakan untuk masuk memerlukan `kms:DescribeKey`, `kms:Encrypt`, dan `kms:Decrypt` pada kunci. |
 
 Jika melampirkan masih gagal, temukan event `kms:` yang ditolak di CloudTrail pada akun kunci. Event tersebut menunjukkan principal yang memanggil dan, untuk panggilan kriptografis, konteks enkripsinya. Perbaiki penyebabnya, lalu klik **Simpan** lagi.
 

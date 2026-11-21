@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/use-case-guides/commerce-agents
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 34247761607ca9b0fe5c0603a460d9500b3a8c7f03f4ca226a5162ba81d3dd96
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d3ee18ed4105f55616363298c84ae17f440b26ea5ed00b5eab196454c406fc6b
 ---
 
 ---
@@ -56,12 +56,12 @@ Every write the merchant agent proposes, whether a listing update, a price chang
 
 Each example includes a customer storefront and a merchant portal over fictional data.
 
-| Vertical      | Storefront                                                                         | Merchant portal                                                                            |
-| ------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Retail        | Search, comparison, plans, cart, checkout, and memory over the built-in components | Daily digest, staged restocks and listing fixes, and the analysis delegate over a SQL view |
-| Travel        | Date-bound inventory and an itinerary component                                    | Occupancy calendar and date-window rate moves                                              |
-| Telecom       | Account context, a plan matrix, and server-authored fee disclosures                | Plan mix, price moves that state the lines affected, and protected regulated fees          |
-| Entertainment | Timed holds, waitlists, transfers, a venue map, and all-in fee disclosures         | Event pacing, hold releases that add real capacity, and fee-preserving price moves         |
+| Vertical | Storefront | Merchant portal |
+| ----- | ----- | ----- |
+| Retail | Search, comparison, plans, cart, checkout, and memory over the built-in components | Daily digest, staged restocks and listing fixes, and the analysis delegate over a SQL view |
+| Travel | Date-bound inventory and an itinerary component | Occupancy calendar and date-window rate moves |
+| Telecom | Account context, a plan matrix, and server-authored fee disclosures | Plan mix, price moves that state the lines affected, and protected regulated fees |
+| Entertainment | Timed holds, waitlists, transfers, a venue map, and all-in fee disclosures | Event pacing, hold releases that add real capacity, and fee-preserving price moves |
 
 ## Where it runs
 
@@ -71,12 +71,12 @@ The Messages API and Agent SDK runtimes run against the Claude API, [Amazon Bedr
 
 The blueprint ships with a [Claude Code](https://code.claude.com/docs/en/overview) plugin that reads the cloned repository as its reference and builds an agent against your own systems. Its four commands cover the path from nothing to a tested agent:
 
-| Command                    | What it does                                                                                                                              |
-| -------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| Command | What it does |
+| ----- | ----- |
 | `/scaffold-commerce-agent` | Interviews you about your stack, plays the plan back, and scaffolds a shopping agent, a merchant agent, or both on the reference packages |
-| `/add-commerce-flow`       | Adds one flow to an existing agent by copying its skill, wiring the tools it calls, and writing its first eval cases                      |
-| `/author-commerce-evals`   | Builds an eval suite with a runner, the first cases against your own catalog, and a replay gate for CI                                    |
-| `/review-commerce-agent`   | Maps an agent you already run, compares it with the reference, and converts the parts you pick                                            |
+| `/add-commerce-flow` | Adds one flow to an existing agent by copying its skill, wiring the tools it calls, and writing its first eval cases |
+| `/author-commerce-evals` | Builds an eval suite with a runner, the first cases against your own catalog, and a replay gate for CI |
+| `/review-commerce-agent` | Maps an agent you already run, compares it with the reference, and converts the parts you pick |
 
 The plugin also carries six skills on the architecture, prompt caching, UI as tools, trust and safety, evals, and merchant operations, which load whenever a Claude Code conversation matches them. Installation instructions are in the repository README.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 5bab9defe553b56abc2f531faac42f8da528d818b2fae48c8c166031e1e6b12b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 51bdf3acb46b23fbf00c0b304cce7b3855a6d2bd9978245e5e51f056459330e5
 ---
 
 ---
@@ -19,30 +19,30 @@ Untuk informasi harga terkini, lihat halaman [Harga Claude](https://claude.com/p
 
 Tabel berikut menunjukkan harga untuk semua model Claude:
 
-| Model                                                                                                                                                                  | Base input tokens     | 5m cache writes | 1h cache writes | Cache hits and refreshes | Output tokens          |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------- | :-------------- | :-------------- | :----------------------- | :--------------------- |
-| Claude Fable 5.2                                                                                                                                                       | $8 / MTok             | $10 / MTok      | $16 / MTok      | $0.20 / MTok<sup>1</sup> | $40 / MTok             |
-| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $8 / MTok             | $10 / MTok      | $16 / MTok      | $0.20 / MTok<sup>1</sup> | $40 / MTok             |
-| Claude Fable 5.1                                                                                                                                                       | $10 / MTok            | $12.50 / MTok   | $20 / MTok      | $0.25 / MTok<sup>1</sup> | $50 / MTok             |
-| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $10 / MTok            | $12.50 / MTok   | $20 / MTok      | $0.25 / MTok<sup>1</sup> | $50 / MTok             |
-| Claude Fable 5                                                                                                                                                         | $10 / MTok            | $12.50 / MTok   | $20 / MTok      | $1 / MTok                | $50 / MTok             |
-| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                              | $10 / MTok            | $12.50 / MTok   | $20 / MTok      | $1 / MTok                | $50 / MTok             |
-| Claude Opus 5.5                                                                                                                                                        | $4 / MTok             | $5 / MTok       | $8 / MTok       | $0.20 / MTok<sup>2</sup> | $20 / MTok             |
-| Claude Opus 5                                                                                                                                                          | $5 / MTok             | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok             |
-| Claude Opus 4.8                                                                                                                                                        | $5 / MTok             | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok             |
-| Claude Opus 4.7                                                                                                                                                        | $5 / MTok             | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok             |
-| Claude Opus 4.6                                                                                                                                                        | $5 / MTok             | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok             |
-| Claude Opus 4.5                                                                                                                                                        | $5 / MTok             | $6.25 / MTok    | $10 / MTok      | $0.50 / MTok             | $25 / MTok             |
-| Claude Opus 4.1 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $15 / MTok            | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok             |
-| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))               | $15 / MTok            | $18.75 / MTok   | $30 / MTok      | $1.50 / MTok             | $75 / MTok             |
-| Claude Sonnet 5.5                                                                                                                                                      | $2 / MTok             | $2.50 / MTok    | $4 / MTok       | $0.10 / MTok<sup>2</sup> | $10 / MTok             |
-| Claude Sonnet 5                                                                                                                                                        | $2 / MTok<sup>3</sup> | $2.50 / MTok    | $4 / MTok       | $0.20 / MTok             | $10 / MTok<sup>3</sup> |
-| Claude Sonnet 4.6                                                                                                                                                      | $3 / MTok             | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok             |
-| Claude Sonnet 4.5                                                                                                                                                      | $3 / MTok             | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok             |
-| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $3 / MTok             | $3.75 / MTok    | $6 / MTok       | $0.30 / MTok             | $15 / MTok             |
-| Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.10 / MTok          | $0.125 / MTok   | $0.20 / MTok    | $0.01 / MTok             | $0.50 / MTok           |
-| Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.50 / MTok          | $0.625 / MTok   | $1 / MTok       | $0.05 / MTok             | $2.50 / MTok           |
-| Claude Haiku 4.5                                                                                                                                                       | $1 / MTok             | $1.25 / MTok    | $2 / MTok       | $0.10 / MTok             | $5 / MTok              |
+| Model | Base input tokens | 5m cache writes | 1h cache writes | Cache hits and refreshes | Output tokens |
+| :---- | :---- | :---- | :---- | :---- | :---- |
+| Claude Fable 5.2 | $8 / MTok | $10 / MTok | $16 / MTok | $0.20 / MTok<sup>1</sup> | $40 / MTok |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842)) | $8 / MTok | $10 / MTok | $16 / MTok | $0.20 / MTok<sup>1</sup> | $40 / MTok |
+| Claude Fable 5.1 | $10 / MTok | $12.50 / MTok | $20 / MTok | $0.25 / MTok<sup>1</sup> | $50 / MTok |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | $10 / MTok | $12.50 / MTok | $20 / MTok | $0.25 / MTok<sup>1</sup> | $50 / MTok |
+| Claude Fable 5 | $10 / MTok | $12.50 / MTok | $20 / MTok | $1 / MTok | $50 / MTok |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842)) | $10 / MTok | $12.50 / MTok | $20 / MTok | $1 / MTok | $50 / MTok |
+| Claude Opus 5.5 | $4 / MTok | $5 / MTok | $8 / MTok | $0.20 / MTok<sup>2</sup> | $20 / MTok |
+| Claude Opus 5 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.8 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.7 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.6 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.5 | $5 / MTok | $6.25 / MTok | $10 / MTok | $0.50 / MTok | $25 / MTok |
+| Claude Opus 4.1 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $15 / MTok | $18.75 / MTok | $30 / MTok | $1.50 / MTok | $75 / MTok |
+| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $15 / MTok | $18.75 / MTok | $30 / MTok | $1.50 / MTok | $75 / MTok |
+| Claude Sonnet 5.5 | $2 / MTok | $2.50 / MTok | $4 / MTok | $0.10 / MTok<sup>2</sup> | $10 / MTok |
+| Claude Sonnet 5 | $2 / MTok<sup>3</sup> | $2.50 / MTok | $4 / MTok | $0.20 / MTok | $10 / MTok<sup>3</sup> |
+| Claude Sonnet 4.6 | $3 / MTok | $3.75 / MTok | $6 / MTok | $0.30 / MTok | $15 / MTok |
+| Claude Sonnet 4.5 | $3 / MTok | $3.75 / MTok | $6 / MTok | $0.30 / MTok | $15 / MTok |
+| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $3 / MTok | $3.75 / MTok | $6 / MTok | $0.30 / MTok | $15 / MTok |
+| Claude Haiku 5.5 (for prompts up to 100,000 tokens) | $0.10 / MTok | $0.125 / MTok | $0.20 / MTok | $0.01 / MTok | $0.50 / MTok |
+| Claude Haiku 5.5 (for prompts over 100,000 tokens) | $0.50 / MTok | $0.625 / MTok | $1 / MTok | $0.05 / MTok | $2.50 / MTok |
+| Claude Haiku 4.5 | $1 / MTok | $1.25 / MTok | $2 / MTok | $0.10 / MTok | $5 / MTok |
 
 *<sup>1 Cache hits and refreshes on Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, and Claude Mythos 5.1 are priced at 0.025x the base input price.</sup>*
 
@@ -92,16 +92,16 @@ Untuk harga resmi di [Claude Models on Google Cloud (Google managed)](https://pl
 
 [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) ditagih melalui AWS Marketplace menggunakan Claude Consumption Units (CCU). Anthropic menghitung penggunaan token Anda dalam USD berdasarkan tarif standar per model dan per fitur, menerapkan diskon yang telah dinegosiasikan, mengonversi hasilnya menjadi CCU dengan tarif $0,01 USD per CCU, dan melaporkan jumlah CCU ke AWS Marketplace setiap jam. Tagihan AWS Anda menampilkan satu item baris CCU.
 
-| Konsep                  | Detail                                                                                                                                                                                                                                                |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Unit penagihan**      | Claude Consumption Unit (CCU)                                                                                                                                                                                                                         |
-| **Harga CCU**           | $0,01 USD per CCU (tetap; diskon diterapkan pada konversi token ke CCU, bukan pada harga CCU)                                                                                                                                                         |
-| **Konversi**            | Penggunaan token dihitung dalam USD berdasarkan tarif standar per model dan per fitur (sama dengan [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing)), lalu dikonversi menjadi CCU dengan tarif $0,01 USD per CCU |
-| **Frekuensi penagihan** | Pengukuran per jam ke AWS Marketplace; faktur bulanan                                                                                                                                                                                                 |
-| **Model pembayaran**    | Hanya pascabayar (arrears); tanpa kredit prabayar                                                                                                                                                                                                     |
-| **Diskon**              | Diterapkan dalam bentuk jumlah CCU terukur yang lebih sedikit                                                                                                                                                                                         |
-| **Pajak**               | Pengukuran sebelum pajak; AWS Marketplace menangani pajak                                                                                                                                                                                             |
-| **Visibilitas biaya**   | Rincian real-time di Claude Console (diakses melalui AWS Console); AWS Cost Explorer menampilkan CCU agregat                                                                                                                                          |
+| Konsep | Detail |
+| ----- | ----- |
+| **Unit penagihan** | Claude Consumption Unit (CCU) |
+| **Harga CCU** | $0,01 USD per CCU (tetap; diskon diterapkan pada konversi token ke CCU, bukan pada harga CCU) |
+| **Konversi** | Penggunaan token dihitung dalam USD berdasarkan tarif standar per model dan per fitur (sama dengan [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing)), lalu dikonversi menjadi CCU dengan tarif $0,01 USD per CCU |
+| **Frekuensi penagihan** | Pengukuran per jam ke AWS Marketplace; faktur bulanan |
+| **Model pembayaran** | Hanya pascabayar (arrears); tanpa kredit prabayar |
+| **Diskon** | Diterapkan dalam bentuk jumlah CCU terukur yang lebih sedikit |
+| **Pajak** | Pengukuran sebelum pajak; AWS Marketplace menangani pajak |
+| **Visibilitas biaya** | Rincian real-time di Claude Console (diakses melalui AWS Console); AWS Cost Explorer menampilkan CCU agregat |
 
 **CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS), penggunaan akan ditagih dalam Claude Consumption Units (“CCU”) alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [bagian API pada halaman harga Claude](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
 
@@ -121,16 +121,16 @@ Saat Anda mendaftar di halaman layanan **Claude Platform on AWS** di AWS Console
 
 [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) ditagih melalui Azure Marketplace menggunakan Claude Consumption Units (CCU). Anthropic menghitung penggunaan token Anda dalam USD berdasarkan tarif standar per model dan per fitur, menerapkan diskon yang telah dinegosiasikan, mengonversi hasilnya menjadi CCU dengan tarif $0,01 USD per CCU, dan melaporkan jumlah CCU ke Azure Marketplace setiap jam. Tagihan Azure Anda menampilkan satu item baris CCU.
 
-| Konsep                  | Detail                                                                                                                                                                                                                                                |
-| ----------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Unit penagihan**      | Claude Consumption Unit (CCU)                                                                                                                                                                                                                         |
-| **Harga CCU**           | $0,01 USD per CCU (tetap; diskon diterapkan pada konversi token ke CCU, bukan pada harga CCU)                                                                                                                                                         |
-| **Konversi**            | Penggunaan token dihitung dalam USD berdasarkan tarif standar per model dan per fitur (sama dengan [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing)), lalu dikonversi menjadi CCU dengan tarif $0,01 USD per CCU |
-| **Frekuensi penagihan** | Pengukuran per jam ke Azure Marketplace; faktur bulanan                                                                                                                                                                                               |
-| **Model pembayaran**    | Hanya pascabayar (arrears); tanpa kredit prabayar                                                                                                                                                                                                     |
-| **Diskon**              | Diterapkan dalam bentuk jumlah CCU terukur yang lebih sedikit                                                                                                                                                                                         |
-| **Pajak**               | Pengukuran sebelum pajak; Azure Marketplace menangani pajak                                                                                                                                                                                           |
-| **Visibilitas biaya**   | Azure Cost Management menampilkan CCU agregat                                                                                                                                                                                                         |
+| Konsep | Detail |
+| ----- | ----- |
+| **Unit penagihan** | Claude Consumption Unit (CCU) |
+| **Harga CCU** | $0,01 USD per CCU (tetap; diskon diterapkan pada konversi token ke CCU, bukan pada harga CCU) |
+| **Konversi** | Penggunaan token dihitung dalam USD berdasarkan tarif standar per model dan per fitur (sama dengan [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing)), lalu dikonversi menjadi CCU dengan tarif $0,01 USD per CCU |
+| **Frekuensi penagihan** | Pengukuran per jam ke Azure Marketplace; faktur bulanan |
+| **Model pembayaran** | Hanya pascabayar (arrears); tanpa kredit prabayar |
+| **Diskon** | Diterapkan dalam bentuk jumlah CCU terukur yang lebih sedikit |
+| **Pajak** | Pengukuran sebelum pajak; Azure Marketplace menangani pajak |
+| **Visibilitas biaya** | Azure Cost Management menampilkan CCU agregat |
 
 **CCU:** Claude Consumption Unit. CCU adalah satuan ukuran yang digunakan semata-mata untuk penagihan Platform Marketplace. Jika Pelanggan mengakses Layanan melalui Platform Marketplace tertentu (misalnya, Claude Platform on AWS, Claude in Microsoft Foundry), penggunaan akan ditagih dalam Claude Consumption Units (“CCU”) alih-alih per MTok. Seratus (100) CCU mewakili $1,00 USD biaya terutang untuk Layanan, dihitung berdasarkan harga yang berlaku di [bagian API pada halaman harga Claude](https://claude.com/pricing#api), setelah penerapan diskon apa pun.
 
@@ -151,11 +151,11 @@ Ada dua cara untuk mengaktifkan caching prompt:
 
 Caching prompt menggunakan pengali harga berikut relatif terhadap tarif token input dasar:
 
-| Operasi cache           | Pengali                                          | Durasi                                       |
-| ----------------------- | ------------------------------------------------ | -------------------------------------------- |
-| Penulisan cache 5 menit | 1,25x harga input dasar                          | Cache berlaku selama 5 menit                 |
-| Penulisan cache 1 jam   | 2x harga input dasar                             | Cache berlaku selama 1 jam                   |
-| Pembacaan cache (hit)   | 0,1x harga input dasar pada sebagian besar model | Durasi yang sama dengan penulisan sebelumnya |
+| Operasi cache | Pengali | Durasi |
+| ----- | ----- | ----- |
+| Penulisan cache 5 menit | 1,25x harga input dasar | Cache berlaku selama 5 menit |
+| Penulisan cache 1 jam | 2x harga input dasar | Cache berlaku selama 1 jam |
+| Pembacaan cache (hit) | 0,1x harga input dasar pada sebagian besar model | Durasi yang sama dengan penulisan sebelumnya |
 
 Token penulisan cache dikenakan biaya saat konten pertama kali disimpan. Token pembacaan cache dikenakan biaya saat permintaan berikutnya mengambil konten yang di-cache.
 
@@ -166,13 +166,13 @@ Caching menghemat biaya setelah sejumlah kecil pembacaan cache:
 
 Biaya cache hit bergantung pada model:
 
-| Model                                  | Pengali cache hit | Harga cache hit per juta token                                                              |
-| -------------------------------------- | ----------------- | ------------------------------------------------------------------------------------------- |
-| Claude Fable 5.2 dan Claude Mythos 5.2 | 0,025x            | $0,20 USD                                                                                   |
-| Claude Fable 5.1 dan Claude Mythos 5.1 | 0,025x            | $0,25 USD                                                                                   |
-| Claude Opus 5.5                        | 0,05x             | $0,20 USD                                                                                   |
-| Claude Sonnet 5.5                      | 0,05x             | $0,10 USD                                                                                   |
-| Semua model lainnya                    | 0,1x              | Lihat [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing) |
+| Model | Pengali cache hit | Harga cache hit per juta token |
+| ----- | ----- | ----- |
+| Claude Fable 5.2 dan Claude Mythos 5.2 | 0,025x | $0,20 USD |
+| Claude Fable 5.1 dan Claude Mythos 5.1 | 0,025x | $0,25 USD |
+| Claude Opus 5.5 | 0,05x | $0,20 USD |
+| Claude Sonnet 5.5 | 0,05x | $0,10 USD |
+| Semua model lainnya | 0,1x | Lihat [Harga model](https://platform.claude.com/docs/id/about-claude/pricing#model-pricing) |
 
 Pengali ini bertumpuk dengan pengubah harga lainnya, termasuk diskon Batch API dan residensi data.
 
@@ -208,11 +208,11 @@ Mode cepat untuk Claude Fable 5.2 juga tersedia di Claude di Microsoft Foundry u
 
 Mode cepat juga tersedia untuk Claude Mythos 5.2 di Claude API. [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability) mencantumkan setiap platform tempat Claude Mythos 5.2 memiliki mode cepat.
 
-| Model                           | Input          | Output         |
-| ------------------------------- | -------------- | -------------- |
-| Claude Fable 5.2                | $16 USD / MTok | $80 USD / MTok |
-| Claude Mythos 5.2               | $16 USD / MTok | $80 USD / MTok |
-| Claude Opus 5.5                 | $8 USD / MTok  | $40 USD / MTok |
+| Model | Input | Output |
+| ----- | ----- | ----- |
+| Claude Fable 5.2 | $16 USD / MTok | $80 USD / MTok |
+| Claude Mythos 5.2 | $16 USD / MTok | $80 USD / MTok |
+| Claude Opus 5.5 | $8 USD / MTok | $40 USD / MTok |
 | Claude Opus 5 / Claude Opus 4.8 | $10 USD / MTok | $50 USD / MTok |
 
 Harga mode cepat dapat digabungkan dengan pengubah harga lainnya:
@@ -228,30 +228,30 @@ Untuk informasi lebih lanjut, lihat [Mode cepat](https://platform.claude.com/doc
 
 Batch API memungkinkan pemrosesan asinkron untuk permintaan dalam volume besar dengan diskon 50 persen untuk token input maupun output.
 
-| Model                                                                                                                                                                  | Batch input  | Batch output  |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------- | :------------ |
-| Claude Fable 5.2                                                                                                                                                       | $4 / MTok    | $20 / MTok    |
-| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $4 / MTok    | $20 / MTok    |
-| Claude Fable 5.1                                                                                                                                                       | $5 / MTok    | $25 / MTok    |
-| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                            | $5 / MTok    | $25 / MTok    |
-| Claude Fable 5                                                                                                                                                         | $5 / MTok    | $25 / MTok    |
-| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))                                                                              | $5 / MTok    | $25 / MTok    |
-| Claude Opus 5.5                                                                                                                                                        | $2 / MTok    | $10 / MTok    |
-| Claude Opus 5                                                                                                                                                          | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.8                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.7                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.6                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
-| Claude Opus 4.5                                                                                                                                                        | $2.50 / MTok | $12.50 / MTok |
+| Model | Batch input | Batch output |
+| :---- | :---- | :---- |
+| Claude Fable 5.2 | $4 / MTok | $20 / MTok |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842)) | $4 / MTok | $20 / MTok |
+| Claude Fable 5.1 | $5 / MTok | $25 / MTok |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | $5 / MTok | $25 / MTok |
+| Claude Fable 5 | $5 / MTok | $25 / MTok |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842)) | $5 / MTok | $25 / MTok |
+| Claude Opus 5.5 | $2 / MTok | $10 / MTok |
+| Claude Opus 5 | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.8 | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.7 | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.6 | $2.50 / MTok | $12.50 / MTok |
+| Claude Opus 4.5 | $2.50 / MTok | $12.50 / MTok |
 | Claude Opus 4.1 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $7.50 / MTok | $37.50 / MTok |
-| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))               | $7.50 / MTok | $37.50 / MTok |
-| Claude Sonnet 5.5                                                                                                                                                      | $1 / MTok    | $5 / MTok     |
-| Claude Sonnet 5                                                                                                                                                        | $1 / MTok    | $5 / MTok     |
-| Claude Sonnet 4.6                                                                                                                                                      | $1.50 / MTok | $7.50 / MTok  |
-| Claude Sonnet 4.5                                                                                                                                                      | $1.50 / MTok | $7.50 / MTok  |
-| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $1.50 / MTok | $7.50 / MTok  |
-| Claude Haiku 5.5 (for prompts up to 100,000 tokens)                                                                                                                    | $0.05 / MTok | $0.25 / MTok  |
-| Claude Haiku 5.5 (for prompts over 100,000 tokens)                                                                                                                     | $0.25 / MTok | $1.25 / MTok  |
-| Claude Haiku 4.5                                                                                                                                                       | $0.50 / MTok | $2.50 / MTok  |
+| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $7.50 / MTok | $37.50 / MTok |
+| Claude Sonnet 5.5 | $1 / MTok | $5 / MTok |
+| Claude Sonnet 5 | $1 / MTok | $5 / MTok |
+| Claude Sonnet 4.6 | $1.50 / MTok | $7.50 / MTok |
+| Claude Sonnet 4.5 | $1.50 / MTok | $7.50 / MTok |
+| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | $1.50 / MTok | $7.50 / MTok |
+| Claude Haiku 5.5 (for prompts up to 100,000 tokens) | $0.05 / MTok | $0.25 / MTok |
+| Claude Haiku 5.5 (for prompts over 100,000 tokens) | $0.25 / MTok | $1.25 / MTok |
+| Claude Haiku 4.5 | $0.50 / MTok | $2.50 / MTok |
 
 * **MTok:** Million tokens. $5 / MTok is $5 for every million tokens.
 * **Limited access:** Available only to organizations verified through Anthropic’s verification programs, such as the [Cyber Verification Program](https://support.claude.com/en/articles/14604842). To request access, apply to the program that covers your use case.
@@ -283,23 +283,23 @@ Token tambahan dari penggunaan alat berasal dari:
 
 Saat Anda menggunakan `tools`, API juga secara otomatis menyertakan “system prompt” (prompt sistem) khusus untuk model yang memungkinkan penggunaan alat. Tabel berikut mencantumkan jumlah token penggunaan alat yang diperlukan setiap model (tidak termasuk token tambahan yang disebutkan sebelumnya). Tabel ini mengasumsikan bahwa Anda menyediakan setidaknya satu alat. Jika Anda tidak menyediakan `tools`, pilihan alat `none` menggunakan 0 token prompt sistem tambahan.
 
-| Model                                                                                                                                                                  | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
-| :--------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :---------------------------------------- | :--------------------------------------- |
-| Claude Opus 5.5                                                                                                                                                        | 286 tokens                                |                                          |
-| Claude Opus 5                                                                                                                                                          | 286 tokens                                | 406 tokens                               |
-| Claude Opus 4.8                                                                                                                                                        | 290 tokens                                | 410 tokens                               |
-| Claude Opus 4.7                                                                                                                                                        | 675 tokens                                | 804 tokens                               |
-| Claude Opus 4.6                                                                                                                                                        | 497 tokens                                | 589 tokens                               |
-| Claude Opus 4.5                                                                                                                                                        | 496 tokens                                | 588 tokens                               |
-| Claude Opus 4.1 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
-| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations))               | 313 tokens                                | 315 tokens                               |
-| Claude Sonnet 5.5                                                                                                                                                      | 286 tokens                                |                                          |
-| Claude Sonnet 5                                                                                                                                                        | 354 tokens                                | 474 tokens                               |
-| Claude Sonnet 4.6                                                                                                                                                      | 497 tokens                                | 589 tokens                               |
-| Claude Sonnet 4.5                                                                                                                                                      | 496 tokens                                | 588 tokens                               |
-| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens                                | 315 tokens                               |
-| Claude Haiku 5.5                                                                                                                                                       | 286 tokens                                | 406 tokens                               |
-| Claude Haiku 4.5                                                                                                                                                       | 496 tokens                                | 588 tokens                               |
+| Model | Tool use system prompt tokens: auto, none | Tool use system prompt tokens: any, tool |
+| :---- | :---- | :---- |
+| Claude Opus 5.5 | 286 tokens |  |
+| Claude Opus 5 | 286 tokens | 406 tokens |
+| Claude Opus 4.8 | 290 tokens | 410 tokens |
+| Claude Opus 4.7 | 675 tokens | 804 tokens |
+| Claude Opus 4.6 | 497 tokens | 589 tokens |
+| Claude Opus 4.5 | 496 tokens | 588 tokens |
+| Claude Opus 4.1 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens | 315 tokens |
+| Claude Opus 4 ([retired, except on Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens | 315 tokens |
+| Claude Sonnet 5.5 | 286 tokens |  |
+| Claude Sonnet 5 | 354 tokens | 474 tokens |
+| Claude Sonnet 4.6 | 497 tokens | 589 tokens |
+| Claude Sonnet 4.5 | 496 tokens | 588 tokens |
+| Claude Sonnet 4 ([retired, except on Claude Models on Google Cloud (Google managed) and Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | 313 tokens | 315 tokens |
+| Claude Haiku 5.5 | 286 tokens | 406 tokens |
+| Claude Haiku 4.5 | 496 tokens | 588 tokens |
 
 * **auto, none:** The count when tool\_choice is auto or none.
 * **any, tool:** The count when tool\_choice is any or tool.
@@ -317,10 +317,10 @@ Untuk informasi lebih lanjut tentang implementasi dan praktik terbaik “tool us
 
 Definisi alat bash menambahkan token input berikut ke permintaan Anda. Ini merupakan tambahan dari [prompt sistem penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview#pricing) per model yang berlaku setiap kali ada alat yang disertakan.
 
-| Model                                                            | Token input tambahan |
-| ---------------------------------------------------------------- | -------------------- |
-| Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview | 325 token            |
-| Model Claude 4.6 dan yang lebih lama                             | 244 token            |
+| Model | Token input tambahan |
+| ----- | ----- |
+| Model Claude 4.7 dan yang lebih baru serta Claude Mythos Preview | 325 token |
+| Model Claude 4.6 dan yang lebih lama | 244 token |
 
 Token tambahan dikonsumsi oleh:
 
@@ -361,10 +361,10 @@ Alat editor teks menggunakan struktur harga yang sama dengan alat lain yang digu
 
 Selain token dasar, token input tambahan berikut diperlukan untuk alat editor teks:
 
-| Alat                                                                                      | Token input tambahan |
-| ----------------------------------------------------------------------------------------- | -------------------- |
-| `text_editor_20250728` (Claude 4.7 dan model yang lebih baru serta Claude Mythos Preview) | 974 token            |
-| `text_editor_20250728` (Claude 4.6 dan model yang lebih lama)                             | 745 token            |
+| Alat | Token input tambahan |
+| ----- | ----- |
+| `text_editor_20250728` (Claude 4.7 dan model yang lebih baru serta Claude Mythos Preview) | 974 token |
+| `text_editor_20250728` (Claude 4.6 dan model yang lebih lama) | 745 token |
 
 Lihat [harga penggunaan alat](https://platform.claude.com/docs/id/about-claude/pricing#tool-use-pricing) untuk detail harga lengkap.
 
@@ -473,15 +473,15 @@ Semua token yang dikonsumsi oleh sesi Claude Managed Agents ditagih dengan tarif
 
 Pengubah Messages API berikut **tidak** berlaku untuk sesi Claude Managed Agents:
 
-| Pengubah                                                                                                | Mengapa tidak berlaku                                        |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [Diskon Batch API](https://platform.claude.com/docs/id/about-claude/pricing#batch-processing)           | Sesi bersifat stateful dan interaktif. Tidak ada mode batch. |
-| [Harga platform cloud](https://platform.claude.com/docs/id/about-claude/pricing#cloud-platform-pricing) | Tidak tersedia di platform cloud yang dioperasikan mitra.    |
+| Pengubah | Mengapa tidak berlaku |
+| ----- | ----- |
+| [Diskon Batch API](https://platform.claude.com/docs/id/about-claude/pricing#batch-processing) | Sesi bersifat stateful dan interaktif. Tidak ada mode batch. |
+| [Harga platform cloud](https://platform.claude.com/docs/id/about-claude/pricing#cloud-platform-pricing) | Tidak tersedia di platform cloud yang dioperasikan mitra. |
 
 ### Runtime sesi
 
-| SKU          | Tarif                  | Pengukuran              |
-| ------------ | ---------------------- | ----------------------- |
+| SKU | Tarif | Pengukuran |
+| ----- | ----- | ----- |
 | Runtime sesi | $0,08 USD per jam-sesi | Durasi status `running` |
 
 Runtime diukur hingga milidetik dan hanya terakumulasi saat status sesi adalah `running`. Waktu yang dihabiskan dalam status `idle` (menunggu pesan berikutnya dari Anda atau konfirmasi alat), `rescheduling`, atau `terminated` tidak dihitung sebagai runtime.
@@ -494,22 +494,22 @@ Runtime diukur hingga milidetik dan hanya terakumulasi saat status sesi adalah `
 
 Sesi coding selama 1 jam menggunakan Claude Opus 5.5 yang mengonsumsi 50.000 token input dan 15.000 token output:
 
-| Item baris   | Perhitungan              | Biaya         |
-| ------------ | ------------------------ | ------------- |
-| Token input  | 50.000 × $4 / 1.000.000  | $0,20 USD     |
-| Token output | 15.000 × $20 / 1.000.000 | $0,30 USD     |
-| Runtime sesi | 1,0 jam × $0,08          | $0,08 USD     |
-| **Total**    |                          | **$0,58 USD** |
+| Item baris | Perhitungan | Biaya |
+| ----- | ----- | ----- |
+| Token input | 50.000 × $4 / 1.000.000 | $0,20 USD |
+| Token output | 15.000 × $20 / 1.000.000 | $0,30 USD |
+| Runtime sesi | 1,0 jam × $0,08 | $0,08 USD |
+| **Total** |  | **$0,58 USD** |
 
 Jika caching prompt aktif dan 40.000 dari token input merupakan pembacaan cache:
 
-| Item baris                      | Perhitungan                    | Biaya          |
-| ------------------------------- | ------------------------------ | -------------- |
-| Token input yang tidak di-cache | 10.000 × $4 / 1.000.000        | $0,04 USD      |
-| Token pembacaan cache           | 40.000 × $4 × 0,05 / 1.000.000 | $0,008 USD     |
-| Token output                    | 15.000 × $20 / 1.000.000       | $0,30 USD      |
-| Runtime sesi                    | 1,0 jam × $0,08                | $0,08 USD      |
-| **Total**                       |                                | **$0,428 USD** |
+| Item baris | Perhitungan | Biaya |
+| ----- | ----- | ----- |
+| Token input yang tidak di-cache | 10.000 × $4 / 1.000.000 | $0,04 USD |
+| Token pembacaan cache | 40.000 × $4 × 0,05 / 1.000.000 | $0,008 USD |
+| Token output | 15.000 × $20 / 1.000.000 | $0,30 USD |
+| Runtime sesi | 1,0 jam × $0,08 | $0,08 USD |
+| **Total** |  | **$0,428 USD** |
 
 ## Pertimbangan harga tambahan
 

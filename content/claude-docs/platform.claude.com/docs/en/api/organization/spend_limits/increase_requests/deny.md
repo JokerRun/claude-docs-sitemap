@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/spend_limits/increase_requests/deny
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 578e9b1e5173e335a80bba563a6be443828e6cec717a47db29a5f369c91ba395
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 71c54f62f5fbbcf69ca8d93b6cdc33f4060fc5c21fa5e059d77049f41682780a
 ---
 
 ---
@@ -271,7 +271,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

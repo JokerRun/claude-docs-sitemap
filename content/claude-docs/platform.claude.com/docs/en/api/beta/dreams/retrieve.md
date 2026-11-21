@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/retrieve
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 720e69c1881632eb118a02a1a49a7c3bc32b6f26a33ee1998868f0714868bae9
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2f2258d8d537c4310f189ed8dae08a0e23657f90d228cb8233e47944913e6549
 ---
 
 ---
@@ -132,6 +132,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -218,7 +220,7 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
 
     format: date-time
 
-  - `error: BetaDreamError or null`
+  - `error: BetaDreamErrorObject or null`
 
     Why the dream failed, or `null` if `status` isn't `failed`.
 

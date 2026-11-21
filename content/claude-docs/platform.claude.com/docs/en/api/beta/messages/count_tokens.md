@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 56e58d855ef6e3f2db16530b50ccbf97134d619bf88cd04299de59624a5d1c9d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: abd18dde6a8f3dfd749a5c0510f89d26e2688048e3beb5c8cd883ad51a0dc463
 ---
 
 ---
@@ -125,6 +125,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -861,7 +863,7 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
 
               - `page_age: optional string or null`
 
-            - `BetaWebSearchToolRequestError object`
+            - `BetaWebSearchToolRequestErrorObject object`
 
               - `type: "web_search_tool_result_error"`
 

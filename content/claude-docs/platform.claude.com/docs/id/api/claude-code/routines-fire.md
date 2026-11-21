@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/claude-code/routines-fire
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: ce3e3a75f9cdeb19239ad1ecb417a890999a1aec2791b5a68bac39e2093364fb
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 8e685e7746d4c21a91cd7dd5a397f02926ddb8df88aaf0ff7a79bae9a5162565
 ---
 
 ---
@@ -25,14 +25,14 @@ Memanggil endpoint ini memerlukan akun claude.ai dengan paket Pro, Max, Ultra, T
 
 Endpoint pemicu routine termasuk dalam permukaan produk Claude Code, yang berbeda dari API dan SDK Claude Platform dalam beberapa hal:
 
-| Aspek          | Endpoint ini                                                                                                                                    | API Claude Platform                                                                            |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| Autentikasi    | `Authorization: Bearer` dengan token per-routine (`sk-ant-oat01-...`) yang dibuat di [claude.ai/code/routines](https://claude.ai/code/routines) | Kunci API Claude dari Claude Console, dikirim sebagai `Authorization: Bearer`                  |
-| Cakupan token  | Hanya satu routine; tanpa akses baca                                                                                                            | Tingkat workspace                                                                              |
-| Dukungan SDK   | Tidak ada                                                                                                                                       | Tersedia di semua [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) |
-| Penagihan      | Penggunaan langganan Claude Code di claude.ai                                                                                                   | Penggunaan Claude Platform                                                                     |
-| Namespace path | `/v1/claude_code/...`                                                                                                                           | `/v1/...`                                                                                      |
-| Stabilitas     | Eksperimental                                                                                                                                   | Stabil atau beta standar                                                                       |
+| Aspek | Endpoint ini | API Claude Platform |
+| ----- | ----- | ----- |
+| Autentikasi | `Authorization: Bearer` dengan token per-routine (`sk-ant-oat01-...`) yang dibuat di [claude.ai/code/routines](https://claude.ai/code/routines) | Kunci API Claude dari Claude Console, dikirim sebagai `Authorization: Bearer` |
+| Cakupan token | Hanya satu routine; tanpa akses baca | Tingkat workspace |
+| Dukungan SDK | Tidak ada | Tersedia di semua [SDK klien](https://platform.claude.com/docs/id/cli-sdks-libraries/overview) |
+| Penagihan | Penggunaan langganan Claude Code di claude.ai | Penggunaan Claude Platform |
+| Namespace path | `/v1/claude_code/...` | `/v1/...` |
+| Stabilitas | Eksperimental | Stabil atau beta standar |
 
 ## Sebelum Anda memulai
 
@@ -76,24 +76,24 @@ Permintaan kembali setelah sesi dibuat. Permintaan ini tidak melakukan streaming
 
 ### Header
 
-| Nama                | Wajib         | Deskripsi                                                                                                                                                                           |
-| ------------------- | ------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `Authorization`     | Ya            | `Bearer <token>`. Token per-routine yang dibuat di UI web Claude Code, dengan awalan `sk-ant-oat01-`.                                                                               |
-| `anthropic-version` | Ya            | [Versi API](https://platform.claude.com/docs/id/api/versioning), seperti `2026-10-21`. Endpoint menerima setiap versi mulai dari `2023-06-01` dan berperilaku sama di setiap versi. |
-| `Content-Type`      | Jika ada body | `application/json`.                                                                                                                                                                 |
+| Nama | Wajib | Deskripsi |
+| ----- | ----- | ----- |
+| `Authorization` | Ya | `Bearer <token>`. Token per-routine yang dibuat di UI web Claude Code, dengan awalan `sk-ant-oat01-`. |
+| `anthropic-version` | Ya | [Versi API](https://platform.claude.com/docs/id/api/versioning), seperti `2026-10-21`. Endpoint menerima setiap versi mulai dari `2023-06-01` dan berperilaku sama di setiap versi. |
+| `Content-Type` | Jika ada body | `application/json`. |
 
 Endpoint menerima permintaan baik dengan maupun tanpa header `anthropic-beta: experimental-cc-routine-2026-04-01`.
 
 ### Parameter path
 
-| Nama         | Tipe   | Deskripsi                                                                                                                                                                                         |
-| ------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nama | Tipe | Deskripsi |
+| ----- | ----- | ----- |
 | `routine_id` | string | Pengidentifikasi routine. Meskipun nama parameternya demikian, nilainya berawalan `trig_` bukan `routine_`. Disertakan dalam URL yang ditampilkan jendela modal saat Anda menambahkan pemicu API. |
 
 ### Body permintaan
 
-| Field  | Tipe   | Wajib | Deskripsi                                                                                                                                                                                                                                                                                                                     |
-| ------ | ------ | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Field | Tipe | Wajib | Deskripsi |
+| ----- | ----- | ----- | ----- |
 | `text` | string | Tidak | Konteks awal untuk eksekusi ini, seperti isi peringatan, baris log yang gagal, atau git diff. Nilainya berupa teks bebas dan tidak diurai; jika Anda mengirim JSON atau payload terstruktur lainnya, routine menerimanya sebagai string literal. Diteruskan ke routine bersama prompt tersimpannya. Maksimum 65.536 karakter. |
 
 Body bersifat opsional. Field yang tidak dikenal dalam body akan diabaikan.
@@ -110,10 +110,10 @@ Permintaan yang berhasil mengembalikan `200 OK` dengan detail sesi baru:
 }
 ```
 
-| Field                     | Tipe   | Deskripsi                                                                                                              |
-| ------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------- |
-| `type`                    | string | Selalu `routine_fire`.                                                                                                 |
-| `claude_code_session_id`  | string | ID sesi Claude Code yang dibuat untuk eksekusi ini.                                                                    |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `type` | string | Selalu `routine_fire`. |
+| `claude_code_session_id` | string | ID sesi Claude Code yang dibuat untuk eksekusi ini. |
 | `claude_code_session_url` | string | Tautan ke sesi di claude.ai. Buka di browser untuk memantau eksekusi, meninjau perubahan, atau melanjutkan percakapan. |
 
 ### Error
@@ -130,15 +130,15 @@ Error menggunakan [amplop error](https://platform.claude.com/docs/id/api/errors)
 }
 ```
 
-| Status HTTP | Tipe error              | Penyebab                                                                                                                                                                                                                             |
-| ----------- | ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 400         | `invalid_request_error` | Header `anthropic-version` tidak ada atau tidak didukung, `text` melebihi 65.536 karakter, atau routine sedang dijeda (lihat [Mengedit dan mengontrol routine](https://code.claude.com/docs/id/routines#edit-and-control-routines)). |
-| 401         | `authentication_error`  | Tidak ada bearer token di header `Authorization`, atau token tidak cocok dengan routine ini.                                                                                                                                         |
-| 403         | `permission_error`      | Akun atau organisasi tidak memiliki akses ke endpoint ini.                                                                                                                                                                           |
-| 404         | `not_found_error`       | Routine tidak ada.                                                                                                                                                                                                                   |
-| 429         | `rate_limit_error`      | Batas pemicuan per jam untuk routine atau akun telah tercapai. Respons menyertakan header `Retry-After` yang menunjukkan kapan jendela waktu direset.                                                                                |
-| 500         | `api_error`             | Terjadi error server yang tidak terduga. Coba lagi dengan exponential backoff. Jika error terus terjadi, hubungi dukungan dengan menyertakan ID permintaan.                                                                          |
-| 503         | `overloaded_error`      | Layanan sedang kelebihan beban untuk sementara. Coba lagi setelah jeda singkat. Claude Platform mengembalikan 529 untuk tipe error ini, sedangkan endpoint ini mengembalikan 503.                                                    |
+| Status HTTP | Tipe error | Penyebab |
+| ----- | ----- | ----- |
+| 400 | `invalid_request_error` | Header `anthropic-version` tidak ada atau tidak didukung, `text` melebihi 65.536 karakter, atau routine sedang dijeda (lihat [Mengedit dan mengontrol routine](https://code.claude.com/docs/id/routines#edit-and-control-routines)). |
+| 401 | `authentication_error` | Tidak ada bearer token di header `Authorization`, atau token tidak cocok dengan routine ini. |
+| 403 | `permission_error` | Akun atau organisasi tidak memiliki akses ke endpoint ini. |
+| 404 | `not_found_error` | Routine tidak ada. |
+| 429 | `rate_limit_error` | Batas pemicuan per jam untuk routine atau akun telah tercapai. Respons menyertakan header `Retry-After` yang menunjukkan kapan jendela waktu direset. |
+| 500 | `api_error` | Terjadi error server yang tidak terduga. Coba lagi dengan exponential backoff. Jika error terus terjadi, hubungi dukungan dengan menyertakan ID permintaan. |
+| 503 | `overloaded_error` | Layanan sedang kelebihan beban untuk sementara. Coba lagi setelah jeda singkat. Claude Platform mengembalikan 529 untuk tipe error ini, sedangkan endpoint ini mengembalikan 503. |
 
 ## Autentikasi
 

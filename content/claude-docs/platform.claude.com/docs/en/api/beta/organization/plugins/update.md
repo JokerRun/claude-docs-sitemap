@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/update
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 3cf2cc61d85adc679d3f2fad3db2bb0b87fd18151ec9846798814e649d220580
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 013657832bdfa537f0e9539b4b39dd82482541e63366de05bc59c4b0c2d641cf
 ---
 
 ---
@@ -16,8 +16,11 @@ url: https://platform.claude.com/docs/en/api/beta/organization/plugins/update
 
 Change which stored version of an organization-owned Plugin is served to members,
 for example to roll back to an earlier one. This pins the served version: later
-uploads are stored but no longer change what is served, and pinning cannot currently
-be undone, here or in claude.ai.
+uploads through this API are stored but no longer change what is served, and pinning
+cannot currently be undone, here or in claude.ai.
+
+A version from claude.ai might still change what is served: see [Versions and the served version](https://platform.claude.com/docs/en/manage-claude/plugins-api?sdk_languages=http#versions-and-the-served-version)
+in the Plugins API guide.
 
 Pass the version as `served_version_id`: an earlier one to roll back, a later one to
 start serving a version that was stored without being served, or the one already
@@ -147,6 +150,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -415,6 +420,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `scan_failed` (HTTP status 400)
 
   The version in `plugin_version_id` did not pass its content scan, so it cannot be served.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 - `scan_pending` (HTTP status 409)
 

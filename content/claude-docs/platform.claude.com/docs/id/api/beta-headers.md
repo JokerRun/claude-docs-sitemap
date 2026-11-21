@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/beta-headers
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 89c6c34340589932782b6efcc3572ee991794fa2fa3a1c661f9f8e9b82da506b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: b4bc6a21b6cb54d46a8fc87c610073418764a4eb381a24a3f4b75db8afa80989
 ---
 
 ---
@@ -198,11 +198,11 @@ Di Amazon Bedrock, lokasi nama beta bergantung pada API yang Anda panggil:
 
 Beberapa API beta dibatasi pada endpoint tertentu dan memerlukan header beta khusus fitur pada setiap permintaan:
 
-| Endpoint                                         | Header beta                 |
-| ------------------------------------------------ | --------------------------- |
+| Endpoint | Header beta |
+| ----- | ----- |
 | `/v1/agents`, `/v1/sessions`, `/v1/environments` | `managed-agents-2026-04-01` |
-| `/v1/tunnels`                                    | `mcp-tunnels-2026-06-22`    |
-| `/v1/memory_stores` dan sub-resource-nya         | `agent-memory-2026-07-22`   |
+| `/v1/tunnels` | `mcp-tunnels-2026-06-22` |
+| `/v1/memory_stores` dan sub-resource-nya | `agent-memory-2026-07-22` |
 
 Namespace `client.beta` (csharp, go: `client.Beta`; java: `client.beta()`; php: `$client->beta`) pada SDK menambahkan header ini secara otomatis. Tambahkan sendiri hanya saat membuat permintaan HTTP mentah. Lihat [ikhtisar Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview), [Menggunakan memori agen](https://platform.claude.com/docs/id/managed-agents/memory), dan [referensi MCP tunnels](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/reference#tunnels-api) untuk detailnya.
 

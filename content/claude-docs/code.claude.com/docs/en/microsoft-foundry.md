@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/microsoft-foundry
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 6880acc75e13a7f03c8092103ce89d8795215df081b704be7e7587d54a9c8289
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 0f033cdc09ba33b988e4524fe11f8f201cdb563fdf839d60cdd0c351d349a9b3
 ---
 
 > ## Documentation Index
@@ -150,7 +150,7 @@ With the environment variables set, start Claude Code from your project director
 claude
 ```
 
-Claude Code reads `CLAUDE_CODE_USE_FOUNDRY` and the other Microsoft Foundry variables from the environment and connects to your Azure resource on the first prompt. Unlike Amazon Bedrock and Google Cloud's Agent Platform, Microsoft Foundry has no interactive setup wizard, so the environment variables in steps 3 and 4 are the only configuration path.
+Claude Code reads `CLAUDE_CODE_USE_FOUNDRY` and the other Microsoft Foundry variables from the environment and connects to your Azure resource on the first prompt. Unlike Amazon Bedrock and Google Cloud's Agent Platform, Microsoft Foundry has no interactive setup wizard.
 
 To verify your setup, run `/status` inside Claude Code. The API provider line shows `Microsoft Foundry`, along with the resource name or base URL you configured.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-directory
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 85ffec16f2f0e886cd77027c75469ba0752174160fe95a0acc075d585dbbe81d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 129068082d8ef0c6f5069c3d7b2fd2364e5b2b964053a9f5ee9ae40eccbcba97
 ---
 
 > ## Documentation Index
@@ -330,6 +330,7 @@ Claude Code deletes the files in the paths below once they're older than [`clean
 | `usage-data/` | `report.html` and timestamped report copies written by [`/insights`](https://code.claude.com/docs/en/costs#analyze-your-usage-patterns), plus cached per-session analysis data used to build them |
 | `skills/.trash/`, `plugins/.trash/` | [Skills](https://code.claude.com/docs/en/skills.md#how-synced-skills-behave) and [plugins](https://code.claude.com/docs/en/plugins/loading.md#synced-plugins) that the claude.ai sync removed, such as after you turn one off on claude.ai or stop syncing. The files stay here so you can recover them until the sweep deletes them |
 | `plugins/installed_plugins.set-aside.<date>.<hash>.json`, `plugins/installed_plugins.unreadable.<date>.<hash>.kept` | Dated copies Claude Code makes before rewriting [`installed_plugins.json`](https://code.claude.com/docs/en/plugins/loading#find-plugins-on-disk): install records it dropped, and the contents of a file it couldn't read. |
+| `plugins/data/.set-aside/` | Data directories of plugins from a marketplace that your organization replaced with one of the same name. Their age counts from the day Claude Code moved them, and a shorter `cleanupPeriodDays` in project settings doesn't apply. To keep one, move it somewhere else before the sweep deletes it. |
 | `plugins/mcpb/` | The files Claude Code extracted from the [MCP bundles](https://code.claude.com/docs/en/plugins/components.md#include-a-packaged-mcpb-server) that plugins declare. A bundle's age counts from the last session that used it. |
 | `todos/`, `statsig/`, `logs/` | Legacy directories from older versions. No longer written. The sweep removes their contents and then the empty directory. |
 

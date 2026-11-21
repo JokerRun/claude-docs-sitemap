@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/rbac_groups/members/remove
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 5e69b407c4fc4a62e9022d3eab87ecaf367cb6607d6f8ba4cc2a0dc451929454
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4b2b5d194db2e24f32ae62472bd10cfbb1b2861d7b90b57af19cdcc47f8307d4
 ---
 
 ---
@@ -70,7 +70,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted/quickstart
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: c8c3ed5bcf06384f87e03ed0d980df7920eb4fbe27e9a4cd358910dfde7a1645
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: f75a085f0a0da13d5053e14a47772924cd843c0d08bec1820c27658fe6f61b60
 ---
 
 ---
@@ -221,6 +221,8 @@ docker compose down --remove-orphans
 The command deletes the containers and keeps the database. To also delete the database, with every agent, session, and session history in it, run `docker compose down --remove-orphans -v`.
 
 ## Troubleshooting
+
+* **`docker compose up` stops with `required variable CMA_PG_USER is missing a value`:** On a new install, add the line `CMA_PG_USER=cma_server` to `.env`, and run `docker compose up --build -d` again. To upgrade a stack, don’t add the line. See [If the upgrade fails](https://platform.claude.com/docs/en/managed-agents/self-hosted/upgrade#if-the-upgrade-fails).
 
 * **Your archive has no `compose` directory:** The archive holds an earlier release, and this page’s commands don’t match it. Ask your Anthropic account team for the current release. To move a running deployment to the current release, see [Upgrade self-hosted Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/self-hosted/upgrade).
 

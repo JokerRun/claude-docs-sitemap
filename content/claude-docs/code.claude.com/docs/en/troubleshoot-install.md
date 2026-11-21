@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshoot-install
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: aa7df0be88ff6484ef82b97531d3db9732447c09b1b5ed4c68d54092632cbbe8
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2524b1226ed3639764e196184916eda9abed73b82d7af8ddc9ab450daf15fd61
 ---
 
 > ## Documentation Index
@@ -817,8 +817,6 @@ For any other fatal signal, and for exit code 137 on macOS, the script prints `I
 * Add swap space or move to a larger instance. See [Install killed on low-memory Linux servers](#install-killed-on-low-memory-linux-servers) for the swap-file commands.
 
 ### Install hangs in Docker
-
-When installing Claude Code in a Docker container, installing as root into `/` can cause hangs.
 
 **Solutions:**
 

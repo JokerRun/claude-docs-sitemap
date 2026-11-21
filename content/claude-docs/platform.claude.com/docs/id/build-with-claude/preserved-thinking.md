@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: f3dff5b0f36777760b3b4427c71d690579b42cdd0599f8237916f765268d55a8
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 57d57c7f3a5cd344bb3de28f29b8bc7cf8c5347c4006c6286aba06f7266bd611
 ---
 
 ---
@@ -93,15 +93,15 @@ Dengan agen lain, berikan [Ubah alat atau instruksi tanpa gagal dalam pemeriksaa
 
 Tanda pisah berarti model tujuan tidak dapat membaca blok tersebut. Setelah beberapa kali peralihan, baca satu baris untuk setiap model dalam riwayat Anda.
 
-| Model asal                              | Ke Claude Fable 5.2 atau Claude Mythos 5.2 | Ke Claude Fable 5.1 atau Claude Mythos 5.1 | Ke Claude Opus 5.5 | Ke Claude Sonnet 5.5 | Ke Claude Haiku 5.5 |
-| --------------------------------------- | ------------------------------------------ | ------------------------------------------ | ------------------ | -------------------- | ------------------- |
-| Claude Haiku 5.5                        | ✅                                          | —                                          | ✅                  | ✅                    | ✅                   |
-| Claude Sonnet 5.5                       | ✅                                          | —                                          | ✅                  | ✅                    | —                   |
-| Claude Opus 5                           | ✅                                          | ✅                                          | ✅                  | —                    | —                   |
-| Claude Opus 5.5                         | ✅                                          | ✅                                          | ✅                  | —                    | —                   |
-| Claude Fable 5 atau Claude Mythos 5     | ✅                                          | ✅                                          | —                  | —                    | —                   |
-| Claude Fable 5.1 atau Claude Mythos 5.1 | ✅                                          | ✅                                          | —                  | —                    | —                   |
-| Claude Fable 5.2 atau Claude Mythos 5.2 | ✅                                          | —                                          | —                  | —                    | —                   |
+| Model asal | Ke Claude Fable 5.2 atau Claude Mythos 5.2 | Ke Claude Fable 5.1 atau Claude Mythos 5.1 | Ke Claude Opus 5.5 | Ke Claude Sonnet 5.5 | Ke Claude Haiku 5.5 |
+| ----- | ----- | ----- | ----- | ----- | ----- |
+| Claude Haiku 5.5 | ✅ | — | ✅ | ✅ | ✅ |
+| Claude Sonnet 5.5 | ✅ | — | ✅ | ✅ | — |
+| Claude Opus 5 | ✅ | ✅ | ✅ | — | — |
+| Claude Opus 5.5 | ✅ | ✅ | ✅ | — | — |
+| Claude Fable 5 atau Claude Mythos 5 | ✅ | ✅ | — | — | — |
+| Claude Fable 5.1 atau Claude Mythos 5.1 | ✅ | ✅ | — | — | — |
+| Claude Fable 5.2 atau Claude Mythos 5.2 | ✅ | — | — | — | — |
 
 Jika sebuah model tidak memiliki baris atau kolom, gunakan [Model sebelumnya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#earlier-models).
 
@@ -109,11 +109,11 @@ Jika sebuah model tidak memiliki baris atau kolom, gunakan [Model sebelumnya](ht
 
 Setiap model Claude membaca blok dari Claude Opus 4.8, Claude Sonnet 5, Claude Haiku 4.5, serta model Claude Opus, Claude Sonnet, dan Claude Haiku sebelumnya.
 
-| Model tujuan                                                                                                            | Hanya membaca blok dari                                                                |
-| ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Claude Opus 4.8, Claude Sonnet 5, Claude Haiku 4.5, serta model Claude Opus, Claude Sonnet, dan Claude Haiku sebelumnya | Satu sama lain                                                                         |
-| Claude Opus 5                                                                                                           | Dirinya sendiri, dan model-model di baris pertama                                      |
-| Claude Fable 5 dan Claude Mythos 5                                                                                      | Satu sama lain, Claude Mythos Preview, Claude Opus 5, dan model-model di baris pertama |
+| Model tujuan | Hanya membaca blok dari |
+| ----- | ----- |
+| Claude Opus 4.8, Claude Sonnet 5, Claude Haiku 4.5, serta model Claude Opus, Claude Sonnet, dan Claude Haiku sebelumnya | Satu sama lain |
+| Claude Opus 5 | Dirinya sendiri, dan model-model di baris pertama |
+| Claude Fable 5 dan Claude Mythos 5 | Satu sama lain, Claude Mythos Preview, Claude Opus 5, dan model-model di baris pertama |
 
 ### Pengaturan pemikiran pada model baru
 
@@ -133,11 +133,11 @@ Giliran dari model penyedia lain ditempatkan di akhir, sebagai konten `text` dan
 
 ### Apa yang dihitung sebagai akun Anda di setiap platform
 
-| Tempat Anda memanggil Claude                                                                                  | Akun Anda                |
-| ------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| Claude API, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), atau Microsoft Foundry | Organisasi Anda          |
-| Amazon Bedrock                                                                                                | Akun AWS Anda            |
-| Claude Models on Google Cloud (Google managed)                                                                | Proyek Google Cloud Anda |
+| Tempat Anda memanggil Claude | Akun Anda |
+| ----- | ----- |
+| Claude API, Claude Platform on AWS, Claude Models on Google Cloud (Anthropic managed), atau Microsoft Foundry | Organisasi Anda |
+| Amazon Bedrock | Akun AWS Anda |
+| Claude Models on Google Cloud (Google managed) | Proyek Google Cloud Anda |
 
 API juga dapat tidak menyertakan blok pemikiran yang dihasilkan oleh akun lain, jika akun tersebut tidak lagi dalam status baik. Hal ini berlaku untuk permintaan ke model Claude Fable dan Claude Mythos, Claude Opus 5, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5. Permintaan tetap berhasil, dan model menjawab tanpa penalaran dari blok tersebut.
 
@@ -153,18 +153,18 @@ Model dengan pemikiran yang dipertahankan tercantum di [Apa yang dilakukan setia
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| -------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |
-| Tersedia | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                                                                                                                                                                                                                                                                                                                                                                                                             | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview)                                                                                                                                                                                                                                                              |
-| Tersedia | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy)                                                                                                                                                                                                                                                                                                                                                                                                                    | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview)                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Tersedia | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |
+| Tersedia | [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 
 * Ketersediaan: Selalu aktif
 
-| Status   | Platform cloud                                                                                                                                                                                                                                                                 | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
 | Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |
 
 ## Langkah selanjutnya

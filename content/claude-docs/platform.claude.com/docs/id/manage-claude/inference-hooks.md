@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 495d04346624566a497c238e1b509632cbb5e1066f87b4a8f7ecba468660b7bf
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a3e282956fb0dd5857b1293774e156083dfd2663058744f168cbf6a5ed69d4e1
 ---
 
 ---
@@ -112,11 +112,11 @@ Beberapa fitur yang dijalankan Anthropic untuk organisasi Anda melakukan pemangg
 
 Kedua fitur ini melayani tim keamanan, hukum, dan kepatuhan di organisasi Claude Enterprise.
 
-|                    | Inference hooks                                                         | Compliance API                                                                               |
-| ------------------ | ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| Kapan bertindak    | Secara inline, sebelum inferensi berjalan                               | Setelah kejadian                                                                             |
+|  | Inference hooks | Compliance API |
+| ----- | ----- | ----- |
+| Kapan bertindak | Secara inline, sebelum inferensi berjalan | Setelah kejadian |
 | Apa yang dilakukan | Mengizinkan atau menolak setiap permintaan yang diatur secara real-time | Mengambil aktivitas, chat, file, proyek, transkrip sesi, dan pengguna untuk audit dan ekspor |
-| Arah               | Anthropic memanggil server keamanan AI Anda                             | Anda memanggil API Anthropic                                                                 |
+| Arah | Anthropic memanggil server keamanan AI Anda | Anda memanggil API Anthropic |
 
 Gunakan Inference hooks untuk menghentikan permintaan sebelum mencapai model, dan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) untuk mengaudit apa yang terjadi setelahnya.
 

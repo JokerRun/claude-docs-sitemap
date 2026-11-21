@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/python
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 23b926a7dbd7b5e47b1fafa869470ff0ef17943b43a08089250866192c594d70
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ff9a4533d2e5f09a7411f63dcd69fc89b446f4f3872c14b797114f7a50a910af
 ---
 
 ---
@@ -385,17 +385,17 @@ except anthropic.APIStatusError as e:
 
 Error codes are as follows:
 
-| Status code | Error type                 |
-| ----------- | -------------------------- |
-| 400         | `BadRequestError`          |
-| 401         | `AuthenticationError`      |
-| 403         | `PermissionDeniedError`    |
-| 404         | `NotFoundError`            |
-| 409         | `ConflictError`            |
-| 422         | `UnprocessableEntityError` |
-| 429         | `RateLimitError`           |
-| >=500       | `InternalServerError`      |
-| N/A         | `APIConnectionError`       |
+| Status code | Error type |
+| ----- | ----- |
+| 400 | `BadRequestError` |
+| 401 | `AuthenticationError` |
+| 403 | `PermissionDeniedError` |
+| 404 | `NotFoundError` |
+| 409 | `ConflictError` |
+| 422 | `UnprocessableEntityError` |
+| 429 | `RateLimitError` |
+| >=500 | `InternalServerError` |
+| N/A | `APIConnectionError` |
 
 ## Request IDs
 
@@ -762,14 +762,14 @@ response = client.beta.messages.create(
 
 All six client classes are included in the base `anthropic` package:
 
-| Provider                                          | Client                                         | Extra dependencies                      |
-| ------------------------------------------------- | ---------------------------------------------- | --------------------------------------- |
-| Claude Models on Google Cloud (Google managed)    | `from anthropic import AnthropicVertex`        | `pip install "anthropic[vertex]"`       |
-| Bedrock                                           | `from anthropic import AnthropicBedrockMantle` | `pip install "anthropic[bedrock]"`      |
-| Bedrock (`bedrock-runtime` path)                  | `from anthropic import AnthropicBedrock`       | `pip install "anthropic[bedrock]"`      |
-| Claude Platform on AWS                            | `from anthropic import AnthropicAWS`           | `pip install "anthropic[aws]"`          |
-| Claude Models on Google Cloud (Anthropic managed) | `from anthropic import AnthropicGoogleCloud`   | `pip install "anthropic[google_cloud]"` |
-| Foundry                                           | `from anthropic import AnthropicFoundry`       | None                                    |
+| Provider | Client | Extra dependencies |
+| ----- | ----- | ----- |
+| Claude Models on Google Cloud (Google managed) | `from anthropic import AnthropicVertex` | `pip install "anthropic[vertex]"` |
+| Bedrock | `from anthropic import AnthropicBedrockMantle` | `pip install "anthropic[bedrock]"` |
+| Bedrock (`bedrock-runtime` path) | `from anthropic import AnthropicBedrock` | `pip install "anthropic[bedrock]"` |
+| Claude Platform on AWS | `from anthropic import AnthropicAWS` | `pip install "anthropic[aws]"` |
+| Claude Models on Google Cloud (Anthropic managed) | `from anthropic import AnthropicGoogleCloud` | `pip install "anthropic[google_cloud]"` |
+| Foundry | `from anthropic import AnthropicFoundry` | None |
 
 The `AnthropicAWS` client is in beta. Pass `workspace_id` to the constructor or set the `ANTHROPIC_AWS_WORKSPACE_ID` environment variable. The `AnthropicGoogleCloud` client is also in beta. Pass `workspace_id` to the constructor or set the `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID` environment variable. See [Project, location, and workspace resolution](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution) for how the client resolves the workspace ID.
 

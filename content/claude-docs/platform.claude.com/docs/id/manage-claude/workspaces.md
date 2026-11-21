@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/workspaces
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 50f2505fb4cd28ad1ea5aa63b459c8882da2b1c871573d3f1fa7d3797b9a3a8d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e11e0d89ebbdee75f52f46e86e8adee2c760af99cb46a646f1b2711accf1953c
 ---
 
 ---
@@ -21,7 +21,7 @@ Karakteristik utama:
 
 * **Pengidentifikasi workspace** menggunakan awalan `wrkspc_` (misalnya, `wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ`).
 
-* **Maksimum 100 workspace** untuk setiap organisasi secara default (workspace yang diarsipkan tidak dihitung). Hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
+* **Maksimum 1.000 workspace** untuk setiap organisasi secara default (workspace yang diarsipkan dan workspace default tidak dihitung). Membuat workspace saat batas tercapai akan mengembalikan kesalahan `400` dengan pesan `Workspace limit reached`. Hubungi tim akun Anda jika Anda membutuhkan lebih banyak.
 
 * **Workspace default** memiliki ID `wrkspc_` seperti workspace lainnya:
 
@@ -51,13 +51,13 @@ Workspace Claude Code menjaga lalu lintas Claude Code terpisah dari beban kerja 
 
 Anggota dapat memiliki peran yang berbeda di setiap workspace, memungkinkan kontrol akses yang terperinci.
 
-| Peran                        | Izin                                                                                                                           |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| Pengguna Ruang Kerja         | Hanya menggunakan playground                                                                                                   |
+| Peran | Izin |
+| ----- | ----- |
+| Pengguna Ruang Kerja | Hanya menggunakan playground |
 | Developer Terbatas Workspace | Membuat dan mengelola kunci API, menggunakan API (dengan beberapa batasan di Claude Console, yang tercantum setelah tabel ini) |
-| Pengembang Ruang Kerja       | Membuat dan mengelola kunci API, menggunakan API                                                                               |
-| Admin Ruang Kerja            | Kontrol penuh atas pengaturan dan anggota workspace                                                                            |
-| Penagihan ruang kerja        | Melihat informasi penagihan workspace (diwarisi dari peran penagihan organisasi)                                               |
+| Pengembang Ruang Kerja | Membuat dan mengelola kunci API, menggunakan API |
+| Admin Ruang Kerja | Kontrol penuh atas pengaturan dan anggota workspace |
+| Penagihan ruang kerja | Melihat informasi penagihan workspace (diwarisi dari peran penagihan organisasi) |
 
 Batasan berikut hanya berlaku untuk antarmuka Claude Console, bukan untuk API. Di Console, Developer Terbatas Workspace tidak dapat:
 
@@ -1232,11 +1232,11 @@ Penggunaan dan biaya di workspace default dilaporkan di bawah ID milik workspace
 
 Buat workspaces terpisah untuk pengembangan, staging, dan produksi:
 
-| Workspace    | Tujuan                                                       |
-| ------------ | ------------------------------------------------------------ |
+| Workspace | Tujuan |
+| ----- | ----- |
 | Pengembangan | Pengujian dan eksperimen dengan batas laju yang lebih rendah |
-| Staging      | Pengujian pra-produksi dengan batas seperti produksi         |
-| Produksi     | Lalu lintas langsung dengan batas laju penuh dan pemantauan  |
+| Staging | Pengujian pra-produksi dengan batas seperti produksi |
+| Produksi | Lalu lintas langsung dengan batas laju penuh dan pemantauan |
 
 ### Isolasi tim atau departemen
 
@@ -1286,7 +1286,7 @@ Buat workspaces untuk proyek atau produk tertentu untuk melacak penggunaan dan b
   </Accordion>
 
   <Accordion title="Apakah ada batas pada workspaces?">
-    Ya. Setiap organisasi dapat memiliki hingga 100 workspaces secara default, dan workspaces yang diarsipkan tidak dihitung terhadap batas ini. Jika Anda membutuhkan lebih banyak, hubungi tim akun Anda.
+    Ya. Setiap organisasi dapat memiliki hingga 1.000 workspace secara default, dan workspace yang diarsipkan serta workspace default tidak dihitung terhadap batas ini. Jika Anda membutuhkan lebih banyak, hubungi tim akun Anda.
   </Accordion>
 
   <Accordion title="Bagaimana peran organisasi memengaruhi akses workspace?">

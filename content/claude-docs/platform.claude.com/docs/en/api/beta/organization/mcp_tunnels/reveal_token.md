@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 20df842c1b93a27a7230963d65d2ddb3cd33db8d08536b132171c84a85dbd2f5
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ea64378db8468066091a317b9361af6659f03b5f82a5d955acce65409d59f11f
 ---
 
 ---
@@ -137,6 +137,8 @@ access logs.
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -206,7 +208,7 @@ Each code below is the value of `error.details.error_code` in the response body.
 
 - `sandbox_egress_restricted` (HTTP status 403)
 
-  The request came from a Claude sandbox with restricted network access, which is not allowed to make this change. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

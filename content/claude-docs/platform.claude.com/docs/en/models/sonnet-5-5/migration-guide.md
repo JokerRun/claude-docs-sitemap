@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 4819f3cb7d3e483cb7a87eaf65e1731affea937af72a1bf7506862a3d95e17e1
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 06a5c20e22984e37e07e3e0adcba8d44a6efc23411da00d8e2ecb8c17946b002
 ---
 
 ---
@@ -221,12 +221,12 @@ This request works on Claude Sonnet 5.5 as written. It sets an effort level and 
 
 On Claude Sonnet 5.5, a request with no `thinking` field runs with [adaptive thinking](https://platform.claude.com/docs/en/build-with-claude/thinking), as does `thinking: {"type": "adaptive"}`. On Claude Sonnet 4.6 and earlier models and on Claude Haiku 4.5, that request ran without thinking. To keep running without up-front thinking, see [Turn off up-front thinking](https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking).
 
-| Model                                  | Thinking without a `thinking` field | `thinking.type` values accepted                      | Default `display` |
-| -------------------------------------- | ----------------------------------- | ---------------------------------------------------- | ----------------- |
-| Claude Sonnet 5.5                      | On                                  | `"adaptive"`, `"between_tools"`                      | `"omitted"`       |
-| Claude Sonnet 5                        | On                                  | `"adaptive"`, `"disabled"`                           | `"omitted"`       |
-| Claude Sonnet 4.6                      | Off                                 | `"adaptive"`, `"disabled"`, `"enabled"` (deprecated) | `"summarized"`    |
-| Claude Sonnet 4.5 and Claude Haiku 4.5 | Off                                 | `"disabled"`, `"enabled"`                            | `"summarized"`    |
+| Model | Thinking without a `thinking` field | `thinking.type` values accepted | Default `display` |
+| ----- | ----- | ----- | ----- |
+| Claude Sonnet 5.5 | On | `"adaptive"`, `"between_tools"` | `"omitted"` |
+| Claude Sonnet 5 | On | `"adaptive"`, `"disabled"` | `"omitted"` |
+| Claude Sonnet 4.6 | Off | `"adaptive"`, `"disabled"`, `"enabled"` (deprecated) | `"summarized"` |
+| Claude Sonnet 4.5 and Claude Haiku 4.5 | Off | `"disabled"`, `"enabled"` | `"summarized"` |
 
 ### Handle thinking in responses
 

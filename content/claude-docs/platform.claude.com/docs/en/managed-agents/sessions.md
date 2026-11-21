@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/sessions
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: ee5249426c20d83bb74d78dae8a5526b60936a907c199028b2ed9ebe6fc76af5
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 183b41fd6fe623247d4e25dd68fad34dea0d1bc37c1e2e661109c6141fc0fc31
 ---
 
 ---
@@ -446,12 +446,12 @@ Each event in `initial_events` (java, php: `initialEvents`; csharp, go: `Initial
 
 The create request is rejected in the following cases:
 
-| Condition                                                                                                                                                 | Status |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------ |
-| More than one `user.define_outcome` event                                                                                                                 | 400    |
-| A `user.define_outcome` event without a `rubric`                                                                                                          | 400    |
-| More than 100 file-sourced [`document` content blocks](https://platform.claude.com/docs/en/build-with-claude/files#document-blocks) across the whole list | 400    |
-| A request body over 32 MB                                                                                                                                 | 413    |
+| Condition | Status |
+| ----- | ----- |
+| More than one `user.define_outcome` event | 400 |
+| A `user.define_outcome` event without a `rubric` | 400 |
+| More than 100 file-sourced [`document` content blocks](https://platform.claude.com/docs/en/build-with-claude/files#document-blocks) across the whole list | 400 |
+| A request body over 32 MB | 413 |
 
 A `user.define_outcome` event in `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) is accepted under the same conditions as sending one to an existing session; see [Define outcomes](https://platform.claude.com/docs/en/managed-agents/define-outcomes).
 

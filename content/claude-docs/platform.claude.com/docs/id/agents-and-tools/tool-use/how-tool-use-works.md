@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/how-tool-use-works
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: e0884a66ebf81e5972f4025ab9ddc2314ba132c78f99f72bd451b7659e0d6859
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6f7e4440e308af51fb9d76bc538f7d41b0f991eefcdf28b324cde1c385553a13
 ---
 
 ---
@@ -84,11 +84,11 @@ Penggunaan alat tidak cocok ketika:
 
 ## Memilih di antara pendekatan
 
-| Pendekatan                             | Kapan menggunakannya                                                              | Apa yang diharapkan                                                                          | Pelajari lebih lanjut                                                                             |
-| -------------------------------------- | --------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| Alat klien yang didefinisikan pengguna | Logika bisnis kustom, API internal, data proprietary                              | Anda menangani eksekusi dan loop agentik                                                     | [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) |
-| Alat klien berskema Anthropic          | Operasi pengembangan standar (bash, pengeditan file, kendali desktop dan browser) | Anda menangani eksekusi; Claude memanggil alat dengan andal karena skemanya sudah dilatihkan | [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference)    |
-| Alat yang dieksekusi server            | Pencarian web, sandbox kode, web fetch                                            | Anthropic menangani eksekusi; Anda membaca hasilnya alih-alih menghasilkannya                | [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools)         |
+| Pendekatan | Kapan menggunakannya | Apa yang diharapkan | Pelajari lebih lanjut |
+| ----- | ----- | ----- | ----- |
+| Alat klien yang didefinisikan pengguna | Logika bisnis kustom, API internal, data proprietary | Anda menangani eksekusi dan loop agentik | [Mendefinisikan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools) |
+| Alat klien berskema Anthropic | Operasi pengembangan standar (bash, pengeditan file, kendali desktop dan browser) | Anda menangani eksekusi; Claude memanggil alat dengan andal karena skemanya sudah dilatihkan | [Referensi alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-reference) |
+| Alat yang dieksekusi server | Pencarian web, sandbox kode, web fetch | Anthropic menangani eksekusi; Anda membaca hasilnya alih-alih menghasilkannya | [Alat server](https://platform.claude.com/docs/id/agents-and-tools/tool-use/server-tools) |
 
 ## Langkah selanjutnya
 

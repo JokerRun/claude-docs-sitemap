@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 831cadbbe422c0c7780afa30ab1c6bfa6d9d94a7daf864119ae134faa88f89dd
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2fcbdeb41bd17f02b1af958ebaba698fecd2e245870ecf48a19a0c0ad3625d2d
 ---
 
 ---
@@ -295,11 +295,11 @@ The package surfaces the Messages API capabilities that the Foundation Models pr
 
 ## Additional resources
 
-| Reference                                                                                           | Covers                                                                                            |
-| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Reference | Covers |
+| ----- | ----- |
 | [Apple Foundation Models documentation](https://developer.apple.com/documentation/foundationmodels) | `LanguageModelSession`, `@Generable`, `Transcript`, `Tool`, and the rest of the framework surface |
-| [`ClaudeForFoundationModels` on GitHub](https://github.com/anthropics/ClaudeForFoundationModels)    | Source, the runnable example, and the issue tracker                                               |
-| [Claude API reference](https://platform.claude.com/docs/en/api/overview)                            | The underlying Messages API                                                                       |
+| [`ClaudeForFoundationModels` on GitHub](https://github.com/anthropics/ClaudeForFoundationModels) | Source, the runnable example, and the issue tracker |
+| [Claude API reference](https://platform.claude.com/docs/en/api/overview) | The underlying Messages API |
 
 The package is licensed under Apache 2.0. Bug reports are welcome through GitHub issues. External pull requests are not being accepted during the beta period.
 
@@ -314,5 +314,5 @@ Apple Foundation Models are in beta on every model.
 * Availability: Available
 
 | Status | Cloud platforms |
-| ------ | --------------- |
-| Beta   | Claude API      |
+| ----- | ----- |
+| Beta | Claude API |

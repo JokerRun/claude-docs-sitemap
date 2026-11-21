@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/configure
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: d5292e763e85f93531727bb41d174c167724e6ad0b2d6816c47b253edafad492
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 984c128313694e19a78620f6cbc64723697eeaabca8b7c2f7ab2148832fb04b3
 ---
 
 ---
@@ -59,10 +59,10 @@ Halaman ini menunjukkan cara menambahkan penyedia identitas Anda, apa yang dapat
 
 ### Jika sign-in gagal
 
-| Respons                                        | Penyebab                                                   | Baris log server berisi |
-| ---------------------------------------------- | ---------------------------------------------------------- | ----------------------- |
-| `401`, sama seperti untuk kunci API yang salah | Token gagal dalam pemeriksaan. Baris log memuat alasannya. | `oidc token`            |
-| `403`                                          | Grup token tidak cocok dengan entri `roles` mana pun       | `token holds no role`   |
+| Respons | Penyebab | Baris log server berisi |
+| ----- | ----- | ----- |
+| `401`, sama seperti untuk kunci API yang salah | Token gagal dalam pemeriksaan. Baris log memuat alasannya. | `oidc token` |
+| `403` | Grup token tidak cocok dengan entri `roles` mana pun | `token holds no role` |
 
 ### Microsoft Entra ID
 
@@ -73,10 +73,10 @@ Entra ID berbeda dari penyedia lain dalam dua hal. Kedua pengaturan dimasukkan k
 
 ## Apa yang dapat dilakukan setiap peran
 
-| Peran                         | Agen, skill, sesi, vault, dan memory store                         | Environment                                                   |
-| ----------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------- |
-| `admin`, dan kunci API server | Melihat dan mengubah semuanya                                      | Membuat, mengubah, dan menghapusnya, serta membuat kuncinya   |
-| `developer` atau `user`       | Melihat dan mengubah hanya apa yang dibuat oleh pemanggil tersebut | Mencantumkannya, membacanya, dan menjalankan sesi di dalamnya |
+| Peran | Agen, skill, sesi, vault, dan memory store | Environment |
+| ----- | ----- | ----- |
+| `admin`, dan kunci API server | Melihat dan mengubah semuanya | Membuat, mengubah, dan menghapusnya, serta membuat kuncinya |
+| `developer` atau `user` | Melihat dan mengubah hanya apa yang dibuat oleh pemanggil tersebut | Mencantumkannya, membacanya, dan menjalankan sesi di dalamnya |
 
 `developer` dan `user` memiliki akses yang sama. Pemanggil dengan salah satu peran tersebut:
 
@@ -128,10 +128,10 @@ Ketika token kedaluwarsa, developer menjalankan `login` lagi. Agar CLI `ant` yan
 
 ### Redirect URI lainnya
 
-| Penyedia                                      | Redirect URI yang didaftarkan                                   | Flag yang ditambahkan developer ke perintah `login` |
-| --------------------------------------------- | --------------------------------------------------------------- | --------------------------------------------------- |
-| Microsoft Entra ID                            | `http://localhost/callback`                                     | `-listen localhost:0`                               |
-| Penyedia yang mewajibkan port di redirect URI | URI dengan port tetap, seperti `http://127.0.0.1:8123/callback` | `-listen 127.0.0.1:8123`                            |
+| Penyedia | Redirect URI yang didaftarkan | Flag yang ditambahkan developer ke perintah `login` |
+| ----- | ----- | ----- |
+| Microsoft Entra ID | `http://localhost/callback` | `-listen localhost:0` |
+| Penyedia yang mewajibkan port di redirect URI | URI dengan port tetap, seperti `http://127.0.0.1:8123/callback` | `-listen 127.0.0.1:8123` |
 
 Untuk mencantumkan flag lainnya, tambahkan `-h` ke perintah `login`.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/messages/create
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 2cd5b3693f3a9db4fd1ad61579f2112d04b04c79649c53cce155f06ee66cf693
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 3b1c9d193d2d404822e1da2284af548ffe1d10a0b71e477f331cba2a16dd8efc
 ---
 
 ---
@@ -731,7 +731,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
               - `page_age: optional string or null`
 
-            - `WebSearchToolRequestError object`
+            - `WebSearchToolRequestErrorObject object`
 
               - `type: "web_search_tool_result_error"`
 
@@ -3477,7 +3477,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `content: WebSearchToolResultBlockContent`
 
-        - `WebSearchToolResultError object`
+        - `WebSearchToolResultErrorObject object`
 
           - `type: "web_search_tool_result_error"`
 
@@ -3629,7 +3629,7 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
       - `content: CodeExecutionToolResultBlockContent`
 
-        - `CodeExecutionToolResultError object`
+        - `CodeExecutionToolResultErrorObject object`
 
           - `type: "code_execution_tool_result_error"`
 
@@ -3701,9 +3701,9 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         default: bash_code_execution_tool_result
 
-      - `content: BashCodeExecutionToolResultError or BashCodeExecutionResultBlock`
+      - `content: BashCodeExecutionToolResultErrorObject or BashCodeExecutionResultBlock`
 
-        - `BashCodeExecutionToolResultError object`
+        - `BashCodeExecutionToolResultErrorObject object`
 
           - `type: "bash_code_execution_tool_result_error"`
 
@@ -3751,9 +3751,9 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         default: text_editor_code_execution_tool_result
 
-      - `content: TextEditorCodeExecutionToolResultError or TextEditorCodeExecutionViewResultBlock or TextEditorCodeExecutionCreateResultBlock or TextEditorCodeExecutionStrReplaceResultBlock`
+      - `content: TextEditorCodeExecutionToolResultErrorObject or TextEditorCodeExecutionViewResultBlock or TextEditorCodeExecutionCreateResultBlock or TextEditorCodeExecutionStrReplaceResultBlock`
 
-        - `TextEditorCodeExecutionToolResultError object`
+        - `TextEditorCodeExecutionToolResultErrorObject object`
 
           - `type: "text_editor_code_execution_tool_result_error"`
 
@@ -3829,9 +3829,9 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
         default: tool_search_tool_result
 
-      - `content: ToolSearchToolResultError or ToolSearchToolSearchResultBlock`
+      - `content: ToolSearchToolResultErrorObject or ToolSearchToolSearchResultBlock`
 
-        - `ToolSearchToolResultError object`
+        - `ToolSearchToolResultErrorObject object`
 
           - `type: "tool_search_tool_result_error"`
 
@@ -4517,6 +4517,10 @@ On a streaming call, the errors listed below apply when the API rejects the requ
 
   The `compaction` block's `tool_changes` differs from what was returned with the block.
 
+- `image_dimensions_too_large` (HTTP status 400)
+
+  The longest side of one or more images in the request exceeds the image size limit. Scale each image in `paths` so that neither side exceeds `max_side_length_pixels`, or remove it, then retry.
+
 - `organization_on_hold` (HTTP status 400)
 
   Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
@@ -4553,6 +4557,26 @@ On a streaming call, the errors listed below apply when the API rejects the requ
 
   A tool change or MCP tool listing references a tool or MCP server that is not defined at that position in the conversation.
 
+- `user_profile_required` (HTTP status 400)
+
+  The request sets `billing_policy.bill_to` to `"user_profile"` but names no user profile. Name the profile to bill in the `anthropic-user-profile-id` header.
+
+- `linked_organization_billing_unavailable` (HTTP status 402)
+
+  Anthropic cannot currently bill the organization linked to the request's user profile, for a reason that lies with that organization's own account. The response does not say what the reason is.
+
+- `linked_organization_spend_limit_reached` (HTTP status 402)
+
+  The organization linked to the request's user profile has reached a spend limit that it set, or lacks credit for the request. The response does not say which applies.
+
+- `user_profile_billing_not_authorized` (HTTP status 403)
+
+  The customer that the request's user profile represents has not authorized the caller to bill them, or the authorization that the request's credential uses has ended. The response does not say which applies.
+
+- `user_profile_not_billable` (HTTP status 403)
+
+  The request's user profile cannot be billed. The response gives no more specific error code and does not say what the reason is.
+
 - `thread_not_found` (HTTP status 404)
 
   No usable Thread state was found for `previous_message_id`. Replay the full conversation with `thread: {"type": "create"}` to start a new Thread.
@@ -4564,6 +4588,10 @@ On a streaming call, the errors listed below apply when the API rejects the requ
 - `request_body_too_large_after_decoding` (HTTP status 413)
 
   The compressed request body exceeds the request size limit once decoded.
+
+- `contract_spend_limit_reached` (HTTP status 429)
+
+  The organization has reached the spend limit of its contract.
 
 - `enforced_spend_limit_reached` (HTTP status 429)
 

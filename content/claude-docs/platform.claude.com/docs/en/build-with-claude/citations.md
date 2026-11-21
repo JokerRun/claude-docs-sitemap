@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/citations
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 7955cb46ffdc7166df49470845a88403a280fd82ed1b84e39873b33587f64eef
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 73517eeec720ca5c799463288659b296232d5470b55bf9efe4c8252a03f8cc96
 ---
 
 ---
@@ -800,11 +800,11 @@ In this example:
 
 Three document types are supported for citations. Documents can be provided directly in the message (base64, text, or URL) or uploaded through the [Files API](https://platform.claude.com/docs/en/build-with-claude/files) and referenced by `file_id`:
 
-| Type           | Best for                                                        | Chunking               | Citation format               |
-| -------------- | --------------------------------------------------------------- | ---------------------- | ----------------------------- |
-| Plain text     | Simple text documents, prose                                    | Sentence               | Character indices (0-indexed) |
-| PDF            | PDF files with text content                                     | Sentence               | Page numbers (1-indexed)      |
-| Custom content | Lists, transcripts, special formatting, more granular citations | No additional chunking | Block indices (0-indexed)     |
+| Type | Best for | Chunking | Citation format |
+| ----- | ----- | ----- | ----- |
+| Plain text | Simple text documents, prose | Sentence | Character indices (0-indexed) |
+| PDF | PDF files with text content | Sentence | Page numbers (1-indexed) |
+| Custom content | Lists, transcripts, special formatting, more granular citations | No additional chunking | Block indices (0-indexed) |
 
 <Note>
   For file types that the `document` block doesn’t support (for example, .docx and .xlsx), convert the files to plain text and include the content directly in message content. Files that are already plain text, such as .csv and .md files, can also be uploaded with an explicit `text/plain` content type. See [Working with other file formats](https://platform.claude.com/docs/en/build-with-claude/files#working-with-other-file-formats).
@@ -2386,8 +2386,8 @@ Citations are available on every model and eligible for zero data retention and 
 
 * Availability: Available
 
-| Status    | Cloud platforms         |
-| --------- | ----------------------- |
+| Status | Cloud platforms |
+| ----- | ----- |
 | Available | All supported platforms |
 
 #### [Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview)
@@ -2398,8 +2398,8 @@ Citations are available on every model and eligible for zero data retention and 
 
 [Data handling overview](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Zero data retention                                                                                                                                       | HIPAA    |
-| ------ | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| Item | Zero data retention | HIPAA |
+| ----- | ----- | ----- |
 | Status | Eligible (excludes [Covered Models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Eligible |
 
 Applicable endpoints:

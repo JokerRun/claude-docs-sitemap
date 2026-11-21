@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/permission-policies
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 1f355412211cee77ab9a1aa50453aea61f603b515fd2770a422ef4ea4871e8a9
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: af54906a438f07ab4e90f7369fa567ff71bd4c70a349727a40e57607e72be9a5
 ---
 
 ---
@@ -48,11 +48,11 @@ featureMetadata:
 
 ## Jenis kebijakan izin
 
-| Kebijakan      | Perilaku                                                                                                                                                                                                                                                                                                    |
-| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi.                                                                                                                                                                                                                                                           |
-| `always_ask`   | Sesi dijeda dan menunggu persetujuan Anda sebelum alat dieksekusi. Lihat [Menanggapi permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) untuk alur event-nya.                                                                  |
-| `auto`         | Server mengevaluasi setiap panggilan, lalu menjalankannya, menolaknya, atau menjeda untuk meminta persetujuan Anda. Lihat [Biarkan server mengevaluasi setiap panggilan dengan `auto`](https://platform.claude.com/docs/id/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto). |
+| Kebijakan | Perilaku |
+| ----- | ----- |
+| `always_allow` | Alat dieksekusi secara otomatis tanpa konfirmasi. |
+| `always_ask` | Sesi dijeda dan menunggu persetujuan Anda sebelum alat dieksekusi. Lihat [Menanggapi permintaan konfirmasi](https://platform.claude.com/docs/id/managed-agents/permission-policies#respond-to-confirmation-requests) untuk alur event-nya. |
+| `auto` | Server mengevaluasi setiap panggilan, lalu menjalankannya, menolaknya, atau menjeda untuk meminta persetujuan Anda. Lihat [Biarkan server mengevaluasi setiap panggilan dengan `auto`](https://platform.claude.com/docs/id/managed-agents/permission-policies#let-the-server-evaluate-each-call-with-auto). |
 
 Setiap jenis toolset memiliki default-nya sendiri: toolset agen default-nya `always_allow`, dan toolset MCP default-nya `always_ask`.
 
@@ -1026,13 +1026,13 @@ Misalnya, ketika `bash` berada di bawah `auto` dan server mengevaluasi suatu pan
 
 Objek `evaluation` mengambil salah satu bentuk dalam tabel berikut.
 
-| `evaluation`                                                                                | `evaluated_permission` tingkat atas | Arti                                                                                                        |
-| ------------------------------------------------------------------------------------------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `{"type": "always_allow"}`                                                                  | `"allow"`                           | Kebijakan yang berlaku adalah `always_allow`, sehingga panggilan dijalankan.                                |
-| `{"type": "always_ask"}`                                                                    | `"ask"`                             | Kebijakan yang berlaku adalah `always_ask`, sehingga panggilan dijeda untuk meminta persetujuan Anda.       |
-| `{"type": "auto", "evaluated_permission": {"type": "allow"}}`                               | `"allow"`                           | Di bawah `auto`, server menentukan bahwa panggilan tersebut aman, dan panggilan dijalankan.                 |
-| `{"type": "auto", "evaluated_permission": {"type": "ask", "reason_code": "indeterminate"}}` | `"ask"`                             | Di bawah `auto`, server tidak mencapai keputusan, sehingga panggilan dijeda untuk meminta persetujuan Anda. |
-| `{"type": "auto", "evaluated_permission": {"type": "deny", "reason_code": "high_risk"}}`    | `"deny"`                            | Di bawah `auto`, server mengevaluasi panggilan sebagai berisiko tinggi dan menolaknya.                      |
+| `evaluation` | `evaluated_permission` tingkat atas | Arti |
+| ----- | ----- | ----- |
+| `{"type": "always_allow"}` | `"allow"` | Kebijakan yang berlaku adalah `always_allow`, sehingga panggilan dijalankan. |
+| `{"type": "always_ask"}` | `"ask"` | Kebijakan yang berlaku adalah `always_ask`, sehingga panggilan dijeda untuk meminta persetujuan Anda. |
+| `{"type": "auto", "evaluated_permission": {"type": "allow"}}` | `"allow"` | Di bawah `auto`, server menentukan bahwa panggilan tersebut aman, dan panggilan dijalankan. |
+| `{"type": "auto", "evaluated_permission": {"type": "ask", "reason_code": "indeterminate"}}` | `"ask"` | Di bawah `auto`, server tidak mencapai keputusan, sehingga panggilan dijeda untuk meminta persetujuan Anda. |
+| `{"type": "auto", "evaluated_permission": {"type": "deny", "reason_code": "high_risk"}}` | `"deny"` | Di bawah `auto`, server mengevaluasi panggilan sebagai berisiko tinggi dan menolaknya. |
 
 Ketika `evaluation.type` adalah `"auto"`, `evaluated_permission.type` yang bersarang di dalamnya mengulang `evaluated_permission` tingkat atas milik event, sehingga Anda dapat membaca hasilnya dari salah satu field tersebut. `reason_code` adalah nilai yang dapat digunakan klien Anda untuk percabangan logika dan disimpan dalam catatan audit, bukan teks untuk ditampilkan kepada pengguna akhir.
 
@@ -1346,9 +1346,9 @@ Kebijakan izin dalam versi beta di semua model.
 
 * Ketersediaan: Selalu aktif
 
-| Status | Platform cloud               |
-| ------ | ---------------------------- |
-| Beta   | Semua platform yang didukung |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Semua platform yang didukung |
 
 ### Header beta yang diperlukan
 
@@ -1362,9 +1362,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

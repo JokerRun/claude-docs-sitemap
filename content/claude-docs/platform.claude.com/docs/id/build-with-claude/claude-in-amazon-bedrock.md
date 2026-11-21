@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 1917c98f4533625315835a8497d97e3c7d4db0027cb685f300d60d2b5da4975b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e4d42aa17396018632889b7745829d000de805f514d333275a2fcaf1ae7cad05
 ---
 
 ---
@@ -66,11 +66,11 @@ Bearer token memungkinkan Anda memanggil endpoint tanpa menandatangani permintaa
 
 Bearer token tersedia dalam dua jenis:
 
-| Aspek            | Jangka pendek                                                                      | Jangka panjang                                                                         |
-| ---------------- | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| Aspek | Jangka pendek | Jangka panjang |
+| ----- | ----- | ----- |
 | **Masa berlaku** | Hingga 12 jam, atau hingga sesi AWS yang membuatnya berakhir, mana yang lebih dulu | Hingga tanggal kedaluwarsanya. Jika tidak memilikinya, token tidak pernah kedaluwarsa. |
-| **Izin**         | Izin dari identitas IAM yang membuatnya                                            | Izin dari pengguna IAM pemilik token tersebut                                          |
-| **Catatan**      | Hanya berfungsi di region AWS tempat Anda membuatnya                               | Direkomendasikan oleh AWS hanya untuk eksplorasi                                       |
+| **Izin** | Izin dari identitas IAM yang membuatnya | Izin dari pengguna IAM pemilik token tersebut |
+| **Catatan** | Hanya berfungsi di region AWS tempat Anda membuatnya | Direkomendasikan oleh AWS hanya untuk eksplorasi |
 
 Untuk kedua jenis, identitas IAM yang izinnya dibawa oleh token memerlukan izin `bedrock-mantle:CallWithBearerToken` dan `bedrock-mantle:CreateInference`.
 
@@ -93,10 +93,10 @@ Untuk menggunakan bearer token:
 
 Administrator dapat mencegah pengguna IAM memanggil Amazon Bedrock dengan token jangka panjang. Token berfungsi pada kedua endpoint Amazon Bedrock, dan setiap endpoint memiliki tindakan IAM dan kunci kondisi tersendiri:
 
-| Endpoint          | Tindakan yang ditolak                | Kunci kondisi                    |
-| ----------------- | ------------------------------------ | -------------------------------- |
-| `bedrock-mantle`  | `bedrock-mantle:CallWithBearerToken` | `bedrock-mantle:bearerTokenType` |
-| `bedrock-runtime` | `bedrock:CallWithBearerToken`        | `bedrock:bearerTokenType`        |
+| Endpoint | Tindakan yang ditolak | Kunci kondisi |
+| ----- | ----- | ----- |
+| `bedrock-mantle` | `bedrock-mantle:CallWithBearerToken` | `bedrock-mantle:bearerTokenType` |
+| `bedrock-runtime` | `bedrock:CallWithBearerToken` | `bedrock:bearerTokenType` |
 
 Tulis kebijakan dengan satu pernyataan Deny untuk setiap endpoint. Pada setiap pernyataan, atur `Resource` ke `*`, dan gunakan `StringEquals` untuk mensyaratkan bahwa kunci kondisi bernilai `LONG_TERM`.
 
@@ -140,8 +140,8 @@ Kebijakan ini memblokir penggunaan token jangka panjang, bukan pembuatannya. Unt
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.11.0")
-        implementation("com.anthropic:anthropic-java-bedrock:3.11.0")
+        implementation("com.anthropic:anthropic-java:3.12.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.12.0")
         ```
       </Tab>
 
@@ -150,12 +150,12 @@ Kebijakan ini memblokir penggunaan token jangka panjang, bukan pembuatannya. Unt
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.11.0</version>
+            <version>3.12.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>3.11.0</version>
+            <version>3.12.0</version>
         </dependency>
         ```
       </Tab>
@@ -383,20 +383,20 @@ Untuk kredensial, klien menggunakan apa yang Anda teruskan saat membuatnya. Jika
 
 ID model di Claude di Amazon Bedrock memiliki prefiks penyedia `anthropic.`. Untuk kemampuan dan perilaku model, lihat [Ikhtisar model](https://platform.claude.com/docs/id/models/overview). Claude Fable 5.2 dan Claude Mythos 5.2 tidak tersedia di Claude di Amazon Bedrock. Amazon Bedrock menyajikannya hanya pada endpoint `bedrock-runtime`. Untuk ID model keduanya, lihat [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids). Untuk melihat endpoint mana yang menyajikan setiap model, lihat [Endpoint availability by models](https://docs.aws.amazon.com/bedrock/latest/userguide/models-endpoint-availability.html) di dokumentasi AWS.
 
-| Model                                                                                       | Model ID                      | Access                                                                                              |
-| :------------------------------------------------------------------------------------------ | :---------------------------- | :-------------------------------------------------------------------------------------------------- |
-| Claude Fable 5.1                                                                            | `anthropic.claude-fable-5-1`  | Open                                                                                                |
-| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | `anthropic.claude-mythos-5-1` | Active (verification required)                                                                      |
-| Claude Fable 5                                                                              | `anthropic.claude-fable-5`    | Open                                                                                                |
-| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))   | `anthropic.claude-mythos-5`   | Active (verification required)                                                                      |
-| Claude Opus 5.5                                                                             | `anthropic.claude-opus-5-5`   | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Opus 5                                                                               | `anthropic.claude-opus-5`     | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Opus 4.8                                                                             | `anthropic.claude-opus-4-8`   | Open                                                                                                |
-| Claude Opus 4.7                                                                             | `anthropic.claude-opus-4-7`   | Open                                                                                                |
-| Claude Sonnet 5.5                                                                           | `anthropic.claude-sonnet-5-5` | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Sonnet 5                                                                             | `anthropic.claude-sonnet-5`   | Open                                                                                                |
-| Claude Haiku 5.5                                                                            | `anthropic.claude-haiku-5-5`  | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
-| Claude Haiku 4.5                                                                            | `anthropic.claude-haiku-4-5`  | Open                                                                                                |
+| Model | Model ID | Access |
+| :---- | :---- | :---- |
+| Claude Fable 5.1 | `anthropic.claude-fable-5-1` | Open |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | `anthropic.claude-mythos-5-1` | Active (verification required) |
+| Claude Fable 5 | `anthropic.claude-fable-5` | Open |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842)) | `anthropic.claude-mythos-5` | Active (verification required) |
+| Claude Opus 5.5 | `anthropic.claude-opus-5-5` | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Opus 5 | `anthropic.claude-opus-5` | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Opus 4.8 | `anthropic.claude-opus-4-8` | Open |
+| Claude Opus 4.7 | `anthropic.claude-opus-4-7` | Open |
+| Claude Sonnet 5.5 | `anthropic.claude-sonnet-5-5` | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Sonnet 5 | `anthropic.claude-sonnet-5` | Open |
+| Claude Haiku 5.5 | `anthropic.claude-haiku-5-5` | [See Access](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#access) |
+| Claude Haiku 4.5 | `anthropic.claude-haiku-4-5` | Open |
 
 Gunakan versi terbaru Claude Code dengan Claude di Amazon Bedrock; jalankan `claude update` untuk memperbarui.
 
@@ -437,35 +437,35 @@ Claude di Amazon Bedrock tersedia di region AWS berikut. Amazon Bedrock menawark
 
 Endpoint global tersedia untuk Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Sonnet 5.5, Claude Sonnet 5, Claude Haiku 5.5, dan Claude Haiku 4.5.
 
-| Region AWS       | Lokasi                      | Jenis endpoint                 |
-| ---------------- | --------------------------- | ------------------------------ |
-| `af-south-1`     | Afrika (Cape Town)          | Global                         |
-| `ap-northeast-1` | Asia Pasifik (Tokyo)        | Global, JP, Hanya dalam region |
-| `ap-northeast-2` | Asia Pasifik (Seoul)        | Global                         |
-| `ap-northeast-3` | Asia Pasifik (Osaka)        | Global, JP                     |
-| `ap-south-1`     | Asia Pasifik (Mumbai)       | Global                         |
-| `ap-south-2`     | Asia Pasifik (Hyderabad)    | Global                         |
-| `ap-southeast-1` | Asia Pasifik (Singapura)    | Global                         |
-| `ap-southeast-2` | Asia Pasifik (Sydney)       | Global, AU                     |
-| `ap-southeast-3` | Asia Pasifik (Jakarta)      | Global                         |
-| `ap-southeast-4` | Asia Pasifik (Melbourne)    | Global, AU, Hanya dalam region |
-| `ca-central-1`   | Kanada (Tengah)             | Global, US                     |
-| `ca-west-1`      | Kanada Barat (Calgary)      | Global                         |
-| `eu-central-1`   | Eropa (Frankfurt)           | Global, EU                     |
-| `eu-central-2`   | Eropa (Zurich)              | Global, EU                     |
-| `eu-north-1`     | Eropa (Stockholm)           | Global, EU, Hanya dalam region |
-| `eu-south-1`     | Eropa (Milan)               | Global, EU                     |
-| `eu-south-2`     | Eropa (Spanyol)             | Global, EU                     |
-| `eu-west-1`      | Eropa (Irlandia)            | Global, EU, Hanya dalam region |
-| `eu-west-2`      | Eropa (London)              | Global, EU                     |
-| `eu-west-3`      | Eropa (Paris)               | Global, EU                     |
-| `il-central-1`   | Israel (Tel Aviv)           | Global                         |
-| `me-central-1`   | Timur Tengah (UEA)          | Global                         |
-| `sa-east-1`      | Amerika Selatan (São Paulo) | Global                         |
-| `us-east-1`      | AS Timur (Virginia Utara)   | Global, US, Hanya dalam region |
-| `us-east-2`      | AS Timur (Ohio)             | Global, US, Hanya dalam region |
-| `us-west-1`      | AS Barat (California Utara) | Global, US                     |
-| `us-west-2`      | AS Barat (Oregon)           | Global, US, Hanya dalam region |
+| Region AWS | Lokasi | Jenis endpoint |
+| ----- | ----- | ----- |
+| `af-south-1` | Afrika (Cape Town) | Global |
+| `ap-northeast-1` | Asia Pasifik (Tokyo) | Global, JP, Hanya dalam region |
+| `ap-northeast-2` | Asia Pasifik (Seoul) | Global |
+| `ap-northeast-3` | Asia Pasifik (Osaka) | Global, JP |
+| `ap-south-1` | Asia Pasifik (Mumbai) | Global |
+| `ap-south-2` | Asia Pasifik (Hyderabad) | Global |
+| `ap-southeast-1` | Asia Pasifik (Singapura) | Global |
+| `ap-southeast-2` | Asia Pasifik (Sydney) | Global, AU |
+| `ap-southeast-3` | Asia Pasifik (Jakarta) | Global |
+| `ap-southeast-4` | Asia Pasifik (Melbourne) | Global, AU, Hanya dalam region |
+| `ca-central-1` | Kanada (Tengah) | Global, US |
+| `ca-west-1` | Kanada Barat (Calgary) | Global |
+| `eu-central-1` | Eropa (Frankfurt) | Global, EU |
+| `eu-central-2` | Eropa (Zurich) | Global, EU |
+| `eu-north-1` | Eropa (Stockholm) | Global, EU, Hanya dalam region |
+| `eu-south-1` | Eropa (Milan) | Global, EU |
+| `eu-south-2` | Eropa (Spanyol) | Global, EU |
+| `eu-west-1` | Eropa (Irlandia) | Global, EU, Hanya dalam region |
+| `eu-west-2` | Eropa (London) | Global, EU |
+| `eu-west-3` | Eropa (Paris) | Global, EU |
+| `il-central-1` | Israel (Tel Aviv) | Global |
+| `me-central-1` | Timur Tengah (UEA) | Global |
+| `sa-east-1` | Amerika Selatan (São Paulo) | Global |
+| `us-east-1` | AS Timur (Virginia Utara) | Global, US, Hanya dalam region |
+| `us-east-2` | AS Timur (Ohio) | Global, US, Hanya dalam region |
+| `us-west-1` | AS Barat (California Utara) | Global, US |
+| `us-west-2` | AS Barat (Oregon) | Global, US, Hanya dalam region |
 
 ## Kuota
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/embeddings
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 8f3760986cda5c39834664603ea28720cfec466a02c3985e33149fda462ade86
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 56c169d299a1e761a8cf16ff43c4980c93383c845b97b87e7ae017271f2be04e
 ---
 
 ---
@@ -33,51 +33,51 @@ Voyage AI menawarkan model embedding teks berikut:
 
 **Generasi terbaru**
 
-| Model            | Panjang konteks | Dimensi embedding              | Deskripsi                                                                                                                                                                                                                                                                                                  |
-| ---------------- | --------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `voyage-4-large` | 32.000          | 1024 (default), 256, 512, 2048 | Kualitas retrieval serbaguna dan multibahasa terbaik. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya.                                                                                                                                                     |
-| `voyage-4`       | 32.000          | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk kualitas retrieval serbaguna dan multibahasa. Menyeimbangkan kualitas dan efisiensi. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya.                                                                                                   |
-| `voyage-4-lite`  | 32.000          | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk latensi dan biaya. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya.                                                                                                                                                                     |
-| `voyage-code-4`  | 32.000          | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk retrieval **kode** dan aplikasi coding agentik. Lihat [postingan blog voyage-code-4](https://blog.voyageai.com/2026/08/13/voyage-code-4/) untuk detailnya.                                                                                                                              |
-| `voyage-4-nano`  | 32.000          | 2048 (default), 256, 512, 1024 | Model open-weight (lisensi Apache 2.0) yang Anda unduh dari [Hugging Face](https://huggingface.co/voyageai/voyage-4-nano) dan jalankan sendiri. Tidak tersedia melalui Atlas Embedding and Reranking API. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya. |
+| Model | Panjang konteks | Dimensi embedding | Deskripsi |
+| ----- | ----- | ----- | ----- |
+| `voyage-4-large` | 32.000 | 1024 (default), 256, 512, 2048 | Kualitas retrieval serbaguna dan multibahasa terbaik. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya. |
+| `voyage-4` | 32.000 | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk kualitas retrieval serbaguna dan multibahasa. Menyeimbangkan kualitas dan efisiensi. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya. |
+| `voyage-4-lite` | 32.000 | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk latensi dan biaya. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya. |
+| `voyage-code-4` | 32.000 | 1024 (default), 256, 512, 2048 | Dioptimalkan untuk retrieval **kode** dan aplikasi coding agentik. Lihat [postingan blog voyage-code-4](https://blog.voyageai.com/2026/08/13/voyage-code-4/) untuk detailnya. |
+| `voyage-4-nano` | 32.000 | 2048 (default), 256, 512, 1024 | Model open-weight (lisensi Apache 2.0) yang Anda unduh dari [Hugging Face](https://huggingface.co/voyageai/voyage-4-nano) dan jalankan sendiri. Tidak tersedia melalui Atlas Embedding and Reranking API. Lihat [postingan blog Voyage 4](https://blog.voyageai.com/2026/01/15/voyage-4/) untuk detailnya. |
 
 **Generasi sebelumnya**
 
 Untuk status siklus hidup setiap model dan pengganti yang direkomendasikan, lihat [Model deprecations, lifecycle states, and support](https://www.mongodb.com/docs/voyageai/models/lifecycle/) dalam dokumentasi MongoDB.
 
-| Model              | Panjang konteks | Dimensi embedding              | Deskripsi                                                                                                                                                                                                       |
-| ------------------ | --------------- | ------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `voyage-3-large`   | 32.000          | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-4-large`. Lihat [postingan blog voyage-3-large](https://blog.voyageai.com/2025/01/07/voyage-3-large/) untuk detailnya.                                                         |
-| `voyage-3.5`       | 32.000          | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-4`. Lihat [postingan blog voyage-3.5](https://blog.voyageai.com/2025/05/20/voyage-3-5/) untuk detailnya.                                                                       |
-| `voyage-3.5-lite`  | 32.000          | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-4-lite`. Lihat [postingan blog voyage-3.5](https://blog.voyageai.com/2025/05/20/voyage-3-5/) untuk detailnya.                                                                  |
-| `voyage-code-3`    | 32.000          | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-code-4`. Lihat [postingan blog voyage-code-3](https://blog.voyageai.com/2024/12/04/voyage-code-3/) untuk detailnya.                                                            |
-| `voyage-finance-2` | 32.000          | 1024                           | Dioptimalkan untuk retrieval dan RAG **keuangan**. Lihat [postingan blog voyage-finance-2](https://blog.voyageai.com/2024/06/03/domain-specific-embeddings-finance-edition-voyage-finance-2/) untuk detailnya.  |
-| `voyage-law-2`     | 16.000          | 1024                           | Dioptimalkan untuk retrieval dan RAG **hukum**. Lihat [postingan blog voyage-law-2](https://blog.voyageai.com/2024/04/15/domain-specific-embeddings-and-retrieval-legal-edition-voyage-law-2/) untuk detailnya. |
+| Model | Panjang konteks | Dimensi embedding | Deskripsi |
+| ----- | ----- | ----- | ----- |
+| `voyage-3-large` | 32.000 | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-4-large`. Lihat [postingan blog voyage-3-large](https://blog.voyageai.com/2025/01/07/voyage-3-large/) untuk detailnya. |
+| `voyage-3.5` | 32.000 | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-4`. Lihat [postingan blog voyage-3.5](https://blog.voyageai.com/2025/05/20/voyage-3-5/) untuk detailnya. |
+| `voyage-3.5-lite` | 32.000 | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-4-lite`. Lihat [postingan blog voyage-3.5](https://blog.voyageai.com/2025/05/20/voyage-3-5/) untuk detailnya. |
+| `voyage-code-3` | 32.000 | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-code-4`. Lihat [postingan blog voyage-code-3](https://blog.voyageai.com/2024/12/04/voyage-code-3/) untuk detailnya. |
+| `voyage-finance-2` | 32.000 | 1024 | Dioptimalkan untuk retrieval dan RAG **keuangan**. Lihat [postingan blog voyage-finance-2](https://blog.voyageai.com/2024/06/03/domain-specific-embeddings-finance-edition-voyage-finance-2/) untuk detailnya. |
+| `voyage-law-2` | 16.000 | 1024 | Dioptimalkan untuk retrieval dan RAG **hukum**. Lihat [postingan blog voyage-law-2](https://blog.voyageai.com/2024/04/15/domain-specific-embeddings-and-retrieval-legal-edition-voyage-law-2/) untuk detailnya. |
 
 Selain itu, Voyage AI menawarkan model embedding multimodal berikut. Panggil model-model ini dengan `multimodal_embed()` alih-alih `embed()`:
 
-| Model                   | Panjang konteks | Dimensi embedding              | Deskripsi                                                                                                                                                                                                                                                                                                                     |
-| ----------------------- | --------------- | ------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `voyage-multimodal-3.5` | 32.000          | 1024 (default), 256, 512, 2048 | Model embedding multimodal yang kaya yang dapat memvektorisasi teks, gambar, dan video yang saling berselang-seling. Mencakup dukungan video sebagai model embedding video kelas produksi pertama. Lihat [postingan blog voyage-multimodal-3.5](https://blog.voyageai.com/2026/01/15/voyage-multimodal-3-5/) untuk detailnya. |
-| `voyage-multimodal-3`   | 32.000          | 1024                           | Generasi sebelumnya dari `voyage-multimodal-3.5`. Memvektorisasi teks yang saling berselang-seling dan gambar yang kaya konten, seperti tangkapan layar PDF, slide, tabel, gambar, dan lainnya. Lihat [postingan blog voyage-multimodal-3](https://blog.voyageai.com/2024/11/12/voyage-multimodal-3/) untuk detailnya.        |
+| Model | Panjang konteks | Dimensi embedding | Deskripsi |
+| ----- | ----- | ----- | ----- |
+| `voyage-multimodal-3.5` | 32.000 | 1024 (default), 256, 512, 2048 | Model embedding multimodal yang kaya yang dapat memvektorisasi teks, gambar, dan video yang saling berselang-seling. Mencakup dukungan video sebagai model embedding video kelas produksi pertama. Lihat [postingan blog voyage-multimodal-3.5](https://blog.voyageai.com/2026/01/15/voyage-multimodal-3-5/) untuk detailnya. |
+| `voyage-multimodal-3` | 32.000 | 1024 | Generasi sebelumnya dari `voyage-multimodal-3.5`. Memvektorisasi teks yang saling berselang-seling dan gambar yang kaya konten, seperti tangkapan layar PDF, slide, tabel, gambar, dan lainnya. Lihat [postingan blog voyage-multimodal-3](https://blog.voyageai.com/2024/11/12/voyage-multimodal-3/) untuk detailnya. |
 
 Model contextualized chunk embedding berikut menghasilkan vektor tingkat chunk yang menangkap konteks dokumen secara penuh tanpa augmentasi metadata manual. Panggil model-model ini dengan `contextualized_embed()` alih-alih `embed()`:
 
-| Model              | Panjang konteks | Dimensi embedding              | Deskripsi                                                                                                                                                                                                              |
-| ------------------ | --------------- | ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `voyage-context-4` | 120.000         | 1024 (default), 256, 512, 2048 | Contextualized chunk embeddings yang dioptimalkan untuk kualitas retrieval serbaguna dan multibahasa. Lihat [postingan blog voyage-context-4](https://blog.voyageai.com/2026/06/29/voyage-context-4/) untuk detailnya. |
-| `voyage-context-3` | 120.000         | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-context-4`. Lihat [postingan blog voyage-context-3](https://blog.voyageai.com/2025/07/23/voyage-context-3/) untuk detailnya.                                                          |
+| Model | Panjang konteks | Dimensi embedding | Deskripsi |
+| ----- | ----- | ----- | ----- |
+| `voyage-context-4` | 120.000 | 1024 (default), 256, 512, 2048 | Contextualized chunk embeddings yang dioptimalkan untuk kualitas retrieval serbaguna dan multibahasa. Lihat [postingan blog voyage-context-4](https://blog.voyageai.com/2026/06/29/voyage-context-4/) untuk detailnya. |
+| `voyage-context-3` | 120.000 | 1024 (default), 256, 512, 2048 | Generasi sebelumnya dari `voyage-context-4`. Lihat [postingan blog voyage-context-3](https://blog.voyageai.com/2025/07/23/voyage-context-3/) untuk detailnya. |
 
 Batas 120.000 token berlaku ketika Anda mengatur `enable_auto_chunking` ke `true`. Jika tidak, jumlah total token di semua input tidak boleh melebihi 32.000.
 
 Voyage AI juga menawarkan reranker, yang menerima sebuah query dan daftar dokumen lalu mengembalikannya dalam urutan berdasarkan relevansi terhadap query tersebut. Panggil model-model ini dengan `rerank()`:
 
-| Model             | Panjang konteks | Deskripsi                                                                                                                                                           |
-| ----------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `rerank-3`        | 32.000          | Akurasi tertinggi. Direkomendasikan untuk sebagian besar aplikasi. Lihat [postingan blog rerank-3](https://blog.voyageai.com/2026/09/30/rerank-3/) untuk detailnya. |
-| `rerank-3-lite`   | 32.000          | Dioptimalkan untuk latensi dan biaya. Lihat [postingan blog rerank-3](https://blog.voyageai.com/2026/09/30/rerank-3/) untuk detailnya.                              |
-| `rerank-2.5`      | 32.000          | Generasi sebelumnya dari `rerank-3`. Lihat [postingan blog rerank-2.5](https://blog.voyageai.com/2025/08/11/rerank-2-5/) untuk detailnya.                           |
-| `rerank-2.5-lite` | 32.000          | Generasi sebelumnya dari `rerank-3-lite`. Lihat [postingan blog rerank-2.5](https://blog.voyageai.com/2025/08/11/rerank-2-5/) untuk detailnya.                      |
+| Model | Panjang konteks | Deskripsi |
+| ----- | ----- | ----- |
+| `rerank-3` | 32.000 | Akurasi tertinggi. Direkomendasikan untuk sebagian besar aplikasi. Lihat [postingan blog rerank-3](https://blog.voyageai.com/2026/09/30/rerank-3/) untuk detailnya. |
+| `rerank-3-lite` | 32.000 | Dioptimalkan untuk latensi dan biaya. Lihat [postingan blog rerank-3](https://blog.voyageai.com/2026/09/30/rerank-3/) untuk detailnya. |
+| `rerank-2.5` | 32.000 | Generasi sebelumnya dari `rerank-3`. Lihat [postingan blog rerank-2.5](https://blog.voyageai.com/2025/08/11/rerank-2-5/) untuk detailnya. |
+| `rerank-2.5-lite` | 32.000 | Generasi sebelumnya dari `rerank-3-lite`. Lihat [postingan blog rerank-2.5](https://blog.voyageai.com/2025/08/11/rerank-2-5/) untuk detailnya. |
 
 Butuh bantuan memutuskan model mana yang akan digunakan? Lihat [Voyage AI embedding and reranking models overview](https://www.mongodb.com/docs/voyageai/models/) dalam dokumentasi MongoDB.
 

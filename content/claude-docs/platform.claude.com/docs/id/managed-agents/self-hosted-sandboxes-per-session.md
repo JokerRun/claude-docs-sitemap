@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-per-session
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 0f681b7bdfe255596b575c9e062b126a018100f5b92d6d8b16f1c95aed5f44d2
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: fc054069111333df1641b1c7bce13c1000ce2556661ead690244784ec4990a3c
 ---
 
 ---
@@ -131,7 +131,7 @@ Poller di host mengklaim pekerjaan dan memanggil skrip Anda sekali untuk setiap 
     <File filename="Dockerfile">
       ```dockerfile
       FROM your-base-image
-      ARG ANT_VERSION=2.12.0
+      ARG ANT_VERSION=2.12.1
       ARG TARGETARCH
       RUN ARCH=$([ "$TARGETARCH" = "arm64" ] && echo arm64 || echo amd64) && \
           curl -fsSL "https://github.com/anthropics/anthropic-cli/releases/download/v${ANT_VERSION}/ant_${ANT_VERSION}_linux_${ARCH}.tar.gz" \
@@ -181,10 +181,10 @@ Setiap item pekerjaan yang diklaim dapat membawa `secret` (csharp, go: `Secret`)
 
 Worker yang mengklaim dan menjalankan sesi dalam satu proses meneruskan secret tersebut dengan sendirinya. `EnvironmentWorker` dengan `run()` (go: `Run()`) adalah salah satu worker tersebut, dan `ant beta:worker poll` tanpa `--on-work` adalah yang lainnya. Ketika kode Anda sendiri berada di antara klaim dan worker, Anda yang meneruskan secret:
 
-| Anda mengklaim pekerjaan dengan                                                                                           | Secret tiba sebagai                                                    | Teruskan ke worker sebagai                                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `ant beta:worker poll --on-work`                                                                                          | Field `secret` dari JSON item pekerjaan pada standard input skrip Anda | `ANTHROPIC_WORK_SECRET` di environment sandbox                                                                                                                                                |
-| `work.poller()` (typescript: `new WorkPoller()`; go: `environments.NewWorkPoller()`) dari SDK Python, TypeScript, atau Go | Field `secret` (go: `Secret`) dari setiap item pekerjaan yang diklaim  | `ANTHROPIC_WORK_SECRET` di environment sandbox atau argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) untuk `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
+| Anda mengklaim pekerjaan dengan | Secret tiba sebagai | Teruskan ke worker sebagai |
+| ----- | ----- | ----- |
+| `ant beta:worker poll --on-work` | Field `secret` dari JSON item pekerjaan pada standard input skrip Anda | `ANTHROPIC_WORK_SECRET` di environment sandbox |
+| `work.poller()` (typescript: `new WorkPoller()`; go: `environments.NewWorkPoller()`) dari SDK Python, TypeScript, atau Go | Field `secret` (go: `Secret`) dari setiap item pekerjaan yang diklaim | `ANTHROPIC_WORK_SECRET` di environment sandbox atau argumen `work_secret` (typescript: `workSecret`; go: `WorkSecret`) untuk `handle_item()` (typescript: `handleItem()`; go: `HandleItem()`) |
 
 Teruskan secret hanya ke sandbox yang melayani sesi tersebut, dan jangan pernah mencatatnya ke log. Lihat [Model keamanan](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-security) untuk mengetahui hubungannya dengan kunci environment.
 

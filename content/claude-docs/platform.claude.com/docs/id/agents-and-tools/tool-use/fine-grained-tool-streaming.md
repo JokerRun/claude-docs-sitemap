@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/fine-grained-tool-streaming
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 63562481bb2fb86a14034b5f4702017923fabf531f837ea49696ad522efb6a26
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 48786c82eb93e1bfe7eb5d2952c88d470b698ca4949645b90dc3b4364725352d
 ---
 
 ---
@@ -983,16 +983,16 @@ Streaming alat fine-grained tersedia di semua model dan layak untuk retensi data
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----- |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
 | Status | Layak (tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Layak |
 
 Endpoint yang berlaku:

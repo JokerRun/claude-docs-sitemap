@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/delete
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 9792144c48225bdfcab3aabd5cc60ed42ffd6a868288ce6b6791974f893f6326
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6e95482b8db8facfc5214d5c9b8238c64c946ae636f45177e5511c259abd43d4
 ---
 
 ---
@@ -139,6 +139,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -204,6 +206,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `cmek_key_disabled` (HTTP status 400)
 
   The workspace's customer-managed encryption key is disabled or revoked. Re-enable the key, then retry.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: bdbc89e7e02b89e5da532d357d04614dab6cf541f2fb7e29207a9f32a092f196
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2453ef77f452005acbb9bec85e7523f3a804f6f819d94ed97c98f29f210679ad
 ---
 
 ---
@@ -71,6 +71,7 @@ Produk yang Anda gunakan menentukan apa yang dienkripsi oleh kunci Anda, apa yan
 * Kunci Anda hanya melindungi data yang ditulis [setelah kunci tersebut mulai berlaku](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect).
 * Jika kunci Anda dihapus, Anthropic tidak dapat memulihkan data yang dilindunginya. [Selama kunci dinonaktifkan](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle#restore-access), Claude tidak dapat membaca data tersebut.
 * Di Claude Platform, workspace yang memiliki kunci [wajib menerapkan retensi data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention).
+* Saat Anthropic menyetujui seluruh organisasi Anda untuk CMEK, Anthropic juga mengaktifkan [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency#access-transparency-with-customer-managed-keys) untuk organisasi tersebut. Organisasi dengan Access Transparency tidak dapat memanggil Claude API secara langsung dari browser.
 
 ## Siapa yang dapat menggunakan CMEK
 

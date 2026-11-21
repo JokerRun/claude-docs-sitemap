@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: e1088ebf733762431ec12588bedd9a5fb0c7934571d247b0496859b70e1506b7
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e8dff712cbe22a441ff318eb306e10a555c635e71e512e1a9fae28172847d29c
 ---
 
 ---
@@ -22,10 +22,10 @@ Empat perubahan dari Claude Fable 5.1 dapat merusak kode Anda:
 
 ## Model
 
-| Model             | ID Claude API     | Deskripsi                                                          | Ketersediaan                                                                                                                                                     |
-| ----------------- | ----------------- | ------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Claude Fable 5.2  | claude-fable-5-2  | Untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang | Semua pelanggan di Claude API (untuk platform lain, lihat [Ketersediaan](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2#availability)) |
-| Claude Mythos 5.2 | claude-mythos-5-2 | Kemampuan yang sama dengan Claude Fable 5.2                        | Organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842)        |
+| Model | ID Claude API | Deskripsi | Ketersediaan |
+| ----- | ----- | ----- | ----- |
+| Claude Fable 5.2 | claude-fable-5-2 | Untuk penalaran yang menuntut dan pekerjaan agentik jangka panjang | Semua pelanggan di Claude API (untuk platform lain, lihat [Ketersediaan](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2#availability)) |
+| Claude Mythos 5.2 | claude-mythos-5-2 | Kemampuan yang sama dengan Claude Fable 5.2 | Organisasi yang terverifikasi melalui program verifikasi Anthropic, seperti [Cyber Verification Program](https://support.claude.com/en/articles/14604842) |
 
 Claude Fable 5.2 dan Claude Mythos 5.2 memiliki spesifikasi yang sama berikut:
 
@@ -129,9 +129,9 @@ Claude Fable 5.2 menjalankan pengklasifikasi keamanan, dan semua yang ada di [Pe
 
 Claude Fable 5.2 dan Claude Mythos 5.2 memiliki harga yang sama berikut, dalam USD:
 
-| Input dasar | Penulisan cache 5m | Penulisan cache 1h | Pembacaan cache | Output     |
-| ----------- | ------------------ | ------------------ | --------------- | ---------- |
-| $8 / MTok   | $10 / MTok         | $16 / MTok         | $0,20 / MTok    | $40 / MTok |
+| Input dasar | Penulisan cache 5m | Penulisan cache 1h | Pembacaan cache | Output |
+| ----- | ----- | ----- | ----- | ----- |
+| $8 / MTok | $10 / MTok | $16 / MTok | $0,20 / MTok | $40 / MTok |
 
 Input dan output lebih murah dibandingkan pada Claude Fable 5.1 dan Claude Mythos 5.1. Claude Fable 5.1 dan Claude Mythos 5.1 berharga $10 USD per juta token input dan $50 USD per juta token output. Pembacaan cache (hit dan refresh) berharga 0,025 kali harga input dasar, pengali yang sama seperti pada model-model tersebut. [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing) berharga $4 USD per juta token input dan $20 USD per juta token output. [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) untuk Claude Fable 5.2 dan Claude Mythos 5.2 berharga $16 USD per juta token input dan $80 USD per juta token output. Lihat [Harga mode cepat](https://platform.claude.com/docs/id/about-claude/pricing#fast-mode-pricing). Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing) untuk harga residensi data dan alat.
 

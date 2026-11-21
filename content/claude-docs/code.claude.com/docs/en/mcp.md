@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: a6fa343721a48523c7de2039126c29ab9cade7009b501c6d3da9c63be1850d3d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 8a5fcd23cb7ca89e4ac93ac58146122bfcb4e2a3eea5b3ae38cc0fb71989b483
 ---
 
 > ## Documentation Index
@@ -331,7 +331,7 @@ If your request needs tools from a server that is still connecting in the backgr
 
 With tool search enabled, when a server finishes connecting while Claude is working, Claude Code lists the server's tool names to Claude on its next request in the same turn. Claude can then search for and call those tools without waiting for your next message.
 
-After you resume a session, Claude can call a tool from the saved conversation while the tool's MCP server is still connecting. While the server is on its first connection attempt, Claude Code holds the call for up to 10 seconds and runs it once the tool is available. If the server doesn't connect in time, or it is already [retrying after a failed attempt](#automatic-reconnection), the call fails with the `No such tool available` [tool error](https://code.claude.com/docs/en/errors.md#no-such-tool-available).
+After you resume a session, Claude can call a tool from the saved conversation while the tool's MCP server is still connecting. While the server is on its first connection attempt, Claude Code holds the call for up to 10 seconds and runs it once the tool is available. If the server doesn't connect in time, the call fails with the `No such tool available` [tool error](https://code.claude.com/docs/en/errors.md#no-such-tool-available).
 
 ### Disable a server without removing it
 
@@ -403,7 +403,7 @@ Claude Code first tries to reconnect a dropped remote server up to five times wi
   * **After a transient error, such as a 5xx response or a timeout**: Claude Code keeps retrying an HTTP or SSE server in the background. Retries last up to about half an hour, or about a day for some servers, and the server's tools become available again when one connects.
 
     Until then, an Agent SDK session reports the [status](https://code.claude.com/docs/en/agent-sdk/mcp.md#error-handling) `failed`, and your code can [reconnect the server](https://code.claude.com/docs/en/agent-sdk/mcp.md#error-handling). To reconnect it in `claude -p`, start the run again.
-  * **When the server [needs you to sign in again](#authenticate-with-remote-mcp-servers)**: Claude Code stops retrying, and an Agent SDK session reports the server's status as `needs-auth`. Sign in with [`claude mcp login <name>`](#authenticate-from-the-command-line) in your shell. Then start the run again or, in an Agent SDK session, [reconnect the server](https://code.claude.com/docs/en/agent-sdk/mcp.md#error-handling) instead.
+  * **When the server [needs you to sign in again](#authenticate-with-remote-mcp-servers)**: an Agent SDK session reports the server's status as `needs-auth`. If `claude mcp list` shows the server, sign in with [`claude mcp login <name>`](#authenticate-from-the-command-line) in your shell. Then start the run again, or [reconnect the server](https://code.claude.com/docs/en/agent-sdk/mcp.md#error-handling) from your Agent SDK code.
 
 #### Failed first connections
 
@@ -511,7 +511,7 @@ Meanwhile, the footer shows a count such as `1 MCP task`, and Claude Code follow
 
 > [!NOTE]
 >
-> MCP tasks are in public beta in the Claude Code CLI and require Claude Code v2.1.304 or later. [What a call needs to become an MCP task](#requirements-for-mcp-tasks) lists the sessions and servers that get them.
+> MCP tasks are in public beta and require Claude Code v2.1.304 or later. [What a call needs to become an MCP task](#requirements-for-mcp-tasks) lists the sessions and servers that get them.
 
 #### Stop an MCP task or get its result
 
@@ -552,7 +552,10 @@ A tool call becomes an MCP task only when all of these conditions hold:
 * The server supports tasks
 * The server is an HTTP, stdio, or claude.ai connector server connected on [protocol revision 2026-07-28](#mcp-client-runtimes). Setting [`MCP_SDK_GENERATION=v1` or `MCP_PROTOCOL_NEGOTIATION=legacy`](https://code.claude.com/docs/en/env-vars) rules that out
 * The session [fetches feature flags](https://code.claude.com/docs/en/env-vars.md#features-that-need-feature-flag-fetching), so not on a third-party provider such as Amazon Bedrock, and not with telemetry or flag fetching turned off
-* Anthropic has turned MCP tasks on for your kind of session. On v2.1.304 or later that covers terminal CLI sessions, [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) sessions, and [GitHub Actions](https://code.claude.com/docs/en/github-actions.md) runs. Other surfaces, such as the [VS Code extension](https://code.claude.com/docs/en/vs-code.md) and the [desktop app](https://code.claude.com/docs/en/desktop.md), don't have MCP tasks
+* Anthropic has turned MCP tasks on for your kind of session:
+  * Terminal CLI sessions, [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) sessions, and [GitHub Actions](https://code.claude.com/docs/en/github-actions.md) runs have them on v2.1.304 or later
+  * [Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md), including ones you open in the desktop app, have them only if Anthropic has turned them on for your account or organization. You can't turn them on or look up their state in a setting
+  * Some other Claude Code surfaces, such as the [VS Code extension](https://code.claude.com/docs/en/vs-code.md) and local sessions in the [desktop app](https://code.claude.com/docs/en/desktop.md), don't have them
 * The call comes from the main conversation, not from a [subagent](https://code.claude.com/docs/en/sub-agents.md)
 * Either the session is interactive, or an [Agent SDK](https://code.claude.com/docs/en/agent-sdk/overview.md) session or a `claude -p` run reading `--input-format stream-json` has:
   * [`CLAUDE_AUTO_BACKGROUND_TASKS`](https://code.claude.com/docs/en/env-vars) at `1`
@@ -620,7 +623,7 @@ Answer with a task only when the request carries the extension, or the call fail
   "createdAt": "2026-10-22T14:03:07Z",
   "lastUpdatedAt": "2026-10-22T14:03:07Z",
   "ttlMs": null,
-  "pollIntervalMs": 5000
+  "pollIntervalMs": 10000
 }
 ```
 
@@ -667,6 +670,15 @@ Right after the task answer, Claude Code sends `tasks/get` with `{ "taskId": ...
 | JSON-RPC error `-32602` | Read as an unknown task ID. For a task in the background, Claude Code keeps asking for up to five minutes, then reports the outcome to Claude as unknown |
 | `tasks/cancel` | Sent, for example, when Claude or the person stops the task while the server is connected. Not sent on exit |
 | `tasks/result`, `tasks/list`, `notifications/tasks` | Not used, so put the outcome in your `tasks/get` responses |
+
+#### Choose a time to live and a poll interval
+
+Keep a finished task's result for at least an hour, and longer if you can. A person can exit while a remote server's task runs and [resume the session](#exit-clear-or-resume-while-an-mcp-task-runs) later. Claude then gets the result only if your server still knows the task.
+
+Set `ttlMs` and `pollIntervalMs`, both in milliseconds, in your `tools/call` answer and your `tasks/get` responses:
+
+* **`ttlMs`**: report how long your server keeps the task, counted from the task's creation. Send your longest run time plus the time you keep the result, such as `5400000` for a 30-minute job and one hour. Send `null` if your server keeps tasks with no time limit
+* **`pollIntervalMs`**: send 10000 to 30000 for a job that runs longer than a minute, so your server answers fewer status checks. For a shorter job, send 2000 so Claude gets the result sooner
 
 ### Plugin-provided MCP servers
 

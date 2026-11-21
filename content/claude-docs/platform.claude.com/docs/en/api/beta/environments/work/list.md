@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: e7959ddab8d62189f06f1b81178e17abc68a94ecd18bd06e59634dc6a5080827
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: cf881c45367801c4e4a80e8f850a93cd8b1ad472fd6201872a26a1407c3118a3
 ---
 
 ---
@@ -14,9 +14,9 @@ url: https://platform.claude.com/docs/en/api/beta/environments/work/list
 
 **GET** `/v1/environments/{environment_id}/work`
 
-Note: these endpoints are called automatically by the pre-built environment worker provided in the SDKs and CLI, for orchestrating sessions with self-hosted sandbox environments. They are included here as a reference; you do not need to invoke them directly.
-
 List work items in an environment.
+
+This endpoint accepts the environment key as a bearer token. It rejects a Claude API key. On [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws?sdk_languages=http) or [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed?sdk_languages=http), use that platform's credentials instead.
 
 ## Path parameters
 
@@ -139,6 +139,8 @@ List work items in an environment.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

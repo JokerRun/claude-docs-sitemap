@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 63c8f7eef6dcbf947d2e104b7f8706583b867ddb53c02b9748e1b3fbabff8c3f
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ba3d675aa796139d70f003d309dfcad9c72ae7489957741e49c375e84d9b918f
 ---
 
 ---
@@ -135,6 +135,8 @@ List the organization's Bundles, newest first by `created_at`. A Bundle that Cla
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -386,6 +388,8 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -626,6 +630,8 @@ Change a Bundle's instructions. The update is partial: a field left out is uncha
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -940,6 +946,8 @@ List the Slack channels and Slack workspaces a Bundle is attached to, newest fir
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1196,6 +1204,8 @@ Attach a Bundle to a Slack channel or a Slack workspace. A Bundle attached to a 
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1482,6 +1492,8 @@ Get one Bundle Target. Returns 404 when `target_id` is the identifier of another
 
   - `"experimental-claude-tag-2026-10-21"`
 
+  - `"ce-claude-code-managed-settings-2026-10-06"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1733,6 +1745,8 @@ Detach a Bundle from a Slack channel or a Slack workspace. A repeated detach ret
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

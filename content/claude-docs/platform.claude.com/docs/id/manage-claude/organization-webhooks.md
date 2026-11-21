@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/organization-webhooks
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: f4fba939494cd3736d0f2e18cfc5741f5dff492e676bbcd53e8d460679d4f3e6
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: f7b0a11c0e33e0750da5435bb1b8c49649c5fa6d6eb6b573b623f5b81d3dc73e
 ---
 
 ---
@@ -36,16 +36,16 @@ Anda memerlukan hal-hal berikut:
 
 Dengan kunci Admin API, Anda dapat membuat setiap permintaan di [Mengelola endpoint](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#manage-endpoints). Dengan token `org:admin`, Anda dapat membuat permintaan yang sama. Jika token tersebut terikat pada workspace selain [workspace default](https://platform.claude.com/docs/id/manage-claude/workspaces#how-workspaces-work) organisasi Anda, Anda tidak dapat membuat satu pun permintaan tersebut. Dengan kunci pribadi atau kunci akun layanan, permintaan yang dapat Anda buat bergantung pada [peran organisasi](https://platform.claude.com/docs/id/manage-claude/admin-api#organization-roles-and-permissions) akun tersebut:
 
-* Untuk menampilkan daftar atau melihat endpoint webhook: `claude_code_user`, `developer`, atau `admin`
-* Untuk membuat, mengubah, atau menghapus endpoint webhook, atau untuk mengganti signing secret: `admin`
+* Untuk menampilkan daftar atau mendapatkan endpoint webhook: `developer` atau `admin`
+* Untuk membuat, memperbarui, atau menghapus endpoint webhook, atau untuk mengganti signing secret: `admin`
 
 ## Jenis event
 
 Endpoint webhook organisasi menerima dua jenis event. Keduanya berkaitan dengan [tindakan penegakan](https://platform.claude.com/docs/id/manage-claude/user-profiles#check-whether-anthropic-has-restricted-or-banned-a-profile) pada profil pengguna.
 
-| Event                                      | Pemicu                                                                                                 |
-| ------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| `user_profile.enforcement_action_opened`   | Anthropic membuka tindakan penegakan pada sebuah profil pengguna.                                      |
+| Event | Pemicu |
+| ----- | ----- |
+| `user_profile.enforcement_action_opened` | Anthropic membuka tindakan penegakan pada sebuah profil pengguna. |
 | `user_profile.enforcement_action_resolved` | Sebuah tindakan penegakan berakhir. Anthropic menyelesaikannya, atau waktu `expires_at`-nya terlewati. |
 
 Menghapus sebuah profil akan mengakhiri tindakan-tindakan terbukanya tanpa event `user_profile.enforcement_action_resolved`.
@@ -82,18 +82,18 @@ Anthropic mengirimkan event hanya setelah profil menunjukkan perubahan tersebut,
 
 Endpoint webhook organisasi memiliki field-field berikut:
 
-| Field             | Tipe         | Deskripsi                                                                                                                                                                                                        |
-| ----------------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `id`              | string       | ID endpoint, yang diawali dengan `wep_`. Ditetapkan oleh Anthropic.                                                                                                                                              |
-| `url`             | string       | Tempat Anthropic mengirimkan event. Harus HTTPS pada port 443, dengan nama domain publik, bukan alamat IP. Dua endpoint webhook organisasi yang diaktifkan di organisasi Anda tidak dapat berbagi URL yang sama. |
-| `enabled_events`  | array string | [Jenis event](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#event-types) yang diterima endpoint ini. Permintaan pembuatan harus mencantumkan setidaknya satu.                          |
-| `name`            | string       | Label opsional untuk penggunaan Anda sendiri.                                                                                                                                                                    |
-| `description`     | string       | Deskripsi opsional untuk penggunaan Anda sendiri.                                                                                                                                                                |
-| `state`           | string       | `enabled` atau `disabled`.                                                                                                                                                                                       |
-| `disabled_reason` | string       | Alasan Anthropic menonaktifkan endpoint. Kosong jika tidak.                                                                                                                                                      |
-| `created_at`      | string       | Waktu endpoint dibuat. Ditetapkan oleh Anthropic.                                                                                                                                                                |
-| `updated_at`      | string       | Waktu endpoint terakhir berubah. Ditetapkan oleh Anthropic.                                                                                                                                                      |
-| `signing_secret`  | string       | Secret berawalan `whsec_`, dibuat bersama endpoint. Hanya respons yang membuat endpoint atau mengganti secret yang menyertakannya, jadi simpanlah dengan aman.                                                   |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `id` | string | ID endpoint, yang diawali dengan `wep_`. Ditetapkan oleh Anthropic. |
+| `url` | string | Tempat Anthropic mengirimkan event. Harus HTTPS pada port 443, dengan nama domain publik, bukan alamat IP. Dua endpoint webhook organisasi yang diaktifkan di organisasi Anda tidak dapat berbagi URL yang sama. |
+| `enabled_events` | array string | [Jenis event](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#event-types) yang diterima endpoint ini. Permintaan pembuatan harus mencantumkan setidaknya satu. |
+| `name` | string | Label opsional untuk penggunaan Anda sendiri. |
+| `description` | string | Deskripsi opsional untuk penggunaan Anda sendiri. |
+| `state` | string | `enabled` atau `disabled`. |
+| `disabled_reason` | string | Alasan Anthropic menonaktifkan endpoint. Kosong jika tidak. |
+| `created_at` | string | Waktu endpoint dibuat. Ditetapkan oleh Anthropic. |
+| `updated_at` | string | Waktu endpoint terakhir berubah. Ditetapkan oleh Anthropic. |
+| `signing_secret` | string | Secret berawalan `whsec_`, dibuat bersama endpoint. Hanya respons yang membuat endpoint atau mengganti secret yang menyertakannya, jadi simpanlah dengan aman. |
 
 ```json
 {
@@ -136,14 +136,14 @@ Kembalikan status `2xx` apa pun dalam 5 detik, dan lakukan pekerjaan yang lambat
 
 Dengan Admin API, Anda dapat membuat permintaan-permintaan berikut:
 
-| Tugas                                                                                    | Permintaan                                                                                                                                                                        |
-| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Menampilkan daftar endpoint organisasi Anda                                              | [`GET /v1/organizations/webhooks`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/list)                                                                       |
-| Membuat endpoint                                                                         | [`POST /v1/organizations/webhooks`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/create)                                                                    |
-| Mendapatkan satu endpoint                                                                | [`GET /v1/organizations/webhooks/{webhook_endpoint_id}`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/retrieve)                                             |
-| Memperbarui `url`, `name`, `description`, `enabled_events`, atau `state` sebuah endpoint | [`POST /v1/organizations/webhooks/{webhook_endpoint_id}`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/update)                                              |
-| Menghapus endpoint                                                                       | [`DELETE /v1/organizations/webhooks/{webhook_endpoint_id}`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/delete)                                            |
-| Mengganti signing secret                                                                 | [`POST /v1/organizations/webhooks/{webhook_endpoint_id}/regenerate_signing_secret`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/regenerate_signing_secret) |
+| Tugas | Permintaan |
+| ----- | ----- |
+| Menampilkan daftar endpoint organisasi Anda | [`GET /v1/organizations/webhooks`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/list) |
+| Membuat endpoint | [`POST /v1/organizations/webhooks`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/create) |
+| Mendapatkan satu endpoint | [`GET /v1/organizations/webhooks/{webhook_endpoint_id}`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/retrieve) |
+| Memperbarui `url`, `name`, `description`, `enabled_events`, atau `state` sebuah endpoint | [`POST /v1/organizations/webhooks/{webhook_endpoint_id}`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/update) |
+| Menghapus endpoint | [`DELETE /v1/organizations/webhooks/{webhook_endpoint_id}`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/delete) |
+| Mengganti signing secret | [`POST /v1/organizations/webhooks/{webhook_endpoint_id}/regenerate_signing_secret`](https://platform.claude.com/docs/id/api/beta/organization/webhooks/regenerate_signing_secret) |
 
 Dalam pembaruan, `enabled_events` menggantikan seluruh daftar jenis event endpoint. Daftar kosong tidak mengosongkan daftar: endpoint tetap mempertahankan jenis event yang dimilikinya. Untuk menghentikan pengiriman, kirim `"state": "disabled"` atau hapus endpoint tersebut.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 1420f9f70675744d1abc4f9434be5c16bdb75e2c026c7219074ebdb02766dd17
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 63892cbfeba8857d034b4286683458478d9ebd5726d6c7a20ea41a9cdefb2257
 ---
 
 ---
@@ -64,16 +64,16 @@ The skill does not activate for general programming tasks, ML/data-science work,
 
 The skill detects your project’s language automatically by examining project files (for example, `requirements.txt` for Python, `tsconfig.json` for TypeScript, `go.mod` for Go) and loads the appropriate documentation.
 
-| Language   | Messages API SDK | Tool runner | Managed Agents |
-| ---------- | ---------------- | ----------- | -------------- |
-| Python     | Yes              | Yes (beta)  | Yes (beta)     |
-| TypeScript | Yes              | Yes (beta)  | Yes (beta)     |
-| C#         | Yes              | Yes (beta)  | Yes (beta)     |
-| Go         | Yes              | Yes (beta)  | Yes (beta)     |
-| Java       | Yes              | Yes (beta)  | Yes (beta)     |
-| PHP        | Yes              | Yes (beta)  | Yes (beta)     |
-| Ruby       | Yes              | Yes (beta)  | Yes (beta)     |
-| cURL       | Yes              | N/A         | Yes (beta)     |
+| Language | Messages API SDK | Tool runner | Managed Agents |
+| ----- | ----- | ----- | ----- |
+| Python | Yes | Yes (beta) | Yes (beta) |
+| TypeScript | Yes | Yes (beta) | Yes (beta) |
+| C# | Yes | Yes (beta) | Yes (beta) |
+| Go | Yes | Yes (beta) | Yes (beta) |
+| Java | Yes | Yes (beta) | Yes (beta) |
+| PHP | Yes | Yes (beta) | Yes (beta) |
+| Ruby | Yes | Yes (beta) | Yes (beta) |
+| cURL | Yes | N/A | Yes (beta) |
 
 If your project uses multiple languages, Claude asks which one applies. For unsupported languages (Rust, Swift, C++), the skill provides cURL/raw HTTP examples.
 

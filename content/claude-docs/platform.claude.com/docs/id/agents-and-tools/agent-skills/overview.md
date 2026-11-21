@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: b3efb64605e9776cbecc3467a66149a59111c4d76037e732bdac32b29b3626a7
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a1c2f892cef584fd8f55a0b90409212940b7e28ca82ee41c7f11a144452b6d55
 ---
 
 ---
@@ -141,11 +141,11 @@ Skills dapat menyertakan materi tambahan:
 
 Claude mengakses file-file ini hanya saat direferensikan. Model sistem file berarti setiap jenis konten memiliki kekuatan yang berbeda: instruksi untuk panduan yang fleksibel, kode untuk keandalan, sumber daya untuk pencarian faktual.
 
-| Level                     | Kapan dimuat          | Biaya token              | Konten                                                                                                                                            |
-| ------------------------- | --------------------- | ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Level 1: Metadata**     | Selalu (saat startup) | \~100 token per Skill    | `name` dan `description` dari frontmatter YAML                                                                                                    |
-| **Level 2: Instruksi**    | Saat Skill dipicu     | Di bawah 5k token        | Isi `SKILL.md` dengan instruksi dan panduan                                                                                                       |
-| **Level 3+: Sumber daya** | Sesuai kebutuhan      | Tidak ada hingga diakses | File yang dibundel. File referensi dimuat ke dalam konteks saat dibaca. Skrip dijalankan melalui bash, dan hanya outputnya yang masuk ke konteks. |
+| Level | Kapan dimuat | Biaya token | Konten |
+| ----- | ----- | ----- | ----- |
+| **Level 1: Metadata** | Selalu (saat startup) | \~100 token per Skill | `name` dan `description` dari frontmatter YAML |
+| **Level 2: Instruksi** | Saat Skill dipicu | Di bawah 5k token | Isi `SKILL.md` dengan instruksi dan panduan |
+| **Level 3+: Sumber daya** | Sesuai kebutuhan | Tidak ada hingga diakses | File yang dibundel. File referensi dimuat ke dalam konteks saat dibaca. Skrip dijalankan melalui bash, dan hanya outputnya yang masuk ke konteks. |
 
 Pengungkapan bertahap memastikan hanya konten yang relevan yang menempati jendela konteks pada waktu tertentu.
 
@@ -382,10 +382,10 @@ Agent Skills tersedia di semua model.
 * Ketersediaan: Tersedia
 * Penggunaan: Cantumkan `type` dan `skill_id` setiap Skill di `container.skills`, dan sertakan alat eksekusi kode, yang kontainernya menjadi tempat Skills dijalankan.
 
-| Status               | Platform cloud                                                                                                                                                                                                                                                                 |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| Tersedia             | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
-| Tersedia<sup>1</sup> | [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry)                                                                                                                                                   |
+| Status | Platform cloud |
+| ----- | ----- |
+| Tersedia | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
+| Tersedia<sup>1</sup> | [Microsoft Foundry (hosted on Anthropic)](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) |
 
 1. Hanya deployment Hosted on Anthropic; endpoint unduhan versi skill (`GET /v1/skills/{skill_id}/versions/{version}/content`) tidak didukung di Foundry.
 
@@ -394,18 +394,18 @@ Agent Skills tersedia di semua model.
 * Ketersediaan: Tersedia
 * Penggunaan: Lampirkan skill dalam array `skills` agen, atau muat dari repositori GitHub yang di-mount pada sesi.
 
-| Status   | Platform cloud               |
-| -------- | ---------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Semua platform yang didukung |
 
 ### Penanganan data
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                 | HIPAA       |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| Status | Tidak layak                                                                                                                                                      | Tidak layak |
-| Detail | Data skill disimpan sesuai kebijakan standar. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#data-retention) | —           |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
+| Detail | Data skill disimpan sesuai kebijakan standar. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#data-retention) | — |
 
 Endpoint yang berlaku:
 

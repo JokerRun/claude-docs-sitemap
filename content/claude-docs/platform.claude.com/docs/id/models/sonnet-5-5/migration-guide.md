@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 606ed0aa64e2b3aeb40abe314d497a5b580fa5f22e1f9ae8d1da47125883b664
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: b5479dd211d5a90d84b48c7813c59dad08e4b1d07aa339e8bb9875bb454406f4
 ---
 
 ---
@@ -221,12 +221,12 @@ Permintaan ini berfungsi di Claude Sonnet 5.5 sebagaimana tertulis. Permintaan i
 
 Di Claude Sonnet 5.5, permintaan tanpa field `thinking` berjalan dengan [pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking), sama seperti `thinking: {"type": "adaptive"}`. Di Claude Sonnet 4.6 dan model sebelumnya serta di Claude Haiku 4.5, permintaan tersebut berjalan tanpa pemikiran. Untuk tetap berjalan tanpa pemikiran di awal, lihat [Menonaktifkan pemikiran di awal](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#turn-off-up-front-thinking).
 
-| Model                                  | Pemikiran tanpa field `thinking` | Nilai `thinking.type` yang diterima             | `display` default |
-| -------------------------------------- | -------------------------------- | ----------------------------------------------- | ----------------- |
-| Claude Sonnet 5.5                      | Aktif                            | `"adaptive"`, `"between_tools"`                 | `"omitted"`       |
-| Claude Sonnet 5                        | Aktif                            | `"adaptive"`, `"disabled"`                      | `"omitted"`       |
-| Claude Sonnet 4.6                      | Nonaktif                         | `"adaptive"`, `"disabled"`, `"enabled"` (usang) | `"summarized"`    |
-| Claude Sonnet 4.5 dan Claude Haiku 4.5 | Nonaktif                         | `"disabled"`, `"enabled"`                       | `"summarized"`    |
+| Model | Pemikiran tanpa field `thinking` | Nilai `thinking.type` yang diterima | `display` default |
+| ----- | ----- | ----- | ----- |
+| Claude Sonnet 5.5 | Aktif | `"adaptive"`, `"between_tools"` | `"omitted"` |
+| Claude Sonnet 5 | Aktif | `"adaptive"`, `"disabled"` | `"omitted"` |
+| Claude Sonnet 4.6 | Nonaktif | `"adaptive"`, `"disabled"`, `"enabled"` (usang) | `"summarized"` |
+| Claude Sonnet 4.5 dan Claude Haiku 4.5 | Nonaktif | `"disabled"`, `"enabled"` | `"summarized"` |
 
 ### Menangani pemikiran dalam respons
 

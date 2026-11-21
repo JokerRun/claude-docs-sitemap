@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/dreams
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: e329a1d1b38aed3bdc34f005227b5a4d4e90d1454fdb982f77cf98655f671449
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 144632c61272da1aa5c2a74166d44f7437440e29adb8fdf56629635097f4ae55
 ---
 
 ---
@@ -297,13 +297,13 @@ Dreams berjalan secara asinkron dan biasanya memakan waktu beberapa menit hingga
 
 ### Siklus hidup
 
-| `status` (csharp, go: `Status`) | Arti                                                                                                                                 |
-| ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
-| `pending`                       | Dream berhasil dibuat dan dimasukkan ke antrean.                                                                                     |
-| `running`                       | Pipeline sedang memproses. `usage` (csharp, go: `Usage`) diperbarui seiring berjalannya pekerjaan.                                   |
-| `completed`                     | Selesai dengan sukses. Nilai `outputs` (csharp, go: `Outputs`) adalah memory store baru.                                             |
-| `failed`                        | Proses dreaming berakhir dengan error. Memory store output dibiarkan apa adanya dengan apa pun yang telah ditulis sebelum kegagalan. |
-| `canceled`                      | Proses dreaming dibatalkan. Memory store output dibiarkan apa adanya.                                                                |
+| `status` (csharp, go: `Status`) | Arti |
+| ----- | ----- |
+| `pending` | Dream berhasil dibuat dan dimasukkan ke antrean. |
+| `running` | Pipeline sedang memproses. `usage` (csharp, go: `Usage`) diperbarui seiring berjalannya pekerjaan. |
+| `completed` | Selesai dengan sukses. Nilai `outputs` (csharp, go: `Outputs`) adalah memory store baru. |
+| `failed` | Proses dreaming berakhir dengan error. Memory store output dibiarkan apa adanya dengan apa pun yang telah ditulis sebelum kegagalan. |
+| `canceled` | Proses dreaming dibatalkan. Memory store output dibiarkan apa adanya. |
 
 ### Mengamati pipeline berjalan
 
@@ -641,14 +641,14 @@ Mengembalikan semua dream yang tidak diarsipkan di workspace, dari yang terbaru.
 
 Berikut adalah daftar tidak lengkap dari kemungkinan error dreaming.
 
-| `error.type`                      | Kapan                                                                                           |
-| --------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `timeout`                         | Pipeline melampaui anggaran waktu prosesnya.                                                    |
-| `internal_error`                  | Kegagalan pipeline yang tidak terklasifikasi.                                                   |
+| `error.type` | Kapan |
+| ----- | ----- |
+| `timeout` | Pipeline melampaui anggaran waktu prosesnya. |
+| `internal_error` | Kegagalan pipeline yang tidak terklasifikasi. |
 | `memory_store_org_limit_exceeded` | Organisasi Anda mencapai batas memory store saat pipeline sedang menyediakan penyimpanan kerja. |
-| `input_memory_store_too_large`    | Memory store input melampaui batas ukuran pipeline.                                             |
-| `input_memory_store_unavailable`  | Memory store input diarsipkan atau dihapus setelah dream dibuat.                                |
-| `input_session_unavailable`       | Sebuah sesi input dihapus setelah dream dibuat.                                                 |
+| `input_memory_store_too_large` | Memory store input melampaui batas ukuran pipeline. |
+| `input_memory_store_unavailable` | Memory store input diarsipkan atau dihapus setelah dream dibuat. |
+| `input_session_unavailable` | Sebuah sesi input dihapus setelah dream dibuat. |
 
 ## Penagihan
 
@@ -668,9 +668,9 @@ Dreams dalam pratinjau riset di model tertentu.
 
 * Ketersediaan: Tersedia
 
-| Status          | Platform cloud | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| --------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Pratinjau riset | Claude API     | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Pratinjau riset | Claude API | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview), [Claude Opus 4.7](https://platform.claude.com/docs/id/models/opus-4-7/overview), [Claude Sonnet 4.6](https://platform.claude.com/docs/id/models/sonnet-4-6/overview) |
 
 ### Header beta yang diperlukan
 
@@ -687,9 +687,9 @@ Endpoint dream memerlukan header beta `dreaming-2026-04-21`. Header `managed-age
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

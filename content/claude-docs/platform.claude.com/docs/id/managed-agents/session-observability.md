@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/session-observability
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 88b7064241064b5ba34d350ff702674b692f5ee11a182880dea4e3117503d8cc
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 9bb0d74d54135c0c33bc74477252c67773b458eb56733b275993e820e67e213f
 ---
 
 ---
@@ -55,13 +55,13 @@ Penampil sesi menampilkan:
 * **Transkrip:** Percakapan yang dikelompokkan berdasarkan permintaan model, termasuk pemikiran, panggilan alat beserta input dan hasilnya, serta teks pesan saat di-streaming. Anda dapat memfilter event dan menyalin atau mengunduhnya sebagai JSON.
 * **Pemeriksa:** Panel samping yang dapat diubah ukurannya dengan detail tentang sesi, dalam lima tab.
 
-| Tab Inspector   | Apa yang ditampilkan                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
-| --------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **Sesi**        | Detail dan metadata sesi, biaya kumulatifnya dari waktu ke waktu, dan pengeluaran terhadap [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) sesi jika ditetapkan.                                                                                                                                                                                                                                                                                                                                       |
-| **Peristiwa**   | Setiap event mentah pada thread saat ini, dalam urutan yang dikirim oleh server. Pilih sebuah event untuk melihat JSON-nya. Pesan yang di-streaming saat halaman terbuka juga memiliki tampilan **Delta** dari [event delta](https://platform.claude.com/docs/id/managed-agents/event-deltas)-nya.                                                                                                                                                                                                                            |
-| **Alat**        | Alat yang dikonfigurasi untuk agen-agen sesi, beserta jumlah panggilan, kegagalan, dan durasi median. Pilih sebuah alat untuk melihat panggilannya dan melompat ke salah satunya di transkrip.                                                                                                                                                                                                                                                                                                                                |
+| Tab Inspector | Apa yang ditampilkan |
+| ----- | ----- |
+| **Sesi** | Detail dan metadata sesi, biaya kumulatifnya dari waktu ke waktu, dan pengeluaran terhadap [anggaran](https://platform.claude.com/docs/id/managed-agents/budgets) sesi jika ditetapkan. |
+| **Peristiwa** | Setiap event mentah pada thread saat ini, dalam urutan yang dikirim oleh server. Pilih sebuah event untuk melihat JSON-nya. Pesan yang di-streaming saat halaman terbuka juga memiliki tampilan **Delta** dari [event delta](https://platform.claude.com/docs/id/managed-agents/event-deltas)-nya. |
+| **Alat** | Alat yang dikonfigurasi untuk agen-agen sesi, beserta jumlah panggilan, kegagalan, dan durasi median. Pilih sebuah alat untuk melihat panggilannya dan melompat ke salah satunya di transkrip. |
 | **Sumber Daya** | [File](https://platform.claude.com/docs/id/managed-agents/files), [repositori](https://platform.claude.com/docs/id/managed-agents/github), dan [memory store](https://platform.claude.com/docs/id/managed-agents/memory) yang di-mount pada path container-nya, termasuk memori di setiap store dan perubahan yang dibuat sesi ini terhadapnya. Juga mencantumkan file yang ditulis agen ke `/mnt/session/outputs` dan [skill](https://platform.claude.com/docs/id/managed-agents/skills) yang dilampirkan ke agen-agen sesi. |
-| **Utas**        | Setiap thread beserta status, ukuran konteks, dan biayanya. Pilih sebuah thread untuk melihat detailnya, seperti agen, model, penggunaan konteks, dan biaya.                                                                                                                                                                                                                                                                                                                                                                  |
+| **Utas** | Setiap thread beserta status, ukuran konteks, dan biayanya. Pilih sebuah thread untuk melihat detailnya, seperti agen, model, penggunaan konteks, dan biaya. |
 
 Tambahkan `?event={event_id}` ke URL sesi untuk membuka sesi pada event tertentu.
 
@@ -96,15 +96,15 @@ Objek sesi menyertakan field `usage` dengan penggunaan kumulatif sesi: jumlah to
 }
 ```
 
-| Field                     | Deskripsi                                                                                                                                                                                                                                                             |
-| ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `input_tokens`            | Token input yang tidak di-cache di seluruh panggilan model dalam sesi.                                                                                                                                                                                                |
-| `output_tokens`           | Total token output di seluruh panggilan model dalam sesi.                                                                                                                                                                                                             |
-| `cache_read_input_tokens` | Token yang dibaca dari cache prompt.                                                                                                                                                                                                                                  |
-| `cache_creation`          | Token pembuatan cache, dirinci berdasarkan masa berlaku cache (`ephemeral_5m_input_tokens` dan `ephemeral_1h_input_tokens`).                                                                                                                                          |
-| `list_cost`               | Konsumsi kumulatif sesi yang dihargai dengan tarif daftar publik, sebagai bilangan bulat sen dalam string, dengan kode mata uang.                                                                                                                                     |
-| `active_seconds`          | Waktu kumulatif selama sesi memiliki setidaknya satu thread yang berjalan. Aktivitas yang tumpang tindih dari thread yang berjalan bersamaan dihitung sekali. Biaya runtime sesi dihargai berdasarkan durasi ini.                                                     |
-| `server_tool_use`         | Jumlah permintaan alat yang dieksekusi server, untuk penetapan harga. Permintaan pencarian web dihargai ke dalam biaya daftar per permintaan. Permintaan web fetch tidak dikenakan biaya per permintaan dan tidak diukur, sehingga `web_fetch_requests` bernilai `0`. |
+| Field | Deskripsi |
+| ----- | ----- |
+| `input_tokens` | Token input yang tidak di-cache di seluruh panggilan model dalam sesi. |
+| `output_tokens` | Total token output di seluruh panggilan model dalam sesi. |
+| `cache_read_input_tokens` | Token yang dibaca dari cache prompt. |
+| `cache_creation` | Token pembuatan cache, dirinci berdasarkan masa berlaku cache (`ephemeral_5m_input_tokens` dan `ephemeral_1h_input_tokens`). |
+| `list_cost` | Konsumsi kumulatif sesi yang dihargai dengan tarif daftar publik, sebagai bilangan bulat sen dalam string, dengan kode mata uang. |
+| `active_seconds` | Waktu kumulatif selama sesi memiliki setidaknya satu thread yang berjalan. Aktivitas yang tumpang tindih dari thread yang berjalan bersamaan dihitung sekali. Biaya runtime sesi dihargai berdasarkan durasi ini. |
+| `server_tool_use` | Jumlah permintaan alat yang dieksekusi server, untuk penetapan harga. Permintaan pencarian web dihargai ke dalam biaya daftar per permintaan. Permintaan web fetch tidak dikenakan biaya per permintaan dan tidak diukur, sehingga `web_fetch_requests` bernilai `0`. |
 
 Entri cache menggunakan TTL 5 menit secara default, sehingga giliran berturut-turut dalam jendela waktu tersebut mendapat manfaat dari pembacaan cache, yang mengurangi biaya per token.
 
@@ -169,9 +169,9 @@ Penampil sesi dalam versi beta di semua model.
 
 * Ketersediaan: Selalu aktif
 
-| Status | Platform cloud                                                                                                     |
-| ------ | ------------------------------------------------------------------------------------------------------------------ |
-| Beta   | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
+| Status | Platform cloud |
+| ----- | ----- |
+| Beta | Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws) |
 
 ### Header beta yang diperlukan
 
@@ -185,9 +185,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

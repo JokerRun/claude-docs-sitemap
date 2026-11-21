@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/intro
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 297b737e4e8a49cf2320f044a10901933b17eb0cbf122b61a60aa72634adadd1
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 3210982c5db9442d78f348e3e2b9da54a9a6312c660b6f83bb269149e547457f
 ---
 
 ---
@@ -17,10 +17,10 @@ description: Claude is a highly performant, trustworthy, and intelligent AI plat
 
 Anthropic offers two ways to build with Claude, each suited to different use cases:
 
-|                | Messages API                                | Claude Managed Agents                                                     |
-| -------------- | ------------------------------------------- | ------------------------------------------------------------------------- |
-| **What it is** | Direct model prompting access               | Pre-built, configurable agent harness that runs in managed infrastructure |
-| **Best for**   | Custom agent loops and fine-grained control | Long-running tasks and asynchronous work                                  |
+|  | Messages API | Claude Managed Agents |
+| ----- | ----- | ----- |
+| **What it is** | Direct model prompting access | Pre-built, configurable agent harness that runs in managed infrastructure |
+| **Best for** | Custom agent loops and fine-grained control | Long-running tasks and asynchronous work |
 
 To learn more about each, see [Using the Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) and the [Claude Managed Agents overview](https://platform.claude.com/docs/en/managed-agents/overview).
 

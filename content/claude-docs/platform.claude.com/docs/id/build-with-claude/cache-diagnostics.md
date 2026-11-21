@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 377b70121f28b163b60bdb0e0d74b4c3371040281ab177877aa3031e4818f82e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: cc5156325c1d68b61b3a74086fc96949a6fda46fd01066298c32f241b3a84a4e
 ---
 
 ---
@@ -1006,10 +1006,10 @@ Dalam percakapan multi-giliran, bawa `id` respons terbaru ke depan sebagai `prev
 
 Field `diagnostics` pada `Message` respons memiliki tiga kemungkinan nilai:
 
-| Nilai                          | Arti                                                                                                                                                                                                                         |
-| ------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `null`                         | Permintaan tidak menyertakan objek `diagnostics`, `previous_message_id` bernilai `null` (giliran pertama, tidak ada yang dibandingkan), atau tidak ada yang menyimpang sebelum breakpoint terakhir.                          |
-| `{"cache_miss_reason": null}`  | Perbandingan masih berjalan ketika respons diserialisasi. Hal ini dapat terjadi ketika respons dimulai dengan sangat cepat. Anggap hasilnya tidak meyakinkan dan periksa giliran berikutnya.                                 |
+| Nilai | Arti |
+| ----- | ----- |
+| `null` | Permintaan tidak menyertakan objek `diagnostics`, `previous_message_id` bernilai `null` (giliran pertama, tidak ada yang dibandingkan), atau tidak ada yang menyimpang sebelum breakpoint terakhir. |
+| `{"cache_miss_reason": null}` | Perbandingan masih berjalan ketika respons diserialisasi. Hal ini dapat terjadi ketika respons dimulai dengan sangat cepat. Anggap hasilnya tidak meyakinkan dan periksa giliran berikutnya. |
 | `{"cache_miss_reason": {...}}` | Sebuah `cache_miss_reason` dilampirkan. Untuk tipe `*_changed`, ini mengidentifikasi titik penyimpangan pertama; `previous_message_not_found` dan `unavailable` adalah kasus di mana tidak ada perbandingan yang dihasilkan. |
 
 Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
@@ -1039,14 +1039,14 @@ Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
 
 `cache_miss_reason` adalah discriminated union pada `type`. Respons hanya melaporkan divergensi paling awal, jadi perbaiki itu terlebih dahulu; divergensi berikutnya mungkin tersembunyi di baliknya.
 
-| Tipe                         | Artinya                                                                                                                                                                                                                                                                                                                                                                                                                                                                  | Yang perlu diubah                                                                                                                                                                                                                                                                                                                       |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `model_changed`              | `model` berbeda dari permintaan sebelumnya (misalnya, router, pengujian A/B, atau fallback memilih model yang berbeda). Cache bersifat per-model.                                                                                                                                                                                                                                                                                                                        | Pertahankan model tetap konstan dalam percakapan yang di-cache.                                                                                                                                                                                                                                                                         |
-| `system_changed`             | Parameter `system` berbeda. Biasanya timestamp, ID permintaan, atau nilai per-permintaan lainnya diinterpolasi ke dalam prompt sistem.                                                                                                                                                                                                                                                                                                                                   | Jadikan prompt sistem sebagai konstanta yang stabil secara byte dan letakkan nilai yang berubah di pesan `user` yang akan Anda kirim.                                                                                                                                                                                                   |
-| `tools_changed`              | Array `tools` berbeda: alat ditambahkan, dihapus, atau diurutkan ulang antar giliran, atau JSON `input_schema` alat diserialisasi secara non-deterministik.                                                                                                                                                                                                                                                                                                              | Kirim daftar alat yang sama pada setiap giliran dalam urutan tetap dengan skema yang diserialisasi secara deterministik (misalnya, urutkan kunci).                                                                                                                                                                                      |
-| `messages_changed`           | Model, prompt sistem, dan alat semuanya cocok, tetapi entri sebelumnya dalam `messages` diubah, diurutkan ulang, atau dihapus alih-alih ditambahkan di akhir. Biasanya riwayat percakapan dipotong atau diedit, atau giliran asisten dan blok `tool_result` diserialisasi ulang secara berbeda saat dikirim kembali.                                                                                                                                                     | Perlakukan riwayat sebagai append-only; kembalikan `content` asisten dan hasil alat secara verbatim.                                                                                                                                                                                                                                    |
-| `previous_message_not_found` | Tidak ada fingerprint tersimpan untuk `previous_message_id` yang diberikan. Ini bukan bukti bahwa permintaan Anda berubah. Biasanya permintaan sebelumnya tidak menyertakan objek `diagnostics`, berasal dari workspace yang berbeda, atau sudah terlalu lama sejak dikirim.                                                                                                                                                                                             | Sertakan objek `diagnostics` pada setiap giliran dan jaga agar giliran-giliran berturut-turut berdekatan waktunya.                                                                                                                                                                                                                      |
-| `unavailable`                | Informasi diagnostik tidak tersedia untuk permintaan ini. Ini mencakup kasus di mana `model`, `system`, dan `tools` cocok tetapi parameter permintaan lain yang memengaruhi prompt (`tool_choice`, `thinking`, `context_management`, `output_config`, `output_format`, atau kumpulan header `anthropic-beta` yang aktif) berbeda, serta percakapan yang sangat panjang di mana penyimpangan berada di luar horizon perbandingan. Permintaan Anda diproses secara normal. | Pertahankan parameter permintaan yang memengaruhi prompt tetap konstan selama masa hidup percakapan yang di-cache. Jika terus terjadi, terapkan pemeriksaan manual di bagian [Memecahkan masalah umum](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#troubleshooting-common-issues) pada halaman caching prompt. |
+| Tipe | Artinya | Yang perlu diubah |
+| ----- | ----- | ----- |
+| `model_changed` | `model` berbeda dari permintaan sebelumnya (misalnya, router, pengujian A/B, atau fallback memilih model yang berbeda). Cache bersifat per-model. | Pertahankan model tetap konstan dalam percakapan yang di-cache. |
+| `system_changed` | Parameter `system` berbeda. Biasanya timestamp, ID permintaan, atau nilai per-permintaan lainnya diinterpolasi ke dalam prompt sistem. | Jadikan prompt sistem sebagai konstanta yang stabil secara byte dan letakkan nilai yang berubah di pesan `user` yang akan Anda kirim. |
+| `tools_changed` | Array `tools` berbeda: alat ditambahkan, dihapus, atau diurutkan ulang antar giliran, atau JSON `input_schema` alat diserialisasi secara non-deterministik. | Kirim daftar alat yang sama pada setiap giliran dalam urutan tetap dengan skema yang diserialisasi secara deterministik (misalnya, urutkan kunci). |
+| `messages_changed` | Model, prompt sistem, dan alat semuanya cocok, tetapi entri sebelumnya dalam `messages` diubah, diurutkan ulang, atau dihapus alih-alih ditambahkan di akhir. Biasanya riwayat percakapan dipotong atau diedit, atau giliran asisten dan blok `tool_result` diserialisasi ulang secara berbeda saat dikirim kembali. | Perlakukan riwayat sebagai append-only; kembalikan `content` asisten dan hasil alat secara verbatim. |
+| `previous_message_not_found` | Tidak ada fingerprint tersimpan untuk `previous_message_id` yang diberikan. Ini bukan bukti bahwa permintaan Anda berubah. Biasanya permintaan sebelumnya tidak menyertakan objek `diagnostics`, berasal dari workspace yang berbeda, atau sudah terlalu lama sejak dikirim. | Sertakan objek `diagnostics` pada setiap giliran dan jaga agar giliran-giliran berturut-turut berdekatan waktunya. |
+| `unavailable` | Informasi diagnostik tidak tersedia untuk permintaan ini. Ini mencakup kasus di mana `model`, `system`, dan `tools` cocok tetapi parameter permintaan lain yang memengaruhi prompt (`tool_choice`, `thinking`, `context_management`, `output_config`, `output_format`, atau kumpulan header `anthropic-beta` yang aktif) berbeda, serta percakapan yang sangat panjang di mana penyimpangan berada di luar horizon perbandingan. Permintaan Anda diproses secara normal. | Pertahankan parameter permintaan yang memengaruhi prompt tetap konstan selama masa hidup percakapan yang di-cache. Jika terus terjadi, terapkan pemeriksaan manual di bagian [Memecahkan masalah umum](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#troubleshooting-common-issues) pada halaman caching prompt. |
 
 <Note>
   Keempat tipe `*_changed` juga membawa integer `cache_missed_input_tokens`: estimasi berapa banyak token input yang berada setelah titik penyimpangan, memberi Anda gambaran tentang seberapa banyak prefiks yang dapat di-cache yang hilang. Nilai ini diturunkan dari panjang byte sebelum tokenisasi, jadi perlakukan sebagai indikator besaran, bukan angka penagihan. Nilainya dapat berbeda dari (dan terkadang melebihi) `usage.input_tokens`.
@@ -1058,12 +1058,12 @@ Ketika `cache_miss_reason` tidak null, bentuknya seperti ini:
 
 Matriks ini berlaku untuk giliran di mana Anda meneruskan `previous_message_id` yang nyata. Pada giliran pertama (`previous_message_id: null`), `diagnostics` selalu `null` dan `cache_read_input_tokens` biasanya nol karena cache sedang ditulis, bukan dibaca; tidak diperlukan pemecahan masalah. Matriks ini juga tidak berlaku ketika `cache_miss_reason` bernilai `null` (perbandingan masih tertunda; periksa giliran berikutnya) atau ketika `type`-nya adalah `previous_message_not_found` atau `unavailable` (tidak ada perbandingan yang dihasilkan).
 
-| Hasil diagnostik                            | Token pembacaan cache | Interpretasi                                                                                                                                                                                                                                                     |
-| ------------------------------------------- | --------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `null`                                      | tinggi                | Cache hit.                                                                                                                                                                                                                                                       |
-| `null`                                      | rendah atau nol       | Permintaan Anda cocok, tetapi tidak ada entri cache untuk dibaca: entri tersebut telah kedaluwarsa, atau prompt lebih pendek dari [panjang minimum yang dapat di-cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations). |
-| `cache_miss_reason` adalah tipe `*_changed` | rendah atau nol       | Permintaan berubah; perbaiki penyebab yang ditunjukkan oleh `type`.                                                                                                                                                                                              |
-| `cache_miss_reason` adalah tipe `*_changed` | tinggi                | Jarang. Perubahan terjadi di bagian akhir prompt tetapi breakpoint `cache_control` sebelumnya masih hit. Layak diperbaiki, tetapi dampaknya rendah.                                                                                                              |
+| Hasil diagnostik | Token pembacaan cache | Interpretasi |
+| ----- | ----- | ----- |
+| `null` | tinggi | Cache hit. |
+| `null` | rendah atau nol | Permintaan Anda cocok, tetapi tidak ada entri cache untuk dibaca: entri tersebut telah kedaluwarsa, atau prompt lebih pendek dari [panjang minimum yang dapat di-cache](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#cache-limitations). |
+| `cache_miss_reason` adalah tipe `*_changed` | rendah atau nol | Permintaan berubah; perbaiki penyebab yang ditunjukkan oleh `type`. |
+| `cache_miss_reason` adalah tipe `*_changed` | tinggi | Jarang. Perubahan terjadi di bagian akhir prompt tetapi breakpoint `cache_control` sebelumnya masih hit. Layak diperbaiki, tetapi dampaknya rendah. |
 
 ## Keterbatasan
 
@@ -1099,8 +1099,8 @@ Diagnostik cache tersedia di semua model.
 
 * Ketersediaan: Tersedia
 
-| Status   | Platform cloud                                                                                                                                                         |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Status | Platform cloud |
+| ----- | ----- |
 | Tersedia | Claude API, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
@@ -1111,10 +1111,10 @@ Diagnostik cache tersedia di semua model.
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                             | HIPAA       |
-| ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------- |
-| Status | Layak (bersyarat; tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements))                                                                                                                                  | Tidak layak |
-| Detail | Prompt Anda dan output Claude tidak disimpan. Fingerprint berupa hash kriptografis dan estimasi jumlah token disimpan sebentar untuk memungkinkan perbandingan dengan permintaan berikutnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#data-retention) | —           |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Layak (bersyarat; tidak termasuk [Model yang dicakup](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements)) | Tidak layak |
+| Detail | Prompt Anda dan output Claude tidak disimpan. Fingerprint berupa hash kriptografis dan estimasi jumlah token disimpan sebentar untuk memungkinkan perbandingan dengan permintaan berikutnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/build-with-claude/cache-diagnostics#data-retention) | — |
 
 Endpoint yang berlaku:
 

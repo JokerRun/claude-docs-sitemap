@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: bf402fa3e377f2066689474186ba1253c7bb5b9454975fe827baa1fc3dde5969
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6e85b44f55a558b7f27507d9c78ddbba7efddb27fb1aa3268aa6abb0b7e9c3ae
 ---
 
 ---
@@ -50,13 +50,13 @@ Skills terintegrasi secara identik di Messages API terlepas dari sumbernya. Anda
 
 Anda dapat menggunakan Skills dari dua sumber:
 
-| Aspek            | Skills Anthropic                           | Skills Kustom                                                                                 |
-| ---------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| **Nilai type**   | `anthropic`                                | `custom`                                                                                      |
-| **ID Skill**     | Nama pendek: `pptx`, `xlsx`, `docx`, `pdf` | Dihasilkan otomatis: `skill_01AbCdEfGhIjKlMnOpQrStUv`                                         |
-| **Format versi** | Berbasis tanggal: `20251013` atau `latest` | ID versi: `skver_01AbCdEfGhIjKlMnOpQrStUv` atau `latest`                                      |
-| **Manajemen**    | Bawaan dan dipelihara oleh Anthropic       | Unggah dan kelola melalui [Skills API](https://platform.claude.com/docs/id/api/skills/create) |
-| **Ketersediaan** | Tersedia untuk semua pengguna              | Privat untuk workspace Anda                                                                   |
+| Aspek | Skills Anthropic | Skills Kustom |
+| ----- | ----- | ----- |
+| **Nilai type** | `anthropic` | `custom` |
+| **ID Skill** | Nama pendek: `pptx`, `xlsx`, `docx`, `pdf` | Dihasilkan otomatis: `skill_01AbCdEfGhIjKlMnOpQrStUv` |
+| **Format versi** | Berbasis tanggal: `20251013` atau `latest` | ID versi: `skver_01AbCdEfGhIjKlMnOpQrStUv` atau `latest` |
+| **Manajemen** | Bawaan dan dipelihara oleh Anthropic | Unggah dan kelola melalui [Skills API](https://platform.claude.com/docs/id/api/skills/create) |
+| **Ketersediaan** | Tersedia untuk semua pengguna | Privat untuk workspace Anda |
 
 Kedua sumber skill dikembalikan oleh [endpoint List Skills](https://platform.claude.com/docs/id/api/skills/list) (gunakan parameter `source` untuk memfilter). Bentuk integrasi dan lingkungan eksekusinya identik. Satu-satunya perbedaan adalah dari mana Skills berasal dan bagaimana Skills tersebut dikelola.
 
@@ -1957,9 +1957,9 @@ Gabungkan beberapa Skills dalam satu permintaan untuk menangani alur kerja yang 
 
 <Warning id="workspace-scoped-access">
   **Skills kustom dapat diakses oleh seluruh workspace Anda, tidak dibatasi pada satu pengguna akhir, percakapan, atau sesi.** Setiap kunci API yang memiliki akses ke sebuah workspace dapat membaca, menggunakan, dan menghapus setiap Skill kustom yang diunggah ke workspace tersebut. Setiap akun layanan, dan setiap pengguna yang peran organisasinya mengizinkan akses API, dapat menggunakan workspace default selain workspace mana pun tempat Anda menambahkan mereka. Karena itu, simpan Skills yang harus tetap terpisah di workspace-nya sendiri dan akses hanya dengan [kunci yang dibatasi pada workspace tersebut](https://platform.claude.com/docs/id/manage-claude/workspaces#api-keys-and-resource-scoping).
-
-  Jika Anda membangun platform multitenant di atas Skills API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk Skills kustom, sehingga satu workspace untuk setiap tenant memberikan isolasi ketat bagi Skills tenant tersebut dari setiap tenant lainnya. Setiap organisasi dapat memiliki hingga 100 workspace secara default (lihat [Cara kerja workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#how-workspaces-work)); jika Anda memerlukan lebih banyak untuk isolasi tenant, hubungi tim akun Anda.
 </Warning>
+
+Jika Anda membangun platform multitenant di atas Skills API, buat [workspace](https://platform.claude.com/docs/id/manage-claude/workspaces) terpisah untuk setiap tenant. Workspace adalah batas isolasi untuk Skills kustom, sehingga satu workspace untuk setiap tenant memberikan isolasi ketat bagi Skills tenant tersebut dari setiap tenant lainnya. Setiap organisasi dapat memiliki hingga 1.000 workspace secara default (lihat [Cara kerja workspace](https://platform.claude.com/docs/id/manage-claude/workspaces#how-workspaces-work)). Jika Anda memerlukan lebih banyak untuk isolasi tenant, hubungi tim akun Anda.
 
 ### Membuat Skill
 
@@ -4510,19 +4510,19 @@ Tangani error terkait Skill dengan baik:
 
 Skills API telah keluar dari beta dan tidak memerlukan header beta. Migrasi dari `skills-2025-10-02` bersifat opsional: permintaan yang mengirimkannya tetap berfungsi dan tetap mengembalikan bentuk respons beta, sehingga integrasi yang sudah ada tetap berfungsi sampai Anda mengubahnya. Menghapus header tersebut mengalihkan permintaan-permintaan itu ke bentuk yang didokumentasikan di halaman ini:
 
-|                                    | Dengan `skills-2025-10-02`                                                                  | Tanpa header                                                                                                                                                |
-| ---------------------------------- | ------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Label Skill                        | `display_title` (hingga 64 karakter, unik per workspace)                                    | `display_name` (hingga 255 karakter, tidak unik); diturunkan dari `name` di `SKILL.md` jika dihilangkan                                                     |
-| Penunjuk versi terbaru             | `latest_version`, string epoch-mikrodetik seperti `"1759178010641129"`                      | `latest_version_id`, ID versi seperti `"skver_01AbCdEfGhIjKlMnOpQrStUv"`; `GET /v1/skills/{skill_id}/versions/latest` menyelesaikannya dalam satu panggilan |
-| Pengidentifikasi versi dalam URL   | String epoch-mikrodetik                                                                     | ID versi (`skver_...`). ID yang diambil di bawah beta dengan prefiks `skill_version_` diterima sebagai input.                                               |
-| Objek versi                        | Menyertakan `directory` (selalu sama dengan `name` Skill)                                   | Tanpa field `directory`                                                                                                                                     |
-| `source`                           | String, `"custom"` atau `"anthropic"`                                                       | Objek, misalnya `{"type": "custom"}`; nilai katalog contoh adalah `"anthropic_example"`                                                                     |
-| Respons list                       | `{ data, has_more, next_page }`                                                             | `{ data, next_page }`; `limit` dari 1 hingga 1.000 (default 20)                                                                                             |
-| Urutan daftar versi                | Terlama lebih dulu                                                                          | Terbaru lebih dulu, `limit` default 20. Kursor halaman dari satu bentuk tidak valid pada bentuk lainnya.                                                    |
-| Menghapus Skill                    | Mengembalikan error 400 selama masih ada versi                                              | Menghapus Skill dan semua versinya                                                                                                                          |
-| Menghapus satu-satunya versi Skill | Diizinkan, menyisakan Skill tanpa versi                                                     | Mengembalikan error 400; unggah versi pengganti terlebih dahulu, atau hapus Skill                                                                           |
-| Tata letak unggahan                | File harus berada di dalam direktori tingkat teratas yang namanya cocok dengan `name` Skill | `SKILL.md` boleh berada di root unggahan; path yang disimpan sama dalam kedua cara                                                                          |
-| Tipe respons                       | `CreateSkillResponse`, `GetSkillResponse`, dan satu tipe per operasi                        | `Skill`, `SkillVersion`, `DeletedSkill`, `DeletedSkillVersion`                                                                                              |
+|  | Dengan `skills-2025-10-02` | Tanpa header |
+| ----- | ----- | ----- |
+| Label Skill | `display_title` (hingga 64 karakter, unik per workspace) | `display_name` (hingga 255 karakter, tidak unik); diturunkan dari `name` di `SKILL.md` jika dihilangkan |
+| Penunjuk versi terbaru | `latest_version`, string epoch-mikrodetik seperti `"1759178010641129"` | `latest_version_id`, ID versi seperti `"skver_01AbCdEfGhIjKlMnOpQrStUv"`; `GET /v1/skills/{skill_id}/versions/latest` menyelesaikannya dalam satu panggilan |
+| Pengidentifikasi versi dalam URL | String epoch-mikrodetik | ID versi (`skver_...`). ID yang diambil di bawah beta dengan prefiks `skill_version_` diterima sebagai input. |
+| Objek versi | Menyertakan `directory` (selalu sama dengan `name` Skill) | Tanpa field `directory` |
+| `source` | String, `"custom"` atau `"anthropic"` | Objek, misalnya `{"type": "custom"}`; nilai katalog contoh adalah `"anthropic_example"` |
+| Respons list | `{ data, has_more, next_page }` | `{ data, next_page }`; `limit` dari 1 hingga 1.000 (default 20) |
+| Urutan daftar versi | Terlama lebih dulu | Terbaru lebih dulu, `limit` default 20. Kursor halaman dari satu bentuk tidak valid pada bentuk lainnya. |
+| Menghapus Skill | Mengembalikan error 400 selama masih ada versi | Menghapus Skill dan semua versinya |
+| Menghapus satu-satunya versi Skill | Diizinkan, menyisakan Skill tanpa versi | Mengembalikan error 400; unggah versi pengganti terlebih dahulu, atau hapus Skill |
+| Tata letak unggahan | File harus berada di dalam direktori tingkat teratas yang namanya cocok dengan `name` Skill | `SKILL.md` boleh berada di root unggahan; path yang disimpan sama dalam kedua cara |
+| Tipe respons | `CreateSkillResponse`, `GetSkillResponse`, dan satu tipe per operasi | `Skill`, `SkillVersion`, `DeletedSkill`, `DeletedSkillVersion` |
 
 Untuk bermigrasi:
 

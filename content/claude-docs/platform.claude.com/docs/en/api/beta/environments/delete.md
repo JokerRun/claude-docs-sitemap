@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/delete
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: b9b6778015d6550030e882830b38a6984ff9e5e59466832620558425e648495b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: daa5a5c970cea06873e97085f453ab9c8bfcc14311b96346478eb3f0b19372e7
 ---
 
 ---
@@ -125,6 +125,8 @@ Delete an environment by ID. Returns a confirmation of the deletion.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

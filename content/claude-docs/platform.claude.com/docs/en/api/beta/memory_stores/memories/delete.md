@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memories/delete
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 2037eca43bbe63eb88822063d830b2254d585844bd49faf18704fa806739e655
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: e108d3b27691c8a6c5b5b566a42ce97ab7049a3e0497b5d93a65ca3a0d788ae3
 ---
 
 ---
@@ -139,6 +139,8 @@ Delete a Memory
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

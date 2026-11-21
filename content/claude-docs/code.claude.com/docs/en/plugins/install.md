@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/install
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: f85b2f19434b55d8c9db461fd094703ee20412661266d77e704275e3f3743319
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 82f0e90e0dba286583acdbdda8a46faba7a357306fbc89ea2efdbc21a2a36de4
 ---
 
 > ## Documentation Index
@@ -308,8 +308,8 @@ When Claude Code syncs an added, updated, or removed plugin into an interactive 
 
 When you choose **Uninstall** for a plugin that this repository's `.claude/settings.json` enables, whether from the **Installed** tab or with `/plugin uninstall`, Claude Code asks whether to disable it for you or uninstall it for everyone:
 
-* **Disable for me**: press **y**. Claude Code writes `false` for the plugin in your `.claude/settings.local.json` and leaves it installed for the project.
-* **Uninstall for everyone**: press **u**. Claude Code removes the plugin from the shared `.claude/settings.json`.
+* **Disable for me**: Claude Code writes `false` for the plugin in your `.claude/settings.local.json` and leaves it installed for the project.
+* **Uninstall for everyone**: Claude Code removes the plugin from the shared `.claude/settings.json`.
 
 ### See what an installed plugin adds to your sessions
 

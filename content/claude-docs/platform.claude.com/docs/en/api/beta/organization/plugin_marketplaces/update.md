@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces/update
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 6c4d8e2f11d96b99c2cabeab1bf95d4efa6808d84a62706e241d33d664985c89
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: bba510c9385fb2f4e5fe6e0577b969671ba9ae9afc5770fd4a139fd36c98b88c
 ---
 
 ---
@@ -130,6 +130,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -286,6 +288,16 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
     - `"in_progress"`
 
     - `"success"`
+
+## Errors
+
+Any method can also return the general [HTTP errors](https://platform.claude.com/docs/en/api/errors?sdk_languages=http).
+
+Each code below is the value of `error.details.error_code` in the response body.
+
+- `sandbox_egress_restricted` (HTTP status 403)
+
+  The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
 
 ## Example
 

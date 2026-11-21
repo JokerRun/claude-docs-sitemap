@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/sonnet-5-5/whats-new-sonnet-5-5
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: fd13b1209dcd55d5db060489ef238b57963f081b74b7a04f4cca35bb9eb526c1
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 584d56e6760990b388e1988637508d36724a74447076240bdfc78eba38536370
 ---
 
 ---
@@ -23,8 +23,8 @@ Satu perubahan lagi mengubah bentuk respons tanpa menggagalkan permintaan apa pu
 
 ## Model baru
 
-| Model             | ID Claude API     | Deskripsi                                         |
-| ----------------- | ----------------- | ------------------------------------------------- |
+| Model | ID Claude API | Deskripsi |
+| ----- | ----- | ----- |
 | Claude Sonnet 5.5 | claude-sonnet-5-5 | Kombinasi terbaik antara kecepatan dan kecerdasan |
 
 [Adaptive thinking](https://platform.claude.com/docs/id/build-with-claude/thinking) (pemikiran adaptif) aktif secara default, dan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort) mengontrol kedalaman pemikiran. Nilai default-nya di Claude API adalah `high`. Tokenizer-nya sama dengan milik Claude Sonnet 5, sehingga teks yang sama menghasilkan jumlah token yang sama. Untuk jendela konteks, batas output, batas pengetahuan, dan harga, lihat halaman model [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview).
@@ -57,13 +57,13 @@ tool_choice: type "tool" and "any" are not supported for this model.
 
 Setiap blok pemikiran mencatat model mana yang menghasilkannya. Percakapan yang berpindah model hanya mempertahankan penalaran sebelumnya jika model yang menjadi tujuan perpindahan dapat membaca blok pemikiran model sebelumnya:
 
-| Perpindahan                                                                                                                        | Mempertahankan penalarannya                                                |
-| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| Ke Claude Sonnet 5.5, dari Claude Sonnet 5 atau sebelumnya, Claude Opus 4.8 atau sebelumnya, atau Claude Haiku 4.5 atau sebelumnya | Ya                                                                         |
-| Ke Claude Sonnet 5.5, dari Claude Haiku 5.5                                                                                        | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
-| Ke Claude Sonnet 5.5, dari model lain apa pun                                                                                      | Tidak                                                                      |
-| Dari Claude Sonnet 5.5, ke Claude Opus 5.5, Claude Fable 5.2, atau Claude Mythos 5.2                                               | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
-| Dari Claude Sonnet 5.5, ke model lain apa pun                                                                                      | Tidak                                                                      |
+| Perpindahan | Mempertahankan penalarannya |
+| ----- | ----- |
+| Ke Claude Sonnet 5.5, dari Claude Sonnet 5 atau sebelumnya, Claude Opus 4.8 atau sebelumnya, atau Claude Haiku 4.5 atau sebelumnya | Ya |
+| Ke Claude Sonnet 5.5, dari Claude Haiku 5.5 | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
+| Ke Claude Sonnet 5.5, dari model lain apa pun | Tidak |
+| Dari Claude Sonnet 5.5, ke Claude Opus 5.5, Claude Fable 5.2, atau Claude Mythos 5.2 | Ya, hanya di Claude API dan Claude Models on Google Cloud (Google managed) |
+| Dari Claude Sonnet 5.5, ke model lain apa pun | Tidak |
 
 Ketika permintaan membawa blok yang tidak dapat dibaca oleh model target, API tidak menyertakan blok tersebut sebelum model menerimanya. Permintaan berhasil, dan blok yang tidak disertakan tidak ditagih. Dengan header beta `thinking-binding-controls-2026-08-01`, API melaporkan blok yang tidak disertakan tersebut dalam array `input_transformations` tingkat atas. Lihat [Beralih model dan kembali lagi](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#switching-models). Untuk peralihan yang tidak melibatkan Claude Sonnet 5.5, lihat [Peralihan model mana yang mempertahankan penalaran di Claude API](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#which-model-switches-keep-reasoning).
 

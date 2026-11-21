@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 58c635138f20d1b3d50440d1a771bbba0fb9a2474e52ccbf5f828569b472b4e1
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: aae2003167a89921dd39b81207949f03af7d3298643e30990ba236ae0c2930e4
 ---
 
 ---
@@ -56,8 +56,8 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.11.0")
-        implementation("com.anthropic:anthropic-java-vertex:3.11.0")
+        implementation("com.anthropic:anthropic-java:3.12.0")
+        implementation("com.anthropic:anthropic-java-vertex:3.12.0")
         ```
       </Tab>
 
@@ -66,12 +66,12 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.11.0</version>
+            <version>3.12.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-vertex</artifactId>
-            <version>3.11.0</version>
+            <version>3.12.0</version>
         </dependency>
         ```
       </Tab>
@@ -299,29 +299,29 @@ Contoh-contoh berikut menggunakan endpoint global. Untuk jenis endpoint lainnya,
 
 ### ID model API
 
-| Model                                                                                                 | Agent Platform API model ID  |
-| :---------------------------------------------------------------------------------------------------- | :--------------------------- |
-| Claude Fable 5.2                                                                                      | `claude-fable-5-2`           |
-| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-2`          |
-| Claude Fable 5.1                                                                                      | `claude-fable-5-1`           |
-| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842))           | `claude-mythos-5-1`          |
-| Claude Fable 5                                                                                        | `claude-fable-5`             |
-| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842))             | `claude-mythos-5`            |
-| Claude Opus 5.5                                                                                       | `claude-opus-5-5`            |
-| Claude Opus 5                                                                                         | `claude-opus-5`              |
-| Claude Opus 4.8                                                                                       | `claude-opus-4-8`            |
-| Claude Opus 4.7                                                                                       | `claude-opus-4-7`            |
-| Claude Opus 4.6                                                                                       | `claude-opus-4-6`            |
-| Claude Opus 4.5                                                                                       | `claude-opus-4-5@20251101`   |
-| Claude Opus 4.1 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))   | `claude-opus-4-1@20250805`   |
-| Claude Opus 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))     | `claude-opus-4@20250514`     |
-| Claude Sonnet 5.5                                                                                     | `claude-sonnet-5-5`          |
-| Claude Sonnet 5                                                                                       | `claude-sonnet-5`            |
-| Claude Sonnet 4.6                                                                                     | `claude-sonnet-4-6`          |
+| Model | Agent Platform API model ID |
+| :---- | :---- |
+| Claude Fable 5.2 | `claude-fable-5-2` |
+| Claude Mythos 5.2 ([limited availability](https://support.claude.com/en/articles/14604842)) | `claude-mythos-5-2` |
+| Claude Fable 5.1 | `claude-fable-5-1` |
+| Claude Mythos 5.1 ([limited availability](https://support.claude.com/en/articles/14604842)) | `claude-mythos-5-1` |
+| Claude Fable 5 | `claude-fable-5` |
+| Claude Mythos 5 ([limited availability](https://support.claude.com/en/articles/14604842)) | `claude-mythos-5` |
+| Claude Opus 5.5 | `claude-opus-5-5` |
+| Claude Opus 5 | `claude-opus-5` |
+| Claude Opus 4.8 | `claude-opus-4-8` |
+| Claude Opus 4.7 | `claude-opus-4-7` |
+| Claude Opus 4.6 | `claude-opus-4-6` |
+| Claude Opus 4.5 | `claude-opus-4-5@20251101` |
+| Claude Opus 4.1 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-opus-4-1@20250805` |
+| Claude Opus 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-opus-4@20250514` |
+| Claude Sonnet 5.5 | `claude-sonnet-5-5` |
+| Claude Sonnet 5 | `claude-sonnet-5` |
+| Claude Sonnet 4.6 | `claude-sonnet-4-6` |
 | Claude Sonnet 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-sonnet-4-5@20250929` |
-| Claude Sonnet 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations))   | `claude-sonnet-4@20250514`   |
-| Claude Haiku 5.5                                                                                      | `claude-haiku-5-5`           |
-| Claude Haiku 4.5                                                                                      | `claude-haiku-4-5@20251001`  |
+| Claude Sonnet 4 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-sonnet-4@20250514` |
+| Claude Haiku 5.5 | `claude-haiku-5-5` |
+| Claude Haiku 4.5 | `claude-haiku-4-5@20251001` |
 
 Claude Models on Google Cloud (Google managed) menawarkan model Claude yang berbeda di region yang berbeda. Untuk memeriksa model mana yang ditawarkan suatu region, cari “Claude” di [Model Garden](https://cloud.google.com/model-garden) atau lihat halaman [Model Anthropic Claude di Agent Platform](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude) dari Google Cloud.
 
@@ -341,11 +341,11 @@ Biarkan Claude Code memigrasikan kode Anda ke model yang lebih baru
 
 Claude Models on Google Cloud (Google managed) menawarkan tiga jenis endpoint. Anda memilih salah satunya melalui nilai region yang Anda teruskan saat membuat klien. Dalam permintaan cURL, jenis endpoint menentukan host dan segmen `locations` dari URL.
 
-| Jenis endpoint                | Nilai region                        | Host                                                                       |
-| ----------------------------- | ----------------------------------- | -------------------------------------------------------------------------- |
-| **Global** (direkomendasikan) | `"global"`                          | `aiplatform.googleapis.com`                                                |
-| **Multi-region**              | `"us"` atau `"eu"`                  | `aiplatform.us.rep.googleapis.com`<br />`aiplatform.eu.rep.googleapis.com` |
-| **Regional**                  | Sebuah region, seperti `"us-east5"` | `{region}-aiplatform.googleapis.com`                                       |
+| Jenis endpoint | Nilai region | Host |
+| ----- | ----- | ----- |
+| **Global** (direkomendasikan) | `"global"` | `aiplatform.googleapis.com` |
+| **Multi-region** | `"us"` atau `"eu"` | `aiplatform.us.rep.googleapis.com`<br />`aiplatform.eu.rep.googleapis.com` |
+| **Regional** | Sebuah region, seperti `"us-east5"` | `{region}-aiplatform.googleapis.com` |
 
 Jenis-jenis endpoint berbeda dalam hal ke mana permintaan dikirim:
 

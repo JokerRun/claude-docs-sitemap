@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 62358b957e792eea79e563a35991dc880db36f271921aef8e678899b1a8fe1f0
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6ca511ac6863acc14453d1e036fe9868e3ce75a978b51837c3b789ca0d9a8308
 ---
 
 ---
@@ -51,11 +51,11 @@ Setiap panggilan model membawa percakapan sejauh ini, termasuk prompt, input ala
 
 Ketika Claude API menjadi penyedia inferensi, setiap panggilan model juga membawa hingga tiga header. Header tersebut berisi ID yang dihasilkan oleh server Anda:
 
-| Header                                    | Isinya                                        |
-| ----------------------------------------- | --------------------------------------------- |
-| `anthropic-managed-agents-session-id`     | ID sesi yang dilayani oleh panggilan tersebut |
-| `anthropic-managed-agents-agent-id`       | ID agen dari sesi tersebut                    |
-| `anthropic-managed-agents-environment-id` | ID environment dari sesi tersebut             |
+| Header | Isinya |
+| ----- | ----- |
+| `anthropic-managed-agents-session-id` | ID sesi yang dilayani oleh panggilan tersebut |
+| `anthropic-managed-agents-agent-id` | ID agen dari sesi tersebut |
+| `anthropic-managed-agents-environment-id` | ID environment dari sesi tersebut |
 
 Sebuah ID tidak berisi nama maupun konten, tetapi ID tersebut mengodekan waktu saat server Anda membuatnya. Dengan header ini, Anthropic dapat mengatribusikan penggunaan ke sesi, agen, atau environment. Tidak ada pengaturan yang dapat menonaktifkannya. Jika `ANTHROPIC_BASE_URL` menunjuk ke proxy atau gateway, header tersebut dikirim ke sana. Di bawah penyedia inferensi lain mana pun, server tidak pernah mengirimkannya.
 
@@ -86,7 +86,7 @@ Pipeline log Anda, collector Anda, dan backend tracing Anda yang menentukan bera
 
 Server menyimpan semua hal lainnya, seperti agen, sesi, dan riwayat sesi, di database Anda. Jika Anda tidak menyiapkan database, yang merupakan default, server menyimpan data tersebut di memori, dan restart akan menghapusnya. Jika Anda mengonfigurasi pengelola rahasia, server menyimpan rahasia setiap [kredensial vault](https://platform.claude.com/docs/id/managed-agents/vaults) baru di sana sebagai gantinya, bukan di database. Rahasia yang disimpannya sebelumnya tetap berada di database.
 
-Sesi dan riwayatnya tetap tersimpan di database Anda sampai Anda menghapusnya. Server tidak menghapus sesi karena usianya, baik diarsipkan maupun tidak. Menghapus sesi melalui API akan menghapus sesi tersebut beserta riwayatnya dari database Anda, meskipun server tetap menyimpan ID sesi tersebut. Server dapat menolak penghapusan saat sesi sedang berjalan. Penghapusan tersebut tidak menjangkau salinan di tempat lain, seperti cadangan database, log dan trace yang diekspor, atau apa yang ditulis agen ke [memory store](https://platform.claude.com/docs/id/managed-agents/memory). Di Kubernetes, penghapusan tersebut juga membiarkan volume `/workspace` milik sesi tetap ada, sebagaimana dijelaskan di [Membebaskan volume sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted/kubernetes#free-a-sessions-volume).
+Sesi dan riwayatnya tetap tersimpan di database Anda sampai Anda menghapusnya. Server tidak menghapus sesi karena usianya, baik diarsipkan maupun tidak. Menghapus sesi melalui API akan menghapus sesi tersebut beserta riwayatnya dari database Anda, meskipun server tetap menyimpan ID sesi tersebut. Server dapat menolak penghapusan saat sesi sedang berjalan. Penghapusan tersebut tidak menjangkau salinan di tempat lain, seperti cadangan database, log dan trace yang diekspor, atau apa yang ditulis agen ke [memory store](https://platform.claude.com/docs/id/managed-agents/memory). Di Kubernetes, volume `/workspace` milik sesi dapat tetap ada setelah penghapusan, sebagaimana dijelaskan di [Membebaskan volume sesi](https://platform.claude.com/docs/id/managed-agents/self-hosted/kubernetes#free-a-sessions-volume).
 
 Apa yang dikirim server ke model, dan apa yang dikembalikan model, tunduk pada perjanjian organisasi Anda dengan penyedia yang melayani model tersebut. Ketentuan retensi data dalam perjanjian tersebut berlaku. Ketika Claude API yang melayani model, perjanjian dan pengaturan retensi data yang dimiliki organisasi Anda dengan Anthropic yang berlaku. Jika organisasi Anda memiliki pengaturan [zero data retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope), pengaturan tersebut mencakup panggilan model ini dengan cara yang sama seperti panggilan Messages API lainnya.
 
@@ -111,12 +111,12 @@ Anthropic tidak menerbitkan satu pun kredensial yang diterima server, dan tidak 
 
 Server menerima permintaan API pada satu alamat dan port. Server membuka dua listener lagi, masing-masing hanya jika Anda mengaktifkannya.
 
-| Listener                                                                                                                                               | Aktif secara default                                                                                                                                         | Alamat default                                                                                                         | Apa yang dimintanya                                                                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Permintaan API                                                                                                                                         | Ya                                                                                                                                                           | `127.0.0.1:8400`, yang hanya dapat dijangkau oleh mesin yang sama. Untuk mengubah alamat dan port, atur `server.addr`. | Lihat [Kredensial yang diterima server](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#credentials-that-the-server-accepts).         |
-| [Konsol di server Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted/console), sebuah halaman web                                    | Ya. Untuk berhenti menyajikannya, lihat [Menonaktifkan konsol](https://platform.claude.com/docs/id/managed-agents/self-hosted/console#turn-off-the-console). | Alamat dan port yang sama dengan permintaan API                                                                        | Tidak ada untuk memuat halaman, bagi siapa pun yang dapat menjangkaunya. Untuk melakukan apa pun di konsol, seseorang harus sign in melalui penyedia identitas Anda. |
-| Endpoint metrik Prometheus                                                                                                                             | Tidak                                                                                                                                                        | `localhost:9464`, yang hanya dapat dijangkau oleh mesin yang sama                                                      | Tidak ada kredensial                                                                                                                                                 |
-| Listener server untuk [egress gateway](https://platform.claude.com/docs/id/managed-agents/self-hosted/agent-identity#environment-variable-credentials) | Tidak                                                                                                                                                        | Port 8410 pada setiap interface                                                                                        | Kunci gateway                                                                                                                                                        |
+| Listener | Aktif secara default | Alamat default | Apa yang dimintanya |
+| ----- | ----- | ----- | ----- |
+| Permintaan API | Ya | `127.0.0.1:8400`, yang hanya dapat dijangkau oleh mesin yang sama. Untuk mengubah alamat dan port, atur `server.addr`. | Lihat [Kredensial yang diterima server](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#credentials-that-the-server-accepts). |
+| [Konsol di server Anda](https://platform.claude.com/docs/id/managed-agents/self-hosted/console), sebuah halaman web | Ya. Untuk berhenti menyajikannya, lihat [Menonaktifkan konsol](https://platform.claude.com/docs/id/managed-agents/self-hosted/console#turn-off-the-console). | Alamat dan port yang sama dengan permintaan API | Tidak ada untuk memuat halaman, bagi siapa pun yang dapat menjangkaunya. Untuk melakukan apa pun di konsol, seseorang harus sign in melalui penyedia identitas Anda. |
+| Endpoint metrik Prometheus | Tidak | `localhost:9464`, yang hanya dapat dijangkau oleh mesin yang sama | Tidak ada kredensial |
+| Listener server untuk [egress gateway](https://platform.claude.com/docs/id/managed-agents/self-hosted/agent-identity#environment-variable-credentials) | Tidak | Port 8410 pada setiap interface | Kunci gateway |
 
 Detail lebih lanjut tentang dua listener terakhir:
 
@@ -129,11 +129,11 @@ Stack Docker Compose memublikasikan port 8400 pada alamat loopback host Docker, 
 
 Setiap deployment melayani satu tenant pada satu tingkat kepercayaan. Environment dalam satu deployment tidak memisahkan tingkat kepercayaan. Kunci API server menjangkau setiap environment. Setiap pemanggil yang memiliki role dapat menjalankan sesi di setiap environment, dengan jaringan dan file apa pun yang dapat dijangkau oleh worker environment tersebut.
 
-| Yang dipisahkan                                | Lakukan ini                                                                                                                                                                                                                                                                                                                                                                                                      |
-| ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Tenant                                         | Berikan setiap tenant deployment-nya sendiri, dengan database, kunci API server, dan worker-nya sendiri.                                                                                                                                                                                                                                                                                                         |
-| Beban kerja dengan tingkat kepercayaan berbeda | Berikan setiap tingkat kepercayaan deployment-nya sendiri, yang disiapkan seperti untuk tenant. Contohnya adalah kode tepercaya dan tidak tepercaya, atau worker yang menjangkau sistem yang hanya boleh digunakan oleh sebagian pemanggil.                                                                                                                                                                      |
-| Pemanggil dalam satu deployment                | Aktifkan [single sign-on](https://platform.claude.com/docs/id/managed-agents/self-hosted/configure#single-sign-on), petakan grup ke role `developer` atau `user`, dan simpan kunci API server untuk administrator. [Apa yang dapat dilakukan setiap peran](https://platform.claude.com/docs/id/managed-agents/self-hosted/configure#what-each-role-can-do) menunjukkan apa yang dilihat oleh pemanggil tersebut. |
+| Yang dipisahkan | Lakukan ini |
+| ----- | ----- |
+| Tenant | Berikan setiap tenant deployment-nya sendiri, dengan database, kunci API server, dan worker-nya sendiri. |
+| Beban kerja dengan tingkat kepercayaan berbeda | Berikan setiap tingkat kepercayaan deployment-nya sendiri, yang disiapkan seperti untuk tenant. Contohnya adalah kode tepercaya dan tidak tepercaya, atau worker yang menjangkau sistem yang hanya boleh digunakan oleh sebagian pemanggil. |
+| Pemanggil dalam satu deployment | Aktifkan [single sign-on](https://platform.claude.com/docs/id/managed-agents/self-hosted/configure#single-sign-on), petakan grup ke role `developer` atau `user`, dan simpan kunci API server untuk administrator. [Apa yang dapat dilakukan setiap peran](https://platform.claude.com/docs/id/managed-agents/self-hosted/configure#what-each-role-can-do) menunjukkan apa yang dilihat oleh pemanggil tersebut. |
 
 ### Pengelola rahasia, single sign-on, dan model gateway
 

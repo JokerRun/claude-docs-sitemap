@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/events-and-streaming
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 049f8152cefdd3f52b1a4474136293f32b17dcd18530b2d1cb7a419a4ea34dbc
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: fa4989de25a5e66e5ce21451bd3d67e8096d590e77c8875bc23c651e4f3999a3
 ---
 
 ---
@@ -673,11 +673,11 @@ Every event in the session’s history includes a `processed_at` (java, php: `pr
 
 A `session.status_idle` event means the agent has stopped and is waiting for input. Its `stop_reason.type` says why:
 
-| `stop_reason.type` | Why the session stopped                                                                                                                            | What to do                                                                                                                                                     |
-| ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `end_turn`         | The agent finished its turn, or [you interrupted it](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#interrupt-the-agent). | [Send a `user.message`](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#resume-an-idle-session) when you have more work for the agent. |
-| `requires_action`  | One or more tool calls need an answer from you, such as a custom tool call or a confirmation request.                                              | [Answer each blocking tool call](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session).            |
-| `budget_reached`   | The session’s tracked list cost reached its [budget](https://platform.claude.com/docs/en/managed-agents/budgets).                                  | [Change or remove the budget](https://platform.claude.com/docs/en/managed-agents/budgets#resume-a-session-at-its-budget).                                      |
+| `stop_reason.type` | Why the session stopped | What to do |
+| ----- | ----- | ----- |
+| `end_turn` | The agent finished its turn, or [you interrupted it](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#interrupt-the-agent). | [Send a `user.message`](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#resume-an-idle-session) when you have more work for the agent. |
+| `requires_action` | One or more tool calls need an answer from you, such as a custom tool call or a confirmation request. | [Answer each blocking tool call](https://platform.claude.com/docs/en/managed-agents/events-and-streaming#answer-tool-calls-that-pause-the-session). |
+| `budget_reached` | The session’s tracked list cost reached its [budget](https://platform.claude.com/docs/en/managed-agents/budgets). | [Change or remove the budget](https://platform.claude.com/docs/en/managed-agents/budgets#resume-a-session-at-its-budget). |
 
 No event you send resumes a session paused at its budget. The work that the budget paused resumes automatically when you change the budget to a value above the consumed list cost, or remove it. When the work resumes, the session emits a `workflow_run.status_running` event for each [workflow run that the budget paused](https://platform.claude.com/docs/en/managed-agents/workflow-runs#budgets-and-limits). A run that an interrupt paused stays paused; see [Resume a session at its budget](https://platform.claude.com/docs/en/managed-agents/budgets#resume-a-session-at-its-budget). See [When a session reaches its budget](https://platform.claude.com/docs/en/managed-agents/budgets#when-a-session-reaches-its-budget) for the events that mark the pause and the events the session still accepts.
 

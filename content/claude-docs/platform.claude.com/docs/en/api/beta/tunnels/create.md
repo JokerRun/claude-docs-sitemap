@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/create
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 92a2640fdc0174d2e0dd863b84ddde5c8eb8ff75d06325ba9abf132f4b630941
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ae90ad07497614e0f958581fc59dfd5045c97758f7e07f3b2cc8c5c470fc92a6
 ---
 
 ---
@@ -123,6 +123,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

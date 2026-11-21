@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency-log
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: e2711c50d9a9a33debb040447160ba8235b16e433ee46ee3dfa31525b901bd9e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 2246caef24b79613559739b2558ba81cf0dfb1386c95d853c9b2b9b3bf7c7cdb
 ---
 
 ---
@@ -78,14 +78,14 @@ Anda memerlukan:
 
 Enam endpoint read-only disajikan di bawah `https://api.anthropic.com/v1/compliance/transparency_log/`:
 
-| Endpoint                                                                                                                      | Mengembalikan                                                            |
-| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`GET /checkpoint`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#read-the-latest-checkpoint)     | Checkpoint bertanda tangan terbaru                                       |
-| [`GET /keys`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#read-the-verifier-keys)               | Kumpulan kunci verifier                                                  |
-| [`GET /inclusion`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#fetch-an-inclusion-proof)        | Bukti inklusi untuk satu event                                           |
-| [`GET /consistency`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#fetch-a-consistency-proof)     | Bukti konsistensi dari checkpoint yang Anda pegang ke checkpoint terbaru |
-| [`GET /tile/{level}/{index}`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#read-a-hash-tile)     | Tile hash Merkle                                                         |
-| [`GET /tile/entries/{index}`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#read-an-entry-bundle) | Entry bundle berisi byte leaf                                            |
+| Endpoint | Mengembalikan |
+| ----- | ----- |
+| [`GET /checkpoint`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#read-the-latest-checkpoint) | Checkpoint bertanda tangan terbaru |
+| [`GET /keys`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#read-the-verifier-keys) | Kumpulan kunci verifier |
+| [`GET /inclusion`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#fetch-an-inclusion-proof) | Bukti inklusi untuk satu event |
+| [`GET /consistency`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#fetch-a-consistency-proof) | Bukti konsistensi dari checkpoint yang Anda pegang ke checkpoint terbaru |
+| [`GET /tile/{level}/{index}`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#read-a-hash-tile) | Tile hash Merkle |
+| [`GET /tile/entries/{index}`](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#read-an-entry-bundle) | Entry bundle berisi byte leaf |
 
 Checkpoint, tile, dan bundle entri mengikuti format wire C2SP tlog-tiles secara persis. Kedua endpoint bukti hanyalah kemudahan: setiap bukti juga dapat dihitung dari tile, sehingga Anda tidak pernah harus memercayai output endpoint bukti. Anda memverifikasi hash yang dikembalikannya terhadap checkpoint bertanda tangan.
 
@@ -107,14 +107,14 @@ Setiap permintaan membaca tepat satu log organisasi:
 
 Error menggunakan envelope error JSON standar Compliance API di setiap endpoint, termasuk endpoint teks dan biner. Lihat [Menangani error Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-errors) untuk envelope dan jenis error bersama.
 
-| Status | Arti pada permukaan ini                                                                                                                                                                   |
-| ------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `400`  | `organization_id` salah format atau dihilangkan saat menggunakan kunci organisasi induk, Compliance API tidak diaktifkan, parameter query tidak dikenal, atau validasi per-endpoint gagal |
-| `401`  | Kunci API tidak ada atau tidak valid                                                                                                                                                      |
-| `403`  | Kunci tidak memiliki scope yang diperlukan                                                                                                                                                |
-| `404`  | Tidak ada log yang dapat dibaca oleh kunci ini, atau kasus per-endpoint “tidak tercakup” dan “di luar pohon”                                                                              |
-| `429`  | Terkena batas laju. Endpoint ini berbagi [batas laju](https://platform.claude.com/docs/id/manage-claude/compliance-api) per-organisasi-induk milik Compliance API. Patuhi `retry-after`   |
-| `503`  | Log untuk sementara tidak tersedia. Coba lagi dengan backoff                                                                                                                              |
+| Status | Arti pada permukaan ini |
+| ----- | ----- |
+| `400` | `organization_id` salah format atau dihilangkan saat menggunakan kunci organisasi induk, Compliance API tidak diaktifkan, parameter query tidak dikenal, atau validasi per-endpoint gagal |
+| `401` | Kunci API tidak ada atau tidak valid |
+| `403` | Kunci tidak memiliki scope yang diperlukan |
+| `404` | Tidak ada log yang dapat dibaca oleh kunci ini, atau kasus per-endpoint “tidak tercakup” dan “di luar pohon” |
+| `429` | Terkena batas laju. Endpoint ini berbagi [batas laju](https://platform.claude.com/docs/id/manage-claude/compliance-api) per-organisasi-induk milik Compliance API. Patuhi `retry-after` |
+| `503` | Log untuk sementara tidak tersedia. Coba lagi dengan backoff |
 
 ### Caching
 
@@ -173,16 +173,16 @@ curl --fail-with-body -sS \
 }
 ```
 
-| Field                     | Tipe   | Deskripsi                                                                                                                                                                                                                                                                                                  |
-| ------------------------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `type`                    | string | Selalu `transparency_log_keys`                                                                                                                                                                                                                                                                             |
-| `origin`                  | string | Baris origin yang dibawa setiap checkpoint log ini. Bersifat informasional: bandingkan checkpoint dengan origin yang Anda turunkan sendiri, bukan dengan field ini                                                                                                                                         |
-| `log_keys`                | array  | Kunci yang menandatangani checkpoint baru di urutan pertama, lalu setiap kunci lain yang disajikan log, dari yang terbaru. Tidak pernah kosong                                                                                                                                                             |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `type` | string | Selalu `transparency_log_keys` |
+| `origin` | string | Baris origin yang dibawa setiap checkpoint log ini. Bersifat informasional: bandingkan checkpoint dengan origin yang Anda turunkan sendiri, bukan dengan field ini |
+| `log_keys` | array | Kunci yang menandatangani checkpoint baru di urutan pertama, lalu setiap kunci lain yang disajikan log, dari yang terbaru. Tidak pernah kosong |
 | `log_keys[].verifier_key` | string | Kunci sebagai string note-verifier C2SP, `<origin>+<key_hash>+<base64 key>`, yang diterima oleh tooling tlog-tiles yang mendukung kunci note ECDSA (misalnya, modul Go `github.com/transparency-dev/formats`). Bagian base64 didekode menjadi byte algoritma `0x02` diikuti kunci publik yang dienkode DER |
-| `log_keys[].key_hash`     | string | Delapan digit heksadesimal huruf kecil. Selektor 4 byte yang mencocokkan kunci ini dengan baris tanda tangan checkpoint. Ini adalah 4 byte pertama dari `fingerprint` dan bukan identitas                                                                                                                  |
-| `log_keys[].fingerprint`  | string | 64 digit hex huruf kecil: SHA-256 dari DER `SubjectPublicKeyInfo`                                                                                                                                                                                                                                          |
-| `log_keys[].algorithm`    | string | Jenis kunci, saat ini `ecdsa_p256_sha256`. Nilai dapat ditambahkan. Lewati kunci yang algoritmanya tidak Anda dukung                                                                                                                                                                                       |
-| `log_keys[].public_key`   | string | Kunci publik sebagai base64 DER `SubjectPublicKeyInfo`                                                                                                                                                                                                                                                     |
+| `log_keys[].key_hash` | string | Delapan digit heksadesimal huruf kecil. Selektor 4 byte yang mencocokkan kunci ini dengan baris tanda tangan checkpoint. Ini adalah 4 byte pertama dari `fingerprint` dan bukan identitas |
+| `log_keys[].fingerprint` | string | 64 digit hex huruf kecil: SHA-256 dari DER `SubjectPublicKeyInfo` |
+| `log_keys[].algorithm` | string | Jenis kunci, saat ini `ecdsa_p256_sha256`. Nilai dapat ditambahkan. Lewati kunci yang algoritmanya tidak Anda dukung |
+| `log_keys[].public_key` | string | Kunci publik sebagai base64 DER `SubjectPublicKeyInfo` |
 
 `key_hash` hanya mencakup byte kunci: nilainya adalah 4 byte pertama dari SHA-256 atas DER `SubjectPublicKeyInfo`, yang merupakan aturan yang digunakan encoding note-verifier ECDSA. Ini bukan ID kunci yang bergantung pada nama yang didefinisikan format signed-note dasar untuk kunci Ed25519, sehingga tidak berubah mengikuti origin. Tanda tangan yang valid oleh kunci yang tercantum di [Fingerprint kunci yang dipublikasikan](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#published-key-fingerprints) membuktikan bahwa checkpoint berasal dari layanan log transparansi Anthropic. Baris origin di dalam checkpoint bertanda tangan itulah yang mengikatnya ke organisasi Anda. Itulah sebabnya Anda membandingkan baris tersebut dengan origin yang Anda turunkan sendiri.
 
@@ -196,9 +196,9 @@ Kunci dapat dirotasi:
 
 Anthropic memublikasikan fingerprint setiap kunci yang menandatangani checkpoint di sini, di luar API. Ini memungkinkan Anda memeriksa kunci yang Anda simpan secara lokal terhadap sumber yang tidak dapat diubah oleh jalur penyajian. Kunci yang Anda pegang mungkin berasal dari respons `GET /keys` sebelumnya atau dari tooling yang mem-pin kunci tersebut.
 
-| Hash kunci | Fingerprint SHA-256                                                | Algoritma           | Menandatangani sejak | Status                         |
-| ---------- | ------------------------------------------------------------------ | ------------------- | -------------------- | ------------------------------ |
-| `1dff5fe4` | `1dff5fe420d49743fe444a04fc17f818eea856699dec2ebbc24df15602c74a58` | `ecdsa_p256_sha256` | 2026-08-17           | Kunci penandatanganan saat ini |
+| Hash kunci | Fingerprint SHA-256 | Algoritma | Menandatangani sejak | Status |
+| ----- | ----- | ----- | ----- | ----- |
+| `1dff5fe4` | `1dff5fe420d49743fe444a04fc17f818eea856699dec2ebbc24df15602c74a58` | `ecdsa_p256_sha256` | 2026-08-17 | Kunci penandatanganan saat ini |
 
 Rotasi terencana diumumkan di halaman ini setidaknya 30 hari sebelum kunci baru menandatangani checkpoint pertamanya. Selama periode pemberitahuan tersebut, kunci baru tercantum di `log_keys` dan di tabel ini beserta tanggal peralihannya. Kunci yang sudah pensiun tetap tercantum beserta tanggal masa layanannya. Kunci yang tidak muncul di tabel ini tidak sah, apa pun yang dikembalikan `GET /keys`. Perlakukan checkpoint yang tidak dapat diverifikasi dengan kunci tercantum mana pun sebagai kegagalan verifikasi, dan laporkan ke perwakilan akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com).
 
@@ -208,9 +208,9 @@ Rotasi terencana diumumkan di halaman ini setidaknya 30 hari sebelum kunci baru 
 
 `GET /v1/compliance/transparency_log/inclusion?leaf_index={index}`
 
-| Parameter         | Tipe             | Deskripsi                                                                                                                           |
-| ----------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `leaf_index`      | integer, wajib   | Posisi event di log: `transparency_log_leaf_index` yang disajikan Activity Feed pada event tersebut. Harus nol atau lebih besar     |
+| Parameter | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `leaf_index` | integer, wajib | Posisi event di log: `transparency_log_leaf_index` yang disajikan Activity Feed pada event tersebut. Harus nol atau lebih besar |
 | `organization_id` | string, opsional | Lihat [Autentikasi dan scope](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#authentication-and-scoping) |
 
 ```bash
@@ -234,12 +234,12 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-| Field        | Tipe         | Deskripsi                                                                                                                     |
-| ------------ | ------------ | ----------------------------------------------------------------------------------------------------------------------------- |
-| `type`       | string       | Selalu `transparency_log_inclusion_proof`                                                                                     |
-| `leaf_index` | integer      | Posisi event di log, dikembalikan dari permintaan                                                                             |
-| `hashes`     | array string | Hash sibling base64 dari audit path, diurutkan dari leaf ke atas hingga root                                                  |
-| `checkpoint` | string       | Checkpoint bertanda tangan terbaru, yaitu checkpoint yang menjadi acuan verifikasi bukti. Checkpoint ini membawa ukuran pohon |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `type` | string | Selalu `transparency_log_inclusion_proof` |
+| `leaf_index` | integer | Posisi event di log, dikembalikan dari permintaan |
+| `hashes` | array string | Hash sibling base64 dari audit path, diurutkan dari leaf ke atas hingga root |
+| `checkpoint` | string | Checkpoint bertanda tangan terbaru, yaitu checkpoint yang menjadi acuan verifikasi bukti. Checkpoint ini membawa ukuran pohon |
 
 Tidak ada pencarian berdasarkan ID aktivitas. Anda selalu memegang indeksnya, karena indeks tersebut datang bersama event, dan Anda memeriksa bukti terhadap byte event yang Anda ambil dari feed.
 
@@ -254,9 +254,9 @@ Tidak ada pencarian berdasarkan ID aktivitas. Anda selalu memegang indeksnya, ka
 
 `GET /v1/compliance/transparency_log/consistency?from={size}`
 
-| Parameter         | Tipe             | Deskripsi                                                                                                                           |
-| ----------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| `from`            | integer, wajib   | Ukuran pohon dari checkpoint sebelumnya yang Anda pegang. Harus minimal 1 dan maksimal ukuran pohon checkpoint terbaru              |
+| Parameter | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `from` | integer, wajib | Ukuran pohon dari checkpoint sebelumnya yang Anda pegang. Harus minimal 1 dan maksimal ukuran pohon checkpoint terbaru |
 | `organization_id` | string, opsional | Lihat [Autentikasi dan scope](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#authentication-and-scoping) |
 
 ```bash
@@ -279,11 +279,11 @@ curl --fail-with-body -sS -G \
 }
 ```
 
-| Field        | Tipe         | Deskripsi                                                                                                                        |
-| ------------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------- |
-| `type`       | string       | Selalu `transparency_log_consistency_proof`                                                                                      |
-| `hashes`     | array string | Hash bukti base64, dalam urutan RFC 9162                                                                                         |
-| `checkpoint` | string       | Checkpoint bertanda tangan terbaru, yaitu checkpoint yang menjadi tujuan perpanjangan bukti. Checkpoint ini membawa ukuran pohon |
+| Field | Tipe | Deskripsi |
+| ----- | ----- | ----- |
+| `type` | string | Selalu `transparency_log_consistency_proof` |
+| `hashes` | array string | Hash bukti base64, dalam urutan RFC 9162 |
+| `checkpoint` | string | Checkpoint bertanda tangan terbaru, yaitu checkpoint yang menjadi tujuan perpanjangan bukti. Checkpoint ini membawa ukuran pohon |
 
 * Bukti selalu diperpanjang hingga checkpoint terbaru yang diterbitkan. API ini tidak pernah menyajikan checkpoint historis: Anda menyimpan checkpoint yang disajikan kepada Anda.
 * `from` yang sama dengan ukuran pohon checkpoint terbaru mengembalikan bukti kosong.
@@ -412,9 +412,9 @@ Verifikasi berjalan di infrastruktur Anda sendiri. Semua yang dikembalikan API t
 Setiap rilis `axt-verify` hanya membangun ulang [versi leaf](https://platform.claude.com/docs/id/manage-claude/access-transparency-log#how-an-event-becomes-a-leaf) yang sudah didefinisikan saat rilis tersebut diterbitkan. Asumsikan bahwa log Anda dapat mulai menulis versi baru kapan saja setelah rilis yang membangunnya ulang diterbitkan. Instal rilis tersebut segera setelah diterbitkan.
 
 | Versi leaf | Rilis `axt-verify` yang membangunnya ulang |
-| ---------- | ------------------------------------------ |
-| `0x01`     | Setiap rilis                               |
-| `0x02`     | `v0.2.0` dan yang lebih baru               |
+| ----- | ----- |
+| `0x01` | Setiap rilis |
+| `0x02` | `v0.2.0` dan yang lebih baru |
 
 `axt-verify version` mencetak rilis yang Anda jalankan. Instalasi baru mendapatkan rilis terbaru. Jika baris terakhir tabel tidak mencakup rilis Anda, tingkatkan ke rilis di baris tersebut. Jika belum ada yang diterbitkan, tingkatkan segera setelah ada:
 

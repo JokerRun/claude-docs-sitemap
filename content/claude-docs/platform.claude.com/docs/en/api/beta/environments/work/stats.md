@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stats
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 2255b869e027364d565a442f1fe680a0eb1d4903dcfc76b2d47e2bd549af1c3a
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: fc3f9e9cfb612f37c9c479eb3c68cd074ae1e679b58a6954f3fc6cd745cfb741
 ---
 
 ---
@@ -125,6 +125,8 @@ Get statistics about the work queue for an environment.
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

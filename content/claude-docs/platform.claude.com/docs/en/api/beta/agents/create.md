@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/create
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 82179513fefa97fd176245d181db8a7a71931c3d5d72175aeedf5b865b2d28f8
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 6c3292ed16a0b75905da3dee8599b449d98f498555f1873bdde34946c7fa0923
 ---
 
 ---
@@ -121,6 +121,8 @@ Create Agent
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

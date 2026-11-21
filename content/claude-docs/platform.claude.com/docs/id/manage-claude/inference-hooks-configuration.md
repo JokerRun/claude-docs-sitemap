@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: c140293bb5f4e34ae1f357843c6e0ad1cf7b50dce505faf8d4ec0c80bd862a48
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 29f40fdc13e3ae5d10fa2bb8f3f26084d24d88f03b57ece22db8bb0e2a25cd4a
 ---
 
 ---
@@ -67,15 +67,15 @@ Langkah-langkah berikut membawa konfigurasi baru dari mati hingga menegakkan.
 
     Hasil kegagalan yang umum:
 
-    | Hasil                      | Yang perlu diperiksa                                                                                                                                                             |
-    | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-    | URL ditolak                | URL gagal dalam pemeriksaan struktural. Gunakan URL `https://` pada port 443.                                                                                                    |
-    | IP privat atau internal    | Host URL adalah alamat IP privat atau internal, alamat IPv6, atau `localhost`. Gunakan host yang dapat dirutekan secara publik.                                                  |
-    | Timeout                    | Server keamanan AI tidak mengembalikan putusan dalam batas waktu.                                                                                                                |
-    | Kesalahan transport        | Resolusi DNS, TLS handshake, atau koneksi gagal, atau hostname di-resolve ke alamat privat.                                                                                      |
-    | Status non-200             | Server keamanan AI merespons dengan status selain 200. Putusan harus dikembalikan sebagai HTTP 200; pengalihan tidak diikuti dan dihitung sebagai kegagalan.                     |
-    | Respons tidak dapat diurai | Server keamanan AI merespons, tetapi body-nya bukan putusan yang valid.                                                                                                          |
-    | Signing secret diperlukan  | Organisasi Anda tidak memiliki signing secret, sehingga uji akan dikirim tanpa tanda tangan. Klik **Buat kunci rahasia** di bawah **Penandatanganan permintaan**, lalu uji lagi. |
+    | Hasil | Yang perlu diperiksa |
+    | ----- | ----- |
+    | URL ditolak | URL gagal dalam pemeriksaan struktural. Gunakan URL `https://` pada port 443. |
+    | IP privat atau internal | Host URL adalah alamat IP privat atau internal, alamat IPv6, atau `localhost`. Gunakan host yang dapat dirutekan secara publik. |
+    | Timeout | Server keamanan AI tidak mengembalikan putusan dalam batas waktu. |
+    | Kesalahan transport | Resolusi DNS, TLS handshake, atau koneksi gagal, atau hostname di-resolve ke alamat privat. |
+    | Status non-200 | Server keamanan AI merespons dengan status selain 200. Putusan harus dikembalikan sebagai HTTP 200; pengalihan tidak diikuti dan dihitung sebagai kegagalan. |
+    | Respons tidak dapat diurai | Server keamanan AI merespons, tetapi body-nya bukan putusan yang valid. |
+    | Signing secret diperlukan | Organisasi Anda tidak memiliki signing secret, sehingga uji akan dikirim tanpa tanda tangan. Klik **Buat kunci rahasia** di bawah **Penandatanganan permintaan**, lalu uji lagi. |
   </Step>
 
   <Step title="Pilih penanganan kegagalan dan batas waktu">
@@ -148,15 +148,15 @@ Area kesehatan endpoint pada halaman pengaturan Inference hooks menampilkan:
 
 Jenis kesalahan di **Error terbaru** berarti:
 
-| Kesalahan yang ditampilkan                           | Artinya                                                                                                                                                                                                                                                              | Dihitung untuk circuit breaker |
-| ---------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| `DlpWebhookTimeoutError` · `webhook_error`           | Server keamanan AI Anda tidak mengembalikan putusan dalam **Batas waktu keputusan prompt (ms)** yang Anda atur.                                                                                                                                                      | Ya                             |
-| `DlpWebhookStatusError` · `webhook_error`            | Server keamanan AI Anda menjawab dengan status HTTP selain 200, seperti pengalihan.                                                                                                                                                                                  | Ya                             |
-| `DlpWebhookResponseError` · `webhook_error`          | Server keamanan AI Anda menjawab 200, tetapi body-nya bukan putusan yang valid atau lebih besar dari 64 KiB.                                                                                                                                                         | Ya                             |
-| `DlpWebhookTransportError` · `webhook_error`         | Koneksi gagal atau terputus sebelum jawaban lengkap tiba: misalnya, hostname tidak dapat di-resolve atau di-resolve ke alamat privat, koneksi ditolak atau di-reset, atau TLS handshake gagal. Masalah jaringan di sisi Anthropic juga dapat muncul dengan cara ini. | Tidak                          |
-| `DlpWebhookDisallowedAddressError` · `webhook_error` | Host URL endpoint adalah alamat IP privat atau internal, alamat IPv6, atau `localhost`. Hostname yang di-resolve ke alamat seperti itu ditampilkan sebagai kesalahan transport.                                                                                      | Ya                             |
-| `DlpWebhookBlockedError` · `webhook_error`           | URL endpoint bukan URL `https://` pada port 443, atau tidak dapat diurai, sehingga tidak ada permintaan yang dikirim.                                                                                                                                                | Tidak                          |
-| `DlpWebhookRelayError` · `relay_error`               | Kegagalan terjadi di dalam sistem Anthropic, dan server keamanan AI Anda biasanya tidak dihubungi.                                                                                                                                                                   | Tidak                          |
+| Kesalahan yang ditampilkan | Artinya | Dihitung untuk circuit breaker |
+| ----- | ----- | ----- |
+| `DlpWebhookTimeoutError` · `webhook_error` | Server keamanan AI Anda tidak mengembalikan putusan dalam **Batas waktu keputusan prompt (ms)** yang Anda atur. | Ya |
+| `DlpWebhookStatusError` · `webhook_error` | Server keamanan AI Anda menjawab dengan status HTTP selain 200, seperti pengalihan. | Ya |
+| `DlpWebhookResponseError` · `webhook_error` | Server keamanan AI Anda menjawab 200, tetapi body-nya bukan putusan yang valid atau lebih besar dari 64 KiB. | Ya |
+| `DlpWebhookTransportError` · `webhook_error` | Koneksi gagal atau terputus sebelum jawaban lengkap tiba: misalnya, hostname tidak dapat di-resolve atau di-resolve ke alamat privat, koneksi ditolak atau di-reset, atau TLS handshake gagal. Masalah jaringan di sisi Anthropic juga dapat muncul dengan cara ini. | Tidak |
+| `DlpWebhookDisallowedAddressError` · `webhook_error` | Host URL endpoint adalah alamat IP privat atau internal, alamat IPv6, atau `localhost`. Hostname yang di-resolve ke alamat seperti itu ditampilkan sebagai kesalahan transport. | Ya |
+| `DlpWebhookBlockedError` · `webhook_error` | URL endpoint bukan URL `https://` pada port 443, atau tidak dapat diurai, sehingga tidak ada permintaan yang dikirim. | Tidak |
+| `DlpWebhookRelayError` · `relay_error` | Kegagalan terjadi di dalam sistem Anthropic, dan server keamanan AI Anda biasanya tidak dihubungi. | Tidak |
 
 Dalam mode bayangan, tidak ada kesalahan yang dihitung untuk circuit breaker.
 

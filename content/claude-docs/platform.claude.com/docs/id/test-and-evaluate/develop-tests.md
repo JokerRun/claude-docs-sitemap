@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/test-and-evaluate/develop-tests
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 8d15ee8ea11f73ecdd1ee83972195e1b2ec4349c1d59dc853aa15d0d4973049b
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 4725c8d74f53db90d473d2b16f483a08487b749261ed3e7f56d8d9100789868a
 ---
 
 ---
@@ -27,10 +27,10 @@ Kriteria keberhasilan yang baik bersifat:
 
   * Bahkan topik yang “kabur” seperti etika dan keamanan dapat dikuantifikasi:
 
-    |       | Kriteria keamanan                                                                         |
-    | ----- | ----------------------------------------------------------------------------------------- |
-    | Buruk | Output yang aman                                                                          |
-    | Baik  | Kurang dari 0,1% output dari 10.000 percobaan ditandai sebagai toksik oleh filter konten. |
+    |  | Kriteria keamanan |
+    | ----- | ----- |
+    | Buruk | Output yang aman |
+    | Baik | Kurang dari 0,1% output dari 10.000 percobaan ditandai sebagai toksik oleh filter konten. |
 
   <Accordion title="Contoh metrik dan metode pengukuran">
     **Metrik kuantitatif:**
@@ -56,10 +56,10 @@ Kriteria keberhasilan yang baik bersifat:
 * **Relevan:** Selaraskan kriteria Anda dengan tujuan aplikasi dan kebutuhan pengguna Anda. Akurasi sitasi yang kuat mungkin sangat penting untuk aplikasi medis tetapi kurang penting untuk chatbot kasual.
 
 <Accordion title="Contoh kriteria fidelitas tugas untuk analisis sentimen">
-  |       | Kriteria                                                                                                                                                                                                                              |
-  | ----- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                   |
-  | Baik  | Model analisis sentimen harus mencapai skor F1 minimal 0,85 (Terukur, Spesifik) pada set uji held-out\* berisi 10.000 postingan Twitter yang beragam (Relevan), yang merupakan peningkatan 5% dari baseline saat ini (Dapat dicapai). |
+  |  | Kriteria |
+  | ----- | ----- |
+  | Buruk | Model harus mengklasifikasikan sentimen dengan baik |
+  | Baik | Model analisis sentimen harus mencapai skor F1 minimal 0,85 (Terukur, Spesifik) pada set uji held-out\* berisi 10.000 postingan Twitter yang beragam (Relevan), yang merupakan peningkatan 5% dari baseline saat ini (Dapat dicapai). |
 
   \*Selengkapnya tentang set uji held-out di bagian berikutnya.
 </Accordion>
@@ -105,10 +105,10 @@ Berikut beberapa kriteria yang mungkin penting untuk kasus penggunaan Anda. Daft
 Sebagian besar kasus penggunaan memerlukan evaluasi multidimensi berdasarkan beberapa kriteria keberhasilan.
 
 <Accordion title="Contoh kriteria multidimensi untuk analisis sentimen">
-  |       | Kriteria                                                                                                                                                                                                                                                                                        |
-  | ----- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | Buruk | Model harus mengklasifikasikan sentimen dengan baik                                                                                                                                                                                                                                             |
-  | Baik  | Pada set uji held-out berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai:<br />- skor F1 minimal 0,85<br />- 99,5% output tidak toksik<br />- 90% kesalahan hanya akan menyebabkan ketidaknyamanan, bukan kesalahan fatal\*<br />- 95% waktu respons \< 200ms |
+  |  | Kriteria |
+  | ----- | ----- |
+  | Buruk | Model harus mengklasifikasikan sentimen dengan baik |
+  | Baik | Pada set uji held-out berisi 10.000 postingan Twitter yang beragam, model analisis sentimen harus mencapai:<br />- skor F1 minimal 0,85<br />- 99,5% output tidak toksik<br />- 90% kesalahan hanya akan menyebabkan ketidaknyamanan, bukan kesalahan fatal\*<br />- 95% waktu respons \< 200ms |
 
   \*Pada kenyataannya, Anda juga akan mendefinisikan apa arti “ketidaknyamanan” dan “fatal”.
 </Accordion>

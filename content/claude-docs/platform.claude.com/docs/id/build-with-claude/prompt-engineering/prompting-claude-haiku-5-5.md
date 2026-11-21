@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 96678f18f7a28579173f54a57fc2c261f28b5816572e303a83d8c7c409b16e67
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 05eb864063fc422b7a21bd64cad7a6cb0e440afb0b48d54c0f5962b0a53ec426
 ---
 
 ---
@@ -13,7 +13,7 @@ description: "Pola prompting khusus untuk Claude Haiku 5.5: effort, pencarian, o
 
 Panduan ini membahas pola prompting yang khusus untuk Claude Haiku 5.5. Untuk perubahan API model ini, lihat [Yang baru di Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/whats-new-haiku-5-5). Untuk teknik yang berlaku di semua model Claude saat ini, lihat [Praktik terbaik prompting](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices).
 
-Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubahan. Mulailah dengan bagian yang sesuai dengan apa yang Anda amati:
+Prompt Claude Haiku 4.5 yang sudah ada seharusnya berkinerja baik tanpa perubahan, kecuali jika prompt tersebut meminta model untuk menulis penalarannya di dalam respons (lihat [Penolakan safeguard](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#safeguard-refusals)). Mulailah dengan bagian yang sesuai dengan apa yang Anda amati:
 
 * Tidak yakin tingkat effort mana yang harus dijalankan, atau permintaan Claude Haiku 4.5 Anda menetapkan anggaran thinking: [Gunakan effort untuk mengontrol thinking](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#use-effort-to-control-thinking)
 * Model mencari di web, kumpulan dokumen, atau basis pengetahuan, atau melewatkan pencarian yang akan menemukan fakta yang lebih baru: [Hasil pencarian yang akurat](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-haiku-5-5#accurate-search-results)
@@ -137,8 +137,13 @@ Claude Haiku 5.5 menjalankan “safety classifiers” (pengklasifikasi keamanan)
 * `cyber`: permintaan dapat memungkinkan bahaya siber, seperti pengembangan malware atau exploit. Menemukan kerentanan dalam kode sumber diperbolehkan. Pekerjaan keamanan siber dwiguna berisiko tinggi tidak diperbolehkan. Pekerjaan keamanan siber yang tidak berbahaya juga dapat memicu kategori ini. Jika pengklasifikasi `cyber` memblokir pekerjaan keamanan yang sah di organisasi Anda, Anda dapat mendaftar ke [Cyber Verification Program](https://support.claude.com/en/articles/14604842).
 * `frontier_llm`: permintaan dapat membantu pengembangan model AI pesaing.
 * `bio`: permintaan dapat memungkinkan bahaya biologis, seperti metode laboratorium yang berbahaya. Pertanyaan kesehatan sehari-hari dan pertanyaan edukatif tidak terpengaruh. Jika pengklasifikasi `bio` memblokir pekerjaan ilmu hayati di organisasi Anda, Anda dapat mendaftar ke [Life Sciences Verification Program](https://www.anthropic.com/news/life-sciences-verification-program).
-* `general_harms`: permintaan termasuk dalam area kebijakan penggunaan selain ketiga kategori sebelumnya. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.
+* `reasoning_extraction`: permintaan meminta model untuk mereproduksi penalaran internalnya di dalam teks respons.
+* `general_harms`: permintaan termasuk dalam area kebijakan penggunaan lainnya. Pekerjaan yang tidak berbahaya juga dapat memicu kategori ini.
 
-Claude Haiku 4.5 tidak mengembalikan penolakan ini.
+Kode yang ditulis untuk Claude Haiku 4.5 mungkin tidak menangani penolakan ini.
+
+Dengan atau tanpa streaming, penolakan dapat tiba sebelum output apa pun atau setelah output parsial. Untuk apa yang dikembalikan oleh setiap kasus dan apakah kasus tersebut ditagih, lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response) dan [Cara penolakan ditagih](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#how-refusals-are-billed).
 
 Claude Haiku 5.5 tidak memiliki [fallback sisi server](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#server-side-fallback). Jika permintaan ditolak, tangani `stop_reason: "refusal"` di klien Anda. Mengirim permintaan yang sama ke Claude Haiku 5.5 lagi biasanya akan mengembalikan penolakan lain.
+
+Prompt, skill, dan deskripsi alat yang meminta Claude Haiku 5.5 untuk menulis thinking atau penalarannya di dalam respons dapat ditolak dengan kategori `reasoning_extraction`. Ubah prompt alih-alih mencoba ulang permintaan: hapus instruksi tersebut, dan lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks) untuk mengetahui apa yang sebaiknya diminta sebagai gantinya. Claude Haiku 5.5 mengembalikan blok `thinking` yang kosong secara default, jadi untuk membaca ringkasan penalarannya, tetapkan `thinking: {"type": "adaptive", "display": "summarized"}`.

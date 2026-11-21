@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates/list
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 68cb1e5e3fde2d9960889b295754e679aabbfcfd5fbc21822637ca2c1ad87aa8
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 580372f4f26b6ad07353b36ac0a3d027fde369f581da1c3099981dffb042f940
 ---
 
 ---
@@ -145,6 +145,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

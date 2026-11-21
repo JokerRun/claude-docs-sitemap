@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/update
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 007a37b8b77116f077b8ed050c60bb0d4c06a872e16a09aff428a41eb64f878c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: ea5cf864da55c8e05b257bbe3b738f8b5ca3251f17bbebfd16ded3b047768c11
 ---
 
 ---
@@ -127,6 +127,8 @@ Update a Vault
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

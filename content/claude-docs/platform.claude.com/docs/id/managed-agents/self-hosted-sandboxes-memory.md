@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 0a6825e21a1c69cbee71b5b31ee6f679180f9395e8c66509a18214008f0b7a65
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c9a9dc28fb13e39a43eb3ebae0567e55005cb46d342ceec4cad7e8017e6978a9
 ---
 
 ---
@@ -156,12 +156,12 @@ Dua opsi `EnvironmentWorker` mengontrol perilaku memori. Atur opsi tersebut di m
 
 `memory_sync_interval` (typescript: `memorySyncIntervalMs`; go: `MemorySyncInterval`) mengatur waktu terpendek antara dua sinkronisasi selama sesi berjalan.
 
-| Pengaturan                    | Nilai                                               |
-| ----------------------------- | --------------------------------------------------- |
-| Default                       | 15 detik                                            |
-| Minimum                       | 5 detik                                             |
-| Contoh (10 detik)             | `10` (typescript: `10_000`; go: `10 * time.Second`) |
-| Menonaktifkan dukungan memori | `None` (typescript: `null`; go: `-1`)               |
+| Pengaturan | Nilai |
+| ----- | ----- |
+| Default | 15 detik |
+| Minimum | 5 detik |
+| Contoh (10 detik) | `10` (typescript: `10_000`; go: `10 * time.Second`) |
+| Menonaktifkan dukungan memori | `None` (typescript: `null`; go: `-1`) |
 
 Worker tidak melakukan sinkronisasi berdasarkan timer. Worker memeriksa interval setelah setiap pemanggilan alat yang berjalan di sandbox Anda, seperti `bash`, `read`, atau alat kustom. Pemanggilan tersebut tidak harus menyentuh memori. Tanpa pemanggilan alat, tidak ada yang disinkronkan hingga [sinkronisasi akhir](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory#how-the-worker-handles-memory). Perubahan dalam satu sesi baru sampai ke sesi lain yang sedang berjalan setelah keduanya melakukan sinkronisasi, sehingga waktu tunggunya tidak memiliki durasi yang pasti.
 
@@ -175,11 +175,11 @@ Selama dukungan memori diaktifkan, item pekerjaan yang tiba tanpa `secret` (csha
 
 `memory_sync_deletions` (typescript: `memorySyncDeletions`; go: `MemorySyncDeletions`) mengatur apakah file yang dihapus agen secara lokal juga dihapus dari store. Unggahan dan unduhan tidak terpengaruh.
 
-| Nilai                                                                 | Perilaku                                                                                                                                                                                          |
-| --------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `"enabled"` (go: `environments.MemorySyncDeletionsEnabled`) (default) | Menghapus memori dari store setelah sinkronisasi berikutnya mengonfirmasi bahwa file tersebut masih tidak ada.                                                                                    |
-| `"log_only"` (go: `environments.MemorySyncDeletionsLogOnly`)          | Menjalankan pemeriksaan yang sama tetapi hanya mencatat apa yang akan dihapusnya. Gunakan mode ini untuk memantau apa yang akan dihapus worker Anda sebelum Anda memercayai mode yang diaktifkan. |
-| `"disabled"` (go: `environments.MemorySyncDeletionsDisabled`)         | Tidak pernah menghapus dari store.                                                                                                                                                                |
+| Nilai | Perilaku |
+| ----- | ----- |
+| `"enabled"` (go: `environments.MemorySyncDeletionsEnabled`) (default) | Menghapus memori dari store setelah sinkronisasi berikutnya mengonfirmasi bahwa file tersebut masih tidak ada. |
+| `"log_only"` (go: `environments.MemorySyncDeletionsLogOnly`) | Menjalankan pemeriksaan yang sama tetapi hanya mencatat apa yang akan dihapusnya. Gunakan mode ini untuk memantau apa yang akan dihapus worker Anda sebelum Anda memercayai mode yang diaktifkan. |
+| `"disabled"` (go: `environments.MemorySyncDeletionsDisabled`) | Tidak pernah menghapus dari store. |
 
 Misalnya, untuk menyinkronkan paling banyak sekali setiap 10 detik dan hanya mencatat penghapusan yang akan dilakukan worker, gunakan contoh berikut. Contoh ini menggunakan `/workspace` sebagai direktori kerja, yang harus sudah ada sebelum worker dimulai. [Menjalankan worker always-on](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers#run-an-always-on-worker) menjelaskan cara membuat direktori tersebut dan apa yang digunakan di macOS.
 
@@ -319,11 +319,11 @@ Agar salinan lokal juga tetap tidak berubah, nonaktifkan alat `bash` untuk agen 
 
 Konflik adalah memori yang berubah baik di store maupun di sandbox sejak sinkronisasi sebelumnya. Penghapusan dihitung sebagai perubahan. Untuk store yang dilampirkan dengan `access: "read_write"`, worker menyelesaikan konflik pada sinkronisasi berikutnya:
 
-| Di store | Di sandbox | Hasil                                           |
-| -------- | ---------- | ----------------------------------------------- |
-| Berubah  | Berubah    | Versi store menimpa file.                       |
-| Berubah  | Dihapus    | Worker menulis kembali versi store ke sandbox.  |
-| Dihapus  | Berubah    | Worker membuat ulang memori dari file tersebut. |
+| Di store | Di sandbox | Hasil |
+| ----- | ----- | ----- |
+| Berubah | Berubah | Versi store menimpa file. |
+| Berubah | Dihapus | Worker menulis kembali versi store ke sandbox. |
+| Dihapus | Berubah | Worker membuat ulang memori dari file tersebut. |
 
 Pada dua baris pertama, perubahan atau penghapusan oleh agen akan hilang, meskipun pemanggilan alat berhasil. Tidak ada yang memberi tahu agen, dan satu-satunya tanda kehilangan tersebut adalah peringatan di log worker. Pada baris terakhir, penghapusan di store dibatalkan.
 
@@ -342,8 +342,8 @@ Memory store di sandbox self-hosted dalam versi beta di semua model.
 * Ketersediaan: Tersedia
 
 | Status | Platform cloud |
-| ------ | -------------- |
-| Beta   | Claude API     |
+| ----- | ----- |
+| Beta | Claude API |
 
 ### Header beta yang diperlukan
 
@@ -357,9 +357,9 @@ Header beta memungkinkan Anda mengakses fitur eksperimental dan kemampuan model 
 
 [Ikhtisar penanganan data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility)
 
-| Item   | Retensi data nol                                                                                                                                                                                                                                                                                     | HIPAA                                                                        |
-| ------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Status | Tidak layak                                                                                                                                                                                                                                                                                          | Tidak layak                                                                  |
+| Item | Retensi data nol | HIPAA |
+| ----- | ----- | ----- |
+| Status | Tidak layak | Tidak layak |
 | Detail | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) | Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 Endpoint yang berlaku:

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/agents-and-tools/agent-skills/enterprise
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 2abbfbcb460d73911d5c75753b55bcc360cef69f39fd206c4edaa99f916b4e42
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: f485b7acb5bb79caf257fff19870dd2b2dec199d9c2278919b15f1c961e4ffda
 ---
 
 ---
@@ -24,15 +24,15 @@ Deploying Skills in an enterprise requires answering two distinct questions:
 
 Evaluate each Skill against these risk indicators before approving deployment:
 
-| Risk indicator           | What to look for                                                                                     | Concern level                                           |
-| ------------------------ | ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| Code execution           | Scripts in the Skill directory (`*.py`, `*.sh`, `*.js`)                                              | High: scripts run with full environment access          |
-| Instruction manipulation | Directives to ignore safety rules, hide actions from users, or alter Claude’s behavior conditionally | High: can bypass security controls                      |
-| MCP server references    | Instructions referencing MCP tools (`ServerName:tool_name`)                                          | High: extends access beyond the Skill itself            |
-| Network access patterns  | URLs, API endpoints, `fetch`, `curl`, or `requests` calls                                            | High: potential data exfiltration vector                |
-| Hardcoded credentials    | API keys, tokens, or passwords in Skill files or scripts                                             | High: secrets exposed in Git history and context window |
-| Filesystem access scope  | Paths outside the Skill directory, broad glob patterns, path traversal (`../`)                       | Medium: might access unintended data                    |
-| Tool calls               | Instructions directing Claude to use bash, file operations, or other tools                           | Medium: review what operations are performed            |
+| Risk indicator | What to look for | Concern level |
+| ----- | ----- | ----- |
+| Code execution | Scripts in the Skill directory (`*.py`, `*.sh`, `*.js`) | High: scripts run with full environment access |
+| Instruction manipulation | Directives to ignore safety rules, hide actions from users, or alter Claude’s behavior conditionally | High: can bypass security controls |
+| MCP server references | Instructions referencing MCP tools (`ServerName:tool_name`) | High: extends access beyond the Skill itself |
+| Network access patterns | URLs, API endpoints, `fetch`, `curl`, or `requests` calls | High: potential data exfiltration vector |
+| Hardcoded credentials | API keys, tokens, or passwords in Skill files or scripts | High: secrets exposed in Git history and context window |
+| Filesystem access scope | Paths outside the Skill directory, broad glob patterns, path traversal (`../`) | Medium: might access unintended data |
+| Tool calls | Instructions directing Claude to use bash, file operations, or other tools | Medium: review what operations are performed |
 
 ### Review checklist
 
@@ -77,13 +77,13 @@ Skills can degrade agent performance if they trigger incorrectly, conflict with 
 
 Establish approval gates for these dimensions before deploying any Skill:
 
-| Dimension             | What it measures                                                                    | Example failure                                                                            |
-| --------------------- | ----------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| Triggering accuracy   | Does the Skill activate for the right queries and stay inactive for unrelated ones? | Skill triggers on every spreadsheet mention, even when the user just wants to discuss data |
-| Isolation behavior    | Does the Skill work correctly on its own?                                           | Skill references files that don’t exist in its directory                                   |
-| Coexistence           | Does adding this Skill degrade other Skills?                                        | New Skill’s description is too broad, stealing triggers from existing Skills               |
-| Instruction following | Does Claude follow the Skill’s instructions accurately?                             | Claude skips validation steps or uses wrong libraries                                      |
-| Output quality        | Does the Skill produce correct, useful results?                                     | Generated reports have formatting errors or missing data                                   |
+| Dimension | What it measures | Example failure |
+| ----- | ----- | ----- |
+| Triggering accuracy | Does the Skill activate for the right queries and stay inactive for unrelated ones? | Skill triggers on every spreadsheet mention, even when the user just wants to discuss data |
+| Isolation behavior | Does the Skill work correctly on its own? | Skill references files that don’t exist in its directory |
+| Coexistence | Does adding this Skill degrade other Skills? | New Skill’s description is too broad, stealing triggers from existing Skills |
+| Instruction following | Does Claude follow the Skill’s instructions accurately? | Claude skips validation steps or uses wrong libraries |
+| Output quality | Does the Skill produce correct, useful results? | Generated reports have formatting errors or missing data |
 
 ### Evaluation requirements
 

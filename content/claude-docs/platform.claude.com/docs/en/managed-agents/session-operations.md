@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/session-operations
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 7d34d391548d3a31ea81616f52e6a613c0e21c786cbd2cfadcb2bf23d10b9edb
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: a0f668f653e5f86749b32af4295e00e35b6717bb19ae2d6216315e2369cebc6b
 ---
 
 ---
@@ -50,12 +50,12 @@ Once a session exists, use these operations to read, update, archive, or delete 
 
 Sessions progress through these statuses. See [Start a session](https://platform.claude.com/docs/en/managed-agents/sessions) for the session lifecycle.
 
-| Status         | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| -------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `idle`         | Agent is waiting for input, including user messages or tool confirmations. Sessions created without `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) start in `idle`. A session can be `idle` while a [workflow run](https://platform.claude.com/docs/en/managed-agents/workflow-runs#while-a-run-is-open) is still open, so `idle` alone doesn’t mean that the work is done. See [Know when the work is done](https://platform.claude.com/docs/en/managed-agents/workflow-runs#know-when-the-work-is-done). |
-| `running`      | Agent is actively executing.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| `rescheduling` | Transient error occurred, retrying automatically.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| `terminated`   | Session has ended, either because of an unrecoverable error or because it was archived. A session that completes its work goes `idle`, not `terminated`.                                                                                                                                                                                                                                                                                                                                                                               |
+| Status | Description |
+| ----- | ----- |
+| `idle` | Agent is waiting for input, including user messages or tool confirmations. Sessions created without `initial_events` (java, php: `initialEvents`; csharp, go: `InitialEvents`) start in `idle`. A session can be `idle` while a [workflow run](https://platform.claude.com/docs/en/managed-agents/workflow-runs#while-a-run-is-open) is still open, so `idle` alone doesn’t mean that the work is done. See [Know when the work is done](https://platform.claude.com/docs/en/managed-agents/workflow-runs#know-when-the-work-is-done). |
+| `running` | Agent is actively executing. |
+| `rescheduling` | Transient error occurred, retrying automatically. |
+| `terminated` | Session has ended, either because of an unrecoverable error or because it was archived. A session that completes its work goes `idle`, not `terminated`. |
 
 ## Updating the agent configuration
 

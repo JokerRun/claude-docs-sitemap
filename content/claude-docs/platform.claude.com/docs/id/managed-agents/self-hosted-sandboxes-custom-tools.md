@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-custom-tools
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 6e7377370264587f69214d1c3671888aba27b06d8b72aeb7513927c49e1aa28c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 56b686d6c3197da88c67586e672512c199a9707f9797afe8887d02d25ee30b1a
 ---
 
 ---
@@ -886,12 +886,12 @@ Worker mengambil daftar alat server MCP sekali saat startup dan tidak dapat mena
 
 Helper MCP mempertahankan nama dan deskripsi server, dan sebagian besar skema diteruskan tanpa perubahan. Ganti nama, pangkas, atau lakukan inline jika sebuah deklarasi melanggar salah satu aturan berikut:
 
-| Field                    | Aturan                                                                                                                                                                                                                                                                                                                           |
-| ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `name`                   | Unik dalam agen. Huruf, angka, garis bawah, dan tanda hubung, 1–128 karakter. Tidak boleh sama dengan alat agen bawaan seperti `bash` atau `read`, atau menggunakan prefiks cadangan `mcp__` atau `ant__`.                                                                                                                       |
-| `description`            | Wajib dan tidak boleh kosong.                                                                                                                                                                                                                                                                                                    |
-| `input_schema`           | Menerima kata kunci JSON Schema yang umum dipancarkan oleh server MCP, seperti `additionalProperties` dan `title`. Menolak kata kunci referensi seperti `$ref` di mana pun, serta `oneOf`, `anyOf`, dan `allOf` di tingkat teratas. Nama properti menggunakan huruf, angka, garis bawah, titik, dan tanda hubung, 1–64 karakter. |
-| Array `tools` milik agen | Paling banyak 256 entri. Setiap alat yang dibungkus adalah satu entri, dan toolset bawaan adalah satu entri lagi.                                                                                                                                                                                                                |
+| Field | Aturan |
+| ----- | ----- |
+| `name` | Unik dalam agen. Huruf, angka, garis bawah, dan tanda hubung, 1–128 karakter. Tidak boleh sama dengan alat agen bawaan seperti `bash` atau `read`, atau menggunakan prefiks cadangan `mcp__` atau `ant__`. |
+| `description` | Wajib dan tidak boleh kosong. |
+| `input_schema` | Menerima kata kunci JSON Schema yang umum dipancarkan oleh server MCP, seperti `additionalProperties` dan `title`. Menolak kata kunci referensi seperti `$ref` di mana pun, serta `oneOf`, `anyOf`, dan `allOf` di tingkat teratas. Nama properti menggunakan huruf, angka, garis bawah, titik, dan tanda hubung, 1–64 karakter. |
+| Array `tools` milik agen | Paling banyak 256 entri. Setiap alat yang dibungkus adalah satu entri, dan toolset bawaan adalah satu entri lagi. |
 
 Dua kasus memerlukan pekerjaan tambahan:
 

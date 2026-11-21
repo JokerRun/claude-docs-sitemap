@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/admin-api
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: 0822fbdbb2be54d73c4ba15c2830eb4c57983984d9d3ee8248b505b7756e8258
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 30b0e6eb9637d30a1721ad8f84a0a94eacb84665f6c473d90286d459993d4f1c
 ---
 
 ---
@@ -241,13 +241,13 @@ Common uses include automating onboarding and offboarding, managing workspace ac
 
 Claude Console organizations have five organization-level roles. For details, see [API Console roles and permissions](https://support.claude.com/en/articles/10186004-api-console-roles-and-permissions).
 
-| Role               | Permissions                                                                    |
-| ------------------ | ------------------------------------------------------------------------------ |
-| user               | Can use playground                                                             |
+| Role | Permissions |
+| ----- | ----- |
+| user | Can use playground |
 | claude\_code\_user | Can use playground and [Claude Code](https://code.claude.com/docs/en/overview) |
-| developer          | Can use playground and manage API keys                                         |
-| billing            | Can use playground and manage billing details                                  |
-| admin              | Can do all of the preceding, plus manage users                                 |
+| developer | Can use playground and manage API keys |
+| billing | Can use playground and manage billing details |
+| admin | Can do all of the preceding, plus manage users |
 
 Claude Enterprise organizations have a different set of roles, including owners and a primary owner. See [Organization roles](https://platform.claude.com/docs/en/manage-claude/user-management#organization-roles).
 

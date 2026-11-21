@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 5b056fa38cf80230ed7f065e70c41b594c5921d541761ccc9e0fc3417eab473e
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: d2357119bfe31f18a1c8effb5468a833478dea7a4009138691de2ecde10f58e3
 ---
 
 ---
@@ -121,6 +121,8 @@ Create User Profile
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

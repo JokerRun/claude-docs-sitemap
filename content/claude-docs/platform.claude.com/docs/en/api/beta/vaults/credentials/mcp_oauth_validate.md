@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/credentials/mcp_oauth_validate
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: d8bb70fb996e4e83b4376eeaac6e7771800c11e41e7448ab20c0ae2ec99b3d70
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 51771d47d9789421937abf5d539d60565f1bf6c30f9a8b48be94c96f4242c924
 ---
 
 ---
@@ -131,6 +131,8 @@ Validate an MCP OAuth Credential
   - `"analytics-usage-cost-2026-08-24"`
 
   - `"experimental-claude-tag-2026-10-21"`
+
+  - `"ce-claude-code-managed-settings-2026-10-06"`
 
   - `"user-profiles-billing-2026-10-01"`
 

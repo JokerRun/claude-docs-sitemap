@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/apple-foundation-models
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: bbadc1045ad27a53ed5e0115432a4fec91fe53fb4958e12ace74755d3a234536
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 73086af56720e6f5d15ca973e6741b7f40409b23ee54998feac7cac21fe1a075
 ---
 
 ---
@@ -295,11 +295,11 @@ Paket menampilkan kapabilitas Messages API yang dapat diekspresikan oleh protoko
 
 ## Sumber daya tambahan
 
-| Referensi                                                                                         | Mencakup                                                                                             |
-| ------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Referensi | Mencakup |
+| ----- | ----- |
 | [Dokumentasi Apple Foundation Models](https://developer.apple.com/documentation/foundationmodels) | `LanguageModelSession`, `@Generable`, `Transcript`, `Tool`, dan bagian lain dari permukaan framework |
-| [`ClaudeForFoundationModels` di GitHub](https://github.com/anthropics/ClaudeForFoundationModels)  | Kode sumber, contoh yang dapat dijalankan, dan issue tracker                                         |
-| [Referensi Claude API](https://platform.claude.com/docs/id/api/overview)                          | Messages API yang mendasarinya                                                                       |
+| [`ClaudeForFoundationModels` di GitHub](https://github.com/anthropics/ClaudeForFoundationModels) | Kode sumber, contoh yang dapat dijalankan, dan issue tracker |
+| [Referensi Claude API](https://platform.claude.com/docs/id/api/overview) | Messages API yang mendasarinya |
 
 Paket ini dilisensikan di bawah Apache 2.0. Laporan bug diterima melalui GitHub issues. Pull request eksternal tidak diterima selama periode beta.
 
@@ -314,5 +314,5 @@ Apple Foundation Models dalam versi beta di semua model.
 * Ketersediaan: Tersedia
 
 | Status | Platform cloud |
-| ------ | -------------- |
-| Beta   | Claude API     |
+| ----- | ----- |
+| Beta | Claude API |

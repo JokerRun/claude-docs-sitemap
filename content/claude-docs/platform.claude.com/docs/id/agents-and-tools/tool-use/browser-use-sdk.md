@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/browser-use-sdk
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 590320a65499e8d28c2407d41356bf8d0b6c82fa1a1bd4e43962b7cb2275d26c
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: 00e4feff72d2b4fa15605fca2f10b82d9577b798b8c553e8cd7c3bf05c1efe3b
 ---
 
 ---
@@ -211,13 +211,13 @@ Di TypeScript, tulis anggota `type` sebagai `type_`, dan tulis anggota sebagai m
 
 Apa yang dikembalikan anggota menentukan apa yang dibaca Claude. Hasil yang berhasil diakhiri dengan blok `browser_state` yang dibangun dari laporan state Anda. Hasil error tidak membawa blok tersebut.
 
-| Anggota                                                                                 | Mengembalikan                                                                                            | Yang dibaca Claude                                                                              |
-| --------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `screenshot`, `zoom`                                                                    | `BetaScreenshotResult`                                                                                   | Satu blok gambar                                                                                |
-| `navigate`                                                                              | `BetaBrowserNavigateResult`                                                                              | `Navigated to {url} — {title} (HTTP {status})`                                                  |
-| `new_tab`, `switch_tab`, `list_tabs`, `close_tab`                                       | Sebuah entri tab (`new_tab`, `switch_tab`), daftar entri tab (`list_tabs`), atau tidak ada (`close_tab`) | Blok `browser_state` saja                                                                       |
-| `read_page`, `get_page_text`, `find`, `read_console`, `read_network`, `javascript_exec` | Sebuah string                                                                                            | String tersebut, atau `(empty)` untuk string kosong                                             |
-| Setiap anggota lainnya                                                                  | Tidak ada, atau satu baris teks                                                                          | Konfirmasi singkat, seperti `Clicked.`, lalu baris yang dikembalikan dalam blok teks tersendiri |
+| Anggota | Mengembalikan | Yang dibaca Claude |
+| ----- | ----- | ----- |
+| `screenshot`, `zoom` | `BetaScreenshotResult` | Satu blok gambar |
+| `navigate` | `BetaBrowserNavigateResult` | `Navigated to {url} — {title} (HTTP {status})` |
+| `new_tab`, `switch_tab`, `list_tabs`, `close_tab` | Sebuah entri tab (`new_tab`, `switch_tab`), daftar entri tab (`list_tabs`), atau tidak ada (`close_tab`) | Blok `browser_state` saja |
+| `read_page`, `get_page_text`, `find`, `read_console`, `read_network`, `javascript_exec` | Sebuah string | String tersebut, atau `(empty)` untuk string kosong |
+| Setiap anggota lainnya | Tidak ada, atau satu baris teks | Konfirmasi singkat, seperti `Clicked.`, lalu baris yang dikembalikan dalam blok teks tersendiri |
 
 ### Melaporkan state browser
 
@@ -237,11 +237,11 @@ Claude membaca URL setiap tab, URL setiap unduhan, dan URL yang dikembalikan ole
 
 ### Menangani error
 
-| Dimunculkan oleh anggota atau SDK | Yang dibaca Claude                                                       | Jalannya proses |
-| --------------------------------- | ------------------------------------------------------------------------ | --------------- |
-| `ToolError`                       | Pesannya, sebagai hasil error                                            | Berlanjut       |
-| `ToolsetUsageError`               | Tidak ada                                                                | Berhenti        |
-| Exception lainnya                 | `ClassName: message` (typescript: `Error: message`), sebagai hasil error | Berlanjut       |
+| Dimunculkan oleh anggota atau SDK | Yang dibaca Claude | Jalannya proses |
+| ----- | ----- | ----- |
+| `ToolError` | Pesannya, sebagai hasil error | Berlanjut |
+| `ToolsetUsageError` | Tidak ada | Berhenti |
+| Exception lainnya | `ClassName: message` (typescript: `Error: message`), sebagai hasil error | Berlanjut |
 
 SDK me-raise `ToolsetUsageError` untuk error konfigurasi, penyalahgunaan SDK selama panggilan, atau panggilan setelah `close`. SDK juga me-raise-nya ketika `_browser_state` (typescript: `browserState`) me-raise exception apa pun, bahkan `ToolError`. Tool runner dan `tool_result` (typescript: `toolResult`) tidak menangkapnya, sehingga exception tersebut sampai ke pemanggilnya.
 
@@ -1197,11 +1197,11 @@ SDK tidak membatasi `duration`, jumlah `repeat`, maupun `scroll_amount`. Langkah
 
 Apa yang dikembalikan alat menentukan apa yang dibaca Claude:
 
-| Alat                 | Mengembalikan                      | Yang dibaca Claude                                                                              |
-| -------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------- |
-| `screenshot`, `zoom` | `BetaScreenshotResult`             | Satu blok gambar                                                                                |
-| `cursor_position`    | `BetaComputerCursorPositionResult` | `X={x},Y={y}`                                                                                   |
-| Setiap alat lainnya  | Tidak ada, atau satu baris teks    | Konfirmasi singkat, seperti `Clicked.`, lalu baris yang dikembalikan dalam blok teks tersendiri |
+| Alat | Mengembalikan | Yang dibaca Claude |
+| ----- | ----- | ----- |
+| `screenshot`, `zoom` | `BetaScreenshotResult` | Satu blok gambar |
+| `cursor_position` | `BetaComputerCursorPositionResult` | `X={x},Y={y}` |
+| Setiap alat lainnya | Tidak ada, atau satu baris teks | Konfirmasi singkat, seperti `Clicked.`, lalu baris yang dikembalikan dalam blok teks tersendiri |
 
 ### Menjalankan toolset komputer dengan aman
 
@@ -1344,14 +1344,14 @@ Dalam loop yang Anda tulis sendiri, jawab setiap panggilan dengan `tool_result` 
 
 Opsi konstruktor memiliki arti yang sama di kedua SDK:
 
-| Python                  | TypeScript     | Mengatur                                                                       |
-| ----------------------- | -------------- | ------------------------------------------------------------------------------ |
-| `configs`               | `configs`      | Anggota mana yang diaktifkan                                                   |
-| `confirm`               | `confirm`      | Callable yang menyetujui atau menolak setiap panggilan                         |
-| `url_policy`            | `urlPolicy`    | Kebijakan URL Anda, yang dipanggil SDK sebelum setiap `navigate` ke sebuah URL |
-| `file_policy`           | `filePolicy`   | Root unggahan dan eksposur path unduhan                                        |
-| `tool_configs`          | `toolConfigs`  | Field untuk entri `tools`, seperti `cache_control`                             |
-| Metode `_browser_state` | `browserState` | Laporan state                                                                  |
+| Python | TypeScript | Mengatur |
+| ----- | ----- | ----- |
+| `configs` | `configs` | Anggota mana yang diaktifkan |
+| `confirm` | `confirm` | Callable yang menyetujui atau menolak setiap panggilan |
+| `url_policy` | `urlPolicy` | Kebijakan URL Anda, yang dipanggil SDK sebelum setiap `navigate` ke sebuah URL |
+| `file_policy` | `filePolicy` | Root unggahan dan eksposur path unduhan |
+| `tool_configs` | `toolConfigs` | Field untuk entri `tools`, seperti `cache_control` |
+| Metode `_browser_state` | `browserState` | Laporan state |
 
 Kelas browser menerima setiap opsi dalam tabel. Kelas komputer menerima `configs`, `confirm`, dan `tool_configs` (typescript: `toolConfigs`).
 
@@ -1397,12 +1397,12 @@ Toolset SDK penggunaan browser dan komputer dalam versi beta di model tertentu.
 
 * Ketersediaan: Tersedia
 
-| Status | Platform cloud                                                                                                                                                                                                 | Model                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| ------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Beta   | Claude API, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed)                                               | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
-| Beta   | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed)                                                     | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                        |
-| Beta   | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                        |
-| Beta   | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock)                                                                                                               | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview)                                                                                                                                                                                                |
+| Status | Platform cloud | Model |
+| ----- | ----- | ----- |
+| Beta | Claude API, [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), Claude Mythos Preview, [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Beta | [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Beta | [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry) | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
+| Beta | [Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock) | [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Sonnet 5](https://platform.claude.com/docs/id/models/sonnet-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview), [Claude Opus 4.8](https://platform.claude.com/docs/id/models/opus-4-8/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

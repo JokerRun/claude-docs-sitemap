@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/self-hosted/inference-provider
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 734aefcadf9e81a6fdae3897082b52750d464469359585d014b8d3cf1696007d
+fetched_at: 2026-11-21T02:12:50.066053Z
+sha256: c3cd6f1018cdda3a5c0aff3cac036830453d0d63a57b5def34813788bb3a5e76
 ---
 
 ---
@@ -24,13 +24,13 @@ Secara default, server Anda mengirim panggilan model ke Claude API. Halaman ini 
 
 Pengaturan `inference.provider` menerima nilai-nilai ini:
 
-| `inference.provider`  | Panggilan model dikirim ke                     | Server melakukan autentikasi dengan         |
-| --------------------- | ---------------------------------------------- | ------------------------------------------- |
-| `anthropic` (default) | Claude API                                     | `ANTHROPIC_API_KEY`                         |
-| `bedrock`             | Amazon Bedrock                                 | Kredensial AWS Anda                         |
-| `vertex`              | Claude Models on Google Cloud (Google managed) | Google Application Default Credentials      |
-| `foundry`             | Microsoft Foundry                              | Kunci API Foundry, atau Microsoft Entra ID  |
-| `gateway`             | Model gateway yang Anda jalankan               | Kunci atau token yang diterima gateway Anda |
+| `inference.provider` | Panggilan model dikirim ke | Server melakukan autentikasi dengan |
+| ----- | ----- | ----- |
+| `anthropic` (default) | Claude API | `ANTHROPIC_API_KEY` |
+| `bedrock` | Amazon Bedrock | Kredensial AWS Anda |
+| `vertex` | Claude Models on Google Cloud (Google managed) | Google Application Default Credentials |
+| `foundry` | Microsoft Foundry | Kunci API Foundry, atau Microsoft Entra ID |
+| `gateway` | Model gateway yang Anda jalankan | Kunci atau token yang diterima gateway Anda |
 
 Untuk setiap nilai kecuali `anthropic`, server tidak memerlukan kunci API Claude. Server mengabaikan `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, dan `ANTHROPIC_BASE_URL`. Satu-satunya pengecualian adalah [model gateway](https://platform.claude.com/docs/id/managed-agents/self-hosted/inference-provider#model-gateway) yang kuncinya Anda minta untuk dibaca server dari salah satu variabel tersebut.
 
