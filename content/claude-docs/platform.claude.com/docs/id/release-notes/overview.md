@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: d3b3f5381eafae8042db8d6f34c2fab23bfe76fedb2d0eebdf4a9bd2a129f3ea
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 99cd89b2603ce872a052db7b034018eb8a31611f8b48fee5bb08b0a6af7ffc99
 ---
 
 ---
@@ -26,6 +26,7 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 ### 16 November 2026
 
 * Teks yang dihasilkan oleh Claude Opus 4.6, Claude Opus 4.5, Claude Sonnet 4.5, dan Claude Haiku 4.5 membawa watermark teks Anthropic pada platform yang didukung. [Bagaimana Claude menandai konten yang dihasilkan AI](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content) mencantumkan platform-platform tersebut. Jika permintaan ke salah satu model ini menetapkan `temperature`, `top_p`, atau `top_k` ke nilai non-default, teks tersebut mungkin tidak membawa watermark. Lihat [Watermark teks](https://platform.claude.com/docs/id/build-with-claude/text-watermark).
+* Kami telah menambahkan dua jenis event ke [webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#encryption-key-events), yang berstatus beta. Kami mengirim `external_key.failed` ketika layanan manajemen kunci Anda terus menolak kunci enkripsi yang dikelola pelanggan, dan `external_key.recovered` ketika kunci tersebut berfungsi kembali.
 
 ### 12 November 2026
 

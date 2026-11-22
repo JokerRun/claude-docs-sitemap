@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency-log
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 2246caef24b79613559739b2558ba81cf0dfb1386c95d853c9b2b9b3bf7c7cdb
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: ce929387bfb8464e9341b3f5b7a63ea6b1ea39dcbea7578336c29326d8ecca9b
 ---
 
 ---
@@ -16,7 +16,7 @@ featureMetadata:
 Pelajari cara memverifikasi secara kriptografis bahwa tidak ada event [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency) yang dihapus atau diubah setelah dicatat ke log transparansi organisasi Anda.
 
 <Note>
-  Log transparansi sedang dalam tahap beta, dan endpoint serta bentuk responsnya dapat berubah selama beta. Fitur ini merupakan bagian dari Access Transparency, yang tersedia bagi pelanggan yang memenuhi syarat atas permintaan dan tidak bersifat swalayan (lihat [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency)). Anthropic memelihara satu log untuk organisasi Anda setelah Access Transparency diaktifkan. Anda membacanya melalui Compliance API dengan kunci dan scope yang sama dengan yang Anda gunakan untuk [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed).
+  Log transparansi sedang dalam tahap beta, dan endpoint serta bentuk responsnya dapat berubah selama beta. Fitur ini merupakan bagian dari Access Transparency, yang tersedia bagi pelanggan yang memenuhi syarat (lihat [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency)). Anthropic memelihara satu log untuk organisasi Anda setelah Access Transparency diaktifkan. Anda membacanya melalui Compliance API dengan kunci dan scope yang sama dengan yang Anda gunakan untuk [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed).
 
   Log Anda dibuat ketika event Access Transparency pertama dicatat untuk organisasi Anda setelah pengaktifan. Sebelum itu, setiap endpoint log transparansi mengembalikan `404`.
 

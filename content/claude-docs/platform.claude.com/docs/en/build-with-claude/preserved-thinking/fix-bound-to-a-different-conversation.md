@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: c68bf9f2347300a68212a2e113524a765ed21b75c0a873eb3007211fa0d53116
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 4435fed150feb9c0fbbec71ee9531f42e9b6521911836c8d4de05380afea3178
 ---
 
 ---
@@ -58,7 +58,7 @@ If the app isn’t yours, start a new conversation and tell its maintainer. If y
     }
     ```
 
-    In the SDK, call the beta Messages method and pass the header value, as [the test program](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#how-to-tell-whether-your-integration-is-impacted-details) does. If the error [still asks for the header](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#setting-not-received), the header didn’t arrive.
+    In the SDK, call the beta Messages method and pass the beta, as [the test program](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#how-to-tell-whether-your-integration-is-impacted-details) does. If the error [still asks for the header](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#setting-not-received), the header didn’t arrive.
 
     That stops the errors by dropping the invalid thinking, but it [can cost more](https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#drop-block-cost) and can affect output quality and latency. The next request succeeds, and its `input_transformations` array lists each block the API dropped.
 

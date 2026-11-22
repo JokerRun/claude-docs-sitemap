@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/access-transparency-log
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: fee4e37fc974f5eb50c3fd709b892719427f8bf5e8b5ece3151f202193b6fff4
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: e6c2a0309ae1c57dd93b938822be2e1df2886d02cc810f379057afea4c677029
 ---
 
 ---
@@ -16,7 +16,7 @@ featureMetadata:
 Learn how to cryptographically verify that no [Access Transparency](https://platform.claude.com/docs/en/manage-claude/access-transparency) event was removed or altered after it was committed to your organization’s transparency log.
 
 <Note>
-  The transparency log is in beta, and its endpoints and response shapes may change during the beta. It is part of Access Transparency, which is available to eligible customers on request and is not self-serve (see [Access Transparency](https://platform.claude.com/docs/en/manage-claude/access-transparency)). Anthropic maintains one for your organization once Access Transparency is enabled. You read it through the Compliance API with the same key and scope you use for the [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed).
+  The transparency log is in beta, and its endpoints and response shapes can change during the beta. It is part of Access Transparency, which is available to eligible customers (see [Access Transparency](https://platform.claude.com/docs/en/manage-claude/access-transparency)). Anthropic maintains one for your organization once Access Transparency is enabled. You read it through the Compliance API with the same key and scope you use for the [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed).
 
   Your log is created when the first Access Transparency event is recorded for your organization after enablement. Until then, every transparency log endpoint returns `404`.
 

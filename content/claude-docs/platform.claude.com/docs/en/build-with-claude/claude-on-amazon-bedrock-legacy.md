@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 3195ac78b47d58252a4de80eedda9e5ae576980d3a5a68e46588a8b2708ef4cd
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: a64de43bafb323fb592b908f8314f4e17f2de4d7e0d517fe2ca0b5f2674b69ce
 ---
 
 ---
@@ -797,7 +797,7 @@ To use one, add an entry of type `computer_toolset_20260801` or `browser_toolset
 
 [Mid-conversation system messages](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages) are available through the InvokeModel API for Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, and Claude Haiku 5.5. This feature is not available on Claude Sonnet 5. Use the top-level `system` field instead. It is not available for the other models in the model table on this page.
 
-A `role: "system"` message can also set `output_config.effort` to [change effort mid-conversation](https://platform.claude.com/docs/en/build-with-claude/effort-per-message) on Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, and Claude Opus 5.5. This is in beta: add `mid-conversation-output-config-2026-07-01` to the `anthropic_beta` array in the request body. Without that value, or on Claude Fable 5, Claude Opus 5, or Claude Opus 4.8, the request returns a 400 error: `messages.N.output_config: Extra inputs are not permitted`. In the error, `N` is the index of the `system` message in `messages`.
+A `role: "system"` message can also set `output_config.effort` to [change effort mid-conversation](https://platform.claude.com/docs/en/build-with-claude/effort-per-message) on Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, and Claude Opus 5.5. This is in beta: add `mid-conversation-output-config-2026-07-01` to the `anthropic_beta` array in the request body. Without that beta, or on Claude Fable 5, Claude Opus 5, or Claude Opus 4.8, the request returns a 400 error: `messages.N.output_config: Extra inputs are not permitted`. In the error, `N` is the index of the `system` message in `messages`.
 
 **For Converse API users:** the Converse API accepts system instructions through its top-level [`system` parameter](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html). To add system instructions mid-conversation, use the InvokeModel API.
 

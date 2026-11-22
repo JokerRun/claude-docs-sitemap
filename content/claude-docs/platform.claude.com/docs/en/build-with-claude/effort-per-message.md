@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort-per-message
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 76b85dd55b986700bddddaf1cf85ce974a8f21c369de86830df8702f1025e368
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: dea3798da87d3620aca00512a0f79cb82f12f850b9f926c9670f4d7b0fc233ca
 ---
 
 ---
@@ -328,7 +328,7 @@ Put the message after everything you’ve already sent, and keep it in place on 
 
 If it sits next to a `system` message that has content, both messages must follow the [placement rules for mid-conversation system messages](https://platform.claude.com/docs/en/build-with-claude/mid-conversation-system-messages#limitations).
 
-With the Amazon Bedrock InvokeModel API, send the beta value in the `anthropic_beta` array of the request body instead of the header. For the models that support per-message effort there, see [Mid-conversation system messages on Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy#mid-conversation-system-messages-on-bedrock).
+With the Amazon Bedrock InvokeModel API, send the beta in the `anthropic_beta` array of the request body instead of the header. For the models that support per-message effort there, see [Mid-conversation system messages on Bedrock](https://platform.claude.com/docs/en/build-with-claude/claude-on-amazon-bedrock-legacy#mid-conversation-system-messages-on-bedrock).
 
 ## Errors
 

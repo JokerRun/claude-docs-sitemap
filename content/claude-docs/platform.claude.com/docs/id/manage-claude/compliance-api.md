@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 97f51aac38d1598d9c5ba0dcbda69e7401d935393cdc0231ab5cfb8f87d6213d
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 8febb53229c8853c42dc2d80a8d3eff53500082d8da06ffc5b39bfa5667dc963
 ---
 
 ---
@@ -62,7 +62,15 @@ Setiap endpoint berada di bawah `/v1/compliance/*` pada `https://api.anthropic.c
 
 Activity Feed (`GET /v1/compliance/activities`) tersedia untuk kunci apa pun yang memiliki scope `read:compliance_activities`; lihat [Mengkueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) untuk filter, paginasi, dan objek `Activity` lengkap. Endpoint lainnya memerlukan Compliance Access Key yang memiliki scope yang relevan.
 
-Tenant Claude Enterprise memiliki satu “parent organization” (organisasi induk), yaitu kontainer tingkat teratas yang memusatkan identitas, dengan organisasi tertaut dari dua jenis: organisasi claude.ai, tempat pengguna melakukan chat dan menyimpan konten, dan organisasi Claude Console, tempat pengguna mengelola beban kerja Claude API. Untuk kunci yang mencakup organisasi induk, endpoint direktori (organisasi, pengguna, peran, dan grup) mengembalikan data dari setiap organisasi tertaut dari kedua jenis tersebut. Endpoint konten (chat, file, proyek, lampiran proyek, dan sesi) hanya melayani data Claude Enterprise. Endpoint chat, file, dan proyek mengembalikan chat, file, dan proyek claude.ai. Endpoint sesi mengembalikan transkrip sesi di mesin pengguna (sesi lokal), yang direkam saat pengguna masuk dengan akun Claude Enterprise mereka: sesi di Cowork, Claude Code, Claude Science, Claude for Microsoft 365, add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, serta Claude in Chrome. Endpoint ini juga mengembalikan transkrip sesi Cowork yang dimulai di claude.ai versi web atau seluler dan sesi Claude Tag yang dimulai di Slack, yang berjalan di cloud dalam lingkungan yang dikelola Anthropic atau, untuk Claude Tag, di pool runner yang di-host sendiri (sesi jarak jauh). Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) bukan bagian dari tenant Claude Enterprise; organisasi tersebut menggunakan kunci Admin API dan hanya dapat mengkueri Activity Feed.
+Tenant Claude Enterprise memiliki satu “parent organization” (organisasi induk), yaitu kontainer tingkat teratas yang memusatkan identitas, dengan organisasi tertaut dari dua jenis: organisasi claude.ai, tempat pengguna melakukan chat dan menyimpan konten, dan organisasi Claude Console, tempat pengguna mengelola beban kerja Claude API. Untuk kunci yang mencakup organisasi induk, endpoint direktori (organisasi, pengguna, peran, dan grup) mengembalikan data dari setiap organisasi tertaut dari kedua jenis tersebut. Endpoint konten (chat, file, proyek, lampiran proyek, dan sesi) hanya melayani data Claude Enterprise:
+
+| Endpoint konten | Yang dikembalikan |
+| ----- | ----- |
+| Endpoint chat, file, dan proyek | Chat, file, dan proyek claude.ai. |
+| Endpoint sesi lokal | Transkrip sesi di mesin pengguna (sesi lokal), yang direkam saat pengguna masuk dengan akun Claude Enterprise mereka: sesi di Cowork, Claude Code, Claude Science, Claude for Microsoft 365, add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, serta Claude in Chrome. |
+| Endpoint sesi jarak jauh | Transkrip sesi jarak jauh: sesi Cowork yang dimulai di claude.ai versi web atau seluler, dan sesi Claude Tag yang dimulai di Slack. Sesi jarak jauh berjalan di cloud dalam lingkungan yang dikelola Anthropic. Sesi Claude Tag juga dapat berjalan di pool runner yang di-host sendiri. |
+
+Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) bukan bagian dari tenant Claude Enterprise; organisasi tersebut menggunakan kunci Admin API dan hanya dapat mengkueri Activity Feed.
 
 Semua endpoint `/v1/compliance/*` berbagi “rate limit” (batas laju) sebesar 600 permintaan per menit untuk setiap organisasi induk (untuk organisasi Claude Console mandiri, untuk setiap organisasi). Endpoint sesi lokal hanya dihitung terhadap batas bersama tersebut, sedangkan endpoint sesi jarak jauh memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan ketentuan percobaan ulang.
 

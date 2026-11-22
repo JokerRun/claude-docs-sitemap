@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/preserved-thinking/change-tools-or-instructions
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: c8f64f08cdbd2763e1c7d46fbaadbbef56a1ec322368628331996d371950ce84
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 8f4d70f53d6ed32c30c5f1844b70e8205eb38d0ea9c6bf8e53a108797ce3bc86
 ---
 
 ---
@@ -279,7 +279,7 @@ After your own summary or cut, a kept turn’s thinking fails the [prefix check]
 
 If other people’s requests pass through your code, your rewrites change their history, and they might not be able to see or fix those changes. Don’t hide the 400 error. If you recover for the caller, say so, because their history still holds the change.
 
-* Pass `anthropic-beta` values and `thinking.block_binding` through as sent. If your gateway allows only known fields, add `thinking.block_binding` and the header value `thinking-binding-controls-2026-08-01`, or your users can’t choose `"drop_block"`.
+* Pass the `anthropic-beta` header and `thinking.block_binding` through as sent. If your gateway allows only known fields, add `thinking.block_binding` and the `thinking-binding-controls-2026-08-01` beta in that header, or your users can’t choose `"drop_block"`.
 * Don’t remove the beta header and forward the setting. That request gets a 400 error.
 * Return thinking blocks whose text is empty, and the `input_transformations` array, to the caller.
 * Leave a `role: "system"` message where it is. Moving it into `system` makes the thinking already in the conversation invalid.

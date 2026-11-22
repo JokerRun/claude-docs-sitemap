@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 54ce7981b1f9720d9b59920b6ac7b54f65c044536428cae60d263556b787f4a4
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: adeeed9023d3e0a028264e435c70b71f1c05d2ca475a5652a2bb7b44f1761770
 ---
 
 ---
@@ -212,8 +212,7 @@ Responsnya adalah profil baru:
   },
   "metadata": {},
   "programs": {
-    "cyber": null,
-    "efs": null
+    "cyber": null
   },
   "created_at": "2026-03-15T10:00:00Z",
   "updated_at": "2026-03-15T10:00:00Z"

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: a22ef0a9402514dc72579f78602499f4983965b04b47b70f385fec1ef00c5057
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 0ff34cd84a4f3a42601824036c60114461684b17a1563b59a66b6867d0db59cd
 ---
 
 ---
@@ -21,7 +21,7 @@ Data keys cross between Anthropic and your cloud. Your key never leaves your KMS
   ![Your key stays in your cloud's KMS and wraps Anthropic's data keys, which encrypt your data. Your cloud can log each call.](https://platform.claude.com/docs/images/cmek/key-wrapping.svg)
 </Frame>
 
-Anthropic keeps no copy of your key, so without it, Claude [can’t read the data it protects](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle).
+Anthropic keeps no copy of your key. See [What each action does](https://platform.claude.com/docs/en/manage-claude/cmek-key-lifecycle#what-each-action-does).
 
 ## What one key protects
 

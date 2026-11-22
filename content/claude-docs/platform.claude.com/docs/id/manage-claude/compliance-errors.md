@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 4669a2a0a56fb1908828d1d7eebb66844164fdad47de5bf55409f092723c3f88
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 93d3f78de090af0fbc63799cf5549922afeb23927289f48222aac7c659363cf4
 ---
 
 ---
@@ -201,7 +201,9 @@ API key has expired.
 
 ## 403 Forbidden
 
-Kunci di `x-api-key` valid tetapi tidak membawa scope yang diterima oleh endpoint. Pesan apa adanya mencantumkan scope yang dibawa kunci (`Got:`) dan scope yang diterima endpoint (`Needed one of:` pada endpoint baca, di mana salah satu scope yang tercantum sudah cukup, atau `Needed:` pada endpoint hapus), sehingga Anda dapat memastikan apa yang dibawa kunci tanpa memeriksa ulang Claude Console atau claude.ai. Pada endpoint baca, daftar yang diterima juga mencakup `read:org_audit`, scope audit hanya-baca yang mencakup setiap endpoint baca Compliance API; lihat [Memilih scope untuk kunci Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key). Scope Compliance Access Key tidak dapat diubah setelah dibuat, sehingga setiap perbaikan untuk scope yang tidak memadai mengarahkan Anda untuk membuat kunci baru alih-alih mengedit kunci yang ada. Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) tidak dapat membuat Compliance Access Key, sehingga perbaikan yang memerlukannya tidak berlaku untuk organisasi tersebut; organisasi tersebut hanya dapat mengkueri Activity Feed.
+Kunci di `x-api-key` valid tetapi tidak membawa scope yang diterima oleh endpoint. Pesan apa adanya mencantumkan scope yang dibawa kunci (`Got:`) dan scope yang diterima endpoint (`Needed one of:` pada endpoint baca, di mana salah satu scope yang tercantum sudah cukup, atau `Needed:` pada endpoint hapus), sehingga Anda dapat memastikan apa yang dibawa kunci tanpa memeriksa ulang Claude Console atau claude.ai. Pada endpoint baca, daftar yang diterima juga mencakup `read:org_audit`, scope audit hanya-baca yang mencakup setiap endpoint baca Compliance API; lihat [Memilih scope untuk kunci Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key). Scope Compliance Access Key tidak dapat diubah setelah dibuat, sehingga setiap perbaikan untuk scope yang tidak memadai mengarahkan Anda untuk membuat kunci baru alih-alih mengedit kunci yang ada.
+
+Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) tidak dapat membuat Compliance Access Key, sehingga perbaikan yang memerlukannya tidak berlaku untuk organisasi tersebut; organisasi tersebut hanya dapat mengkueri Activity Feed.
 
 ### Scope tidak memadai: Activity Feed
 

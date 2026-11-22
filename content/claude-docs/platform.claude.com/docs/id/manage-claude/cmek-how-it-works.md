@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: d841bfda5cf9da94d04dd338fbf7b04cfcb956bfde9d42ac2f8a50ddc8e21271
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 3593c367cffcbbca2a26619d6b7a6c27dc3e56c554c1da7d37b65d8f7a22c8a1
 ---
 
 ---
@@ -21,7 +21,7 @@ Kunci data berpindah antara Anthropic dan cloud Anda. Kunci Anda tidak pernah me
   ![Kunci Anda tetap berada di KMS cloud Anda dan membungkus kunci data milik Anthropic, yang mengenkripsi data Anda. Cloud Anda dapat mencatat setiap panggilan.](https://platform.claude.com/docs/id/images/cmek/key-wrapping.svg)
 </Frame>
 
-Anthropic tidak menyimpan salinan kunci Anda, sehingga tanpa kunci tersebut, Claude [tidak dapat membaca data yang dilindunginya](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle).
+Anthropic tidak menyimpan salinan kunci Anda. Lihat [Apa yang dilakukan setiap tindakan](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle#what-each-action-does).
 
 ## Apa yang dilindungi oleh satu kunci
 

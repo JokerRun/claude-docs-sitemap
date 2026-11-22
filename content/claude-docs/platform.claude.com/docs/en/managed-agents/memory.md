@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/memory
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: aa4047e46b2d734a23168d4240dc79fe0a6a645525c1294c4547e0f84b2e1cc3
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 4d21d6fd7a8db1bf5da41695d502803502acabdd691028d33fff922cfa63285d
 ---
 
 ---
@@ -50,7 +50,7 @@ featureMetadata:
 Each Managed Agents session starts with a fresh context by default. When a session ends, any state the agent built up is gone. Memory stores let the agent carry information across sessions: user preferences, project conventions, prior mistakes, and domain context.
 
 <Note>
-  Don’t combine `agent-memory-2026-07-22` with `managed-agents-2026-04-01` on a memory store request: sending both returns a `400` error. If your code sets beta headers explicitly, replace `managed-agents-2026-04-01` with `agent-memory-2026-07-22` on memory store calls rather than adding a second value. Session endpoints, including attaching a memory store to a session, still use `managed-agents-2026-04-01`.
+  Don’t combine `agent-memory-2026-07-22` with `managed-agents-2026-04-01` on a memory store request: sending both returns a `400` error. If your code sets beta headers explicitly, replace `managed-agents-2026-04-01` with `agent-memory-2026-07-22` on memory store calls rather than adding a second beta. Session endpoints, including attaching a memory store to a session, still use `managed-agents-2026-04-01`.
 
   `GET /v1/memory_stores/{memory_store_id}/memories` behaves the same under either header: results come back in a stable, server-defined order, and `path_prefix` and `depth` apply the same way.
 </Note>

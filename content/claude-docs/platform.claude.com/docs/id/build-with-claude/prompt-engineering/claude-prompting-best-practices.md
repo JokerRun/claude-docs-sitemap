@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: a9e41b7709c7d09bc32d3d09b8666783c801f54aa446f11af05e85847ca924b0
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: b7d07d122c7c8cccdf347ad71f0a25a44957bdcfcbdf760e08ef30f566a97a34
 ---
 
 ---
@@ -787,7 +787,7 @@ Jika Anda tidak menggunakan pemikiran diperpanjang, Anda tidak perlu menambahkan
 
 * **Utamakan instruksi umum daripada langkah-langkah preskriptif.** Prompt seperti “berpikirlah secara menyeluruh” sering menghasilkan penalaran yang lebih baik daripada rencana langkah demi langkah yang ditulis secara manual. Penalaran Claude sering melampaui apa yang akan ditentukan oleh manusia.
 * **Contoh multishot berfungsi dengan thinking.** Contoh yang sudah dikerjakan dalam prompt Anda membentuk cara Claude mendekati masalah serupa dalam blok thinking-nya sendiri. Sajikan setiap contoh sebagai masalah, metode yang diterapkan, dan jawaban yang diharapkan.
-* **Prompting “chain-of-thought” (rantai pemikiran), atau CoT, manual sebagai cadangan.** Ketika thinking nonaktif, Anda masih dapat mendorong penalaran langkah demi langkah dengan meminta Claude memikirkan masalah sebelum menjawab. Minta Claude menempatkan jawaban akhir dalam tag `<answer>` agar Anda dapat mengekstraknya. Beberapa model mungkin menolak prompt yang meminta mereka menuliskan penalarannya, misalnya dalam tag `<thinking>`. Pada model-model tersebut, andalkan thinking sebagai gantinya. Jika biaya atau latensi penting, gunakan tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah. Untuk contoh model-model tersebut, lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
+* **Prompting “chain-of-thought” (rantai pemikiran), atau CoT, manual sebagai cadangan.** Ketika thinking nonaktif, Anda masih dapat mendorong penalaran langkah demi langkah dengan meminta Claude memikirkan masalah sebelum menjawab. Minta Claude menempatkan jawaban akhir dalam tag `<answer>` agar Anda dapat mengekstraknya. Beberapa model mungkin menolak prompt yang meminta mereka menuliskan penalarannya, misalnya dalam tag `<thinking>`. Pada model-model tersebut, andalkan thinking sebagai gantinya. Jika biaya atau latensi penting, gunakan tingkat [effort](https://platform.claude.com/docs/id/build-with-claude/effort) yang lebih rendah. Untuk daftar model-model tersebut, lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks).
 * **Minta Claude untuk memeriksa diri sendiri.** Tambahkan sesuatu seperti “Before you finish, verify your answer against \[test criteria].” Ini menangkap kesalahan secara andal, terutama untuk coding dan matematika. Claude Opus 5 adalah pengecualian: model ini memverifikasi pekerjaannya sendiri dengan baik tanpa instruksi eksplisit, dan instruksi verifikasi yang terbawa dari prompt yang disetel untuk model sebelumnya dapat menyebabkan verifikasi berlebihan, menambah token dan latensi. Pada Claude Opus 5, hapus instruksi ini alih-alih menulis ulang. Lihat [Cakupan tugas dan verifikasi berlebihan](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/prompting-claude-opus-5#task-scope-and-over-verification).
 
 <Note>

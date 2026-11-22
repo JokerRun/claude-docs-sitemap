@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: a658fde43f021fe438986ed2b6a6e539fe2f2baa74fce42d6db51ce979b01742
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: bf6e154f31f555fec9024985f37e2a83d2ee268abde1bfb7fef7f308062838bf
 ---
 
 > ## Documentation Index
@@ -3141,7 +3141,7 @@ Grep returns this dict shape in each output mode. Which optional keys are presen
     "bytes": int,  # Size of the fetched content in bytes
     "code": int,  # HTTP response code
     "codeText": str,  # HTTP response code text
-    "result": str,  # Processed result from applying the prompt to the content
+    "result": str,  # Answer to the prompt, or page text
     "durationMs": int,  # Time to fetch and process the content, in milliseconds
     "url": str,  # URL that was fetched
 }

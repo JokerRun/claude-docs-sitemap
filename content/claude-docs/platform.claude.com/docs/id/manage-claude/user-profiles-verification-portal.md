@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/user-profiles-verification-portal
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: f0ea56b1592bdf3d5556073c9af74ca63c472a491550a859e74920d60920d647
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 5bcb50499246f26da4f64ae4b694b8d302896bf9717dd2639c609959b2c0d550
 ---
 
 ---
@@ -192,7 +192,7 @@ Portal tidak mengarahkan pelanggan akhir kembali ke produk Anda, dan Anthropic t
 
 Penautan tidak menyetujui apa pun dengan sendirinya. Penautan menghubungkan profil ke organisasi pelanggan akhir, sehingga program yang telah disetujui untuk organisasi tersebut berlaku untuk permintaan yang membawa ID profil, kecuali tingkat akses Cyber Verification Program, yang diaktifkan oleh pelanggan akhir untuk setiap profil tertaut di portal. Profil tidak memiliki field yang menyatakan bahwa profil tersebut tertaut.
 
-Untuk melihat program mana yang berlaku untuk sebuah profil, [ambil profil tersebut](https://platform.claude.com/docs/id/api/user_profiles/retrieve) dan baca `programs`. Field ini memiliki kunci untuk setiap program, seperti `cyber` dan `efs`, dan setiap profil memiliki semua kunci tersebut. Setiap kunci berisi salah satu dari berikut ini:
+Untuk melihat program mana yang berlaku untuk sebuah profil, [ambil profil tersebut](https://platform.claude.com/docs/id/api/user_profiles/retrieve) dan baca `programs`. Field ini memiliki kunci untuk setiap program, seperti `cyber`, dan setiap profil memiliki semua kunci tersebut. Setiap kunci berisi salah satu dari berikut ini:
 
 * `null`: Anthropic tidak memiliki status untuk dilaporkan bagi program tersebut. Setiap kunci bernilai `null` jika Anthropic belum mengaktifkan program untuk organisasi Anda.
 * Sebuah objek: `status`-nya adalah `active` ketika program berlaku untuk profil, jika tidak maka `pending` atau `rejected`.

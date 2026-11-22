@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-api
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 1d1593f445b244d9256fbcc51b7a197b03ed4a481c6c4a0fab26ecb4ea92200a
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 409a49bbbda6f8f00b943aaaa73b93186d602840011f5b34e4a3578f7cb3f6f5
 ---
 
 ---
@@ -62,7 +62,15 @@ Every endpoint lives under `/v1/compliance/*` on `https://api.anthropic.com`, au
 
 The Activity Feed (`GET /v1/compliance/activities`) is available to any key that carries the `read:compliance_activities` scope; see [Query the Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed) for filters, pagination, and the full `Activity` object. The remaining endpoints require a Compliance Access Key carrying the relevant scope.
 
-A Claude Enterprise tenant has one parent organization (the top-level container that centralizes identity) with linked organizations of two kinds: claude.ai organizations, where users chat and store content, and Claude Console organizations, where users manage Claude API workloads. For a key that covers the parent organization, the directory endpoints (organizations, users, roles, and groups) return data from every linked organization of either kind. The content endpoints (chats, files, projects, project attachments, and sessions) serve Claude Enterprise data only. The chat, file, and project endpoints return claude.ai chats, files, and projects. The session endpoints return transcripts of sessions on users’ machines (local sessions), captured while users are signed in with their Claude Enterprise account: sessions in Cowork, Claude Code, Claude Science, Claude for Microsoft 365, the Claude add-ins for Google Docs, Google Sheets, and Google Slides, and Claude in Chrome. They also return transcripts of Cowork sessions started on claude.ai web or mobile and Claude Tag sessions started in Slack, which run in the cloud in Anthropic-managed environments or, for Claude Tag, on a self-hosted runner pool (remote sessions). A standalone Claude Console organization (one with no parent organization) is not part of a Claude Enterprise tenant; it uses Admin API keys and can query the Activity Feed only.
+A Claude Enterprise tenant has one parent organization (the top-level container that centralizes identity) with linked organizations of two kinds: claude.ai organizations, where users chat and store content, and Claude Console organizations, where users manage Claude API workloads. For a key that covers the parent organization, the directory endpoints (organizations, users, roles, and groups) return data from every linked organization of either kind. The content endpoints (chats, files, projects, project attachments, and sessions) serve Claude Enterprise data only:
+
+| Content endpoints | What they return |
+| ----- | ----- |
+| Chat, file, and project endpoints | claude.ai chats, files, and projects. |
+| Local session endpoints | Transcripts of sessions on users’ machines (local sessions), captured while users are signed in with their Claude Enterprise account: sessions in Cowork, Claude Code, Claude Science, Claude for Microsoft 365, the Claude add-ins for Google Docs, Google Sheets, and Google Slides, and Claude in Chrome. |
+| Remote session endpoints | Transcripts of remote sessions: Cowork sessions started on claude.ai web or mobile, and Claude Tag sessions started in Slack. Remote sessions run in the cloud in Anthropic-managed environments. Claude Tag sessions can also run on a self-hosted runner pool. |
+
+A standalone Claude Console organization (one with no parent organization) is not part of a Claude Enterprise tenant; it uses Admin API keys and can query the Activity Feed only.
 
 All `/v1/compliance/*` endpoints share a rate limit of 600 requests per minute for each parent organization (for a standalone Claude Console organization, for each organization). The local session endpoints count only against that shared limit, and the remote session endpoints carry a second request budget on top. See [429 Too Many Requests](https://platform.claude.com/docs/en/manage-claude/compliance-errors#429-too-many-requests) for the response headers and retry contract.
 

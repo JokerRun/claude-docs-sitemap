@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 292415b14425477b9638f3658771eabd4762c14b610d8fb2d237971621b0db55
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: e09769924069210f3934472ec2ea4949061ff4da84f4664f11747fcaaeda1a2a
 ---
 
 ---
@@ -16,6 +16,7 @@ featureMetadata:
     - claude-fable-5-1
     - claude-mythos-5-1
     - claude-fable-5
+    - claude-mythos-5
     - claude-opus-5-5
     - claude-opus-5
     - claude-sonnet-5-5
@@ -225,11 +226,12 @@ Penolakan `reasoning_extraction` biasanya berasal dari prompt yang meminta model
 * Catatan pribadi model, atau log berjalan dari penalarannya
 * Penalaran yang diminta secara verbatim atau secara lengkap
 
-Kata-kata tersebut dapat berada di prompt sistem, skill, atau deskripsi alat, jadi periksa juga bagian-bagian itu.
+Kata-kata tersebut dapat berada di prompt sistem, skill, atau deskripsi alat, jadi periksa juga bagian-bagian itu. Giliran asisten sebelumnya dan contoh dalam prompt yang menampilkan penalaran dalam tag, seperti `<thinking>`, juga dapat memicu penolakan ini.
 
-Model yang mungkin mengembalikan kategori ini meliputi yang berikut:
+Model-model berikut mungkin mengembalikan kategori ini:
 
 * Claude Fable 5.2, Claude Fable 5.1, dan Claude Fable 5
+* Claude Mythos 5.2, Claude Mythos 5.1, dan Claude Mythos 5
 * Claude Opus 5.5 dan Claude Opus 5
 * Claude Sonnet 5.5
 * Claude Haiku 5.5
@@ -1224,7 +1226,7 @@ Penolakan pengklasifikasi tersedia atau dalam versi beta di model tertentu, terg
 
 | Status | Model |
 | ----- | ----- |
-| Tersedia | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |
+| Tersedia | [Claude Fable 5.2](https://platform.claude.com/docs/id/models/fable-5-2/overview), [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), [Claude Fable 5.1](https://platform.claude.com/docs/id/models/fable-5-1/overview), [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), [Claude Fable 5](https://platform.claude.com/docs/id/models/fable-5/overview), [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), [Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview), [Claude Opus 5](https://platform.claude.com/docs/id/models/opus-5/overview), [Claude Sonnet 5.5](https://platform.claude.com/docs/id/models/sonnet-5-5/overview), [Claude Haiku 5.5](https://platform.claude.com/docs/id/models/haiku-5-5/overview) |
 
 #### [Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview)
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: e3af35d75a880c0e477b5501c6ea408bffd4057f91db4ce41b7c19510ec9ebfd
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 1f1aec652aba0ec192eef67edf24346bc3174cbd6d7c3463566e5749d9b20202
 ---
 
 ---
@@ -23,7 +23,7 @@ Dengan “customer-managed encryption keys” (kunci enkripsi yang dikelola pela
 | ----- | ----- | ----- |
 | Lampirkan kunci ke workspace (di Claude Enterprise, tambahkan ke organisasi) | Kunci Anda melindungi data yang ditulis [setelah kunci tersebut mulai berlaku](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect). Di Claude Platform, melampirkan kunci juga mengunci [pengaturan retensi data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention) workspace tersebut. | Tidak. Kunci tidak dapat dilepas atau diganti. |
 | Rotasi material kunci di dalam kunci yang sama | Anda merotasinya di KMS Anda, sesuai jadwal Anda sendiri. Rotasi tidak memerlukan tindakan apa pun di Claude. | Tidak ada yang perlu dibatalkan. Biarkan versi kunci sebelumnya tetap aktif. |
-| Nonaktifkan kunci, atau hapus (cabut) akses Anthropic ke kunci Anda | Perubahan dapat memerlukan waktu hingga 1 jam untuk diterapkan, dan permintaan yang sedang berjalan selama jam tersebut mungkin masih berhasil. Setelah itu, Claude tidak dapat membaca atau menulis data yang dilindungi kunci tersebut, dan permintaan gagal. | Aktifkan kembali kunci atau pulihkan akses Anthropic. [Ada dua batasan](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle#restore-access). |
+| Nonaktifkan kunci, atau hapus (cabut) akses Anthropic ke kunci Anda | Perubahan dapat memerlukan waktu hingga 1 jam untuk diterapkan, dan permintaan yang sedang berjalan selama jam tersebut mungkin masih berhasil. Setelah itu, permintaan gagal. Dalam waktu sekitar satu jam setelah menonaktifkan kunci Anda, Anthropic tidak dapat lagi mendekripsi data yang dilindungi oleh kunci Anda. | Aktifkan kembali kunci atau pulihkan akses Anthropic. Ada dua batasan. Lihat bagian [Apa dampak menonaktifkan kunci, dan apa yang kembali](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle#restore-access). |
 | Hapus kunci di KMS Anda, jadwalkan penghapusannya, atau musnahkan material kuncinya | Anthropic tidak dapat memulihkan data yang dilindungi kunci tersebut. | Tidak oleh Anthropic. Anthropic tidak menyimpan salinan kunci Anda. |
 | Hapus catatan kunci di Claude (**Hapus kunci enkripsi** di Claude Console) | Anda hanya dapat melakukan ini selama tidak ada workspace, termasuk workspace yang diarsipkan, yang menggunakan kunci tersebut. | Tidak. |
 
@@ -32,6 +32,8 @@ Dengan “customer-managed encryption keys” (kunci enkripsi yang dikelola pela
 Selama kunci dinonaktifkan, permintaan Messages API di workspace yang menggunakan kunci tersebut mengembalikan [error 400 dengan kode `cmek_key_disabled`](https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting#cmek-key-disabled).
 
 Mengaktifkan kembali kunci, atau memulihkan akses Anthropic ke kunci Anda, akan mengembalikan akses ke data yang dilindungi kunci tersebut. Ada dua batasan. Permintaan yang gagal selama kunci dinonaktifkan tidak dicoba ulang. Menonaktifkan kunci tidak menjeda periode retensi.
+
+Di Claude API, organisasi dengan [webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#encryption-key-events) (beta) dapat menerima event setelah seseorang menonaktifkan kunci atau menghapus akses Anthropic. Organisasi tersebut menerima event lain saat kunci berfungsi kembali. Untuk kasus yang tidak mengirimkan event, lihat [Kapan event kunci enkripsi mungkin tidak tiba](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#when-an-encryption-key-event-might-not-arrive).
 
 ## Jika Anthropic tidak dapat menjangkau kunci Anda
 

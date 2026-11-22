@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/user-profiles
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b95c9c5824c89cdfe4f0f16c58e788394b4950b292d13667861fba62e5cff692
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 392ecc983ea2f487d3e837bbf7a1132166849c9b46d61459ae9e1071217b28fd
 ---
 
 ---
@@ -212,8 +212,7 @@ The response is the new profile:
   },
   "metadata": {},
   "programs": {
-    "cyber": null,
-    "efs": null
+    "cyber": null
   },
   "created_at": "2026-03-15T10:00:00Z",
   "updated_at": "2026-03-15T10:00:00Z"

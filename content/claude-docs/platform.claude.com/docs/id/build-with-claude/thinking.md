@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 4a73b5c2fca284fb73bd0e1ccc611b6b1288f6ae453a3d6239f393709ade03be
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 5f93a3c236d02cb61ad4cf7a49458706f15a567658255aa3d8e3f8f35812ee27
 ---
 
 ---
@@ -568,7 +568,7 @@ Perhatikan hal-hal berikut saat bekerja dengan pemikiran yang diringkas:
   Dalam kasus langka di mana Anda memerlukan akses ke output pemikiran lengkap, [hubungi tim penjualan Anthropic](mailto:sales@anthropic.com).
 </Note>
 
-Untuk melihat penalaran model, baca blok `thinking` alih-alih meminta penalaran dalam teks respons melalui prompt. Beberapa model dapat menolak permintaan yang meminta penalaran internal mereka sebagai bagian dari teks respons. Penolakan tersebut memiliki `stop_details.category: "reasoning_extraction"`. Untuk contoh model-model tersebut dan apa yang sebaiknya diminta sebagai gantinya, lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks). Untuk referensi field, lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response).
+Untuk melihat ringkasan penalaran model, baca blok `thinking` dengan `display` ditetapkan ke `"summarized"`, alih-alih meminta penalaran dalam teks respons melalui prompt. Beberapa model dapat menolak permintaan yang meminta penalaran internal mereka sebagai bagian dari teks respons. Penolakan tersebut memiliki `stop_details.category: "reasoning_extraction"`. Untuk daftar model-model tersebut dan apa yang sebaiknya diminta sebagai gantinya, lihat [Simpan penalaran di blok thinking](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#keep-reasoning-in-thinking-blocks). Untuk referensi field, lihat [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response).
 
 ### Streaming pemikiran
 

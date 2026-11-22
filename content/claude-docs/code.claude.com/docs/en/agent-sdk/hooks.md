@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 0b2c9a218508ae08aa03a1d9bfe5916d39a56028c80699d2264a63c27a851f84
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: d055ebbee0f3a1cdab3346db84fb9649c85a2d675f6558ee8bd6172004024053
 ---
 
 > ## Documentation Index
@@ -557,7 +557,7 @@ const options = {
 
 ### Track subagent activity
 
-Use `SubagentStop` hooks to monitor when subagents finish their work. See the full input type in the [TypeScript](https://code.claude.com/docs/en/agent-sdk/typescript.md#hookinput) and [Python](https://code.claude.com/docs/en/agent-sdk/python.md#hookinput) SDK references. This example logs a summary each time a subagent completes:
+Use `SubagentStop` hooks to monitor when subagents finish their work. See the full input type in the [TypeScript](https://code.claude.com/docs/en/agent-sdk/typescript.md#hookinput) and [Python](https://code.claude.com/docs/en/agent-sdk/python.md#hookinput) SDK references. This example logs a summary when a subagent completes:
 
 ```python Python theme={null}
 async def subagent_tracker(input_data, tool_use_id, context):

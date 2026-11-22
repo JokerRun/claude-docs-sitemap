@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 6968385a0a288e0ebbe206ac9e5a1ec07d7875c60698e9947a9f0aef2c0b481c
+fetched_at: 2026-11-22T02:13:35.406200Z
+sha256: 0987bde2f5508a57351c0a2ebb1e3d89427d55261db9b87392766e0d3797ade8
 ---
 
 ---
@@ -19,7 +19,7 @@ Pelajari bagaimana “Access Transparency” (Transparansi Akses) membuat catata
   * Setiap kali seorang karyawan Anthropic melihat data Anda yang disimpan (lihat [konten yang dicakup](https://platform.claude.com/docs/id/manage-claude/access-transparency#what-access-transparency-covers)), sebuah aktivitas `anthropic_access` ditulis ke [Activity Feed Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) Anda.
   * Akses hanya terjadi untuk peninjauan keamanan atau respons insiden. Lihat [Kode alasan](https://platform.claude.com/docs/id/manage-claude/access-transparency#reason-codes).
 
-  Access Transparency tersedia bagi pelanggan yang memenuhi syarat berdasarkan permintaan dan tidak bersifat swalayan. Untuk kelayakan, lihat ketentuan kontrak Anda atau hubungi perwakilan akun Anthropic Anda. Anthropic juga mengaktifkan Access Transparency ketika [menyetujui seluruh organisasi Anda untuk kunci yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/access-transparency#access-transparency-with-customer-managed-keys). Anda tidak dapat menonaktifkan Access Transparency di Claude Console atau melalui API.
+  Access Transparency tersedia bagi pelanggan yang memenuhi syarat. Untuk kelayakan, lihat ketentuan kontrak Anda atau hubungi perwakilan akun Anthropic Anda. Anthropic juga mengaktifkan Access Transparency ketika [menyetujui seluruh organisasi Anda untuk kunci yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/access-transparency#access-transparency-with-customer-managed-keys). Anda tidak dapat menonaktifkan Access Transparency di Claude Console atau melalui API.
 </Note>
 
 ## Cara kerja Access Transparency
