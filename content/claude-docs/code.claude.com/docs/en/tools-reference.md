@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: 19cf315b78dd83c63f1cebf477881823e4e79fcd081306f08334c3b9e6e2c1ca
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: a0c252701bfe2c296b7de0c31931cef2599b339844f5a19a7e247fe9fa4bb60b
 ---
 
 > ## Documentation Index
@@ -39,7 +39,7 @@ To add custom tools, connect an [MCP server](https://code.claude.com/docs/en/mcp
 | `EnterPlanMode` | Switches to plan mode to design an approach before coding | No |
 | `EnterWorktree` | Creates an isolated [git worktree](https://code.claude.com/docs/en/worktrees.md) and switches into it, or switches into an existing worktree. See [EnterWorktree tool behavior](#enterworktree-tool-behavior) | Some worktrees |
 | `ExitPlanMode` | Presents a plan for approval and exits plan mode | Yes |
-| `ExitWorktree` | Exits a worktree session and returns to the original directory. Not available to subagents that already run in their own working directory, such as with [`isolation: worktree`](https://code.claude.com/docs/en/sub-agents#supported-frontmatter-fields). Removed or refused once [`permissions.blockWritesOutsideWorkingDirectories`](https://code.claude.com/docs/en/settings-reference#permissions-blockwritesoutsideworkingdirectories) is on | No |
+| `ExitWorktree` | Exits a worktree session and returns to the original directory. Not available to subagents that already run in their own working directory, such as with [`isolation: worktree`](https://code.claude.com/docs/en/sub-agents#supported-frontmatter-fields). Removed or refused once [`permissions.blockWritesOutsideWorkingDirectories`](https://code.claude.com/docs/en/settings-reference#permissions-blockwritesoutsideworkingdirectories) is on | Yes on v2.1.327 or later, to remove a worktree when Claude Code can't check it or finds work at risk, such as unpushed commits or files that `git status` lists |
 | `Glob` | Finds files based on pattern matching. Absent by default on macOS, Linux, and WSL. See [Glob tool behavior](#glob-tool-behavior) | No |
 | `Grep` | Searches for patterns in file contents. Absent by default on macOS, Linux, and WSL. See [Grep tool behavior](#grep-tool-behavior) | No |
 | `ListAgents` | Lists the agents Claude can message with `SendMessage`: subagents in the session, [agent team](https://code.claude.com/docs/en/agent-teams.md) teammates, your other local Claude Code sessions, and, while this session is connected to [Remote Control](https://code.claude.com/docs/en/remote-control.md), your [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md) and your Remote Control sessions on other machines. Backs the `/list-agents` command. See [cross-session messaging](https://code.claude.com/docs/en/cross-session-messaging.md). Requires Claude Code v2.1.224 or later, and appears only in sessions where [cross-session messaging is enabled](https://code.claude.com/docs/en/cross-session-messaging.md#availability). Teammate rows and the first line showing this session's own name require v2.1.239 or later | No |

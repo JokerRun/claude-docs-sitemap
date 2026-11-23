@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 12bb7fba138630108518854b2a6eb3033db12248c23aa81fa757c644e1efb576
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: 0e2505f3bb6b7a8e3c1278e360564cbb81643a34fe4ebfecef4317ad495c2992
 ---
 
 > ## Documentation Index
@@ -236,7 +236,7 @@ When two skills share a directory or file name, where each one came from decides
 If a skill exists only in `~/.claude/skills/` on your machine, Claude Code reports that the skill was not found when a [cloud scheduled task](https://code.claude.com/docs/en/routines.md) invokes it. This happens because each run starts as a fresh cloud session. To make a personal skill available in these sessions:
 
 * For Cowork sessions, cloud sessions, and cloud threads in a [project](https://code.claude.com/docs/en/claude-projects.md#what-threads-pick-up-from-your-repositories), enable the skill for your claude.ai account. [Some sessions in a self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments-configuration.md#how-each-session’s-config-is-assembled) don't load your account's skills.
-* For cloud sessions, you can instead commit the skill to the repository's `.claude/skills/`. For a project, check [which threads load it](https://code.claude.com/docs/en/claude-projects.md#what-threads-pick-up-from-your-repositories). Plugins declared in the repository's `.claude/settings.json` and plugins enabled only in your user settings [don't load in cloud sessions](https://code.claude.com/docs/en/cloud-environments.md#what-carries-over-from-your-setup).
+* For cloud sessions, you can instead commit the skill to the repository's `.claude/skills/`. For a project, check [which threads load it](https://code.claude.com/docs/en/claude-projects.md#what-threads-pick-up-from-your-repositories). Plugins enabled only in your user settings [don't load in cloud sessions](https://code.claude.com/docs/en/cloud-environments.md#what-carries-over-from-your-setup).
 
 [Desktop scheduled tasks](https://code.claude.com/docs/en/desktop-scheduled-tasks.md) run locally on your machine, so they do load `~/.claude/skills/`.
 

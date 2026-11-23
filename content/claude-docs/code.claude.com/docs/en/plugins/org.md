@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/org
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 5cdc89aa61839c0fa4f8c30bff12852701a23bafebc75646f27443ea60067eef
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: ea97133fab3ce59afdf1d846221e1d6b322ba536e0c5d12ad28d2b737a196454
 ---
 
 > ## Documentation Index
@@ -110,7 +110,7 @@ The table shows when each kind of Claude Code session applies `extraKnownMarketp
 | :- | :- | :- |
 | Terminal, interactive | Applied at session start on every machine that receives the settings | `extraKnownMarketplaces` applied after trust; `enabledPlugins` applied at session start |
 | `-p` and CI | Applied at session start, with installs running in the background | `extraKnownMarketplaces` in trusted folders only; `enabledPlugins` applied |
-| Cloud sessions | In an Anthropic-hosted environment, only server-managed settings reach the session, which waits for them before it installs plugins. MDM policies and managed settings files stay on the user's machine. For a self-hosted environment, see [Where and when a policy applies](https://code.claude.com/docs/en/managed-settings.md#where-and-when-a-policy-applies) | See the **Cloud session** tab under [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin) |
+| Cloud sessions | In an Anthropic-hosted environment, only server-managed settings reach the session, which waits for them before it installs plugins. MDM policies and managed settings files stay on the user's machine. For a self-hosted environment, see [Where and when a policy applies](https://code.claude.com/docs/en/managed-settings.md#where-and-when-a-policy-applies) | See [What carries over from your setup](https://code.claude.com/docs/en/cloud-environments.md#what-carries-over-from-your-setup) |
 
 In a `-p` or CI run, marketplaces and plugins install in the background, so a plugin can be missing from the first turn. Set `CLAUDE_CODE_SYNC_PLUGIN_INSTALL=1` to make the run wait for the install before its first query.
 

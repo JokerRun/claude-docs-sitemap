@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/hooks
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: d055ebbee0f3a1cdab3346db84fb9649c85a2d675f6558ee8bd6172004024053
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: a2e74a8cd570f1bdfc2e4f9b2a4fd491e943a6b3118d6f12602916c4eca2f312
 ---
 
 > ## Documentation Index
@@ -159,7 +159,7 @@ The SDK provides hooks for different stages of agent execution. Some hooks are a
 | `PostToolBatch` | No | Yes | A full batch of tool calls resolves, once per batch before the next model call | Inject conventions once for the whole batch |
 | [`UserPromptSubmit`](https://code.claude.com/docs/en/hooks#userpromptsubmit) | Yes | Yes | A prompt is submitted, including a turn Claude Code starts on its own | Inject additional context into prompts |
 | [`UserPromptExpansion`](https://code.claude.com/docs/en/hooks#userpromptexpansion) | No | Yes | A user-typed command, or an MCP prompt, expands into a prompt before it reaches Claude. Doesn't fire when Claude invokes a skill itself | Block a command from direct invocation or add context when a skill is typed |
-| `MessageDisplay` | No | Yes | An assistant message with text completes, once per message with the full message text | Redact or reformat the displayed text without changing the transcript |
+| `MessageDisplay` | No | Yes | An assistant message with text completes, once per message with the full message text | Reformat the displayed text without changing the transcript |
 | `Stop` | Yes | Yes | Agent execution stop | Save session state before exit |
 | `StopFailure` | No | Yes | The turn ends with an API error instead of a normal stop | Log failures or send alerts |
 | `SubagentStart` | Yes | Yes | Subagent initialization | Track parallel task spawning |

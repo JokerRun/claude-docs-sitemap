@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/terminal-config
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: cbeb76e3cc6c1db8ce74eb431985bffa185f5fb6a3c5dfb98b893ba60f8728fd
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: 0c7e686e204bdc33b8b3efb9c378e1fced2462272fe45a78660da661c403ee8c
 ---
 
 > ## Documentation Index
@@ -344,7 +344,7 @@ If the paste carries [invisible Unicode characters](https://code.claude.com/docs
 
 ### How Claude treats pasted text
 
-When you submit, Claude sees the content behind each `[Pasted text #N]` placeholder marked as text you pasted from somewhere else rather than typed. Claude is told that a paste can contain instructions you didn't write, and to follow instructions inside it only where the message you typed asks it to. Pastes can reach Claude unmarked, such as in your [first session after an install](https://code.claude.com/docs/en/env-vars.md#first-session-after-an-install-or-upgrade).
+When you submit, Claude sees the content behind each `[Pasted text #N]` placeholder marked as text you pasted from somewhere else rather than typed. Pastes can reach Claude unmarked, such as in your [first session after an install](https://code.claude.com/docs/en/env-vars.md#first-session-after-an-install-or-upgrade).
 
 ### Delete and restore a collapsed paste
 

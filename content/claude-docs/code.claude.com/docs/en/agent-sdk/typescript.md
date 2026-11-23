@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/typescript
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: cc2ddc38a19fc44d40e0e82594737a9c79a7f5d45f2bda5011e487b5ae81a110
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: 9e1deb24d31cb16a695be08c7fbc7948f6e1fada4085b6c1e6b234c06f063cc5
 ---
 
 > ## Documentation Index
@@ -159,8 +159,6 @@ function prewarm(params?: {
 | :- | :- | :- |
 | `options` | [`Options`](#options) | Optional configuration object, the same type that `startup()` takes |
 | `initializeTimeoutMs` | `number` | Maximum time in milliseconds to wait for the spare's initialization. Defaults to `60000`. If initialization doesn't complete in time, the promise rejects with a timeout error |
-
-`prewarm()` counts time spent in [Setup](https://code.claude.com/docs/en/hooks.md#setup) hooks toward `initializeTimeoutMs`, even when you leave it unset. To give slow Setup hooks more time, set a longer value.
 
 #### Returns
 
@@ -1304,7 +1302,7 @@ type AgentDefinition = {
 | `disallowedTools` | No | Array of tool names to explicitly disallow for this agent. MCP server-level patterns are also accepted: `mcp__server` or `mcp__server__*` removes every tool from that server, and `mcp__*` removes every MCP tool from any server |
 | `prompt` | Yes | The agent's system prompt |
 | `model` | No | Model override for this agent. Accepts an alias such as `'fable'`, `'opus'`, `'sonnet'`, `'haiku'`, `'inherit'`, or a full model ID. `'inherit'` uses the model of the agent that spawned this one. When you omit `model`, Claude Code picks the model in the [subagent model order](https://code.claude.com/docs/en/sub-agents.md#choose-a-model) |
-| `mcpServers` | No | MCP server specifications for this agent |
+| `mcpServers` | No | MCP server specifications for this agent. Put a [`createSdkMcpServer()`](#createsdkmcpserver) server in the `mcpServers` field of [`Options`](#options). If you pass the server object in this field instead, TypeScript Agent SDK v0.3.327 or later ignores it and emits a `CLAUDE_SDK_AGENT_IN_PROCESS_SERVER` warning |
 | `skills` | No | Array of skill names to preload into the agent context |
 | `initialPrompt` | No | Auto-submitted as the first user turn when this agent runs as the main thread agent |
 | `maxTurns` | No | Maximum number of agentic turns (API round-trips) before stopping |
@@ -4277,6 +4275,7 @@ type MonitorOutput = {
   taskId: string;
   timeoutMs: number;
   persistent?: boolean;
+  keptInSandboxByCheck?: boolean;
 };
 ```
 

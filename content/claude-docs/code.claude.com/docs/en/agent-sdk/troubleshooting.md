@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/troubleshooting
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: d35164042d96d0fc667e6ccb7e3b98f3122f76abadedb2d496f2eaea23598090
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: a0a0d2c7b21bebc0eb4d7d47cda94dec1252f976c6b82fae8c07b0fee4746ec6
 ---
 
 > ## Documentation Index
@@ -30,6 +30,7 @@ Symptoms tied to a feature, such as a hook not firing or a skill not being used,
 | `CLINotFoundError`, `CLIConnectionError`, `ProcessError`, `Claude Code process exited with code N`, `Claude Code returned an error result`, `CLIJSONDecodeError`, `structured_output` is `None` | [CLI startup](#cli-startup), [CLI process exit](#cli-process-exit), [Large tool calls and results](#large-tool-calls-and-results), and [Structured outputs](#structured-outputs) on this page |
 | `Operation aborted`, `Claude Code process aborted by user`, `Prompt stream failed; closing stdin`, or a Python `query()` loop that stops, with no exception, before all your messages are answered | [Streaming input](#streaming-input) on this page |
 | `Image could not be processed` | [Image could not be processed](#image-could-not-be-processed) on this page |
+| `option can't be sent to Claude Code` in TypeScript | [`Options`](https://code.claude.com/docs/en/agent-sdk/typescript#options): fix the option the message names |
 
 ## CLI startup
 

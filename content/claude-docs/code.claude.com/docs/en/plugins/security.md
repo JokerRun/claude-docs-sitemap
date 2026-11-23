@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/security
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: c5e86c01a20c93985a5001317e03308bda65d09a6b2fd6adea82487703ff9c65
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: cc2853ed238d14154bb353e1d07e3b806692bbfa2b037b45fc8e671b91a123f6
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: c5e86c01a20c93985a5001317e03308bda65d09a6b2fd6adea82487703ff9c65
 
 A Claude Code plugin you install can execute arbitrary code on your machine with your user privileges.
 
-You install a plugin from a marketplace, which is the catalog Claude Code fetches it from. Some marketplace names are [reserved for Anthropic's own marketplaces](#marketplace-tiers), and every other marketplace is third-party. A marketplace's name tells you who publishes the catalog, not what each plugin in it does, so [review a plugin before you install it](#review-a-plugin-before-you-install) whichever marketplace it comes from.
+You install a plugin from a marketplace, which is the catalog Claude Code fetches it from. Some marketplace names are [reserved for Anthropic's own marketplaces](#marketplace-tiers), and every other marketplace is third-party. A marketplace's name doesn't tell you what each plugin in it does, so [review a plugin before you install it](#review-a-plugin-before-you-install) whichever marketplace it comes from.
 
 Read this page if you're deciding whether to install a plugin, or if you review tools before your team can use them.
 
@@ -52,7 +52,7 @@ To remove a plugin you no longer trust, see [Remove a plugin you no longer trust
 
 ## Identify Anthropic's marketplaces by name
 
-A marketplace's name places it in one of three tiers: official, community, or third-party. Claude Code accepts the official and community names only for marketplaces sourced from `github.com/anthropics/` repositories, so a third-party marketplace can't present itself as an Anthropic one. A marketplace that a coworker or your organization publishes is third-party.
+A marketplace's name places it in one of three tiers: official, community, or third-party. Claude Code accepts the official and community names for marketplaces sourced from `github.com/anthropics/` repositories. A marketplace that a coworker or your organization publishes is third-party.
 
 The table lists which names fall in each tier:
 

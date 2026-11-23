@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/errors
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b3d2fb073d5d21dc9e0b6bbc3fa5a12e790acf5c422d2f2ac2b4f64860a827e1
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: ceb9db000a7b7e66a36782166ab1bf3c47b89efa0d5ae9956aed71517b279a27
 ---
 
 > ## Documentation Index
@@ -1164,13 +1164,13 @@ If you are prompted to log in repeatedly, see [Not logged in or token expired](h
 
 ### Could not resolve authentication method
 
-The session reached the API client without any credential. [Background sessions](https://code.claude.com/docs/en/agent-view.md) and cloud sessions show this message when the worker starts without a credential. Interactive, `-p`, and Agent SDK runs report the same condition as [Not logged in](#not-logged-in) and write this string only to their debug log, so if you found it there, follow that entry instead.
+The session reached the API client without any credential. If an interactive, `-p`, or Agent SDK run showed [Not logged in](#not-logged-in) and this string is in its debug log, follow that entry.
 
 ```text theme={null}
 Could not resolve authentication method. Expected one of apiKey, authToken, credentials, config, or profile to be set. Or for one of the "X-Api-Key" or "Authorization" headers to be explicitly omitted
 ```
 
-On current versions the error means no credential was available to the worker process. Before v2.1.174, a background session assigned to an idle pre-initialized worker could fail this way even when valid credentials were configured. Before v2.1.176, a cloud session that sat idle before being claimed could too. Upgrade to recover.
+Before v2.1.174, a background session assigned to an idle pre-initialized worker could fail this way even when valid credentials were configured. Before v2.1.176, a cloud session that sat idle before being claimed could too. Upgrade to recover.
 
 **What to do:**
 
@@ -6002,7 +6002,7 @@ When you fork a session, for example with [`--fork-session`](https://code.claude
 **What to do:**
 
 * Undo the changes another way: ask Claude to reverse its edits, or restore the files from version control. When the backups are gone, running `/rewind` again fails the same way.
-* If Claude Code couldn't write or delete a file, fix what blocks the write, such as file permissions, then run `/rewind` again.
+* If Claude Code couldn't write or delete a file after you chose **Restore code**, fix what blocks the write, such as file permissions. Then run `/rewind` again.
 * To keep backups longer in future sessions, raise [`cleanupPeriodDays`](https://code.claude.com/docs/en/settings-reference#cleanupperioddays).
 
 Before v2.1.260, Claude Code silently skipped files whose backups were missing, and the rewind appeared to succeed.

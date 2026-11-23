@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sessions
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: aedb0e5e1a91e0ff098b7ea81bc825aa7be451eea083d94389d347b206ec8324
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: 4d2bc425d5b7c089a7d6ba26f5669b398e7de7eafb295cd5abfb2e92a8883759
 ---
 
 > ## Documentation Index
@@ -250,7 +250,7 @@ For how compaction interacts with CLAUDE.md, skills, and rules, see the [context
 
 ## Export and locate session data
 
-Run `/export` to open a menu that lets you copy the current conversation to your clipboard or save it as a plain-text file, with messages and tool outputs rendered as readable text. Pass a filename to skip the menu and write directly to that file.
+Run `/export` to open a menu that lets you copy the current conversation to your clipboard or save it as a plain-text file. Pass a filename to skip the menu and write directly to that file. On v2.1.327 or later, that file can't already exist.
 
 ### Access conversations from scripts
 

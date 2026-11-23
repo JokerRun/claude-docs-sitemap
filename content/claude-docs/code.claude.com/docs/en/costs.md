@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: a79a294fbff236227a76346b5ef10a3f92cd7802f5286ddd88967418352481f4
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: ef4d5c4235bc23e3260f8994e0aea0956bca2df7f5201bd5335f712f349e6d97
 ---
 
 > ## Documentation Index
@@ -29,10 +29,10 @@ This page covers Claude Code usage only: how to [track your costs](#track-your-c
 
 Run `/usage` at the Claude Code prompt and look under the **Session** heading for your current session's token usage.
 
-Claude Code computes the dollar figure locally from token counts at list price, unless a [`modelPricing`](https://code.claude.com/docs/en/settings-reference#modelpricing) table is in effect. An administrator sets one in your organization's managed settings so the figure uses your contracted rates, and while a table is in effect the `Total cost` line carries the note `at your organization's configured rates`. The figure is an estimate, so for authoritative billing see [Manage costs for your organization](#manage-costs-for-your-organization).
+Claude Code computes the dollar figure locally from token counts at list price, unless a [`modelPricing`](https://code.claude.com/docs/en/settings-reference#modelpricing) table is in effect. An administrator sets one in your organization's managed settings so the figure uses your contracted rates, and while a table is in effect the `Estimated cost` line carries the note `at your organization's configured rates`. The figure is an estimate, so for authoritative billing see [Manage costs for your organization](#manage-costs-for-your-organization).
 
 ```text theme={null}
-Total cost:            $0.55
+Estimated cost:        $0.55
 Total duration (API):  6m 20s
 Total duration (wall): 6h 33m 10s
 Total code changes:    0 lines added, 0 lines removed
@@ -179,7 +179,7 @@ Set `multiplier` below 1 for a flat discount or above 1 for a markup, list each 
 
 Deliver it as [managed settings](https://code.claude.com/docs/en/managed-settings.md): server-managed settings, an MDM policy, `managed-settings.json`, or a [policy helper](https://code.claude.com/docs/en/managed-settings.md#compute-the-policy-with-a-helper-program). Claude Code ignores the key in user, project, and local settings and in `--settings`.
 
-To confirm the rates are in effect, run `/usage` in a session that has [received the managed settings](https://code.claude.com/docs/en/managed-settings.md#read-the-source-in-%2Fstatus): the Session block's `Total cost` line carries the note `at your organization's configured rates`. The figures are still estimates, not an invoice. The per-million-token prices in the `/model` picker stay at list price.
+To confirm the rates are in effect, run `/usage` in a session that has [received the managed settings](https://code.claude.com/docs/en/managed-settings.md#read-the-source-in-%2Fstatus): the Session block's `Estimated cost` line carries the note `at your organization's configured rates`. The figures are still estimates, not an invoice. The per-million-token prices in the `/model` picker stay at list price.
 
 ### Claude for Teams and Enterprise
 

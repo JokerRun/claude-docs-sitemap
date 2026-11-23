@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/mcp
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 8a5fcd23cb7ca89e4ac93ac58146122bfcb4e2a3eea5b3ae38cc0fb71989b483
+fetched_at: 2026-11-23T02:14:44.103489Z
+sha256: 924c650e4b72f600246aa471369955b3949242b79e13b9a2c987abde0205a793
 ---
 
 > ## Documentation Index
@@ -852,7 +852,7 @@ When the same server is defined in more than one place, Claude Code connects to 
 2. Project scope
 3. User scope
 4. [Plugin-provided servers](https://code.claude.com/docs/en/plugins/components.md#mcp-servers)
-5. [claude.ai connectors](#use-mcp-servers-from-claude-ai)
+5. [claude.ai connectors](#use-mcp-servers-from-claude-ai). In `claude -p`, Agent SDK, and VS Code sessions, connectors rank above plugin-provided servers.
 
 Claude Code matches duplicates across the three scopes by name. It matches plugins and connectors by endpoint, so one that points at the same URL or command as an enabled server above counts as a duplicate.
 
