@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 129c2c74220d79a111d5e0d2945ff0e33a18686c58d9f108febe8cc98b7a0a34
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 3a7a16d481715213b1ef527c0ec71ca32db625b24c5ba9c1f9944c98db58fdab
 ---
 
 ---
@@ -123,6 +123,8 @@ Set a Slack channel up for Claude Tag and return it with its identifier. If the 
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: c1ca569c1064eb26d4e584a8270110c7988c68b23fe112e41effce0d39fafab5
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 733e6d8322aa62d9e11a69abd8e1564086d5a011bf054b3bdb10cb580657fb57
 ---
 
 ---
@@ -145,6 +145,8 @@ List Files
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/java
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: be83465272efa1b5b7d1260b92b304b6b0b68cf3733705aa89b3bb45afde9246
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 48f2a6aa3581115f25d9d9d96d8deedbc12fb1d8ceefa132c61d1c5eede6323e
 ---
 
 ---
@@ -22,7 +22,7 @@ The Anthropic Java SDK provides convenient access to the Claude API from applica
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.12.0")
+    implementation("com.anthropic:anthropic-java:3.13.0")
     ```
   </Tab>
 
@@ -31,7 +31,7 @@ The Anthropic Java SDK provides convenient access to the Claude API from applica
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.12.0</version>
+        <version>3.13.0</version>
     </dependency>
     ```
   </Tab>
@@ -44,8 +44,8 @@ Cloud platform integrations and the client-side MCP helpers ship as separate add
 <Tabs>
   <Tab title="Gradle">
     ```kotlin
-    implementation("com.anthropic:anthropic-java:3.12.0")
-    implementation("com.anthropic:anthropic-java-mcp:3.12.0")
+    implementation("com.anthropic:anthropic-java:3.13.0")
+    implementation("com.anthropic:anthropic-java-mcp:3.13.0")
     ```
   </Tab>
 
@@ -54,12 +54,12 @@ Cloud platform integrations and the client-side MCP helpers ship as separate add
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java</artifactId>
-        <version>3.12.0</version>
+        <version>3.13.0</version>
     </dependency>
     <dependency>
         <groupId>com.anthropic</groupId>
         <artifactId>anthropic-java-mcp</artifactId>
-        <version>3.12.0</version>
+        <version>3.13.0</version>
     </dependency>
     ```
   </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: f7e35ff98e9be0f014d6444261a7757cc517aa8239efb2385bd6f7684ce1396d
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 6b55b928f79770265ecb54fed48aa85ae22bc86d0619b021a0dcd6e64fcf56f3
 ---
 
 ---
@@ -136,6 +136,8 @@ issuer cannot be changed), or recreate them against another issuer.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

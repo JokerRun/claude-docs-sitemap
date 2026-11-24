@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: dbb22f0cb4d5a3325c9d66ddda13fb156e94cdc3e289e0ba62d942968790ea7f
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 692b72574f8be5b4c9fbfff534a18fba85ab30fc4721383355b75f13486eed20
 ---
 
 ---
@@ -320,8 +320,8 @@ The [client SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.12.0")
-        implementation("com.anthropic:anthropic-java-aws:3.12.0")
+        implementation("com.anthropic:anthropic-java:3.13.0")
+        implementation("com.anthropic:anthropic-java-aws:3.13.0")
         ```
       </Tab>
 
@@ -330,12 +330,12 @@ The [client SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-aws</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
         </dependency>
         ```
       </Tab>
@@ -373,7 +373,7 @@ The following models are available on Claude Platform on AWS:
 | Claude Opus 4.8 | `claude-opus-4-8` |
 | Claude Opus 4.7 | `claude-opus-4-7` |
 | Claude Opus 4.6 | `claude-opus-4-6` |
-| Claude Opus 4.5 | `claude-opus-4-5` |
+| Claude Opus 4.5 ([deprecated](https://platform.claude.com/docs/en/about-claude/model-deprecations)) | `claude-opus-4-5` |
 | Claude Sonnet 5.5 | `claude-sonnet-5-5` |
 | Claude Sonnet 5 | `claude-sonnet-5` |
 | Claude Sonnet 4.6 | `claude-sonnet-4-6` |

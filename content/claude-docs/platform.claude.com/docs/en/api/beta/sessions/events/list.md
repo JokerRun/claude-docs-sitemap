@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 29f49c716c2dc1cfc1eed53ccfb455a72d759cc837d0aa38a2f0c6533c11af33
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: ae9785c293e89450df2e27ddd175fa1a43d51a0c015b8986d1a900aa5e886bc3
 ---
 
 ---
@@ -255,6 +255,8 @@ List Events
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

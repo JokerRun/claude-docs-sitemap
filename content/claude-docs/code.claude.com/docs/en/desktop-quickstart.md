@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-quickstart
-fetched_at: 2026-10-31T02:12:10.366891Z
-sha256: 8373938bcf8d31537e66905a409e32f2a9da2891c3b33a071b1ab4ea65b1e10b
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 29c4be9064789e963a2d43dec6cd859ba714ad4511138d05fc89354f83920384
 ---
 
 > ## Documentation Index
@@ -107,7 +107,7 @@ In Manual mode, you'll see:
 
 You've made your first edit. For the full reference on everything Desktop can do, see [Use Claude Code Desktop](https://code.claude.com/docs/en/desktop.md). Here are some things to try next.
 
-**Interrupt and steer.** You can redirect Claude at any point. Click the stop button to interrupt immediately, or type a correction and press **Enter** to send it without stopping the running action. Either way, you don't have to wait for it to finish or start over.
+**Interrupt and steer.** You can redirect Claude at any point. Click the stop button to interrupt immediately, or type a correction and press **Enter** to send it without stopping the running action.
 
 **Give Claude more context.** Type `@filename` in the prompt box to pull a specific file into the conversation. The more context Claude has, the better the results. See [Add files and context](https://code.claude.com/docs/en/desktop.md#add-files-and-context-to-prompts).
 

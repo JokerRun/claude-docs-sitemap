@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 466a3f4a42a5a19a487ce54be81a41b4946551f52b7471c6fd1d9f0621130af3
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 58733d5217d186991463bcc6453beaea71ab760032503faf28c2f270e12fa8b3
 ---
 
 ---
@@ -184,8 +184,8 @@ Instal paket yang menyediakan klien tersebut:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.12.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.12.0")
+        implementation("com.anthropic:anthropic-java:3.13.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.13.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Instal paket yang menyediakan klien tersebut:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
         </dependency>
         ```
       </Tab>
@@ -428,7 +428,7 @@ Claude Models on Google Cloud (Anthropic managed) menggunakan ID model yang sama
 | Claude Opus 4.8 | `claude-opus-4-8` |
 | Claude Opus 4.7 | `claude-opus-4-7` |
 | Claude Opus 4.6 | `claude-opus-4-6` |
-| Claude Opus 4.5 | `claude-opus-4-5-20251101` |
+| Claude Opus 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-opus-4-5-20251101` |
 | Claude Sonnet 5.5 | `claude-sonnet-5-5` |
 | Claude Sonnet 5 | `claude-sonnet-5` |
 | Claude Sonnet 4.6 | `claude-sonnet-4-6` |
@@ -570,6 +570,7 @@ Untuk memeriksa model mana yang mendukung suatu fitur, lihat bagian **Ketersedia
 * [Residensi data](https://platform.claude.com/docs/id/manage-claude/data-residency)
 * [Effort](https://platform.claude.com/docs/id/build-with-claude/effort)
   * [Effort per pesan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) (Beta)
+* [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) (Beta)
 * [Mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode)
 * [Files API](https://platform.claude.com/docs/id/build-with-claude/files)
 * [Penggunaan alat paksa](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use)
@@ -672,11 +673,11 @@ Endpoint penggunaan dan biaya menggunakan [base URL tanpa workspace](https://pla
 
 Selama [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) nonaktif, Compliance API tidak mencatat event aktivitas. Anda tidak dapat memulihkan event tersebut nanti. Untuk hal lain yang diubah oleh pengaturan ini, lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
 
-Untuk mengaktifkan atau menonaktifkan Compliance API untuk organisasi Anthropic yang dibuat oleh penyiapan, ikuti langkah-langkah berikut:
+Untuk mengubah pengaturan Compliance API untuk organisasi Anthropic yang dibuat oleh penyiapan, ikuti langkah-langkah berikut:
 
 1. [Buka Claude Console](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console).
 2. Buka [Kepatuhan di Claude Console](https://platform.claude.com/settings/security) (`platform.claude.com/settings/security`).
-3. Aktifkan atau nonaktifkan toggle **Compliance API**.
+3. Gunakan toggle **Compliance API**.
 
 #### Kunci enkripsi yang dikelola pelanggan
 

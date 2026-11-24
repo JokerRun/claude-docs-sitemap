@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 2d05b3ff716c40097021c2c086f61121d53e22f9ee3b3b541005fe74d41449b8
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 7f34be840f4c790f917116f356a7d02afd4f06d4fd8e7c0f4e6f7a065c8d8a60
 ---
 
 ---
@@ -135,6 +135,8 @@ List the organization's Bundles, newest first by `created_at`. A Bundle that Cla
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

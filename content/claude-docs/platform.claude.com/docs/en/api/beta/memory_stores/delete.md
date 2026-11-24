@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/delete
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 4c57929f4b1b9b0363a725d7b9def716dd9bb7eff50f3ade4448a19579fb710d
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: b619019ffea0842062dbbbccf8444ba28fcc038a7d887f0fd13af76369942ef2
 ---
 
 ---
@@ -131,6 +131,8 @@ Delete a Memory Store
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

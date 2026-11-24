@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks-guide
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: fd2e7facf95bfb07a8f1d4a296fd99c64f2783d296dfdf734c94dc90a66ee252
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: b3139b7a8e1e8057122ee300f8e907667856b43dd97f5e8de862724be9cd19a1
 ---
 
 > ## Documentation Index
@@ -951,7 +951,7 @@ Keep these constraints in mind when designing hooks:
   * `agent`: 60 seconds.
   * [`SessionEnd`](https://code.claude.com/docs/en/hooks#sessionend) hooks of any type share a 1.5-second budget. If your settings set a longer per-hook `timeout`, Claude Code raises the budget to match, up to 60 seconds.
 * `PostToolUse` hooks can't undo actions since the tool has already executed.
-* [`PermissionRequest`](https://code.claude.com/docs/en/hooks#permissionrequest) hooks fire when Claude Code is about to ask you for permission, or when it would otherwise auto-deny a call that can't prompt. In [non-interactive mode](https://code.claude.com/docs/en/headless.md) with the `-p` flag, they still run outside [`dontAsk` mode](https://code.claude.com/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode), and a call that no hook decides and nothing else can answer is denied.
+* [`PermissionRequest`](https://code.claude.com/docs/en/hooks#permissionrequest) hooks fire when Claude Code is about to ask you for permission. In a [`-p` run](https://code.claude.com/docs/en/headless) with no [permission host](https://code.claude.com/docs/en/headless.md#turn-off-permission-prompts-in-unattended-runs), outside [`dontAsk` mode](https://code.claude.com/docs/en/permission-modes#allow-only-pre-approved-tools-with-dontask-mode), a call that would prompt you is denied unless something approves it, such as one of these hooks.
 * `Stop` hooks fire whenever Claude finishes responding, not only at task completion. They don't fire on user interrupts. API errors fire [StopFailure](https://code.claude.com/docs/en/hooks.md#stopfailure) instead.
 * When multiple `PreToolUse` hooks return [`updatedInput`](https://code.claude.com/docs/en/hooks#pretooluse) to rewrite a tool's input, Claude Code doesn't merge the rewrites or guarantee which rewrite the tool runs with. Avoid having more than one hook rewrite the same tool's input.
 

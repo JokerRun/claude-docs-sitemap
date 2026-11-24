@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: ec69a50e4a674b2b04c756a29bf267e7fbf6a742d46eb8b6b491fff72c1728c6
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: b330bfc7c882374ceae8dcc095102101083da9dc313462ffbb02fecb9cdc69ff
 ---
 
 ---
@@ -137,6 +137,8 @@ matched as the JWT's `iss` claim and is not fetched.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -582,6 +584,8 @@ Archived issuers are excluded unless `include_archived=true`.
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -926,6 +930,8 @@ Retrieve a federation issuer by its ID (`fdis_...`).
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1274,6 +1280,8 @@ session.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1710,6 +1718,8 @@ issuer cannot be changed), or recreate them against another issuer.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

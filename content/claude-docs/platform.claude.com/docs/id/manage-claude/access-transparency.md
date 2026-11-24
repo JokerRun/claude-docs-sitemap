@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: 0987bde2f5508a57351c0a2ebb1e3d89427d55261db9b87392766e0d3797ade8
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 16b441b41c12aab648c5d1e7841feca6f20de23b401f66a92783058d8d9ea4e4
 ---
 
 ---
@@ -19,7 +19,7 @@ Pelajari bagaimana “Access Transparency” (Transparansi Akses) membuat catata
   * Setiap kali seorang karyawan Anthropic melihat data Anda yang disimpan (lihat [konten yang dicakup](https://platform.claude.com/docs/id/manage-claude/access-transparency#what-access-transparency-covers)), sebuah aktivitas `anthropic_access` ditulis ke [Activity Feed Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) Anda.
   * Akses hanya terjadi untuk peninjauan keamanan atau respons insiden. Lihat [Kode alasan](https://platform.claude.com/docs/id/manage-claude/access-transparency#reason-codes).
 
-  Access Transparency tersedia bagi pelanggan yang memenuhi syarat. Untuk kelayakan, lihat ketentuan kontrak Anda atau hubungi perwakilan akun Anthropic Anda. Anthropic juga mengaktifkan Access Transparency ketika [menyetujui seluruh organisasi Anda untuk kunci yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/access-transparency#access-transparency-with-customer-managed-keys). Anda tidak dapat menonaktifkan Access Transparency di Claude Console atau melalui API.
+  Access Transparency tersedia bagi pelanggan yang memenuhi syarat. Untuk kelayakan, lihat ketentuan kontrak Anda atau hubungi perwakilan akun Anthropic Anda. Anthropic juga mengaktifkan Access Transparency ketika [menyetujui seluruh organisasi Anda untuk kunci yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/access-transparency#access-transparency-with-customer-managed-keys). Di Claude Platform, jika Anda mendapatkan akses melalui Enterprise Frontier Safeguards atau Enterprise Data Controls, melampirkan kunci pertama Anda akan mengaktifkan Access Transparency sebagai gantinya, kecuali fitur ini sudah aktif. Anda tidak dapat menonaktifkan Access Transparency di Claude Console atau melalui API.
 </Note>
 
 ## Cara kerja Access Transparency
@@ -45,8 +45,11 @@ Personel Anthropic mengakses konten pelanggan hanya dalam kondisi yang telah dit
 * **Produk konsumen Claude:** paket Claude Free, Pro, Max, atau Ultra.
 * **Platform yang dioperasikan mitra:** Claude Models on Google Cloud (Google managed) dan Amazon Bedrock. Lihat kontrol transparansi platform tersebut.
 * **Apa pun yang tidak dicakup ZDR:** Produk yang tidak dicakup oleh ZDR (misalnya, Files API, aplikasi stateful yang di-host Anthropic, dan Batch API) tidak dicakup oleh Access Transparency. Lihat [Zero data retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) untuk detail tambahan.
+* **Data di penyimpanan milik pelanggan:** Di Claude Platform (Claude API), Access Transparency tidak memiliki catatan untuk data di [penyimpanan milik pelanggan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-owned-storage).
 
 ## Memulai
+
+Jika organisasi Anda memiliki [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) atau Enterprise Data Controls dan belum memiliki Access Transparency, Anda tidak perlu memintanya. Di Claude Platform, fitur ini aktif secara otomatis saat pertama kali Anda mulai menghubungkan penyimpanan milik pelanggan, melampirkan kunci yang dikelola pelanggan, atau menonaktifkan Anthropic Human Review.
 
 Untuk mengaktifkan Access Transparency:
 
@@ -68,7 +71,7 @@ Access Transparency diaktifkan di tingkat organisasi dan mencakup semua workspac
 
 ### Access Transparency dengan kunci yang dikelola pelanggan
 
-Ketika Anthropic menyetujui seluruh organisasi Anda untuk [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek) (CMEK), Anthropic juga mengaktifkan Access Transparency untuk organisasi tersebut. Hal ini terjadi saat persetujuan, sebelum Anda melampirkan kunci, sehingga Anda tidak perlu meminta Access Transparency secara terpisah. Access Transparency tetap tidak mencakup konten di claude.ai. Lihat [Apa yang tidak dicakup Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency#what-access-transparency-does-not-cover).
+Ketika Anthropic menyetujui seluruh organisasi Anda untuk [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek) (CMEK), Anthropic juga mengaktifkan Access Transparency untuk organisasi tersebut. Hal ini terjadi saat persetujuan, sebelum Anda melampirkan kunci. Di Claude Platform, jika Anda mendapatkan akses melalui Enterprise Frontier Safeguards atau Enterprise Data Controls, melampirkan kunci pertama Anda akan mengaktifkan Access Transparency sebagai gantinya, kecuali fitur ini sudah aktif. Anda tidak perlu meminta Access Transparency secara terpisah. Access Transparency tetap tidak mencakup konten di claude.ai. Lihat [Apa yang tidak dicakup Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency#what-access-transparency-does-not-cover).
 
 Perhatikan hal-hal berikut tentang persetujuan tersebut:
 
@@ -80,7 +83,7 @@ Persetujuan tersebut tidak mengubah pengaturan Compliance API Anda. Anthropic me
 1. [Aktifkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api).
 2. Baca [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) dengan [Compliance Access Key atau kunci Admin API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#which-key-do-you-need). Buat kunci Admin API setelah Anda mengaktifkan Compliance API, karena kunci yang dibuat sebelumnya tidak dapat membaca feed.
 
-Di Claude Platform on AWS, minta perwakilan akun Anthropic Anda untuk mengaktifkan Compliance API. Kemudian baca feed dengan [aksi IAM `ListComplianceActivities`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#compliance).
+Di Claude Platform on AWS, masuk ke Claude Console dari AWS Console dengan peran Admin. Aktifkan sakelar **Compliance API** di halaman [Kepatuhan](https://platform.claude.com/settings/security). Kemudian, baca feed. Kebijakan IAM Anda harus mengizinkan `UpdateComplianceSettings` untuk sakelar dan [`ListComplianceActivities`](https://platform.claude.com/docs/id/api/claude-platform-on-aws-iam-actions#compliance) untuk feed. Kebijakan `AnthropicFullAccess` mencakup keduanya.
 
 Tidak setiap organisasi yang menggunakan CMEK memiliki Access Transparency. Misalnya, fitur ini mungkin tidak diaktifkan dalam kasus-kasus berikut:
 
@@ -223,7 +226,7 @@ Event `anthropic_access` dan `cmek_preserve` dikirimkan ke feed Compliance API A
 
 ### Pemrosesan otomatis tidak menghasilkan event akses
 
-Event `anthropic_access` hanya mencatat akses manusia. Sistem keamanan otomatis dan pengklasifikasi Anthropic terus memproses konten Anda sebagai bagian dari operasi normal, dan pemrosesan tersebut tidak menghasilkan event `anthropic_access`. Satu-satunya event yang dapat dipicu oleh pemrosesan otomatis adalah catatan preservasi `cmek_preserve` (lihat [Preservasi konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation)). Feed yang kosong berarti tidak ada manusia di Anthropic yang telah melihat konten Anda; ini tidak berarti konten Anda tidak diproses oleh sistem otomatis.
+Event `anthropic_access` hanya mencatat akses manusia. Sistem keamanan otomatis dan pengklasifikasi Anthropic terus memproses konten Anda sebagai bagian dari operasi normal, dan pemrosesan tersebut tidak menghasilkan event `anthropic_access`. Satu-satunya event yang dapat dipicu oleh pemrosesan otomatis adalah catatan preservasi `cmek_preserve` (lihat [Preservasi konten CMEK](https://platform.claude.com/docs/id/manage-claude/access-transparency#cmek-content-preservation)). Feed yang kosong berarti tidak ada manusia di Anthropic yang telah melihat konten Anda yang dicakup; ini tidak berarti konten Anda tidak diproses oleh sistem otomatis.
 
 ### Access Transparency tidak mengubah apa yang dapat diakses Anthropic
 
@@ -284,5 +287,6 @@ Untuk organisasi yang juga mengaktifkan CMEK, log audit KMS cloud Anda (CloudTra
 * [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed)
 * [API dan retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention)
 * [Kunci enkripsi yang dikelola pelanggan (CMEK)](https://platform.claude.com/docs/id/manage-claude/cmek)
+* [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview)
 * [Penggunaan data Claude Code](https://code.claude.com/docs/id/data-usage)
 * [Trust Center](https://trust.anthropic.com/resources)

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/retrieve
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 2e3a53dc85e4fc4ac8d85633a08ea2514ba727a9a2c92d517d2fcaf5500cfccb
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: c4973f12f24dd8e5f44ed84c9f544185e1570099d027f04b53bd78b77fe8fc67
 ---
 
 ---
@@ -133,6 +133,8 @@ Retrieve a single tunnel in the caller's organization by ID.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/opentelemetry/sdk
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 3ae9418780340d84c03cc30b964e5b6143538eb32405ce06ff57509fb1737447
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 2fed5f239930489705a4118a4aa40cb029985cb11ab1bf048ed0a8f6c97c76fd
 ---
 
 ---
@@ -110,7 +110,7 @@ Install or upgrade to the latest version of the Anthropic SDK:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.12.0")
+        implementation("com.anthropic:anthropic-java:3.13.0")
         ```
       </Tab>
 
@@ -119,7 +119,7 @@ Install or upgrade to the latest version of the Anthropic SDK:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
         </dependency>
         ```
       </Tab>

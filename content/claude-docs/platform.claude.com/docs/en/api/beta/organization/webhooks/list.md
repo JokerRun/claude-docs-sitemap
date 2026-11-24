@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b6e5274a80f8d42e082535a939cf6f6d1392dfef3beba5f3fbbca41c08312af9
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 0d479f0771ed28404848c5d8d471599e6c88e2e7b8cfe09e25230b745b63386a
 ---
 
 ---
@@ -153,6 +153,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -219,13 +221,17 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
     The event types delivered to the endpoint.
 
     - `"external_key.failed"`
 
     - `"external_key.recovered"`
+
+    - `"external_storage.failed"`
+
+    - `"external_storage.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 

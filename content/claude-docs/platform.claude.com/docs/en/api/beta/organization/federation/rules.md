@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 3f99dce6ade5dc4da52fe012b49a1274ae1f7a883dc2b0e3c59c01708656ff8c
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: befb462301927b697a3ae6b2924c892f48df9264bd9160cc77ae33015356c27e
 ---
 
 ---
@@ -141,6 +141,8 @@ manage rules whose `oauth_scope` is `workspace:developer` or
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -611,6 +613,8 @@ unless `include_archived=true`.
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -955,6 +959,8 @@ Retrieve a federation rule by its ID (`fdrl_...`).
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1318,6 +1324,8 @@ Console session.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1763,6 +1771,8 @@ other scopes require a Console session.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -2346,6 +2356,8 @@ other scopes require a Console session.
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -2599,6 +2611,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -2831,6 +2845,8 @@ Console session.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

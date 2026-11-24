@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: 2a8a8d7a43603a8365dece548bd62ed9a92fcbb74ca3519d7d97393430cc0bfe
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 90cfa2196e8091c113777fa3a6799d5894c7bccb7a32b1ad2529bbf6a87bd2c1
 ---
 
 ---
@@ -18,6 +18,12 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 
   For updates to Claude Code, see the [complete CHANGELOG.md](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) in the `claude-code` repository.
 </Tip>
+
+### November 23, 2026
+
+* We announced the deprecation of the Claude Opus 4.5 model (`claude-opus-4-5-20251101` and `claude-opus-4-5`), with retirement on the Claude API scheduled for January 22, 2027. We recommend migrating to Claude Opus 5.5. See [Migrating from Claude Opus 4.5 or earlier](https://platform.claude.com/docs/en/models/opus-5-5/migration-guide#migrating-from-claude-opus-45). To check which dates apply on other platforms, see [Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations).
+* We’ve launched [Enterprise Frontier Safeguards](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/overview) (EFS) in beta on Claude Platform, Claude Platform on AWS, and Claude Models on Google Cloud (Anthropic managed). EFS is Zero Data Retention (ZDR) for eligible organizations that use [Claude’s most capable models](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Anthropic doesn’t retain your prompts and responses. Encrypted copies of them, called Sealed Safety Data, go to a bucket in your own cloud account. A workspace on Anthropic-managed storage isn’t on EFS, because Anthropic stores that workspace’s Sealed Safety Data. To get access, see [Setup guide](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/setup-console).
+* We’ve added two event types to [organization webhooks](https://platform.claude.com/docs/en/manage-claude/organization-webhooks#customer-owned-storage-events), which are in beta. We send `external_storage.failed` when a bucket that you use as [customer-owned storage](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/customer-owned-storage) fails our daily check, and `external_storage.recovered` when it passes again.
 
 ### November 17, 2026
 

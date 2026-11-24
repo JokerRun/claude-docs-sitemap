@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/count_tokens
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: abd18dde6a8f3dfd749a5c0510f89d26e2688048e3beb5c8cd883ad51a0dc463
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 38b3221bfdead7275fbdb3a82419c08c0da4801750858fef8a8a47a249f85327
 ---
 
 ---
@@ -127,6 +127,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

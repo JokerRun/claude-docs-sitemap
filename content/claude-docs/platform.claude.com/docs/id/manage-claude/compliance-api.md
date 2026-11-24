@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: 8febb53229c8853c42dc2d80a8d3eff53500082d8da06ffc5b39bfa5667dc963
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 3fe198a5ee656deed40dbc28eeb22c74f9d7ab6e38b59e65bcbb8847f756fe68
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Akses terprogram ke aktivitas Claude, chat, file, proyek, sesi di a
 Compliance API memberi pelanggan Claude Enterprise dan Claude Console akses terprogram ke Activity Feed organisasi mereka. Untuk organisasi Claude Enterprise, API ini juga mencakup direktori pengguna, peran, dan grup di seluruh organisasi yang ditautkan; pengaturan efektif yang berlaku untuk setiap organisasi; chat, file, dan proyek yang mendasarinya di organisasi claude.ai; serta sesi di Cowork, Claude Code, Claude Science, Claude for Microsoft 365, add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, Claude in Chrome, serta Claude Tag. Tim keamanan, hukum, dan kepatuhan menggunakannya untuk mengaudit aktivitas, mengambil atau menghapus konten, dan mengalirkan peristiwa ke alat hilir.
 
 <Note>
-  Dua jenis kunci membuka akses ke Compliance API. **Compliance Access Key** (dibuat di claude.ai) menjangkau setiap endpoint, dan **kunci Admin API** (dibuat di Claude Console) hanya menjangkau Activity Feed. Lihat [Kunci mana yang Anda butuhkan?](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#which-key-do-you-need) untuk perbandingan lengkap jenis kunci.
+  Dua jenis kunci membuka akses ke Compliance API. **Compliance Access Key** (dibuat di claude.ai) menjangkau setiap endpoint kecuali sebagian API Safety Cases, dan **kunci Admin API** (dibuat di Claude Console) menjangkau Activity Feed. Kunci Admin API yang Anda buat saat [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access) tersedia untuk organisasi Anda juga menjangkau API tersebut. Lihat [Kunci mana yang Anda butuhkan?](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#which-key-do-you-need) untuk perbandingan lengkap jenis kunci.
 </Note>
 
 Panggilan berikut mengembalikan peristiwa aktivitas terbaru di organisasi Anda. Kunci apa pun dengan scope `read:compliance_activities` dapat melakukannya. Untuk membuat kunci dan memberinya scope tersebut, lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
@@ -60,7 +60,7 @@ Respons yang berhasil mengembalikan objek JSON yang berisi `data` (array berisi 
 
 Setiap endpoint berada di bawah `/v1/compliance/*` pada `https://api.anthropic.com`, melakukan autentikasi melalui header `x-api-key`, dan menerima header [`anthropic-version`](https://platform.claude.com/docs/id/api/versioning) pada setiap permintaan. Untuk menyediakan kunci, lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
 
-Activity Feed (`GET /v1/compliance/activities`) tersedia untuk kunci apa pun yang memiliki scope `read:compliance_activities`; lihat [Mengkueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) untuk filter, paginasi, dan objek `Activity` lengkap. Endpoint lainnya memerlukan Compliance Access Key yang memiliki scope yang relevan.
+Activity Feed (`GET /v1/compliance/activities`) tersedia untuk kunci apa pun yang memiliki scope `read:compliance_activities`; lihat [Mengkueri Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) untuk filter, paginasi, dan objek `Activity` lengkap. Endpoint lainnya memerlukan Compliance Access Key yang memiliki scope yang relevan. Pengecualiannya adalah [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access): kunci Admin API yang Anda buat saat API tersebut tersedia untuk organisasi Anda juga menjangkaunya.
 
 Tenant Claude Enterprise memiliki satu “parent organization” (organisasi induk), yaitu kontainer tingkat teratas yang memusatkan identitas, dengan organisasi tertaut dari dua jenis: organisasi claude.ai, tempat pengguna melakukan chat dan menyimpan konten, dan organisasi Claude Console, tempat pengguna mengelola beban kerja Claude API. Untuk kunci yang mencakup organisasi induk, endpoint direktori (organisasi, pengguna, peran, dan grup) mengembalikan data dari setiap organisasi tertaut dari kedua jenis tersebut. Endpoint konten (chat, file, proyek, lampiran proyek, dan sesi) hanya melayani data Claude Enterprise:
 
@@ -70,7 +70,7 @@ Tenant Claude Enterprise memiliki satu “parent organization” (organisasi ind
 | Endpoint sesi lokal | Transkrip sesi di mesin pengguna (sesi lokal), yang direkam saat pengguna masuk dengan akun Claude Enterprise mereka: sesi di Cowork, Claude Code, Claude Science, Claude for Microsoft 365, add-in Claude untuk Google Docs, Google Sheets, dan Google Slides, serta Claude in Chrome. |
 | Endpoint sesi jarak jauh | Transkrip sesi jarak jauh: sesi Cowork yang dimulai di claude.ai versi web atau seluler, dan sesi Claude Tag yang dimulai di Slack. Sesi jarak jauh berjalan di cloud dalam lingkungan yang dikelola Anthropic. Sesi Claude Tag juga dapat berjalan di pool runner yang di-host sendiri. |
 
-Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) bukan bagian dari tenant Claude Enterprise; organisasi tersebut menggunakan kunci Admin API dan hanya dapat mengkueri Activity Feed.
+Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) bukan bagian dari tenant Claude Enterprise; organisasi tersebut menggunakan kunci Admin API.
 
 Semua endpoint `/v1/compliance/*` berbagi “rate limit” (batas laju) sebesar 600 permintaan per menit untuk setiap organisasi induk (untuk organisasi Claude Console mandiri, untuk setiap organisasi). Endpoint sesi lokal hanya dihitung terhadap batas bersama tersebut, sedangkan endpoint sesi jarak jauh memiliki anggaran permintaan kedua di atasnya. Lihat [429 Too Many Requests](https://platform.claude.com/docs/id/manage-claude/compliance-errors#429-too-many-requests) untuk header respons dan ketentuan percobaan ulang.
 

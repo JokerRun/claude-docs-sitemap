@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets/delete
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: f6b6def557ef84c0d3be6dd866a3f501d9a5e353e1324eb22b53062031f2d365
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: f0cb7fbc4907b76620018b6aa4ab986f2b61fc7075a572737744f520f464cc20
 ---
 
 ---
@@ -133,6 +133,8 @@ Detach a Bundle from a Slack channel or a Slack workspace. A repeated detach ret
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

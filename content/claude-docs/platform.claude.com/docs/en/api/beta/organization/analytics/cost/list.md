@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics/cost/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: cdc97993a8e8d12e696858117dbe7fbb5df6e67be8b2c4f153273e3f233a05b4
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: a81b6923734e5998baf88247164383b8c3275eafa555fa4a5cdb89113afa571a
 ---
 
 ---
@@ -427,6 +427,8 @@ API key with the `read:analytics` scope, or an Admin API key.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

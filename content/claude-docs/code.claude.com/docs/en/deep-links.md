@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/deep-links
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: 9a2ba767a17696ddcfe7f1cc0b6d3f8da82882922555fd605045b6e18eeb3f8f
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 4d64afda0bac880b9e8f6f2d9568aaa5b221ce22c00fe1606dfbdc0c03c35f06
 ---
 
 > ## Documentation Index
@@ -160,7 +160,7 @@ Claude Code registers the `claude-cli://` handler with your operating system on 
 * Send anything to an interactive `claude` session, such as a message or `/help`. Starting one and sending nothing doesn't register the handler.
 * Start Claude Code in [agent view](https://code.claude.com/docs/en/agent-view.md), such as with `claude agents`, in a folder you've [trusted](https://code.claude.com/docs/en/permissions.md#project-allow-rules-and-workspace-trust)
 
-You don't run a separate install command. Registration writes to user-level locations only:
+Registration writes to user-level locations only:
 
 | Platform | Handler location |
 | - | - |

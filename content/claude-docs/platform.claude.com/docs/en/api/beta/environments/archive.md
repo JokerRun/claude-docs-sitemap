@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 9236a50409e0ebccbf21511d03a78d7d4288304f0e571cc1bc7c4811e0a5da25
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e0162cb521c2056a7ce2a2997119697c3cb976232f6e5a0c2586375bfc7f0a5a
 ---
 
 ---
@@ -127,6 +127,8 @@ Archive an environment by ID. Archived environments cannot be used to create new
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

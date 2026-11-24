@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: 99cd89b2603ce872a052db7b034018eb8a31611f8b48fee5bb08b0a6af7ffc99
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 168054a4109545ee9538af70cca0621b13dcea1a4f1f836f29d47c0f98cace35
 ---
 
 ---
@@ -18,6 +18,12 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
   Untuk pembaruan Claude Code, lihat [CHANGELOG.md lengkap](https://github.com/anthropics/claude-code/blob/main/CHANGELOG.md) di repositori `claude-code`.
 </Tip>
+
+### 23 November 2026
+
+* Kami telah mengumumkan penghentian model Claude Opus 4.5 (`claude-opus-4-5-20251101` dan `claude-opus-4-5`), yang dijadwalkan dipensiunkan di Claude API pada 22 Januari 2027. Kami menyarankan untuk bermigrasi ke Claude Opus 5.5. Lihat [Migrasi dari Claude Opus 4.5 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45). Untuk memeriksa tanggal yang berlaku di platform lain, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
+* Kami telah meluncurkan [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) (EFS) dalam versi beta di Claude Platform, Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). EFS adalah “Zero Data Retention” (retensi data nol), atau ZDR, untuk organisasi yang memenuhi syarat yang menggunakan [model Claude yang paling mumpuni](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Anthropic tidak menyimpan prompt dan respons Anda. Salinan terenkripsi dari prompt dan respons tersebut, yang disebut “Sealed Safety Data” (data keselamatan tersegel), dikirim ke sebuah bucket di akun cloud Anda sendiri. Workspace yang menggunakan penyimpanan yang dikelola Anthropic tidak termasuk EFS, karena Anthropic menyimpan data keselamatan tersegel milik workspace tersebut. Untuk mendapatkan akses, lihat [Panduan penyiapan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-console).
+* Kami telah menambahkan dua jenis event ke [webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#customer-owned-storage-events), yang berstatus beta. Kami mengirim `external_storage.failed` ketika bucket yang Anda gunakan sebagai [penyimpanan milik pelanggan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-owned-storage) gagal dalam pemeriksaan harian kami, dan `external_storage.recovered` ketika bucket tersebut kembali lolos pemeriksaan.
 
 ### 17 November 2026
 

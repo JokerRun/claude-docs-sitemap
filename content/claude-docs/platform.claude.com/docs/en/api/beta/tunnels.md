@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: d965f8945a1882726ec198988dde10a43ecf154d452842f4bae8e624a4830b1d
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: bd395e44755dfbe4273c8e5af02ee01f365fbd92466fc5f5c1b2628d86bbee6b
 ---
 
 ---
@@ -127,6 +127,8 @@ Creates a tunnel. Creation allocates a fresh hostname and provisions the tunnel;
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -362,6 +364,8 @@ Fetches a tunnel by ID.
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -596,6 +600,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -829,6 +835,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1054,6 +1062,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1259,6 +1269,8 @@ Rotates a tunnel's connector token. Rotation invalidates the current token for n
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1527,6 +1539,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1773,6 +1787,8 @@ Fetches a tunnel certificate by ID.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -2021,6 +2037,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -2264,6 +2282,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

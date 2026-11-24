@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: 63fad1bbac4d95e9ce06b9de30ded7c9d72dbdd3844faee278c8a04cecf7e4f1
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e2eb2735d5364e88c262519476f64a5f5e5faaf57dc219b81b86c286a2b5a267
 ---
 
 ---
@@ -576,13 +576,13 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
 
 <CodeGroup>
   ```bash cURL
-  # Before: extended thinking with a manual budget (older models)
+  # Before: extended thinking with a manual budget
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21" \
     -d '{
-      "model": "claude-sonnet-4-5-20250929",
+      "model": "claude-opus-4-6",
       "max_tokens": 16000,
       "thinking": {"type": "enabled", "budget_tokens": 10000},
       "messages": [
@@ -607,9 +607,9 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```
 
   ```bash CLI
-  # Before: extended thinking with a manual budget (older models)
+  # Before: extended thinking with a manual budget
   ant messages create <<'YAML'
-  model: claude-sonnet-4-5-20250929
+  model: claude-opus-4-6
   max_tokens: 16000
   thinking:
     type: enabled
@@ -634,9 +634,9 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```
 
   ```python Python
-  # Before: extended thinking with a manual budget (older models)
+  # Before: extended thinking with a manual budget
   client.messages.create(
-      model="claude-sonnet-4-5-20250929",
+      model="claude-opus-4-6",
       max_tokens=16000,
       thinking={"type": "enabled", "budget_tokens": 10000},
       messages=[{"role": "user", "content": "..."}],
@@ -653,9 +653,9 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```
 
   ```typescript TypeScript
-  // Before: extended thinking with a manual budget (older models)
+  // Before: extended thinking with a manual budget
   await client.messages.create({
-    model: "claude-sonnet-4-5-20250929",
+    model: "claude-opus-4-6",
     max_tokens: 16000,
     thinking: { type: "enabled", budget_tokens: 10000 },
     messages: [{ role: "user", content: "..." }]
@@ -672,10 +672,10 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```
 
   ```csharp C#
-  // Before: extended thinking with a manual budget (older models)
+  // Before: extended thinking with a manual budget
   await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeSonnet4_5_20250929,
+      Model = Model.ClaudeOpus4_6,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
       Messages = [new UserMessageParam { Content = "..." }]
@@ -693,9 +693,9 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```
 
   ```go Go
-  // Before: extended thinking with a manual budget (older models)
+  // Before: extended thinking with a manual budget
   client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeSonnet4_5_20250929,
+  	Model:     anthropic.ModelClaudeOpus4_6,
   	MaxTokens: 16000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfEnabled: &anthropic.ThinkingConfigEnabledParam{BudgetTokens: 10000},
@@ -722,9 +722,9 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```
 
   ```java Java
-  // Before: extended thinking with a manual budget (older models)
+  // Before: extended thinking with a manual budget
   client.messages().create(MessageCreateParams.builder()
-      .model(Model.CLAUDE_SONNET_4_5_20250929)
+      .model(Model.CLAUDE_OPUS_4_6)
       .maxTokens(16000L)
       .thinking(ThinkingConfigEnabled.builder()
           .budgetTokens(10000L)
@@ -745,17 +745,17 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```
 
   ```php PHP
-  // Before: extended thinking with a manual budget (older models)
+  // Before: extended thinking with a manual budget
   $client->messages->create(
-      model: 'claude-sonnet-4-5-20250929',
+      model: Model::CLAUDE_OPUS_4_6,
       maxTokens: 16000,
-      thinking: ['type' => 'enabled', 'budget_tokens' => 10000],
+      thinking: ['type' => 'enabled', 'budgetTokens' => 10000],
       messages: [['role' => 'user', 'content' => '...']],
   );
 
   // After: adaptive thinking with effort
   $client->messages->create(
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 16000,
       thinking: ['type' => 'adaptive'],
       outputConfig: ['effort' => 'high'],
@@ -764,9 +764,9 @@ If you are migrating from [extended thinking](https://platform.claude.com/docs/e
   ```
 
   ```ruby Ruby
-  # Before: extended thinking with a manual budget (older models)
+  # Before: extended thinking with a manual budget
   client.messages.create(
-    model: "claude-sonnet-4-5-20250929",
+    model: Anthropic::Model::CLAUDE_OPUS_4_6,
     max_tokens: 16000,
     thinking: { type: "enabled", budget_tokens: 10000 },
     messages: [{ role: "user", content: "..." }]

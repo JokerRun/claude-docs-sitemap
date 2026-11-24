@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 478769087692771273d0e8e17dc170bb1bcc469d37fb586e32a82a152575ef03
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 15e8855dbd3dc75d4599c89dde764e4cf8830ac6c11737bbc034e6eeeebe05c7
 ---
 
 ---
@@ -142,6 +142,8 @@ other scopes require a Console session.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -396,6 +398,8 @@ rules with `applies_to_all_workspaces` or a legacy single
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -628,6 +632,8 @@ Console session.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

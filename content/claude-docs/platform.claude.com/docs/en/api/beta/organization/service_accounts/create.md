@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: d603bc881f6112132020667290c837a2505e39f66795dd9539d941bc025143b1
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 91f9762481bc4d783b3d2b71a4ff9ad3a62bc4e055bd3489eecd879206917469
 ---
 
 ---
@@ -133,6 +133,8 @@ accounts.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

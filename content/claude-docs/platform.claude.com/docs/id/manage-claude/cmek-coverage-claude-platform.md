@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-platform
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: 8f0d0af8c46e0549e05477a739a0697fe2ea570a342e27960c6f9312ba7407f7
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 81cf4556e0e2409dad671e35538149c19d0b6a9835b3a74f5f0fc8d6e95deb25
 ---
 
 ---
@@ -35,7 +35,7 @@ Daftar ini tidak lengkap. Tinjau daftar ini bersama tim Anda sebelum Anda menyia
 | Playground di Claude Console | Dinonaktifkan. |
 | Output terstruktur, termasuk `strict: true` pada alat, dengan model Claude Fable atau Claude Mythos | Dinonaktifkan di organisasi CMEK. Dengan model lain, data yang disimpan saat diam oleh output terstruktur [dienkripsi dengan kunci Anda](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-platform#encrypted-with-your-key). |
 | [Webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#if-your-default-workspace-uses-an-encryption-key) (beta) | Tetap tersedia di Claude API. Selama Anthropic tidak dapat menggunakan kunci workspace default Anda, endpoint webhook organisasi yang bergantung pada kunci tersebut akan kehilangan event-nya. |
-| Tanpa retensi data (ZDR) | Workspace dengan kunci Anda meretensi data. Lihat [CMEK, retensi data, dan ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention). |
+| Tanpa retensi data (ZDR) | Anda hanya dapat melampirkan kunci ke workspace dengan **Retensi data standar** (30 hari) atau workspace yang menggunakan [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) (beta). Lihat [CMEK, retensi data, dan ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention). |
 
 ## Dienkripsi dengan kunci Anthropic
 

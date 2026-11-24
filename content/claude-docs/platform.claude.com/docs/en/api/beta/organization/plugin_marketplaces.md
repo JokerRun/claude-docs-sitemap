@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugin_marketplaces
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 74db15007cd6e43281fe6f2c5b521ba7ba854b85df899219f0848ba5c49533c7
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: aaab282565018372209c1419b7239c7fc4cfc66e70ff132734f890525e87a760
 ---
 
 ---
@@ -171,6 +171,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -475,6 +477,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -767,6 +771,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1093,6 +1099,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1404,6 +1412,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

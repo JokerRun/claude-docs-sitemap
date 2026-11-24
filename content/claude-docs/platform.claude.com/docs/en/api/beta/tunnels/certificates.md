@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/certificates
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: cc4d817999ac9c6c6b72bb4ceba663c4ccfe2a96ba78d09a320b5787c3b79e4b
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 6b50e0c229d6537ff980b8d5a3204bcb001f4839fb93b857f692918a9c251d28
 ---
 
 ---
@@ -133,6 +133,8 @@ Registers a public CA certificate on a tunnel. Anthropic verifies the gateway's 
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -381,6 +383,8 @@ Fetches a tunnel certificate by ID.
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -628,6 +632,8 @@ Lists the certificates registered on a tunnel. Archived certificates are exclude
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -871,6 +877,8 @@ Archives a tunnel certificate, removing it from the set Anthropic trusts for the
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

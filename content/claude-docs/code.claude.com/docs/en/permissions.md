@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/permissions
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 773e0aa8644bc8ee1d764b087ea613352ed1a74b3d6152282dc3b3fbb737b58f
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 90bbb5c8eb8669a36c33b8c16f1e592c2233a169eda316955aefb17556caa462
 ---
 
 > ## Documentation Index
@@ -91,7 +91,7 @@ Claude Code supports several permission modes that control how it approves tool 
 >
 > In `bypassPermissions` mode, Claude Code skips permission prompts, including for writes to [protected paths](https://code.claude.com/docs/en/permission-modes.md#protected-paths) such as `.git` and `.claude`. The [cross-session messaging safeguards](https://code.claude.com/docs/en/permission-modes.md#skip-all-checks-with-bypasspermissions-mode) still apply. Only use this mode in isolated environments like containers or VMs where Claude Code can't cause damage.
 
-To prevent `bypassPermissions` or `auto` mode from being used, set `permissions.disableBypassPermissionsMode` or `permissions.disableAutoMode` to `"disable"` in any [settings file](https://code.claude.com/docs/en/settings.md#where-settings-live). These are most useful in [managed settings](#managed-settings) where they can't be overridden.
+To prevent `bypassPermissions` or `auto` mode from being used, set [`permissions.disableBypassPermissionsMode`](https://code.claude.com/docs/en/settings-reference#permissions-disablebypasspermissionsmode) or [`permissions.disableAutoMode`](https://code.claude.com/docs/en/settings-reference#disableautomode) to `"disable"`. These are most useful in [managed settings](#managed-settings) where they can't be overridden.
 
 To deny calls that would wait on a permission prompt, so an unattended session keeps working, set [`permissions.denyInsteadOfPrompting`](https://code.claude.com/docs/en/settings-reference#permissions-denyinsteadofprompting) to `true` in your user or managed settings. `dontAsk` is a permission mode of its own, while this key works with the permission mode you're in.
 

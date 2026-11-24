@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/models
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b4fc9b869620f67fd6d8ae2c7687e241deed638d8f3743afa7b790e5fcb16633
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 09e4663b58718619116ed9009db1e695e080a294b90a03ece602a17884eb0ea3
 ---
 
 ---
@@ -157,6 +157,8 @@ The Models API response can be used to determine which models are available for 
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -686,6 +688,8 @@ The Models API response can be used to determine information about a specific mo
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

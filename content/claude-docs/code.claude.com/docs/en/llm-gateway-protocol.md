@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-protocol
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 69d37ce069cd6825d247359e759779d435bac199a3b4c690d33789700fdeca32
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 179829f8dde2f4575a7937f89f9b167176c06224aad84747ce85ae107b24752d
 ---
 
 > ## Documentation Index
@@ -15,7 +15,7 @@ sha256: 69d37ce069cd6825d247359e759779d435bac199a3b4c690d33789700fdeca32
 
 This page documents the requests Claude Code sends to a gateway, including the endpoints it calls, the headers and body fields the gateway must forward, and which features stop working when it doesn't. It is written for operators configuring a gateway product to work with Claude Code.
 
-The [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway), Anthropic's self-hosted gateway, serves its own endpoint reference at `GET /protocol`, covering that gateway's sign-in, inference, managed settings, model discovery, and telemetry endpoints. It is a separate document from this guide.
+The [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway), Anthropic's self-hosted gateway, serves its own endpoint reference at `GET /protocol`, covering that gateway's sign-in, inference, managed settings, model discovery, and telemetry endpoints.
 
 > [!NOTE]
 >

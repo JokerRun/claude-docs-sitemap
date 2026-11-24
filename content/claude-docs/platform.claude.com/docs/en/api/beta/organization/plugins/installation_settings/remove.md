@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/installation_settings/remove
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 3927f35d3320e14d9ad365c509477e40f35367e0343ddc6c2ff745595f510812
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e2359ef230fda43ad70314e46fc4213d875597759860512405780f6fbc74c4b2
 ---
 
 ---
@@ -147,6 +147,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: d8b130b1dbe308c5c21022f9846df1cacfdad26298324dff18d2a415735e6ef5
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: ac80470f03462cf68af781adbccd279f6d596d0073c5c6f97befe63a30ad0cff
 ---
 
 ---
@@ -131,6 +131,8 @@ Archive a Memory Store
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

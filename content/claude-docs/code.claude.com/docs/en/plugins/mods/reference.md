@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/reference
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: bde0fc57079080f458d588b658e348a1906184f3175197218fa9531b7317f64f
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 741aa60515aaaa24907452e4fda27b1bb41af782085733551ecd966487801ff0
 ---
 
 > ## Documentation Index
@@ -214,7 +214,7 @@ Telemetry events fire for the usage records Claude Code logs:
 
 ### Settings hook events
 
-Each [settings hook event](https://code.claude.com/docs/en/hooks.md#hook-events) is an event named `classic.<Event>`, such as `classic.Stop` or `classic.PostToolUse`. `e` is the hook's stdin JSON.
+Each [settings hook event](https://code.claude.com/docs/en/hooks.md#hook-events) is an event named `classic.<Event>`, such as `classic.Stop`. For the fields on `e`, see [Handle the settings hook events](https://code.claude.com/docs/en/plugins/mods/events.md#hook-the-settings-hook-events).
 
 ### Mods API calls
 

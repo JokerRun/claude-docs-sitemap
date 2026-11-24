@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 5cb235e41a90d5371f6ee897cfac7b3010710af0dcde6c9369a7273fbe8f2e22
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 45ebfc0963c896e0c727072beada3e9c238799f1503566a9c8f2e1034735ba4a
 ---
 
 ---
@@ -127,6 +127,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

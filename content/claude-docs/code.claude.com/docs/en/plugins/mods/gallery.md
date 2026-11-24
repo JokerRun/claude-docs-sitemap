@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/gallery
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 44a9f8dc72c7ea0abb7e12f93f65b8be0d37fa7d852ee18eeb6fedc07e20dc2b
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 48ce6b6a2b4f7cc603324e710f4354a1b3c665fa3c1054915b5da3748a9b51ec
 ---
 
 > ## Documentation Index
@@ -292,7 +292,7 @@ Input({
 
 The terminal and the Desktop app draw the rows. In the VS Code extension, the field holds one line. `rows` requires Claude Code v2.1.301 or later. On earlier versions the field holds one line.
 
-The field takes up the number of rows you set, even when it's empty, up to the height of the pane or band it's drawn in. While the field has focus, longer text scrolls inside it.
+The field takes up the number of rows you set, up to the height of the pane or band it's drawn in. While the field has focus, longer text scrolls inside it.
 
 * In the terminal, Enter still submits. There, the user starts a new line by typing a backslash and then pressing Enter, or by pressing Shift+Enter where [the terminal emulator supports it](https://code.claude.com/docs/en/terminal-config.md#enter-multiline-prompts). Those are the same keys as in the prompt.
 * In the terminal, Up and Down move between the field's rows. From its first and last row they move to the control before or after.

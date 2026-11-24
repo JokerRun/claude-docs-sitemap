@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_code/managed_settings/configuration/retrieve
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 81154338b271eb76b4ce1b97f8ad696024fb831cb1819eea91559c233f2502a5
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: f7dfd9186efefa69b76192346ea58ef6e3b2a4df4dc3dc39a484f7175addcc8f
 ---
 
 ---
@@ -127,6 +127,8 @@ Every request must include the beta header `anthropic-beta: ce-claude-code-manag
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

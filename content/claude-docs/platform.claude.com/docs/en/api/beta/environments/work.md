@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 40a68a9d3d006313a6a6095d446b0a4517ecb7e0279310ff881ccf6a29e4fc22
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 597e60808643fb17a660f6a16e1ba0361596eb8740ee6712917a55df7accfd76
 ---
 
 ---
@@ -133,6 +133,8 @@ This endpoint accepts a Claude API key. It rejects the environment key and the w
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -446,6 +448,8 @@ Long poll for work items in the queue.
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -729,6 +733,8 @@ Acknowledge receipt of a work item, transitioning it from 'queued' to 'starting'
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1021,6 +1027,8 @@ Record a heartbeat for a work item to maintain the lease.
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1252,6 +1260,8 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1573,6 +1583,8 @@ This endpoint accepts the environment key as a bearer token. It rejects a Claude
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1861,6 +1873,8 @@ This endpoint accepts a Claude API key. It rejects the environment key and the w
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -2173,6 +2187,8 @@ Get statistics about the work queue for an environment.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

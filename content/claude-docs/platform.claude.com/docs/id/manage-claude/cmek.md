@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: d2eab363e8ae89fe8ecacbb848abae1655720d2ba826c1a22f870d2389463b28
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: f3bc0e810d870aa5e1b6e6e191384b8c6be11ef63c310e7f269bfee3fd911653
 ---
 
 ---
@@ -71,7 +71,7 @@ Produk yang Anda gunakan menentukan apa yang dienkripsi oleh kunci Anda, apa yan
 * Kunci Anda hanya melindungi data yang ditulis [setelah kunci tersebut mulai berlaku](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect).
 * Jika kunci Anda dihapus, Anthropic tidak dapat memulihkan data yang dilindungi kunci tersebut. Dalam waktu sekitar satu jam setelah menonaktifkan kunci Anda, Anthropic tidak dapat lagi mendekripsi data tersebut. Lihat [Apa yang dilakukan setiap tindakan](https://platform.claude.com/docs/id/manage-claude/cmek-key-lifecycle#what-each-action-does).
 * Di Claude Platform, workspace yang memiliki kunci [wajib menerapkan retensi data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention).
-* Saat Anthropic menyetujui seluruh organisasi Anda untuk CMEK, Anthropic juga mengaktifkan [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency#access-transparency-with-customer-managed-keys) untuk organisasi tersebut. Organisasi dengan Access Transparency tidak dapat memanggil Claude API secara langsung dari browser.
+* Saat Anthropic menyetujui seluruh organisasi Anda untuk CMEK, Anthropic juga mengaktifkan [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency#access-transparency-with-customer-managed-keys) untuk organisasi tersebut. Di Claude Platform, jika Anda mendapatkan akses melalui [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) atau Enterprise Data Controls, melampirkan kunci pertama Anda akan mengaktifkan Access Transparency sebagai gantinya, kecuali jika fitur tersebut sudah aktif. Organisasi dengan Access Transparency tidak dapat memanggil Claude API secara langsung dari browser.
 
 ## Siapa yang dapat menggunakan CMEK
 

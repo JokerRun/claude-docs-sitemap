@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/overview
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b3bbf3fd98d5b3db0e1844e6d90176ce33d44cbab3541e4400d04f19d7e7ebf3
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: add8b2bd752f9d54a51c1920f39fb1003ea1b86618f1c1eefbcf5569129f1741
 ---
 
 ---
@@ -67,14 +67,14 @@ Setiap versi mayor SDK klien mengirimkan satu [versi API](https://platform.claud
 
 | Alat | Versi terbaru | Paket |
 | ----- | ----- | ----- |
-| ant CLI | `2.12.1` | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases) |
-| Python | `2.12.0` | [`anthropic` di PyPI](https://pypi.org/project/anthropic/) |
-| TypeScript | `1.12.0` | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk) |
-| C# | `13.12.0` | [`Anthropic`](https://www.nuget.org/packages/Anthropic) |
-| Go | `2.13.0` | [`github.com/anthropics/anthropic-sdk-go/v2`](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go/v2) |
-| Java | `3.12.0` | [`com.anthropic:anthropic-java`](https://central.sonatype.com/artifact/com.anthropic/anthropic-java) |
-| PHP | `1.12.0` | [`anthropic-ai/sdk`](https://packagist.org/packages/anthropic-ai/sdk) |
-| Ruby | `2.12.0` | [`anthropic` di RubyGems](https://rubygems.org/gems/anthropic) |
+| ant CLI | `2.13.0` | [`github.com/anthropics/anthropic-cli`](https://github.com/anthropics/anthropic-cli/releases) |
+| Python | `2.13.0` | [`anthropic` di PyPI](https://pypi.org/project/anthropic/) |
+| TypeScript | `1.13.0` | [`@anthropic-ai/sdk`](https://www.npmjs.com/package/@anthropic-ai/sdk) |
+| C# | `13.13.0` | [`Anthropic`](https://www.nuget.org/packages/Anthropic) |
+| Go | `2.14.0` | [`github.com/anthropics/anthropic-sdk-go/v2`](https://pkg.go.dev/github.com/anthropics/anthropic-sdk-go/v2) |
+| Java | `3.13.0` | [`com.anthropic:anthropic-java`](https://central.sonatype.com/artifact/com.anthropic/anthropic-java) |
+| PHP | `1.13.0` | [`anthropic-ai/sdk`](https://packagist.org/packages/anthropic-ai/sdk) |
+| Ruby | `2.13.0` | [`anthropic` di RubyGems](https://rubygems.org/gems/anthropic) |
 
 Versi yang sama tersedia dalam format JSON di `https://platform.claude.com/docs/sdk-versions.json`.
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-11-23T02:14:44.103489Z
-sha256: 0e2505f3bb6b7a8e3c1278e360564cbb81643a34fe4ebfecef4317ad495c2992
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 78e1b49913a55380e65a9293bed3a0ae67b3c90ee43d5eef2a1b55a4c4f72de5
 ---
 
 > ## Documentation Index
@@ -220,9 +220,10 @@ When two skills share a directory or file name, where each one came from decides
 | Same name in | Which one runs |
 | :- | :- |
 | Two of enterprise, personal, and project | Enterprise over personal, and personal over project. With `deploy` in both `~/.claude/skills/` and the project's `.claude/skills/`, `/deploy` runs the personal one |
-| Any of those locations and a [bundled skill](#bundled-skills) | Your skill replaces the bundled command, but not its aliases. A project `code-review` skill replaces `/code-review`, and the bundled alias `/review` never runs your skill |
+| Any of those locations and a [bundled skill](#bundled-skills) with a name other than `ship`, `ship-local`, or `steward` | Your skill replaces the bundled command, but not its aliases. A project `code-review` skill replaces `/code-review`, and the bundled alias `/review` doesn't run your skill |
 | Any of those locations and a [built-in command](https://code.claude.com/docs/en/commands.md) | In a local terminal session, your skill replaces the built-in command, but not its aliases. A project `usage` skill replaces `/usage`, and the built-in alias `/cost` still runs the built-in command |
 | A skill and a file in `.claude/commands/` | The skill |
+| A skill or command of yours named `ship`, `ship-local`, or `steward` | Where `/ship` is available, the bundled `/ship` or `/steward`. Claude Code [doesn't load yours](https://code.claude.com/docs/en/ship-command-troubleshooting.md#a-custom-%2Fship-or-%2Fsteward-command-stopped-loading) |
 | A project-root skill and a nested skill | Both load. See [monorepos and subdirectories](#discovery-from-parent-and-nested-directories) |
 | An enterprise, personal, or project skill and a skill in an [added directory outside the project](#skills-from-additional-directories) | The enterprise, personal, or project skill, while the added directory's skill runs under a prefixed name. See [run a same-named skill from an added directory](#run-a-same-named-skill-from-an-added-directory) |
 | Two [added directories](#skills-from-additional-directories) outside the project | The skill from the directory added first, in `--add-dir` or `/add-dir` order. The other runs under a [prefixed name](#run-a-same-named-skill-from-an-added-directory) |
@@ -278,7 +279,9 @@ Some of Anthropic's skills, such as `pdf` and `xlsx`, always sync. For the rest,
 
 To stop syncing on a machine, set [`syncClaudeAiSkills`](https://code.claude.com/docs/en/settings-reference#syncclaudeaiskills) to `false` in your user settings. Claude Code stops downloading, and the next time it starts it moves the skills it already synced to `~/.claude/skills/.trash/` and no longer loads them. Your organization can turn syncing off for everyone by turning off Skills on claude.ai. To stop syncing while leaving Skills on, it can set the same key in [managed settings](https://code.claude.com/docs/en/managed-settings.md).
 
-If your organization turns Skills off on claude.ai, Claude Code removes the downloaded skills and they stop loading. The removed skills move to `~/.claude/skills/.trash/`, where you can recover the files until the [retention sweep](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically) deletes them. Once your organization turns Skills back on, Claude Code downloads the skills you enabled at the next sync.
+> [!NOTE]
+>
+> If your organization turns Skills off on claude.ai, Claude Code removes the downloaded skills and they stop loading. The removed skills move to `~/.claude/skills/.trash/`, where you can recover the files until Claude Code [deletes them](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically). Once your organization turns Skills back on, Claude Code downloads the skills you enabled at the next sync.
 
 #### When a synced skill name matches another command
 
@@ -326,7 +329,7 @@ What Claude Code does with a synced skill's body depends on where the session ru
 
 ### Edit a skill during a session
 
-Claude Code watches skill directories for file changes, except in [bare mode](https://code.claude.com/docs/en/headless.md#start-faster-with-bare-mode). When you add, edit, or remove a skill under `~/.claude/skills/`, the project `.claude/skills/`, or a `.claude/skills/` inside an `--add-dir` directory, Claude Code picks up the change within the current session, without a restart.
+Claude Code watches skill directories for file changes, except in [bare mode](https://code.claude.com/docs/en/headless.md#start-faster-with-bare-mode). When you add, edit, or remove a skill under `~/.claude/skills/`, the project `.claude/skills/`, or a `.claude/skills/` inside an `--add-dir` directory, Claude Code picks up the change within the current session.
 
 If a new skill doesn't appear, run [`/reload-skills`](https://code.claude.com/docs/en/commands#all-commands).
 
@@ -1060,7 +1063,7 @@ Save this to `~/.claude/skills/codebase-visualizer/scripts/visualize.py`. This s
 * A **bar chart** breaking down the codebase by file type (top 8 by size)
 * A **collapsible tree** where you can expand and collapse directories, with color-coded file type indicators
 
-The script requires Python 3 but uses only built-in libraries, so there are no packages to install:
+The script requires Python 3 but uses only built-in libraries:
 
 ```python expandable theme={null}
 #!/usr/bin/env python3
@@ -1259,7 +1262,9 @@ If skill folders you created in `~/.claude/skills/` are gone, look in `~/.claude
 
 Before v2.1.280, a file named `manifest.json` in `~/.claude/skills/` caused Claude Code to move the skill folders that file listed into a timestamped folder under `~/.claude/skills/.trash/`, and those skills stopped loading.
 
-To restore a skill, move its folder from the timestamped folder back into `~/.claude/skills/`. Do this before the [retention sweep](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically) deletes trash entries, by default 30 days after they were moved to the trash.
+> [!TIP]
+>
+> To restore a skill, move its folder from the timestamped folder back into `~/.claude/skills/`. Do this before Claude Code [deletes it](https://code.claude.com/docs/en/claude-directory.md#cleaned-up-automatically).
 
 ## Related resources
 

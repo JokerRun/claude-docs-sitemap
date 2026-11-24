@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/analytics
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 7ce19a64912b5aaebc60b05bd1a258b925784648e125ae38cb98efa1b01f7682
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: beb656a396774f58fb6e535af9402b3b8992fe08935957c28fadc08ab7cabd72
 ---
 
 > ## Documentation Index
@@ -125,8 +125,6 @@ When a pull request is merged:
 
 Before comparison, lines are normalized: whitespace is trimmed, multiple spaces are collapsed, quotes are standardized, and text is converted to lowercase.
 
-Merged pull requests containing Claude Code-assisted lines are labeled as `claude-code-assisted` in GitHub.
-
 #### Time window
 
 Sessions from 21 days before to 2 days after the PR merge date are considered for attribution matching.
@@ -180,8 +178,6 @@ The Leaderboard helps you find team members with high Claude Code adoption who c
 #### Access data programmatically
 
 On the Enterprise plan, the [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/api/admin/analytics) returns per-user engagement, usage, and cost reports for your organization across Claude surfaces, including Claude Code. A Primary Owner creates a key with the `read:analytics` scope at [claude.ai/analytics/api-keys](https://claude.ai/analytics/api-keys). The API is not available on the Teams plan.
-
-To query contribution data through GitHub instead, search for PRs labeled with `claude-code-assisted`.
 
 ## Access analytics for API customers
 

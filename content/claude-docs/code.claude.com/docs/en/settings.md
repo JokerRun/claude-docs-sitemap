@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings
-fetched_at: 2026-11-23T02:14:44.103489Z
-sha256: 417b611cbc5ab2dc9d566f94c7abf0cb7cc98e210e8b70b5a1cc110e1cad31d7
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 1c2b06c686476ca33341f319e27d3d6a0a75c1d1ce08f3f546dae65c341f0862
 ---
 
 > ## Documentation Index
@@ -162,7 +162,7 @@ For a complete personal file, team file, and organization file, each shown with 
 
 ### Change a setting for one session
 
-To try a value without saving it, set it when you start Claude Code. The value applies to that session and your settings files stay as they were. You have three ways to do it:
+To try a value without saving it, set it when you start Claude Code. You have three ways to do it:
 
 * **`--settings`**: pass a key as JSON, inline or as a path to a file. Claude Code applies it above your user, project, and local files and below managed settings. With `--settings`, you can't set [`Managed` or `Global config`](https://code.claude.com/docs/en/settings-reference#scopes) keys or some user settings keys, such as [`prependPlugins`](https://code.claude.com/docs/en/settings-reference#prependplugins).
 * **A flag for that key**: some keys have their own flag, such as `--model` for `model` and `--effort` for `effortLevel` and `modelSettings`.

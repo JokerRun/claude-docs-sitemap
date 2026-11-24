@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/update
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 53338943a6c50a9f3e9ccc409a19dd862ddca8adbf51500bf1d773534ac5dea1
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: b84ba64b2cb1d95afe3ecb01572a8ab420815fa25f9acef6ca63c34ccbadf091
 ---
 
 ---
@@ -131,6 +131,8 @@ Update a Memory Store
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

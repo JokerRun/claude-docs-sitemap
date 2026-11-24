@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_code/managed_settings/rbac_groups
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 51f643856c577a3671e7a4d7431e3affcb77fdef4d9c76af2bf521103c692edc
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 192ff1e928c4ebc952578daa13ebadcdbc102e00d0b3678c7d110a406ef98d3b
 ---
 
 ---
@@ -145,6 +145,8 @@ Every request must include the beta header `anthropic-beta: ce-claude-code-manag
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -399,6 +401,8 @@ Every request must include the beta header `anthropic-beta: ce-claude-code-manag
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -673,6 +677,8 @@ A write that returns `503` may have applied. Retrying it is safe.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -977,6 +983,8 @@ A write that returns `503` may have applied. Retrying it is safe.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

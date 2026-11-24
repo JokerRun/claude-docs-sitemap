@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 3f372695ca1e965fa58eb4287c6391decee732b0cec867b49c134298a80561e0
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: bdf4d542c2640d478b025161d82fd612b20af6e3eab2b9617e481f202ea5464c
 ---
 
 ---
@@ -127,6 +127,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

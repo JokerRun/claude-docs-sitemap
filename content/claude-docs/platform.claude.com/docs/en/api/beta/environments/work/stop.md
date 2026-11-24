@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/stop
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 2066698c3829b80a604b9a2a8f5d5674f8c3b16877d7f3ca1ce6c5ecbcfe34a7
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 8bb1dada60edae18a2514e688cdb065c4f414d4fbe243c9cba6c94fcf62e14a1
 ---
 
 ---
@@ -129,6 +129,8 @@ Stop a work item, initiating graceful or forced shutdown.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

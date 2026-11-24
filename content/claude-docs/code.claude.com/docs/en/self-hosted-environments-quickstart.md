@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-quickstart
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 2717fc8f051dd4b696269be1fd95b945b87685cadc0d8f4386c16eba9531e806
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 1ddd8ed53e025bc0c01b2f5fa885032f6050bf34e4a589bb6f62beecb6137503
 ---
 
 > ## Documentation Index
@@ -114,7 +114,7 @@ Then start the runner with `--environment-secret-file` and `--base-dir`:
 claude self-hosted-runner --environment-secret-file '/etc/claude/environment-secret' --base-dir '<writable-dir>'
 ```
 
-The runner logs `Registered: runner_id=<runner-id>` once it has registered with your environment, then begins polling for work. Started with this command, it exits by design after serving one session, not after each turn. To serve more sessions, start the runner again each time it exits. See [If the runner exits](#if-the-runner-exits) for when that happens and what the runner logs.
+The runner logs `Registered: runner_id=<runner-id>` once it has registered with your environment, then begins polling for work. Started with this command, it exits after serving one session, not after each turn. To serve more sessions, start the runner again each time it exits. See [If the runner exits](#if-the-runner-exits) for when that happens and what the runner logs.
 
 **3. Verify the runner appears**
 

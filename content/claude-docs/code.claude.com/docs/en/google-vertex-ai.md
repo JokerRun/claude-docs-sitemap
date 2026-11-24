@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: c290994e64b6ae8c7898f8c69dca71fd3b57689ac882155fedcf5a8d2ceab5ca
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 31f11029f9f8f8d474bdf81a2355dcd12459fbeb55db6ed864844295ade2c7ef
 ---
 
 > ## Documentation Index
@@ -130,8 +130,8 @@ export ANTHROPIC_VERTEX_PROJECT_ID=YOUR-PROJECT-ID
 # export ANTHROPIC_VERTEX_BASE_URL=https://aiplatform.googleapis.com
 
 # When CLOUD_ML_REGION=global, override region for models that don't support global endpoints
-export VERTEX_REGION_CLAUDE_HAIKU_4_5=us-east5
-export VERTEX_REGION_CLAUDE_4_6_SONNET=europe-west1
+# export VERTEX_REGION_CLAUDE_HAIKU_4_5=us-east5
+# export VERTEX_REGION_CLAUDE_4_6_SONNET=europe-west1
 ```
 
 Most model versions have a corresponding `VERTEX_REGION_CLAUDE_*` variable. See the [Environment variables reference](https://code.claude.com/docs/en/env-vars.md#variables) for the full list. Check [Google Cloud's Agent Platform Model Garden](https://console.cloud.google.com/vertex-ai/model-garden) to determine which models support global endpoints versus regional only.

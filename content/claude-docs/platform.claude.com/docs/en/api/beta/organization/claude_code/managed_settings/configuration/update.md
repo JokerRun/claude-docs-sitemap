@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_code/managed_settings/configuration/update
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 447b0fdc7752fdb08bd57324eab023556994a4cb458673440996185b91391f92
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 1d03ee44849647e1da5ac550810576fd31825a289902e3a26fb387b395b0b8c1
 ---
 
 ---
@@ -135,6 +135,8 @@ A write that returns `503` may have applied. Retrying it is safe.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

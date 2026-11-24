@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/admin
-fetched_at: 2026-11-23T02:14:44.103489Z
-sha256: c6399222169937ac9e1c6734c0476e740756664e470dbb426cd95b4fb2f1d38f
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 930edb39dcf67f3711e5dbcd137e7faa47bd2c42b16a2dd9c47c0f3aae7082c9
 ---
 
 > ## Documentation Index
@@ -131,7 +131,7 @@ Where the [built-in guard](#know-what-happens-by-default) loads, a hook that a u
 | `session.append{door=hook-context}` | The stored row for context from a settings hook |
 | `session.append{door=compaction}` | The stored rows for a compaction's summary and boundary |
 
-The guard also passes over a user's hooks in some other cases, such as the descriptions of your organization's tools, on [`tool.describe`](https://code.claude.com/docs/en/plugins/mods/reference#tools), and the stored row for a skill's text. `/plugin` shows no note for those. If a hook on another event does nothing, see [Find out why a mod does nothing](https://code.claude.com/docs/en/plugins/mods/troubleshoot.md#find-out-why-a-mod-does-nothing).
+The guard also passes over a user's hooks in some other cases, such as the descriptions of your organization's tools, on [`tool.describe`](https://code.claude.com/docs/en/plugins/mods/reference#tools). `/plugin` shows no note for that case. If a hook on another event does nothing, see [Find out why a mod does nothing](https://code.claude.com/docs/en/plugins/mods/troubleshoot.md#find-out-why-a-mod-does-nothing).
 
 The note appears in the plugin's details and in the **Errors** tab of `/plugin`. It requires Claude Code v2.1.299 or later. It names each hook from the table as the mod registered it, as in this example:
 

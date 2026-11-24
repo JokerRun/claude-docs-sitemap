@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort-per-message
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: d1e19f2cf2f55741d10f437ad4474e9404e06eca41cd3a017c24ce568d5c5ada
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: c6a8dd081afa047d00d57e0605fb3bfd69a2a045b584898ce131871be1cd5204
 ---
 
 ---
@@ -328,7 +328,7 @@ Letakkan pesan tersebut setelah semua yang telah Anda kirim, dan pertahankan di 
 
 Jika pesan ini berada di samping pesan `system` yang memiliki konten, kedua pesan harus mengikuti [aturan penempatan untuk pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages#limitations).
 
-Dengan InvokeModel API Amazon Bedrock, kirim nilai beta di array `anthropic_beta` pada body permintaan, bukan di header. Untuk model yang mendukung effort per pesan di sana, lihat [Pesan sistem di tengah percakapan di Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#mid-conversation-system-messages-on-bedrock).
+Dengan InvokeModel API Amazon Bedrock, kirim beta di array `anthropic_beta` pada body permintaan, bukan di header. Untuk model yang mendukung effort per pesan di sana, lihat [Pesan sistem di tengah percakapan di Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#mid-conversation-system-messages-on-bedrock).
 
 ## Error
 

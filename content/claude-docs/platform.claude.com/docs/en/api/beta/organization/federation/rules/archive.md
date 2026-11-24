@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: f81eb0c6f15a33916cb76e2aaa79e8dcbefe7984a3e301563c8591b4d7883b13
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: fd7dad36e919fafd186168825e252e561df9271e433cf0e46e92325ed752ebd4
 ---
 
 ---
@@ -139,6 +139,8 @@ other scopes require a Console session.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b0fa09729fb44c57c81aa848f1e3ffe7327b6c1f4c941ddbd326c7b6e3c52661
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e83f173571d91f698931ed39da9836c2cd5ba6003a5667a6aee8a982a8dcff22
 ---
 
 ---
@@ -147,6 +147,8 @@ List the set-up Slack channels of one Slack workspace, newest first by `created_
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

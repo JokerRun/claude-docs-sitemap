@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/python
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: bf6e154f31f555fec9024985f37e2a83d2ee268abde1bfb7fef7f308062838bf
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 46c2f9e3316b3ef75e905e3f3ed216cc6b49299e4301d6b347f6af7c8b2db253
 ---
 
 > ## Documentation Index
@@ -2679,7 +2679,7 @@ Before Python SDK v0.2.169, agents that your subagents started also ran in the b
     "resolvedModel": str | None,  # Model in use at the backgrounding transition
     "modelsUsed": list[str] | None,  # Models used before backgrounding, in order, with consecutive repeats collapsed
     "prompt": str,  # The prompt the agent runs
-    "outputFile": str,  # File path where the agent's output is written
+    "outputFile": str,  # Path to the task output file
     "canReadOutputFile": bool | None,  # Whether the output file can be read directly
 }
 ```

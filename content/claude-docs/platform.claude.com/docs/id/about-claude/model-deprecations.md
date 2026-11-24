@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 829220dae623131bff62b47197281fcdbb63df89a8c3f2ec67923cd8a5dcb49a
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: d360447fc923fc4e27c5d2c961100dbce4faee0e95b351c2347a967a73eb6e45
 ---
 
 ---
@@ -91,7 +91,7 @@ Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut bes
 | claude-opus-4-8 | Active | N/A | Not sooner than May 28, 2027 |
 | claude-opus-4-7 | Active | N/A | Not sooner than April 16, 2027 |
 | claude-opus-4-6 | Active | N/A | Not sooner than February 5, 2027 |
-| claude-opus-4-5-20251101 | Active | N/A | Not sooner than November 24, 2026 |
+| claude-opus-4-5-20251101 | Deprecated | November 23, 2026 | January 22, 2027 |
 | claude-opus-4-1-20250805 | Retired | June 5, 2026 | August 5, 2026 |
 | claude-opus-4-20250514 | Retired | April 14, 2026 | June 15, 2026 |
 | claude-sonnet-5-5 | Active | N/A | Not sooner than September 28, 2027 |
@@ -108,6 +108,20 @@ Model saat ini dan yang baru saja dipensiunkan tercantum dalam tabel berikut bes
 ## Riwayat penghentian
 
 Semua penghentian tercantum di bagian-bagian berikut, dengan pengumuman terbaru di urutan pertama.
+
+### 2026-11-23: Model Claude Opus 4.5
+
+Pada 23 November 2026, Anthropic memberi tahu developer yang menggunakan Claude Opus 4.5 tentang pensiunnya yang akan datang di Claude API.
+
+| Tanggal pensiun | Model yang dihentikan | Pengganti yang direkomendasikan |
+| ----- | ----- | ----- |
+| 22 Januari 2027 | `claude-opus-4-5-20251101` | `claude-opus-5-5` |
+
+Pensiun ini mencakup `claude-opus-4-5`, yaitu ID model yang sama tanpa tanggal.
+
+Untuk bermigrasi, lihat [Migrasi dari Claude Opus 4.5 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45) dalam panduan migrasi Claude Opus 5.5.
+
+Jika Anda menggunakan Claude Code atau platform selain Claude API, lihat [Ikhtisar](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) untuk mengetahui tanggal mana yang berlaku. Untuk mengetahui apa yang perlu diubah, lihat [Bermigrasi ke pengganti](https://platform.claude.com/docs/id/about-claude/model-deprecations#migrating-to-replacements).
 
 ### 2026-09-30: Model Claude Sonnet 4.5
 

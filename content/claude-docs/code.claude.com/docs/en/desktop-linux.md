@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-linux
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 540ff6486cd12793fc125fb2e67f12cd4d1eef1c5e7291ef7a598afb90b2da8a
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 020c448073312b8dff5d62c449a76b7f847ea7c1f80ec44cadc51fdef8d11ca7
 ---
 
 > ## Documentation Index
@@ -17,7 +17,7 @@ sha256: 540ff6486cd12793fc125fb2e67f12cd4d1eef1c5e7291ef7a598afb90b2da8a
 >
 > Linux support for the Claude desktop app is in beta.
 
-The desktop app on Linux gives you the same Chat, Cowork, and Claude Code experience as on macOS and Windows: parallel sessions, visual diff review, an integrated terminal and editor, and live app preview. See [Use Claude Code Desktop](https://code.claude.com/docs/en/desktop.md) for the feature reference.
+The desktop app on Linux gives you Chat, [Cowork](#cowork-requirements), and Claude Code. In the desktop app, Claude Code has parallel sessions, visual diff review, an integrated terminal and editor, and live app preview. See [Use Claude Code Desktop](https://code.claude.com/docs/en/desktop.md) for the feature reference.
 
 ## Requirements
 
@@ -172,6 +172,6 @@ If Cowork shows one of these messages, fix the requirement it names, then restar
 * **Computer Use**: [app and screen control](https://code.claude.com/docs/en/desktop.md#let-claude-use-your-computer) isn't available on Linux.
 * **Dictation**: voice input isn't available in the Linux desktop app. Use [voice dictation](https://code.claude.com/docs/en/voice-dictation.md) in the CLI instead.
 * **Quick Entry global hotkey**: works on X11. On native Wayland it requires your desktop environment's GlobalShortcuts portal.
-* **Fedora and RHEL**: only Debian-based distributions are supported today. Support for additional distributions is coming in the future.
+* **Fedora and RHEL**: only Debian-based distributions are supported today.
 
 For anything not yet available in the desktop app, the [CLI](https://code.claude.com/docs/en/quickstart.md) runs the same Claude Code engine and supports a wider range of Linux distributions; see the [system requirements](https://code.claude.com/docs/en/setup.md#system-requirements).

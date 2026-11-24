@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 5125613487abb951dc30a321b53d46b33518a600d38a944e12ef38ecd6afb769
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 1b4c7e3755388a3946140c660591bb483626c2a3146b3bc1300ec81a9dd30cd0
 ---
 
 ---
@@ -149,6 +149,8 @@ rules with `applies_to_all_workspaces` or a legacy single
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

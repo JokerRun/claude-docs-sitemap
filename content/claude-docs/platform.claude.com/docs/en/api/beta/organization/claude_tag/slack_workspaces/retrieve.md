@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_workspaces/retrieve
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 3c06013073644a332a67f268196c57ecf59f518b8a065a2af8a0f2ef3836bcc3
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 82c20e0680781123f652129d157e901d0cb6b1e50f54060ba7a6ef22de9248ab
 ---
 
 ---
@@ -135,6 +135,8 @@ Get one Slack workspace and its settings. By default `settings` holds what the w
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

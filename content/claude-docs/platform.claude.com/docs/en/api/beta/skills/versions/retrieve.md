@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/skills/versions/retrieve
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: d6bf6d2a15a373cdc1bf0fd9ef1d2cfd5961a9efb589b8e7062c1c8afc588b1d
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: bda023e5627948cc6ca3a82222714446d65d75a2ff143b6caaee77d16aa5df0b
 ---
 
 ---
@@ -137,6 +137,8 @@ Get Skill Version
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

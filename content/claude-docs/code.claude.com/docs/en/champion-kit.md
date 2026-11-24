@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/champion-kit
-fetched_at: 2026-10-24T02:19:09.817678Z
-sha256: f82f58eda6f38c81c2299a657cad0a1c515bcbd560b73bdbcde18309be5cd5b6
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: d69c906d4eeadefa85e833eff305715bfbcd0e935c0082776c5c331cab5cae8f
 ---
 
 > ## Documentation Index
@@ -130,7 +130,7 @@ The objective is to establish a small number of lightweight habits that allow mo
 | - | - | - |
 | A dedicated channel | Create a `#claude-code` channel (or a recurring thread in an existing one), pin the [Quickstart](https://code.claude.com/docs/en/quickstart.md) link and one strong example, and answer questions publicly so each answer benefits everyone watching. | About five minutes to set up, then ambient |
 | A weekly show-and-tell thread | Each Friday, post "What did Claude help you with this week?" No preparation, slides, or meeting are required; screenshots and short descriptions are sufficient. | About two minutes per week |
-| Share a custom skill | Post your most useful `.claude/skills/<name>/SKILL.md` file, for example a `/ship` skill that runs tests and lint before committing, with a one-line description. Because skills are plain Markdown, colleagues can adopt them immediately. | About five minutes per skill |
+| Share a custom skill | Post your most useful `.claude/skills/<name>/SKILL.md` file, for example a `/precommit` skill that runs tests and lint before committing, with a one-line description. Because skills are plain Markdown, colleagues can adopt them immediately. | About five minutes per skill |
 | Generate a setup guide from your own usage | Run `/team-onboarding` in a project you have spent real time in. Claude scans your recent sessions, commands, and MCP servers, then produces a guide a new teammate can paste as their first message to replay your setup. Pin it in the channel. | About two minutes |
 | Pair on a first task | Offer a single fifteen-minute pairing session to anyone getting started. One successful outcome on their own code is more persuasive than any presentation. | About fifteen minutes per person |
 | Identify the next champion | The colleague who asks you the most questions is usually ready to take on this role. Forward them this page and divide the channel responsibilities between you. | Negligible |

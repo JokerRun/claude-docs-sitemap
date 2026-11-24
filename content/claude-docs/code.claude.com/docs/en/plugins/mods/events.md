@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/events
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 459f18ed86392ed3993c9aa3d2709fdae7a154af711b42f73f3d92bc6f0719b4
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: b33b13f1aa7b6adf01430a3b64c6bd9ed5143accbb1e4642373dcbe082813a1d
 ---
 
 > ## Documentation Index
@@ -403,7 +403,9 @@ On Claude Code's own read, if your hook returns a value outside the key's schema
 
 ### Handle the settings hook events
 
-Settings hooks are the command, HTTP, prompt, and agent hooks you configure in settings files. Each [settings hook event](https://code.claude.com/docs/en/hooks.md#hook-events), such as `Stop`, `SessionEnd`, or `PostToolUse`, is also an event named `classic.` followed by the settings hook event's name, such as `classic.Stop`. `e` is the JSON a settings hook receives on stdin, including `transcript_path`. Where the [built-in guard](https://code.claude.com/docs/en/plugins/mods/admin.md#know-what-happens-by-default) loads, [a hook on these events in a mod you install doesn't run](https://code.claude.com/docs/en/plugins/mods/admin.md#hooks-the-guard-passes-over).
+To handle a [settings hook event](https://code.claude.com/docs/en/hooks.md#hook-events), add the `classic.` prefix to its name, as in `classic.Stop`. Where the [built-in guard](https://code.claude.com/docs/en/plugins/mods/admin.md#know-what-happens-by-default) loads, [a hook on these events in a mod you install doesn't run](https://code.claude.com/docs/en/plugins/mods/admin.md#hooks-the-guard-passes-over).
+
+On `classic.PreToolUse`, `e` describes only the tool call: the tool's name in `e.tool` and a built-in tool's arguments as fields, such as `e.command` for Bash. On other events, `e` has the fields their settings hooks read from stdin.
 
 This hook uses `Stop`, which fires when Claude finishes responding, to log where the session's transcript is saved:
 

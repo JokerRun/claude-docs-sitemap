@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/analytics
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b1dffd801fb9702feb6eb1f777903835eeb129f888b9c23a5ff8d790447fc8ea
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e47daf5d874a41266f4f5edcd6ab9057018f8e2b8d980874cad018c1e49d053f
 ---
 
 ---
@@ -5790,6 +5790,8 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -6610,6 +6612,8 @@ API key with the `read:analytics` scope, or an Admin API key.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

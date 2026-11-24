@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_code/managed_settings/rbac_groups/delete
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: c0a8aa80482b2a34c3147747ae64451621eee3182d1c03167061cc50bb48c72c
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 7be018008a060ae43a589b62d5cc7866b95afbe1f3d18bcca85a344c6500c4f3
 ---
 
 ---
@@ -137,6 +137,8 @@ A write that returns `503` may have applied. Retrying it is safe.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

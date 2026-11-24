@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/installation_settings/set
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 6cb8e29bf5d2d45c56f0fd1ef6b06c9472aa5386870113eee9455c13f96e2ede
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 0461f2f44de00617c96534f28953851353345c32771b5b7699379de0408a087f
 ---
 
 ---
@@ -143,6 +143,8 @@ Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-0
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

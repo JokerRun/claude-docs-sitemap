@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/self-hosted-environments-reference
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 3f98bfb29bfce79fa7172ed86e739d38957dbe6607a57928e83e5c9c0f6b0073
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: ace57c91f20fe6be514e4af866834340b5ca32ba535fbbd00aa0b8a5aef9b874
 ---
 
 > ## Documentation Index
@@ -11,7 +11,7 @@ sha256: 3f98bfb29bfce79fa7172ed86e739d38957dbe6607a57928e83e5c9c0f6b0073
 
 # Self-hosted environments reference
 
-> Complete reference for the self-hosted runner and orchestrator: CLI flags, environment variables, and Prometheus metrics.
+> Reference for the self-hosted runner and orchestrator: CLI flags, environment variables, and Prometheus metrics.
 
 > [!NOTE]
 >
@@ -19,7 +19,7 @@ sha256: 3f98bfb29bfce79fa7172ed86e739d38957dbe6607a57928e83e5c9c0f6b0073
 
 This page is the reference for the two processes you run in a [self-hosted environment](https://code.claude.com/docs/en/self-hosted-environments): the runner, which executes Claude Code [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md) on your hosts, and the optional autoscaling orchestrator, which starts runners as sessions queue. Each has its own flag table. Both run on Linux or macOS hosts, which the defaults such as `/workspace` and `~/.claude` assume. Run `claude self-hosted-runner --help` for the authoritative list on your installed version.
 
-Metric series and a few API fields still use `pool` for what these pages call an environment; both terms name the same thing. The environment ID is the `pool_id` field, with the form `ccpool_...`: wherever these pages show a `pool` identifier, it names the environment. CLI flags and environment variables spell it `environment`, such as `--environment-secret-file`; the deprecated `pool` spellings still work, as the [`--environment-secret-file` row](#runner-cli-flags) describes.
+Metric series and a few API fields still use `pool` for what these pages call an environment. The environment ID is the `pool_id` field, with the form `ccpool_...`: wherever these pages show a `pool` identifier, it names the environment. CLI flags and environment variables spell it `environment`, such as `--environment-secret-file`; the deprecated `pool` spellings still work, as the [`--environment-secret-file` row](#runner-cli-flags) describes.
 
 ## Runner CLI flags
 

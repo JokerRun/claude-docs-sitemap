@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/change-tools-or-instructions
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: f9383a62dfd2ab134b8c788409067550e701cd575c0556620ca93a795315f7f3
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 3a367070a2799368110cf90a7274bea7d7e516e0b89300a6e88211fcbcccdf02
 ---
 
 ---
@@ -279,7 +279,7 @@ Setelah ringkasan atau pemotongan Anda sendiri, pemikiran giliran yang dipertaha
 
 Jika permintaan orang lain melewati kode Anda, penulisan ulang yang Anda lakukan mengubah riwayat mereka, dan mereka mungkin tidak dapat melihat atau memperbaiki perubahan tersebut. Jangan sembunyikan error 400. Jika Anda melakukan pemulihan untuk pemanggil, beri tahu mereka, karena riwayat mereka masih berisi perubahan tersebut.
 
-* Teruskan nilai `anthropic-beta` dan `thinking.block_binding` sebagaimana dikirim. Jika gateway Anda hanya mengizinkan field yang dikenal, tambahkan `thinking.block_binding` dan nilai header `thinking-binding-controls-2026-08-01`, atau pengguna Anda tidak dapat memilih `"drop_block"`.
+* Teruskan header `anthropic-beta` dan `thinking.block_binding` sebagaimana dikirim. Jika gateway Anda hanya mengizinkan field yang dikenal, tambahkan `thinking.block_binding` dan beta `thinking-binding-controls-2026-08-01` dalam header tersebut, atau pengguna Anda tidak dapat memilih `"drop_block"`.
 * Jangan menghapus beta header lalu meneruskan setting tersebut. Permintaan seperti itu mendapatkan error 400.
 * Kembalikan blok pemikiran yang teksnya kosong, dan array `input_transformations`, kepada pemanggil.
 * Biarkan pesan `role: "system"` di tempatnya. Memindahkannya ke `system` membuat pemikiran yang sudah ada dalam percakapan tidak valid.

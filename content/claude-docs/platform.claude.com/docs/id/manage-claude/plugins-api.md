@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/plugins-api
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 1485591244462eebc22810d6a03816ec225939c75d07290794b71679f718f51d
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 004273d4a8687366f0a4f4a81b9388d99468b3b587b787347384b5c2bc6a6721
 ---
 
 ---
@@ -3331,7 +3331,7 @@ Respons error mengikuti bentuk standar yang didokumentasikan dalam [Error Claude
 | 400 | Input tidak valid, atau operasi tidak berlaku untuk plugin atau marketplace ini (lihat bagian masing-masing endpoint). Juga dikembalikan untuk parameter kueri yang tidak dikenali oleh endpoint, dan untuk organisasi yang bukan organisasi Claude Enterprise (`this endpoint is not supported for this organization type`). |
 | 401 | Header `x-api-key` tidak ada, atau kunci tidak dikenali. |
 | 403 | Kunci tidak memiliki scope yang diperlukan, atau permintaan mengunggah ke plugin atau marketplace pribadi milik anggota, mengubah versi yang disajikannya, atau menetapkan default-nya. (Menghapus plugin milik anggota diizinkan.) |
-| 404 | Sumber daya tidak ditemukan. Juga dikembalikan ketika permintaan tidak menyertakan nilai `anthropic-beta`, atau API tidak diaktifkan untuk organisasi Anda, sehingga endpoint tampak seolah-olah tidak ada. |
+| 404 | Sumber daya tidak ditemukan. Juga dikembalikan ketika permintaan tidak menyertakan beta API ini, atau API tidak diaktifkan untuk organisasi Anda, sehingga endpoint tampak seolah-olah tidak ada. |
 | 409 | Sebuah nama sudah digunakan, `content_scan` suatu versi bernilai `processing`, atau ada unggahan yang bertentangan sedang berlangsung. |
 | 413 | Body permintaan melebihi batas ukuran: 200 MB untuk unggahan, 32 MB untuk validasi marketplace. |
 | 429 | “Rate limit” (batas laju) terlampaui. Lihat [Pembatasan laju](https://platform.claude.com/docs/id/manage-claude/plugins-api#rate-limiting). |

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/overview
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: cc48ad3d20128a0ac3b618bfb31f599b6ab1f3b721ff4bd67ec64c97c78a6e51
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 4a3a65a57c0c0b5061e86c90d624d48279b5f7274e9c97daed39ce36a6fb21b8
 ---
 
 ---
@@ -91,6 +91,7 @@ Features of the Claude Platform that work across its APIs. Each feature’s page
 | [Bash tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/bash-tool) | Lets Claude request shell commands, which run in a bash session that keeps its state between commands. |
 | [Code execution tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/code-execution-tool) | Lets Claude run Python and Bash code in a sandboxed container. |
 | [Context editing](https://platform.claude.com/docs/en/build-with-claude/context-editing) | Clears selected content, such as old tool results or old thinking blocks, from the conversation history as it grows. |
+| [Enterprise Frontier Safeguards](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/overview) | Zero Data Retention (ZDR) for eligible organizations that use Claude’s most capable models. Sealed safety data, the encrypted copies of your requests and responses, goes to storage that you own. Anthropic Human Review is always off, so your own team reviews flagged cases that automated Safety Review finds. |
 | [Forced tool use](https://platform.claude.com/docs/en/agents-and-tools/tool-use/define-tools#forcing-tool-use) | Makes Claude call a tool, or one specific tool, instead of answering directly. |
 | [Memory tool](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool) | Lets Claude store and read information across conversations in a directory of memory files. |
 | ↳ [Memory tool helpers](https://platform.claude.com/docs/en/agents-and-tools/tool-use/memory-tool#implement-the-memory-handler) | SDK helpers that handle the memory tool’s interface and tool-use loop, so your code supplies only the storage. |

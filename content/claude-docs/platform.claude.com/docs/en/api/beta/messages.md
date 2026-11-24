@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 5cb9a82e990cd493fb218ad845bbb6053a72e13c7486d3160b6f4ab9185412ea
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 74d9b9655e0e90eaab9fdcda07553d33a219e5a2cdbe59749b6444bb0c20decb
 ---
 
 ---
@@ -129,6 +129,8 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -8941,6 +8943,8 @@ Learn more about token counting in our [user guide](https://platform.claude.com/
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -91278,6 +91282,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -95841,6 +95847,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -96177,6 +96185,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -96524,6 +96534,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -96852,6 +96864,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -97071,6 +97085,8 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 83cf00ac3bda619ea4f53553737c1377304b8948af18e6209513586530e91eff
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 0cb84a0ec9d484f77ec5412178acb5da665c01471282cfdc5abc1456d034e055
 ---
 
 ---
@@ -166,6 +166,8 @@ come in a fixed order that is not creation order.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

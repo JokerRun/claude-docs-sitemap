@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/remove
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 32c5d7e2235f413255b7ebcfe3ba80d50f7aa897b1dabc3101c32ddc4d6503e8
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 679eca9708a8f62d9085b27c9630d20e98aaae023173c9f9b83ca1974739b324
 ---
 
 ---
@@ -143,6 +143,8 @@ to the implicit `workspace_user` membership. Archived workspaces return
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

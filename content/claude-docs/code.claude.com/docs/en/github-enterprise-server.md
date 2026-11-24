@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/github-enterprise-server
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 155e4d6d2d2378bc508d07f6f5a860a38841ed5b5dc2bae8b20f909bcf1b804d
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e96d85c2fb28e33549c68472eaad230f14b03b940ac8009d2bc111ab73855bc0
 ---
 
 > ## Documentation Index
@@ -60,7 +60,7 @@ From the GitHub App page on your GHES instance, install the app on the repositor
 
 **5. Enable Code Review**
 
-Go to [claude.ai/admin-settings/claude-code](https://claude.ai/admin-settings/claude-code) and enable [Code Review](https://code.claude.com/docs/en/code-review-setup.md) for your GHES repositories using the same configuration as github.com.
+Go to [**Organization settings > Claude Ship**](https://claude.ai/admin-settings/claude-code#code-review) and enable [Code Review](https://code.claude.com/docs/en/code-review-setup.md) for your GHES repositories using the same configuration as github.com.
 
 ### GitHub App permissions
 
@@ -98,7 +98,7 @@ Hosted pre-session flows, such as the repository picker, run on Anthropic's side
 
 Claude Code detects your GHES hostname automatically from the git remote in your working directory.
 
-Clone a repository from your GHES instance as you normally would, replacing `github.example.com` and the repository path with your GHES hostname and repository:
+Clone a repository from your GHES instance, replacing `github.example.com` and the repository path with your GHES hostname and repository:
 
 ```bash theme={null}
 git clone git@github.example.com:platform/api-service.git

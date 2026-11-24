@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 2009ce14261569fa1e2bd5ce68969734bcca3539417cca58cab23098e8645e07
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e9c25cc2f391ec941a917c8571ba0b0929dae9fc8bba9213fe312a88f664cb65
 ---
 
 ---
@@ -134,6 +134,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -178,13 +180,17 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
 ### Body parameters
 
-- `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+- `enabled_events: array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
   The event types to deliver to the endpoint. Must list at least one.
 
   - `"external_key.failed"`
 
   - `"external_key.recovered"`
+
+  - `"external_storage.failed"`
+
+  - `"external_storage.recovered"`
 
   - `"user_profile.enforcement_action_opened"`
 
@@ -230,13 +236,17 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
     The event types delivered to the endpoint.
 
     - `"external_key.failed"`
 
     - `"external_key.recovered"`
+
+    - `"external_storage.failed"`
+
+    - `"external_storage.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -450,6 +460,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -516,13 +528,17 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
     The event types delivered to the endpoint.
 
     - `"external_key.failed"`
 
     - `"external_key.recovered"`
+
+    - `"external_storage.failed"`
+
+    - `"external_storage.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -722,6 +738,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -789,13 +807,17 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
     The event types delivered to the endpoint.
 
     - `"external_key.failed"`
 
     - `"external_key.recovered"`
+
+    - `"external_storage.failed"`
+
+    - `"external_storage.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -976,6 +998,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1024,13 +1048,17 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   Notes about the endpoint.
 
-- `enabled_events: optional array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+- `enabled_events: optional array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
   The event types to deliver to the endpoint. Replaces the whole set; an empty list leaves it unchanged.
 
   - `"external_key.failed"`
 
   - `"external_key.recovered"`
+
+  - `"external_storage.failed"`
+
+  - `"external_storage.recovered"`
 
   - `"user_profile.enforcement_action_opened"`
 
@@ -1081,13 +1109,17 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
     The event types delivered to the endpoint.
 
     - `"external_key.failed"`
 
     - `"external_key.recovered"`
+
+    - `"external_storage.failed"`
+
+    - `"external_storage.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -1269,6 +1301,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1482,6 +1516,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1604,13 +1640,17 @@ curl https://api.anthropic.com/v1/organizations/webhooks/$WEBHOOK_ENDPOINT_ID/re
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
     The event types delivered to the endpoint.
 
     - `"external_key.failed"`
 
     - `"external_key.recovered"`
+
+    - `"external_storage.failed"`
+
+    - `"external_storage.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 
@@ -1669,13 +1709,17 @@ curl https://api.anthropic.com/v1/organizations/webhooks/$WEBHOOK_ENDPOINT_ID/re
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
     The event types delivered to the endpoint.
 
     - `"external_key.failed"`
 
     - `"external_key.recovered"`
+
+    - `"external_storage.failed"`
+
+    - `"external_storage.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 

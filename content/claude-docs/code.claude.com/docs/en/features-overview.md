@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/features-overview
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: efc49e737525802ae8d69539111980817a9d2862f3be759a10e6f00a3ecfe4db
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: cf27c8f13d5ad56752541702ff79de34a201cfade3c81caffe3b37e150811b4e
 ---
 
 > ## Documentation Index
@@ -59,7 +59,7 @@ Features range from always-on context that Claude sees every session, to on-dema
 
 ### Build your setup over time
 
-You don't need to configure everything up front. Each feature has a recognizable trigger, and most teams add them in roughly this order:
+Each feature has a recognizable trigger, and most teams add them in roughly this order:
 
 | Trigger | Add |
 | :- | :- |

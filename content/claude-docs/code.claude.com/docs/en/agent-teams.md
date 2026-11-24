@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 365cf8cb849c719fd7bbfe7791183d58b88736b2d79b0c9b3af64290b55ef141
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: d5ebbeeb8925b0a9ef4fb02ad2beba79e16410b1d2b30365e9049daf37770bb9
 ---
 
 > ## Documentation Index
@@ -102,7 +102,7 @@ Tell the lead what you want in natural language. It handles team coordination, t
 
 Agent teams support two display modes:
 
-* **In-process**: all teammates run inside your main terminal. Use the up and down arrow keys in the agent panel to select a teammate, then press Enter to view it and type to message it directly. Works in any terminal, no extra setup required.
+* **In-process**: all teammates run inside your main terminal. Use the up and down arrow keys in the agent panel to select a teammate, then press Enter to view it and type to message it directly. Works in any terminal.
 * **Split panes**: each teammate gets its own pane. You can see everyone's output at once and click into a pane to interact directly. Requires tmux, or iTerm2.
 
 > [!NOTE]
@@ -346,7 +346,7 @@ A teammate also receives the spawn prompt from the lead. The lead's conversation
 
 **How teammates share information:**
 
-* **Automatic message delivery**: when teammates send messages, they're delivered automatically to recipients. The lead doesn't need to poll for updates.
+* **Automatic message delivery**: when teammates send messages, they're delivered automatically to recipients.
 * **Idle notifications**: when a teammate finishes and stops, it automatically notifies the lead and includes its final answer in the notification. A teammate whose turn ends on an API error notifies the lead that it failed and includes the error text.
 * **Shared task list**: [agents that have the Task tools](https://code.claude.com/docs/en/tools-reference.md#task-tool-availability) can see task status and claim available work.
 * **Teammate messaging**: send a message to one specific teammate by name. To reach everyone, send one message per recipient.

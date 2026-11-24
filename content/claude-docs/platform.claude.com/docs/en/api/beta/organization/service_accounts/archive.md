@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 343322a2a34f50a2335cd3ef3b155aa820aca8cf5344538d083c2e1395c23c03
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: d8ee692f8d0f9385f70ec6bbf334410a1fda566d46bfc498cce9e34eb55bb5b7
 ---
 
 ---
@@ -136,6 +136,8 @@ those rules first or change their target to another service account.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 985be5f961027f7d1ecc2241a5952277246d78ebfc900329d4cea44746619bdb
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 0def9309256573f81bb39b9e7541fa0d1e393d331dffc21804e1405655b8447c
 ---
 
 ---
@@ -83,8 +83,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.12.0")
-        implementation("com.anthropic:anthropic-java-foundry:3.12.0")
+        implementation("com.anthropic:anthropic-java:3.13.0")
+        implementation("com.anthropic:anthropic-java-foundry:3.13.0")
         ```
       </Tab>
 
@@ -93,12 +93,12 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
         </dependency>
         ```
       </Tab>
@@ -675,7 +675,7 @@ Model Claude berikut tersedia melalui Foundry:
 | Claude Opus 4.8 | `claude-opus-4-8` | ✓ | ✓ |
 | Claude Opus 4.7 | `claude-opus-4-7` |  | ✓ |
 | Claude Opus 4.6 | `claude-opus-4-6` |  | ✓ |
-| Claude Opus 4.5 | `claude-opus-4-5` |  | ✓ |
+| Claude Opus 4.5 ([deprecated](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `claude-opus-4-5` |  | ✓ |
 | Claude Sonnet 5.5 | `claude-sonnet-5-5` | ✓ | ✓ |
 | Claude Sonnet 5 | `claude-sonnet-5` | ✓ | ✓ |
 | Claude Sonnet 4.6 | `claude-sonnet-4-6` |  | ✓ |

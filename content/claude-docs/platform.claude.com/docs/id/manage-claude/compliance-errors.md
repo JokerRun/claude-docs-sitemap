@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-errors
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: 93d3f78de090af0fbc63799cf5549922afeb23927289f48222aac7c659363cf4
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 30fa82a1137f886d0a7b7a97f3693a106d8dd176dbc3ab67beab807e80caeac2
 ---
 
 ---
@@ -71,7 +71,7 @@ Unknown query parameter: 'created_at[gte]'. Did you mean 'created_at.gte'?
 
 **Penyebab:** Permintaan menyertakan parameter query yang tidak didefinisikan oleh endpoint; Compliance API menolak parameter yang tidak dikenali alih-alih mengabaikannya. Pesan menyebutkan nama parameter tersebut dan, untuk kesalahan yang nyaris benar seperti notasi kurung siku sebagai pengganti titik atau akhiran `[]` yang hilang, menyarankan nama yang didefinisikan.
 
-**Perbaikan:** Gunakan nama parameter yang ditampilkan di halaman [referensi Compliance API](https://platform.claude.com/docs/id/api/compliance) untuk endpoint tersebut. Filter rentang menggunakan notasi titik (misalnya, `created_at.gte`), filter array menggunakan akhiran `[]` (misalnya, `activity_types[]`), dan parameter paginasi adalah `after_id`, `before_id`, atau `page`, tergantung pada endpoint-nya.
+**Perbaikan:** Gunakan nama parameter yang ditampilkan di halaman [referensi Compliance API](https://platform.claude.com/docs/id/api/compliance) untuk endpoint tersebut. Filter rentang menggunakan notasi titik (misalnya, `created_at.gte`), filter array menggunakan akhiran `[]` (misalnya, `activity_types[]`), dan parameter paginasi adalah `after_id`, `before_id`, atau `page`, tergantung pada endpoint-nya. [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api) adalah pengecualiannya: filter rentangnya menggunakan kurung siku (misalnya, `updated_at[gte]`).
 
 ### Nilai parameter tidak valid
 
@@ -203,7 +203,7 @@ API key has expired.
 
 Kunci di `x-api-key` valid tetapi tidak membawa scope yang diterima oleh endpoint. Pesan apa adanya mencantumkan scope yang dibawa kunci (`Got:`) dan scope yang diterima endpoint (`Needed one of:` pada endpoint baca, di mana salah satu scope yang tercantum sudah cukup, atau `Needed:` pada endpoint hapus), sehingga Anda dapat memastikan apa yang dibawa kunci tanpa memeriksa ulang Claude Console atau claude.ai. Pada endpoint baca, daftar yang diterima juga mencakup `read:org_audit`, scope audit hanya-baca yang mencakup setiap endpoint baca Compliance API; lihat [Memilih scope untuk kunci Claude Enterprise](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key). Scope Compliance Access Key tidak dapat diubah setelah dibuat, sehingga setiap perbaikan untuk scope yang tidak memadai mengarahkan Anda untuk membuat kunci baru alih-alih mengedit kunci yang ada.
 
-Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) tidak dapat membuat Compliance Access Key, sehingga perbaikan yang memerlukannya tidak berlaku untuk organisasi tersebut; organisasi tersebut hanya dapat mengkueri Activity Feed.
+Organisasi Claude Console mandiri (yang tidak memiliki organisasi induk) tidak dapat membuat Compliance Access Key, sehingga perbaikan yang memerlukannya tidak berlaku untuk organisasi tersebut; organisasi tersebut dapat mengkueri Activity Feed. Kunci Admin API yang Anda buat saat [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access) tersedia untuk organisasi Anda juga dapat menjangkau API tersebut. Kunci Admin API lainnya akan mendapatkan error 403 dari API tersebut. Jika API tersebut tersedia untuk organisasi Anda, buat [kunci Admin API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#create-an-admin-api-key) lain.
 
 ### Scope tidak memadai: Activity Feed
 
@@ -231,7 +231,7 @@ Missing required scopes. Got: ['read:compliance_user_data'] Needed one of: ['rea
 **Penyebab:** Kunci tanpa `read:compliance_org_data` digunakan untuk memanggil endpoint organisasi, peran, grup, atau pengaturan efektif, atau endpoint Security posture. Ada dua jalur umum yang menyebabkan error ini:
 
 * Compliance Access Key (`sk-ant-api01-...`) dibuat tanpa scope `read:compliance_org_data`.
-* Kunci Admin API Claude Console (`sk-ant-admin01-...`) digunakan. Kunci Admin API hanya membawa `read:compliance_activities` dan tidak dapat membaca metadata organisasi.
+* Kunci Admin API Claude Console (`sk-ant-admin01-...`) digunakan. Kunci Admin API tidak dapat membaca metadata organisasi.
 
 **Perbaikan:** [Buat Compliance Access Key baru](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) dengan `read:compliance_org_data` dipilih. Kunci Admin API tidak dapat membaca metadata organisasi; Compliance Access Key diperlukan.
 
@@ -258,7 +258,7 @@ Missing required scopes. Got: ['read:compliance_activities'] Needed one of: ['re
 **Penyebab:** Kunci tanpa `read:compliance_user_data` digunakan untuk memanggil endpoint chat, pesan, file, proyek, sesi, pengguna organisasi, atau anggota grup. Ada dua jalur umum yang menyebabkan error ini:
 
 * Compliance Access Key (`sk-ant-api01-...`) dibuat tanpa scope `read:compliance_user_data`.
-* Kunci Admin API Claude Console (`sk-ant-admin01-...`) digunakan. Kunci Admin API hanya membawa `read:compliance_activities` dan tidak dapat diberi `read:compliance_user_data`, sehingga tidak dapat memanggil endpoint chat, file, proyek, lampiran proyek, sesi, pengguna, atau anggota grup.
+* Kunci Admin API Claude Console (`sk-ant-admin01-...`) digunakan. Kunci Admin API hanya membawa `read:compliance_activities` dan tidak dapat diberi `read:compliance_user_data`, sehingga tidak dapat memanggil endpoint chat, file, proyek, lampiran proyek, sesi, pengguna, atau anggota grup. Pengecualiannya adalah scope [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access): kunci Admin API yang Anda buat saat API tersebut tersedia untuk organisasi Anda juga membawa scope tersebut.
 
 **Perbaikan:** Gunakan [Compliance Access Key](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) yang dibuat di claude.ai dengan `read:compliance_user_data` dipilih. Jika permintaan memang seharusnya hanya untuk Activity Feed, arahkan kunci Admin API ke `GET /v1/compliance/activities` sebagai gantinya.
 

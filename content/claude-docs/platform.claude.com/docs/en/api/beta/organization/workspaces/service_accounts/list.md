@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 1dcfc7c2d40acd7798be63687d7d03ff547986c3988d9f9b2e260005124e5399
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 1e5ac86d3bbefda9eba7f351da3878288475bca4a463393163f2646d97d3efb2
 ---
 
 ---
@@ -150,6 +150,8 @@ omitted from the results.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

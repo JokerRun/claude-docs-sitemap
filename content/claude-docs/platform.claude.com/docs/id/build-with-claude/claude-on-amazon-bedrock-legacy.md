@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b5b13f6bc1b115b12be5e6fe927703d3d9e11881249219b5248f03fa72bd4781
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 2c823d32856abc4bb015bf0cef6e811ac37af37e3d07a19e71bed8410b33948c
 ---
 
 ---
@@ -797,7 +797,7 @@ Untuk menggunakan salah satunya, tambahkan entri bertipe `computer_toolset_20260
 
 [Pesan sistem di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/mid-conversation-system-messages) tersedia melalui InvokeModel API untuk Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Sonnet 5.5, dan Claude Haiku 5.5. Fitur ini tidak tersedia di Claude Sonnet 5. Gunakan field `system` tingkat atas sebagai gantinya. Fitur ini tidak tersedia untuk model lainnya dalam tabel model di halaman ini.
 
-Pesan `role: "system"` juga dapat menetapkan `output_config.effort` untuk [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) di Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Opus 5.5. Ini masih dalam beta: tambahkan `mid-conversation-output-config-2026-07-01` ke array `anthropic_beta` di body permintaan. Tanpa nilai tersebut, atau di Claude Fable 5, Claude Opus 5, atau Claude Opus 4.8, permintaan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`. Dalam error tersebut, `N` adalah indeks pesan `system` di `messages`.
+Pesan `role: "system"` juga dapat menetapkan `output_config.effort` untuk [mengubah effort di tengah percakapan](https://platform.claude.com/docs/id/build-with-claude/effort-per-message) di Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, dan Claude Opus 5.5. Ini masih dalam beta: tambahkan `mid-conversation-output-config-2026-07-01` ke array `anthropic_beta` di body permintaan. Tanpa beta tersebut, atau di Claude Fable 5, Claude Opus 5, atau Claude Opus 4.8, permintaan mengembalikan error 400: `messages.N.output_config: Extra inputs are not permitted`. Dalam error tersebut, `N` adalah indeks pesan `system` di `messages`.
 
 **Bagi pengguna Converse API:** Converse API menerima instruksi sistem melalui [parameter `system`](https://docs.aws.amazon.com/bedrock/latest/APIReference/API_runtime_Converse.html) tingkat atasnya. Untuk menambahkan instruksi sistem di tengah percakapan, gunakan InvokeModel API.
 

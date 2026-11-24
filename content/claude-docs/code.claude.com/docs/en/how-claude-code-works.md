@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 23891c1c03c0ded782b93f6b7753d2fed1008fd08580d4f3fbc8164913876a24
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: f4db25ce5155b1b313a8b485edb528b6025754fe91a656cdfbcd9781ee80d74a
 ---
 
 > ## Documentation Index
@@ -107,7 +107,7 @@ Claude Code saves your conversation locally as you work. Each message, tool use,
 
 Each Claude Code conversation is a session tied to your current directory. The `/resume` picker shows sessions from the current worktree by default, with keyboard shortcuts to widen the list to other worktrees or projects. See [Manage sessions](https://code.claude.com/docs/en/sessions.md#use-the-session-picker) for the full list of picker shortcuts and how name resolution works.
 
-Claude sees your current branch's files. When you switch branches, Claude sees the new branch's files, but your conversation history stays the same. Claude remembers what you discussed even after switching.
+Claude sees your current branch's files. When you switch branches, Claude sees the new branch's files, but your conversation history stays the same.
 
 Since sessions are tied to directories, you can run parallel Claude sessions by using [git worktrees](https://code.claude.com/docs/en/worktrees.md), which create separate directories for individual branches.
 
@@ -194,7 +194,7 @@ Built-in commands also guide you through setup:
 
 ### It's a conversation
 
-Claude Code is conversational. You don't need perfect prompts. Start with what you want, then refine:
+Claude Code is conversational, so start with what you want, then refine:
 
 ```text theme={null}
 Fix the login bug

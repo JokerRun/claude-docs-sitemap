@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: af47010e9fcbf4c6e6b4d57072f8aa10e10f352bfa1b2374282f9274a5b2aca9
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e717504f0bb6acd4774a231bb5082b06ee905e95c2169b127482b6f7eb96c7ea
 ---
 
 ---
@@ -223,6 +223,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `external_key_changed` (HTTP status 409)
 
   The external key changed while the request was validating it. Send the request again.
+
+- `workspace_created_incomplete` (HTTP status 503)
+
+  The Workspace was created, but some of what the request asked for did not take effect, or may not have. Don't send the create again. The error's `message` says what to do with the Workspace at `workspace_id`.
 
 ## Example
 

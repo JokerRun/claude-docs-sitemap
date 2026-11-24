@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/retrieve
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 58924cb76a26059b73f1bc49ec15137313e48cef86bebb4f8ff429730193eff7
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 5cb6a93ab318b9a0f933f40db661292d957daf27e4c14242c5c93cf3501a0cc3
 ---
 
 ---
@@ -129,6 +129,8 @@ Get Session Thread
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

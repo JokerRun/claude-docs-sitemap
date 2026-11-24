@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/retrieve
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 6877559232690a4ffef16bab0be98202ccac697bbbd08f6d6d62ec084189de52
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: c9f7aaf2659d0d04beb13e7f8e75f3c30708750a87e99010846e4549e9dcc4d2
 ---
 
 ---
@@ -129,6 +129,8 @@ Get one Bundle. What the Bundle grants (connectors, repositories and credentials
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

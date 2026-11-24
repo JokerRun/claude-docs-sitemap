@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/files/delete
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 2aab345b3f7c68fb7cc76bf441954c89d6b45e6e9428b1758ba3363e4b998d8e
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: a5512eabfc91cb69510b64f925caf9365fa514f4aac8cf3c811ddb5990b26e63
 ---
 
 ---
@@ -129,6 +129,8 @@ Delete File
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: a62a114b389483bef9d9baa693ef720ea1207684ffe466b6b6efe478991e3ce1
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 534587eb63ff8a496418de6a4fae4f71d961a2510eb6cc6b6dda48c696bfb01e
 ---
 
 ---
@@ -123,6 +123,8 @@ Create a new environment with the specified configuration.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

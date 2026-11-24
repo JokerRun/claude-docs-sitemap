@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/update
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 97cf85ef56dd720c6c07e28d1aed44e00062da086ad7cd78e793bdff835206a5
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: b262220d0db11e06e087341c7e91072ab58b67c30f77d4be6fec8ae61bca2367
 ---
 
 ---
@@ -129,6 +129,8 @@ Update Agent
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 985baba4677b88e4bcc6eb2a37cfdc3afa4a5b90446b6e8f2733545a3278c37d
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 1620a538a02886f760c0191320c349fbee55e0310cfd3d8691ebea12abc9c910
 ---
 
 ---
@@ -147,6 +147,8 @@ archived service accounts.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

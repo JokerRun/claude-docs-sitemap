@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/update
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: a0ee27f2b6f96ab70c813cb5fea557a9f545a522a1908c30c35d286bfb680179
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 5d37f724fa782bc4f232780f9ead6cca9a8b80e1debfd0d6042c44fd06ca2032
 ---
 
 ---
@@ -208,6 +208,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 
   After this request, the External Key and the Workspace would not have the same user profile. A key and its Workspace must have the same user profile, or both have none.
 
+- `storage_profile_mismatch` (HTTP status 400)
+
+  The Workspace's storage and its user profile don't match: the Workspace and its storage must have the same user profile, or both have none.
+
 - `user_profile_not_found` (HTTP status 400)
 
   The request depends on a user profile that does not exist in the organization or is no longer active. The request either names this user profile by ID, or names a resource, such as an External Key, that is bound to it.
@@ -223,6 +227,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `external_key_changed` (HTTP status 409)
 
   The external key changed while the request was validating it. Send the request again.
+
+- `change_outcome_unknown` (HTTP status 503)
+
+  Some of the request's changes may have been saved and others not. Send the same request again to finish it; changes already saved aren't repeated.
 
 ## Example
 

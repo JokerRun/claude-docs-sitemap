@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: abad3daf48209d9f40b45a35bba712ea192d5d9736a1d98b4ce34345f21262f6
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 7091a6a621bc0b548068bbd84ee1f3e932d2729fe1696341fa3b94a8852c772f
 ---
 
 ---
@@ -141,6 +141,8 @@ Lists tunnels. Results are ordered by creation time, newest first; archived tunn
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

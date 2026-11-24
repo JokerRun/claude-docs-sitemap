@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: c3b91e8e3ceae57c9afcbc4d32a1c7000e591957bdbc7cf05e2ea71ba23631a9
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 3ee44dded6470229765602a3f4f8caedc6497827f8abafc0411e07632900e199
 ---
 
 ---
@@ -155,6 +155,8 @@ List Session Threads
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1260,6 +1262,8 @@ Get Session Thread
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -2354,6 +2358,8 @@ Archive Session Thread
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -8087,6 +8093,8 @@ List Session Thread Events
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -11295,6 +11303,8 @@ Stream Session Thread Events
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

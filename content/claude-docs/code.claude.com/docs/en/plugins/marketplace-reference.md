@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/marketplace-reference
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: e4549a3fb8c2895ffef977a76e907d6dda7270f68b7907ac712d91c8186a8004
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 7b17c2956657dc63d34834a6861a95fefa5a54b886c2e179713bdde6a4d7e96b
 ---
 
 > ## Documentation Index
@@ -11,7 +11,7 @@ sha256: e4549a3fb8c2895ffef977a76e907d6dda7270f68b7907ac712d91c8186a8004
 
 # Marketplace reference
 
-> Complete reference for marketplace.json fields, plugin entries, and the plugin and marketplace source objects, with where each is valid.
+> Reference for marketplace.json fields, plugin entries, and the plugin and marketplace source objects, with where each is valid.
 
 `marketplace.json` is the file that defines a plugin marketplace. It contains the marketplace's name, its owner, and one entry per plugin. Each entry's plugin source says where Claude Code fetches that plugin from.
 
@@ -217,7 +217,7 @@ A bare name is a single directory name with no `/`, such as `"formatter"`. To wr
 
 * It must itself be a relative path inside the marketplace.
 * It has no effect on a source that already starts with `./`.
-* A source that contains a `/`, such as `team-a/formatter`, isn't a bare name and still needs the `./` prefix, even when `metadata.pluginRoot` is set.
+* A source that contains a `/`, such as `team-a/formatter`, isn't a bare name and still needs the `./` prefix.
 
 ### github plugin source
 

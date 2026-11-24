@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_code/managed_settings/rbac_groups/set
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 2c9a6942756439124f8b995ce686bd2bf5af61c7ab28fb97d7bfbaeb9a073dd2
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: ebfe24e170c4331297ed3085de86252b02cd0467af6dd318a9356e93447ba1e3
 ---
 
 ---
@@ -139,6 +139,8 @@ A write that returns `503` may have applied. Retrying it is safe.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

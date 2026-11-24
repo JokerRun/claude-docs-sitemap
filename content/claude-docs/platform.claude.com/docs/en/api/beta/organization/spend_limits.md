@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/spend_limits
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 91f2ddb7975efb4ecbf2e31570ca33cd58f41945cc087544a07a368ff3dc7472
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 51abcea32ce0995d97adcc995427be924ef7a850688e4299b6c62ff72d40e47d
 ---
 
 ---
@@ -133,6 +133,8 @@ Anthropic account team.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -810,6 +812,8 @@ come in a fixed order that is not creation order.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/api-and-data-retention
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: e5e87e1a6c4ba398fc2134d952259025f043b7ecdf9383c19400d174ebbc60ec
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 0492fc89e602943b9b4a7140ab4bd4b69e1d209311cdde39f1c0bc507f33e8ba
 ---
 
 ---
@@ -13,7 +13,11 @@ description: Pelajari bagaimana API Anthropic dan fitur-fitur terkait menyimpan 
 
 Halaman ini mencakup Claude API (`api.anthropic.com`), Claude Platform on AWS, [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), di mana Anthropic adalah pemroses data. Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, penyedia cloud adalah pemroses data; lihat dokumentasi retensi data dan kepatuhan platform tersebut untuk kontrol yang setara.
 
-Anthropic menawarkan dua pengaturan penanganan data untuk Claude API: [“zero data retention” (retensi data nol), atau ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) dan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness). [Tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility) mencantumkan fitur API mana yang dicakup oleh setiap pengaturan. Untuk kebijakan retensi standar Anthropic di luar pengaturan ini, lihat [kebijakan retensi data komersial](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) dan [kebijakan retensi data konsumen](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data).
+Anthropic kini menawarkan tiga pengaturan penanganan data untuk Claude API: [“legacy zero data retention” (retensi data nol lama), atau Legacy ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope), [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness), dan [Enterprise Frontier Safeguards (EFS ZDR)](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview). [Tabel kelayakan fitur](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#feature-eligibility) mencantumkan fitur API mana yang dicakup oleh Legacy ZDR dan kesiapan HIPAA. Untuk kebijakan retensi standar Anthropic di luar pengaturan ini, lihat [kebijakan retensi data komersial](https://privacy.claude.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data) dan [kebijakan retensi data konsumen](https://privacy.claude.com/en/articles/10023548-how-long-do-you-store-my-data).
+
+<Warning>
+  EFS ZDR dalam tahap beta. Selama EFS ZDR diluncurkan, jika Anda melihat referensi ke “ZDR” dalam Dokumentasi kami di luar panduan Enterprise Frontier Safeguards, referensi tersebut mengacu pada Legacy ZDR.
+</Warning>
 
 ## Bagaimana Anthropic menangani retensi data
 
@@ -101,7 +105,7 @@ Pesan error mencantumkan fitur tidak memenuhi syarat yang terdeteksi dalam permi
 
 ### Memulai dengan kesiapan HIPAA
 
-Ada dua cara untuk menyiapkan akses API yang siap HIPAA. Sebagian besar organisasi dapat mengaktifkannya langsung di Claude Console dengan BAA standar Anthropic; organisasi yang memerlukan BAA hasil negosiasi sebaiknya bekerja sama dengan tim akun mereka.
+Ada dua cara untuk menyiapkan akses API yang siap HIPAA. Organisasi yang memenuhi syarat dapat mengaktifkannya langsung di Claude Console dengan BAA standar Anthropic; organisasi yang memerlukan BAA hasil negosiasi sebaiknya bekerja sama dengan tim akun mereka.
 
 #### Aktifkan di Console (BAA standar)
 
@@ -119,9 +123,16 @@ Ada dua cara untuk menyiapkan akses API yang siap HIPAA. Sebagian besar organisa
   </Step>
 </Steps>
 
+#### Dapatkan bantuan pengaktifan di Console
+
+Jika Anda adalah admin organisasi, pihak yang perlu dihubungi bergantung pada kartu **Kepatuhan HIPAA**:
+
+* Jika tombol **Aktifkan** dinonaktifkan, hubungi [dukungan Anthropic](https://support.claude.com) atau tim akun Anda.
+* Jika Anda tidak dapat melihat kartu tersebut, hubungi [tim penjualan Anthropic](https://claude.com/contact-sales). Anthropic menandatangani BAA dan mengaktifkan kesiapan HIPAA untuk organisasi Anda.
+
 #### Hubungi tim penjualan (BAA kustom)
 
-Jika organisasi Anda memerlukan BAA hasil negosiasi atau kustom, atau jika pengaktifan mandiri tidak tersedia untuk organisasi Anda, hubungi [tim penjualan Anthropic](https://claude.com/contact-sales). Anthropic menandatangani BAA dan mengaktifkan kesiapan HIPAA untuk organisasi Anda.
+Jika organisasi Anda memerlukan BAA hasil negosiasi atau kustom, hubungi [tim penjualan Anthropic](https://claude.com/contact-sales). Anthropic menandatangani BAA dan mengaktifkan kesiapan HIPAA untuk organisasi Anda.
 
 #### Bangun dengan fitur yang memenuhi syarat
 
@@ -133,7 +144,7 @@ Jalur mana pun yang Anda gunakan, pastikan fitur mana yang didukung dalam [tabel
 
 ## Persyaratan retensi data khusus model
 
-Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 ditetapkan sebagai Covered Models. Lihat [artikel dukungan Covered Models](https://support.claude.com/en/articles/15425695). Model-model ini memerlukan retensi data 30 hari. Oleh karena itu ZDR tidak tersedia untuk model mana pun di antaranya kecuali diizinkan secara tegas oleh Anthropic. Di Claude API, permintaan ke Claude Fable 5 dari organisasi yang konfigurasi retensi datanya tidak memenuhi persyaratan ini akan mengembalikan `400 invalid_request_error`:
+Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 ditetapkan sebagai Covered Models. Lihat [artikel dukungan Covered Models](https://support.claude.com/en/articles/15425695). Model-model ini memerlukan retensi data 30 hari. Oleh karena itu ZDR tidak tersedia untuk model mana pun di antaranya kecuali diizinkan secara tegas oleh Anthropic. Dengan [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview), organisasi yang memenuhi syarat dapat menggunakan model-model ini di bawah ZDR Enterprise Frontier Safeguards. Di Claude API, permintaan ke Claude Fable 5 dari organisasi yang konfigurasi retensi datanya tidak memenuhi persyaratan ini akan mengembalikan `400 invalid_request_error`:
 
 ```json
 {
@@ -171,15 +182,15 @@ Tabel berikut mencantumkan fitur Claude API mana yang memenuhi syarat untuk peng
 
 Setiap kolom kelayakan menggunakan tiga nilai:
 
-* **Ya:** Fitur sepenuhnya memenuhi syarat dalam pengaturan tersebut. Untuk ZDR, “Ya” juga mengasumsikan bahwa Anda menggunakan model yang tidak memerlukan retensi data 30 hari; [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) tidak tersedia di bawah ZDR terlepas dari kelayakan fitur.
+* **Ya:** Fitur sepenuhnya memenuhi syarat dalam pengaturan tersebut. Untuk ZDR, “Ya” juga mengasumsikan bahwa Anda menggunakan model yang tidak memerlukan retensi data 30 hari; [Covered Models](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) tidak tersedia di bawah ZDR terlepas dari kelayakan fitur, kecuali diizinkan secara tegas oleh Anthropic atau digunakan di workspace di [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview).
 * **Ya (bersyarat):** Prompt Anda dan output Claude tidak disimpan, tetapi artefak teknis terbatas (disebutkan di kolom Detail) disimpan sebentar agar fitur dapat berfungsi. Lihat [Bagaimana Anthropic menangani retensi data](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#how-anthropic-approaches-data-retention) untuk komitmen yang mengatur fitur-fitur ini.
-* **Tidak:** Fitur tidak memenuhi syarat. Dalam kesiapan HIPAA, API memblokir permintaan yang menyertakan fitur “Tidak” dan mengembalikan error `400`, kecuali kolom Detail fitur tersebut menyatakan sebaliknya. Dalam ZDR, API **tidak** memblokir fitur-fitur ini; menggunakan salah satunya berarti memilih untuk keluar dari pengaturan ZDR Anda untuk data tertentu tersebut, dan kebijakan retensi yang didokumentasikan untuk fitur itu sendiri yang berlaku. Fitur yang ditandai “Tidak” untuk ZDR biasanya bersifat stateful (menyimpan job, file, atau status container), itulah sebabnya fitur tersebut tidak dapat memiliki retensi nol.
+* **Tidak:** Fitur tidak memenuhi syarat. Dalam kesiapan HIPAA, API memblokir permintaan yang menyertakan fitur “Tidak” dan mengembalikan error `400`, kecuali kolom Detail fitur tersebut menyatakan sebaliknya. Dalam ZDR, API **tidak** memblokir fitur-fitur ini; menggunakan salah satunya berarti memilih untuk keluar dari pengaturan ZDR Anda untuk data tertentu tersebut, dan kebijakan retensi yang didokumentasikan untuk fitur itu sendiri yang berlaku. Namun, di workspace dengan [Anthropic Human Review](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/human-review-and-access-transparency#turn-off-anthropic-human-review) nonaktif, seperti workspace apa pun di [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview), Batch API menolak batch baru. Layanan Claude Managed Agents milik Anthropic juga tidak menjalankan sesi di sana. Fitur yang ditandai “Tidak” untuk ZDR biasanya bersifat stateful (menyimpan job, file, atau status container), itulah sebabnya fitur tersebut tidak dapat memiliki retensi nol.
 
 ### Fitur platform
 
 Bagian ini mencantumkan fitur yang terkait dengan [Messages API](https://platform.claude.com/docs/id/build-with-claude/working-with-messages) maupun [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview). Beberapa hanya tersedia di salah satunya. Tabel ini memberikan kelayakan setiap fitur di Messages API. Di Claude Managed Agents, tidak ada fitur yang memenuhi syarat untuk ZDR atau kesiapan HIPAA, kecuali Managed Agents yang di-host sendiri di bawah ZDR. Lihat baris Claude Managed Agents di bawah [Fitur Managed Agents](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#managed-agents-features).
 
-| Fitur | Endpoint | Layak ZDR | Layak HIPAA | Detail |
+| Fitur | Endpoint | Layak Legacy ZDR | Layak HIPAA | Detail |
 | :---- | :---- | :---- | :---- | :---- |
 | [Alat advisor](https://platform.claude.com/docs/id/agents-and-tools/tool-use/advisor-tool) | `/v1/messages` dengan alat `advisor` | Ya | Tidak | Output model advisor dikembalikan dalam respons API; tidak ada yang disimpan di sisi server setelah respons. |
 | [Agent Skills](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview) | `/v1/skills`, `/v1/messages` dengan `skills` | Tidak | Tidak | Data skill disimpan sesuai kebijakan standar. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/agent-skills/overview#data-retention) |
@@ -210,7 +221,7 @@ Bagian ini mencantumkan fitur yang terkait dengan [Messages API](https://platfor
 
 ### Fitur Messages API
 
-| Fitur | Endpoint | Layak ZDR | Layak HIPAA | Detail |
+| Fitur | Endpoint | Layak Legacy ZDR | Layak HIPAA | Detail |
 | :---- | :---- | :---- | :---- | :---- |
 | [Alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) | `/v1/messages` dengan alat `bash` | Ya | Ya | Alat sisi klien yang dijalankan di environment Anda. |
 | [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) | `/v1/messages` dengan alat `code_execution` | Tidak | Tidak | Data kontainer disimpan hingga 30 hari. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool#data-retention) |
@@ -223,13 +234,13 @@ Bagian ini mencantumkan fitur yang terkait dengan [Messages API](https://platfor
 
 ### Fitur Managed Agents
 
-| Fitur | Endpoint | Layak ZDR | Layak HIPAA | Detail |
+| Fitur | Endpoint | Layak Legacy ZDR | Layak HIPAA | Detail |
 | :---- | :---- | :---- | :---- | :---- |
 | [Claude Managed Agents](https://platform.claude.com/docs/id/managed-agents/overview) | `/v1/agents`, `/v1/sessions`, `/v1/environments` | Tidak | Tidak | Tidak memiliki kelayakan ZDR, kecuali untuk Managed Agents yang di-host sendiri. Sesi adalah sumber daya stateful; transkrip tetap tersimpan hingga Anda menghapusnya. [Pelajari lebih lanjut](https://platform.claude.com/docs/id/managed-agents/self-hosted-data-and-access#how-long-data-is-kept) Tidak memiliki kelayakan HIPAA. Berlaku untuk semua subfitur Managed Agents. |
 
 ### Fitur lainnya
 
-| Fitur | Endpoint | Layak ZDR | Layak HIPAA | Detail |
+| Fitur | Endpoint | Layak Legacy ZDR | Layak HIPAA | Detail |
 | ----- | ----- | ----- | ----- | ----- |
 | [“Context window” (jendela konteks) 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) | `/v1/messages` | Ya | Ya |  |
 | [Ekspor OpenTelemetry](https://platform.claude.com/docs/id/manage-claude/opentelemetry) | `/v1/organizations/telemetry_destinations` | Ya | Tidak | Beta. Span memiliki kelayakan ZDR yang sama dengan fitur yang menghasilkannya. Organisasi HIPAA dapat mengekspor metadata. Span SDK dikirim langsung dari lingkungan Anda ke exporter Anda. Setelah dikirim, data disimpan oleh layanan yang Anda pilih, di luar Anthropic, di bawah kontrol retensi dan akses layanan tersebut. |
@@ -251,7 +262,7 @@ Bahkan dengan pengaturan ZDR atau HIPAA yang berlaku, Anthropic dapat menyimpan 
   </Accordion>
 
   <Accordion title="Apa yang terjadi jika saya menggunakan fitur yang ditandai &#x22;Tidak&#x22; di bawah ZDR?">
-    Tidak ada yang memblokir permintaan tersebut. Fitur yang ditandai “Tidak” untuk ZDR pada dasarnya bersifat stateful: Batch API menyimpan job Anda, Files API menyimpan file Anda, dan eksekusi kode berjalan di container persisten. Data untuk fitur-fitur ini disimpan sesuai kebijakan yang didokumentasikan untuk fitur tersebut. Menggunakannya berarti memilih untuk keluar dari pengaturan ZDR Anda untuk data tertentu tersebut.
+    Tidak ada yang memblokir permintaan tersebut. Namun, di workspace dengan [Anthropic Human Review](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/human-review-and-access-transparency#turn-off-anthropic-human-review) nonaktif, seperti workspace apa pun di [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview), Batch API menolak batch baru. Layanan Claude Managed Agents milik Anthropic juga tidak menjalankan sesi di sana. Fitur yang ditandai “Tidak” untuk ZDR pada dasarnya bersifat stateful: Batch API menyimpan job Anda, Files API menyimpan file Anda, dan eksekusi kode berjalan di container persisten. Data untuk fitur-fitur ini disimpan sesuai kebijakan yang didokumentasikan untuk fitur tersebut. Menggunakannya berarti memilih untuk keluar dari pengaturan ZDR Anda untuk data tertentu tersebut.
   </Accordion>
 
   <Accordion title="Dapatkah saya meminta penghapusan data dari fitur yang tidak memenuhi syarat ZDR?">
@@ -275,7 +286,7 @@ Bahkan dengan pengaturan ZDR atau HIPAA yang berlaku, Anthropic dapat menyimpan 
   </Accordion>
 
   <Accordion title="Bagaimana cara meminta akses API yang siap HIPAA?">
-    Organisasi yang memenuhi syarat dapat mengaktifkan kesiapan HIPAA langsung di Claude Console: admin organisasi meninjau dan menandatangani BAA standar Anthropic di halaman [Privasi data](https://platform.claude.com/settings/data-privacy) (`platform.claude.com/settings/data-privacy`). Jika Anda tidak dapat membuka halaman tersebut atau menemukan opsinya, minta admin organisasi untuk mengaktifkan kesiapan HIPAA untuk Anda. Untuk langkah-langkahnya, lihat [Memulai dengan kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#getting-started-with-hipaa-readiness). Jika organisasi Anda memerlukan BAA hasil negosiasi, atau pengaktifan mandiri tidak tersedia untuk organisasi Anda, hubungi [tim penjualan Anthropic](https://claude.com/contact-sales).
+    Organisasi yang memenuhi syarat dapat mengaktifkan kesiapan HIPAA langsung di Claude Console: admin organisasi meninjau dan menandatangani BAA standar Anthropic di halaman [Privasi data](https://platform.claude.com/settings/data-privacy) (`platform.claude.com/settings/data-privacy`). Jika Anda tidak dapat membuka halaman tersebut atau menemukan opsinya, minta admin organisasi untuk mengaktifkan kesiapan HIPAA untuk Anda. Untuk langkah-langkahnya, lihat [Memulai dengan kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#getting-started-with-hipaa-readiness). Jika organisasi Anda memerlukan BAA hasil negosiasi, hubungi [tim penjualan Anthropic](https://claude.com/contact-sales). Jika admin organisasi tidak dapat mengaktifkan kesiapan HIPAA di Console, lihat [Dapatkan bantuan pengaktifan di Console](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#get-help-enabling-in-the-console).
   </Accordion>
 
   <Accordion title="Apakah ini berlaku untuk Amazon Bedrock atau Google Cloud?">
@@ -311,6 +322,7 @@ Bahkan dengan pengaturan ZDR atau HIPAA yang berlaku, Anthropic dapat menyimpan 
 ## Sumber daya terkait
 
 * [Kebijakan Privasi](https://www.anthropic.com/legal/privacy)
+* [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview)
 * [Output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs)
 * [Caching prompt](https://platform.claude.com/docs/id/build-with-claude/prompt-caching)
 * [Pemrosesan batch](https://platform.claude.com/docs/id/build-with-claude/batch-processing)

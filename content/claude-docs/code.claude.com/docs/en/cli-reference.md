@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/cli-reference
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: f94e8aa049e5d1e9ef02bd39d7f1cb845fecd4745b179b807d2980062782afe3
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: ec5680e89969d2edc0cf567e0b7ad99369bbeadafc2e56f3a61d9323883297ce
 ---
 
 > ## Documentation Index
@@ -11,7 +11,7 @@ sha256: f94e8aa049e5d1e9ef02bd39d7f1cb845fecd4745b179b807d2980062782afe3
 
 # CLI reference
 
-> Complete reference for Claude Code command-line interface, including commands and flags.
+> Reference for the Claude Code command-line interface, including commands and flags.
 
 ## CLI commands
 

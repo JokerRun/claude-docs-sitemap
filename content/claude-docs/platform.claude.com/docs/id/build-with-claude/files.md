@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/files
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 61466fda3c103bbebc31ee4c231e7365ca852bf19eb0ce5c64323437f0bdc474
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 4cecd736a894c21ca66cbab28707626c66bb22f0e186de861c71b0b9700ead42
 ---
 
 ---
@@ -1063,9 +1063,9 @@ Mulai dari rilis SDK Anda dalam tabel berikut, namespace beta berbeda dari names
 * Tidak lagi mengirimkan `files-api-2025-04-14`.
 * Mengembalikan bentuk yang sama dengan namespace stabil tetapi dengan nama tipe berawalan `Beta`.
 
-Tabel ini juga mencantumkan nama namespace setiap SDK dan tempat namespace beta menerima nilai `anthropic-beta`:
+Tabel ini juga mencantumkan nama namespace setiap SDK dan tempat namespace beta menerima beta:
 
-| SDK | Namespace stabil | Namespace beta | Namespace beta berubah di | Nilai `anthropic-beta` diteruskan di |
+| SDK | Namespace stabil | Namespace beta | Namespace beta berubah di | Beta diteruskan di |
 | ----- | ----- | ----- | ----- | ----- |
 | Python | `client.files` | `client.beta.files` | 1.2.0 | `betas` |
 | TypeScript | `client.files` | `client.beta.files` | 0.122.0 | `betas` |
@@ -1075,7 +1075,7 @@ Tabel ini juga mencantumkan nama namespace setiap SDK dan tempat namespace beta 
 | PHP | `$client->files` | `$client->beta->files` (kelas berada dalam `Anthropic\Beta`) | 0.45.0 | `betas` |
 | Ruby | `client.files` | `client.beta.files` | 1.67.0 | `betas` |
 
-Untuk fitur Files yang masih dalam beta, gunakan namespace beta dan teruskan nilai `anthropic-beta` fitur tersebut seperti yang ditunjukkan tabel. Misalnya, di bawah header beta Managed Agents, `scope_id` membatasi daftar file pada file dari satu sesi. Untuk menggunakan `scope_id`, lihat [Mendaftarkan dan mengunduh file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files).
+Untuk fitur Files yang masih dalam beta, gunakan namespace beta dan teruskan beta fitur tersebut seperti yang ditunjukkan tabel. Misalnya, di bawah header beta Managed Agents, `scope_id` membatasi daftar file pada file dari satu sesi. Untuk menggunakan `scope_id`, lihat [Mendaftarkan dan mengunduh file sesi](https://platform.claude.com/docs/id/managed-agents/files#listing-and-downloading-session-files).
 
 Pada rilis sebelum rilis SDK Anda dalam tabel, tipe namespace beta sesuai dengan bentuk yang dikembalikan oleh `files-api-2025-04-14`. Jika Anda bergantung pada tipe tersebut, tetaplah pada rilis tersebut hingga Anda bermigrasi dari tipe tersebut.
 

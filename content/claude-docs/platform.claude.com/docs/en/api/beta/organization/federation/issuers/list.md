@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/issuers/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 7cc2797ac3ba98861f8a94ce14cb4d30cb4aab1abdcdcd143de5d4a2a3d99c00
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 8363cda8e7d9f61df67d2463d8427ebc4b5861837b3ff78198e11bf2b35520e4
 ---
 
 ---
@@ -145,6 +145,8 @@ Archived issuers are excluded unless `include_archived=true`.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

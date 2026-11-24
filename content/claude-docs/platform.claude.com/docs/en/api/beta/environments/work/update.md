@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/update
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 57f3caa5964ff43afce3d05f56a24a361f7360abdf00f5af5358dc10cb94d31e
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 03890b88dedaf9559c1f181c0288c78ad216801f2994a50f8e79be65b84beefe
 ---
 
 ---
@@ -131,6 +131,8 @@ This endpoint accepts a Claude API key. It rejects the environment key and the w
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

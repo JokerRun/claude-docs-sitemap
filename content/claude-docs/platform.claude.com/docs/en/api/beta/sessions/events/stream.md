@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/events/stream
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 789f8844f04004aa49b4423195a6f040c6937eb4e2fa744e0d58ec16cf655637
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 33ebadc3330dfedd8a1a17854b7f7dfba4a67bf2ebf3350defb4b159d05019ff
 ---
 
 ---
@@ -137,6 +137,8 @@ Stream Events
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

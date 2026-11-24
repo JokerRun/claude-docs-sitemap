@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/delete
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: eeb520df13e1d710fd238210952e0ada648007f4f676a60b5f1453e070ff803a
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: eed15f457d7b0fb144d8c406f33bc190011c2d10956d271ee2bdf29b493001ea
 ---
 
 ---
@@ -129,6 +129,8 @@ Delete User Profile
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

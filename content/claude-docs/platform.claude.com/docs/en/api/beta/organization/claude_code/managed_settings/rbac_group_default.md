@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_code/managed_settings/rbac_group_default
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: d6c9c03449fa9343c43d8b96a794e5e273e2564a6629c9d4733ebd35d33b1bcf
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 10de4ec66071ead584202342dbf69affe8c8ef9d490da566599c6afa2bbf912e
 ---
 
 ---
@@ -129,6 +129,8 @@ Every request must include the beta header `anthropic-beta: ce-claude-code-manag
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -346,6 +348,8 @@ A write that returns `503` may have applied. Retrying it is safe.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

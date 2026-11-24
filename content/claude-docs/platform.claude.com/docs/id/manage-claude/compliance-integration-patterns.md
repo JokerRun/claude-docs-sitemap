@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-integration-patterns
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: d1064b1a078a41d0f7defbc5bc72566729fe302e3e2bee1445508fb3ac0d24ec
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 475970ec9d870902ba774f9c1859935a47350ae0baa1b3be0570046450b9dcac
 ---
 
 ---
@@ -155,7 +155,7 @@ Volume aktivitas bukanlah pemeriksaan kelengkapan. Tipe aktivitas `claude_*_view
 
 Endpoint konten (chat, file, proyek, lampiran proyek, serta transkrip sesi lokal dan jarak jauh) hanya melayani data Claude Enterprise. Activity Feed menampilkan event administratif dan sumber daya di seluruh organisasi. Compliance API tidak mencakup:
 
-* Teks prompt atau respons model dari Claude Console, atau dari beban kerja Claude API yang diautentikasi dengan kunci API.
+* Teks prompt atau respons model dari Claude Console, atau dari beban kerja Claude API yang diautentikasi dengan kunci API. Pengecualiannya adalah [pesan yang ditandai](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#read-a-message) yang dikembalikan oleh API Safety Cases.
 * Aktivitas di perangkat dalam sesi lokal yang tidak pernah dikirim ke Anthropic, seperti file lokal yang tidak dibaca oleh Claude.
 * Penggunaan Claude Code yang diautentikasi dengan kunci API Claude Console, dijalankan melalui [platform cloud](https://platform.claude.com/docs/id/api/overview#claude-api-vs-cloud-platforms) apa pun, atau dijalankan dalam [sesi cloud Claude Code](https://code.claude.com/docs/id/claude-code-on-the-web). Sesi cloud Claude Code berjalan di infrastruktur cloud alih-alih di mesin pengguna.
 * Sesi lokal dari produk selain Cowork dan Claude Code di organisasi yang mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness), serta sesi lokal yang menerapkan [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) (retensi data nol).

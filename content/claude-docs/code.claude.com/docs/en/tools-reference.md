@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/tools-reference
-fetched_at: 2026-11-23T02:14:44.103489Z
-sha256: a0c252701bfe2c296b7de0c31931cef2599b339844f5a19a7e247fe9fa4bb60b
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: acfb2f5d6090825cd731cd0cc08b05359cd429ad2d7ae788036098d38f0e4356
 ---
 
 > ## Documentation Index
@@ -11,7 +11,7 @@ sha256: a0c252701bfe2c296b7de0c31931cef2599b339844f5a19a7e247fe9fa4bb60b
 
 # Tools reference
 
-> Complete reference for the tools Claude Code can use, including permission requirements and per-tool behavior.
+> Reference for the tools Claude Code can use, including permission requirements and per-tool behavior.
 
 Claude Code has access to a set of built-in tools that help it understand and modify your codebase. The tool names are the exact strings you use in [permission rules](https://code.claude.com/docs/en/permissions.md#tool-specific-permission-rules), [subagent tool lists](https://code.claude.com/docs/en/sub-agents.md), and [hook matchers](https://code.claude.com/docs/en/hooks.md).
 

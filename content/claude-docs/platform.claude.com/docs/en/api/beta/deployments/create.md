@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: adf951f2dabfd03f2cc8f1930366538e5746356317c9a4656cbf38e66d990255
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: c03615f755287364489c5bf4535a815dae199b8ed972be989bac948e88c29843
 ---
 
 ---
@@ -123,6 +123,8 @@ Create Deployment
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

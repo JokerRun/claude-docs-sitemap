@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/redact
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: c880530d2c0e25497ccf638ee8a4a3a9da505067ae087851dce17038a9195b64
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: d62dd33759c63a500669ee8c7cf2b085fb418d2344e4d7a9b718676cf8cf00d2
 ---
 
 ---
@@ -133,6 +133,8 @@ Redact a Memory Version
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

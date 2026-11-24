@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/pause
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 336df2171da15b382f6b9a4635de1875a3d191112e257a6f4ae8cd1a7844c646
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: ca44289fb3ef818c06acac72aab9e02c1ac52501d86efdb7b5bd24c88004ada1
 ---
 
 ---
@@ -129,6 +129,8 @@ Pause Deployment
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

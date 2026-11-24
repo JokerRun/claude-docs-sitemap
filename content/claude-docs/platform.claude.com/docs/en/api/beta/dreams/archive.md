@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 10eb1b7d3b12afbb69956a5681cb51bdbd7833ce59cb78c37fe1e880715cb40d
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: fe8409604bfaea19b7d2e9780046f27cf3d88c7a8ff5420d3eedb7a6eea05fde
 ---
 
 ---
@@ -133,6 +133,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

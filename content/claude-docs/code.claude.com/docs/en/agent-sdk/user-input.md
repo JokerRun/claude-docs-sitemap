@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/user-input
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 50a580fade961f7d832dab7a75b3e86418492b184e6773b148448ba5bcdba1fe
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 2511caac61389af0855eea952f93a361592db16b052cebfbd878299ded3fa04a
 ---
 
 > ## Documentation Index
@@ -260,7 +260,7 @@ The `ask_user` and `askUser` helpers in the following snippets stand in for your
 
 > [tab] Approve with changes
 >
-> The user approves but wants to modify the request first. You can change the input before the tool executes. Claude sees the result but isn't told you changed anything. Useful for sanitizing parameters, adding constraints, or scoping access.
+> The user approves but wants to modify the request first. You can change the input before the tool executes. Useful for sanitizing parameters, adding constraints, or scoping access.
 >
 > ```python Python theme={null}
 > async def can_use_tool(tool_name, input_data, context):

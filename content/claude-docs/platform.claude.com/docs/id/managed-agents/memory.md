@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/managed-agents/memory
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: e66e065ad6ed66d8b1e3102ff0cc1252daab636d57afe6e3e3095dbd348108d1
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 9090e4e39ff09916895b4e2c80e8b02f84eff4a0e3a7320f00f55dfc25c325e5
 ---
 
 ---
@@ -50,7 +50,7 @@ featureMetadata:
 Setiap sesi Managed Agents dimulai dengan konteks baru secara default. Ketika sebuah sesi berakhir, semua state yang telah dibangun agen akan hilang. Memory store (penyimpanan memori) memungkinkan agen membawa informasi lintas sesi: preferensi pengguna, konvensi proyek, kesalahan sebelumnya, dan konteks domain.
 
 <Note>
-  Jangan menggabungkan `agent-memory-2026-07-22` dengan `managed-agents-2026-04-01` pada permintaan memory store: mengirim keduanya akan mengembalikan error `400`. Jika kode Anda menetapkan header beta secara eksplisit, ganti `managed-agents-2026-04-01` dengan `agent-memory-2026-07-22` pada panggilan memory store alih-alih menambahkan nilai kedua. Endpoint sesi, termasuk melampirkan memory store ke sesi, tetap menggunakan `managed-agents-2026-04-01`.
+  Jangan menggabungkan `agent-memory-2026-07-22` dengan `managed-agents-2026-04-01` pada permintaan memory store: mengirim keduanya akan mengembalikan error `400`. Jika kode Anda menetapkan header beta secara eksplisit, ganti `managed-agents-2026-04-01` dengan `agent-memory-2026-07-22` pada panggilan memory store alih-alih menambahkan beta kedua. Endpoint sesi, termasuk melampirkan memory store ke sesi, tetap menggunakan `managed-agents-2026-04-01`.
 
   `GET /v1/memory_stores/{memory_store_id}/memories` berperilaku sama di bawah header mana pun: hasil dikembalikan dalam urutan yang stabil dan ditentukan server, serta `path_prefix` dan `depth` berlaku dengan cara yang sama.
 </Note>

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/auto-mode-config
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: d14bc65ba9a3643767edb8574e35a019e2f108e9804bcb6ff270eb9f3d966522
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 4f8b0a2607c95dd52f27d4e9d808a7ef2f665c0a2db32ff23e6adfb650ce1589
 ---
 
 > ## Documentation Index
@@ -13,7 +13,7 @@ sha256: d14bc65ba9a3643767edb8574e35a019e2f108e9804bcb6ff270eb9f3d966522
 
 > Tell the auto mode classifier which repos, buckets, and domains your organization trusts, set your own block and allow rules, and inspect your config.
 
-[Auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) lets Claude Code run without routine permission prompts by routing tool calls through a classifier that blocks anything irreversible, destructive, or aimed outside your environment. Deny and explicit ask rules are evaluated before the classifier and still block or prompt. Use the `autoMode` settings block to tell that classifier which repos, buckets, and domains your organization trusts, so it stops blocking routine internal operations.
+[Auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode) lets Claude Code run without routine permission prompts by routing tool calls through a classifier that blocks what it judges irreversible, destructive, or aimed outside your environment. Use the `autoMode` settings block to tell that classifier which repos, buckets, and domains your organization trusts, so it stops blocking routine internal operations.
 
 > [!NOTE]
 >
@@ -62,7 +62,7 @@ Pick the mechanism that matches how firm the boundary needs to be:
 | :- | :- | :- |
 | Prompt before the action | `permissions.ask` | By default, prompts for a command that matches a content-scoped rule like the recipe above. The classifier cannot auto-approve a matching action. |
 | Never run the action | `permissions.deny` | Blocks before the classifier is consulted. Neither the classifier nor user intent can override it. |
-| One-off boundary for this session | State it in conversation, like "don't push until I review" | The classifier blocks matching actions, but the boundary can be lost if [context compaction](https://code.claude.com/docs/en/costs.md#reduce-token-usage) removes the message that stated it. Use an ask or deny rule for a durable guarantee. |
+| One-off boundary for this session | State it in conversation, like "don't push until I review" | The classifier blocks matching actions it reviews, but the boundary can be lost if [context compaction](https://code.claude.com/docs/en/costs.md#reduce-token-usage) removes the message that stated it. To keep the boundary from being lost, use an ask or deny rule instead. |
 
 ## Where the classifier reads configuration
 

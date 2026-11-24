@@ -1,19 +1,19 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/opus-4-5/overview
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 8788ffba14abdbd733fa90cc5511f2b12d9133a328d7e4778eb7c1182d24b062
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 4409b4c212c4e534e60f00793694e05780ffd0503125a31913c11f4edd58b908
 ---
 
 ---
 title: Claude Opus 4.5
 url: https://platform.claude.com/docs/id/models/opus-4-5/overview
-description: "Referensi Claude Opus 4.5: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Opus 4.5 adalah model lama (legacy); Claude Opus 5.5 adalah model Opus saat ini."
+description: "Referensi Claude Opus 4.5: status siklus hidup, ID model di setiap platform, jendela konteks, batas output, harga, dan sumber daya migrasi. Claude Opus 4.5 adalah model yang dihentikan (deprecated) di Claude API; Claude Opus 5.5 adalah model Opus saat ini."
 ---
 
-**Legacy.** Released November 24, 2025.
+**Deprecated.** Released November 24, 2025.
 
-Although Claude Opus 4.5 is still available, you should consider migrating to Claude Opus 5.5. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45)
+Claude Opus 4.5 is deprecated: it is still functional but no longer recommended, and retires on January 22, 2027. Recommended replacement: Claude Opus 5.5. [See Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/overview) · [Migrate to Claude Opus 5.5](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45)
 
 Model ID: `claude-opus-4-5-20251101`
 
@@ -81,9 +81,10 @@ Context window: 200K tokens · Max output: 64K tokens · Input pricing: $5 / MTo
 
 | Feature | Value |
 | :---- | :---- |
-| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Active (legacy) |
+| [Status](https://platform.claude.com/docs/id/about-claude/model-deprecations) | Deprecated |
 | Released | November 24, 2025 |
-| Retirement | Not sooner than November 24, 2026 |
+| Deprecated | November 23, 2026 |
+| Retires | January 22, 2027 |
 | Platforms | Claude API, [Amazon Bedrock (bedrock-runtime)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) |
 
 ## Sumber daya

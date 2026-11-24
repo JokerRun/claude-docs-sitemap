@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-data-retention
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: cc12d533470e76c1ef9dcb2061ee2084a5e604f25bd6f30652ad74c0b2436cb0
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: fde24e09a7eb63f9817b5af6d04a89a037256f700224383bff7ef54066580421
 ---
 
 ---
@@ -13,11 +13,13 @@ description: Mengapa workspace dengan kunci menyimpan data, apa artinya bagi ZDR
 
 Di Claude Platform, “customer-managed encryption keys” (kunci enkripsi yang dikelola pelanggan), atau CMEK, dan [retensi data nol (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) tidak dapat berbagi workspace. Di Claude Enterprise, organisasi dapat menggunakan CMEK dan ZDR Claude Code bersama-sama, tetapi organisasi tersebut kemudian [tidak dapat mengaktifkan Claude Docs atau Claude Sheets](https://platform.claude.com/docs/id/manage-claude/cmek-coverage-claude-enterprise#turned-off-or-changed).
 
+Namun, di Claude Platform, Anda dapat melampirkan kunci ke workspace yang menggunakan [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) (EFS). EFS adalah ZDR, dan data keselamatan tersegel milik workspace tersebut ditulis ke penyimpanan milik Anda. EFS dalam tahap beta. Untuk langkah-langkahnya, lihat [Melampirkan kunci yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-managed-keys#attach-a-customer-managed-key) di panduan EFS.
+
 ## Kunci memerlukan workspace yang menyimpan data
 
-CMEK mengenkripsi data yang disimpan, sedangkan dengan ZDR di Claude Platform, Anthropic tidak menyimpan prompt atau respons Anda. Jadi, Anda hanya dapat melampirkan kunci ke workspace dengan **Retensi data standar** (30 hari).
+CMEK mengenkripsi data yang disimpan, sedangkan dengan ZDR di Claude Platform, Anthropic tidak menyimpan prompt atau respons Anda. Dengan [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) (EFS), Anthropic mengenkripsi data keselamatan tersegel Anda dengan kunci Anda sebelum menuliskannya ke bucket Anda. Jadi, Anda hanya dapat melampirkan kunci ke workspace dengan **Retensi data standar** (30 hari) atau workspace yang menggunakan EFS.
 
-Setelah Anda melampirkan kunci, Anda tidak dapat menonaktifkan retensi data untuk workspace tersebut. Untuk kembali ke ZDR, buat workspace baru dan pindahkan lalu lintas Anda ke sana.
+Setelah Anda melampirkan kunci, Anda tidak dapat menonaktifkan retensi data untuk workspace tersebut. Untuk kembali memiliki workspace yang tidak menyimpan data, buat workspace baru dan pindahkan lalu lintas Anda ke sana.
 
 ## Dalam organisasi ZDR
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 7dc3125a35ba1d5dd5e95e2605beebe625305c4bf55cdecb55754f6e72926af7
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: ae4f26dd8f7cacd651c0c5d23ec455585d58584680fce0a2aa2e1cf1346a3558
 ---
 
 ---
@@ -123,6 +123,8 @@ Create a Memory Store
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

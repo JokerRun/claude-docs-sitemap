@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/environments/work/poll
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 4d4120b51d4c06473efd661c9671944fc6e04ce26996d67906b9d35dceb50bd1
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 7a6ed1809266f4460c99a3f8f41ffa1e59b8dee6ca35b2774c15cf6bb01a0215
 ---
 
 ---
@@ -143,6 +143,8 @@ Long poll for work items in the queue.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

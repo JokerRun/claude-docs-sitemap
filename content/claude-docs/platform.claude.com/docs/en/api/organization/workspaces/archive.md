@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/workspaces/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 25c572c1fddbf4b26c6fe25dbeb745d6d2be92fa8b0a90283cc0f9c4a355fceb
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: c7b3415c8b89300bf9c58ec9a36433f464aa597a2e2f908da848e67916455163
 ---
 
 ---
@@ -138,6 +138,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `sandbox_egress_restricted` (HTTP status 403)
 
   The request came from a Claude sandbox with restricted network access, which is not allowed to make this request. Send it from outside the sandbox, or from a sandbox with unrestricted network access.
+
+- `storage_attached_during_archive` (HTTP status 409)
+
+  The Workspace was archived, but External Storage was attached to it during the archive and is still attached. To detach it, archive the Workspace again as a caller with the `org:external-storage:use` permission.
 
 ## Example
 

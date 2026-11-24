@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/delete
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 3e60007a14b4771682526aaff9777dd4207ec2abf39b316d7e9ae911bf7a6c0d
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: c40672d5f0c7a5d0a44cf40fcc1cca756760dcf59ee5c73d34e5821ad8aac594
 ---
 
 ---
@@ -129,6 +129,8 @@ Remove a Slack channel from Claude Tag. This deletes the channel's stored settin
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

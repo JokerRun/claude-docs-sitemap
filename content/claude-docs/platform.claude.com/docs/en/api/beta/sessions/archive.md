@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 6ed83f341e25af7ab2d3ed9f3137f28eec2d2d8cfc59629ca89499ba3e881fab
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 9bed9746459ab0782c021ba6827fed72806ebe3f159264d9af8fdfd9ef8c1bd2
 ---
 
 ---
@@ -127,6 +127,8 @@ Archive Session
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

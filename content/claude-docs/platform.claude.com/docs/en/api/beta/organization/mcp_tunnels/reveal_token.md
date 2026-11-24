@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/reveal_token
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: ea64378db8468066091a317b9361af6659f03b5f82a5d955acce65409d59f11f
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: c238faf8d43da672d0275fc08a114e998008b31fb4dc136c6b6625fcbd34813c
 ---
 
 ---
@@ -138,6 +138,8 @@ access logs.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

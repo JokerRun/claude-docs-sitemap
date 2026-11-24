@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/troubleshooting
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 2d4ff8345bc6e72a09bccde71014dafbc5be06feeee31d54dfced5f9d477eecc
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: a05e6e07b45a5af9cafabc9a7f0b293a9b1fc47c8d0aff333a9da287cc42b56a
 ---
 
 > ## Documentation Index
@@ -94,7 +94,7 @@ If Claude Code seems unresponsive:
 1. Press Ctrl+C to attempt to cancel the current operation
 2. If unresponsive, you may need to close the terminal and restart
 
-Restarting doesn't lose your conversation. Run `claude --resume` in the same directory to pick the session back up.
+Run `claude --resume` in the same directory to pick the session back up.
 
 ### Garbled or corrupted text in an editor's integrated terminal
 
@@ -187,7 +187,7 @@ To confirm the switch took effect, run `claude doctor` in your terminal and chec
 
 ### Slow or incomplete search results on WSL
 
-Disk read performance penalties when [working across file systems on WSL](https://learn.microsoft.com/en-us/windows/wsl/filesystems) may result in fewer-than-expected matches when using Claude Code on WSL. Search still functions, but returns fewer results than on a native filesystem.
+Disk read performance penalties when [working across file systems on WSL](https://learn.microsoft.com/en-us/windows/wsl/filesystems) may result in fewer-than-expected matches when using Claude Code on WSL.
 
 > [!NOTE]
 >

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/cost_report/retrieve
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 9d868d24fcafdcb0e1657ece86ea8763ac550441276e033c4cedb5fd60461a67
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 5d69578a6944f94a8768cd90d8b9cbede96671108e4887536ebeb678ce4600d7
 ---
 
 ---
@@ -164,6 +164,8 @@ This endpoint is part of the legacy Usage and Cost API. For new integrations, us
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

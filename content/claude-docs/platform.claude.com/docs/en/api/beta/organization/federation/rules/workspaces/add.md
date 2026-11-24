@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/add
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 1fb1afcd9ce9272e5ef4d35b8f31117d7e00c5986d4e1512692a787399edc853
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: fc8b5a9e70f01566a7cd61d77bc1e233d49f8928ba1ec8aebcf7378c1fe280f1
 ---
 
 ---
@@ -140,6 +140,8 @@ other scopes require a Console session.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

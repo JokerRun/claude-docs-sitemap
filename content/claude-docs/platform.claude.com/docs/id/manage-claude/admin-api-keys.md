@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api-keys
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 7257e7df2a453eb0e98006a9520ee3bcce2451d70a271ba32bab342cd09e816c
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: d14ad0c80412ef9ef1abf746857f03d90d09b22ae973910031209f6d5d03e0dd
 ---
 
 ---
@@ -24,7 +24,7 @@ Kunci yang Anda butuhkan bergantung pada produk Claude mana yang digunakan organ
 | **Prefiks kunci** | `sk-ant-admin01-...` | `sk-ant-api01-...` |
 | **Siapa yang dapat membuatnya** | Anggota organisasi dengan peran **admin** | **Pemilik utama:** scope apa pun<br />**Pemilik organisasi:** hanya scope Compliance API, untuk organisasinya sendiri |
 | **Scope** | Tidak ada yang perlu dipilih: setiap kunci memiliki akses penuh ke endpoint yang menerimanya | [Pilih scope](https://platform.claude.com/docs/id/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key) saat Anda membuat kunci. Kunci hanya berfungsi dengan API yang dicakup oleh scope Anda |
-| **Berfungsi dengan** | [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)<br />[Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api)<br />[Activity Feed Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed)<br />[Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) (lama)<br />[Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api)<br />[Claude Code Analytics API](https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api) | [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management) Admin API<br />[Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api)<br />[Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api)<br />[Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) (lama)<br />[Claude Enterprise Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api)<br />[Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api)<br />[Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api)<br />[Spend Limits API](https://platform.claude.com/docs/id/manage-claude/spend-limits-api) |
+| **Berfungsi dengan** | [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api)<br />[Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api)<br />[Activity Feed Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed)<br />[API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access), untuk kunci yang dibuat selama API tersebut tersedia<br />[Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) (lama)<br />[Rate Limits API](https://platform.claude.com/docs/id/manage-claude/rate-limits-api)<br />[Claude Code Analytics API](https://platform.claude.com/docs/id/manage-claude/claude-code-analytics-api) | [Manajemen pengguna](https://platform.claude.com/docs/id/manage-claude/user-management) Admin API<br />[Usage and Cost Analytics API](https://platform.claude.com/docs/id/manage-claude/usage-cost-analytics-api)<br />[Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api)<br />[Usage and Cost API](https://platform.claude.com/docs/id/manage-claude/usage-cost-api) (lama)<br />[Claude Enterprise Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api)<br />[Plugins API](https://platform.claude.com/docs/id/manage-claude/plugins-api)<br />[Claude Tag API](https://platform.claude.com/docs/id/manage-claude/claude-tag-api)<br />[Spend Limits API](https://platform.claude.com/docs/id/manage-claude/spend-limits-api) |
 
 Sebagian besar kunci hanya menjangkau organisasi tempat Anda membuatnya. Beberapa kunci, seperti kunci dengan scope Compliance API, grup, atau audit, dapat menjangkau lebih jauh jika perusahaan Anda menautkan organisasinya di bawah [organisasi induk](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#which-key-do-you-need). Jika perusahaan Anda menggunakan Claude Console dan Claude Enterprise, buat satu kunci di masing-masing.
 
@@ -38,6 +38,10 @@ Akun Claude Console individual tidak dapat membuat kunci ini, jadi [siapkan orga
   </Step>
 
   <Step title="Buat kunci">
+    <Warning>
+      Kunci yang Anda buat selama [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access) tersedia untuk organisasi Anda juga dapat membaca pesan yang ditandai milik organisasi tersebut dan merespons Safety Cases-nya. Anda tidak dapat mengecualikan akses ini, jadi batasi siapa yang dapat membuat dan memegang kunci.
+    </Warning>
+
     Klik **Buat kunci admin**, beri nama, pilih [masa kedaluwarsa kunci](https://platform.claude.com/docs/id/manage-claude/authentication#key-expiration), lalu klik **Tambahkan**.
   </Step>
 

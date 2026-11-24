@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: f6667e791a4ecf8061a0084c886ff80bc5f93bea96db4cacc4823a51bf784679
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: d3181867ef6d10e4a23e99f9db53bf019800d043e432aab8145f774bb8a85839
 ---
 
 ---
@@ -125,6 +125,8 @@ Set a Slack channel up for Claude Tag and return it with its identifier. If the 
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -721,6 +723,8 @@ List the set-up Slack channels of one Slack workspace, newest first by `created_
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1198,6 +1202,8 @@ Get one Slack channel and its settings. By default `settings` holds what the cha
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -1659,6 +1665,8 @@ Change the settings a Slack channel stores. The update is partial: a setting lef
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -2213,6 +2221,8 @@ Remove a Slack channel from Claude Tag. This deletes the channel's stored settin
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

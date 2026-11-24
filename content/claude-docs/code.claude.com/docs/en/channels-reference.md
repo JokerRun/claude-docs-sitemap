@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/channels-reference
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 2c6cbe1b96d8ec5a67704e573772100938706e55ac8b47eede2ac4ef1d7a0568
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: bc6734e1f4028bb0cfcc8b1f731398209cfc01a1b00a97191e3963938157d8f3
 ---
 
 > ## Documentation Index
@@ -45,7 +45,7 @@ A channel is an [MCP](https://modelcontextprotocol.io) server that runs on the s
 
 ## What you need
 
-The only hard requirement is the [`@modelcontextprotocol/sdk`](https://www.npmjs.com/package/@modelcontextprotocol/sdk) package and a Node.js-compatible runtime. [Bun](https://bun.sh), [Node](https://nodejs.org), and [Deno](https://deno.com) all work. The pre-built plugins in the research preview use Bun, but your channel doesn't have to.
+The only hard requirement is the [`@modelcontextprotocol/sdk`](https://www.npmjs.com/package/@modelcontextprotocol/sdk) package and a Node.js-compatible runtime. [Bun](https://bun.sh), [Node](https://nodejs.org), and [Deno](https://deno.com) all work.
 
 Your server needs to:
 
@@ -262,7 +262,7 @@ Events queue into the session and are processed in order. If several notificatio
 
 ## Expose a reply tool
 
-If your channel is two-way, like a chat bridge rather than an alert forwarder, expose a standard [MCP tool](https://modelcontextprotocol.io/docs/concepts/tools) that Claude can call to send messages back. Nothing about the tool registration is channel-specific. A reply tool has three components:
+If your channel is two-way, like a chat bridge rather than an alert forwarder, expose a standard [MCP tool](https://modelcontextprotocol.io/docs/concepts/tools) that Claude can call to send messages back. A reply tool has three components:
 
 1. A `tools: {}` entry in your `Server` constructor capabilities so Claude Code discovers the tool
 2. Tool handlers that define the tool's schema and implement the send logic

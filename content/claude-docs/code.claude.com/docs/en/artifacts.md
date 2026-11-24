@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 45edb46daf60b5a27f6d6041356cda85700fac313d4c98a19e4ae4bd4b3e1dbd
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 3fb736364a655bfda27f5a040a0ba1006b8d24638ee0aa0c059ea343643ed0c2
 ---
 
 > ## Documentation Index
@@ -87,8 +87,6 @@ Ask Claude to revise the page, or let a long-running task republish as it makes 
 ```text wrap theme={null}
 Add a per-region breakdown below the summary chart and republish.
 ```
-
-Anyone with the page open sees the update in place. Each publish becomes a version, and from the **Share** control in the page header you can choose which version viewers see.
 
 To update an artifact from a different session, give Claude its URL, or attach it with [`/artifacts`](#find-an-artifact-again). Without either, a new session creates a new artifact instead of updating one.
 

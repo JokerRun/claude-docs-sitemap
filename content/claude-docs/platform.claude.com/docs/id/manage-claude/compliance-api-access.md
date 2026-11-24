@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/compliance-api-access
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: a373c087e19286d0e2cf4d73de8c64d96f5f05be2711e32be1e611e08467f5f5
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e3178b07b5071fc958cbd422895cabb964e3efb8c7195c98ab07a0801cf3b8bd
 ---
 
 ---
@@ -19,14 +19,14 @@ description: Aktifkan Compliance API untuk organisasi Anda, lalu buat Compliance
   **Peran yang diperlukan:** admin organisasi (Claude Console), atau pemilik utama atau pemilik organisasi (claude.ai).
 </Check>
 
-Compliance API menggunakan dua jenis kunci, dan kunci mana yang Anda buat bergantung pada produk Claude yang digunakan organisasi Anda. Pemilik utama dan pemilik organisasi membuat Compliance Access Key di claude.ai; kunci ini membuka akses ke seluruh Compliance API. Kunci milik pemilik utama dapat mencakup setiap organisasi di bawah organisasi induk; kunci milik pemilik organisasi hanya mencakup organisasinya sendiri. Admin organisasi membuat kunci Admin API di Claude Console; kunci ini hanya membuka akses ke [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed).
+Compliance API menggunakan dua jenis kunci, dan kunci mana yang Anda buat bergantung pada produk Claude yang digunakan organisasi Anda. Pemilik utama dan pemilik organisasi membuat Compliance Access Key di claude.ai; kunci ini membuka akses ke seluruh Compliance API, kecuali sebagian dari [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access). Kunci milik pemilik utama dapat mencakup setiap organisasi di bawah organisasi induk; kunci milik pemilik organisasi hanya mencakup organisasinya sendiri. Admin organisasi membuat kunci Admin API di Claude Console; kunci ini hanya membuka akses ke [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed). Pengecualiannya adalah API Safety Cases: kunci Admin API yang Anda buat saat API tersebut tersedia untuk organisasi Anda juga dapat menjangkaunya. Melalui API tersebut, kunci dapat membaca pesan yang ditandai dan merespons Safety Cases.
 
 ## Kunci mana yang Anda perlukan?
 
 | Jenis kunci | Dibuat di | Digunakan untuk | Berfungsi dengan Compliance API? |
 | ----- | ----- | ----- | ----- |
-| **Compliance Access Key** (`sk-ant-api01-...`) | [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access) | Activity Feed, chat, file, proyek, sesi (di aplikasi seperti Cowork dan Claude Code), pengguna, metadata organisasi, dan pengaturan organisasi | Ya (semua endpoint) |
-| **Kunci Admin API** (`sk-ant-admin01-...`) | Halaman [Kunci admin](https://platform.claude.com/settings/admin-keys) di Claude Console | [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) dan Activity Feed Compliance API | Hanya Activity Feed |
+| **Compliance Access Key** (`sk-ant-api01-...`) | [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access) | Activity Feed, chat, file, proyek, sesi (di aplikasi seperti Cowork dan Claude Code), pengguna, metadata organisasi, dan pengaturan organisasi | Ya (semua endpoint kecuali sebagian dari API Safety Cases) |
+| **Kunci Admin API** (`sk-ant-admin01-...`) | Halaman [Kunci admin](https://platform.claude.com/settings/admin-keys) di Claude Console | [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api) dan Activity Feed Compliance API | Activity Feed dan [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access), untuk kunci yang dibuat saat API tersebut tersedia |
 | **Kunci Analytics API** | [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access) | Claude Enterprise Analytics API (lihat [Analytics API](https://platform.claude.com/docs/id/manage-claude/analytics-api)) | Tidak |
 | **Kunci Claude API** (`sk-ant-api03-...`) | Halaman [Kunci API](https://platform.claude.com/settings/keys) di Claude Console | Memanggil model Claude melalui [Claude API](https://platform.claude.com/docs/id/api/overview) | Tidak |
 
@@ -38,10 +38,10 @@ Tenant Claude Enterprise memiliki satu **organisasi induk** (“parent organizat
 
 ## Menyiapkan Compliance API
 
-Penyiapan terdiri dari satu alur: aktifkan Compliance API untuk organisasi Anda, lalu buat Compliance Access Key di claude.ai. Organisasi Claude Console sebaliknya [membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#create-an-admin-api-key) setelah pengaktifan; kunci Admin API hanya dapat menjangkau [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed).
+Penyiapan terdiri dari satu alur: aktifkan Compliance API untuk organisasi Anda, lalu buat Compliance Access Key di claude.ai. Organisasi Claude Console sebaliknya [membuat kunci Admin API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#create-an-admin-api-key) setelah pengaktifan; kunci Admin API dapat menjangkau [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed). Menerima ketentuan EFS dan Enterprise Data Controls akan mengaktifkan Compliance API untuk organisasi Anda.
 
 <Warning>
-  Compliance Access Key dengan `read:compliance_user_data` dapat membaca setiap chat, file, proyek, dan transkrip sesi di setiap organisasi tertaut, termasuk konten yang belum pernah dilihat oleh pemilik utama. Kunci dengan `delete:compliance_user_data` dapat menghapus chat, file, dan proyek secara permanen. Perlakukan Compliance Access Key seperti kredensial database produksi: simpan di pengelola rahasia, jangan pernah di kontrol sumber atau konfigurasi forwarder SIEM.
+  Compliance Access Key dengan `read:compliance_user_data` dapat membaca setiap chat, file, proyek, dan transkrip sesi di setiap organisasi tertaut, termasuk konten yang belum pernah dilihat oleh pemilik utama. Kunci dengan `delete:compliance_user_data` dapat menghapus chat, file, dan proyek secara permanen. Perlakukan Compliance Access Key seperti kredensial database produksi: simpan di pengelola rahasia, jangan pernah di kontrol sumber atau konfigurasi forwarder SIEM. Perlakukan kunci Admin API dengan cara yang sama: kunci yang Anda buat saat [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access) tersedia untuk organisasi Anda dapat membaca prompt dan respons dari pesan yang ditandai.
 </Warning>
 
 <Steps>
@@ -55,7 +55,7 @@ Penyiapan terdiri dari satu alur: aktifkan Compliance API untuk organisasi Anda,
     Organisasi yang mengaktifkan Compliance API tidak dapat memanggil Claude API secara langsung dari browser. Ketika organisasi induk mengaktifkannya, hal ini mencakup setiap organisasi Claude Console yang tertaut. Sebelum Anda mengaktifkan Compliance API, tanyakan kepada tim yang menggunakan organisasi-organisasi tersebut apakah ada aplikasi yang memanggil Claude API dari kode browser. Lihat [Aplikasi berbasis browser](https://platform.claude.com/docs/id/manage-claude/authentication#browser-based-applications).
 
     <Warning>
-      **Menonaktifkan Compliance API menghentikan pencatatan aktivitas.** Siapa pun yang dapat mengaktifkan Compliance API dapat menonaktifkannya kapan saja dengan toggle **Compliance API** yang sama. Selama Compliance API nonaktif, tidak ada peristiwa aktivitas yang dicatat untuk organisasi Anda, sehingga [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) tidak menerima peristiwa baru. Aktivitas yang tidak dicatat selama Compliance API nonaktif tidak dapat dipulihkan di kemudian hari. Mengaktifkan kembali Compliance API melanjutkan pencatatan sejak saat itu; aktivitas yang sudah dicatat tidak dihapus. Peristiwa Access Transparency merupakan pengecualian. Jika organisasi Anda terdaftar dalam [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency), menonaktifkan Compliance API menghentikan akses Anda ke peristiwa ini, bukan pencatatannya. Peristiwa tersebut tetap dicatat selama Compliance API nonaktif, dan Activity Feed mengembalikannya setelah Compliance API diaktifkan kembali. Untuk organisasi Claude Enterprise, pengaturan Compliance API di claude.ai juga mengatur penangkapan transkrip untuk [sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) (sesi di mesin pengguna). Penangkapan dimulai saat Compliance API diaktifkan dan berhenti selama nonaktif. Konten transkrip dari sesi lokal yang berjalan selama Compliance API nonaktif tidak ditangkap dan tidak dapat dipulihkan di kemudian hari.
+      **Menonaktifkan Compliance API menghentikan pencatatan aktivitas.** Untuk menonaktifkannya, gunakan toggle **Compliance API** yang sama. Jika Anda tidak dapat menonaktifkannya, tanyakan kepada tim akun Anthropic Anda atau [dukungan Anthropic](https://support.claude.com). Selama Compliance API nonaktif, tidak ada peristiwa aktivitas yang dicatat untuk organisasi Anda, sehingga [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) tidak menerima peristiwa baru. Aktivitas yang tidak dicatat selama Compliance API nonaktif tidak dapat dipulihkan di kemudian hari. Mengaktifkan kembali Compliance API melanjutkan pencatatan sejak saat itu; aktivitas yang sudah dicatat tidak dihapus. Peristiwa Access Transparency merupakan pengecualian. Jika organisasi Anda terdaftar dalam [Access Transparency](https://platform.claude.com/docs/id/manage-claude/access-transparency), menonaktifkan Compliance API menghentikan akses Anda ke peristiwa ini, bukan pencatatannya. Peristiwa tersebut tetap dicatat selama Compliance API nonaktif, dan Activity Feed mengembalikannya setelah Compliance API diaktifkan kembali. Untuk organisasi Claude Enterprise, pengaturan Compliance API di claude.ai juga mengatur penangkapan transkrip untuk [sesi lokal](https://platform.claude.com/docs/id/manage-claude/compliance-sessions#retrieve-local-sessions) (sesi di mesin pengguna). Penangkapan dimulai saat Compliance API diaktifkan dan berhenti selama nonaktif. Konten transkrip dari sesi lokal yang berjalan selama Compliance API nonaktif tidak ditangkap dan tidak dapat dipulihkan di kemudian hari.
     </Warning>
 
     Organisasi Claude Console mandiri menggunakan kunci Admin API, bukan Compliance Access Key: setelah pengaktifan, lewati langkah-langkah selanjutnya dan [buat kunci Admin API baru](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#create-an-admin-api-key) sebagai gantinya. Langkah-langkah selanjutnya menyediakan Compliance Access Key, yang hanya tersedia bagi organisasi yang merupakan bagian dari tenant Claude Enterprise.
@@ -126,7 +126,7 @@ export ANTHROPIC_ADMIN_KEY=sk-ant-admin01-...
 
 Nama variabel yang berbeda mencegah kunci Admin API menimpa Compliance Access Key jika Anda menyediakan keduanya. Contoh cURL dalam panduan ini membaca kunci dari `$ANTHROPIC_COMPLIANCE_ACCESS_KEY`; ganti dengan `$ANTHROPIC_ADMIN_KEY` saat memanggil [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) dengan kunci Admin API.
 
-Kunci Admin API membawa scope `read:compliance_activities` hanya jika Compliance API telah diaktifkan untuk organisasi pada saat kunci dibuat; lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api). Kunci ini tidak dapat diberi scope Compliance API lainnya, sehingga panggilan ke endpoint apa pun selain Activity Feed mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden).
+Kunci Admin API membawa scope `read:compliance_activities` hanya jika Compliance API telah diaktifkan untuk organisasi pada saat kunci dibuat; lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api). Kunci ini tidak dapat diberi scope Compliance API lainnya, sehingga panggilan ke endpoint apa pun selain Activity Feed mengembalikan [403 Forbidden](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden). Pengecualiannya adalah [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access): kunci yang Anda buat saat API tersebut tersedia juga membawa tiga scope API tersebut. Kunci yang Anda buat sebelumnya tidak pernah memperolehnya, jadi untuk menjangkau API tersebut, buat kunci baru.
 
 Untuk peran kunci yang sama dalam mengelola organisasi Claude Console Anda, lihat [Admin API](https://platform.claude.com/docs/id/manage-claude/admin-api).
 
@@ -134,7 +134,7 @@ Untuk peran kunci yang sama dalam mengelola organisasi Claude Console Anda, liha
 
 Untuk memeriksa scope pada kunci yang sudah Anda miliki, gunakan salah satu sinyal berikut.
 
-* **Prefiks kunci.** `sk-ant-admin01-` adalah kunci Admin API (hanya membawa `read:compliance_activities`, bergantung pada waktu pengaktifan yang dijelaskan di bagian sebelumnya). `sk-ant-api01-` adalah Compliance Access Key; cakupannya adalah subset yang Anda pilih saat pembuatan.
+* **Prefiks kunci.** `sk-ant-admin01-` adalah kunci Admin API (hanya membawa `read:compliance_activities`, bergantung pada waktu pengaktifan yang dijelaskan di bagian sebelumnya; pengecualiannya adalah kunci yang dibuat saat API Safety Cases tersedia, yang juga membawa scope API tersebut). `sk-ant-api01-` adalah Compliance Access Key; cakupannya adalah subset yang Anda pilih saat pembuatan.
 * **UI pengaturan.** Untuk Compliance Access Key, buka bagian **Kunci** di [claude.ai > Pengaturan organisasi > API](https://claude.ai/admin-settings/api-access) dan baca kolom **Cakupan** untuk kunci tersebut. Kunci Admin API, yang tercantum di halaman [Kunci admin](https://platform.claude.com/settings/admin-keys) (`platform.claude.com/settings/admin-keys`) di Claude Console, tidak memiliki cakupan yang dapat dipilih.
 * **Respons error.** Panggilan yang melebihi cakupan kunci akan mengembalikan 403 dengan pesan dalam format `Missing required scopes. Got: [<scopes the key carries>] Needed one of: [<scopes the endpoint accepts>]` (`Needed: [...]` pada endpoint penghapusan). Lihat [Menangani error Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-errors#403-forbidden) untuk katalog error lengkap.
 
@@ -155,14 +155,14 @@ Penghapusan kunci berlaku pada permintaan berikutnya: tidak ada masa tenggang. C
 
 Untuk merotasi kunci tanpa gangguan layanan:
 
-1. Buat kunci baru dengan scope yang sama.
+1. Buat kunci baru dengan scope yang sama. Kunci Admin API baru juga mendapatkan scope API Safety Cases selama API tersebut tersedia untuk organisasi Anda.
 2. Perbarui integrasi Anda untuk menggunakan kunci baru.
 3. Verifikasi bahwa integrasi berhasil dengan kunci baru.
 4. Hapus kunci lama.
 
 Kursor paginasi yang disimpan sebelum rotasi tetap valid: kursor dicakup ke organisasi, bukan ke kunci.
 
-Jika Compliance Access Key bocor, segera hapus, audit [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) untuk aktivitas `compliance_api_accessed` oleh kunci yang disusupi, dan rotasi kredensial hilir apa pun yang dapat dijangkau oleh kunci yang bocor tersebut. Teruskan `activity_types[]=compliance_api_accessed` untuk membatasi cakupan kueri, lalu di klien Anda, pertahankan aktivitas yang `actor.type`-nya adalah `api_actor` dan `actor.api_key_id`-nya cocok dengan kunci yang disusupi; lihat [Memahami objek Activity](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#understand-the-activity-object) untuk skema actor.
+Jika Compliance Access Key atau kunci Admin API bocor, segera hapus, audit [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) untuk aktivitas `compliance_api_accessed` oleh kunci yang disusupi, dan rotasi kredensial hilir apa pun yang dapat dijangkau oleh kunci yang bocor tersebut. Teruskan `activity_types[]=compliance_api_accessed` untuk membatasi cakupan kueri, lalu di klien Anda, pertahankan aktivitas yang `actor.type`-nya adalah `api_actor` dan `actor.api_key_id`-nya cocok dengan kunci yang disusupi; lihat [Memahami objek Activity](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed#understand-the-activity-object) untuk skema actor. Panggilan kunci Admin API ke Admin API muncul di bawah jenis aktivitas lain. Untuk menemukannya, lakukan kueri tanpa filter tersebut, dan pertahankan aktivitas yang `actor.type`-nya adalah `admin_api_key_actor` dan `actor.admin_api_key_id`-nya cocok dengan kunci tersebut. ID ini memiliki prefiks yang berbeda dari `api_key_id` kunci tersebut.
 
 Beberapa panggilan ke Compliance API tidak meninggalkan aktivitas apa pun di Activity Feed, termasuk panggilan yang berhasil. Jadi, tidak ditemukannya aktivitas `compliance_api_accessed` untuk kunci tersebut tidak menunjukkan bahwa kunci tersebut tidak digunakan.
 

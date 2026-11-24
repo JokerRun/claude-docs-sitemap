@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/threads/events
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: e4bda9a87a18964940fc1de26622722e5cde3c3168661745411573ddc0bb1bc8
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 70c6d8df84055e1c2d45daa90c47ded96fe18f5f379233fe8eb96c122209cc4b
 ---
 
 ---
@@ -139,6 +139,8 @@ List Session Thread Events
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -3348,6 +3350,8 @@ Stream Session Thread Events
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

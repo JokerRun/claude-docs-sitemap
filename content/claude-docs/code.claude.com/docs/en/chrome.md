@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/chrome
-fetched_at: 2026-11-23T02:14:44.103489Z
-sha256: 3301c32f2894f4a49dcdb7f228bde009d7c32e188fb6ed8ba5232774eaadb0b8
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 4bbde8c16025c821bd3045f97c4e90976f190b9c1230547eff4a42edce7387b1
 ---
 
 > ## Documentation Index
@@ -118,6 +118,8 @@ Claude Code starts normally when Chrome isn't running.
 >
 > Enabling Chrome by default increases context usage since the browser tools and their instructions are always loaded. If you notice increased context consumption, turn the setting off and connect only when needed, with `--chrome` in the CLI or by typing [`@browser`](https://code.claude.com/docs/en/vs-code#automate-browser-tasks-with-chrome) in the VS Code prompt box.
 
+To start one CLI session without Chrome and leave the setting on, run [`claude --no-chrome`](https://code.claude.com/docs/en/cli-reference#cli-flags) in your terminal.
+
 ### Answer the startup dialog
 
 If the "Claude in Chrome extension detected" dialog appears when you start `claude`, your answer changes the [**Enabled by default** setting](#enable-chrome-by-default):
@@ -133,7 +135,7 @@ To let Claude act on a site, approve it when Claude Code asks. In [auto mode](ht
 
 ### Permission prompts in VS Code sessions
 
-In a VS Code session, when Claude Code asks before a browser action, the prompt appears as a card in the chat panel. When the action targets a site you haven't allowed, the card also offers to allow that site.
+In a VS Code session, when Claude Code asks before a browser action, the prompt appears as a card in the chat panel.
 
 In a session that connected to your browser at start because [Enabled by default](#enable-chrome-by-default) is on, Claude Code asks you before browser actions on a site you haven't allowed, in Manual, Edit automatically, Auto, and Bypass permissions modes. In Auto and Bypass permissions modes, this applies until you type `@browser` in that session.
 

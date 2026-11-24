@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 2778dc8633ea7c598f15a2050e1b595123c1e22f646cde8333b0c7a9837bc96c
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 119394b502276faae5adf590dcb444b544a10ffdb28d05b68c9b7bdadedb7ade
 ---
 
 ---
@@ -152,6 +152,8 @@ omitted from the results.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -393,6 +395,8 @@ accounts cannot be added and are rejected.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -661,6 +665,8 @@ account returns 404.
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -894,6 +900,8 @@ rejected.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -1155,6 +1163,8 @@ membership. Archived workspaces return 400.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/service_accounts/workspaces/add
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 6489d6c9420f414f7fc4a18152d70948e642b275b7148587e9c9e98dcde62478
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: a345645d12e65a4b9922a624e40d030999bbc14ea08246069fcbee198c76194a
 ---
 
 ---
@@ -138,6 +138,8 @@ rejected.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

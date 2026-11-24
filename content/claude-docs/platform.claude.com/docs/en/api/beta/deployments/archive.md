@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 4f16e81b4d6ee6e3073d6750aa01fafa09dd54291aa43ba06570403ce9b0dfa5
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 5cc0acfed7eae5b7c7831233e244bc940e31542a9b762ffc1b9435714acf23f7
 ---
 
 ---
@@ -129,6 +129,8 @@ Archive Deployment
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

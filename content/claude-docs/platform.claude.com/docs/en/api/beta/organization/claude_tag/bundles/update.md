@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/update
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b2887882b04ef9d526a85c009d56b74fdfebaf1960488c8f555b05f83a5a2cc1
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 93fe4dc9731a44296aef57e9bcbd234bae20283e7aae54ad8a97405557ce63f9
 ---
 
 ---
@@ -129,6 +129,8 @@ Change a Bundle's instructions. The update is partial: a field left out is uncha
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

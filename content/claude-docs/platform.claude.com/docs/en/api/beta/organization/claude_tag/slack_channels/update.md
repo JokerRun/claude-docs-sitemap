@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/update
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 8889e15cd5a4b79a358e407ff44ca02a2ec8dbf527f1653eb2d1e5fc867967c6
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 589197f551dbdca517f7bb514cd6f08585c932c0bae160dd683a443d9fecc7f3
 ---
 
 ---
@@ -129,6 +129,8 @@ Change the settings a Slack channel stores. The update is partial: a setting lef
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

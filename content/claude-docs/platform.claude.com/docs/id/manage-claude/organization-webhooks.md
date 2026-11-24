@@ -1,14 +1,14 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/organization-webhooks
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: c6303996e58469597d336ada2085f7b3b1d52d391e3c6c5f38b7202193938475
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: d18ff6b347212ed8334362427e3b85d72b78bd793259f5c0b9904798c1f132f6
 ---
 
 ---
 title: Webhook organisasi
 url: https://platform.claude.com/docs/id/manage-claude/organization-webhooks
-description: Daftarkan endpoint webhook untuk event tentang profil pengguna dan kunci enkripsi yang dikelola pelanggan milik organisasi Anda, lalu tanggapi setiap event.
+description: Daftarkan endpoint webhook untuk event tentang profil pengguna, kunci enkripsi yang dikelola pelanggan, dan penyimpanan milik pelanggan di organisasi Anda, lalu tanggapi setiap event.
 featureMetadata:
   status: beta
   betaHeader: webhooks-2026-10-07
@@ -30,7 +30,7 @@ Anda memerlukan hal-hal berikut:
 
   * Organisasi mengaktifkan [kesiapan HIPAA](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#hipaa-readiness): organisasi tersebut tidak dapat menggunakan webhook organisasi.
   * Organisasi dapat menggunakan [kunci enkripsi yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek): organisasi tersebut memiliki webhook organisasi.
-  * Organisasi lainnya: hubungi tim akun Anthropic Anda untuk meminta akses.
+  * Organisasi lainnya, termasuk organisasi yang hanya memiliki [penyimpanan milik pelanggan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-owned-storage): hubungi tim akun Anthropic Anda untuk meminta akses.
 
 * Salah satu kredensial berikut:
 
@@ -49,6 +49,7 @@ Sebuah endpoint menerima jenis event yang Anda cantumkan di [`enabled_events`](h
 
 * [Event profil pengguna](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#user-profile-events): Anthropic membatasi atau memblokir salah satu [profil pengguna](https://platform.claude.com/docs/id/manage-claude/user-profiles) Anda, atau pembatasan atau pemblokiran tersebut berakhir.
 * [Event kunci enkripsi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#encryption-key-events): “key management service” (layanan manajemen kunci), atau KMS, Anda terus menolak salah satu kunci enkripsi yang dikelola pelanggan Anda, atau kunci tersebut berfungsi kembali.
+* [Event penyimpanan milik pelanggan](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#customer-owned-storage-events): salah satu bucket Anda gagal dalam pemeriksaan harian Anthropic, atau kembali lolos pemeriksaan tersebut.
 
 Untuk jenis event lainnya, lihat `enabled_events` di [referensi API untuk membuat endpoint](https://platform.claude.com/docs/id/api/beta/organization/webhooks/create).
 
@@ -65,7 +66,7 @@ Menghapus sebuah profil akan mengakhiri tindakan-tindakan terbukanya tanpa event
 
 ### Sebelum event pertama Anda
 
-Dalam setiap permintaan yang header `anthropic-beta`-nya berisi `user-profiles-2026-09-04` atau nilai yang lebih lama, respons tidak menyertakan field `enforcement_status` dan `enforcement_actions`, dan filter daftar `enforcement_status[]` mengembalikan `400`. Untuk mendapatkan field tersebut, hapus nilai itu dari permintaan Anda.
+Dalam setiap permintaan yang header `anthropic-beta`-nya berisi `user-profiles-2026-09-04` atau beta profil pengguna yang lebih lama, respons tidak menyertakan field `enforcement_status` dan `enforcement_actions`. Dalam permintaan seperti itu, filter daftar `enforcement_status[]` mengembalikan `400`. Untuk mendapatkan field tersebut, hapus beta itu dari permintaan Anda.
 
 Jika sebuah tindakan penegakan dibuka sebelum Anthropic mengaktifkan pengiriman event untuk organisasi Anda, atau sebelum Anda mendaftarkan endpoint Anda, Anda tidak mendapatkan event `user_profile.enforcement_action_opened` untuknya. Tindakan tersebut tetap muncul pada profil. Untuk menemukan tindakan-tindakan ini, [tampilkan daftar profil Anda](https://platform.claude.com/docs/id/api/user_profiles/list) dengan `enforcement_status[]=restricted` dan `enforcement_status[]=banned`. Sebuah respons mungkin mengembalikan lebih sedikit profil daripada `limit`, atau tidak ada sama sekali, sebelum daftar berakhir, jadi terus minta halaman berikutnya hingga `next_page` bernilai `null`.
 
@@ -169,6 +170,91 @@ Dalam kasus-kasus berikut, Anda mungkin melewatkan salah satu atau kedua event:
 
 Karena Anda dapat melewatkan salah satu event, Anda mungkin menerima `external_key.failed` dua kali berturut-turut, atau `external_key.recovered` tanpa `external_key.failed` sebelumnya.
 
+## Event penyimpanan milik pelanggan
+
+Event ini berkaitan dengan bucket yang Anda gunakan sebagai [penyimpanan milik pelanggan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-owned-storage). Admin API menyebut bucket seperti itu sebagai External Storage, sehingga jenis event diawali dengan `external_storage`:
+
+| Event | Pemicu |
+| ----- | ----- |
+| `external_storage.failed` | Sebuah bucket gagal dalam [pemeriksaan harian Anthropic](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/external-storage-manage#bucket-health). |
+| `external_storage.recovered` | Setelah Anthropic mengirimkan `external_storage.failed`, bucket tersebut kembali lolos pemeriksaan. |
+
+Pemeriksaan mencakup setiap bucket yang digunakan sebuah workspace untuk [data keselamatan tersegel](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-owned-storage#what-is-stored). Pemeriksaan juga mencakup setiap bucket dengan [status `draining`](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/external-storage-manage?method=api#api-check), yang sudah tidak lagi digunakan oleh workspace. Jangan mengandalkan event ini untuk bucket yang hanya menerima transkrip dan Safety Cases.
+
+Hanya pemeriksaan harian yang memicu event ini. Tidak ada event uji.
+
+Ketika sebuah bucket gagal atau pulih, Anthropic biasanya juga mengirim email kepada anggota organisasi Anda yang perannya memungkinkan mereka mengelola kunci enkripsi, seperti `admin`. Anda tidak memerlukan kunci untuk mendapatkan email ini.
+
+Untuk menerima event ini, organisasi Anda memerlukan webhook organisasi, seperti yang dijelaskan di [Sebelum Anda memulai](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#before-you-begin).
+
+Event menyebutkan bucket di `data.id`, yang diawali dengan `estrg_`:
+
+```json
+{
+  "type": "event",
+  "id": "whe_2b7e9d4c1a6f8035e2d9b6c3a0f51e84",
+  "created_at": "2026-12-02T06:41:19.305127Z",
+  "data": {
+    "type": "external_storage.failed",
+    "id": "estrg_01SDCCSbTxrXDpWc1phhtcfK",
+    "organization_id": "org_011CZkZBj9RsYd3wNcHvKq6t"
+  }
+}
+```
+
+* **Waktu:** `created_at` adalah waktu Anthropic pertama kali mencoba mengirimkan event, bukan waktu pemeriksaan dijalankan. Nilainya dapat mencakup pecahan detik.
+* **Penyebab dan workspace:** Event tidak menyebutkan mengapa bucket gagal atau workspace mana yang menggunakannya.
+
+### Menanggapi event penyimpanan
+
+Setelah Anda mengembalikan `2xx` untuk salah satu event, [ambil bucket tersebut](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/external-storage-manage?method=api#api-check) dengan `GET /v1/organizations/external_storage/{external_storage_id}`. Gunakan `data.id` sebagai ID, serta kunci Admin API atau token `org:admin`. Permintaan di bagian ini memerlukan header `anthropic-beta: efs-2026-10-01`.
+
+Respons bukanlah pengujian langsung. `status.healthy` menunjukkan apakah bucket lolos pemeriksaan terbaru yang mencapai hasil, dan `status.last_checked_at` menunjukkan kapan pemeriksaan itu dijalankan.
+
+Jika `status.healthy` bernilai `false`:
+
+1. Segera beri tahu tim akun Anthropic Anda, satu kali untuk setiap kegagalan. Data keselamatan tersegel yang tidak sampai ke bucket Anda mungkin hilang.
+2. Ikuti [Jika bucket Anda berhenti berfungsi](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/external-storage-manage#if-your-bucket-stops-working).
+3. Ambil bucket tersebut lagi sekitar satu hari setelah `status.last_checked_at`. Jika `status.healthy` masih `false`, ulangi dari langkah 2.
+
+`status.healthy` biasanya tetap `false` hingga pemeriksaan berikutnya lolos. Jangan menunggu `external_storage.recovered`, yang mungkin tidak tiba. Jika penulisan masih berfungsi, cari pengaturan yang berubah, seperti [aturan siklus hidup yang ditambahkan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/external-storage-manage#what-removes-data), yang juga membuat pemeriksaan gagal.
+
+Jika `status.healthy` bernilai `true` setelah kegagalan, beri tahu tim akun Anthropic Anda bahwa bucket berfungsi kembali. Mereka kemudian dapat memastikan apakah Anthropic perlu memulihkan data dari periode saat bucket gagal.
+
+Untuk melihat workspace mana yang terdampak oleh kegagalan:
+
+1. [Tampilkan daftar workspace Anda](https://platform.claude.com/docs/id/api/organization/workspaces/list) dengan `include_default=true`.
+2. Cari ID bucket di field `external_storage_id` di bawah [`inference_data_privacy`](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/external-storage?method=api#api-attach).
+
+### Kapan event penyimpanan tiba
+
+Pemeriksaan dijalankan sekali sehari, sehingga sebuah event dapat tiba sehari atau lebih setelah perubahan pada bucket Anda:
+
+* **`external_storage.failed`:** Biasanya sekitar 15 menit setelah pemeriksaan yang gagal. Selama bucket terus gagal, pemeriksaan-pemeriksaan berikutnya tidak mengirimkannya lagi.
+* **`external_storage.recovered`:** Biasanya dalam beberapa menit setelah pemeriksaan harian berikutnya yang lolos.
+
+### Kapan event penyimpanan mungkin tidak tiba
+
+Jangan jadikan event ini satu-satunya sinyal Anda. Pantau juga [objek yang masuk ke bucket Anda](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/external-storage-manage#if-your-bucket-stops-working) selama Anda mengirim permintaan, dan [kejar event yang terlewat](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#catch-up-on-missed-events) secara berkala.
+
+Dalam kasus-kasus berikut, Anda mungkin melewatkan salah satu atau kedua event:
+
+| Kasus | Apa yang mungkin Anda lewatkan | `status.healthy` |
+| ----- | ----- | ----- |
+| Penulisan gagal dan berfungsi kembali di antara dua pemeriksaan | Kedua event | Tidak berubah |
+| Hanya peran IAM untuk transkrip dan Safety Cases yang gagal | Kedua event | Mungkin tidak berubah |
+| Pemeriksaan tidak mencapai hasil | Kedua event, hingga pemeriksaan mencapai hasil | Tidak berubah |
+| Bucket gagal sebelum Anda menambahkan event ini ke sebuah endpoint | `external_storage.failed` | `false` |
+| Bucket di beberapa organisasi, termasuk milik Anda, mulai gagal pada hari yang sama | Kedua event dan email-emailnya | Biasanya `false` |
+| [Kunci workspace default Anda](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#if-your-default-workspace-uses-an-encryption-key) gagal, dan kunci tersebut mengenkripsi sebuah nilai endpoint Anda | Setiap event hingga kunci berfungsi kembali | Terbaru |
+
+Dua dari kasus ini memerlukan pemeriksaan Anda sendiri:
+
+* **Peran IAM untuk transkrip dan Safety Cases:** Pemeriksaan harian dapat lolos meskipun peran tersebut gagal, jadi pantau objek-objek tersebut di bucket Anda.
+* **Pemeriksaan yang tidak mencapai hasil:** `status.last_checked_at` berhenti bergerak. Peran IAM yang dihapus atau diubah dapat menyebabkan hal ini, jadi periksa peran yang memberi Anthropic akses.
+
+Karena Anda dapat melewatkan salah satu event, Anda mungkin menerima `external_storage.failed` dua kali berturut-turut, atau `external_storage.recovered` tanpa `external_storage.failed` sebelumnya.
+
 ## Field endpoint
 
 Endpoint webhook organisasi memiliki field-field berikut:
@@ -234,7 +320,13 @@ Anthropic tidak memberi tahu Anda ketika membuang event, menonaktifkan endpoint,
 Setiap kali, periksa bahwa `state` endpoint Anda bernilai `enabled`. Kemudian, periksa sumber daya di balik setiap kelompok event yang Anda gunakan:
 
 * **Profil pengguna:** Tampilkan daftar profil Anda berdasarkan status penegakan, seperti di [Sebelum event pertama Anda](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#before-your-first-event). Profil yang tidak ada dalam daftar tersebut tidak memiliki tindakan terbuka.
+
 * **Kunci enkripsi:** [Tampilkan daftar kunci Anda](https://platform.claude.com/docs/id/api/organization/external_keys/list), dan [validasi masing-masing](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#respond-to-an-encryption-key-event). Jika Anda tidak menerima event untuk kunci tersebut, `success` tidak memerlukan pemeriksaan lebih lanjut kecuali permintaan Messages API gagal.
+
+* **Penyimpanan milik pelanggan:** [Tampilkan daftar bucket Anda](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/external-storage-manage?method=api#api-check), dan periksa setiap bucket yang dicakup oleh pemeriksaan harian:
+
+  * Jika `status.healthy` bernilai `false`, ikuti [Menanggapi event penyimpanan](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#respond-to-a-storage-event).
+  * Jika `status.last_checked_at` berusia lebih dari 2 hari, beri tahu tim akun Anthropic Anda.
 
 ## Mengelola endpoint
 
@@ -501,7 +593,7 @@ Contoh ini membuat endpoint untuk dua event profil pengguna, yang tidak dikirimk
 
 Responsnya adalah endpoint baru, seperti yang ditunjukkan di [Field endpoint](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#endpoint-fields), ditambah `signing_secret`-nya.
 
-Jika Anda memiliki peran organisasi `admin`, Anda dapat mengelola endpoint untuk event kunci enkripsi di Claude Console sebagai gantinya. Gunakan tab **Organisasi** di halaman [Webhook](https://platform.claude.com/settings/webhooks), yang menampilkan signing secret satu kali, saat Anda membuat endpoint atau mengganti secret-nya.
+Jika Anda memiliki peran organisasi `admin`, Anda dapat mengelola endpoint untuk event kunci enkripsi dan event penyimpanan milik pelanggan di Claude Console sebagai gantinya. Gunakan tab **Organisasi** di halaman [Webhook](https://platform.claude.com/settings/webhooks), yang menampilkan signing secret satu kali, saat Anda membuat endpoint atau mengganti secret-nya.
 
 ## Jika workspace default Anda menggunakan kunci enkripsi
 

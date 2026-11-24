@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/reveal_token
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 74c0f1cc38ea064028cad26ceb760e01576df4c72e905608d2b8d3aeb38df8f8
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 6ea2cc7e54408f5d591e87752d88547911f762b48df298b52f12044288ec7708
 ---
 
 ---
@@ -131,6 +131,8 @@ Reveals a tunnel's connector token. The value is fetched live on each call; Anth
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

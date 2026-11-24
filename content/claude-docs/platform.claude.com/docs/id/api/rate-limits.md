@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: bd5a5d371f4ee9b68a8988941f291c7e4f2af65fc1767177a52467ad8275d73c
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e70a422b3eeb313fe162f9d9c2dddf1515305713a62e29a51154456cd0972f0e
 ---
 
 ---
@@ -188,7 +188,7 @@ Setiap baris dalam tabel berikut memiliki batas RPM, ITPM, dan OTPM tersendiri. 
 
 *<sup>1 Batas laju Fable adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Fable 5.1 dan Claude Fable 5. Claude Fable 5.2 memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini. Claude Mythos 5.2, Claude Mythos 5.1, dan Claude Mythos 5 berbagi batas gabungan terpisah.</sup>*
 
-*<sup>2 Batas laju Opus adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Opus 4.8, Opus 4.7, Opus 4.6, dan Opus 4.5. Claude Opus 5.5 dan Claude Opus 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
+*<sup>2 Batas laju Opus adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Opus 4.8, Opus 4.7, Opus 4.6, dan Opus 4.5. Claude Opus 4.5 dihentikan di Claude API. Untuk platform lain, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Claude Opus 5.5 dan Claude Opus 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
 
 *<sup>3 Batas laju Sonnet 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di Sonnet 4.6 dan Sonnet 4.5 (tidak digunakan lagi; lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Claude Sonnet 5.5 dan Claude Sonnet 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
 

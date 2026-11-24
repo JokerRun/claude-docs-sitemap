@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: a971e230960231151b6dcce83d904febd6df8f96932e456bfb5c735ca752d7a2
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: dd16bb5c56428d29fdbcc41c93fd7b730ceea1f3ce8e596ca15f59afd81757fc
 ---
 
 ---
@@ -58,7 +58,7 @@ Jika aplikasi tersebut bukan milik Anda, mulailah percakapan baru dan beri tahu 
     }
     ```
 
-    Di SDK, panggil metode Messages beta dan teruskan nilai header-nya, seperti yang dilakukan [program pengujian](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#how-to-tell-whether-your-integration-is-impacted-details). Jika error [masih meminta header](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#setting-not-received), header tersebut tidak sampai.
+    Di SDK, panggil metode Messages beta dan teruskan beta-nya, seperti yang dilakukan [program pengujian](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#how-to-tell-whether-your-integration-is-impacted-details). Jika error [masih meminta header](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#setting-not-received), header tersebut tidak sampai.
 
     Cara itu menghentikan error dengan tidak menyertakan pemikiran yang tidak valid dalam permintaan, tetapi [dapat menambah biaya](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/fix-bound-to-a-different-conversation#drop-block-cost) serta dapat memengaruhi kualitas output dan “latency” (latensi). Permintaan berikutnya berhasil, dan array `input_transformations`-nya mencantumkan setiap blok yang tidak disertakan API dalam permintaan tersebut.
 

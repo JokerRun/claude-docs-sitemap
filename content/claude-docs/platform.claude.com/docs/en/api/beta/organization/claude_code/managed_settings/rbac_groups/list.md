@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_code/managed_settings/rbac_groups/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: bd35c1e710402b693fda77de198a6c5f4a6d5ebda0f3f57901ae932e606f3cfc
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 16734c974a43a7c16a6f675f282005e27b3f4e4b087c954d88715ce64ea59ca3
 ---
 
 ---
@@ -143,6 +143,8 @@ Every request must include the beta header `anthropic-beta: ce-claude-code-manag
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

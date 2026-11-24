@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments/unpause
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: fa83fd551cb5e1e067910b3fd5e459eadded84d5d4cef5bae9b7fe918d7f9566
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 33dcf75dd9367663c69b669ddd7628363b32db0669b0b2c95714e3b3a7c301c0
 ---
 
 ---
@@ -129,6 +129,8 @@ Unpause Deployment
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

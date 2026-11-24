@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/tunnels/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 24431a2a07a94e4fca059924b1acf5ee8aa59108a083bfbebaf3b859498726bb
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 47aa4345e2979a33a15e1cf6af49bdec7a6b6605a84c6c3c83e16b7ae1e8bb87
 ---
 
 ---
@@ -131,6 +131,8 @@ Archives a tunnel. Archival is irreversible: every non-archived certificate on t
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

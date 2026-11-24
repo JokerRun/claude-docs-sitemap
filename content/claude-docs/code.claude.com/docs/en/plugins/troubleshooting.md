@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/troubleshooting
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: eedac9d0d9b4cb3bab7acd97d1e299ef7ea2b0759c52dd8a1f4d03a33bdc2fb8
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 8ea8c9b006c9faff9663339c9ebc463690295bfec65ac55efdced3bd594e8930
 ---
 
 > ## Documentation Index
@@ -37,15 +37,13 @@ Search for the exact message you saw. Each message is listed under the stage tha
 
 You typed `/plugin` somewhere other than a Claude Code terminal session, and Claude replied with this line instead of opening anything.
 
-You get this reply in a session that has no terminal to draw the `/plugin` panel in: [non-interactive mode](https://code.claude.com/docs/en/headless.md) with `claude -p`, the Agent SDK, the Claude desktop app's Code tab, the VS Code extension panel, and the browser at claude.ai/code.
+For example, you see this reply in [non-interactive mode](https://code.claude.com/docs/en/headless.md) with `claude -p`, the Agent SDK, and the VS Code extension panel.
 
 In the VS Code extension panel, only a `/plugin` line with something after it, such as `/plugin install <plugin>@<marketplace>`, gets this reply. `/plugin` or `/plugins` typed alone opens the **Manage plugins** dialog.
 
 Install the plugin from the surface you're on instead:
 
-* **Claude desktop app, local or SSH session**: use the **Desktop app** tab under [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin)
 * **VS Code extension**: use the **VS Code** tab under [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin)
-* **Claude Code on the web, or a desktop cloud session**: a cloud session has no plugin browser. See the **Cloud session** tab under [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin) for what a cloud session loads
 * **A terminal you have access to**: run `claude` and type `/plugin` there, or run `claude plugin install <plugin>@<marketplace>` in your shell without starting a session
 
 When a terminal install works, `/plugin` prints an install summary that starts with `✓ Installed <plugin>.` and `claude plugin install` prints `Installed plugin: <plugin>@<marketplace>`.

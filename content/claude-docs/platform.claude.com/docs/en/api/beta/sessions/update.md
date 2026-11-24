@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/sessions/update
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 72c9a86030ae98fac5de73ee0e4dfee0a8e827907e34d18af57e58ffda6c7780
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: e01560ebe96a4b7ff05b048cb8bbda1060b3614e238ef842b70cadf97caf94a1
 ---
 
 ---
@@ -127,6 +127,8 @@ Update Session
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

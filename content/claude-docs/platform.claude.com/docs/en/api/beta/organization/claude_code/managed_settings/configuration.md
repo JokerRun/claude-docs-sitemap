@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_code/managed_settings/configuration
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: ab67cac59b358d67a2ffcd5746632a825b0963bf5f5cf1d0c3112ddeb4106870
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 9e8ab3b0be023a3d349c877778e5e7fd417f59d8e015d6b81fa2d1f12b5e8a06
 ---
 
 ---
@@ -129,6 +129,8 @@ Every request must include the beta header `anthropic-beta: ce-claude-code-manag
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 
@@ -366,6 +368,8 @@ A write that returns `503` may have applied. Retrying it is safe.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

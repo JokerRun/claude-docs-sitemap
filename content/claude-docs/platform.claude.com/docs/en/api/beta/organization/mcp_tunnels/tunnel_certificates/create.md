@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: be5f02230e3b2210ea36be241fb1c0533fe6bd7131746ceaa92418be66fbc327
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 0d49f3545e4fb42f560bcdfc34fe5787a740f61a5a65e596fc5c6c2c45eb128e
 ---
 
 ---
@@ -138,6 +138,8 @@ holds at most two non-archived certificates.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

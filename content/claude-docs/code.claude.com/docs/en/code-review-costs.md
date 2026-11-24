@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review-costs
-fetched_at: 2026-11-17T02:14:14.952467Z
-sha256: 92b3ac64aeefed5fa4a5441a3b7978e45c7d0cb42d5a74c0ac9ba5c75b5ef390
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 6e5682dc6b7c91d303a99a9d956c1ad01cd3b6d311174950fa9f8f53d52f7cdd
 ---
 
 > ## Documentation Index
@@ -37,13 +37,15 @@ Comment commands, drafts, and pull requests from forks adjust those counts:
 * **`@claude review`**: runs a single review without subscribing to future pushes
 * **Drafts and pull requests from forks**: [automatic reviews skip both](https://code.claude.com/docs/en/code-review-pull-requests.md#review-drafts-and-pull-requests-from-forks), so pushes to them don't add reviews
 
+In a repository with a [Claude Approvals](https://code.claude.com/docs/en/approvals-setup.md#what-approvals-costs) policy file, reviews can start that the **Review runs** setting wouldn't start, and [automatic ones can stop](https://code.claude.com/docs/en/approvals-policy.md#advisory).
+
 ## Estimate your spend
 
 Before a wide rollout, run a small pilot to estimate monthly spend from your own pull requests.
 
 1. Set a [monthly spend limit](#limit-your-spend) for the pilot.
 2. Turn on Code Review for a few representative repositories with **Review runs** set to **Once after PR creation** or **Manual (@claude review)**.
-3. After several reviews have run, read each repository's average cost per review in the **Average cost** column of the **Repositories** table, in the **Code review** section of [**Admin settings > Claude Code**](https://claude.ai/admin-settings/claude-code#code-review).
+3. After several reviews have run, go to [**Organization settings > Claude Ship**](https://claude.ai/admin-settings/claude-code#code-review) and click **Edit** on each repository's row in the **Repositories** table. Read its average cost per review under **Cost**.
 4. Multiply that average by the number of pull requests the repository opens in a month. For **After every push**, multiply again by the typical number of pushes per pull request.
 
 A repository's average moves with the size of its pull requests and with the review level you choose.

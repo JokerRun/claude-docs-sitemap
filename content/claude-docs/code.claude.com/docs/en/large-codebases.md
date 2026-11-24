@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/large-codebases
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: f5d723ccd1962a060db8f6b5991b4e98d8d0623bfbd75ff9dab2d1d62870d8d9
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: cb93dfcc2bb8cbefdecab2b4e1c1464de20449a2e89d47c459d9ed7fa68587e1
 ---
 
 > ## Documentation Index
@@ -158,7 +158,7 @@ Instructions are only part of what ends up in Claude's context. File reads are a
 
 ### Block reads of generated and vendored code
 
-Claude's content searches respect `.gitignore` by default, so paths already listed there, such as `node_modules/`, `dist/`, and `build/`, stay out of search results without additional configuration.
+Claude's content searches respect `.gitignore` by default, so paths already listed there, such as `node_modules/`, `dist/`, and `build/`, stay out of search results.
 
 For paths that are checked in, such as a vendored SDK or committed generated code, add `Read` deny rules in `permissions.deny` to block Claude from opening those files.
 

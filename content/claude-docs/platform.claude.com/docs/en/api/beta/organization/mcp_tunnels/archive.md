@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 7b9d204669694e00332435f653086bf1094c96875a78b534872433e2c87ea608
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: f528a5aa0b26fc6e9277c1dedba9799f56af934a75c56ef8e7c2df79342dbfd9
 ---
 
 ---
@@ -138,6 +138,8 @@ tunnel returns the existing record unchanged.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

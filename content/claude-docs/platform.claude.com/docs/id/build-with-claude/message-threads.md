@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/message-threads
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 394b1debba348ab64b173e71337ef45b341f803497bb13feb06ba86e6afa61f1
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: ca4363b56c5aae285b342ebbd6e7061a7f1e50a4de291b096a59c5ef012e120e
 ---
 
 ---
@@ -598,7 +598,7 @@ Contoh ini membuat thread pada giliran pertama dan melanjutkannya pada giliran k
 | Grup | Field | Aturan |
 | ----- | ----- | ----- |
 | Khusus create | `system`, `tools` | Kirim hanya pada permintaan create, beserta breakpoint `cache_control` apa pun pada field tersebut. Mengirim salah satunya pada permintaan continue, bahkan sebagai `null`, mengembalikan error 400. |
-| Tetap | `model`, `tool_choice`, `thinking`, `mcp_servers` (selain token otorisasi setiap server), `context_management`, `output_config`, `skills` di dalam `container`, `cache_control` tingkat atas, dan kumpulan nilai `anthropic-beta` | Kirim pada setiap permintaan dalam thread, dengan nilai yang sama seperti pada permintaan create. Nilai yang berbeda mengembalikan error 400 dengan kode `thread_fingerprint_mismatch`, dan pesan error menyebutkan field yang berbeda. |
+| Tetap | `model`, `tool_choice`, `thinking`, `mcp_servers` (selain token otorisasi setiap server), `context_management`, `output_config`, `skills` di dalam `container`, `cache_control` tingkat atas, dan kumpulan beta dalam header `anthropic-beta` | Kirim pada setiap permintaan dalam thread, dengan nilai yang sama seperti pada permintaan create. Nilai yang berbeda mengembalikan error 400 dengan kode `thread_fingerprint_mismatch`, dan pesan error menyebutkan field yang berbeda. |
 | Bebas | `max_tokens`, `stop_sequences`, `stream`, `metadata`, `service_tier`, dan field lain yang tidak disebutkan di halaman ini | Field ini dapat berubah dari giliran ke giliran. |
 
 API tidak menyimpan URL server MCP, token otorisasi MCP, atau `id` container. Kirim `mcp_servers` dan `container` pada setiap permintaan yang menggunakannya. Token otorisasi MCP dapat berubah antar permintaan.

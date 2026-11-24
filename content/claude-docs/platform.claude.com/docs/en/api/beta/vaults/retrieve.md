@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/vaults/retrieve
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 412cbef2e681f9200b75a13ea014ba9ad01e980fcf3c071d1230118c9a2e4f38
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 6c7a4648f78fd98c2ce78c6f5c95de548a5b70c2517c95cc2dc07fded31f4158
 ---
 
 ---
@@ -129,6 +129,8 @@ Retrieve a Vault
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

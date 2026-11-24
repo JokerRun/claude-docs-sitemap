@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/overview
-fetched_at: 2026-11-23T02:14:44.103489Z
-sha256: 3bd245136a86935c66f036c5565bdf175834916c686f44f583986dd60cf69b49
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 5b2e2a96004dcad154766249daaed46d8b6e47cb6e385f7bfcd4d5623ddd9b0a
 ---
 
 > ## Documentation Index
@@ -79,7 +79,7 @@ This diagram shows the path from a marketplace to your session. A marketplace li
 
 ![Diagram of the marketplace path in three boxes, left to right. A marketplace, a catalog of plugins, lists a plugin. The plugin is one directory installed as a unit, holding skills, agents, hooks, MCP servers, and other components. You install the plugin into Claude Code, which loads its components.](https://mintcdn.com/claude-code/2Q_GtOEovg5qaBem/images/plugins-model.svg?fit=max\&auto=format\&n=2Q_GtOEovg5qaBem\&q=85\&s=4196344954b7c2e27fc0bd6a9a1113a1)
 
-[Install and manage plugins](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin) has the install steps for each place you run Claude Code. While you're developing a plugin, you don't need a marketplace: load it straight from its folder with `--plugin-dir`, as [Develop without a marketplace](https://code.claude.com/docs/en/plugins/create.md#develop-without-a-marketplace) shows.
+[Install and manage plugins](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin) has the install steps for each place you run Claude Code. While you're developing a plugin, load it straight from its folder with `--plugin-dir`, as [Develop without a marketplace](https://code.claude.com/docs/en/plugins/create.md#develop-without-a-marketplace) shows.
 
 ### Make an installed plugin available in your session
 

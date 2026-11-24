@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/memory_stores/memory_versions/list
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 96e7f4c6e13e2b5bb737cb9708894cea9870593d1b89a8d275e20fa5b37a69be
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: ffef066397ff529b97900589c40849ffe0c059800c48e82f85346eb592f46233
 ---
 
 ---
@@ -203,6 +203,8 @@ List Memory Versions
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

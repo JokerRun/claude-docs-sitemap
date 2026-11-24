@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/admin-api
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 714bac08e540613749c77a669fc076370c2c438bc181e61bdb2ed572e218ba58
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: a10f428efbeb1121e848bdd88fcdd3841a95b19b029586722c5849a9f07448e2
 ---
 
 ---
@@ -1774,7 +1774,7 @@ Baca “rate limit” (batas laju) yang dikonfigurasi untuk organisasi Anda dan 
 
 ## Compliance API
 
-Ambil data audit dan aktivitas untuk organisasi Anda dengan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api). Kunci Admin API hanya dapat membaca Activity Feed. Untuk akses penuh, lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
+Ambil data audit dan aktivitas untuk organisasi Anda dengan [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api). Kunci Admin API hanya dapat membaca Activity Feed. Pengecualiannya adalah [API Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api#get-access): kunci Admin API yang Anda buat saat API tersebut tersedia untuk organisasi Anda juga dapat menjangkaunya. Melalui API tersebut, kunci dapat membaca pesan yang ditandai dan merespons Safety Cases. Untuk akses penuh, lihat [Menyiapkan Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access).
 
 ## Webhook organisasi
 

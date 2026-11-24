@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/webhooks/update
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: c43728ee339037118b7d7952bc3865500b339c5aa8fe55984d18cdb30279e2c7
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 6f0f68413537d1214ad6b69b2ada37fd9e9835cf061ebdcdf7ba4e72b9214299
 ---
 
 ---
@@ -134,6 +134,8 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
 
+  - `"efs-2026-10-01"`
+
   - `"user-profiles-billing-2026-10-01"`
 
   - `"message-batches-2024-09-24"`
@@ -182,13 +184,17 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
   Notes about the endpoint.
 
-- `enabled_events: optional array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+- `enabled_events: optional array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
   The event types to deliver to the endpoint. Replaces the whole set; an empty list leaves it unchanged.
 
   - `"external_key.failed"`
 
   - `"external_key.recovered"`
+
+  - `"external_storage.failed"`
+
+  - `"external_storage.recovered"`
 
   - `"user_profile.enforcement_action_opened"`
 
@@ -239,13 +245,17 @@ Every request must include the beta header `anthropic-beta: webhooks-2026-10-07`
 
     Why Anthropic disabled the endpoint automatically. An empty string when the endpoint is enabled, or when you disabled it.
 
-  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "user_profile.enforcement_action_opened" or 2 more`
+  - `enabled_events: array of "external_key.failed" or "external_key.recovered" or "external_storage.failed" or 4 more`
 
     The event types delivered to the endpoint.
 
     - `"external_key.failed"`
 
     - `"external_key.recovered"`
+
+    - `"external_storage.failed"`
+
+    - `"external_storage.recovered"`
 
     - `"user_profile.enforcement_action_opened"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/mcp_tunnels/tunnel_certificates/archive
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 1923ed0f9bbb413f9ce701845cab57c1c306c765827f2dc07faf54f3d1195bde
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 475d9b9ef999119b8336c8b7344ed97bbd01eeb052263fdbe88f4cdf769cc28e
 ---
 
 ---
@@ -141,6 +141,8 @@ certificate is added.
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

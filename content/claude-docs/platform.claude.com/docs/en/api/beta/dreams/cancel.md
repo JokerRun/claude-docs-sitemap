@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/dreams/cancel
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: da80b9886829b0755f6d458272564f079b26fa87400671e94a1eeecb6ba083d0
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 137497fdc48b7a3e116dbbdc21b6b44391e0ff72d134cc02f0e5cebce2f3bb7e
 ---
 
 ---
@@ -133,6 +133,8 @@ See the [Dreams guide](https://platform.claude.com/docs/en/managed-agents/dreams
   - `"experimental-claude-tag-2026-10-21"`
 
   - `"ce-claude-code-managed-settings-2026-10-06"`
+
+  - `"efs-2026-10-01"`
 
   - `"user-profiles-billing-2026-10-01"`
 

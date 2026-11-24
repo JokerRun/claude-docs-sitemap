@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: aa34f6c079acdbc1afc46e22110a7bf6be262122a50cf05c65b490bfef2eaba0
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: fb743a2c16a2173ea861bdc592e6d7cdd8f40fe20079c2ef225aaeb21d35ab47
 ---
 
 ---
@@ -90,7 +90,7 @@ Let Claude Code set up your agent for you
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.12.1
+        VERSION=2.13.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -159,7 +159,7 @@ To run the CLI examples, install the CLI:
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=2.12.1
+    VERSION=2.13.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -206,7 +206,7 @@ To run the CLI examples, install the CLI:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.12.0")
+        implementation("com.anthropic:anthropic-java:3.13.0")
         ```
       </Tab>
 
@@ -215,7 +215,7 @@ To run the CLI examples, install the CLI:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.12.0</version>
+            <version>3.13.0</version>
         </dependency>
         ```
       </Tab>

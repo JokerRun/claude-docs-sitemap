@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/security-guidance
-fetched_at: 2026-11-23T02:14:44.103489Z
-sha256: a3582c97d2ae6a86e46c6c057626e36c0a649be47bc7f42fbf6877ff940c64c8
+fetched_at: 2026-11-24T02:13:59.956186Z
+sha256: 080853b0e41d343abcaac7517c97288950674345fbc0f360dceeb52292dbaed2
 ---
 
 > ## Documentation Index
@@ -34,7 +34,7 @@ In a terminal Claude Code session, install from the [official Anthropic marketpl
 /plugin install security-guidance@claude-plugins-official
 ```
 
-`/plugin` opens an interactive panel in the terminal CLI. If Claude replies that `/plugin` isn't available in this environment, install another way:
+`/plugin` opens an interactive panel in the terminal CLI. Outside the terminal, install another way:
 
 * **Claude desktop app, local or SSH session**: use the **Desktop app** tab under [Install a plugin](https://code.claude.com/docs/en/plugins/install.md#install-a-plugin)
 * **VS Code extension**: install from the [**Manage plugins** dialog](https://code.claude.com/docs/en/vs-code.md#manage-plugins)
