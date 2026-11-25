@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/rate-limits
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: e70a422b3eeb313fe162f9d9c2dddf1515305713a62e29a51154456cd0972f0e
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 00246590fcb3715b70d74927c1c2195fc196d13ba04b8b88d1bc083571e85899
 ---
 
 ---
@@ -190,7 +190,7 @@ Setiap baris dalam tabel berikut memiliki batas RPM, ITPM, dan OTPM tersendiri. 
 
 *<sup>2 Batas laju Opus adalah batas total yang berlaku untuk lalu lintas gabungan di Claude Opus 4.8, Opus 4.7, Opus 4.6, dan Opus 4.5. Claude Opus 4.5 dihentikan di Claude API. Untuk platform lain, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Claude Opus 5.5 dan Claude Opus 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
 
-*<sup>3 Batas laju Sonnet 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di Sonnet 4.6 dan Sonnet 4.5 (tidak digunakan lagi; lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations)). Claude Sonnet 5.5 dan Claude Sonnet 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
+*<sup>3 Batas laju Sonnet 4.x adalah batas total yang berlaku untuk lalu lintas gabungan di Sonnet 4.6 dan Sonnet 4.5. Claude Sonnet 4.5 dihentikan (deprecated) di Claude API. Untuk platform lain, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations). Claude Sonnet 5.5 dan Claude Sonnet 5 masing-masing memiliki batas laju terpisah dan bukan bagian dari kelompok gabungan ini.</sup>*
 
 ### Batas ramp
 
@@ -288,6 +288,8 @@ Untuk meminta batas laju yang lebih tinggi atau batas pengeluaran bulanan yang l
   **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Di halaman **Batas laju**, tombol untuk batas laju dan batas pengeluaran adalah **Minta batas lebih tinggi**. Untuk menggunakannya, Anda memerlukan [peran Admin](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#signing-in) di Claude Console serta tindakan IAM `ListAccountRateLimitIncreaseRequests` dan `CreateAccountRateLimitIncreaseRequest`. Untuk hal-hal yang perlu disertakan, siapa yang tidak dapat menggunakan tombol tersebut, dan cara lain untuk meminta, lihat [Batas laju dan kuota di Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#rate-limits-and-quotas).
 </Note>
 
+Untuk meminta batas yang lebih tinggi di Claude Models on Google Cloud (Anthropic managed), lihat [Batas laju di Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#rate-limits).
+
 ## Menetapkan batas yang lebih rendah untuk workspace
 
 Untuk informasi lebih lanjut tentang workspace, lihat [Workspace](https://platform.claude.com/docs/id/manage-claude/workspaces).
@@ -298,7 +300,7 @@ Contoh: Jika batas organisasi Anda adalah 40.000 token input per menit dan 8.000
 
 Catatan:
 
-* Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) dan [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), Anda tidak dapat menetapkan batas pengeluaran pada workspace default.
+* Batas pengeluaran pada workspace default tidak tersedia di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed) maupun [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws).
 * Batas pengeluaran pada workspace default mungkin tidak menghitung atau menghentikan sebagian penggunaan di workspace tersebut. Ini mencakup penggunaan dari Claude Console (seperti playground) dan dari sesi Claude Managed Agents. Ini juga mencakup penggunaan Claude Code atau Claude Desktop ketika seorang anggota masuk dengan akun Claude Console dan menggunakan workspace default. [Batas pengeluaran](https://platform.claude.com/docs/id/api/rate-limits#setting-your-own-spend-limit) organisasi Anda berlaku untuk semua penggunaan ini.
 * Jika tidak ditetapkan, batas workspace sama dengan batas organisasi.
 * Batas workspace ditetapkan untuk setiap jenis pembatas (seperti permintaan per menit, token input per menit, atau token output per menit).

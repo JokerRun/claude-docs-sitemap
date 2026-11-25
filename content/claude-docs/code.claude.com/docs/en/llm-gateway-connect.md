@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/llm-gateway-connect
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: 66a220c65179fe2601bf9e9fe4f1516d2a7f63ad4a0b22ff0c45b602f572ac30
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: cf561ea099b6611d0590e564535133f7e16a2649ec86532fccafa2cf0958e4d3
 ---
 
 > ## Documentation Index
@@ -169,7 +169,7 @@ Run `/status` to confirm which credential source is active. If startup shows an 
 
 ## Configure each surface
 
-The CLI reads the environment variables and settings files above. The other surfaces are the VS Code extension, the desktop app, GitHub Actions, the Agent SDK, and the cloud surfaces such as Slack and the web; the sections below cover whether those settings reach each one.
+The CLI reads the environment variables and settings files above. The other surfaces are the VS Code extension, the desktop app, GitHub Actions, the Agent SDK, and the cloud surfaces such as Claude Tag and the web. The sections below cover whether those settings reach each one.
 
 ### VS Code extension
 
@@ -262,9 +262,9 @@ options = ClaudeAgentOptions(
 )
 ```
 
-### Slack, cloud sessions, and Remote Control
+### Cloud sessions, Claude Tag, and Remote Control
 
-[Claude Code in Slack](https://code.claude.com/docs/en/slack.md) and [cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md) aren't part of a gateway deployment. Gateway variables set in a cloud session's environment configuration are not applied. If your traffic must stay on the gateway, don't enable these surfaces for those users.
+[Cloud sessions](https://code.claude.com/docs/en/claude-code-on-the-web.md) and [Claude Tag](https://claude.com/docs/claude-tag/overview) aren't part of a gateway deployment. If your traffic must stay on the gateway, turn these surfaces off.
 
 [Remote Control](https://code.claude.com/docs/en/remote-control.md) and [voice dictation](https://code.claude.com/docs/en/voice-dictation.md) both rely on a claude.ai identity: Remote Control to pair a live session with your account, and voice dictation to reach the claude.ai transcription endpoint. They are unavailable while `ANTHROPIC_API_KEY`, `ANTHROPIC_AUTH_TOKEN`, or an `apiKeyHelper` is active. Remote Control is also disabled while `ANTHROPIC_BASE_URL` points at a non-Anthropic host, so signing in with claude.ai isn't enough on its own.
 

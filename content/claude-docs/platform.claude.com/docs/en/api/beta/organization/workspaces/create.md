@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/create
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: bbae6248db460937d56dcbc701ba793a1f45b81bc880d5f8a4037cf1296b7b7c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 6c4bcd647dacd4fecdd6f77d7e933d89661d887e860dcc9fcd7e049986fcd46f
 ---
 
 ---
@@ -378,7 +378,7 @@ Create Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollment_url
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 7f67171613a90dea44b2952f2b9d1c94920f75f80acfa96d12e2533d4128f356
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 063a81e1fd2c8a42b9d7e1fe56a5aebf9d51fff5377f47c29d91ae76f004760e
 ---
 
 ---
@@ -14,7 +14,9 @@ url: https://platform.claude.com/docs/en/api/beta/user_profiles/create_enrollmen
 
 **POST** `/v1/user_profiles/{user_profile_id}/enrollment_url`
 
-Create Enrollment URL
+Create a link that sends the profile's end customer to the Verification Portal from Claude Platform on AWS.
+
+On the Claude API, create an action URL instead. See [Send an end customer a link to the Verification Portal](https://platform.claude.com/docs/en/manage-claude/user-profiles-verification-portal?sdk_languages=http) for when to create the link and what the end customer sees.
 
 ## Path parameters
 

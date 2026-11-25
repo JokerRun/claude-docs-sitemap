@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 7f93a8ccdb1de040a80197e7caead1ceffaf8c024500efc649d33fad2d801ea9
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 4c7dec2930aa02978147ed4c184dbccb15d7cbdef6b74b07c3a6f6750a396d40
 ---
 
 ---
@@ -87,10 +87,12 @@ Kedua varian pencarian alat tersedia pada model berikut:
 | Claude Opus 4.6 (claude-opus-4-6) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Sonnet 4.6 (claude-sonnet-4-6) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Opus 4.5 (claude-opus-4-5-20251101) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
-| Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) (tidak digunakan lagi; lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
+| Claude Sonnet 4.5 (claude-sonnet-4-5-20250929) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 | Claude Haiku 4.5 (claude-haiku-4-5-20251001) | `tool_search_tool_regex_20251119`, `tool_search_tool_bm25_20251119` |
 
 Claude Opus 4.1 dan model yang lebih lama tidak mendukung alat pencarian alat.
+
+Claude Opus 4.5 dihentikan (deprecated) di [platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview). Claude Sonnet 4.5 dihentikan (deprecated) di platform yang sama. Untuk tanggal pensiun dan pengganti yang direkomendasikan, lihat [Riwayat penghentian](https://platform.claude.com/docs/id/about-claude/model-deprecations#deprecation-history) di halaman Penghentian model. [Platform yang dioperasikan mitra](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) menetapkan jadwal pensiun mereka sendiri.
 
 ## Cara kerja pencarian alat
 

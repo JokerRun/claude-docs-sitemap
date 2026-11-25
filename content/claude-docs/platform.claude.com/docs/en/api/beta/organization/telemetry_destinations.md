@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/telemetry_destinations
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 22aa9610074cc06ff919656845e273a577fa4a51cf62f2a32ffad79dd638e1ff
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 7e7398f16e34ef2213081ce97535d217cb45a0590af58a0b8b6179a35a705163
 ---
 
 ---
@@ -465,7 +465,7 @@ curl https://api.anthropic.com/v1/organizations/telemetry_destinations \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "endpoint_url": "x",
+          "endpoint_url": "https://gateway.example.com",
           "workspaces": {
             "type": "all"
           }

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/agents/archive
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 914d8e37970e99cec2ee6120beb0ecf832ce8ac96e8169f38643a668f54d4187
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 25f190c19b96900c8c65a0bd19f498834bf12a489ea720e8dcd15add0affa22c
 ---
 
 ---
@@ -298,9 +298,13 @@ Archive Agent
 
       - `"claude-opus-4-5"`
 
+        **Deprecated**: Will reach end-of-life on January 22, 2027. Please migrate to claude-opus-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
         Powerful intelligence for long-running agents and coding
 
       - `"claude-opus-4-5-20251101"`
+
+        **Deprecated**: Will reach end-of-life on January 22, 2027. Please migrate to claude-opus-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
         Powerful intelligence for long-running agents and coding
 

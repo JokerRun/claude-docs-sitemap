@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/mods/overview
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 5a4b5ffd892271c876daa765db19730aa0fba35bed0c5a703c1be096bf60713c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: f21a6c66135d091594be096e5810e4935c69c0c575e00ca0c5d422c40f0c59ad
 ---
 
 > ## Documentation Index
@@ -24,7 +24,7 @@ A mod is a [plugin](https://code.claude.com/docs/en/plugins/overview.md) that ch
 Settings hooks, skills, status lines, and MCP servers work from outside Claude Code: each one runs a script, or gives Claude text or tools. A mod runs inside Claude Code, so it can do things they can't:
 
 * **Draw an interface you can use**: a pane beside the transcript or a band above the prompt, with tabs, buttons, and text fields. See [Draw in the interface](https://code.claude.com/docs/en/plugins/mods/interface.md).
-* **Redraw Claude Code's own interface**: replace or restyle parts Claude Code draws itself, such as a tool call's row, the spinner, or the dialog Claude asks questions in. See [Change what Claude Code already draws](https://code.claude.com/docs/en/plugins/mods/interface.md#change-what-claude-code-already-draws).
+* **Redraw Claude Code's interface**: replace or restyle parts Claude Code draws itself, such as a tool call's row or the spinner. See [Change what Claude Code already draws](https://code.claude.com/docs/en/plugins/mods/interface.md#change-what-claude-code-already-draws).
 * **Step into a tool call or a request**: for example, hold a tool call while you ask the user a question, answer it without running the tool, or send one request to a different model. See [Guard or change a tool call](https://code.claude.com/docs/en/plugins/mods/events.md#guard-or-change-a-tool-call) and [Follow a turn](https://code.claude.com/docs/en/plugins/mods/events.md#follow-a-turn).
 * **Run your own code on a command**: a `/command` that runs your function at once, with no Claude turn, even while Claude is working. See [Add a command or a tool](https://code.claude.com/docs/en/plugins/mods/api.md#add-a-command-or-a-tool).
 * **Share data between hooks**: a mod's hooks share the variables in its file, so what one hook records, another can show. For example, one hook can count tool calls while another shows the count beside the spinner, or one can read each request's token usage while another charts it in a pane. See [React to events](https://code.claude.com/docs/en/plugins/mods/events.md).

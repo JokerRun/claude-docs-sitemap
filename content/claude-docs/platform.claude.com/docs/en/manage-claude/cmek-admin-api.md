@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-admin-api
-fetched_at: 2026-11-04T02:12:37.489821Z
-sha256: a357fba28e7353d3c0e522fc188b14e2e7a073ed7b91fdf720c8e38a007f39cc
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 33bbe8c91b58503047f87c583c31404a5c17fdd8928f6923c2e6d11f4bfed8f0
 ---
 
 ---
@@ -11,13 +11,13 @@ url: https://platform.claude.com/docs/en/manage-claude/cmek-admin-api
 description: Create, validate, and attach a customer-managed encryption key with three Admin API calls.
 ---
 
-These calls work on Claude Platform. On Claude Enterprise or Claude Platform on AWS, follow [your setup page](https://platform.claude.com/docs/en/manage-claude/cmek#set-it-up).
+Use the Admin API to create, validate, and attach a customer-managed encryption key (CMEK) on Claude Platform. On Claude Enterprise, Claude Platform on AWS, or [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), [choose your setup page](https://platform.claude.com/docs/en/manage-claude/cmek#set-it-up) and follow its steps.
 
 Creating an external key is what **Add key** does in the Claude Console, and validating it is what **Verify** does.
 
 ## Before you start
 
-* Customer-managed encryption keys (CMEK) are [turned on for your organization](https://platform.claude.com/docs/en/manage-claude/cmek#availability).
+* CMEK is [turned on for your organization](https://platform.claude.com/docs/en/manage-claude/cmek#availability).
 * You have an [Admin API key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys). The samples read it from `ANTHROPIC_API_KEY`.
 * You’ve created your key in [AWS KMS](https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms#encryption-key-setup), [Google Cloud KMS](https://platform.claude.com/docs/en/manage-claude/cmek-google-cloud-kms#encryption-key-setup), or [Azure Key Vault](https://platform.claude.com/docs/en/manage-claude/cmek-azure-key-vault#encryption-key-setup), and kept the values the setup steps tell you to copy.
 * You have a workspace that [retains data](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#data-retention), ideally a new one, because [existing data stays under Anthropic’s key](https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works#when-your-key-takes-effect).

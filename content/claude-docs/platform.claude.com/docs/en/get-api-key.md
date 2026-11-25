@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/get-api-key
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: 3222ceea4627c0eb104461ca05248d2d85a2626aa3fccf192dd77cd370a6d287
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 4718df87a4166cc46bb364d41c6eb81e56b8969994e25c91b74f941b8f19444f
 ---
 
 ---
@@ -40,6 +40,8 @@ You can also create a **workspace key**, a legacy key without an owner: it belon
 </Steps>
 
 If the **Create key** button on the API keys page is disabled, your role might not allow you to create keys there. Ask an organization admin to change your role, or to create a service account key for your workload.
+
+These steps are for the Claude API. If you use Claude through a [cloud platform](https://platform.claude.com/docs/en/api/overview#claude-api-vs-cloud-platforms), follow that platform’s authentication steps instead.
 
 ## Use your API key
 

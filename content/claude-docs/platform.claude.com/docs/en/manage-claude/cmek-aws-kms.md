@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-aws-kms
-fetched_at: 2026-10-28T02:15:32.412922Z
-sha256: ed2463f466c756d749deffe5a33ea683882365162a445e6d2e2b3a446f2f7122
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 945a03b03124efb21d1d6dcb65a8d5f3226a328ff458eaa546f6157de46dd2ab
 ---
 
 ---
@@ -199,7 +199,7 @@ To script this part on Claude Platform, [use the Admin API](https://platform.cla
 
         You see **Workspace settings updated.** Once the key [takes effect](https://platform.claude.com/docs/en/manage-claude/cmek-how-it-works#when-your-key-takes-effect), your cloud provider’s audit log shows Anthropic’s calls to the key.
 
-        In a [ZDR organization](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#zdr-organizations), after you select the workspace, select **Standard data retention** so that **Encryption key** appears. After you click **Save**, click **Accept** on the data retention terms.
+        In an organization with [legacy zero data retention (Legacy ZDR)](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#zdr-organizations), after you select the workspace, select **Standard data retention** so that **Encryption key** appears. After you click **Save**, click **Accept** on the data retention terms.
       </Step>
     </Steps>
   </Tab>

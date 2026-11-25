@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/plugins/list
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: b801f9fdf9de408283062a51a12fba50d92a01f03abbcbc8d0c5558cdbc299cc
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 3cb0d4d13f796db2f5af0441aed406cbf1dc2e877ccd0a0a91734214555540a0
 ---
 
 ---
@@ -20,7 +20,8 @@ marketplaces.
 
 Plugins in members' personal marketplaces are listed with the same detail as the
 organization's own, and their files can be downloaded through the version archive
-endpoint, which records each such download on the Compliance API activity feed.
+endpoint. Those downloads can be recorded on the Compliance API activity feed; the
+version archive endpoint says when.
 
 **Accepted credentials:** an Admin API key with the `read:plugins` or `read:org_audit` scope, or a Compliance Access Key with the `read:compliance_org_data` scope.
 

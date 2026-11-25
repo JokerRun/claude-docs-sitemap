@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/workload-identity-federation
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: e03da8970011342a79a5d5162a14d224c5b862246b804b6db674e66c3e323569
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 0c41cdd7b299f81dd71188f45aa38e8f585f55bebc31e0b2e708798ed35b5599
 ---
 
 ---
@@ -59,6 +59,8 @@ A single issuer can have many rules: one for each team, namespace, or permission
 3. **The SDK sends the token on every request and refreshes it before it expires.** Your application code constructs the client with no API key and calls the API as usual. The SDK reruns the exchange before the token expires.
 
 ## Set up federation
+
+These steps are for workloads that call the Claude API directly. To call Claude through a cloud platform’s own endpoint, use that platform’s credentials instead. For example, Claude Models on Google Cloud (Anthropic managed) uses [Google Cloud credentials](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication).
 
 You need the admin role in your Anthropic organization. You also need an OIDC-capable identity provider with a reachable JWKS endpoint, or a JWKS document you can paste for air-gapped clusters. Your workload must be able to obtain an identity token from that provider.
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 1b2ea2e88ed4444624611ab5736191076696d4f44eee96543b168bcbc1774538
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: c8649e549de8574d73638df39736c695b99b2d1a7ac0897ccc72a0a45cdce9f2
 ---
 
 ---
@@ -2162,8 +2162,8 @@ curl https://api.anthropic.com/v1/organizations/federation_issuers \
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "issuer_url": "x",
-          "name": "x"
+          "issuer_url": "https://token.actions.githubusercontent.com",
+          "name": "github-actions"
         }'
 ```
 
@@ -4109,14 +4109,22 @@ curl https://api.anthropic.com/v1/organizations/federation_rules \
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "issuer_id": "issuer_id",
-          "match": {},
-          "name": "x",
-          "oauth_scope": "x",
+          "issuer_id": "fdis_01SDCCSbTxrXDpWc1phhtcfK",
+          "match": {
+            "claims": {
+              "event_name": "push",
+              "ref": "refs/heads/main",
+              "repository_id": "123456789",
+              "repository_owner_id": "987654321"
+            }
+          },
+          "name": "prod-deploy-pipeline",
+          "oauth_scope": "workspace:developer",
           "target": {
             "service_account_id": "svac_01SDCCSbTxrXDpWc1phhtcfK",
             "type": "service_account"
-          }
+          },
+          "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
         }'
 ```
 
@@ -5931,7 +5939,7 @@ curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RUL
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "workspace_id": "workspace_id"
+          "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
         }'
 ```
 
@@ -12240,7 +12248,7 @@ List Workspaces
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -12707,7 +12715,7 @@ Create Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -13155,7 +13163,7 @@ Get Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -13603,7 +13611,7 @@ Update Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -14065,7 +14073,7 @@ Archive Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -15661,7 +15669,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "service_account_id": "service_account_id",
+          "service_account_id": "svac_01SDCCSbTxrXDpWc1phhtcfK",
           "workspace_role": "workspace_admin"
         }'
 ```
@@ -22459,6 +22467,12 @@ bucket; every combination is returned across pages. With no `group_by[]`
 and no `time_bucket_width`, a single row aggregates the whole range.
 Includes all usage, whether or not it is attributable to a seat user.
 Requires an API key with the `read:analytics` scope, or an Admin API key.
+This endpoint is in beta and is not available to organizations with HIPAA
+readiness enabled: their API requests return a 400 error. A parent
+organization's report across its child organizations leaves out the child
+organizations that have HIPAA readiness enabled. If the parent has child
+organizations and all of them have HIPAA readiness enabled, the request
+returns a 400 error.
 
 #### Query parameters
 
@@ -22490,13 +22504,13 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
 - `agent_ids: optional array of string`
 
-  Filter to usage incurred by sessions of specific Claude Managed Agents agents. Use `group_by[]=agent_id` to break out per-agent values. Claude Platform organizations only.
+  Filter to usage incurred by sessions of specific Claude Managed Agents agents. Use `group_by[]=agent_id` to break out per-agent values.
 
   maxItems: 100
 
 - `api_key_ids: optional array of string`
 
-  Filter to usage authenticated by specific API keys, by tagged API key ID (`apikey_...`), whichever identity the usage is attributed to. Include an empty entry (`api_key_ids[]=`) to also match usage that no API key authenticated. Use `group_by[]=api_key_id` to break out per-key values; usage without a key has a null `api_key_id`. Claude Platform organizations only.
+  Filter to usage authenticated by specific API keys, by tagged API key ID (`apikey_...`), whichever identity the usage is attributed to. Include an empty entry (`api_key_ids[]=`) to also match usage that no API key authenticated. Use `group_by[]=api_key_id` to break out per-key values; usage without a key has a null `api_key_id`.
 
   maxItems: 100
 
@@ -22534,7 +22548,7 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
 - `deployment_ids: optional array of string`
 
-  Filter to usage incurred by Claude Managed Agents sessions that specific deployments started. Use `group_by[]=deployment_id` to break out per-deployment values. Claude Platform organizations only.
+  Filter to usage incurred by Claude Managed Agents sessions that specific deployments started. Use `group_by[]=deployment_id` to break out per-deployment values.
 
   maxItems: 100
 
@@ -22546,7 +22560,7 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
 - `environment_ids: optional array of string`
 
-  Filter to usage incurred by Claude Managed Agents sessions that ran in specific environments. Use `group_by[]=environment_id` to break out per-environment values. Claude Platform organizations only.
+  Filter to usage incurred by Claude Managed Agents sessions that ran in specific environments. Use `group_by[]=environment_id` to break out per-environment values.
 
   maxItems: 100
 
@@ -22650,7 +22664,7 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
 - `organization_ids: optional array of string`
 
-  Filter a parent organization's report to specific child organizations, by organization UUID or `org_` ID; an ID that is not one of its child organizations matches nothing. Requires an API key created at the parent organization level. Use `group_by[]=organization_id` to break out per-organization values.
+  Filter a parent organization's report to specific child organizations, by organization UUID or `org_` ID; an ID that is not one of its child organizations matches nothing. The report leaves out child organizations with HIPAA readiness enabled, and naming one returns a 400 error. Requires an API key created at the parent organization level. Use `group_by[]=organization_id` to break out per-organization values.
 
   maxItems: 100
 
@@ -22696,7 +22710,7 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
 - `service_tiers: optional array of BetaAnalyticsServiceTier`
 
-  Filter to specific service tiers. Use `group_by[]=service_tier` to break out per-tier values. Claude Platform organizations only; matches nothing for a Claude Enterprise organization.
+  Filter to specific service tiers. Use `group_by[]=service_tier` to break out per-tier values.
 
   maxItems: 100
 
@@ -22714,7 +22728,7 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
 - `session_ids: optional array of string`
 
-  Filter to usage incurred by specific Claude Managed Agents sessions, by tagged session ID (`sesn_...`). Use `group_by[]=session_id` to break out per-session values. Claude Platform organizations only.
+  Filter to usage incurred by specific Claude Managed Agents sessions, by tagged session ID (`sesn_...`). Use `group_by[]=session_id` to break out per-session values.
 
   maxItems: 100
 
@@ -22746,13 +22760,13 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
 - `user_profile_ids: optional array of string`
 
-  Filter to usage attributed to specific user profiles, by tagged user profile ID (`uprof_...`). Use `group_by[]=user_profile_id` to break out per-profile values. Claude Platform organizations only.
+  Filter to usage attributed to specific user profiles, by tagged user profile ID (`uprof_...`). Use `group_by[]=user_profile_id` to break out per-profile values.
 
   maxItems: 100
 
 - `workspace_ids: optional array of string`
 
-  Filter to usage in specific workspaces, by tagged workspace ID (`wrkspc_...`). Use `group_by[]=workspace_id` to break out per-workspace values. Claude Platform organizations only; matches nothing for a Claude Enterprise organization.
+  Filter to usage in specific workspaces, by tagged workspace ID (`wrkspc_...`). Use `group_by[]=workspace_id` to break out per-workspace values.
 
   maxItems: 100
 
@@ -23094,7 +23108,7 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
     - `service_tier: BetaAnalyticsServiceTier or null`
 
-      Service tier the usage was served at. Populated only when `service_tier` is in `group_by[]`; null for usage with no service tier (for example, code execution) and for Claude Enterprise usage.
+      Service tier the usage was served at. Populated only when `service_tier` is in `group_by[]`; null for usage with no service tier (for example, code execution).
 
       - `"batch"`
 
@@ -23126,11 +23140,11 @@ Requires an API key with the `read:analytics` scope, or an Admin API key.
 
     - `user_profile_id: string or null`
 
-      User profile the usage was attributed to, as a tagged `uprof_` ID. Populated only when `user_profile_id` is in `group_by[]`; null for usage that named no profile and for Claude Enterprise usage.
+      User profile the usage was attributed to, as a tagged `uprof_` ID. Populated only when `user_profile_id` is in `group_by[]`; null for usage that named no profile.
 
     - `workspace_id: string or null`
 
-      Workspace the usage occurred in, as a tagged workspace ID, including the organization's default workspace. Populated only when `workspace_id` is in `group_by[]`; null for Claude Enterprise usage.
+      Workspace the usage occurred in, as a tagged workspace ID, including a Claude Platform organization's default workspace. Populated only when `workspace_id` is in `group_by[]`; null for usage in a Claude Enterprise organization's default workspace, which is its only workspace.
 
   - `starting_at: string`
 
@@ -23281,7 +23295,13 @@ cost in the range, ranked by spend or ordered by time bucket; every
 combination is returned across pages. With no `group_by[]` and no
 `time_bucket_width`, a single row aggregates the whole range. Includes
 all cost, whether or not it is attributable to a seat user. Requires an
-API key with the `read:analytics` scope, or an Admin API key.
+API key with the `read:analytics` scope, or an Admin API key. This
+endpoint is in beta and is not available to organizations with HIPAA
+readiness enabled: their API requests return a 400 error. A parent
+organization's report across its child organizations leaves out the child
+organizations that have HIPAA readiness enabled. If the parent has child
+organizations and all of them have HIPAA readiness enabled, the request
+returns a 400 error.
 
 #### Query parameters
 
@@ -23313,13 +23333,13 @@ API key with the `read:analytics` scope, or an Admin API key.
 
 - `agent_ids: optional array of string`
 
-  Filter to usage incurred by sessions of specific Claude Managed Agents agents. Use `group_by[]=agent_id` to break out per-agent values. Claude Platform organizations only.
+  Filter to usage incurred by sessions of specific Claude Managed Agents agents. Use `group_by[]=agent_id` to break out per-agent values.
 
   maxItems: 100
 
 - `api_key_ids: optional array of string`
 
-  Filter to usage authenticated by specific API keys, by tagged API key ID (`apikey_...`), whichever identity the usage is attributed to. Include an empty entry (`api_key_ids[]=`) to also match usage that no API key authenticated. Use `group_by[]=api_key_id` to break out per-key values; usage without a key has a null `api_key_id`. Claude Platform organizations only.
+  Filter to usage authenticated by specific API keys, by tagged API key ID (`apikey_...`), whichever identity the usage is attributed to. Include an empty entry (`api_key_ids[]=`) to also match usage that no API key authenticated. Use `group_by[]=api_key_id` to break out per-key values; usage without a key has a null `api_key_id`.
 
   maxItems: 100
 
@@ -23357,7 +23377,7 @@ API key with the `read:analytics` scope, or an Admin API key.
 
 - `deployment_ids: optional array of string`
 
-  Filter to usage incurred by Claude Managed Agents sessions that specific deployments started. Use `group_by[]=deployment_id` to break out per-deployment values. Claude Platform organizations only.
+  Filter to usage incurred by Claude Managed Agents sessions that specific deployments started. Use `group_by[]=deployment_id` to break out per-deployment values.
 
   maxItems: 100
 
@@ -23369,7 +23389,7 @@ API key with the `read:analytics` scope, or an Admin API key.
 
 - `environment_ids: optional array of string`
 
-  Filter to usage incurred by Claude Managed Agents sessions that ran in specific environments. Use `group_by[]=environment_id` to break out per-environment values. Claude Platform organizations only.
+  Filter to usage incurred by Claude Managed Agents sessions that ran in specific environments. Use `group_by[]=environment_id` to break out per-environment values.
 
   maxItems: 100
 
@@ -23473,7 +23493,7 @@ API key with the `read:analytics` scope, or an Admin API key.
 
 - `organization_ids: optional array of string`
 
-  Filter a parent organization's report to specific child organizations, by organization UUID or `org_` ID; an ID that is not one of its child organizations matches nothing. Requires an API key created at the parent organization level. Use `group_by[]=organization_id` to break out per-organization values.
+  Filter a parent organization's report to specific child organizations, by organization UUID or `org_` ID; an ID that is not one of its child organizations matches nothing. The report leaves out child organizations with HIPAA readiness enabled, and naming one returns a 400 error. Requires an API key created at the parent organization level. Use `group_by[]=organization_id` to break out per-organization values.
 
   maxItems: 100
 
@@ -23519,7 +23539,7 @@ API key with the `read:analytics` scope, or an Admin API key.
 
 - `service_tiers: optional array of BetaAnalyticsServiceTier`
 
-  Filter to specific service tiers. Use `group_by[]=service_tier` to break out per-tier values. Claude Platform organizations only; matches nothing for a Claude Enterprise organization.
+  Filter to specific service tiers. Use `group_by[]=service_tier` to break out per-tier values.
 
   maxItems: 100
 
@@ -23537,7 +23557,7 @@ API key with the `read:analytics` scope, or an Admin API key.
 
 - `session_ids: optional array of string`
 
-  Filter to usage incurred by specific Claude Managed Agents sessions, by tagged session ID (`sesn_...`). Use `group_by[]=session_id` to break out per-session values. Claude Platform organizations only.
+  Filter to usage incurred by specific Claude Managed Agents sessions, by tagged session ID (`sesn_...`). Use `group_by[]=session_id` to break out per-session values.
 
   maxItems: 100
 
@@ -23569,13 +23589,13 @@ API key with the `read:analytics` scope, or an Admin API key.
 
 - `user_profile_ids: optional array of string`
 
-  Filter to usage attributed to specific user profiles, by tagged user profile ID (`uprof_...`). Use `group_by[]=user_profile_id` to break out per-profile values. Claude Platform organizations only.
+  Filter to usage attributed to specific user profiles, by tagged user profile ID (`uprof_...`). Use `group_by[]=user_profile_id` to break out per-profile values.
 
   maxItems: 100
 
 - `workspace_ids: optional array of string`
 
-  Filter to usage in specific workspaces, by tagged workspace ID (`wrkspc_...`). Use `group_by[]=workspace_id` to break out per-workspace values. Claude Platform organizations only; matches nothing for a Claude Enterprise organization.
+  Filter to usage in specific workspaces, by tagged workspace ID (`wrkspc_...`). Use `group_by[]=workspace_id` to break out per-workspace values.
 
   maxItems: 100
 
@@ -23951,7 +23971,7 @@ API key with the `read:analytics` scope, or an Admin API key.
 
     - `service_tier: BetaAnalyticsServiceTier or null`
 
-      Service tier the usage was served at. Populated only when `service_tier` is in `group_by[]`; null for usage with no service tier (for example, code execution) and for Claude Enterprise usage.
+      Service tier the usage was served at. Populated only when `service_tier` is in `group_by[]`; null for usage with no service tier (for example, code execution).
 
       - `"batch"`
 
@@ -23997,11 +24017,11 @@ API key with the `read:analytics` scope, or an Admin API key.
 
     - `user_profile_id: string or null`
 
-      User profile the usage was attributed to, as a tagged `uprof_` ID. Populated only when `user_profile_id` is in `group_by[]`; null for usage that named no profile and for Claude Enterprise usage.
+      User profile the usage was attributed to, as a tagged `uprof_` ID. Populated only when `user_profile_id` is in `group_by[]`; null for usage that named no profile.
 
     - `workspace_id: string or null`
 
-      Workspace the usage occurred in, as a tagged workspace ID, including the organization's default workspace. Populated only when `workspace_id` is in `group_by[]`; null for Claude Enterprise usage.
+      Workspace the usage occurred in, as a tagged workspace ID, including a Claude Platform organization's default workspace. Populated only when `workspace_id` is in `group_by[]`; null for usage in a Claude Enterprise organization's default workspace, which is its only workspace.
 
   - `starting_at: string`
 
@@ -30968,7 +30988,8 @@ marketplaces.
 
 Plugins in members' personal marketplaces are listed with the same detail as the
 organization's own, and their files can be downloaded through the version archive
-endpoint, which records each such download on the Compliance API activity feed.
+endpoint. Those downloads can be recorded on the Compliance API activity feed; the
+version archive endpoint says when.
 
 **Accepted credentials:** an Admin API key with the `read:plugins` or `read:org_audit` scope, or a Compliance Access Key with the `read:compliance_org_data` scope.
 
@@ -32806,9 +32827,9 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/versions/$VER
 
 **GET** `/v1/organizations/plugins/{plugin_id}/versions/{version}/content`
 
-Download one version's `.zip` archive, exactly as stored. Each download of a
-Plugin from a member's personal plugin marketplace is recorded on the Compliance API
-activity feed.
+Download one version's `.zip` archive, exactly as stored. Downloads of Plugins from
+members' personal plugin marketplaces can be recorded on the Compliance API activity
+feed.
 
 The response body is the archive (`Content-Type: application/zip`), sent as an
 attachment whose filename is derived from the Plugin's name; name saved files from
@@ -32821,9 +32842,11 @@ Every read scope above (`read:plugins`, `read:org_audit`, and
 marketplaces, including files that claude.ai's admin settings do not show, and a
 `read:org_audit` or `read:compliance_org_data` key created for all of your parent
 organization's linked organizations can do this in any organization under it that has
-access to this API, by passing `organization_id`. Each such download records a
-`claude_plugin_archive_accessed` event on the Compliance API activity feed,
-identifying the key, the plugin, the version, and the member. Downloads of
+access to this API, by passing `organization_id`. The Compliance API activity feed can
+record such a download as a `claude_plugin_archive_accessed` event, which identifies
+the key, the plugin, the version, and the member. It does so only while activity
+events are captured for the plugin's organization, and a record is not guaranteed even
+then. The files are served whether or not the download is recorded. Downloads of
 organization-owned plugins are not recorded.
 
 Every request must include the beta header `anthropic-beta: ce-plugins-2026-09-01`. A request without it returns `404`, exactly as if the endpoint did not exist. The Plugins API is in beta and is available to Claude Enterprise organizations only. It is not available to Claude Platform (Claude Console) organizations, or to organizations with HIPAA readiness enabled.
@@ -33906,10 +33929,9 @@ curl https://api.anthropic.com/v1/organizations/plugins/$PLUGIN_ID/installation_
 List the shares the owner of a member-owned Plugin has given — to every member of
 the organization, to an RBAC Group, or to one member — most recently granted first.
 
-Shares are read-only in this API: members give and withdraw them in claude.ai, and
-who gave a share is recorded on the Compliance API activity feed rather than on the
-share. An organization-owned Plugin has installation settings instead, so this path
-returns 404 for one.
+Shares are read-only in this API: members give and withdraw them in claude.ai. The
+Plugin's `owner` gave each share listed. An organization-owned Plugin has installation
+settings instead of shares, so this path returns 404 for one.
 
 **Accepted credentials:** an Admin API key with the `read:plugins` or `read:org_audit` scope, or a Compliance Access Key with the `read:compliance_org_data` scope.
 
@@ -36224,7 +36246,7 @@ curl https://api.anthropic.com/v1/organizations/telemetry_destinations \
     -H 'anthropic-beta: telemetry-destinations-2026-08-11' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "endpoint_url": "x",
+          "endpoint_url": "https://gateway.example.com",
           "workspaces": {
             "type": "all"
           }
@@ -42796,8 +42818,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "slack": {
-            "channel_id": "xx",
-            "workspace_id": "xx"
+            "channel_id": "C0456EFGH",
+            "workspace_id": "T0123ABCD"
           }
         }'
 ```
@@ -42821,8 +42843,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels \
     }
   },
   "slack": {
-    "channel_id": "xx",
-    "workspace_id": "xx"
+    "channel_id": "C0456EFGH",
+    "workspace_id": "T0123ABCD"
   },
   "sources": {
     "enabled": {
@@ -43309,8 +43331,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels \
         }
       },
       "slack": {
-        "channel_id": "xx",
-        "workspace_id": "xx"
+        "channel_id": "C0456EFGH",
+        "workspace_id": "T0123ABCD"
       },
       "sources": {
         "enabled": {
@@ -43782,8 +43804,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/$ID \
     }
   },
   "slack": {
-    "channel_id": "xx",
-    "workspace_id": "xx"
+    "channel_id": "C0456EFGH",
+    "workspace_id": "T0123ABCD"
   },
   "sources": {
     "enabled": {
@@ -44338,8 +44360,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/$ID \
     }
   },
   "slack": {
-    "channel_id": "xx",
-    "workspace_id": "xx"
+    "channel_id": "C0456EFGH",
+    "workspace_id": "T0123ABCD"
   },
   "sources": {
     "enabled": {
@@ -47435,7 +47457,7 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/bundles/$BUNDLE_ID/ta
     -H 'anthropic-beta: experimental-claude-tag-2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "slack_channel_id": "xxxxxxxx",
+          "slack_channel_id": "slch_01SvpyRQK3nN6eH9uhRA7n1q",
           "type": "slack_channel"
         }'
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: f90c3049c806d7232001f8d11e893c0f3a25ac4bc6e10a8cc3e6c099fecfc2e9
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 7f0f27a48af645a8671f074588e0fd25f8b54753b1a0a9ce3d309f96f59d92f3
 ---
 
 ---
@@ -56,8 +56,8 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.13.0")
-        implementation("com.anthropic:anthropic-java-vertex:3.13.0")
+        implementation("com.anthropic:anthropic-java:3.14.0")
+        implementation("com.anthropic:anthropic-java-vertex:3.14.0")
         ```
       </Tab>
 
@@ -66,12 +66,12 @@ Untuk menggunakan Claude Models on Google Cloud (Google managed), Anda memerluka
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-vertex</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         ```
       </Tab>
@@ -358,7 +358,7 @@ Endpoint multi-region dan regional berbiaya 10 persen lebih mahal daripada endpo
 Endpoint regional hanya melayani Claude Sonnet 4.6 dan model-model sebelumnya. Untuk model yang lebih baru, gunakan endpoint global atau multi-region.
 
 <Note>
-  Biaya tambahan untuk endpoint multi-region dan regional hanya berlaku untuk Claude Sonnet 4.5 (deprecated) dan model-model setelahnya. Untuk model-model yang mempertahankan harga sebelumnya, lihat [Harga platform cloud](https://platform.claude.com/docs/id/about-claude/pricing#cloud-platform-pricing). Untuk endpoint regional, biaya tambahan tersebut mencerminkan biaya infrastruktur untuk kapasitas regional khusus.
+  Biaya tambahan untuk endpoint multi-region dan regional hanya berlaku untuk Claude 4.5 dan model-model setelahnya (lihat [Harga platform cloud](https://platform.claude.com/docs/id/about-claude/pricing#cloud-platform-pricing)). Untuk endpoint regional, biaya tambahan tersebut mencerminkan biaya infrastruktur untuk kapasitas regional khusus.
 </Note>
 
 Contoh-contoh berikut menggunakan endpoint multi-region `us`. Baris yang disorot mengatur region. Untuk permintaan lengkap pada endpoint global, lihat [Membuat permintaan](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#accessing-vertex-ai).
@@ -526,7 +526,7 @@ Claude Models on Google Cloud (Google managed) menawarkan [“context window” 
 * Claude Sonnet 4.6
 * Claude Haiku 5.5
 
-Model Claude lainnya memiliki jendela konteks 200k token. Ini termasuk Claude Sonnet 4.5 (deprecated) dan Claude Sonnet 4 (deprecated).
+Model Claude lainnya memiliki jendela konteks 200k token.
 
 Agent Platform membatasi payload permintaan hingga 30 MB. Saat Anda mengirim dokumen besar atau banyak gambar, Anda mungkin mencapai batas ini sebelum batas token.
 

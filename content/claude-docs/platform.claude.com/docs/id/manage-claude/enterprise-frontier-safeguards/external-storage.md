@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/external-storage
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: c363f7bd674e762e1926658e09b4d89d475ac343e8cccd6e017bfa6190d2418b
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: dae6cd87b74c98e4dd365329710bc7d811111c692107a2b258b9ef77f48bedde
 ---
 
 ---
@@ -1361,7 +1361,7 @@ Status **Active** dapat muncul sebelum objek tiba, jadi jangan mengandalkannya. 
 
 ### Jika bucket Anda berhenti berfungsi
 
-Untuk menghindari kehilangan data, pulihkan bucket yang berhenti berfungsi sesegera mungkin. Jika penulisan ke bucket Anda gagal, Anthropic mencoba ulang penulisan tersebut, lalu menghapus data sekitar satu hari setelah permintaan. Tidak ada yang dapat memulihkan data tersebut, dan data tersebut tidak masuk ke penyimpanan yang dikelola Anthropic.
+Untuk menghindari kehilangan data, pulihkan bucket yang berhenti berfungsi sesegera mungkin. Jika penulisan ke bucket Anda gagal, Anthropic mencoba ulang penulisan tersebut. Pulihkan bucket Anda dalam waktu sekitar 46 jam sejak permintaan dan pertahankan setiap ruang kerja di bucket tersebut, atau Anda dapat kehilangan data tersebut. Anthropic berhenti mencoba ulang paling lambat sekitar 72 jam setelah permintaan, lalu menghapus data tersebut. Tidak ada yang dapat memulihkan data tersebut, dan data tersebut tidak masuk ke penyimpanan yang dikelola Anthropic.
 
 Untuk mengetahui adanya kegagalan, pantau objek baru di bawah `slab/`. Jangan mengandalkan email atau status bucket untuk memperingatkan Anda. Jika Anda mengetahui adanya kegagalan, beri tahu tim akun Anthropic Anda sesegera mungkin.
 

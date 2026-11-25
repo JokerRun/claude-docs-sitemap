@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/issuers/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 8ea8e22bd6b1c1815a41f0acdfe68bddf7b5c40d5d9abf69a03c240caebffb4b
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: efe84e1f756306f34739547f21f5126c82a2f7189162fa54c17a17895c1a64e3
 ---
 
 ---
@@ -267,8 +267,8 @@ curl https://api.anthropic.com/v1/organizations/federation_issuers \
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "issuer_url": "x",
-          "name": "x"
+          "issuer_url": "https://token.actions.githubusercontent.com",
+          "name": "github-actions"
         }'
 ```
 

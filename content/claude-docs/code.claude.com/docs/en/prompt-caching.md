@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/prompt-caching
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: e152e2fe7bcdba32515581ad298a6f8fdbfe820e25a5a6cced667ea65a4483e5
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 3fa54a7efe54261936bfce916dfdad539381e8ea5ba292bab1cfbea0f568f444
 ---
 
 > ## Documentation Index
@@ -95,7 +95,9 @@ The [`opusplan` model setting](https://code.claude.com/docs/en/model-config#opus
 
 [Automatic model fallback](https://code.claude.com/docs/en/model-config.md#automatic-model-fallback) on Fable models, Opus 5.5, Sonnet 5.5, and Opus 5 is also a model switch. When a safety classifier flags a request in a category that has a fallback model and Claude Code re-runs the request on that model, the session continues there.
 
-When a skill or command's frontmatter names a [`model`](https://code.claude.com/docs/en/skills#frontmatter-reference) other than the session's current model, that turn is also a model switch: the next request reads the entire conversation history with no cache hits. The session model resumes on your next prompt. A `context: fork` skill sets the [forked subagent's model](https://code.claude.com/docs/en/skills.md#run-skills-in-a-subagent) instead.
+#### Skills and commands that set a model
+
+When a skill or command's [`model` value applies](https://code.claude.com/docs/en/skills#frontmatter-reference) and differs from the session's current model, that turn is a model switch. The next request reads the entire conversation history with no cache hits. The session model resumes on your next prompt. With `context: fork`, the value goes to a [subagent](https://code.claude.com/docs/en/skills.md#run-skills-in-a-subagent) with [its own cache](#subagents-and-the-cache) instead.
 
 ### Changing effort level
 
@@ -247,7 +249,7 @@ Before v2.1.251, a mid-session style switch kept the cache but didn't apply unti
 
 ### Invoking skills and commands
 
-[Skills](https://code.claude.com/docs/en/skills.md) and [commands](https://code.claude.com/docs/en/commands.md) inject their instructions as user messages at the point of invocation. Nothing earlier in the conversation changes. A skill or command whose frontmatter names a `model` can be a [model switch](#switching-models) for that turn.
+[Skills](https://code.claude.com/docs/en/skills.md) and [commands](https://code.claude.com/docs/en/commands.md) inject their instructions as user messages at the point of invocation. Nothing earlier in the conversation changes. A skill or command whose [`model` value applies](https://code.claude.com/docs/en/skills#frontmatter-reference) can be a [model switch](#switching-models) for that turn.
 
 ### Running `/recap`
 

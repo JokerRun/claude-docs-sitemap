@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/opus-5-5/migration-guide
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: dab58cdf8d441f4d1f4955f73360cf765ae8b8bc52e7e78b16885d6d7fe6b6e7
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: eb69aae4424820031dac9eb477a5fe0b1a0374f3e7dba0eb4b347a986befd734
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Switch to Claude Opus 5.5 from earlier Opus models or Claude Sonnet
 ---
 
 <Note>
-  This guide covers migrating [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) code. If you use [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), no changes beyond updating the model name are required.
+  This guide covers migrating [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) code. If you use [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), you usually change only your agent’s `model` field. The [Migrating between model versions](https://platform.claude.com/docs/en/managed-agents/migration#migrating-between-model-versions) section of the Managed Agents Migration page has the details.
 </Note>
 
 Let Claude Code migrate your code for you

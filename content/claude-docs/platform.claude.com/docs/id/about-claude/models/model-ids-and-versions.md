@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: fd704699ce4d604f73c5510efdfc8ae7c084f6ca206a7d75e44a498612d313a4
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: b8a0445c805bed8f1dad898d13af263f9bd2039d20067c8664e4d382ad2c31e1
 ---
 
 ---
@@ -51,15 +51,19 @@ Model sebelum generasi 4.6 menyertakan tanggal snapshot dalam ID:
 claude-{name}-{major}-{minor}-{YYYYMMDD}
 ```
 
-Contohnya: `claude-sonnet-4-5-20250929`, `claude-haiku-4-5-20251001`
+Contohnya: `claude-haiku-4-5-20251001`
 
-Di Amazon Bedrock, model-model ini menggunakan format:
+Di Claude API, model Claude 4.5 juga memiliki alias yang lebih pendek, seperti `claude-haiku-4-5`. Setiap alias menunjuk ke snapshot bertanggal terbaru untuk versi minornya.
+
+Di Amazon Bedrock (`bedrock-runtime`), ID bertanggal menggunakan format:
 
 ```text wrap
 anthropic.claude-{name}-{major}-{minor}-{YYYYMMDD}-v1:0
 ```
 
-Contohnya: `anthropic.claude-sonnet-4-5-20250929-v1:0`
+Contohnya: `anthropic.claude-haiku-4-5-20251001-v1:0`
+
+Untuk memanggil model-model ini, tambahkan prefiks profil inferensi, seperti `global.` atau `us.`, ke ID tersebut. Untuk detailnya, lihat [ID model API](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids) di halaman Amazon Bedrock (`bedrock-runtime`).
 
 Di [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#api-model-ids), formatnya sama dengan Claude API.
 
@@ -71,7 +75,7 @@ claude-{name}-{major}-{minor}@{YYYYMMDD}
 
 Contohnya: `claude-haiku-4-5@20251001`
 
-Di Claude API, model-model ini juga memiliki alias yang lebih pendek (misalnya, `claude-sonnet-4-5`) yang menunjuk ke snapshot bertanggal terbaru untuk versi minor tersebut.
+[Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#supported-models), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#available-models), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) mencantumkan model-model ini dengan ID tanpa tanggal. Setiap tautan membuka tabel model platform tersebut, yang berisi ID yang perlu digunakan.
 
 ## ID tanpa tanggal adalah snapshot yang disematkan
 
@@ -79,7 +83,7 @@ Kesalahpahaman yang umum adalah bahwa ID model tanpa tanggal seperti `claude-son
 
 Untuk generasi 4.6 dan setelahnya, ID tanpa tanggal adalah ID model kanonis untuk rilis tersebut. ID ini memetakan ke satu snapshot model yang tetap. Anthropic tidak memperbarui bobot atau konfigurasi dari ID model yang sudah ada. Ketika versi yang diperbarui tersedia, versi tersebut dirilis dengan ID model baru.
 
-Ini berbeda dari alias tanpa tanggal yang ada di Claude API untuk model terdahulu. Alias seperti `claude-sonnet-4-5` adalah penunjuk praktis yang mengarah ke snapshot bertanggal terbaru untuk versi minor tersebut. ID generasi 4.6 seperti `claude-sonnet-4-6` bukanlah alias. ID tersebut adalah snapshot itu sendiri.
+ID dari generasi 4.6 atau setelahnya, seperti `claude-sonnet-4-6`, terlihat seperti alias di [Sebelum generasi 4.6](https://platform.claude.com/docs/id/about-claude/models/model-ids-and-versions#before-the-4-6-generation). Namun, ID tersebut bukanlah alias. ID tersebut adalah snapshot itu sendiri.
 
 Setiap ID model, baik bertanggal maupun tanpa tanggal, memiliki jadwal deprecation (penghentian dukungan) dan retirement (pemberhentian) tersendiri.
 

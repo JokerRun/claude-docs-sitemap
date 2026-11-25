@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/safety-cases-api
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: d403cb14c3409045e8bd72376704e76b854887a52d28b05177db1a5b16339ba1
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 367ef446c80a45a95bcdf8cd41de9443163538c4641933e7e153e0e343dcd545
 ---
 
 ---
@@ -220,7 +220,7 @@ The response holds the message and the sender that Anthropic recorded:
 }
 ```
 
-`content` holds the stored request and response. It’s not an exact copy: Anthropic cuts URLs to their host, removes credentials and thinking blocks, and resizes images and documents.
+`content` holds the stored request and response. It’s not an exact copy: Anthropic cuts some URLs to their host, redacts MCP server tokens, removes thinking blocks, and can replace an image or a document with resized images or a placeholder.
 
 Anthropic records one sender for each message:
 

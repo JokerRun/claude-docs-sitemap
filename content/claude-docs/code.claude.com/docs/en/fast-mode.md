@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/fast-mode
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: d465037ac1c7ba585208daa2aa412f34e9369792e807c99989b486931d0728fd
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 6a4f16862f23c7333513f05c5c8d9547ee4d6fe5c0ba43732a7cb8110ae1f2fc
 ---
 
 > ## Documentation Index
@@ -266,7 +266,7 @@ Fast mode for Claude Opus 5 and Claude Opus 4.8 is a research preview feature, w
 * Availability and pricing are subject to change
 * The underlying API configuration may evolve
 
-Report issues or feedback through your usual Anthropic support channels.
+Report issues or feedback through Anthropic support.
 
 ## See also
 

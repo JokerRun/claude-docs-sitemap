@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/loading
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 204eaf089d2eaaf0b03bb1a9625860ccc67510c47a65abe61aa8840c71f2ffb1
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: c5b2e5677ba0d322cea98e825b916f6685d08b3c9a7fdbb9044aac156fa0052e
 ---
 
 > ## Documentation Index
@@ -207,7 +207,7 @@ By default, a plugin enabled only in your project's `.claude/settings.json` does
 
 > [!NOTE]
 >
-> If the marketplace isn't on your machine yet, [add it](https://code.claude.com/docs/en/plugins/install.md#add-a-marketplace) before you install. Find its source in the `extraKnownMarketplaces` setting of `.claude/settings.json`, or ask your maintainer.
+> If the marketplace isn't on your machine yet, [add it](https://code.claude.com/docs/en/plugins/install.md#add-a-marketplace) before you install. Find its source in the `extraKnownMarketplaces` setting of `.claude/settings.json`, or ask the project's maintainer.
 
 To install, run this in a shell from the project, using the plugin's key in `enabledPlugins`:
 

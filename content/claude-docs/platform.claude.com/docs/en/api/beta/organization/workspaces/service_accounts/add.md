@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/service_accounts/add
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 1b11c4b79cf01e982d34af68939b7f6f65bda6b68f5c5a7d2c8e088b7c835f92
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 3d2638df0618f7632d15dd850a6774ad7ed67ef92f6899b7bd721ea9447183e2
 ---
 
 ---
@@ -259,7 +259,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "service_account_id": "service_account_id",
+          "service_account_id": "svac_01SDCCSbTxrXDpWc1phhtcfK",
           "workspace_role": "workspace_admin"
         }'
 ```

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 8a4a3f2fbce174657e67e9fdcd660149e31ee942875b7117e586423e19a4fb1e
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 651e8d10c0dadc6e4b62b1dbf1b8682bdc7589ac4ea3305e7c6f3a917f186421
 ---
 
 ---
@@ -53,7 +53,7 @@ The table lists what each model supports, what it defaults to, and which `thinki
 
 Models marked `Always on` cannot turn thinking off. Models marked `On` default to thinking. Claude Opus 5, Claude Sonnet 5, and Claude Haiku 5.5 accept `thinking: {type: "disabled"}`. On Claude Sonnet 5.5, send `thinking: {type: "between_tools"}` to turn off up-front thinking.
 
-Earlier Claude 4 models (Claude Opus 4.1, Claude Sonnet 4, and Claude Opus 4) support extended thinking only. See [Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations) for their availability. Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, and Claude Mythos 5 are not available under [zero data retention](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) unless expressly authorized by Anthropic.
+Earlier Claude 4 models (Claude Opus 4.1, Claude Sonnet 4, and Claude Opus 4) support extended thinking only. See [Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations) for their availability. Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, and Claude Mythos 5 are not available under [legacy zero data retention (Legacy ZDR)](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) unless expressly authorized by Anthropic.
 
 ## A 400 error says `"thinking.type.enabled"` is not supported
 

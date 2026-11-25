@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 58733d5217d186991463bcc6453beaea71ab760032503faf28c2f270e12fa8b3
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 2d07f00e705a86e584b2030a4a594044650a67629a7688c3fcb118717c61da04
 ---
 
 ---
@@ -184,8 +184,8 @@ Instal paket yang menyediakan klien tersebut:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.13.0")
-        implementation("com.anthropic:anthropic-java-google-cloud:3.13.0")
+        implementation("com.anthropic:anthropic-java:3.14.0")
+        implementation("com.anthropic:anthropic-java-google-cloud:3.14.0")
         ```
       </Tab>
 
@@ -194,12 +194,12 @@ Instal paket yang menyediakan klien tersebut:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-google-cloud</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         ```
       </Tab>
@@ -699,7 +699,7 @@ Hal-hal berikut tidak didukung di Claude Models on Google Cloud (Anthropic manag
 * **Tunnel MCP:** [Tunnel MCP](https://platform.claude.com/docs/id/agents-and-tools/mcp-tunnels/overview) tidak tersedia di Claude Models on Google Cloud (Anthropic managed).
 * **[Memory store di sandbox self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-memory):** Di Claude Models on Google Cloud (Anthropic managed), memory store tidak didukung di sandbox self-hosted. Untuk menggunakannya, jalankan sesi di [environment cloud](https://platform.claude.com/docs/id/managed-agents/environments).
 * **Worker sandbox self-hosted yang sudah jadi:** [Worker self-hosted](https://platform.claude.com/docs/id/managed-agents/self-hosted-sandboxes-workers) di `ant` CLI dan di SDK Python, TypeScript, dan Go tidak mendukung Claude Models on Google Cloud (Anthropic managed). Sebagai gantinya, implementasikan worker Anda sendiri yang memanggil [endpoint Environments Work](https://platform.claude.com/docs/id/api/beta/environments/work) secara langsung. Untuk peran dan izin yang dibutuhkan worker Anda, lihat [izin IAM untuk environment](https://platform.claude.com/docs/id/api/claude-models-on-google-cloud-anthropic-managed-iam-permissions#environments).
-* **Linked billing (beta):** [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections) tidak tersedia di Claude Models on Google Cloud (Anthropic managed).
+* **Linked billing (beta):** [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing) tidak tersedia di Claude Models on Google Cloud (Anthropic managed).
 
 ### Jendela konteks
 

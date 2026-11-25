@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 1007afcb5a6287987a9e894cd3912795933eedcc728ab123bebb28474947484e
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 5621a1f77a8762e3120db732ffa54629fa51a3778318fe17e5a301e7b0560c4a
 ---
 
 ---
@@ -140,8 +140,8 @@ Kebijakan ini memblokir penggunaan token jangka panjang, bukan pembuatannya. Unt
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.13.0")
-        implementation("com.anthropic:anthropic-java-bedrock:3.13.0")
+        implementation("com.anthropic:anthropic-java:3.14.0")
+        implementation("com.anthropic:anthropic-java-bedrock:3.14.0")
         ```
       </Tab>
 
@@ -150,12 +150,12 @@ Kebijakan ini memblokir penggunaan token jangka panjang, bukan pembuatannya. Unt
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-bedrock</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         ```
       </Tab>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 1932e5d1d91f61488046b9622699e87dbd4f2289867024c2a7dc21b5f2e7a2e7
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 9d51cd43176a9c61c2582724b7d7bab6c71573c13252c141f869e1ec5b9b33d3
 ---
 
 ---
@@ -14,7 +14,9 @@ url: https://platform.claude.com/docs/en/api/beta/user_profiles/list
 
 **GET** `/v1/user_profiles`
 
-List User Profiles
+List the user profiles in your organization, newest first by default.
+
+See the [User profiles guide](https://platform.claude.com/docs/en/manage-claude/user-profiles?sdk_languages=http) for how to set up and manage profiles.
 
 ## Query parameters
 

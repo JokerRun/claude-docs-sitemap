@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-ios-simulator
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 54ef0dbb48a74bc3259a89f754e28000b1ff847082f0e398ec73c541792ffbaf
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 184a9fe9f2b7b087ed3bf2ad828b5f275affd6ef7a23a4cd87a829fc6e372302
 ---
 
 > ## Documentation Index
@@ -113,7 +113,7 @@ Claude Code Desktop shuts down the simulators it booted once they're no longer i
 
 ## Grant Claude access to a device
 
-Claude asks for your consent before it controls a device, while building or launching the app or opening a URL on it follows your session's permission mode. You or your organization can also turn Claude's access off entirely.
+Claude asks for your consent before it controls a device, while building or launching the app or opening a URL on it follows your session's permission mode. To remove Claude's access entirely, [turn off simulator access](#turn-off-simulator-access).
 
 ### Allow a device the first time
 

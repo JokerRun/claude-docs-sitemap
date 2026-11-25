@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 85c3b9fe10304da72a012594e11c19b71caad31add807d7bc6d2161eaeeb99f7
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 2ddce588c2376a624c67643a83b441ef74010f00aa863ad67aeafb5c889bc3bd
 ---
 
 ---
@@ -14,7 +14,9 @@ url: https://platform.claude.com/docs/en/api/beta/user_profiles/create
 
 **POST** `/v1/user_profiles`
 
-Create User Profile
+Register one of your end customers and get the ID to send on the requests you make for them.
+
+See the [User profiles guide](https://platform.claude.com/docs/en/manage-claude/user-profiles?sdk_languages=http#create-a-profile-for-each-end-customer) for what to send.
 
 ## Headers
 

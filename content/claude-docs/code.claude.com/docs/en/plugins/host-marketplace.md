@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/host-marketplace
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 3171e4023e590b260ff641a0ef9c916c959f679761309dfc4e5fcaf663cb26eb
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: cf6cf7eaf1822de7ec7a5319a47aeb5f88ce3fd6e98f2947e7b415d79bf8c26e
 ---
 
 > ## Documentation Index
@@ -22,7 +22,7 @@ This page is for the person who operates a marketplace.
 > These cases are covered on other pages:
 >
 > * **You haven't written the catalog file yet**: start with [Create a marketplace](https://code.claude.com/docs/en/plugins/create-marketplace.md)
-> * **You're an admin requiring, restricting, or pre-installing marketplaces across your organization's machines**: read [Manage plugins for your organization](https://code.claude.com/docs/en/plugins/org.md)
+> * **You want to require, restrict, or pre-install marketplaces across an organization's machines**: read [Manage plugins for your organization](https://code.claude.com/docs/en/plugins/org.md)
 
 Start with [Host your marketplace](#host-your-marketplace) to pick a host and the command your users run. Read [Keep users up to date](#keep-users-up-to-date) before your first release. Read [Rename or remove a plugin](#rename-or-remove-a-plugin) before you change a plugin's `name`.
 
@@ -120,7 +120,7 @@ Tell users what each protocol needs on their machine:
 
 For a GitHub Enterprise Server host, users need git access to that host from their machine. See [Plugin marketplaces on GHES](https://code.claude.com/docs/en/github-enterprise-server.md#plugin-marketplaces-on-ghes) for what each Claude Code surface needs to reach a GHES-hosted marketplace.
 
-If you distribute through **Organization settings > Plugins & skills** on claude.ai instead, your users' git credentials aren't involved. See [Distribute through organization settings](#distribute-through-organization-settings).
+If you distribute through [**Organization settings > Plugins & skills**](https://claude.ai/admin-settings/skills?tab=inventory) on claude.ai instead, your users' git credentials aren't involved. See [Distribute through organization settings](#distribute-through-organization-settings).
 
 ### Serve users who have no git-host account
 

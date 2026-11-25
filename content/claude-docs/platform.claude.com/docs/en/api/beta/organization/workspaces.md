@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 90c8085c741c734eb24480539d6c6fc9de39d357ba30559495d6d58d3c563a2e
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 98d541d0eb2703925d733e1e6e4cd47a09c69ab7ddd00fa91b5ddc74918cbdbf
 ---
 
 ---
@@ -311,7 +311,7 @@ List Workspaces
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -778,7 +778,7 @@ Create Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -1226,7 +1226,7 @@ Get Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -1674,7 +1674,7 @@ Update Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -2136,7 +2136,7 @@ Archive Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -2384,7 +2384,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/archive
 
   - `human_review: optional BetaAnthropicHumanReview`
 
-    The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+    The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
     - `type: "disabled" or "enabled"`
 
@@ -2691,7 +2691,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/archive
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 
@@ -4332,7 +4332,7 @@ curl https://api.anthropic.com/v1/organizations/workspaces/$WORKSPACE_ID/service
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "service_account_id": "service_account_id",
+          "service_account_id": "svac_01SDCCSbTxrXDpWc1phhtcfK",
           "workspace_role": "workspace_admin"
         }'
 ```

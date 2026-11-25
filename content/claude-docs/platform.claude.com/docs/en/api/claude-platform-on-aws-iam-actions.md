@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/claude-platform-on-aws-iam-actions
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: d5b5d598220681a97975559b55255eb51a4118ca988865b7f5ebf5be6092b116
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 2e91255f3bcc8bb88ba98afa5f01788c6bc2e69864a752f5daf67ed20885a302
 ---
 
 ---
@@ -305,7 +305,7 @@ Actions follow the AWS `VerbNoun` convention and use verb discipline so that `Ge
 | ----- | ----- |
 | `AssumeConsole` | (none) |
 
-`AssumeConsole` authorizes a principal to open the Claude Console for its Claude Platform on AWS organization through the AWS Console federation flow. It does not map to a route or bind to a workspace ARN, so a statement that grants it needs `Resource: "*"`. Grant it to principals who should be able to click **Open Claude Console** on the Claude Platform on AWS service page in the AWS Console. See [Using the Claude Console](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#using-the-claude-console) for the sign-in flow and what each Claude Console role (Admin or Developer) can do.
+`AssumeConsole` authorizes a principal to open the Claude Console for its Claude Platform on AWS organization through the AWS Console federation flow. It does not map to a route or bind to a workspace ARN, so a statement that grants it needs `Resource: "*"`. Grant it to principals who should be able to sign in to the Claude Console from the Claude Platform on AWS service page in the AWS Console. See [Using the Claude Console](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#using-the-claude-console) for the sign-in flow and what each Claude Console role (Admin or Developer) can do.
 
 A Claude Console session covers the whole organization, not one workspace, and some Claude Console pages bypass IAM action checks. On those pages, a principal with either Claude Console role can see the whole organization’s usage, cost, and rate limits, whatever its IAM policies allow. With the Admin role, it can also see request metadata on the **Logs** page. An Admin session can also change settings outside IAM, such as spend limits for the organization and each workspace. Grant `AssumeConsole` only to principals who may see and act on the whole organization. [Claude Console pages available on Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#available-pages) shows which pages check IAM actions and which bypass them.
 

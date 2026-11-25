@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/user_profiles/retrieve
-fetched_at: 2026-11-14T02:12:32.675862Z
-sha256: 3ade8865a5766075e68c2d7ae1ba4d0695c9e488e7c97cdf116aa2f9addcf792
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 305467fa4cc4f16acc5a61d983398c6920496fdb0c74b4a9a313f514bbfe5b08
 ---
 
 ---
@@ -14,7 +14,9 @@ url: https://platform.claude.com/docs/en/api/user_profiles/retrieve
 
 **GET** `/v1/user_profiles/{user_profile_id}`
 
-Get User Profile
+Get a user profile by ID to check the details stored for it.
+
+See the [User profiles guide](https://platform.claude.com/docs/en/manage-claude/user-profiles?sdk_languages=http) for how to set up and manage profiles.
 
 ## Path parameters
 

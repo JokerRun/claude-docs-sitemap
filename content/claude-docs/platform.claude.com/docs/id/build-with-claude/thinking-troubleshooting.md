@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 4a6dc0bde48b91dd1cb425d9f46d9470944b6f9d8bc08b90a948eda954eabce3
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 903888061f579da13fe82495cd12177d3e5df9c28f8ba72d19dd706c20c723aa
 ---
 
 ---
@@ -53,7 +53,7 @@ Tabel ini mencantumkan apa yang didukung setiap model, nilai default-nya, dan ni
 
 Model yang ditandai `Always on` (Selalu aktif) tidak dapat menonaktifkan thinking. Model yang ditandai `On` (Aktif) menggunakan thinking secara default. Claude Opus 5, Claude Sonnet 5, dan Claude Haiku 5.5 menerima `thinking: {type: "disabled"}`. Pada Claude Sonnet 5.5, kirim `thinking: {type: "between_tools"}` untuk menonaktifkan thinking di awal.
 
-Model Claude 4 yang lebih lama (Claude Opus 4.1, Claude Sonnet 4, dan Claude Opus 4) hanya mendukung pemikiran diperpanjang. Lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations) untuk ketersediaannya. Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 tidak tersedia di bawah [zero data retention](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) kecuali diizinkan secara tegas oleh Anthropic.
+Model Claude 4 yang lebih lama (Claude Opus 4.1, Claude Sonnet 4, dan Claude Opus 4) hanya mendukung pemikiran diperpanjang. Lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations) untuk ketersediaannya. Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, dan Claude Mythos 5 tidak tersedia di bawah [legacy zero data retention (Legacy ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) kecuali diizinkan secara tegas oleh Anthropic.
 
 ## Error 400 menyatakan `"thinking.type.enabled"` tidak didukung
 

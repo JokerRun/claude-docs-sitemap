@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/ip-addresses
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 3b512c2e1aad92af22c1312b461f02f54304c223b5d7441a2aa42675ba7b9e7d
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: c63a333a9922a8897e5ccb8c46ef661aa078c7a5e9a6bd2583cc84ee1d4dbb66
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Layanan Anthropic menggunakan alamat IP tetap untuk koneksi masuk d
 ---
 
 <Note>
-  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Endpoint masuk (`aws-external-anthropic.{region}.api.aws`) di-resolve ke rentang IP AWS. Panggilan alat keluar (konektor MCP, pencarian web, dan web fetch) berasal dari rentang Anthropic yang tercantum di halaman ini. Lihat [rentang alamat IP AWS](https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html) untuk allowlisting koneksi masuk.
+  **[Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws):** Endpoint masuk (`aws-external-anthropic.{region}.api.aws`) di-resolve ke rentang IP AWS. Lihat [rentang alamat IP AWS](https://docs.aws.amazon.com/vpc/latest/userguide/aws-ip-ranges.html) untuk allowlisting koneksi masuk.
 </Note>
 
 ## Alamat IP masuk

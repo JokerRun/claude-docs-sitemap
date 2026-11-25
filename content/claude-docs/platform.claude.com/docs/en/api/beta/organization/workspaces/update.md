@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/update
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 177abc86197066d3f2946e245cdf744e859b5c9598ee4b18cc675b5b43a292ac
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 583c549f04c956ee6bea6b77daf504c2d0b63c89cb246502656acd79a8214ba0
 ---
 
 ---
@@ -378,7 +378,7 @@ Update Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 

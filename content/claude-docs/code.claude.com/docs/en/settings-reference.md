@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-reference
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 5f20b1359c416f38157083c44221e9b51ddea7bd736888cd581443d4d2ce6298
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: a413b026baa8ac5b0f23940c26c8689ecfb7eee0b98ee6a8f00e16af8b589ab8
 ---
 
 > ## Documentation Index
@@ -24,7 +24,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | Key | Description | Topic | Scope |
 | :- | :- | :- | :- |
 | [`advisorModel`](#advisormodel) | Pick which model answers when Claude asks the [advisor tool](https://code.claude.com/docs/en/advisor.md) | Model and responses | Any file |
-| [`agent`](#agent) | Start every session as a named [subagent](https://code.claude.com/docs/en/sub-agents.md) with its prompt, tools, and model | Agents, sessions, and worktrees | Any file |
+| [`agent`](#agent) | Start sessions as a named [subagent](https://code.claude.com/docs/en/sub-agents.md) with its prompt, tools, and model | Agents, sessions, and worktrees | Any file |
 | [`agentPushNotifEnabled`](#agentpushnotifenabled) | Let Claude send a [push notification to your phone](https://code.claude.com/docs/en/remote-control.md#mobile-push-notifications) when it decides to | Remote, desktop, and notifications | Any file |
 | [`allowAllClaudeAiMcps`](#allowallclaudeaimcps) | Load the [claude.ai connectors](https://code.claude.com/docs/en/mcp.md) Claude Code fetches itself alongside a deployed [`managed-mcp.json`](https://code.claude.com/docs/en/managed-mcp#exclusive-control-with-managed-mcp-json) | MCP | Managed |
 | [`allowClaudeInChromeWithManagedMcp`](#allowclaudeinchromewithmanagedmcp) | Let the built-in [Claude in Chrome](https://code.claude.com/docs/en/chrome.md) server run alongside a deployed [`managed-mcp.json`](https://code.claude.com/docs/en/managed-mcp#exclusive-control-with-managed-mcp-json) | MCP | Managed |
@@ -90,6 +90,7 @@ Every key below links to its entry. Scope lists the [files](https://code.claude.
 | [`disableCommandPluginSources`](#disablecommandpluginsources) | Block [plugins](https://code.claude.com/docs/en/plugins/overview.md) that install by running a marketplace-declared command | Plugins and skills | Managed |
 | [`disableDeepLinkRegistration`](#disabledeeplinkregistration) | Stop Claude Code from registering the [`claude-cli://` handler](https://code.claude.com/docs/en/deep-links) | Remote, desktop, and notifications | Any file |
 | [`disableDesktopLocalSessions`](#disabledesktoplocalsessions) | Turn off [Desktop Code sessions](https://code.claude.com/docs/en/desktop.md#local-sessions-on-managed-devices) that run on the device, leaving SSH to other hosts and cloud | Remote, desktop, and notifications | Managed |
+| [`disableDirectMcpSkills`](#disabledirectmcpskills) | Turn [skills from MCP servers](https://code.claude.com/docs/en/mcp.md#turn-on-skills-for-an-organization) other than connectors on or off for your organization | MCP | Managed |
 | [`disabledMcpjsonServers`](#disabledmcpjsonservers) | Reject specific servers from a project's [`.mcp.json`](https://code.claude.com/docs/en/mcp#project-scope) | MCP | Any file |
 | [`disableMobileSimulatorTools`](#disablemobilesimulatortools) | Block Claude's tools in the [desktop](https://code.claude.com/docs/en/desktop.md) iOS Simulator pane | Tools | Managed |
 | [`disableRemoteControl`](#disableremotecontrol) | Turn off [Remote Control](https://code.claude.com/docs/en/remote-control.md) everywhere it can start | Remote, desktop, and notifications | Any file |
@@ -4188,6 +4189,8 @@ The four sub-key entries below list what else each surface blocks and what still
 
 Lock the `skills` surface. Claude Code stops loading skills from `~/.claude/skills/` and `.claude/skills/`, custom commands from `~/.claude/commands/` and `.claude/commands/`, skills and commands under `--add-dir` directories, and skills synced from your claude.ai account. It keeps loading bundled skills, skills in the managed policy directory, and skills from plugins other than [skills-directory plugins](https://code.claude.com/docs/en/plugins/loading.md#skills-directory-plugins-blocked-by-managed-settings).
 
+With the lock on, [skills from MCP servers](https://code.claude.com/docs/en/mcp.md#use-skills-from-mcp-servers) that users, projects, and `--mcp-config` add don't load. Skills from claude.ai connectors still load.
+
 * **Scope**: [`Managed`](#scopes)
 * **Type**: the string `"skills"` in the [`strictPluginOnlyCustomization`](#strictpluginonlycustomization) array
 * **Default**: not locked
@@ -4546,6 +4549,28 @@ Block specific MCP servers. Claude Code refuses to load a matching server wherev
 ```
 
 The denylist takes precedence over [`allowedMcpServers`](#allowedmcpservers), so a server on both lists is blocked. See [Policy-based control with allowlists and denylists](https://code.claude.com/docs/en/managed-mcp.md#policy-based-control-with-allowlists-and-denylists).
+
+### `disableDirectMcpSkills`
+
+Turn [skills from MCP servers](https://code.claude.com/docs/en/mcp.md#turn-on-skills-for-an-organization) on or off for your organization. This key covers every server except claude.ai connectors. For connectors, an Owner uses the **Skills over MCP** switch in [**Organization settings > Connectors**](https://claude.ai/admin-settings/connectors) instead. Skills from MCP servers require Claude Code v2.1.331 or later.
+
+* **Scope**: [`Managed`](#scopes). If you use several [managed sources](https://code.claude.com/docs/en/managed-settings.md#how-claude-code-combines-managed-sources), set `false` in the highest-ranked one. Claude Code ignores a `false` in the Windows HKCU registry
+* **Type**: Boolean
+  * `true`: Claude Code doesn't list or load skills from these servers. The servers keep their tools, and claude.ai connectors keep their skills
+  * `false`: on Team and Enterprise plans, allows these skills. They stay off for servers you lock out with `strictPluginOnlyCustomization`, and if your organization isn't [eligible](https://code.claude.com/docs/en/mcp.md#requirements-for-skills-from-mcp-servers). On other plans, `false` is the same as unset
+* **Default**: unset. These skills are off for Team and Enterprise members who sign in to claude.ai with `/login`. For other sign-ins, see [MCP skill availability](https://code.claude.com/docs/en/mcp.md#requirements-for-skills-from-mcp-servers)
+
+This example allows these skills for Team and Enterprise members:
+
+```json managed-settings.json theme={null}
+{
+  "disableDirectMcpSkills": false
+}
+```
+
+If any [admin source](https://code.claude.com/docs/en/managed-settings.md#keys-read-from-every-admin-source) sets `true`, the skills stay off.
+
+Anthropic doesn't scan these skills. They can contain instructions or code that cause Claude to take unintended actions, including through [prompt injection](https://code.claude.com/docs/en/security.md#protect-against-prompt-injection). Set this to `false` only if you trust the servers your members add.
 
 ### `disableClaudeAiConnectors`
 

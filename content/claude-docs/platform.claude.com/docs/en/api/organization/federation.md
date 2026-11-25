@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 9671e888622296a494de554b2c0cbc122c3828e9b82529e565affe77730d4413
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 6951fc34d64650cfbe3ded5e3bca44e10acc8cde235af8412fd210aa84a55f67
 ---
 
 ---
@@ -271,8 +271,8 @@ curl https://api.anthropic.com/v1/organizations/federation_issuers \
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "issuer_url": "x",
-          "name": "x"
+          "issuer_url": "https://token.actions.githubusercontent.com",
+          "name": "github-actions"
         }'
 ```
 
@@ -1498,14 +1498,22 @@ curl https://api.anthropic.com/v1/organizations/federation_rules \
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "issuer_id": "issuer_id",
-          "match": {},
-          "name": "x",
-          "oauth_scope": "x",
+          "issuer_id": "fdis_01SDCCSbTxrXDpWc1phhtcfK",
+          "match": {
+            "claims": {
+              "event_name": "push",
+              "ref": "refs/heads/main",
+              "repository_id": "123456789",
+              "repository_owner_id": "987654321"
+            }
+          },
+          "name": "prod-deploy-pipeline",
+          "oauth_scope": "workspace:developer",
           "target": {
             "service_account_id": "svac_01SDCCSbTxrXDpWc1phhtcfK",
             "type": "service_account"
-          }
+          },
+          "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
         }'
 ```
 
@@ -2600,7 +2608,7 @@ curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RUL
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "workspace_id": "workspace_id"
+          "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
         }'
 ```
 

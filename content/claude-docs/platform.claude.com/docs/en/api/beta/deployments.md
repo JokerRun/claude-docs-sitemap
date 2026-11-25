@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/deployments
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: b10720722e9763ba484e9bf9a4ba26c0e085412724f793de6ebb419125b05d03
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 3b2f8f9e918d8298ab40863dad398e958b6e56fb86369a003cf8a59d2c75aebd
 ---
 
 ---
@@ -1113,20 +1113,23 @@ curl https://api.anthropic.com/v1/deployments \
     -H 'anthropic-beta: managed-agents-2026-04-01' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "agent": "string",
-          "environment_id": "x",
+          "agent": {
+            "id": "agent_011CZkYpogX7uDKUyvBTophP",
+            "type": "agent"
+          },
+          "environment_id": "env_011CZkZ9X2dpNyB7HsEFoRfW",
           "initial_events": [
             {
               "content": [
                 {
-                  "text": "Where is my order #1234?",
+                  "text": "Compile yesterday'\''s orders into report.md.",
                   "type": "text"
                 }
               ],
               "type": "user.message"
             }
           ],
-          "name": "x",
+          "name": "Daily order report",
           "schedule": {
             "expression": "0 9 * * 1-5",
             "timezone": "America/Los_Angeles",

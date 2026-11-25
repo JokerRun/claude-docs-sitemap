@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 325684ce5aac662bb82bf87622e27ee1068f3f1b4ca2f6b487a56313aafc4216
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 967624b8f43afb76bbb178af4fd10fcaa0041be6d3e0215021fce46d45e65212
 ---
 
 ---
@@ -26,6 +26,8 @@ This page assumes you have read the following pages:
 * [Query the Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed), which defines the parameters and pagination contract referenced throughout.
 * [Retrieve and delete chats, files, and projects](https://platform.claude.com/docs/en/manage-claude/compliance-content-data), which defines the chat, file, and project endpoints and the `deleted_at` semantics referenced in [Plan content retention](https://platform.claude.com/docs/en/manage-claude/compliance-integration-patterns#plan-content-retention).
 * [Retrieve session transcripts](https://platform.claude.com/docs/en/manage-claude/compliance-sessions), which defines the local and remote session endpoints.
+
+For the base URL and credentials on [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed) and [Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws), see [How the Compliance API works](https://platform.claude.com/docs/en/manage-claude/compliance-api#how-the-compliance-api-works).
 
 ## Choose a feed-consumption pattern
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/working-with-messages
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 66a4493f3bfdcab426d0e02fae11baaefd2d504daade00493e60c131a0740a0c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 65d8811dd37fad3865c47cad5935d78d2d4a073e314b676ffa05fac2e564b88c
 ---
 
 ---
@@ -369,11 +369,20 @@ Lihat [Pesan sistem dan perubahan alat di tengah percakapan](https://platform.cl
 
 ## Prefill respons Claude
 
-Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
+Prefill adalah teks yang Anda tulis dalam pesan `assistant` dan letakkan di posisi terakhir dalam `messages`. Pesan `assistant` di posisi lain mana pun dalam `messages` bukanlah prefill. Claude melanjutkan teks yang di-prefill, dan respons hanya berisi lanjutannya.
 
-<Warning>
-  Prefill tidak didukung pada model Claude 4.6 dan yang lebih baru serta [Claude Mythos Preview](https://anthropic.com/glasswing). Permintaan yang menggunakan prefill dengan model-model ini akan mengembalikan error 400. Sebagai gantinya, gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs) pada model yang mendukungnya, atau instruksi prompt sistem. Lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide) untuk pola migrasi.
-</Warning>
+Gunakan prefill untuk menentukan bagaimana respons dimulai, misalnya, untuk memulainya dalam format tetap atau untuk melewati pembukaan.
+
+Apakah API menerima prefill bergantung pada model, bukan pada versi API:
+
+* **Model Claude 4.5 dan sebelumnya:** API menerima prefill kecuali model tersebut sudah dipensiunkan di platform yang Anda gunakan. Semua permintaan ke model yang sudah dipensiunkan akan gagal. Untuk memeriksa status model, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
+* **Semua model lainnya:** API mengembalikan error 400 (lihat bagian [Prefill tidak didukung](https://platform.claude.com/docs/id/api/errors#prefill-not-supported) di halaman Error Claude API). Sebagai gantinya, gunakan salah satu [alternatif untuk prefill](https://platform.claude.com/docs/id/build-with-claude/working-with-messages#alternatives-to-a-prefill).
+
+Claude Opus 4.5 dihentikan (deprecated) di [platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview). Claude Sonnet 4.5 dihentikan (deprecated) di platform yang sama. Untuk tanggal pensiun dan pengganti yang direkomendasikan, lihat [Riwayat penghentian](https://platform.claude.com/docs/id/about-claude/model-deprecations#deprecation-history) di halaman Penghentian model. [Platform yang dioperasikan mitra](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) menetapkan jadwal pensiun mereka sendiri.
+
+Model pengganti yang direkomendasikan untuk Claude Opus 4.5 dan Claude Sonnet 4.5 tidak menerima prefill.
+
+Contoh berikut berjalan pada Claude Opus 4.5 dan menetapkan format jawaban pilihan ganda. Prefill, `The answer is (`, berakhir tepat sebelum huruf jawaban sehingga Claude menulis huruf tersebut terlebih dahulu. Karena jawabannya berupa satu huruf, contoh ini juga menetapkan `max_tokens` ke `1`. Untuk jawaban yang lebih panjang, tetapkan `max_tokens` yang lebih tinggi.
 
 <CodeGroup>
   ```bash cURL
@@ -383,35 +392,31 @@ Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar p
     -H "anthropic-version: 2026-10-21" \
     -H "content-type: application/json" \
     -d '{
-      "model": "claude-sonnet-4-5",
+      "model": "claude-opus-4-5-20251101",
       "max_tokens": 1,
       "messages": [
-        {"role": "user", "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
+        {"role": "user", "content": "What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"},
         {"role": "assistant", "content": "The answer is ("}
       ]
     }'
   ```
 
   ```bash CLI
-  ant messages create <<'YAML'
-  model: claude-sonnet-4-5
-  max_tokens: 1
-  messages:
-    - role: user
-      content: "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"
-    - role: assistant
-      content: "The answer is ("
-  YAML
+  ant messages create \
+    --model claude-opus-4-5-20251101 \
+    --max-tokens 1 \
+    --message '{role: user, content: "What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"}' \
+    --message '{role: assistant, content: "The answer is ("}'
   ```
 
   ```python Python
   message = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-5-20251101",
       max_tokens=1,
       messages=[
           {
               "role": "user",
-              "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae",
+              "content": "What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae",
           },
           {"role": "assistant", "content": "The answer is ("},
       ],
@@ -423,12 +428,12 @@ Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar p
   const anthropic = new Anthropic();
 
   const message = await anthropic.messages.create({
-    model: "claude-sonnet-4-5",
+    model: "claude-opus-4-5-20251101",
     max_tokens: 1,
     messages: [
       {
         role: "user",
-        content: "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"
+        content: "What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"
       },
       { role: "assistant", content: "The answer is (" }
     ]
@@ -441,10 +446,10 @@ Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar p
 
   var parameters = new MessageCreateParams
   {
-      Model = Model.ClaudeSonnet4_5,
+      Model = Model.ClaudeOpus4_5_20251101,
       MaxTokens = 1,
       Messages = [
-          new UserMessageParam { Content = "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
+          new UserMessageParam { Content = "What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae" },
           new AssistantMessageParam { Content = "The answer is (" }
       ]
   };
@@ -457,10 +462,10 @@ Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar p
   client := anthropic.NewClient()
 
   response, err := client.Messages.New(context.TODO(), anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeSonnet4_5,
+  	Model:     anthropic.ModelClaudeOpus4_5_20251101,
   	MaxTokens: 1,
   	Messages: []anthropic.MessageParam{
-  		anthropic.NewUserMessage(anthropic.NewTextBlock("What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae")),
+  		anthropic.NewUserMessage(anthropic.NewTextBlock("What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae")),
   		anthropic.NewAssistantMessage(anthropic.NewTextBlock("The answer is (")),
   	},
   })
@@ -474,9 +479,9 @@ Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar p
   AnthropicClient client = AnthropicOkHttpClient.fromEnv();
 
   MessageCreateParams params = MessageCreateParams.builder()
-      .model(Model.CLAUDE_SONNET_4_5)
+      .model(Model.CLAUDE_OPUS_4_5_20251101)
       .maxTokens(1L)
-      .addUserMessage("What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae")
+      .addUserMessage("What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae")
       .addAssistantMessage("The answer is (")
       .build();
 
@@ -490,24 +495,24 @@ Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar p
   $message = $client->messages->create(
       maxTokens: 1,
       messages: [
-          ['role' => 'user', 'content' => 'What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae'],
+          ['role' => 'user', 'content' => 'What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae'],
           ['role' => 'assistant', 'content' => 'The answer is ('],
       ],
-      model: 'claude-sonnet-4-5',
+      model: Model::CLAUDE_OPUS_4_5_20251101,
   );
-  echo $message->content[0]->text;
+  echo json_encode($message, JSON_PRETTY_PRINT), PHP_EOL;
   ```
 
   ```ruby Ruby
   client = Anthropic::Client.new
 
   message = client.messages.create(
-    model: Anthropic::Model::CLAUDE_SONNET_4_5,
+    model: Anthropic::Model::CLAUDE_OPUS_4_5_20251101,
     max_tokens: 1,
     messages: [
       {
         role: "user",
-        content: "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"
+        content: "What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"
       },
       { role: "assistant", content: "The answer is (" }
     ]
@@ -527,7 +532,7 @@ Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar p
       "text": "C"
     }
   ],
-  "model": "claude-sonnet-4-5",
+  "model": "claude-opus-4-5-20251101",
   "stop_reason": "max_tokens",
   "stop_sequence": null,
   "usage": {
@@ -536,6 +541,40 @@ Anda dapat melakukan prefill sebagian respons Claude di posisi terakhir daftar p
   }
 }
 ```
+
+Perhatikan dua field dalam respons ini:
+
+* **`text`:** Nilainya adalah `C`. Nilai ini hanya berisi lanjutannya, bukan prefill.
+* **`stop_reason`:** Nilainya adalah `max_tokens` karena contoh ini mengakhiri respons setelah satu token.
+
+Untuk mendapatkan teks lengkap, `The answer is (C`, gabungkan prefill dan nilai `text` di kode Anda.
+
+Pada model Claude 4.5 dan sebelumnya, batasan berikut berlaku untuk prefill:
+
+* **Whitespace:** Jika prefill diakhiri dengan whitespace, API mengembalikan error 400.
+* **Output terstruktur:** Jika permintaan juga menetapkan `output_config.format`, API mengembalikan error 400 (lihat bagian [Kompatibilitas fitur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#feature-compatibility) di halaman Output terstruktur).
+* **[Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking):** Jika permintaan juga menetapkan `thinking.type` ke `enabled`, prefill tidak menyebabkan error. API memperlakukan thinking sebagai nonaktif, sehingga respons tidak memiliki blok `thinking`.
+
+`message` dalam setiap error 400 menjelaskan penyebabnya.
+
+### Alternatif untuk prefill
+
+Sebagai pengganti prefill, akhiri `messages` dengan pesan `user`. Kemudian, pilih pendekatan berdasarkan apa yang Anda inginkan dari respons:
+
+* **JSON yang mengikuti skema:** Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), yang membatasi respons agar mengikuti skema.
+* **Format output lain:** Jelaskan format tersebut dalam prompt sistem, yaitu [field `system`](https://platform.claude.com/docs/id/api/messages/create#create.system) pada permintaan.
+* **Tanpa pembukaan:** Minta jawaban langsung dalam prompt sistem.
+
+Tidak seperti prefill, instruksi prompt sistem tidak menjamin bagaimana respons dimulai, jadi periksa teks respons di kode Anda.
+
+Untuk apa yang dapat digunakan sebagai pengganti prefill umum lainnya, lihat bagian [Bermigrasi dari respons prefill](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#migrating-away-from-prefilled-responses) di halaman Praktik terbaik prompting.
+
+Untuk memindahkan contoh pilihan ganda ini ke model yang tidak menerima prefill, ikuti langkah-langkah berikut:
+
+1. Ubah model dan hapus pesan `assistant`.
+2. Minta dalam prompt sistem agar hanya huruf jawaban yang diberikan.
+3. Tetapkan `max_tokens` cukup tinggi untuk seluruh respons. Pada [model dengan thinking aktif secara default](https://platform.claude.com/docs/id/build-with-claude/thinking#configuring-thinking), token thinking juga dihitung dalam `max_tokens`.
+4. Baca huruf dari blok `text` respons. Blok ini dapat muncul setelah blok `thinking`. Jangan gabungkan huruf tersebut dengan prefill.
 
 ## Vision
 

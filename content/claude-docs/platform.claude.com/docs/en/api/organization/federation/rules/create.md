@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/organization/federation/rules/create
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 395cb92643c52e182402490c837414315f968f2274bbd8b2b4bc0174b8604027
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 99dd3ad8a26fc8108a9c3391e009edb1d935a29f90cc895d2cdcfd935117f176
 ---
 
 ---
@@ -273,14 +273,22 @@ curl https://api.anthropic.com/v1/organizations/federation_rules \
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "issuer_id": "issuer_id",
-          "match": {},
-          "name": "x",
-          "oauth_scope": "x",
+          "issuer_id": "fdis_01SDCCSbTxrXDpWc1phhtcfK",
+          "match": {
+            "claims": {
+              "event_name": "push",
+              "ref": "refs/heads/main",
+              "repository_id": "123456789",
+              "repository_owner_id": "987654321"
+            }
+          },
+          "name": "prod-deploy-pipeline",
+          "oauth_scope": "workspace:developer",
           "target": {
             "service_account_id": "svac_01SDCCSbTxrXDpWc1phhtcfK",
             "type": "service_account"
-          }
+          },
+          "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
         }'
 ```
 

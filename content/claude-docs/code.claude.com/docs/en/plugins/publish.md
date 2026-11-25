@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/plugins/publish
-fetched_at: 2026-11-18T02:14:00.973041Z
-sha256: 83da0dae13e713af29ed56401dd5dd955ffe72b15232d7552d6e9efd613562f0
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 8ae2bb906582cce46190d9807edadb7e44a793fe48be32be47d020c01fbac719
 ---
 
 > ## Documentation Index
@@ -139,7 +139,7 @@ To submit a plugin:
 
 **1. Confirm you can submit**
 
-Submitting requires a paid claude.ai plan. On Pro, Max, and Ultra you submit from your own account. On Team and Enterprise, an Owner can submit, and on Enterprise an Owner can also grant the **Directory** permission to other members through a custom role under **Organization settings > Roles**. See [Confirm you can submit to the directory](https://claude.com/docs/directory/publish#confirm-you-can-submit-to-the-directory).
+Submitting requires a paid claude.ai plan. On Pro, Max, and Ultra you submit from your own account. On Team and Enterprise, an Owner can submit, and on Enterprise an Owner can also grant the **Directory** permission to other members through a custom role under [**Organization settings > Roles**](https://claude.ai/admin-settings/roles). See [Confirm you can submit to the directory](https://claude.com/docs/directory/publish#confirm-you-can-submit-to-the-directory).
 
 **2. Validate the plugin locally**
 

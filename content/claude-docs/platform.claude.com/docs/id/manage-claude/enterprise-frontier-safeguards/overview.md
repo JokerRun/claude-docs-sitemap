@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 0413e3d15d536ca265cb9db0ef95354de9707e108bfe5512e9b67a591be280d4
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 4abf30de3d2d2f09d30c527d68e88a2a4b9df68b9b5e6fab223e465db128ce0c
 ---
 
 ---
@@ -15,7 +15,7 @@ description: Zero Data Retention (ZDR) bagi organisasi yang memenuhi syarat yang
   Enterprise Frontier Safeguards saat ini dalam tahap beta. Fitur ini tersedia berdasarkan perjanjian Anda dengan Anthropic, seperti ketentuan khusus penggunaan internal, [Ketentuan Layanan Komersial](https://www.anthropic.com/legal/commercial-terms) dan [Ketentuan Khusus Layanan](https://www.anthropic.com/legal/service-specific-terms). Pengaturan dan perilaku dapat berubah selama beta.
 </Warning>
 
-Enterprise Frontier Safeguards (EFS) adalah [Zero Data Retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) bagi organisasi yang memenuhi syarat yang menggunakan [model Claude yang paling mumpuni](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements), seperti Claude Fable 5.1. Anthropic tidak menyimpan prompt dan respons Anda. Data keselamatan tersegel ditulis ke penyimpanan milik Anda. EFS memerlukan bucket Anda sendiri. Workspace yang menggunakan [penyimpanan yang dikelola Anthropic](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/faq#glossary) tidak menggunakan EFS, karena Anthropic menyimpan salinan terenkripsi dari prompt dan respons workspace tersebut.
+Enterprise Frontier Safeguards (EFS) adalah [Zero Data Retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention) bagi organisasi yang memenuhi syarat yang menggunakan [model Claude yang paling mumpuni](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements), seperti Claude Fable 5.1. Anthropic tidak menyimpan prompt dan respons Anda. Data keselamatan tersegel ditulis ke penyimpanan milik Anda. EFS memerlukan bucket Anda sendiri. Workspace yang menggunakan [penyimpanan yang dikelola Anthropic](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/faq#glossary) tidak menggunakan EFS, karena Anthropic menyimpan salinan terenkripsi dari prompt dan respons workspace tersebut.
 
 Gunakan EFS saat Anda menginginkan model Claude yang paling mumpuni, tetapi perlu menyimpan data keselamatan tersegel Anda di akun cloud Anda sendiri. Dengan EFS, orang-orang di organisasi Anda, bukan peninjau di Anthropic, yang meninjau [Safety Cases](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/flagged-cases). EFS mencakup keduanya:
 
@@ -29,6 +29,16 @@ Gunakan EFS saat Anda menginginkan model Claude yang paling mumpuni, tetapi perl
 Anthropic tidak mengenakan biaya untuk EFS, dan EFS tidak mengubah perilaku model, harga API, atau batas laju. Penyedia cloud Anda menagih Anda untuk penyimpanan tersebut seperti biasa, termasuk operasi baca, operasi tulis, dan data egress.
 
 EFS mencakup permintaan ke Messages API dalam workspace yang dikonfigurasi untuk EFS, apa pun modelnya. EFS tidak mencakup data yang disimpan oleh fitur Claude Platform untuk penggunaannya sendiri, bahkan dalam permintaan Messages API, seperti container eksekusi kode, unggahan Files API, hasil Batch API, dan sesi Claude Managed Agents. Lihat [Data dan retensi](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/faq#data-and-retention) di FAQ.
+
+## Dapatkan akses
+
+Untuk mendapatkan EFS, ikuti langkah-langkah berikut:
+
+1. Jika halaman [Programs](https://platform.claude.com/settings/programs) di Claude Console sudah menampilkan **Enterprise Frontier Safeguards**, lanjutkan ke langkah 2. Jika tidak, hubungi tim akun Anthropic Anda untuk meminta akses. Jika Anda tidak memiliki tim akun, lengkapi [formulir permintaan Enterprise Frontier Safeguards](https://claude.com/form/enterprise-frontier-safeguards).
+2. Setelah Anthropic mengonfirmasi bahwa organisasi Anda memenuhi syarat, seorang Admin organisasi menerima ketentuan dari halaman [Programs](https://platform.claude.com/settings/programs) di Claude Console.
+3. Untuk menyiapkan EFS, ikuti [panduan penyiapan EFS untuk platform Anda](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-console).
+
+Di Amazon Bedrock, Anda mendapatkan akses melalui AWS. Lihat [Enterprise Frontier Safeguards di Amazon Bedrock](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-amazon-bedrock).
 
 ## Di Claude Platform, EFS berlaku untuk seluruh workspace
 

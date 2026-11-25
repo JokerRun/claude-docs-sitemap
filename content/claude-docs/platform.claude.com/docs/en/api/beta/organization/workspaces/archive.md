@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/workspaces/archive
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: b9b7d75aa76ddcaf847d765ba632d345e8f5eb73a8c71d1f654db9e118c44159
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 5cbfbd171b4b2b1cd85afb39aaa429ae9ad952f89ee4ea1ccbad6fbfdbaa0ba4
 ---
 
 ---
@@ -279,7 +279,7 @@ Archive Workspace
 
     - `human_review: optional BetaAnthropicHumanReview`
 
-      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands. If Anthropic withdraws approval, review is back on, though this field still reads `disabled`.
+      The Workspace's human review setting. Human review is off only while this is `disabled` and Anthropic's approval stands.
 
       - `type: "disabled" or "enabled"`
 

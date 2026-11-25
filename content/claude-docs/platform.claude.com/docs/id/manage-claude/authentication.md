@@ -1,25 +1,26 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 1e62056f61fc0bd0bf3365ed4157ca9a55377ff039aa5fd44b6f0405666ee11a
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 0faad095c58580975527b4c9520c211993204b9045217a23d0dffcf9939c3fd1
 ---
 
 ---
 title: Autentikasi
 url: https://platform.claude.com/docs/id/manage-claude/authentication
-description: Autentikasi ke Claude API dengan kunci API, Workload Identity Federation, atau App Attest.
+description: "Pilih cara kode Anda membuktikan identitasnya ke Claude API: masuk melalui CLI, Workload Identity Federation, App Attest, atau kunci API."
 ---
 
-Claude API mendukung tiga cara untuk mengautentikasi permintaan:
+Setiap permintaan ke Claude API membawa kredensial yang memberi tahu API siapa yang memanggil, seperti Anda atau “service account” (akun layanan) yang memberikan identitas tersendiri kepada sebuah program. Pilih metode berdasarkan tempat kode Anda berjalan. Setiap metode kecuali kunci API mengirimkan token berumur pendek alih-alih rahasia berumur panjang, sehingga membatasi kerusakan jika token bocor.
 
 | Metode | Kredensial | Paling cocok untuk |
 | ----- | ----- | ----- |
-| [Kunci API](https://platform.claude.com/docs/id/manage-claude/authentication#api-keys) | Rahasia statis `sk-ant-api...` yang dikirim sebagai bearer token di header `Authorization` | Pengembangan lokal, prototyping, skrip, dan server tempat Anda mengontrol penyimpanan rahasia |
+| Masuk melalui CLI (lihat bagian [Login interaktif](https://platform.claude.com/docs/id/cli-sdks-libraries/cli/authentication#interactive-login) dari CLI `ant`) | Token akses berumur pendek yang disimpan `ant auth login` di komputer Anda | Pengembangan lokal dan pembuatan skrip di komputer Anda sendiri |
 | [Workload Identity Federation (WIF)](https://platform.claude.com/docs/id/manage-claude/authentication#workload-identity-federation) | Bearer token berumur pendek yang ditukar dari token identitas penyedia identitas Anda | Beban kerja produksi pada platform cloud (AWS, Google Cloud, dan Azure), pipeline CI/CD, dan Kubernetes, tempat Anda ingin menghilangkan rahasia statis |
 | [App Attest](https://platform.claude.com/docs/id/manage-claude/authentication#app-attest) | Token akses berumur pendek yang diterbitkan untuk instalasi asli dan terverifikasi dari aplikasi iOS atau macOS Anda yang terdaftar | Aplikasi iOS dan macOS yang didistribusikan ke pengguna akhir, tempat aplikasi memanggil Claude API secara langsung tanpa back end atau proxy |
+| [Kunci API](https://platform.claude.com/docs/id/manage-claude/authentication#api-keys) | Rahasia statis `sk-ant-api...` yang dikirim sebagai bearer token di header `Authorization` | Server tanpa penyedia identitas, atau alat yang meminta kunci |
 
-Kunci API dan Workload Identity Federation memberikan akses yang sama ke endpoint Claude API. Pilih kunci API untuk memulai dengan cepat: kunci pribadi untuk pengembangan Anda sendiri, atau kunci akun layanan untuk apa pun yang dibagikan. Beralih ke Workload Identity Federation ketika beban kerja Anda sudah memiliki identitas yang diterbitkan platform yang dapat Anda federasikan. Gunakan App Attest untuk aplikasi iOS dan macOS yang Anda distribusikan ke pengguna akhir.
+Di komputer Anda sendiri, masuk dengan CLI `ant`. SDK dan CLI kemudian menemukan kredensial Anda dengan sendirinya selama `ANTHROPIC_API_KEY` tidak diatur. Gunakan Workload Identity Federation di CI atau di server atau klaster yang memiliki penyedia identitas. Gunakan App Attest untuk aplikasi iOS dan macOS yang Anda distribusikan ke pengguna akhir. Pilih kunci API untuk server tanpa penyedia identitas atau untuk alat yang meminta kunci. Pilih kunci pribadi untuk penggunaan Anda sendiri atau kunci akun layanan untuk apa pun yang dibagikan.
 
 ## Kunci API
 
@@ -37,7 +38,7 @@ Saat Anda membuat kunci, Anda memilih jenisnya, yang menentukan apa yang dapat d
 
 Kunci pribadi dan kunci akun layanan didukung identitas: masing-masing dimiliki oleh pengguna atau akun layanan yang sudah dikelola organisasi Anda, dan setiap permintaan bertindak sebagai identitas tersebut. Ketika identitas tersebut dihapus dari organisasi, kunci berhenti berfungsi. Ini berarti kunci tidak secara tidak sengaja tetap aktif lebih lama dari orang atau workload yang memilikinya. Utamakan kunci-kunci ini dibandingkan kunci workspace untuk integrasi baru.
 
-Gunakan kunci pribadi untuk pengembangan dan skrip Anda sendiri. Kunci pribadi yang dibagikan bertindak sebagai satu orang dan rusak ketika orang tersebut pergi. Untuk beban kerja yang dibagikan atau otomatis (CI, layanan produksi), minta admin organisasi membuat akun layanan sehingga beban kerja memiliki identitasnya sendiri.
+Jika alat yang hanya Anda jalankan meminta kunci, gunakan kunci pribadi. Kunci pribadi yang dibagikan bertindak sebagai satu orang dan berhenti berfungsi ketika orang tersebut keluar dari organisasi. Untuk beban kerja yang dibagikan atau otomatis (CI, layanan produksi), minta admin organisasi membuat akun layanan sehingga beban kerja memiliki identitasnya sendiri.
 
 Kunci API workspace berfungsi tetapi bersifat lawas. Utamakan kunci yang didukung identitas atau [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation). Untuk bermigrasi, lihat [Mengganti kunci API workspace](https://platform.claude.com/docs/id/manage-claude/authentication#replacing-workspace-api-keys).
 
@@ -358,7 +359,7 @@ Untuk mengganti kunci workspace dengan kunci pribadi atau akun layanan:
 
 Panggil Claude API dari back end Anda sendiri, bukan dari kode yang berjalan di browser pengguna Anda. Siapa pun yang menggunakan halaman web dapat membaca kunci API di dalam kode halaman tersebut. Biasanya, front end web Anda memanggil back end Anda, yang menyimpan kunci tersebut dan memanggil Claude API.
 
-Permintaan yang dikirim langsung dari browser adalah permintaan “cross-origin” (lintas asal), atau CORS. API hanya menerima permintaan ini jika menyertakan header `anthropic-dangerous-direct-browser-access: true`, yang dikirim oleh TypeScript SDK saat Anda mengatur `dangerouslyAllowBrowser` ke `true`. Untuk kasus di mana mengekspos kunci dengan cara ini dapat diterima, lihat [Penggunaan browser](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#runtime-support) dalam panduan TypeScript SDK.
+Permintaan yang dikirim langsung dari browser adalah permintaan “cross-origin” (lintas asal), atau CORS. API hanya menerima permintaan tersebut jika menyertakan header `anthropic-dangerous-direct-browser-access: true`. TypeScript SDK mengirim header ini saat Anda mengatur `dangerouslyAllowBrowser` ke `true`. Untuk kasus di mana mengekspos kunci dengan cara ini dapat diterima, lihat [Dukungan runtime](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#runtime-support) dalam panduan TypeScript SDK.
 
 Organisasi yang mengaktifkan [“zero data retention” (retensi data nol), atau ZDR](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope), atau [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api-access#set-up-the-compliance-api) tidak dapat memanggil API secara langsung dari browser, bahkan dengan header tersebut. Pengaturan organisasi lainnya dapat memiliki efek yang sama, dan tidak ada pengaturan yang mengizinkan permintaan browser untuk organisasi-organisasi ini. API mengembalikan 401 `authentication_error` yang pesannya diawali dengan `CORS requests are not allowed for this Organization`, meskipun kunci API tersebut valid. Organisasi Claude Console yang ditautkan ke organisasi induk Claude Enterprise mewarisi pengaturan Compliance API dari organisasi induk. Oleh karena itu, pembatasan ini dapat berlaku bahkan ketika pengaturan Claude Console Anda tidak menampilkan bagian Compliance API.
 

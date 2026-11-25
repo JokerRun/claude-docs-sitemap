@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/claude-code-analytics-api
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 62e5159837354f6ffbf2842dbb49ea18eb7b5f527916625abcb61d7e97e8aaa1
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: c067c736df7c2a8c40c5e5809ceab6a45206bd072d8f59ff7b160bd080777e01
 ---
 
 ---
@@ -277,7 +277,7 @@ This API only tracks Claude Code usage on the Claude API.
 
 ### What does it cost to use this API?
 
-The Claude Code Analytics API is free to use for all organizations with access to the Admin API.
+Calls to the Claude Code Analytics API are free.
 
 ### How do you calculate tool acceptance rates?
 

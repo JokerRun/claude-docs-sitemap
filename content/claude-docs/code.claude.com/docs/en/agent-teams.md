@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-teams
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: d5ebbeeb8925b0a9ef4fb02ad2beba79e16410b1d2b30365e9049daf37770bb9
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 742a5e15697d90b09c48f85b83c61a1acf1d5fe88680c1bf36cd69ad9d5b5c9a
 ---
 
 > ## Documentation Index
@@ -177,7 +177,7 @@ Before v2.1.251, `CLAUDE_CODE_SUBAGENT_MODEL` came first in this order.
 >
 > `teammateDefaultModel` was removed in v2.1.234; Claude Code ignores a leftover value. Name the model in your prompt instead.
 
-Claude Code checks the model it selects for a teammate against your organization's [`availableModels`](https://code.claude.com/docs/en/model-config#restrict-model-selection) allowlist. When the allowlist blocks a value, Claude Code substitutes another model:
+Claude Code checks the model it selects for a teammate against any [`availableModels`](https://code.claude.com/docs/en/model-config#restrict-model-selection) allowlist. When the allowlist blocks a value, Claude Code substitutes another model:
 
 * **Family alias such as `opus`**: On the Anthropic API and Claude Platform on AWS, Claude Code runs the teammate on the newest version of that family the allowlist permits. On providers with provider-specific model IDs, where the [substitution doesn't operate](https://code.claude.com/docs/en/model-config.md#restrict-model-selection), a blocked alias falls back like any other blocked value per the next bullet
 * **Any other blocked value, including a family alias on providers where the substitution doesn't operate, or one whose family has no permitted version**: Claude Code runs the teammate on the lead's model instead. If you set `CLAUDE_CODE_SUBAGENT_MODEL`, Claude Code tries that model first, under these same rules

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/federation/rules/workspaces/add
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: fc8b5a9e70f01566a7cd61d77bc1e233d49f8928ba1ec8aebcf7378c1fe280f1
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: f0819aaa50f7eb170f87476c79068dfab4db4a8816b0513dbb93576b8d6a2e53
 ---
 
 ---
@@ -239,7 +239,7 @@ curl https://api.anthropic.com/v1/organizations/federation_rules/$FEDERATION_RUL
     -H 'anthropic-version: 2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "workspace_id": "workspace_id"
+          "workspace_id": "wrkspc_01JwQvzr7rXLA5AGx3HKfFUJ"
         }'
 ```
 

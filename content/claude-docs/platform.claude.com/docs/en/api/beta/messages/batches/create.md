@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/batches/create
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: bdf4d542c2640d478b025161d82fd612b20af6e3eab2b9617e481f202ea5464c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: d9db78b057cfd84fdc4dc4bd8b36e0a1a5401ed379bdb290ccd3001757fbfcdc
 ---
 
 ---
@@ -3245,19 +3245,23 @@ Learn more about the Message Batches API in our [user guide](https://platform.cl
 
                             - `"claude-haiku-4-5-20251001"`
 
-                            - `"claude-opus-4-5"`
-
-                              Powerful intelligence for long-running agents and coding
-
-                            - `"claude-opus-4-5-20251101"`
-
-                              Powerful intelligence for long-running agents and coding
-
                             - `"claude-mythos-preview"`
 
                               **Deprecated**: Will reach end-of-life on June 30, 2026. Please migrate to claude-mythos-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
                               New class of intelligence, strongest in coding and cybersecurity
+
+                            - `"claude-opus-4-5"`
+
+                              **Deprecated**: Will reach end-of-life on January 22, 2027. Please migrate to claude-opus-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                              Powerful intelligence for long-running agents and coding
+
+                            - `"claude-opus-4-5-20251101"`
+
+                              **Deprecated**: Will reach end-of-life on January 22, 2027. Please migrate to claude-opus-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                              Powerful intelligence for long-running agents and coding
 
                             - `"claude-sonnet-4-5"`
 
@@ -4517,6 +4521,10 @@ Each code below is the value of `error.details.error_code` in the response body.
 - `organization_on_hold` (HTTP status 400)
 
   Anthropic has disabled the organization for trust and safety reasons. An organization disabled for any other reason, such as billing, does not get this code. `appeal_url`, when present, is where the organization can appeal.
+
+- `workspace_human_review_disabled` (HTTP status 400)
+
+  The request's Workspace has Human Review turned off, and this operation is not available there. Use a Workspace with Human Review on.
 
 - `enforced_spend_limit_reached` (HTTP status 429)
 

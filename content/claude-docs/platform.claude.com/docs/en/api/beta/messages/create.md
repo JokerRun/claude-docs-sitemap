@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/messages/create
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 45ebfc0963c896e0c727072beada3e9c238799f1503566a9c8f2e1034735ba4a
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 1655e1efa9c5ff0b6f7a6a5352af53eb8680ef0a1eb4781d91cf0880b980312b
 ---
 
 ---
@@ -3225,19 +3225,23 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
                         - `"claude-haiku-4-5-20251001"`
 
-                        - `"claude-opus-4-5"`
-
-                          Powerful intelligence for long-running agents and coding
-
-                        - `"claude-opus-4-5-20251101"`
-
-                          Powerful intelligence for long-running agents and coding
-
                         - `"claude-mythos-preview"`
 
                           **Deprecated**: Will reach end-of-life on June 30, 2026. Please migrate to claude-mythos-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
                           New class of intelligence, strongest in coding and cybersecurity
+
+                        - `"claude-opus-4-5"`
+
+                          **Deprecated**: Will reach end-of-life on January 22, 2027. Please migrate to claude-opus-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                          Powerful intelligence for long-running agents and coding
+
+                        - `"claude-opus-4-5-20251101"`
+
+                          **Deprecated**: Will reach end-of-life on January 22, 2027. Please migrate to claude-opus-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                          Powerful intelligence for long-running agents and coding
 
                         - `"claude-sonnet-4-5"`
 
@@ -7175,19 +7179,23 @@ Learn more about the Messages API in our [user guide](https://platform.claude.co
 
                     - `"claude-haiku-4-5-20251001"`
 
-                    - `"claude-opus-4-5"`
-
-                      Powerful intelligence for long-running agents and coding
-
-                    - `"claude-opus-4-5-20251101"`
-
-                      Powerful intelligence for long-running agents and coding
-
                     - `"claude-mythos-preview"`
 
                       **Deprecated**: Will reach end-of-life on June 30, 2026. Please migrate to claude-mythos-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
 
                       New class of intelligence, strongest in coding and cybersecurity
+
+                    - `"claude-opus-4-5"`
+
+                      **Deprecated**: Will reach end-of-life on January 22, 2027. Please migrate to claude-opus-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                      Powerful intelligence for long-running agents and coding
+
+                    - `"claude-opus-4-5-20251101"`
+
+                      **Deprecated**: Will reach end-of-life on January 22, 2027. Please migrate to claude-opus-5-5. Visit https://docs.anthropic.com/en/docs/resources/model-deprecations for more information.
+
+                      Powerful intelligence for long-running agents and coding
 
                     - `"claude-sonnet-4-5"`
 

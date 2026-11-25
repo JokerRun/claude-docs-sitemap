@@ -1,14 +1,46 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 6e85b44f55a558b7f27507d9c78ddbba7efddb27fb1aa3268aa6abb0b7e9c3ae
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 78955e9311e520425c03885c89de2338f07f0ebe0eeccffbc6ce0db8bf4bed6e
 ---
 
 ---
 title: Menggunakan Agent Skills dengan API
 url: https://platform.claude.com/docs/id/build-with-claude/skills-guide
 description: Pelajari cara menggunakan Agent Skills untuk memperluas kemampuan Claude melalui API.
+featureMetadata:
+  status: stable
+  zdr:
+    eligibility: not-eligible
+    note: Data skill disimpan sesuai kebijakan standar.
+  supportedModels:
+    - claude-fable-5-2
+    - claude-mythos-5-2
+    - claude-fable-5-1
+    - claude-mythos-5-1
+    - claude-fable-5
+    - claude-mythos-5
+    - claude-mythos-preview
+    - claude-opus-5-5
+    - claude-opus-5
+    - claude-sonnet-5-5
+    - claude-sonnet-5
+    - claude-haiku-5-5
+    - claude-haiku-4-5-20251001
+    - claude-opus-4-8
+    - claude-opus-4-7
+    - claude-opus-4-6
+    - claude-sonnet-4-6
+    - claude-opus-4-5-20251101
+    - claude-sonnet-4-5-20250929
+  supportedPlatforms:
+    Claude API: stable
+    Claude Platform on AWS: stable
+    Claude Models on Google Cloud (Anthropic managed): stable
+    Microsoft Foundry (hosted on Anthropic):
+      availability: stable
+      note: Hanya deployment Hosted on Anthropic; endpoint unduhan versi skill (`GET /v1/skills/{skill_id}/versions/{version}/content`) tidak didukung di Foundry.
 ---
 
 Agent Skills memperluas kemampuan Claude melalui folder terorganisir yang berisi instruksi, skrip, dan sumber daya. Panduan ini menunjukkan cara menggunakan Skills bawaan maupun Skills kustom dengan Claude API.

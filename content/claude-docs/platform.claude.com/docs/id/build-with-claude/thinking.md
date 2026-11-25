@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/thinking
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: 5f93a3c236d02cb61ad4cf7a49458706f15a567658255aa3d8e3f8f35812ee27
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 8deeebb52f0760e50933092ccdf808deaf41fc50390816344449bd78a6b1c5c6
 ---
 
 ---
@@ -1011,7 +1011,22 @@ Untuk contoh lengkap dengan kode di setiap SDK, lihat [Panduan bolak-balik pengg
   Pemanggilan alat yang berurutan tidak memerlukan pemikiran berselang. Claude dapat merangkai pemanggilan alat dengan atau tanpa pemikiran berselang. Pemikiran berselang mengubah di mana blok pemikiran muncul di antara pemanggilan alat, bukan apakah pemanggilan alat dapat dirangkai.
 </Note>
 
-Dengan pemikiran adaptif, pemikiran berselang otomatis aktif pada setiap model yang mendukung pemikiran adaptif. Pada Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Mythos Preview, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Opus 4.8, dan Claude Opus 4.7, penalaran di antara pemanggilan alat selalu muncul dalam blok pemikiran. Claude Haiku 4.5 tidak mendukung pemikiran berselang. Pada model yang menggunakan pemikiran diperpanjang manual, pemikiran berselang memerlukan header beta dan mengubah cara anggaran pemikiran dihitung. [Pemikiran berselang-seling dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#interleaved-thinking) membahas aturan per model dan perilaku header khusus platform.
+Dengan pemikiran adaptif, pemikiran berselang otomatis aktif pada [setiap model yang mendukung pemikiran adaptif](https://platform.claude.com/docs/id/build-with-claude/thinking#configuring-thinking). Pada model-model berikut, penalaran di antara pemanggilan alat selalu muncul dalam blok pemikiran:
+
+* Claude Fable 5.2
+* Claude Mythos 5.2
+* Claude Fable 5.1
+* Claude Mythos 5.1
+* Claude Fable 5
+* Claude Mythos 5
+* Claude Mythos Preview
+* Claude Opus 5.5
+* Claude Opus 5
+* Claude Sonnet 5.5
+* Claude Opus 4.8
+* Claude Opus 4.7
+
+Pada model yang menggunakan pemikiran diperpanjang manual, pemikiran berselang memerlukan header beta dan mengubah cara anggaran pemikiran dihitung. [Pemikiran berselang-seling dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#interleaved-thinking) membahas aturan per model dan perilaku header khusus platform.
 
 Dengan pemikiran berselang, alokasi pemikiran dapat mencakup seluruh giliran asisten, bukan hanya satu respons. Pemikiran berselang hanya didukung untuk [alat yang digunakan melalui Messages API](https://platform.claude.com/docs/id/agents-and-tools/tool-use/overview).
 

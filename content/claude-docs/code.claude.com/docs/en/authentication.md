@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/authentication
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 4aa31cb81c1cc1509f87635bda9587e0b4e68346d18b7d314b244d91ce051310
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: b7f53a69dadcbea9010e802460e34782074fac94a42dbfcd5ce5a70d62be0fc0
 ---
 
 > ## Documentation Index
@@ -32,8 +32,8 @@ You can authenticate with any of these account types:
 
 * **Claude Pro, Max, or Ultra subscription**: log in with your claude.ai account. Subscribe at [claude.com/pricing](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=authentication_pro_max).
 * **Claude for Teams or Enterprise**: log in with the claude.ai account your team admin invited you to.
-* **Claude Console**: log in with your Console credentials. Your admin must have [invited you](#claude-console-authentication) first. You can sign in with or without [creating an API key](#sign-in-without-an-api-key).
-* **Cloud providers**: if your organization uses [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md), set the required environment variables before running `claude`. You can also select **3rd-party platform** at the login prompt, which launches an interactive setup wizard for Bedrock and Agent Platform.
+* **Claude Console**: log in with your [Console credentials](#claude-console-authentication). You can sign in with or without [creating an API key](#sign-in-without-an-api-key).
+* **Cloud providers**: if you use [Amazon Bedrock](https://code.claude.com/docs/en/amazon-bedrock.md), [Google Cloud's Agent Platform](https://code.claude.com/docs/en/google-vertex-ai.md), or [Microsoft Foundry](https://code.claude.com/docs/en/microsoft-foundry.md), set the required environment variables before running `claude`. You can also select **3rd-party platform** at the login prompt, which launches an interactive setup wizard for Bedrock and Agent Platform.
 * **Cloud gateway**: if your organization runs a self-hosted [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway), sign in with corporate SSO through `/login` or [from VS Code](https://code.claude.com/docs/en/vs-code.md#sign-in-to-a-claude-apps-gateway). The gateway-issued token is the session's only credential.
 * **Enterprise Admin Console**: if an Owner [turned on this sign-in](https://claude.com/docs/third-party/claude-desktop/admin-console-claude-code#turn-on-sign-in-from-claude-code) for your organization's provider or gateway, run `claude auth login` in your shell and select your organization in the browser. To confirm, look for `Signed in to the organization` in the terminal. For the Claude Code version you need, see [Before you start](https://claude.com/docs/third-party/claude-desktop/admin-console-claude-code#before-you-start).
 

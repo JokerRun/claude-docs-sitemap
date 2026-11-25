@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/access-transparency
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 16b441b41c12aab648c5d1e7841feca6f20de23b401f66a92783058d8d9ea4e4
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 995f6cbc0ede2d2f449505dd3401b0c5a037247da1a9157ee8915e1e29affb6c
 ---
 
 ---
@@ -44,7 +44,7 @@ Personel Anthropic mengakses konten pelanggan hanya dalam kondisi yang telah dit
 * **Claude for Enterprise dan Claude Apps:** Seat claude.ai Enterprise, Claude for Work, Cowork, dan Claude in Chrome tidak dicakup.
 * **Produk konsumen Claude:** paket Claude Free, Pro, Max, atau Ultra.
 * **Platform yang dioperasikan mitra:** Claude Models on Google Cloud (Google managed) dan Amazon Bedrock. Lihat kontrol transparansi platform tersebut.
-* **Apa pun yang tidak dicakup ZDR:** Produk yang tidak dicakup oleh ZDR (misalnya, Files API, aplikasi stateful yang di-host Anthropic, dan Batch API) tidak dicakup oleh Access Transparency. Lihat [Zero data retention (ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) untuk detail tambahan.
+* **Apa pun yang tidak dicakup ZDR:** Produk yang tidak dicakup oleh ZDR (misalnya, Files API, aplikasi stateful yang di-host Anthropic, dan Batch API) tidak dicakup oleh Access Transparency. Lihat [Legacy zero data retention (Legacy ZDR)](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#zero-data-retention-zdr-scope) untuk detail tambahan.
 * **Data di penyimpanan milik pelanggan:** Di Claude Platform (Claude API), Access Transparency tidak memiliki catatan untuk data di [penyimpanan milik pelanggan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-owned-storage).
 
 ## Memulai

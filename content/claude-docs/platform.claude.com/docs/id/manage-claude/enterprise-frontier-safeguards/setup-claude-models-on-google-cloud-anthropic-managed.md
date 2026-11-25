@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-models-on-google-cloud-anthropic-managed
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 9a9a93b99d5aaaa81fdbad529b581ed122aa39786771506cca916110fff86ec6
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 73df88a85964fdb53e98ae4ebe4bf1eee15bffcf6ad9d583789e61c161ac8680
 ---
 
 ---
@@ -58,8 +58,10 @@ Terakhir, jawab pertanyaan-pertanyaan berikut:
 Untuk menyiapkan Enterprise Frontier Safeguards, Anda memerlukan hal-hal berikut:
 
 * [`roles/claude.admin`](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed#using-the-claude-console) pada proyek Google Cloud yang organisasinya akan menggunakan EFS.
-* [Akses ke EFS](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-models-on-google-cloud-anthropic-managed#what-getting-access-changes) untuk organisasi Anda, dari tim akun Anthropic Anda. Mendapatkan akses dapat mengubah pengaturan yang tidak dapat Anda kembalikan.
+* [Akses ke EFS](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-models-on-google-cloud-anthropic-managed#what-getting-access-changes) untuk organisasi Anda. Mendapatkan akses dapat mengubah pengaturan yang tidak dapat Anda kembalikan.
 * Untuk menggunakan kunci Anda sendiri: [kunci yang dikelola pelanggan diaktifkan](https://platform.claude.com/docs/id/manage-claude/cmek#availability) untuk organisasi Anda.
+
+Untuk membuka Claude Console, buka [Claude Platform](https://console.cloud.google.com/agent-platform/claude-platform) di Google Cloud console dan pilih proyek Anda. Kemudian, pilih **Anthropic managed** lalu klik **Open Claude Console**. Lakukan ini sebelum Anda mengikuti tautan di halaman ini ke Claude Console. Setiap tautan terbuka di organisasi Anthropic tempat browser Anda masuk. Untuk memeriksa organisasi tempat Anda berada, buka **Pengaturan** > **Organisasi**. **Google Cloud project number** harus menampilkan nomor proyek Anda, bukan ID-nya. Jika halaman tidak memiliki baris tersebut, kemungkinan Anda berada di organisasi lain.
 
 ## Apa yang berubah saat Anda mendapatkan akses
 
@@ -92,11 +94,15 @@ Menerima ketentuan mengubah lebih dari sekadar workspace yang Anda rencanakan un
   </Accordion>
 </AccordionGroup>
 
+### Terima ketentuan
+
+Untuk menerima ketentuan, buka halaman [Programs](https://platform.claude.com/settings/programs) di Claude Console dan klik **Accept terms** pada kartu **Enterprise Frontier Safeguards**. Jika Anda tidak melihat **Accept terms** di sana, klik **Open Verification Portal** di halaman yang sama, lalu klik **Accept terms** di Verification Portal.
+
+Mintalah akses kepada tim akun Anthropic Anda jika Anda tidak dapat membuka Verification Portal atau juga tidak melihat **Accept terms** di sana. Jika Anda tidak memiliki tim akun, lengkapi [formulir permintaan Enterprise Frontier Safeguards](https://claude.com/form/enterprise-frontier-safeguards).
+
 ## 1. Tambahkan sumber daya cloud
 
-Untuk membuka Claude Console, buka [Claude Platform](https://console.cloud.google.com/agent-platform/claude-platform) di Google Cloud console dan pilih proyek Anda. Kemudian, pilih **Anthropic managed** lalu klik **Open Claude Console**. Lakukan ini sebelum Anda mengikuti tautan di halaman ini ke Claude Console. Setiap tautan terbuka di organisasi Anthropic tempat browser Anda masuk. Untuk memeriksa organisasi tempat Anda berada, buka **Pengaturan** > **Organisasi**. **Google Cloud project number** harus menampilkan nomor proyek Anda, bukan ID-nya. Jika halaman tidak memiliki baris tersebut, kemungkinan Anda berada di organisasi lain.
-
-Untuk menggunakan EFS, Anda memerlukan bucket Anda sendiri. Kunci enkripsi Anda sendiri bersifat opsional. Tanpa kunci tersebut, sebuah workspace menggunakan kunci yang dikelola Anthropic. Untuk menambahkan bucket dan kunci Anda, buka halaman [Retensi data](https://platform.claude.com/settings/privacy) di Claude Console dan pilih **Organisasi** di bagian atas halaman.
+Untuk menggunakan Enterprise Frontier Safeguards, Anda memerlukan bucket Anda sendiri. Kunci enkripsi Anda sendiri bersifat opsional. Tanpa kunci tersebut, sebuah workspace menggunakan kunci yang dikelola Anthropic. Untuk menambahkan bucket dan kunci Anda, buka halaman [Retensi data](https://platform.claude.com/settings/privacy) di Claude Console dan pilih **Organisasi** di bagian atas halaman.
 
 Untuk menggunakan kunci Anda sendiri, buat [kunci yang dikelola pelanggan](https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms) di Google Cloud KMS, lalu daftarkan ke Anthropic di bawah **Encryption keys**. Ikuti tab **Claude Platform** dan berhenti sebelum **Lampirkan kunci ke workspace**. Gunakan kunci yang berbeda dari kunci milik bucket Anda sendiri, yang Anda buat bersama bucket tersebut.
 

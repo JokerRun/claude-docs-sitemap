@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/model-deprecations
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: d360447fc923fc4e27c5d2c961100dbce4faee0e95b351c2347a967a73eb6e45
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 94a854d0cc4e787e8e9e39cab91f6cfa683f80626dbd508a5ebf360e28078345
 ---
 
 ---
@@ -30,17 +30,13 @@ Anthropic menggunakan istilah berikut untuk menjelaskan siklus hidup model:
 
 Tanggal di halaman ini berlaku untuk platform yang dioperasikan Anthropic: Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry). Platform yang dioperasikan mitra, yaitu Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, menetapkan jadwal pensiun mereka sendiri, sehingga status siklus hidup dan tanggal suatu model dapat berbeda. Lihat tabel model [Amazon Bedrock (`bedrock-mantle`)](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock#supported-models), [Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy#api-model-ids), dan [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed#api-model-ids).
 
-[Claude Code](https://code.claude.com/docs/id/overview) menggunakan Claude API, termasuk saat Anda masuk dengan paket Claude, sehingga tanggal di halaman ini berlaku. Jika Claude Code disiapkan untuk platform lain atau untuk gateway, tanggal yang berlaku adalah tanggal dari platform yang melayani permintaannya.
-
 ## Bermigrasi ke pengganti
 
-Setelah suatu model dihentikan, migrasikan semua penggunaan ke pengganti yang sesuai sebelum tanggal pensiun. Setelah model dipensiunkan, permintaan ke model tersebut akan gagal.
+Setelah suatu model dihentikan, migrasikan semua penggunaan ke [pengganti yang direkomendasikan](https://platform.claude.com/docs/id/about-claude/model-deprecations#deprecation-history) atau model aktif lainnya sebelum tanggal pensiun. Setelah model dipensiunkan, permintaan ke model tersebut akan gagal. Di Claude API, Messages API mengembalikan [404 `not_found_error`](https://platform.claude.com/docs/id/api/errors#http-errors).
 
 Untuk membantu mengukur kinerja model pengganti pada tugas Anda, pertimbangkan pengujian menyeluruh terhadap aplikasi Anda dengan model baru jauh sebelum tanggal pensiun.
 
 Untuk instruksi spesifik tentang migrasi ke model Claude terbaru, lihat [Panduan migrasi](https://platform.claude.com/docs/id/about-claude/models/migration-guide).
-
-Jika Anda menggunakan Claude Code, perbarui terlebih dahulu, karena model yang lebih baru dapat memerlukan versi Claude Code yang lebih baru. Kemudian, [periksa model mana yang Anda gunakan](https://code.claude.com/docs/id/model-config#checking-your-current-model), bahkan jika Anda tidak mengatur model apa pun atau menggunakan [alias Claude Code](https://code.claude.com/docs/id/model-config#model-aliases) seperti `sonnet`. Jika model tersebut dihentikan atau dipensiunkan, atur [pengganti yang direkomendasikan](https://platform.claude.com/docs/id/about-claude/model-deprecations#deprecation-history) sebagai model Anda. Selain itu, ubah model lama [di mana pun Anda mengatur model](https://code.claude.com/docs/id/model-config#setting-your-model), termasuk definisi subagent, dan minta administrator Anda untuk mengubah model apa pun yang mereka atur.
 
 ## Notifikasi
 
@@ -121,7 +117,7 @@ Pensiun ini mencakup `claude-opus-4-5`, yaitu ID model yang sama tanpa tanggal.
 
 Untuk bermigrasi, lihat [Migrasi dari Claude Opus 4.5 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45) dalam panduan migrasi Claude Opus 5.5.
 
-Jika Anda menggunakan Claude Code atau platform selain Claude API, lihat [Ikhtisar](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) untuk mengetahui tanggal mana yang berlaku. Untuk mengetahui apa yang perlu diubah, lihat [Bermigrasi ke pengganti](https://platform.claude.com/docs/id/about-claude/model-deprecations#migrating-to-replacements).
+Jika Anda menggunakan platform selain Claude API, lihat [Ikhtisar](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) untuk mengetahui tanggal mana yang berlaku. Untuk mengetahui apa yang perlu diubah, lihat [Bermigrasi ke pengganti](https://platform.claude.com/docs/id/about-claude/model-deprecations#migrating-to-replacements).
 
 ### 2026-09-30: Model Claude Sonnet 4.5
 
@@ -133,7 +129,9 @@ Pada 30 September 2026, Anthropic memberi tahu developer yang menggunakan Claude
 
 Pensiun ini mencakup `claude-sonnet-4-5`, yaitu ID model yang sama tanpa tanggal.
 
-Jika Anda menggunakan Claude Code, lihat [Ikhtisar](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) untuk mengetahui tanggal mana yang berlaku dan [Bermigrasi ke pengganti](https://platform.claude.com/docs/id/about-claude/model-deprecations#migrating-to-replacements) untuk mengetahui apa yang perlu diubah. Setelah model ini dipensiunkan, Claude Code di Claude API menampilkan error yang diawali dengan [`There's an issue with the selected model`](https://code.claude.com/docs/id/errors#theres-an-issue-with-the-selected-model). Jika Anda mengatur [“fallback model chain” (rantai model cadangan)](https://code.claude.com/docs/id/model-config#fallback-model-chains), Claude Code akan beralih ke model berikutnya dalam rantai tersebut sebagai gantinya. Claude Code akan mencoba Claude Sonnet 4.5 lagi pada pesan Anda berikutnya.
+Untuk bermigrasi, lihat [Migrasi dari Claude Sonnet 4.5 atau sebelumnya](https://platform.claude.com/docs/id/models/sonnet-5-5/migration-guide#migrating-from-sonnet-45) dalam panduan migrasi Claude Sonnet 5.5.
+
+Jika Anda menggunakan platform selain Claude API, lihat [Ikhtisar](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) untuk mengetahui tanggal mana yang berlaku.
 
 ### 2026-06-05: Model Claude Opus 4.1
 

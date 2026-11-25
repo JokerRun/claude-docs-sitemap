@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/fable-5-2/whats-new-fable-5-2
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 0e8e79ec2c7668dc6ffe13dd0787fca25f8a561df33accd33dcd434c0b8fba8d
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: dfecabf91142e40ed8ef4e8abf01c4a93d92f98798e19dade95643ec27f56cd0
 ---
 
 ---
@@ -154,7 +154,7 @@ Claude Mythos 5.2 is available only to organizations verified through Anthropic�
 
 To request access, apply to the program that covers your use case, or contact your account team.
 
-Claude Fable 5.2 and Claude Mythos 5.2 require 30-day data retention and aren’t available under zero data retention unless expressly authorized by Anthropic. Both are [Covered Models](https://support.claude.com/en/articles/15425695). See [Model-specific data retention requirements](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+Claude Fable 5.2 and Claude Mythos 5.2 require 30-day data retention and aren’t available under legacy zero data retention (Legacy ZDR) unless expressly authorized by Anthropic. Both are [Covered Models](https://support.claude.com/en/articles/15425695). See [Model-specific data retention requirements](https://platform.claude.com/docs/en/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 
 ## Migrate from Claude Fable 5.1
 

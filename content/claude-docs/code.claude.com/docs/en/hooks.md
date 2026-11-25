@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/hooks
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: b885b253fac8e51be123b32f932553dd177f8162c71ee16fe096209c851e0f26
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 3e06c19b1d38d9e96d02dae0e3fb21ce50fa4e7e0dd112d5a954c19b42a3fae8
 ---
 
 > ## Documentation Index
@@ -715,7 +715,7 @@ Frontmatter hooks in a project subagent run only after you accept the [workspace
 
 When a skill's frontmatter hooks don't fire after you or Claude invoke the skill, run [`/hooks`](#the-%2Fhooks-menu) in that session. If it lists them, see [Hook not firing](https://code.claude.com/docs/en/hooks-guide.md#hook-not-firing). If it lists none of them, the skill may be under a plugin-only lock or past a hook limit, and runs without any of its frontmatter hooks. Check for each case:
 
-* **Plugin-only lock**: your organization's administrator can lock hooks to plugins and managed settings with the [`strictPluginOnlyCustomization`](https://code.claude.com/docs/en/settings-reference#strictpluginonlycustomization-hooks) managed setting. A skill keeps its frontmatter hooks under that lock only if it's a plugin skill, a [bundled skill](https://code.claude.com/docs/en/skills.md#bundled-skills), or a skill in the [managed settings directory](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms). The hooks in your own settings files don't run either.
+* **Plugin-only lock**: if you're in an organization, your administrator can lock hooks to plugins and managed settings with the [`strictPluginOnlyCustomization`](https://code.claude.com/docs/en/settings-reference#strictpluginonlycustomization-hooks) managed setting. A skill keeps its frontmatter hooks under that lock only if it's a plugin skill, a [bundled skill](https://code.claude.com/docs/en/skills.md#bundled-skills), or a skill in the [managed settings directory](https://code.claude.com/docs/en/managed-settings.md#delivery-mechanisms). The hooks in your own settings files don't run either.
   * **Check**: type `/status` in a Claude Code session. If the [`Setting sources` line](https://code.claude.com/docs/en/settings#check-what-your-organization-enforces) includes `Enterprise managed settings`, ask your administrator whether `strictPluginOnlyCustomization` locks hooks.
   * **Fix**: move the skill into a [plugin](https://code.claude.com/docs/en/plugins/create.md#convert-an-existing-claude-setup), because plugin skills keep their frontmatter hooks. List the plugin in a [marketplace](https://code.claude.com/docs/en/plugins/create-marketplace.md#create-a-marketplace), then install it from there. If Claude Code refuses the marketplace with [`is blocked by enterprise policy`](https://code.claude.com/docs/en/plugins/troubleshooting#marketplace-source-is-blocked-by-enterprise-policy), ask your administrator to allow that marketplace.
 * **Hook limit**: in Claude Code v2.1.304 or later, each source of skills has its own limit per session. Your project, your personal skills folder, and each plugin count as separate sources. The skills from one source can register at most 1,024 hooks. Those hooks' matchers can total at most 16,384 characters. A matcher with several hooks under it counts once for each hook.
@@ -1390,12 +1390,12 @@ This example syncs a shared skills repository and requests the re-scan:
 #!/bin/bash
 
 git -C ~/.claude/skills/team-skills pull --quiet 2>/dev/null || \
-  git clone --quiet https://git.example.com/your-org/team-skills.git ~/.claude/skills/team-skills
+  git -c protocol.file.allow=never clone --quiet https://git.example.com/your-org/team-skills.git ~/.claude/skills/team-skills
 
 echo '{"hookSpecificOutput": {"hookEventName": "SessionStart", "reloadSkills": true}}'
 ```
 
-The repository URL is a placeholder. Replace it with your own skills repository.
+The repository URL is a placeholder. Replace it with your skills repository's HTTPS or SSH URL. With `protocol.file.allow=never` in the command, you can't clone from a folder path.
 
 #### Persist environment variables
 

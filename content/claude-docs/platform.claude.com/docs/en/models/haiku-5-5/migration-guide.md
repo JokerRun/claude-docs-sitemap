@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/haiku-5-5/migration-guide
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 7779889c2352654d95ab8e07387d3f4a58a04f0cdfefcf2de65ee8fddb67149f
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 53c18833d1bb30d598369d3ee7211f460a47446d7c176800c3824fa20af56466
 ---
 
 ---
@@ -12,7 +12,7 @@ description: Switch to Claude Haiku 5.5 from earlier Haiku models with this migr
 ---
 
 <Note>
-  This guide covers migrating [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) code. If you use [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), no changes beyond updating the model name are required.
+  This guide covers migrating [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) code. If you use [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), you usually change only your agent’s `model` field. The [Migrating between model versions](https://platform.claude.com/docs/en/managed-agents/migration#migrating-between-model-versions) section of the Managed Agents Migration page has the details.
 </Note>
 
 Let Claude Code migrate your code for you

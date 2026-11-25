@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 1ceb185dc27d9acec3d02afb04266deebd618d48b2e842ee2f8e6fe9b264a59a
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 1fafd4c6405e906c0698fc96189af94b6f2be57c4441cd44e157372a7239c1e3
 ---
 
 ---
@@ -47,7 +47,7 @@ Jika Anda memerlukan Claude yang dioperasikan AWS, lihat [Claude di Amazon Bedro
 
 [AWS PrivateLink](https://docs.aws.amazon.com/vpc/latest/privatelink/what-is-privatelink.html) didukung untuk menghubungkan VPC Anda ke endpoint Claude Platform on AWS (lihat [Terhubung melalui AWS PrivateLink](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws#connect-through-aws-privatelink)).
 
-**Kapan memilih Bedrock:** Organisasi di industri yang teregulasi yang memerlukan FedRAMP High, IL4, IL5, atau kesiapan HIPAA, atau yang memerlukan AWS sebagai satu-satunya pemroses data, sebaiknya menggunakan [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Bedrock berjalan sepenuhnya di infrastruktur yang dikendalikan AWS dengan AWS sebagai pihak yang mengoperasikan.
+**Kapan memilih Bedrock:** Organisasi di industri yang teregulasi yang memerlukan FedRAMP High atau kesiapan HIPAA, atau yang memerlukan AWS sebagai satu-satunya pemroses data, sebaiknya menggunakan [Claude di Amazon Bedrock](https://platform.claude.com/docs/id/build-with-claude/claude-in-amazon-bedrock). Bedrock berjalan sepenuhnya di infrastruktur yang dikendalikan AWS dengan AWS sebagai pihak yang mengoperasikan.
 
 **Penawaran mana yang Anda gunakan?** Claude tersedia melalui beberapa produk yang berbeda:
 
@@ -320,8 +320,8 @@ Klien memerlukan region untuk menandatangani permintaan dengan SigV4 dan untuk m
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.13.0")
-        implementation("com.anthropic:anthropic-java-aws:3.13.0")
+        implementation("com.anthropic:anthropic-java:3.14.0")
+        implementation("com.anthropic:anthropic-java-aws:3.14.0")
         ```
       </Tab>
 
@@ -330,12 +330,12 @@ Klien memerlukan region untuk menandatangani permintaan dengan SigV4 dan untuk m
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-aws</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         ```
       </Tab>
@@ -620,7 +620,7 @@ Kemampuan berikut saat ini tidak tersedia di Claude Platform on AWS:
 * **Mode cepat:** Tidak tersedia di Claude Platform on AWS.
 * **Endpoint API yang kompatibel dengan OpenAI:** Tidak tersedia di Claude Platform on AWS.
 * **Tunnel MCP:** Hanya server MCP yang diekspos melalui internet publik yang didukung.
-* **Linked billing (beta):** [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections) tidak tersedia di Claude Platform on AWS.
+* **Linked billing (beta):** [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing) tidak tersedia di Claude Platform on AWS.
 
 ## Residensi data
 

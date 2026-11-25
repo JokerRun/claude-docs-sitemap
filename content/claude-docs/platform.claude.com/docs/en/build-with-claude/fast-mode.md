@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/fast-mode
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 7792255f57c5b2598a307e3f7c8ec4e8ea52693f2501b938e2a9d88cde774b6f
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 63362d9e7f203717c54b06d17feee7a6da6ee445882ba07ca5a70ed8ab21eaed
 ---
 
 ---
@@ -395,6 +395,8 @@ If you’d prefer to fall back to standard speed rather than wait for fast mode 
 <Note>
   Falling back from fast to standard speed results in a [prompt cache](https://platform.claude.com/docs/en/build-with-claude/prompt-caching) miss. Requests at different speeds do not share cached prefixes.
 </Note>
+
+If Claude refuses a fast mode request, [Fallback for fast mode requests](https://platform.claude.com/docs/en/build-with-claude/refusals-and-fallback#falling-back-from-fast-mode) shows how to fall back at standard speed.
 
 Because setting `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) to `0` also disables retries for other transient errors (overloaded, internal server errors), the following examples resend the request after those errors.
 

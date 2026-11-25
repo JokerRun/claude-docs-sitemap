@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: f964004c3b08ea310d5c43ae35b4cd890eb3bb0a8bb9168549748a960414e805
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 33ff9fcb96f84be42e1eb1465132bb431adcad4d5681d9bbeb95ebbd06cc200b
 ---
 
 ---
@@ -14,7 +14,9 @@ url: https://platform.claude.com/docs/en/api/beta/user_profiles/update
 
 **POST** `/v1/user_profiles/{user_profile_id}`
 
-Update User Profile
+Change the details of a user profile, leaving the fields that you don't send as they are.
+
+See the [User profiles guide](https://platform.claude.com/docs/en/manage-claude/user-profiles?sdk_languages=http#update-a-profile) for how each field is updated.
 
 ## Path parameters
 

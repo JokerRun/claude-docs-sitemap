@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/spend-limits-api
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: de00e43608ec14f430ac143805d3df603bf1b66954a736d6ecee4e79bf8a597d
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: c9c7c896aabc1621d5d7fe75200dfbe58bf4290b3e33889214c522595513ee72
 ---
 
 ---
@@ -34,12 +34,12 @@ API ini menyediakan delapan endpoint pada dua sumber daya:
 | **Batas pengeluaran** | `GET /v1/organizations/spend_limits/effective`<br />`GET /v1/organizations/spend_limits/{spend_limit_id}`<br />`POST /v1/organizations/spend_limits`<br />`DELETE /v1/organizations/spend_limits/{spend_limit_id}` | Membaca batas pengeluaran efektif setiap anggota dan pengeluaran periode berjalan; menetapkan atau menghapus override per pengguna. |
 | **Permintaan kenaikan batas pengeluaran** | `GET /v1/organizations/spend_limit_increase_requests`<br />`GET /v1/organizations/spend_limit_increase_requests/{id}`<br />`POST /v1/organizations/spend_limit_increase_requests/{id}/approve`<br />`POST /v1/organizations/spend_limit_increase_requests/{id}/deny` | Mendaftar permintaan anggota untuk batas pengeluaran yang lebih tinggi, beserta konteks yang diperlukan untuk memutuskan; menyetujui atau menolak setiap permintaan. |
 
-Gunakan endpoint **batas pengeluaran** untuk menjawab “batas pengeluaran apa yang berlaku untuk setiap anggota, dari mana asalnya, dan seberapa dekat mereka dengan batas tersebut?” serta untuk menetapkan override per pengguna. Gunakan endpoint **permintaan kenaikan batas pengeluaran** untuk memproses antrean permintaan yang diajukan anggota.
-
 ## Prasyarat
 
-* Organisasi Anda harus menggunakan paket Claude Enterprise.
-* Kredit penggunaan harus diaktifkan untuk organisasi Anda. Pemilik utama Anda dapat mengaktifkannya di pengaturan penagihan claude.ai.
+Organisasi Anda harus menggunakan paket Claude Enterprise. Lihat [How am I billed for my Enterprise plan?](https://support.claude.com/en/articles/11526368) untuk mengetahui apakah paket Anda berbasis penggunaan atau berbasis kursi.
+
+* **Paket Enterprise berbasis penggunaan:** Anda tidak perlu menyiapkan [kredit penggunaan](https://support.claude.com/en/articles/12005970).
+* **Paket Enterprise berbasis kursi:** Aktifkan kredit penggunaan di [pengaturan Organisasi claude.ai](https://claude.ai/admin-settings/usage). Tombol pengaturannya berlabel **Turn on usage credits** atau **Enable extra usage**. Untuk langkah-langkahnya, lihat [Manage usage credits for Team and seat-based Enterprise plans](https://support.claude.com/en/articles/12005970). Jika Anda tidak dapat mengaktifkan tombol tersebut, mintalah bantuan kepada pemilik utama Anda, pemilik organisasi, atau tim akun Anthropic Anda.
 
 SDK menyediakan endpoint ini di bawah `client.beta.organization.spend_limits` (typescript: `client.beta.organization.spendLimits`; csharp, go: `client.Beta.Organization.SpendLimits`; java: `client.beta().organization().spendLimits()`; php: `$client->beta->organization->spendLimits`), dan CLI `ant` di bawah `ant beta:organization:spend-limits`. Keduanya mengirimkan header `anthropic-version` untuk Anda. Contoh-contoh membaca kunci Admin API dari variabel lingkungan `ANTHROPIC_API_KEY`. SDK dan CLI mengambil halaman berikutnya untuk Anda saat Anda menelusuri hasil, sehingga `limit` menetapkan ukuran halaman, bukan total (lihat [Paginasi](https://platform.claude.com/docs/id/manage-claude/spend-limits-api#pagination)).
 
@@ -189,7 +189,7 @@ Field `source` pada baris setiap anggota memberi tahu Anda dari tingkat mana bat
 
 ### Periode
 
-`period` adalah jendela berulang di mana batas pengeluaran diberlakukan dan pengeluaran direset. Sebuah batas pengeluaran diidentifikasi oleh pasangan `(scope, period)`-nya. Saat ini `monthly` adalah satu-satunya periode yang didukung; pengeluaran bulanan direset pada 00:00 UTC di tanggal satu setiap bulan kalender. Perlakukan `period` sebagai himpunan terbuka.
+`period` adalah jendela berulang di mana batas pengeluaran diberlakukan dan pengeluaran direset. Sebuah batas pengeluaran diidentifikasi oleh pasangan `(scope, period)`-nya. Satu-satunya periode yang didukung adalah `monthly`; pengeluaran bulanan direset pada 00:00 UTC di tanggal satu setiap bulan kalender. Perlakukan `period` sebagai himpunan terbuka.
 
 ### Jumlah dan mata uang
 

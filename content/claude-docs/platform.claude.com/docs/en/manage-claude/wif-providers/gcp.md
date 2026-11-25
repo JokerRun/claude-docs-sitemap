@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/wif-providers/gcp
-fetched_at: 2026-11-07T02:12:06.793583Z
-sha256: d2e4a94acb53f99fda404aeaab6f4a2a9bffd2cf0c71f612e5da8dfbe0cb542b
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: aa1da125c23f695984165418a508c829cc9cfbde8b5f98dc73e77d4762b96252
 ---
 
 ---
@@ -14,6 +14,8 @@ description: Federate Google Cloud workloads (Cloud Run, Cloud Functions, App En
 Any Google Cloud compute environment with access to the instance metadata server can request a Google-signed identity token for its attached service account. These environments include Cloud Run, Cloud Functions, App Engine, Compute Engine (GCE), and Google Kubernetes Engine (GKE) with Workload Identity. The token’s issuer is `https://accounts.google.com`, and Anthropic can validate it directly through standard OpenID Connect (OIDC) discovery, with no extra Google Cloud configuration required.
 
 This guide shows how to register the Google issuer with Anthropic and bind a Google service account to an Anthropic service account. It then shows how to have your workload exchange its identity token for a short-lived Claude API access token.
+
+If you use Claude Models on Google Cloud (Anthropic managed), you don’t need this setup. Authenticate with [Google Cloud credentials](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication) instead.
 
 ## Prerequisites
 

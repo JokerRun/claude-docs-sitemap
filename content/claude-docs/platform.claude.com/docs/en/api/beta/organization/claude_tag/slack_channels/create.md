@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/create
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 3a7a16d481715213b1ef527c0ec71ca32db625b24c5ba9c1f9944c98db58fdab
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 1b06b5dc6f1da434a231a9c9182e8cf652942c991de104aaefe509f825c9ec79
 ---
 
 ---
@@ -522,8 +522,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "slack": {
-            "channel_id": "xx",
-            "workspace_id": "xx"
+            "channel_id": "C0456EFGH",
+            "workspace_id": "T0123ABCD"
           }
         }'
 ```
@@ -547,8 +547,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels \
     }
   },
   "slack": {
-    "channel_id": "xx",
-    "workspace_id": "xx"
+    "channel_id": "C0456EFGH",
+    "workspace_id": "T0123ABCD"
   },
   "sources": {
     "enabled": {

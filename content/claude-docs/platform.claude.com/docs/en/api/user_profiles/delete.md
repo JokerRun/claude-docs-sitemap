@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/user_profiles/delete
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: c8a39058105b27b99e9c9dec081d7c4a01c9d190b770f28673ced6008a4db075
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: ae116ee28a0e80be68087f36f6deb34595a0cc28d107f5afa8c4b6efa189ee44
 ---
 
 ---
@@ -14,7 +14,9 @@ url: https://platform.claude.com/docs/en/api/user_profiles/delete
 
 **DELETE** `/v1/user_profiles/{user_profile_id}`
 
-Delete User Profile
+Delete a user profile, for example when the end customer closes their account.
+
+Stop sending the profile's ID first. See the [User profiles guide](https://platform.claude.com/docs/en/manage-claude/user-profiles?sdk_languages=http#delete-a-profile) for what happens after a delete.
 
 ## Path parameters
 

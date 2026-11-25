@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: e8dff712cbe22a441ff318eb306e10a555c635e71e512e1a9fae28172847d29c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 5d6d87065e4db1a66577bd56af61f9e514bb63c9a8d0a373ed58999f5fbddafb
 ---
 
 ---
@@ -154,7 +154,7 @@ Claude Mythos 5.2 hanya tersedia untuk organisasi yang terverifikasi melalui pro
 
 Untuk meminta akses, daftarlah ke program yang mencakup kasus penggunaan Anda, atau hubungi tim akun Anda.
 
-Claude Fable 5.2 dan Claude Mythos 5.2 memerlukan retensi data 30 hari dan tidak tersedia dengan zero data retention kecuali diizinkan secara tegas oleh Anthropic. Keduanya merupakan [Covered Models](https://support.claude.com/en/articles/15425695). Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+Claude Fable 5.2 dan Claude Mythos 5.2 memerlukan retensi data 30 hari dan tidak tersedia dengan legacy zero data retention (Legacy ZDR) kecuali diizinkan secara tegas oleh Anthropic. Keduanya merupakan [Covered Models](https://support.claude.com/en/articles/15425695). Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 
 ## Migrasi dari Claude Fable 5.1
 

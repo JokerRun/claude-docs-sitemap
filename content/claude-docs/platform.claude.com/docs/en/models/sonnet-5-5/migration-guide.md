@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 06a5c20e22984e37e07e3e0adcba8d44a6efc23411da00d8e2ecb8c17946b002
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 4c2ea4b296417555fbf4951975edeb4f3b222847027aa8e0d510326add8aaf36
 ---
 
 ---
@@ -14,7 +14,7 @@ description: Switch to Claude Sonnet 5.5 from earlier Sonnet models or Claude Ha
 This guide lists the code changes for moving to Claude Sonnet 5.5 from Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5, Claude Sonnet 4, Claude 3.7 Sonnet, or Claude Haiku 4.5. Read the first two sections, then read down to the section for your current model. The [migration checklist](https://platform.claude.com/docs/en/models/sonnet-5-5/migration-guide#migration-checklist) lists every change by starting model.
 
 <Note>
-  This guide covers migrating [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) code. If you use [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), no changes beyond updating the model name are required.
+  This guide covers migrating [Messages API](https://platform.claude.com/docs/en/build-with-claude/working-with-messages) code. If you use [Claude Managed Agents](https://platform.claude.com/docs/en/managed-agents/overview), you usually change only your agent’s `model` field. The [Migrating between model versions](https://platform.claude.com/docs/en/managed-agents/migration#migrating-between-model-versions) section of the Managed Agents Migration page has the details.
 </Note>
 
 Let Claude Code migrate your code for you

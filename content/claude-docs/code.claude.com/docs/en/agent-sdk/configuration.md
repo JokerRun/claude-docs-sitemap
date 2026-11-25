@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/agent-sdk/configuration
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: e8eaeff8e41acc725cb781af740f2c42a1e83825a7a3ebd74738d2f7136b13f5
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 0a751ffef2d3b5ee68a0f5c018a2a3320e09ba05153d4433300baf18f40cadd0
 ---
 
 > ## Documentation Index
@@ -150,7 +150,7 @@ To let tools reach files outside the working directory, add paths with `addition
 Cap turns and spend with `maxTurns` / `max_turns` and `maxBudgetUsd` / `max_budget_usd`. Both caps are off when unset. When a session hits a cap, the run ends with a result message. The result's subtype is `error_max_turns` for the turn cap and `error_max_budget_usd` for the spend cap. Single-shot and streaming input handle a cap result differently:
 
 * **Single-shot `query()`**: the SDK yields the cap result and then raises, so wrap the loop in a try block to continue past the error
-* **Streaming input**: the session stays alive past a cap result, and the max-turns count starts over for each queued message. The budget total accumulates across messages, and once spend reaches the cap, later messages in the same conversation end with the same budget result. A [`/clear`](https://code.claude.com/docs/en/agent-sdk/cost-tracking) starts the budget over.
+* **Streaming input**: the session stays alive past a cap result, and the max-turns count starts over. The budget total accumulates across messages, and once spend reaches the cap, later messages in the same conversation end with the same budget result. A [`/clear`](https://code.claude.com/docs/en/agent-sdk/cost-tracking) starts the budget over.
 * **Streaming input in TypeScript**: the loop throws when the last response ends in an error result, such as `error_max_turns`. Wrap the loop in a try block to continue past it.
 
 The two caps treat `0` differently:

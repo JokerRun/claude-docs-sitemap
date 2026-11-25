@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/inference-hooks-configuration
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 7c10750666042b1f52d36590c0d4a83c566a76aa2989095896d9aa7f4d7e5474
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 814e7870362e403bca4e3156be9e109d4edf9a09892c4690a8ee45d72bc8e47b
 ---
 
 ---
@@ -88,7 +88,7 @@ The following steps take a new configuration from off to enforcing.
 
     Then set **Prompt verdict timeout (ms)**: 1 to 10,000ms, with a default of 5,000ms. The budget covers the entire exchange, and a slower verdict counts as an unreachable server, so set the lowest value your server can reliably meet.
 
-    Changes in this section save as you make them. On first save, the defaults are **Allow the request** and 5,000ms.
+    **Mode** saves when you select an option. To save a new timeout, click **Save changes**. When you first save the endpoint, the defaults are **Allow the request** and 5,000ms.
   </Step>
 
   <Step title="Choose a rollout percentage">

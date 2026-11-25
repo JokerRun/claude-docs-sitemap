@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices
-fetched_at: 2026-11-22T02:13:35.406200Z
-sha256: b7d07d122c7c8cccdf347ad71f0a25a44957bdcfcbdf760e08ef30f566a97a34
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 79b09a1d125d085e121e4d188f399fcd09c04172421671537f4e9df37989663f
 ---
 
 ---
@@ -576,13 +576,13 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
 
 <CodeGroup>
   ```bash cURL
-  # Sebelum: pemikiran diperpanjang dengan anggaran manual (model lama)
+  # Sebelum: pemikiran diperpanjang dengan anggaran manual
   curl https://api.anthropic.com/v1/messages \
     -H "content-type: application/json" \
     -H "x-api-key: $ANTHROPIC_API_KEY" \
     -H "anthropic-version: 2026-10-21" \
     -d '{
-      "model": "claude-sonnet-4-5-20250929",
+      "model": "claude-opus-4-6",
       "max_tokens": 16000,
       "thinking": {"type": "enabled", "budget_tokens": 10000},
       "messages": [
@@ -607,9 +607,9 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 
   ```bash CLI
-  # Sebelum: pemikiran diperpanjang dengan anggaran manual (model lama)
+  # Sebelum: pemikiran diperpanjang dengan anggaran manual
   ant messages create <<'YAML'
-  model: claude-sonnet-4-5-20250929
+  model: claude-opus-4-6
   max_tokens: 16000
   thinking:
     type: enabled
@@ -634,9 +634,9 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 
   ```python Python
-  # Sebelum: pemikiran diperpanjang dengan anggaran manual (model lama)
+  # Sebelum: pemikiran diperpanjang dengan anggaran manual
   client.messages.create(
-      model="claude-sonnet-4-5-20250929",
+      model="claude-opus-4-6",
       max_tokens=16000,
       thinking={"type": "enabled", "budget_tokens": 10000},
       messages=[{"role": "user", "content": "..."}],
@@ -653,9 +653,9 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 
   ```typescript TypeScript
-  // Sebelum: pemikiran diperpanjang dengan anggaran manual (model lama)
+  // Sebelum: pemikiran diperpanjang dengan anggaran manual
   await client.messages.create({
-    model: "claude-sonnet-4-5-20250929",
+    model: "claude-opus-4-6",
     max_tokens: 16000,
     thinking: { type: "enabled", budget_tokens: 10000 },
     messages: [{ role: "user", content: "..." }]
@@ -672,16 +672,16 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 
   ```csharp C#
-  // Sebelum: "extended thinking" (pemikiran diperpanjang) dengan anggaran manual (model lama)
+  // Sebelum: pemikiran diperpanjang dengan anggaran manual
   await client.Messages.Create(new MessageCreateParams
   {
-      Model = Model.ClaudeSonnet4_5_20250929,
+      Model = Model.ClaudeOpus4_6,
       MaxTokens = 16000,
       Thinking = new ThinkingConfigEnabled(budgetTokens: 10000),
       Messages = [new UserMessageParam { Content = "..." }]
   });
 
-  // Sesudah: "adaptive thinking" (pemikiran adaptif) dengan effort
+  // Sesudah: pemikiran adaptif dengan effort
   await client.Messages.Create(new MessageCreateParams
   {
       Model = Model.ClaudeOpus5_5,
@@ -693,9 +693,9 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 
   ```go Go
-  // Sebelum: pemikiran diperpanjang dengan anggaran manual (model lama)
+  // Sebelum: pemikiran diperpanjang dengan anggaran manual
   client.Messages.New(ctx, anthropic.MessageNewParams{
-  	Model:     anthropic.ModelClaudeSonnet4_5_20250929,
+  	Model:     anthropic.ModelClaudeOpus4_6,
   	MaxTokens: 16000,
   	Thinking: anthropic.ThinkingConfigParamUnion{
   		OfEnabled: &anthropic.ThinkingConfigEnabledParam{BudgetTokens: 10000},
@@ -722,9 +722,9 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 
   ```java Java
-  // Sebelum: pemikiran diperpanjang dengan anggaran manual (model lama)
+  // Sebelum: pemikiran diperpanjang dengan anggaran manual
   client.messages().create(MessageCreateParams.builder()
-      .model(Model.CLAUDE_SONNET_4_5_20250929)
+      .model(Model.CLAUDE_OPUS_4_6)
       .maxTokens(16000L)
       .thinking(ThinkingConfigEnabled.builder()
           .budgetTokens(10000L)
@@ -745,17 +745,17 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 
   ```php PHP
-  // Sebelum: extended thinking (pemikiran diperpanjang) dengan anggaran manual (model lama)
+  // Sebelum: pemikiran diperpanjang dengan anggaran manual
   $client->messages->create(
-      model: 'claude-sonnet-4-5-20250929',
+      model: Model::CLAUDE_OPUS_4_6,
       maxTokens: 16000,
-      thinking: ['type' => 'enabled', 'budget_tokens' => 10000],
+      thinking: ['type' => 'enabled', 'budgetTokens' => 10000],
       messages: [['role' => 'user', 'content' => '...']],
   );
 
-  // Sesudah: adaptive thinking (pemikiran adaptif) dengan effort
+  // Sesudah: pemikiran adaptif dengan effort
   $client->messages->create(
-      model: 'claude-opus-5-5',
+      model: Model::CLAUDE_OPUS_5_5,
       maxTokens: 16000,
       thinking: ['type' => 'adaptive'],
       outputConfig: ['effort' => 'high'],
@@ -764,9 +764,9 @@ Jika Anda bermigrasi dari [pemikiran diperpanjang](https://platform.claude.com/d
   ```
 
   ```ruby Ruby
-  # Sebelum: pemikiran diperpanjang dengan anggaran manual (model lama)
+  # Sebelum: pemikiran diperpanjang dengan anggaran manual
   client.messages.create(
-    model: "claude-sonnet-4-5-20250929",
+    model: Anthropic::Model::CLAUDE_OPUS_4_6,
     max_tokens: 16000,
     thinking: { type: "enabled", budget_tokens: 10000 },
     messages: [{ role: "user", content: "..." }]
@@ -806,7 +806,9 @@ Model-model terbaru Claude menangani tugas penalaran jangka panjang dengan pelac
 
 #### Kesadaran konteks dan alur kerja multijendela
 
-Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5 (usang), dan Claude Haiku 4.5 memiliki fitur [kesadaran konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows#context-awareness), yang memungkinkan model melacak sisa jendela konteksnya (yaitu, “anggaran token”-nya) sepanjang percakapan. Ini memungkinkan Claude menjalankan tugas dan mengelola konteks dengan lebih efektif berdasarkan seberapa banyak ruang yang tersedia untuk bekerja.
+Hanya Claude Sonnet 4.5 dan Claude Haiku 4.5 yang memiliki [kesadaran konteks](https://platform.claude.com/docs/id/build-with-claude/context-windows#context-awareness). Model-model ini melacak sisa jendela konteksnya (“anggaran token”-nya) sepanjang percakapan dan mengelola tugas berdasarkan ruang yang tersisa.
+
+Claude Sonnet 4.5 dihentikan (deprecated) di [platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview). Untuk tanggal pensiun dan pengganti yang direkomendasikan, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations#2026-09-30-claude-sonnet-4-5-model). [Platform yang dioperasikan mitra](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) menetapkan jadwal pensiun mereka sendiri.
 
 **Mengelola batas konteks:**
 

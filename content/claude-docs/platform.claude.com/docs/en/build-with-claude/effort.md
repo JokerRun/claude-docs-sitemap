@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/effort
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 4872b07f34ce1dfd6c966a747e300522e0cde076f256070b066968f24b3f41d8
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 97b187fef4549c13ccfe79465e9d70bd0f1820c6107a0bb4dabca4521fea1b5a
 ---
 
 ---
@@ -437,6 +437,8 @@ The `thinking` parameter controls whether Claude thinks in [thinking blocks](htt
 At higher effort levels, Claude thinks more readily and at greater length. In a tool-use loop, follow-up requests that only process tool results can still skip thinking at any level. At lower levels, Claude can skip thinking entirely for simpler problems. See [Thinking and effort](https://platform.claude.com/docs/en/build-with-claude/thinking#thinking-and-effort) for full guidance on how the two controls work together.
 
 On Claude Opus 4.5, the only extended-thinking-only model that supports effort, it works alongside [`budget_tokens`](https://platform.claude.com/docs/en/build-with-claude/extended-thinking): set the effort level for your task, then set the thinking token budget based on how much reasoning depth the task needs.
+
+Claude Opus 4.5 is deprecated on [Anthropic-operated platforms](https://platform.claude.com/docs/en/about-claude/model-deprecations#overview). For the retirement date and the recommended replacement, see [Model deprecations](https://platform.claude.com/docs/en/about-claude/model-deprecations#2026-11-23-claude-opus-4-5-model). [Partner-operated platforms](https://platform.claude.com/docs/en/about-claude/model-deprecations#overview) set their own retirement schedules.
 
 For per-model thinking availability, see the [per-model configuration table](https://platform.claude.com/docs/en/build-with-claude/thinking-troubleshooting#supported-models). Effort works with or without thinking. See [How effort works](https://platform.claude.com/docs/en/build-with-claude/effort#how-effort-works).
 

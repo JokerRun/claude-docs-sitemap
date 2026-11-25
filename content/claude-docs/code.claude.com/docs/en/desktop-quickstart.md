@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/desktop-quickstart
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 29c4be9064789e963a2d43dec6cd859ba714ad4511138d05fc89354f83920384
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 2654c3ef92595a7a4913cf14328b84d277913ea8daac2debcb2b23557765be53
 ---
 
 > ## Documentation Index
@@ -17,11 +17,11 @@ The desktop app gives you Claude Code with a graphical interface. You can ask Cl
 
 Claude Code is in the **Code** tab at the top of the app's sidebar. This page walks through installing the app and starting your first session there. Claude Code requires a [Pro, Max, Ultra, Team, or Enterprise subscription](https://claude.com/pricing?utm_source=claude_code\&utm_medium=docs\&utm_content=desktop_quickstart_pricing).
 
-> [card] [Download for macOS](https://claude.ai/api/desktop/darwin/universal/dmg/latest/redirect?utm_source=claude_code\&utm_medium=docs)
+> [card] [Download for macOS](https://claude.ai/claude-code/desktop-download?platform=mac\&utm_source=claude_code\&utm_medium=docs)
 >
 > Universal build for Intel and Apple Silicon
 
-> [card] [Download for Windows](https://claude.ai/api/desktop/win32/x64/setup/latest/redirect?utm_source=claude_code\&utm_medium=docs)
+> [card] [Download for Windows](https://claude.ai/claude-code/desktop-download?platform=win-x64\&utm_source=claude_code\&utm_medium=docs)
 >
 > For x64 processors
 
@@ -29,7 +29,7 @@ Claude Code is in the **Code** tab at the top of the app's sidebar. This page wa
 >
 > apt or .deb for Ubuntu and Debian
 
-For Windows ARM64, download the [ARM64 installer](https://claude.ai/api/desktop/win32/arm64/setup/latest/redirect?utm_source=claude_code\&utm_medium=docs). On Linux, install with apt; see [Claude Desktop on Linux](https://code.claude.com/docs/en/desktop-linux.md).
+For Windows ARM64, download the [ARM64 installer](https://claude.ai/claude-code/desktop-download?platform=win-arm64\&utm_source=claude_code\&utm_medium=docs). On Linux, install with apt; see [Claude Desktop on Linux](https://code.claude.com/docs/en/desktop-linux.md).
 
 > [!NOTE]
 >

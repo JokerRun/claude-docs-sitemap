@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-workers
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 03b3527dcf772133d7b82bda64f2fe49f858a04992927315b48250fd6436b4af
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 30d95c63fbbbff6e582bcc5f9f5d13a66706481f7560b2ede4c5c15e16f1594a
 ---
 
 ---
@@ -72,6 +72,8 @@ The CLI and SDK workers support different combinations:
 See [Self-hosted worker reference](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes-reference) for every CLI flag and SDK option.
 
 For more control, call the [Environments Work endpoints](https://platform.claude.com/docs/en/api/beta/environments/work) directly and implement your own worker. Your worker then does what the SDK workers do. Among other things, it acknowledges each work item, sends heartbeats, and downloads the agent’s skills. It runs only the tool calls that the session’s [permission policy](https://platform.claude.com/docs/en/managed-agents/permission-policies#see-how-each-call-was-evaluated) allows. It returns each result as a `user.tool_result` or `user.custom_tool_result` event. At the end, it stops the item. Use the worker’s source in the [Python SDK](https://github.com/anthropics/anthropic-sdk-python/tree/main/src/anthropic/lib/environments), the [TypeScript SDK](https://github.com/anthropics/anthropic-sdk-typescript/tree/main/src/lib/environments), or the [Go SDK](https://github.com/anthropics/anthropic-sdk-go/tree/main/lib/environments) as a reference.
+
+If you use [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), implement your own worker instead of using the CLI or SDK worker. For credentials, see [Worker authentication on cloud platforms](https://platform.claude.com/docs/en/managed-agents/self-hosted-sandboxes#worker-authentication-on-cloud-platforms).
 
 ## Run an always-on worker
 

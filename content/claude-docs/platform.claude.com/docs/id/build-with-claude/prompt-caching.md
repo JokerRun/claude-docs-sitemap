@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/prompt-caching
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 6d67668e4f01ff19d77903ebefac116a704aedbcdefcdcd07194cf337bac98f2
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 19191ce143ae6810286f9c4a2c0590b748a5a641660d15cae5f493043fb5672d
 ---
 
 ---
@@ -622,12 +622,11 @@ Menambahkan lebih banyak breakpoint `cache_control` tidak meningkatkan biaya And
 Pada Claude API, [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), [Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/google-managed), dan [Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), panjang prompt minimum yang dapat di-cache adalah:
 
 * 512 token untuk Claude Fable 5.2, [Claude Mythos 5.2](https://platform.claude.com/docs/id/models/mythos-5-2/overview), Claude Fable 5.1, [Claude Mythos 5.1](https://platform.claude.com/docs/id/models/mythos-5-1/overview), Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, Claude Fable 5, [Claude Mythos 5](https://platform.claude.com/docs/id/models/mythos-5/overview), dan Claude Haiku 5.5
+* 1.024 token untuk Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5 ([dihentikan (deprecated) di platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview)), Claude Opus 4.1, Claude Opus 4, dan Claude Sonnet 4
 * 2.048 token untuk [Claude Mythos Preview](https://anthropic.com/glasswing) dan Claude Opus 4.7
-* 4.096 token untuk Claude Opus 4.6 dan Claude Opus 4.5
-* 1.024 token untuk Claude Opus 4.8, Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4.1 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Opus 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Sonnet 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations))
-* 4.096 token untuk Claude Haiku 4.5
+* 4.096 token untuk Claude Opus 4.6, Claude Opus 4.5 ([dihentikan (deprecated) di platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview)), dan Claude Haiku 4.5
 
-Batas minimum ini berlaku di masing-masing platform tersebut tempat model tersedia.
+Batas minimum ini berlaku untuk setiap model di masing-masing platform tersebut tempat model itu tersedia. Claude Opus 4.1, Claude Sonnet 4, dan Claude Opus 4 telah dipensiunkan di [platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview).
 
 Prompt yang lebih pendek tidak dapat di-cache, bahkan jika ditandai dengan `cache_control`. Setiap permintaan untuk meng-cache kurang dari jumlah token ini diproses tanpa caching, dan tidak ada error yang dikembalikan. Untuk memeriksa apakah prompt di-cache, lihat [field usage respons](https://platform.claude.com/docs/id/build-with-claude/prompt-caching#tracking-cache-performance): jika `cache_creation_input_tokens` dan `cache_read_input_tokens` keduanya 0, prompt tidak di-cache (kemungkinan karena tidak memenuhi persyaratan panjang minimum).
 

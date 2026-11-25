@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/quickstart
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: c12807edfaad03f531ad8294f33bf79e3230c5fc72f875cf826a5f3fc4ababf9
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 1d59df611e248f08ab6c551db367766698a0ed7eff07229fff16496f9ba1f1de
 ---
 
 ---
@@ -39,7 +39,7 @@ Compared to `curl`, `ant` builds request bodies from typed flags or piped YAML i
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=2.13.0
+    VERSION=2.14.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -81,9 +81,7 @@ ant --version
 ant auth login
 ```
 
-<Note>
-  For other ways to authenticate (API key environment variable, headless hosts, multiple workspaces, named profiles, and Workload Identity Federation), see [CLI authentication options](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication).
-</Note>
+To sign in on a host without a browser or to authenticate another way, see [CLI authentication options](https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication). The options include Workload Identity Federation, an API key, and Google Cloud credentials for [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed).
 
 ## Send your first request
 

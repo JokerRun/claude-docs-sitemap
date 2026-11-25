@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/inference-hooks-configuration
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 29f40fdc13e3ae5d10fa2bb8f3f26084d24d88f03b57ece22db8bb0e2a25cd4a
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 72615f83c7b3639df0bee7d8ba0c6a4579658dd45653728dc5114df4be814ecf
 ---
 
 ---
@@ -88,7 +88,7 @@ Langkah-langkah berikut membawa konfigurasi baru dari mati hingga menegakkan.
 
     Kemudian atur **Batas waktu keputusan prompt (ms)**: 1 hingga 10.000ms, dengan default 5.000ms. Anggaran waktu ini mencakup seluruh pertukaran, dan putusan yang lebih lambat dihitung sebagai server yang tidak dapat dijangkau, jadi atur nilai terendah yang dapat dipenuhi server Anda secara andal.
 
-    Perubahan di bagian ini tersimpan saat Anda membuatnya. Pada penyimpanan pertama, default-nya adalah **Izinkan permintaan** dan 5.000ms.
+    **Mode** tersimpan saat Anda memilih opsi. Untuk menyimpan batas waktu baru, klik **Simpan perubahan**. Saat Anda pertama kali menyimpan endpoint, default-nya adalah **Izinkan permintaan** dan 5.000ms.
   </Step>
 
   <Step title="Pilih persentase peluncuran">

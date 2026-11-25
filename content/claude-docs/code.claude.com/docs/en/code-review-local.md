@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review-local
-fetched_at: 2026-11-11T02:12:04.616753Z
-sha256: 092b76076a9fad31f02a4054ae6f601d6b864ffc07030e90ef3991e7e30ec6f5
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 69708d348024fb5a7b80a681a27ba02ab60da8a651bee36df940cd8d2881a7c6
 ---
 
 > ## Documentation Index
@@ -19,7 +19,7 @@ The command works on any plan. The review runs in your own session, so it counts
 
 > [!NOTE]
 >
-> To have every pull request in a repository reviewed automatically on GitHub, see [Code Review](https://code.claude.com/docs/en/code-review.md), a managed service that an Owner turns on for your organization.
+> To have every pull request in a repository reviewed automatically on GitHub, see [Code Review](https://code.claude.com/docs/en/code-review.md), a managed service that an Owner of a Claude organization turns on.
 
 `/review` is an alias of `/code-review`.
 

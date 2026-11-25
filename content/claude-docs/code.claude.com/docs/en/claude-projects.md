@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-projects
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 2cf89f88f05f7527ce00b88d47b39fdca417616808468ecc306fb0d5659c609c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 5bb767bacdc146169fb4e59f2d16750d16c08445c7e84ba4130f993dc80c54b4
 ---
 
 > ## Documentation Index
@@ -277,7 +277,7 @@ Claude answers with an **Allow Claude to work in a folder on your computer** car
 
 The thread runs in [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminate-prompts-with-auto-mode), so Claude runs commands and edits files in that folder without asking you each time. If auto mode is unavailable or turned off in that computer's Claude Code, the thread runs without it, and any permission prompt it raises waits for your answer in the thread, as [Unblock a thread waiting on approval](#unblock-a-thread-waiting-on-approval) describes.
 
-To run the thread in another mode, start `claude remote-control` with [`--settings`](https://code.claude.com/docs/en/remote-control#start-a-remote-control-session). Then [`permissions.defaultMode`](https://code.claude.com/docs/en/permission-modes#start-in-a-different-mode), in that file or in that computer's settings, can pick another mode.
+To run the thread in another mode, start `claude remote-control` with [`--settings`](https://code.claude.com/docs/en/remote-control#start-a-remote-control-session) and a file that sets [`disableAutoMode`](https://code.claude.com/docs/en/settings-reference#disableautomode) to `"disable"`. Then [`permissions.defaultMode`](https://code.claude.com/docs/en/permission-modes#start-in-a-different-mode), in that file or in that computer's settings, can pick another mode, such as `default`, `plan`, or `dontAsk`.
 
 While the thread runs, a laptop icon in its header shows whether your computer is connected. Click it to see which folder the thread is using or to turn the connection off. The thread pauses while that computer is asleep, and stops if the desktop app or `claude remote-control` quits.
 

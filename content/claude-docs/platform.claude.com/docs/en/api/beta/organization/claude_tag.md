@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: aa5e7a0edde83fdf54065b836e698998bac6e9a1360ee9de8cc1df5734f20067
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: af0793a10588beac739d6d967d7833c82f3dc50c080b4695ccf2ba1c081cae26
 ---
 
 ---
@@ -1350,8 +1350,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
           "slack": {
-            "channel_id": "xx",
-            "workspace_id": "xx"
+            "channel_id": "C0456EFGH",
+            "workspace_id": "T0123ABCD"
           }
         }'
 ```
@@ -1375,8 +1375,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels \
     }
   },
   "slack": {
-    "channel_id": "xx",
-    "workspace_id": "xx"
+    "channel_id": "C0456EFGH",
+    "workspace_id": "T0123ABCD"
   },
   "sources": {
     "enabled": {
@@ -1863,8 +1863,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels \
         }
       },
       "slack": {
-        "channel_id": "xx",
-        "workspace_id": "xx"
+        "channel_id": "C0456EFGH",
+        "workspace_id": "T0123ABCD"
       },
       "sources": {
         "enabled": {
@@ -2336,8 +2336,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/$ID \
     }
   },
   "slack": {
-    "channel_id": "xx",
-    "workspace_id": "xx"
+    "channel_id": "C0456EFGH",
+    "workspace_id": "T0123ABCD"
   },
   "sources": {
     "enabled": {
@@ -2892,8 +2892,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/$ID \
     }
   },
   "slack": {
-    "channel_id": "xx",
-    "workspace_id": "xx"
+    "channel_id": "C0456EFGH",
+    "workspace_id": "T0123ABCD"
   },
   "sources": {
     "enabled": {
@@ -5989,7 +5989,7 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/bundles/$BUNDLE_ID/ta
     -H 'anthropic-beta: experimental-claude-tag-2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "slack_channel_id": "xxxxxxxx",
+          "slack_channel_id": "slch_01SvpyRQK3nN6eH9uhRA7n1q",
           "type": "slack_channel"
         }'
 ```

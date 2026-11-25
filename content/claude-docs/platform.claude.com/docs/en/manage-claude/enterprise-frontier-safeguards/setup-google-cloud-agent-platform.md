@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 1eb85f1d9f652ee7a92bdd631e330faa9db07ec5e3918ea53c280fd2e2b38936
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: e6632c2dad3b7df26bfd7a02d33d02dc6233e23889aea09032f8cafbe625aae5
 ---
 
 ---
@@ -11,10 +11,10 @@ url: https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeg
 description: Get access to Enterprise Frontier Safeguards on Google Cloud's Agent Platform.
 ---
 
-With [Enterprise Frontier Safeguards](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/overview) (EFS), Cloud Storage buckets in your Google Cloud project hold encrypted copies of the prompts and responses that EFS covers. EFS is in beta.
+With [Enterprise Frontier Safeguards](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/overview) (EFS), Cloud Storage buckets in your Google Cloud project hold encrypted copies of the prompts and responses that EFS covers. EFS is in beta. For supported models and enrollment steps, see [Google’s EFS documentation](https://docs.cloud.google.com/gemini-enterprise-agent-platform/models/partner-models/claude/enterprise-frontier-safeguards).
 
 Access Transparency doesn’t cover your Agent Platform requests.
 
 To set up EFS, contact your Anthropic account team for access and for the setup guide. Tell them first if data retention or data sharing is on for any Claude model in your projects. EFS covers only the endpoints and models that the setup guide lists, and it doesn’t cover batch prediction.
 
-Ask your account team about storage, keys, Transcripts, and Safety Cases too, because the other EFS pages describe the Claude Console.
+Ask your account team about storage, keys, Transcripts, and Safety Cases too, because the other EFS pages describe the Claude Console. If you don’t have an account team, complete the [Enterprise Frontier Safeguards request form](https://claude.com/form/enterprise-frontier-safeguards).

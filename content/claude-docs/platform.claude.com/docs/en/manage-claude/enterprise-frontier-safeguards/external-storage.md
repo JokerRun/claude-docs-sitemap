@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/external-storage
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 741d9c88bf57122e58dee041ddca6661d5890291d99af4153f6b89381ee7b70c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 11aaf2ea3a9ada783e3c6d3cf26b7a18bb4388fbfefb928971ee74a6840087de
 ---
 
 ---
@@ -1361,7 +1361,7 @@ The **Active** status can show before objects arrive, so don’t rely on it. If 
 
 ### If your bucket stops working
 
-To avoid losing data, restore a bucket that stops working as soon as you can. If a write to your bucket fails, Anthropic retries it, then deletes the data about a day after the request. Nobody can recover that data, and it doesn’t go to Anthropic-managed storage.
+To avoid losing data, restore a bucket that stops working as soon as you can. If a write to your bucket fails, Anthropic retries it. Restore your bucket within about 46 hours of the request and keep each workspace on it, or you can lose that data. Anthropic stops retrying by about 72 hours after the request, then deletes the data. Nobody can recover that data, and it doesn’t go to Anthropic-managed storage.
 
 To notice a failure, watch for new objects under `slab/`. Don’t rely on an email or on the bucket’s status to warn you. If you notice a failure, tell your Anthropic account team as soon as you can.
 

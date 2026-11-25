@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/cli/authentication
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: b9a8e3dd53987fd392fbeea0b5256b705273f15f8082fc14f37d839ad3bd814e
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 2f9a551e0bb65d581df03bb9f3ace204878055957157a3e16ce8d5dfd6e89219
 ---
 
 ---
@@ -99,6 +99,15 @@ ant messages create \
   --max-tokens 1024 \
   --message '{role: user, content: "Hello, Claude"}'
 ```
+
+## Claude Models on Google Cloud (Anthropic managed)
+
+To call [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), the CLI uses Google Application Default Credentials instead of `ant auth login` or an API key. To set up the CLI, follow these steps:
+
+1. **Set up the credentials:** See [Authentication on Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#authentication).
+2. **Set your project ID and workspace ID:** Pass `--google-cloud-project` and `--google-cloud-workspace-id`, or set `ANTHROPIC_GOOGLE_CLOUD_PROJECT` and `ANTHROPIC_GOOGLE_CLOUD_WORKSPACE_ID`. For the other settings and their defaults, see [Project, location, and workspace resolution](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#project-location-and-workspace-resolution).
+3. **Leave competing settings unset:** An API key, an authentication token, a configuration profile, or Anthropic’s federation variables can take precedence over these settings. Before you run a command, check [which settings to leave unset](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#credential-precedence).
+4. **Confirm that the CLI uses these settings:** Run `ant auth status` and check that the `Google Cloud` row is marked `(active)`. If you set them with flags, pass the same flags to `ant auth status`.
 
 ## Check authentication status
 

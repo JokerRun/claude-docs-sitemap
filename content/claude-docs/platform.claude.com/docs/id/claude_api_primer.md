@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/claude_api_primer
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 2d259221fd853d3fb55d7d1bfdc24a41e615b6b33d861626c5ce5e8122fedd7c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: cc490a0b1c5b650eb00803b48fee747cb31ef7feedccfe8292e0cbe6984995c3
 ---
 
 ---
@@ -111,42 +111,102 @@ Dengan [thread pesan](https://platform.claude.com/docs/id/build-with-claude/mess
 
 ### Mengisi awal respons Claude
 
-Anda dapat mengisi awal sebagian respons Claude pada posisi terakhir dari daftar pesan input. Gunakan teknik ini untuk membentuk respons Claude. Contoh berikut menggunakan `"max_tokens": 1` untuk mendapatkan satu jawaban pilihan ganda dari Claude.
+“Prefill” (pengisian awal) adalah teks yang Anda tulis dalam pesan `assistant` dan letakkan di posisi terakhir dalam `messages`. Pesan `assistant` di posisi lain mana pun dalam `messages` bukanlah prefill. Claude melanjutkan teks yang diisi di awal, dan respons hanya berisi lanjutannya.
 
-<Note>
-  Model Claude 4.6 dan yang lebih baru serta Claude Mythos Preview tidak mendukung prefill pesan assistant; permintaan ke model-model tersebut harus diakhiri dengan pesan user. Contoh berikut menggunakan model yang mendukung prefill.
-</Note>
+Gunakan prefill untuk menentukan bagaimana respons dimulai, misalnya, untuk memulainya dalam format tetap atau untuk melewati pembukaan.
+
+Apakah API menerima prefill bergantung pada modelnya:
+
+* **Model Claude 4.5 dan yang lebih awal:** API menerima prefill kecuali model tersebut sudah dipensiunkan pada platform yang Anda gunakan. Semua permintaan ke model yang sudah dipensiunkan akan gagal. Untuk memeriksa status model, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
+* **Semua model lainnya:** API mengembalikan error 400 (lihat bagian [Prefill tidak didukung](https://platform.claude.com/docs/id/api/errors#prefill-not-supported) di halaman Error Claude API). Gunakan salah satu [alternatif untuk prefill](https://platform.claude.com/docs/id/claude_api_primer#alternatives-to-a-prefill) sebagai gantinya.
+
+Claude Opus 4.5 dihentikan (deprecated) di [platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview). Claude Sonnet 4.5 dihentikan (deprecated) di platform yang sama. Untuk tanggal pensiun dan pengganti yang direkomendasikan, lihat [Riwayat penghentian](https://platform.claude.com/docs/id/about-claude/model-deprecations#deprecation-history) di halaman Penghentian model. [Platform yang dioperasikan mitra](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) menetapkan jadwal pensiun mereka sendiri.
+
+Pengganti yang direkomendasikan untuk Claude Opus 4.5 dan Claude Sonnet 4.5 tidak menerima prefill.
+
+Contoh berikut berjalan pada Claude Opus 4.5 dan menetapkan format jawaban pilihan ganda. Prefill, `The answer is (`, berakhir tepat sebelum huruf jawaban sehingga Claude menulis huruf tersebut terlebih dahulu. Karena jawabannya berupa satu huruf, contoh ini juga mengatur `max_tokens` ke `1`. Untuk jawaban yang lebih panjang, atur `max_tokens` yang lebih tinggi.
 
 <CodeGroup exclude="shell:cURL, typescript, csharp, go, java, php, ruby">
   ```bash CLI
-  ant messages create <<'YAML'
-  model: claude-sonnet-4-5
-  max_tokens: 1
-  messages:
-    - role: user
-      content: "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"
-    - role: assistant
-      content: "The answer is ("
-  YAML
+  ant messages create \
+    --model claude-opus-4-5-20251101 \
+    --max-tokens 1 \
+    --message '{role: user, content: "What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae"}' \
+    --message '{role: assistant, content: "The answer is ("}'
   ```
 
   ```python Python
   import anthropic
 
   message = anthropic.Anthropic().messages.create(
-      model="claude-sonnet-4-5",
+      model="claude-opus-4-5-20251101",
       max_tokens=1,
       messages=[
           {
               "role": "user",
-              "content": "What is latin for Ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae",
+              "content": "What is Latin for ant? (A) Apoidea, (B) Rhopalocera, (C) Formicidae",
           },
           {"role": "assistant", "content": "The answer is ("},
       ],
   )
-  print(message.content[0].text)
+  print(message)
   ```
 </CodeGroup>
+
+```json Output
+{
+  "id": "msg_01Q8Faay6S7QPTvEUUQARt7h",
+  "type": "message",
+  "role": "assistant",
+  "content": [
+    {
+      "type": "text",
+      "text": "C"
+    }
+  ],
+  "model": "claude-opus-4-5-20251101",
+  "stop_reason": "max_tokens",
+  "stop_sequence": null,
+  "usage": {
+    "input_tokens": 42,
+    "output_tokens": 1
+  }
+}
+```
+
+Perhatikan dua field dalam respons ini:
+
+* **`text`:** Nilainya adalah `C`. Nilai ini hanya berisi lanjutannya, bukan prefill.
+* **`stop_reason`:** Nilainya adalah `max_tokens` karena contoh ini mengakhiri respons setelah satu token.
+
+Untuk mendapatkan teks lengkap, `The answer is (C`, gabungkan prefill dan nilai `text` dalam kode Anda.
+
+Pada model Claude 4.5 dan yang lebih awal, batasan berikut berlaku untuk prefill:
+
+* **Whitespace:** Jika prefill diakhiri dengan whitespace, API mengembalikan error 400.
+* **Output terstruktur:** Jika permintaan juga mengatur `output_config.format`, API mengembalikan error 400 (lihat bagian [Kompatibilitas fitur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs#feature-compatibility) di halaman Output terstruktur).
+* **[Pemikiran diperpanjang](https://platform.claude.com/docs/id/build-with-claude/extended-thinking):** Jika permintaan juga mengatur `thinking.type` ke `enabled`, prefill tidak menyebabkan error. API memperlakukan thinking sebagai nonaktif, sehingga respons tidak memiliki blok `thinking`.
+
+`message` dalam setiap error 400 menjelaskan penyebabnya.
+
+#### Alternatif untuk prefill
+
+Sebagai pengganti prefill, akhiri `messages` dengan pesan `user`. Kemudian, pilih pendekatan berdasarkan apa yang Anda inginkan dari respons:
+
+* **JSON yang mengikuti skema:** Gunakan [output terstruktur](https://platform.claude.com/docs/id/build-with-claude/structured-outputs), yang membatasi respons agar mengikuti skema.
+* **Format output lainnya:** Jelaskan format tersebut dalam prompt sistem, yaitu [field `system`](https://platform.claude.com/docs/id/api/messages/create#create.system) pada permintaan.
+* **Tanpa pembukaan:** Minta jawaban langsung dalam prompt sistem.
+
+Tidak seperti prefill, instruksi dalam prompt sistem tidak menjamin bagaimana respons dimulai, jadi periksa teks respons dalam kode Anda.
+
+Untuk apa yang harus digunakan sebagai pengganti prefill umum lainnya, lihat bagian [Bermigrasi dari respons prefill](https://platform.claude.com/docs/id/build-with-claude/prompt-engineering/claude-prompting-best-practices#migrating-away-from-prefilled-responses) di halaman Praktik terbaik prompting.
+
+Untuk memindahkan contoh pilihan ganda ini ke model yang tidak menerima prefill, ikuti langkah-langkah berikut:
+
+1. Ubah model dan hapus pesan `assistant`.
+2. Minta dalam prompt sistem agar hanya huruf jawabannya yang diberikan.
+3. Atur `max_tokens` cukup tinggi untuk seluruh respons. Pada [model dengan thinking aktif secara default](https://platform.claude.com/docs/id/build-with-claude/thinking#configuring-thinking), token thinking juga dihitung dalam `max_tokens`.
+4. Baca huruf tersebut dari blok `text` respons. Blok ini dapat muncul setelah blok `thinking`. Jangan gabungkan huruf tersebut dengan prefill.
 
 ### Vision
 
@@ -266,8 +326,8 @@ Thinking didukung pada model-model berikut:
 * Claude Opus 4.7 (`claude-opus-4-7`, hanya pemikiran adaptif)
 * Claude Opus 4.6 (`claude-opus-4-6`, pemikiran adaptif atau pemikiran manual lama)
 * Claude Sonnet 4.6 (`claude-sonnet-4-6`, pemikiran adaptif atau pemikiran manual lama)
-* Claude Opus 4.5 (`claude-opus-4-5-20251101`, hanya pemikiran manual lama)
-* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, [tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations), hanya pemikiran manual lama)
+* Claude Opus 4.5 (`claude-opus-4-5-20251101`, [dihentikan (deprecated) di platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview), hanya pemikiran manual lama)
+* Claude Sonnet 4.5 (`claude-sonnet-4-5-20250929`, [dihentikan (deprecated) di platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview), hanya pemikiran manual lama)
 * Claude Haiku 4.5 (`claude-haiku-4-5-20251001`, hanya pemikiran manual lama)
 
 <Note>
@@ -350,7 +410,7 @@ Batasan penting:
 
   weather_data = {"temperature": 72}
 
-  # Permintaan pertama - Claude merespons dengan thinking dan permintaan alat
+  # Permintaan pertama: Claude merespons dengan thinking dan permintaan alat
   response = client.messages.create(
       model="claude-opus-5-5",
       max_tokens=16000,
@@ -367,7 +427,7 @@ Batasan penting:
       (block for block in response.content if block.type == "tool_use"), None
   )
 
-  # Permintaan kedua - Sertakan blok thinking dan hasil alat
+  # Permintaan kedua: sertakan blok thinking dan hasil alat
   continuation = client.messages.create(
       model="claude-opus-5-5",
       max_tokens=16000,
@@ -498,7 +558,7 @@ Pada model lama yang menggunakan pemikiran diperpanjang manual (model Claude 4, 
   ```
 </CodeGroup>
 
-Dengan pemikiran berselang dan HANYA dengan pemikiran berselang (bukan pemikiran diperpanjang manual biasa), `budget_tokens` dapat melebihi parameter `max_tokens`, karena `budget_tokens` dalam kasus ini mewakili total anggaran di seluruh blok thinking dalam satu giliran assistant.
+Dengan pemikiran berselang dan HANYA dengan pemikiran berselang (bukan pemikiran diperpanjang manual biasa), `budget_tokens` dapat melebihi parameter `max_tokens`, karena `budget_tokens` dalam kasus ini mewakili total anggaran di seluruh blok thinking dalam satu giliran asisten.
 
 ## Penggunaan alat
 
@@ -536,14 +596,14 @@ Alat klien ditentukan dalam parameter tingkat atas `tools` dari permintaan API. 
 
 ### Praktik terbaik untuk definisi alat
 
-**Berikan deskripsi yang sangat terperinci.** Ini sejauh ini merupakan faktor terpenting dalam kinerja alat. Deskripsi Anda harus menjelaskan setiap detail tentang alat, termasuk:
+**Berikan deskripsi yang sangat terperinci.** Ini adalah faktor terpenting dalam kinerja alat, jauh melebihi faktor lainnya. Deskripsi Anda harus menjelaskan setiap detail tentang alat, termasuk:
 
 * Apa yang dilakukan alat
 * Kapan alat harus digunakan (dan kapan tidak)
 * Apa arti setiap parameter dan bagaimana pengaruhnya terhadap perilaku alat
 * Peringatan atau batasan penting apa pun
 
-**Pertimbangkan untuk menggunakan `input_examples` untuk alat yang kompleks.** Untuk alat dengan objek bersarang, parameter opsional, atau input yang sensitif terhadap format, Anda dapat memberikan contoh konkret menggunakan field `input_examples` (beta). Ini menunjukkan kepada Claude pola input yang diharapkan. Lihat [Memberikan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) untuk detailnya.
+**Pertimbangkan untuk menggunakan `input_examples` untuk alat yang kompleks.** Untuk alat dengan objek bersarang, parameter opsional, atau input yang sensitif terhadap format, Anda dapat memberikan contoh konkret menggunakan field `input_examples` (beta). Ini menunjukkan kepada Claude pola input yang diharapkan. Lihat [Menyediakan contoh penggunaan alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#providing-tool-use-examples) untuk detailnya.
 
 Contoh deskripsi alat yang baik:
 
@@ -597,9 +657,9 @@ Secara default, Claude dapat menggunakan beberapa alat untuk menjawab kueri peng
 
 Respons memiliki `stop_reason` berupa `tool_use` dan satu atau lebih blok konten `tool_use` yang mencakup:
 
-* `id`: Pengidentifikasi unik untuk blok penggunaan alat tertentu ini.
-* `name`: Nama alat yang digunakan.
-* `input`: Objek yang berisi input yang diteruskan ke alat.
+* `id`: Pengidentifikasi unik untuk blok penggunaan alat tertentu ini
+* `name`: Nama alat yang digunakan
+* `input`: Objek yang berisi input yang diteruskan ke alat
 
 ```json
 {

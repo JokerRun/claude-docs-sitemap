@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/about-claude/pricing
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 488e03e9cc17c794593348133aa9869d650964d599af58604a9838a0ae47e816
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 0f6deb28aacef431995b73e5eb024c86823df8189750045a86f9846e2dcaa2df
 ---
 
 ---
@@ -79,8 +79,6 @@ For official pricing on [Claude Models on Google Cloud (Google managed)](https:/
   * **Claude Models on Google Cloud (Google managed)** offers global endpoints and multi-region endpoints (dynamic routing within a geographic area) for these models, and regional endpoints for Claude Sonnet 4.6 and earlier models.
 
   Regional and multi-region endpoints include a 10 percent premium over global endpoints. The Claude API (first-party) is global by default; for first-party data residency options and pricing, see [Data residency pricing](https://platform.claude.com/docs/en/about-claude/pricing#data-residency-pricing).
-
-  **Scope:** This pricing structure applies to Claude Sonnet 4.5 (deprecated), Haiku 4.5, Opus 4.5, and later models. It doesn’t apply to earlier models (Claude Opus 4.1 and prior releases).
 
   For implementation details and code examples:
 
@@ -496,19 +494,19 @@ A 1-hour coding session using Claude Opus 5.5 that consumes 50,000 input tokens 
 
 | Line item | Calculation | Cost |
 | ----- | ----- | ----- |
-| Input tokens | 50,000 × $4 / 1,000,000 | $0.20 USD |
-| Output tokens | 15,000 × $20 / 1,000,000 | $0.30 USD |
-| Session runtime | 1.0 hour × $0.08 | $0.08 USD |
+| Input tokens | 50,000 × $4 USD / 1,000,000 | $0.20 USD |
+| Output tokens | 15,000 × $20 USD / 1,000,000 | $0.30 USD |
+| Session runtime | 1.0 hour × $0.08 USD | $0.08 USD |
 | **Total** |  | **$0.58 USD** |
 
 If prompt caching is active and 40,000 of the input tokens are cache reads:
 
 | Line item | Calculation | Cost |
 | ----- | ----- | ----- |
-| Uncached input tokens | 10,000 × $4 / 1,000,000 | $0.04 USD |
-| Cache read tokens | 40,000 × $4 × 0.05 / 1,000,000 | $0.008 USD |
-| Output tokens | 15,000 × $20 / 1,000,000 | $0.30 USD |
-| Session runtime | 1.0 hour × $0.08 | $0.08 USD |
+| Uncached input tokens | 10,000 × $4 USD / 1,000,000 | $0.04 USD |
+| Cache read tokens | 40,000 × $4 USD × 0.05 / 1,000,000 | $0.008 USD |
+| Output tokens | 15,000 × $20 USD / 1,000,000 | $0.30 USD |
+| Session runtime | 1.0 hour × $0.08 USD | $0.08 USD |
 | **Total** |  | **$0.428 USD** |
 
 ## Additional pricing considerations

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/google-vertex-ai
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 31f11029f9f8f8d474bdf81a2355dcd12459fbeb55db6ed864844295ade2c7ef
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: a403446c53e31661ba47c8f77b39924fa69431c9ff24ebe798257a18fa4188a9
 ---
 
 > ## Documentation Index
@@ -18,9 +18,16 @@ sha256: 31f11029f9f8f8d474bdf81a2355dcd12459fbeb55db6ed864844295ade2c7ef
 View plans
 Contact sales
 
+This page covers one of the two ways to use Claude through your Google Cloud project: Google Cloud's Agent Platform, formerly Vertex AI, which Google manages.
+
 > [!NOTE]
 >
-> This page covers one of the two ways to use Claude through your Google Cloud project: Google Cloud's Agent Platform, formerly Vertex AI, which Google manages. If you use Claude Models on Google Cloud (Anthropic managed), follow [its Claude Code setup page](https://code.claude.com/docs/en/claude-models-on-google-cloud-anthropic-managed.md) instead. To find out which one you use, see [Which offering are you using?](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview#which-offering-are-you-using)
+> Use a different page in these cases:
+>
+> * **Claude Models on Google Cloud (Anthropic managed)**: follow [its Claude Code setup page](https://code.claude.com/docs/en/claude-models-on-google-cloud-anthropic-managed.md)
+> * **Not sure which Google Cloud offering you use**: see [Which offering are you using?](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/overview#which-offering-are-you-using)
+> * **Code tab, when your organization installed the Claude Desktop app**: ask your administrator to [configure the app for Agent Platform](https://claude.com/docs/third-party/claude-desktop/vertex)
+> * **Code tab, when you install the Claude Desktop app yourself**: follow the [single-machine setup steps](https://claude.com/docs/third-party/claude-desktop/installation#single-machine-setup) and enter the [connection and model values for Agent Platform](https://claude.com/docs/third-party/claude-desktop/vertex#configure-the-app)
 
 ## Prerequisites
 

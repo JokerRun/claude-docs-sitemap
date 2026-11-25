@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-troubleshooting
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 3dd30db532c3c41c0faee488586f871c3d4ce8b47a3967ad14809e334ce27a47
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 074eb0ecfd6c0d5f9a2dfe91faa063d523874c9b72f5a6d700cd276b065e053f
 ---
 
 ---
@@ -136,11 +136,11 @@ Jika melampirkan masih gagal, temukan event `kms:` yang ditolak di CloudTrail pa
 CMEK keys can only be attached to workspaces in this organization that have inference data retention enabled.
 ```
 
-[Organisasi Anda menggunakan “zero data retention” (tanpa retensi data), atau ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), dan kunci memerlukan workspace yang menyimpan data. Alihkan workspace ke **Retensi data standar** terlebih dahulu.
+[Organisasi Anda menggunakan retensi data nol lama (Legacy ZDR)](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), dan kunci memerlukan workspace yang menyimpan data. Alihkan workspace ke **Retensi data standar** terlebih dahulu.
 
 ### Workspace tidak memiliki pengaturan Kunci enkripsi
 
-Hanya [workspace yang menyimpan data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention) yang memiliki pengaturan ini, jadi pilih **Retensi data standar** untuk workspace tersebut terlebih dahulu. Workspace default organisasi ZDR tidak dapat dialihkan, jadi gunakan workspace lain.
+Hanya [workspace yang menyimpan data](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#data-retention) yang memiliki pengaturan ini, jadi pilih **Retensi data standar** untuk workspace tersebut terlebih dahulu. Workspace default organisasi Legacy ZDR tidak dapat dialihkan, jadi gunakan workspace lain.
 
 ### Tidak ada bagian Kunci enkripsi
 

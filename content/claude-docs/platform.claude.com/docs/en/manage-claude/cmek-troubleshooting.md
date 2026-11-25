@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/cmek-troubleshooting
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 50f70bc2c6a8e3d9ab972d5624d31874e1ca17272b85d4702c74e365f8075c50
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 5d22d4cacbcbeddea796ac07c763bbb0fcffed3de898e7722a06584becd8482e
 ---
 
 ---
@@ -136,11 +136,11 @@ If attaching still fails, find the denied `kms:` event in CloudTrail in the key�
 CMEK keys can only be attached to workspaces in this organization that have inference data retention enabled.
 ```
 
-[Your organization uses zero data retention (ZDR)](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#zdr-organizations), and a key needs a workspace that retains data. Switch the workspace to **Standard data retention** first.
+[Your organization uses legacy zero data retention (Legacy ZDR)](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#zdr-organizations), and a key needs a workspace that retains data. Switch the workspace to **Standard data retention** first.
 
 ### The workspace has no Encryption key setting
 
-Only [a workspace that retains data](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#data-retention) has this setting, so select **Standard data retention** for the workspace first. A ZDR organization’s default workspace can’t be switched, so use another.
+Only [a workspace that retains data](https://platform.claude.com/docs/en/manage-claude/cmek-data-retention#data-retention) has this setting, so select **Standard data retention** for the workspace first. A Legacy ZDR organization’s default workspace can’t be switched, so use another.
 
 ### There is no Encryption keys section
 

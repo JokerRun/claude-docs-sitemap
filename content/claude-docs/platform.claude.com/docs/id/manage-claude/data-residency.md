@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/data-residency
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 8ae08e0ba381c8421ea466a5d3c1d45b03fa5bd24b72a58d04868dde7cfeaada
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: ea7ddd3d1f511908f19ee6760ad701ce174ef477fe6c64cd15acd4d35fa37a11
 ---
 
 ---
@@ -258,7 +258,7 @@ Objek `usage` pada respons menyertakan field `inference_geo` yang menunjukkan lo
 
 ### Ketersediaan model
 
-Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Permintaan dengan `inference_geo` pada Claude Opus 4.5, Claude Sonnet 4.5 (tidak digunakan lagi), Claude Haiku 4.5, atau model yang lebih lama akan mengembalikan error 400.
+Parameter `inference_geo` didukung pada model Claude 4.6 dan yang lebih baru. Permintaan dengan `inference_geo` pada model yang lebih lama akan mengembalikan error 400.
 
 <Note>
   Parameter `inference_geo` tersedia di Claude API (first-party), [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), dan [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/id/build-with-claude/claude-models-on-google-cloud/anthropic-managed). Di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock, region inferensi ditentukan oleh URL endpoint atau profil inferensi, sehingga `inference_geo` tidak berlaku. Di [Claude di Microsoft Foundry](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry), `inference_geo` juga tidak berlaku: deployment yang di-host di Azure dapat menggunakan jenis deployment US Data Zone Standard sebagai gantinya, yang menjaga inferensi tetap berada di Amerika Serikat. Parameter `inference_geo` juga tidak tersedia melalui [endpoint kompatibilitas OpenAI SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/libraries/openai-sdk).

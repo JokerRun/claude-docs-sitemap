@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-platform-on-aws
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 14bdab77fceab103d00abc63b478e724334faff890ec5727468df7cbc2a177fd
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 03e39c8658137b833c7e6daf1c1a2b80857fdcf1464133bfef607b8d9513fa40
 ---
 
 ---
@@ -68,7 +68,7 @@ Terakhir, jawab pertanyaan-pertanyaan berikut:
 Untuk menyiapkan Enterprise Frontier Safeguards, Anda memerlukan hal-hal berikut:
 
 * Peran Admin di Claude Console. Untuk mendapatkan peran tersebut, buka halaman layanan **Claude Platform on AWS** di AWS Console, pilih **Admin**, dan klik **Sign in**. Masuklah dengan cara ini sebelum Anda mengikuti tautan di halaman ini ke Claude Console. Setiap tautan terbuka di organisasi Anthropic tempat browser Anda masuk.
-* [Akses ke EFS](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-platform-on-aws#what-getting-access-changes) untuk organisasi Anda, dari tim akun Anthropic Anda.
+* [Akses ke EFS](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-platform-on-aws#what-getting-access-changes) untuk organisasi Anda.
 * [Izin IAM](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-platform-on-aws#iam-permissions) untuk IAM principal Anda.
 
 Gunakan workspace baru untuk EFS, meskipun Anda sudah memiliki workspace. Anthropic merekomendasikan agar Anda menetapkan **AWS region** workspace tersebut ke `us-east-2` untuk menghindari biaya transfer jaringan, tetapi ini tidak wajib. Anda tidak dapat mengubah region nanti.
@@ -116,9 +116,9 @@ Menerima ketentuan mengubah lebih dari sekadar workspace yang Anda rencanakan un
 
 ### Terima ketentuan
 
-Untuk menerima ketentuan, buka halaman [Programs](https://platform.claude.com/settings/programs) di Claude Console dan klik **Accept terms** pada kartu **Enterprise Frontier Safeguards**. Jika Anda tidak melihat **Accept terms** di sana, masuk ke [Verification Portal](https://portal.anthropic.com), pilih organisasi Anda, lalu klik **Accept terms**.
+Untuk menerima ketentuan, buka halaman [Programs](https://platform.claude.com/settings/programs) di Claude Console dan klik **Accept terms** pada kartu **Enterprise Frontier Safeguards**. Jika Anda tidak melihat **Accept terms** di sana, klik **Open Verification Portal** di halaman yang sama, lalu klik **Accept terms** di Verification Portal.
 
-Mintalah akses kepada tim akun Anthropic Anda jika Anda tidak dapat masuk ke Verification Portal atau juga tidak melihat **Accept terms** di sana. Jika Anda tidak memiliki tim akun, lengkapi [formulir permintaan Enterprise Frontier Safeguards](https://claude.com/form/enterprise-frontier-safeguards).
+Mintalah akses kepada tim akun Anthropic Anda jika Anda tidak dapat membuka Verification Portal atau juga tidak melihat **Accept terms** di sana. Jika Anda tidak memiliki tim akun, lengkapi [formulir permintaan Enterprise Frontier Safeguards](https://claude.com/form/enterprise-frontier-safeguards).
 
 ## 1. Tambahkan sumber daya cloud
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/bundles/targets
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 361ea09d742e28e5e9cb71b6cfc02866dfe47809278dcb990f4a09c9242fdb54
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: bc4f2e155b1b97a32416cbe40622e27de6a4c08c55fc03455e04622d4cfb234b
 ---
 
 ---
@@ -554,7 +554,7 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/bundles/$BUNDLE_ID/ta
     -H 'anthropic-beta: experimental-claude-tag-2026-10-21' \
     -H "Authorization: Bearer $ANTHROPIC_API_KEY" \
     -d '{
-          "slack_channel_id": "xxxxxxxx",
+          "slack_channel_id": "slch_01SvpyRQK3nN6eH9uhRA7n1q",
           "type": "slack_channel"
         }'
 ```

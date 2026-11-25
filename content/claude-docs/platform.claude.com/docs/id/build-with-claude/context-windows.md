@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-windows
-fetched_at: 2026-11-13T02:11:44.788783Z
-sha256: cfcf7f8966ff7699260ad9151d2995182d8944c02d3efa599976bb2e49f1d6a2
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 5b19e322c421e586fa66d526d532dd345d0ddd307d303946d78db0a1aa5fa152
 ---
 
 ---
@@ -42,13 +42,23 @@ Semua yang ada dalam permintaan diperhitungkan terhadap jendela konteks: prompt 
 
 ## Ukuran jendela konteks berdasarkan model
 
-Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 5.5, Claude Sonnet 5, Claude Sonnet 4.6, Claude Haiku 5.5, dan [Claude Mythos Preview](https://anthropic.com/glasswing) memiliki jendela konteks 1M token. Satu permintaan ke salah satu model tersebut dapat menghasilkan hingga 128k token output (`max_tokens`). Model Claude lainnya, termasuk Claude Sonnet 4.5 (deprecated), memiliki jendela konteks 200k token.
+Model-model berikut memiliki jendela konteks 1M token:
+
+* Claude Fable 5.2, Claude Fable 5.1, dan Claude Fable 5
+* Claude Mythos 5.2, Claude Mythos 5.1, Claude Mythos 5, dan [Claude Mythos Preview](https://anthropic.com/glasswing)
+* Claude Opus 5.5, Claude Opus 5, Claude Opus 4.8, Claude Opus 4.7, dan Claude Opus 4.6
+* Claude Sonnet 5.5, Claude Sonnet 5, dan Claude Sonnet 4.6
+* Claude Haiku 5.5
+
+Model Claude lainnya memiliki jendela konteks 200k token.
+
+Satu permintaan Messages API ke model dengan jendela konteks 1M token dapat menghasilkan hingga 128k token output (`max_tokens`).
 
 Untuk setiap model dengan jendela konteks 1M token, 1M adalah nilai default: Anda tidak memerlukan header beta, dan permintaan konteks panjang ditagih dengan [harga standar](https://platform.claude.com/docs/id/about-claude/pricing#long-context-pricing), kecuali pada Claude Haiku 5.5, di mana prompt lebih dari 100.000 token dikenakan biaya lebih tinggi.
 
 Satu permintaan dapat menyertakan hingga 600 gambar atau halaman PDF (100 untuk model dengan jendela konteks 200k token). Jika Anda mengirim banyak gambar atau dokumen besar, Anda mungkin mencapai [batas ukuran permintaan](https://platform.claude.com/docs/id/api/overview#request-size-limits) sebelum batas token.
 
-Lihat tabel [Semua model](https://platform.claude.com/docs/id/models/overview#all-models) untuk daftar ukuran jendela konteks berdasarkan model.
+Lihat tabel [Semua model](https://platform.claude.com/docs/id/models/overview#all-models) untuk ukuran jendela konteks dan batas output berdasarkan model.
 
 ## Jendela konteks dengan thinking
 
@@ -115,16 +125,20 @@ Diagram berikut mengilustrasikan bagaimana token dikelola saat Anda menggabungka
   * API menggunakan signature kriptografis untuk memverifikasi keaslian blok thinking.
 
 <Note>
-  Sebagian besar model Claude saat ini mendukung [pemikiran berselang-seling](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking), yang memungkinkan Claude berpikir di antara pemanggilan alat, termasuk setelah menerima hasil alat. Fitur ini otomatis pada model dengan pemikiran adaptif; Claude Opus 4.5, Claude Sonnet 4.5 (deprecated), dan model Claude 4 yang lebih lama memerlukan header beta `interleaved-thinking-2025-05-14`, dan Claude Haiku 4.5 tidak mendukungnya.
-
-  Untuk informasi lebih lanjut tentang menggunakan alat dengan thinking, lihat [Thinking dengan penggunaan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use).
+  [Pemikiran berselang](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking) memungkinkan Claude berpikir di antara pemanggilan alat, termasuk setelah menerima hasil alat. Fitur ini otomatis ketika permintaan menggunakan pemikiran adaptif. Dengan pemikiran diperpanjang manual, dukungannya bergantung pada model: lihat [Pemikiran berselang-seling dalam mode manual](https://platform.claude.com/docs/id/build-with-claude/extended-thinking#interleaved-thinking).
 </Note>
+
+Untuk informasi lebih lanjut tentang menggunakan alat dengan thinking, lihat [Thinking dengan penggunaan alat](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-with-tool-use).
 
 Untuk mengurangi konteks yang dikonsumsi oleh definisi alat itu sendiri, lihat [Mengelola konteks alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/manage-tool-context), atau tunda definisi alat dengan [alat pencarian alat](https://platform.claude.com/docs/id/agents-and-tools/tool-use/tool-search-tool).
 
 ## Kesadaran konteks
 
-Claude Sonnet 5, Claude Sonnet 4.6, Claude Sonnet 4.5 (deprecated), dan Claude Haiku 4.5 memiliki **“context awareness” (kesadaran konteks):** model-model ini melacak sisa jendela konteks mereka (“anggaran token” mereka) sepanjang percakapan. Hal ini memungkinkan model mengelola tugas yang berjalan lama berdasarkan ruang yang tersisa alih-alih menebak berapa banyak token yang tersisa. Kesadaran konteks bersifat otomatis: tidak ada yang perlu Anda aktifkan, dan Anda tidak pernah mengirimkan sendiri tag yang ditampilkan di bagian ini. API yang menyisipkannya.
+Hanya Claude Sonnet 4.5 dan Claude Haiku 4.5 yang memiliki **“context awareness” (kesadaran konteks):** model-model ini melacak sisa jendela konteks mereka sepanjang percakapan. Hal ini memungkinkan model mengelola tugas yang berjalan lama berdasarkan ruang yang tersisa alih-alih menebak berapa banyak token yang tersisa. Kesadaran konteks bersifat otomatis: tidak ada yang perlu Anda aktifkan, dan Anda tidak pernah mengirimkan sendiri tag yang ditampilkan di bagian ini. API yang menyisipkannya.
+
+Tidak ada model lain yang menerima tag ini. Untuk memberi model anggaran yang eksplisit, gunakan [anggaran tugas](https://platform.claude.com/docs/id/build-with-claude/task-budgets) pada [model yang mendukungnya](https://platform.claude.com/docs/id/build-with-claude/task-budgets#feature-support). Anggaran tugas tersedia dalam beta.
+
+Claude Sonnet 4.5 dihentikan (deprecated) di [platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview). Untuk tanggal pensiun dan pengganti yang direkomendasikan, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations#2026-09-30-claude-sonnet-4-5-model). [Platform yang dioperasikan mitra](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) menetapkan jadwal pensiun mereka sendiri.
 
 ### Cara kerjanya
 
@@ -134,7 +148,7 @@ Dalam prompt sistem setiap permintaan, API memberi Claude total jendela konteksn
 <budget:token_budget>200000</budget:token_budget>
 ```
 
-Anggaran tersebut sesuai dengan jendela konteks yang tersedia untuk permintaan Anda: 1M token untuk Claude Sonnet 5 dan Claude Sonnet 4.6, serta 200k token untuk Claude Sonnet 4.5 (deprecated) dan Claude Haiku 4.5. Contoh-contoh di bagian ini menunjukkan model dengan jendela konteks 200k token.
+Anggaran token ini sesuai dengan jendela konteks yang tersedia untuk permintaan Anda: 200k token pada kedua model.
 
 Setelah setiap pemanggilan alat, API memberi Claude pembaruan tentang kapasitas yang tersisa:
 
@@ -143,8 +157,6 @@ Setelah setiap pemanggilan alat, API memberi Claude pembaruan tentang kapasitas 
 ```
 
 Token gambar termasuk dalam anggaran ini.
-
-Claude Opus 4.7 dan model Opus yang lebih baru, Claude Sonnet 5.5, Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, dan Claude Haiku 5.5 tidak menerima tag yang disisipkan ini. Pada model-model ini, Anda dapat memberikan anggaran eksplisit kepada model dengan [“task budgets” (anggaran tugas)](https://platform.claude.com/docs/id/build-with-claude/task-budgets), yang masih dalam tahap beta.
 
 <Tip>
   Untuk agen yang mencakup beberapa sesi, rancang artefak state Anda agar pemulihan konteks berlangsung cepat saat sesi baru dimulai. [Pola multisesi alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#multisession-software-development-pattern) menjelaskan pendekatan konkret langkah demi langkah. Lihat juga [Effective harnesses for long-running agents](https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents).

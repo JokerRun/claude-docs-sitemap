@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/context-editing
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 4eae9378c4010d7e9d91765ef81294930f87798253e85d5e1d9aa79ccdb2334a
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: dbf510e583f5c927c397d4e466339c5f76a63f11c3d5eb4fc8e8f08a0fec1754
 ---
 
 ---
@@ -80,18 +80,16 @@ Saat diaktifkan, API secara otomatis membersihkan hasil alat terlama dalam uruta
 
 Strategi `clear_thinking_20251015` mengelola blok `thinking` dari giliran asisten sebelumnya. Strategi ini memberi Anda kontrol atas pelestarian pemikiran: Anda dapat memilih untuk menyimpan lebih banyak blok pemikiran guna mempertahankan kesinambungan penalaran, atau membersihkannya secara lebih agresif untuk menghemat ruang konteks.
 
-<Tip>
-  **Perilaku default:** Ketika permintaan tidak menyertakan strategi `clear_thinking_20251015`, default bervariasi menurut kelas model.
+Ketika permintaan tidak menyertakan strategi `clear_thinking_20251015`, default bervariasi menurut kelas model.
 
-  | Kelas model | Simpan semua pemikiran sebelumnya | Simpan pemikiran hanya untuk giliran yang sedang berlangsung |
-  | ----- | ----- | ----- |
-  | Opus | Claude Opus 4.5 dan yang lebih baru | Claude Opus 4.1 dan yang lebih lama |
-  | Sonnet | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 (deprecated) dan yang lebih lama |
-  | Haiku | Claude Haiku 5.5 dan yang lebih baru | Claude Haiku 4.5 dan yang lebih lama |
-  | Fable dan Mythos | Semua model | (tidak ada) |
+| Kelas model | Simpan semua pemikiran sebelumnya | Simpan pemikiran hanya untuk giliran yang sedang berlangsung |
+| ----- | ----- | ----- |
+| Opus | Claude Opus 4.5 dan yang lebih baru | Claude Opus 4.1 dan yang lebih lama |
+| Sonnet | Claude Sonnet 4.6 dan yang lebih baru | Claude Sonnet 4.5 dan yang lebih lama |
+| Haiku | Claude Haiku 5.5 dan yang lebih baru | Claude Haiku 4.5 dan yang lebih lama |
+| Fable dan Mythos | Semua model | (tidak ada) |
 
-  Gunakan strategi ini untuk menimpa default. Jika kode Anda berjalan di beberapa kelas model, sertakan strategi ini dan atur `keep` secara eksplisit daripada mengandalkan default per model.
-</Tip>
+Gunakan strategi ini untuk menimpa default. Jika kode Anda berjalan di beberapa kelas model, sertakan strategi ini dan atur `keep` secara eksplisit daripada mengandalkan default per model.
 
 Satu giliran percakapan asisten dapat mencakup beberapa blok konten (misalnya, saat menggunakan alat) dan beberapa blok pemikiran (misalnya, dengan [pemikiran yang disisipkan](https://platform.claude.com/docs/id/build-with-claude/thinking#interleaved-thinking)).
 

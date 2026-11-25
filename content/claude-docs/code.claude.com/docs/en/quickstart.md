@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/quickstart
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: a03b7b51866f1832cc982c804c08b31eb4351e28312d25b9a50a950659ea7c71
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: db50a4785ade1e8037bac1118a51d17289867142a1e7e36eeff2ce876ad83d8d
 ---
 
 > ## Documentation Index
@@ -28,7 +28,7 @@ Make sure you have:
 > These cases are covered on other pages:
 >
 > * **Never used a terminal before**: start with the [terminal guide](https://code.claude.com/docs/en/terminal-guide)
-> * **Want Claude Code somewhere other than the terminal**: Claude Code is also available on the [web](https://claude.ai/code), as a [desktop app](https://code.claude.com/docs/en/desktop.md), in [VS Code](https://code.claude.com/docs/en/vs-code.md) and [JetBrains IDEs](https://code.claude.com/docs/en/jetbrains.md), in [Slack](https://code.claude.com/docs/en/slack.md), and in CI/CD with [GitHub Actions](https://code.claude.com/docs/en/github-actions.md) and [GitLab](https://code.claude.com/docs/en/gitlab-ci-cd.md). See [all interfaces](https://code.claude.com/docs/en/overview.md#use-claude-code-everywhere).
+> * **Want Claude Code somewhere other than the terminal**: Claude Code is also available on the [web](https://claude.ai/code), as a [desktop app](https://code.claude.com/docs/en/desktop.md), in [VS Code](https://code.claude.com/docs/en/vs-code.md) and [JetBrains IDEs](https://code.claude.com/docs/en/jetbrains.md), and in CI/CD with [GitHub Actions](https://code.claude.com/docs/en/github-actions.md) and [GitLab](https://code.claude.com/docs/en/gitlab-ci-cd.md). See [all interfaces](https://code.claude.com/docs/en/overview.md#use-claude-code-everywhere).
 
 ## Step 1: Install Claude Code
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 0def9309256573f81bb39b9e7541fa0d1e393d331dffc21804e1405655b8447c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: cd615d2651dcd9abc4c50d37b5937eb2e2df157f330c33e318ba78340c6818b9
 ---
 
 ---
@@ -83,8 +83,8 @@ Sebelum memulai, pastikan Anda memiliki:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.13.0")
-        implementation("com.anthropic:anthropic-java-foundry:3.13.0")
+        implementation("com.anthropic:anthropic-java:3.14.0")
+        implementation("com.anthropic:anthropic-java-foundry:3.14.0")
         ```
       </Tab>
 
@@ -93,12 +93,12 @@ Sebelum memulai, pastikan Anda memiliki:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java-foundry</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         ```
       </Tab>
@@ -625,7 +625,11 @@ Claude di Microsoft Foundry mendukung sebagian besar fitur Claude. [Ikhtisar fit
 
 ### Jendela konteks
 
-Semua [model yang tersedia](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) memiliki [jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) di Microsoft Foundry kecuali Claude Opus 4.5, Claude Sonnet 4.5 (deprecated), dan Claude Haiku 4.5. Ketiga model ini memiliki jendela konteks 200k token.
+Di Microsoft Foundry, semua [model yang tersedia](https://platform.claude.com/docs/id/build-with-claude/claude-in-microsoft-foundry#api-model-ids-and-deployments) memiliki [jendela konteks 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) kecuali model-model dalam daftar berikut. Model-model ini memiliki jendela konteks 200k token:
+
+* Claude Opus 4.5 (deprecated)
+* Claude Sonnet 4.5 (deprecated)
+* Claude Haiku 4.5
 
 ### Fitur Claude yang tidak didukung untuk Claude di Microsoft Foundry
 

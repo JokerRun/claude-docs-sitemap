@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/approvals
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 8db4ae0bde33372466c61d42cd801f64034b987dba298d800a7b4ed77e68e4e9
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 23b412702e3c92ac5eb9aa94a8be59bb16006a8d6686500f63ca3c860a9c489a
 ---
 
 > ## Documentation Index
@@ -33,7 +33,12 @@ Use Approvals to set how many people have to approve a change, with more on risk
 
 Approvals adds a check named **Claude Approvals** to the pull requests that it evaluates. The check's title says what's still needed, such as **Waiting on human review from any person (1/2)**. A title that starts with **(observe mode)** means that the policy wasn't enforced when the check ran. In [observe mode](#set-up-claude-approvals), the check shows what your policy would decide.
 
-Claude also posts a comment with the reasons. Where the policy allows it, Claude can post an approving review. For the common titles and what to do about each, see [Find your approval status and what to do next](https://code.claude.com/docs/en/approvals-pull-requests.md#find-your-approval-status-and-what-to-do-next). If a pull request has no check, see [No Claude Approvals check appeared](https://code.claude.com/docs/en/approvals-troubleshooting.md#no-claude-approvals-check-appeared).
+Claude also posts a comment with the reasons. Where the policy allows it, Claude can post an approving review:
+
+* **In github.com repositories where the Claude GitHub App reports the check**: that review comes from `claude[bot]`
+* **On a pull request that `claude[bot]` opened**: that review comes from `claude-approvals[bot]`, once you add the [Claude Approvals GitHub App](https://code.claude.com/docs/en/approvals-pull-requests.md#pull-requests-that-claude-opens)
+
+For the common titles and what to do about each, see [Find your approval status and what to do next](https://code.claude.com/docs/en/approvals-pull-requests.md#find-your-approval-status-and-what-to-do-next). If a pull request has no check, see [No Claude Approvals check appeared](https://code.claude.com/docs/en/approvals-troubleshooting.md#no-claude-approvals-check-appeared).
 
 ## Example policy
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/secure-deployment
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 6aa28a05fa3516c16b3659e946f63af81d7b17397bff2321205672abd5fc15f5
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 3622311bb9901a3cf260e241d729a927856dab7783167fecc209bcff14d159ec
 ---
 
 ---
@@ -62,6 +62,8 @@ This guide lists the settings that limit what an agent on Claude Managed Agents 
 | [Monitor sessions and review retention](https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring#monitor-sessions-and-review-retention) | Webhooks and session deletion | An alert when a session goes idle, reaches its budget, or terminates, and a check of why it went idle. Store the events you want to keep in your own logs, and delete sessions you no longer need |
 
 [Security risks and sandbox boundaries](https://platform.claude.com/docs/en/managed-agents/secure-deployment-risks) explains why these settings matter and what they do not protect against. To review and monitor sessions, see [Review and monitor agent sessions](https://platform.claude.com/docs/en/managed-agents/secure-deployment-monitoring).
+
+If you use Claude Models on Google Cloud (Anthropic managed), read [Access through Google Cloud IAM](https://platform.claude.com/docs/en/managed-agents/secure-deployment#access-through-google-cloud-iam) before you rely on workspaces to limit access.
 
 The [Claude API skill](https://platform.claude.com/docs/en/agents-and-tools/agent-skills/claude-api-skill) that ships with Claude Code has a `managed-agents-secure` command that checks an agent, its environments, and its vaults against this guide:
 
@@ -895,6 +897,13 @@ Keep these points in mind:
 * **Platforms:** IP allowlisting is not available on Claude Models on Google Cloud (Anthropic managed) or Claude Platform on AWS.
 
 See [IP allowlisting limitations](https://platform.claude.com/docs/en/manage-claude/ip-allowlist#limitations).
+
+## Access through Google Cloud IAM
+
+On [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#claude-managed-agents), Google Cloud IAM controls access. Keep these two points in mind:
+
+* **Separating workloads:** An IAM role applies to every workspace in the Google Cloud project. Keep vaults and workloads with different trust levels in separate Google Cloud projects. See [Access on cloud platforms](https://platform.claude.com/docs/en/manage-claude/workspaces#access-on-cloud-platforms).
+* **Stopping an agent:** Revoking Google Cloud access does not stop a running session or a scheduled deployment. To stop them, follow the steps in [Set limits and a way to stop](https://platform.claude.com/docs/en/managed-agents/secure-deployment#set-limits-and-a-way-to-stop).
 
 ## Next steps
 

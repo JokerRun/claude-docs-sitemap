@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-apps-gateway-config
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 76a61de0bc9df2e722b63cd2af7f05a9c5b8980ac858b292f0d3ab1fdaeed2e5
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: cf08fecba9a79c23cff3079e4644f5c7f00b30090b44613eb6b9e1b8d9956a66
 ---
 
 > ## Documentation Index
@@ -570,10 +570,10 @@ The table below lists the fields specific to a `mantle` upstream.
 | `region` | Yes | AWS region. The gateway derives the endpoint from it as `https://bedrock-mantle.<region>.api.aws/anthropic`. |
 | `models` | Yes | The models your AWS account has been granted on Mantle, named as clients send them, such as `claude-haiku-4-5`. Only these go to this upstream, and every other model skips to the next one. |
 | `auth` | No | Takes the same keys as the [Amazon Bedrock](#amazon-bedrock) upstream's `auth` block, under the same rules. |
-| `assume_role` | No | The role that this upstream's requests go through, with the same keys as [on a `bedrock` upstream](#bedrock-in-another-aws-account), including `session_name` for [per-developer attribution](#per-developer-aws-cost-attribution). Give the role Mantle's IAM actions. Requires a gateway running Claude Code v2.1.318 or later. An earlier gateway exits at startup with `Unrecognized key(s) in object: 'assume_role'`. |
+| `assume_role` | No | The role that this upstream's requests go through, with the same keys as [on a `bedrock` upstream](#bedrock-in-another-aws-account), including `session_name` for [per-developer attribution](#per-developer-aws-cost-attribution). Requires a gateway running Claude Code v2.1.318 or later. An earlier gateway exits at startup with `Unrecognized key(s) in object: 'assume_role'`. |
 | `base_url` | No | Override the derived endpoint. Keep the `/anthropic` path at the end. |
 
-Grant the upstream's AWS identity Mantle's own IAM actions for inference and token counting, which [Use the Mantle endpoint](https://code.claude.com/docs/en/amazon-bedrock.md#use-the-mantle-endpoint) lists.
+Grant [Mantle's IAM actions](https://code.claude.com/docs/en/amazon-bedrock.md#use-the-mantle-endpoint) to the `assume_role` role if you set one, otherwise to the upstream's AWS identity.
 
 For a Mantle model ID that the gateway doesn't know, add an entry to the top-level [`models:`](#models) block whose `upstream_model` maps this upstream's name to that ID. Then put that entry's `id` in this upstream's `models` field too.
 

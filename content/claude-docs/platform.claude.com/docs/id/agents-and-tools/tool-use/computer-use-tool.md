@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/agents-and-tools/tool-use/computer-use-tool
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b0781665276bcedb29d12720182f75b260cee908f178908c30fd941d5f870379
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 624bf11d12355c9caf96e9601e340f5b327b53a186cdbc80047e76ac0070ae7a
 ---
 
 ---
@@ -2194,7 +2194,11 @@ Dua versi sebelumnya dari alat penggunaan komputer tersedia dalam beta. Masing-m
 | Versi alat | Header beta | Gunakan dengan | Parameter |
 | ----- | ----- | ----- | ----- |
 | `computer_20251124` | `computer-use-2025-11-24` | Claude Fable 5.1, Claude Mythos 5.1, Claude Fable 5, Claude Mythos 5, Claude Opus 5, Claude Sonnet 5, Claude Opus 4.8, Claude Opus 4.7, Claude Opus 4.6, Claude Sonnet 4.6, dan Claude Opus 4.5 | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
-| `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Haiku 4.5, Claude Opus 4.1 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Claude Sonnet 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed) dan Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), dan Claude Opus 4 ([dihentikan, kecuali di Claude Models on Google Cloud (Google managed)](https://platform.claude.com/docs/id/about-claude/model-deprecations)) | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
+| `computer_20250124` | `computer-use-2025-01-24` | Claude Sonnet 4.5, Claude Haiku 4.5, Claude Opus 4.1, Claude Sonnet 4, dan Claude Opus 4 | [Referensi API](https://platform.claude.com/docs/id/api/beta/messages/create) |
+
+Claude Opus 4.1, Claude Sonnet 4, dan Claude Opus 4 telah dipensiunkan di [platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview).
+
+Claude Opus 4.5 dihentikan (deprecated) di [platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview). Claude Sonnet 4.5 dihentikan (deprecated) di platform yang sama. Untuk tanggal pensiun dan pengganti yang direkomendasikan, lihat [Riwayat penghentian](https://platform.claude.com/docs/id/about-claude/model-deprecations#deprecation-history) di halaman Penghentian model. [Platform yang dioperasikan mitra](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) menetapkan jadwal pensiun mereka sendiri.
 
 Di Amazon Bedrock, Claude Fable 5.2, Claude Mythos 5.2, Claude Opus 5.5, Claude Sonnet 5.5, dan Claude Haiku 5.5 juga menerima alat `computer_20251124` dengan header beta `computer-use-2025-11-24`. Dengan InvokeModel API dari Amazon Bedrock, kirimkan `computer-use-2025-11-24` dalam array `anthropic_beta` pada body permintaan, bukan dalam header. Untuk API tersebut, lihat [Claude di Amazon Bedrock (`bedrock-runtime`)](https://platform.claude.com/docs/id/build-with-claude/claude-on-amazon-bedrock-legacy).
 

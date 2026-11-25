@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/safety-cases-api
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 8b7ff63f3e12fcd6d237a2633d165817768eb7f3d960e470968febe206c4d7c6
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 9e8a22a48bb546c6fa06665c35826357b36c6cdaf818175532fbde95791a30f9
 ---
 
 ---
@@ -220,7 +220,7 @@ Respons memuat pesan tersebut serta pengirim yang dicatat oleh Anthropic:
 }
 ```
 
-`content` memuat permintaan dan respons yang disimpan. Ini bukan salinan persis: Anthropic memotong URL menjadi host-nya, menghapus kredensial dan blok thinking, dan mengubah ukuran gambar serta dokumen.
+`content` memuat permintaan dan respons yang disimpan. Ini bukan salinan persis: Anthropic memotong beberapa URL menjadi host-nya, menyamarkan token server MCP, menghapus blok thinking, dan dapat mengganti gambar atau dokumen dengan gambar yang diubah ukurannya atau placeholder.
 
 Anthropic mencatat satu pengirim untuk setiap pesan:
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/effort
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: c682de5c8d7301d778743a3bf3612befa902e8442c6e094d3db82d69e56ccb0d
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 1fa6fd96e239818b19574d84b92151b397668f2b834ca316fafaf7f9f921d44d
 ---
 
 ---
@@ -437,6 +437,8 @@ Parameter `thinking` mengontrol apakah Claude berpikir dalam [blok thinking](htt
 Pada tingkat effort yang lebih tinggi, Claude lebih mudah berpikir dan dengan durasi yang lebih panjang. Dalam loop penggunaan alat, permintaan lanjutan yang hanya memproses hasil alat tetap dapat melewatkan pemikiran pada tingkat apa pun. Pada tingkat yang lebih rendah, Claude dapat melewatkan pemikiran sepenuhnya untuk masalah yang lebih sederhana. Lihat [Pemikiran dan effort](https://platform.claude.com/docs/id/build-with-claude/thinking#thinking-and-effort) untuk panduan lengkap tentang bagaimana kedua kontrol ini bekerja bersama.
 
 Pada Claude Opus 4.5, satu-satunya model khusus pemikiran diperpanjang yang mendukung effort, effort bekerja bersama [`budget_tokens`](https://platform.claude.com/docs/id/build-with-claude/extended-thinking): atur tingkat effort untuk tugas Anda, lalu atur anggaran token pemikiran berdasarkan seberapa dalam penalaran yang dibutuhkan tugas tersebut.
+
+Claude Opus 4.5 sudah dihentikan (deprecated) di [platform yang dioperasikan Anthropic](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview). Untuk tanggal pensiun dan model pengganti yang direkomendasikan, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations#2026-11-23-claude-opus-4-5-model). [Platform yang dioperasikan mitra](https://platform.claude.com/docs/id/about-claude/model-deprecations#overview) menetapkan jadwal pensiun mereka sendiri.
 
 Untuk ketersediaan pemikiran per model, lihat [tabel konfigurasi per model](https://platform.claude.com/docs/id/build-with-claude/thinking-troubleshooting#supported-models). Effort berfungsi dengan atau tanpa pemikiran. Lihat [Cara kerja effort](https://platform.claude.com/docs/id/build-with-claude/effort#how-effort-works).
 

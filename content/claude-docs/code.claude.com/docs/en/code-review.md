@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/code-review
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: f10d8b83116869878b8a430b0c2695a7454308b2742a40cc9a33937527285bb6
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 61855844dc0bb13f197f1c3c6ee14abfbf4d1514de19e35da986fa41920b65f1
 ---
 
 > ## Documentation Index
@@ -27,7 +27,7 @@ To turn on Code Review, an Owner of your Claude organization follows [Set up Cod
 
 ## Availability
 
-Check that your organization qualifies before you set up Code Review:
+Check these requirements before setting up Code Review:
 
 * **Plans**: [Team and Enterprise](https://code.claude.com/docs/en/feature-availability.md)
 * **Code hosts**: repositories hosted on GitHub, including [GitHub Enterprise Server](https://code.claude.com/docs/en/github-enterprise-server.md) and GitHub Enterprise Cloud with data residency. For data residency, have an Owner follow the [GitHub Enterprise Server admin setup](https://code.claude.com/docs/en/github-enterprise-server.md#admin-setup) and enter your enterprise's `ghe.com` hostname.

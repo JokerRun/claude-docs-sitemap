@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/cmek-google-cloud-kms
-fetched_at: 2026-11-06T02:14:07.030986Z
-sha256: 7005a0e84f622c2381b150d21155bf0d772d8cb5fd7774c4ca24adc19cf46571
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: da753b8f58e7cd52da89597f92cf7b924d88c0c5ee4e8d72352d4f418d591545
 ---
 
 ---
@@ -229,7 +229,7 @@ Untuk membuat skrip bagian ini di Claude Platform, [gunakan Admin API](https://p
 
         Anda akan melihat **Pengaturan ruang kerja diperbarui.** Setelah kunci [mulai berlaku](https://platform.claude.com/docs/id/manage-claude/cmek-how-it-works#when-your-key-takes-effect), log audit penyedia cloud Anda menampilkan panggilan Anthropic ke kunci tersebut.
 
-        Dalam [organisasi ZDR](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), setelah Anda memilih workspace, pilih **Retensi data standar** agar **Kunci enkripsi** muncul. Setelah Anda mengklik **Simpan**, klik **Terima** pada ketentuan retensi data.
+        Dalam organisasi dengan [legacy zero data retention (Legacy ZDR)](https://platform.claude.com/docs/id/manage-claude/cmek-data-retention#zdr-organizations), setelah Anda memilih workspace, pilih **Retensi data standar** agar **Kunci enkripsi** muncul. Setelah Anda mengklik **Simpan**, klik **Terima** pada ketentuan retensi data.
       </Step>
     </Steps>
   </Tab>

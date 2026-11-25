@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-managed-keys
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 63edaf7605273efcddbb626a2a3bcefa098628694fa4e8e104ffd1a002905573
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: ef5d44e697bf183843c5e10696faeef31ff786308df07c353aa8fd4598d84f57
 ---
 
 ---
@@ -76,7 +76,7 @@ Jangan gunakan kunci yang sama untuk keduanya. Kunci mana yang mengenkripsi isi 
 
     Untuk menyiapkan kunci di Claude Platform on AWS, ikuti langkah-langkah di [Menyiapkan CMEK di Claude Platform on AWS](https://platform.claude.com/docs/id/manage-claude/cmek-claude-platform-on-aws).
 
-    Untuk menyiapkan kunci di Claude Models on Google Cloud (Anthropic managed), ikuti langkah-langkah untuk kunci Anda sendiri di [Menambahkan sumber daya cloud](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-models-on-google-cloud-anthropic-managed#add-cloud-resources). Anda memerlukan `roles/claude.admin`, bukan Admin organisasi. Anda tidak memerlukan bucket untuk menggunakan kunci.
+    Untuk menyiapkan kunci di Claude Models on Google Cloud (Anthropic managed), [buka Claude Console](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-models-on-google-cloud-anthropic-managed#before-you-begin) dari konsol Google Cloud. Kemudian, ikuti langkah-langkah untuk kunci Anda sendiri di [Menambahkan sumber daya cloud](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-claude-models-on-google-cloud-anthropic-managed#add-cloud-resources). Anda memerlukan `roles/claude.admin`, bukan Admin organisasi. Anda tidak memerlukan bucket untuk menggunakan kunci.
   </Step>
 </Steps>
 

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/beta/organization/claude_tag/slack_channels/retrieve
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: fd87802db8165d40e2c19305f9386b86aa6c011c64094c60ab2f7b963179f1df
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 132abf971653383d52e44bd8badc9fedb8c1912ec8e498fe601bd0d7f06a5785
 ---
 
 ---
@@ -444,8 +444,8 @@ curl https://api.anthropic.com/v1/organizations/claude_tag/slack_channels/$ID \
     }
   },
   "slack": {
-    "channel_id": "xx",
-    "workspace_id": "xx"
+    "channel_id": "C0456EFGH",
+    "workspace_id": "T0123ABCD"
   },
   "sources": {
     "enabled": {

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/agent-setup
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 39d340a9a71b1f53914ee3ac55f38509d044e5c7a5bdc4e7f12be5c6fa4c1b43
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 5919c4bab49522d4f15ac01f7f61d3ad2dcc6a245948ca7188e0675290d456f0
 ---
 
 ---
@@ -53,7 +53,7 @@ Create the agent once as a reusable resource and reference it by ID each time yo
 | Field | Description |
 | ----- | ----- |
 | `name` (csharp, go: `Name`) | Required. A human-readable name for the agent. |
-| `model` (csharp, go: `Model`) | Required. The Claude [model](https://platform.claude.com/docs/en/models/overview) that powers the agent. Accepts a model ID string or an object, for example `{"id": "claude-opus-5-5"}`. Claude 4.5 and later models are supported. The object form also accepts `speed` (csharp, go: `Speed`), `effort` (csharp, go: `Effort`), and `inference_geo` (java, php: `inferenceGeo`; csharp, go: `InferenceGeo`) fields; see the tips under [Create an agent](https://platform.claude.com/docs/en/managed-agents/agent-setup#create-an-agent), [Effort levels](https://platform.claude.com/docs/en/build-with-claude/effort#effort-levels), and [Pin the inference geo](https://platform.claude.com/docs/en/managed-agents/agent-setup#pin-the-inference-geo). |
+| `model` (csharp, go: `Model`) | Required. The Claude model that powers the agent (see [Models overview](https://platform.claude.com/docs/en/models/overview)). Accepts a model ID string (for example, `"claude-opus-5-5"`) or an object (for example, `{"id": "claude-opus-5-5", "speed": "standard", "effort": "high", "inference_geo": "global"}`). |
 | `system` (csharp, go: `System`; ruby: `system_`) | A [system prompt](https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#give-claude-a-role) that defines the agent’s behavior and persona. The system prompt is distinct from [user messages](https://platform.claude.com/docs/en/managed-agents/reference#event-types), which should describe the work to be done. |
 | `tools` (csharp, go: `Tools`) | The tools available to the agent. Combines [pre-built agent tools](https://platform.claude.com/docs/en/managed-agents/tools), [MCP tools](https://platform.claude.com/docs/en/managed-agents/mcp-connector), and [custom tools](https://platform.claude.com/docs/en/managed-agents/tools#custom-tools). |
 | `mcp_servers` (java, php: `mcpServers`; csharp: `McpServers`; go: `MCPServers`) | [MCP servers](https://platform.claude.com/docs/en/managed-agents/mcp-connector) that provide standardized third-party capabilities. |
@@ -372,6 +372,8 @@ The API checks an `inference_geo` (java, php: `inferenceGeo`; csharp, go: `Infer
 ## Update an agent
 
 Updating an agent generates a new version when the configuration changes. The `version` (csharp, go: `Version`) field is optional. Supply the version that you last read, and the update applies only if the agent is still at that version. Otherwise, the request returns a 409 error. Omit `version` (csharp, go: `Version`) to apply the update whatever the agent’s current version. In that case, if two updates set the same field or `metadata` (csharp, go: `Metadata`) key, the last write wins. The API rejects updates to archived agents.
+
+To move an agent off a retiring model, see [When a model is retired](https://platform.claude.com/docs/en/managed-agents/migration#when-a-model-is-retired).
 
 <CodeGroup defaultLanguage="CLI">
   ```bash cURL

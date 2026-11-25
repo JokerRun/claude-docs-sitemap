@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: bb6bf567fc7bf89fcbb88d30aaed0e92282e7dc005f08620d2ef83e06d2cabe8
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 5173d3ee80a9e0a18d7a57e7f53903de0b4f9d6d16994063d5ab8df90d7c4884
 ---
 
 ---
@@ -774,7 +774,7 @@ const response = await client.beta.messages.create({
   * **Internal tools:** If the application is used solely within a controlled internal environment where the users are trusted, the risk of credential exposure can be mitigated.
   * **Development or debugging purpose:** Enabling this feature temporarily might be acceptable, provided the credentials are short-lived, aren’t also used in production environments, or are frequently rotated.
 
-  Even in these cases, browser support works only if your organization can call the Claude API directly from a browser. Organizations with zero data retention (ZDR) or the Compliance API enabled cannot, and their browser requests fail with a 401 error. See [Browser-based applications](https://platform.claude.com/docs/en/manage-claude/authentication#browser-based-applications).
+  Even in these cases, browser support works only if your organization can call the Claude API directly from a browser. Organizations with zero data retention (ZDR) cannot, and their browser requests fail with a 401 error. See [Browser-based applications](https://platform.claude.com/docs/en/manage-claude/authentication#browser-based-applications).
 </Accordion>
 
 ## Platform integrations

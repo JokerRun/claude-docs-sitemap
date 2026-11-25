@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/workflows
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 2c54dee952d49103a93fa36a218cce57e43c2a9b1b5b0d3af579cbb319fbc7c4
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: c9c492efe2a00956c94c8237803b91734e79dc866b604c86c215e9bc25cad83d
 ---
 
 > ## Documentation Index
@@ -473,7 +473,7 @@ To control the model cost:
 * Check `/model` before a large run if you usually switch to a smaller model for routine work
 * Ask Claude to use a smaller model for stages that don't need the strongest one when you describe the task
 
-When your organization's [`availableModels` allowlist](https://code.claude.com/docs/en/model-config#restrict-model-selection) blocks a model the script requests for an agent, that agent runs on a substituted model instead, following the same [substitution rules as subagents](https://code.claude.com/docs/en/sub-agents.md#when-an-allowlist-blocks-a-subagent-model).
+When an [`availableModels` allowlist](https://code.claude.com/docs/en/model-config#restrict-model-selection) blocks a model the script requests for an agent, that agent runs on a substituted model instead, following the same [substitution rules as subagents](https://code.claude.com/docs/en/sub-agents.md#when-an-allowlist-blocks-a-subagent-model).
 
 ### Set a size guideline
 

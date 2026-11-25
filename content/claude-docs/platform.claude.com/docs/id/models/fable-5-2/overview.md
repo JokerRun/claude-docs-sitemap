@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-2/overview
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: b7923540f8765c73855b385b1225c2f23f65b36b6b1cf6ee66aba8f1105aed1c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: fb42f51e4f8336605ad22db990984743f153d1e23f024adae1abb4807bb750f4
 ---
 
 ---
@@ -99,7 +99,7 @@ Claude Fable 5.2 dirancang untuk penalaran yang menuntut dan pekerjaan agentik j
 * “Adaptive thinking” (pemikiran adaptif) selalu aktif dan tidak dapat dinonaktifkan. Kendalikan kedalaman pemikiran dengan [parameter effort](https://platform.claude.com/docs/id/build-with-claude/effort).
 * “Forced tool use” (penggunaan alat yang dipaksakan) (`tool_choice` dengan tipe `any` dan `tool`) mengembalikan error 400. Lihat [Thinking dan pilihan alat](https://platform.claude.com/docs/id/models/fable-5-2/whats-new-fable-5-2#thinking-and-tool-choice).
 * Hilangkan `temperature`, `top_p`, dan `top_k`. Lihat [Parameter sampling](https://platform.claude.com/docs/id/build-with-claude/thinking#sampling-parameters) untuk nilai-nilai yang mengembalikan error 400.
-* Claude Fable 5.2 memerlukan retensi data 30 hari dan tidak tersedia dengan “zero data retention” (retensi data nol) kecuali diizinkan secara tegas oleh Anthropic. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+* Claude Fable 5.2 memerlukan retensi data 30 hari dan tidak tersedia dengan “legacy zero data retention” (retensi data nol lama), atau Legacy ZDR, kecuali diizinkan secara tegas oleh Anthropic. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 * Kueri batas dan kemampuan secara terprogram dengan [Models API](https://platform.claude.com/docs/id/api/models/list).
 
 ## Sumber daya

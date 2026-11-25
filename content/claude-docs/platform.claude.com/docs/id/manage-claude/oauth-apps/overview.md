@@ -1,71 +1,70 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/manage-claude/oauth-apps/overview
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: aca5c25a7dc97f93dc8e0165ad9707bf7b3883a59b6ad2f58380d1bed2b638b1
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 206764da5e2086ebd549b06d263fc1d6da47f781fce2025bfcc6b85e0fc09496
 ---
 
 ---
 title: Claude Platform OAuth
 url: https://platform.claude.com/docs/id/manage-claude/oauth-apps/overview
-description: Izinkan pelanggan Anda membayar penggunaan Claude di produk Anda dari organisasi Claude mereka sendiri.
+description: Tempat memulai dengan Claude Platform OAuth dan Linked billing, serta bagaimana persetujuan pelanggan sampai ke back end Anda.
 ---
 
 <Warning>
   Claude Platform OAuth adalah Beta Service: perangkat lunak prarilis yang disediakan berdasarkan perjanjian Anda dengan Anthropic, seperti [Ketentuan Layanan Komersial](https://www.anthropic.com/legal/commercial-terms), dan [Ketentuan Khusus Layanan](https://www.anthropic.com/legal/service-specific-terms). Endpoint, parameter, dan perilaku dapat berubah selama beta. Ini mungkin tidak cocok untuk penggunaan produksi.
 </Warning>
 
-Claude Platform OAuth memungkinkan pengguna Anda menagihkan penggunaan di dalam aplikasi Anda ke organisasi Claude mereka.
+Claude Platform OAuth adalah cara pelanggan menyetujui produk Anda untuk menggunakan organisasi Claude mereka. Fitur ini menjadi dasar [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing), yang memungkinkan pelanggan Anda membayar penggunaan Claude di produk Anda melalui organisasi Claude mereka sendiri. Untuk memanggil Claude bagi produk Anda sendiri dengan kredensial organisasi Anda, Anda tidak memerlukan aplikasi OAuth: lihat [Autentikasi](https://platform.claude.com/docs/id/manage-claude/authentication).
 
-## Izinkan pelanggan membayar penggunaan Claude mereka sendiri
-
-Ketika produk Anda memanggil Claude, Anda dapat menagihkan penggunaannya ke organisasi Claude milik setiap pelanggan sendiri. Inilah Linked billing. Pengguna Anda mengklik tombol **Link your Claude organization**, masuk ke Claude, dan menyetujui aplikasi Anda. Mereka harus memiliki peran Admin atau Penagihan di organisasi Claude mereka.
-
-Setelah itu:
-
-* Anda memilih pada setiap permintaan Claude API apakah pelanggan yang membayar atau Anda yang membayar.
-* Jika permintaan yang Anda tandai untuk pelanggan tidak dapat ditagihkan kepada mereka, Claude API akan menolaknya alih-alih menagih Anda.
-* Pelanggan dapat memutuskan tautan aplikasi Anda kapan saja.
-* Anda hanya boleh menagih pelanggan untuk permintaan yang mereka arahkan untuk Anda buat, dan sama sekali tidak boleh untuk penggunaan Anda sendiri.
-
-Anda yang memberikan dukungan kepada pelanggan Anda: Anthropic menyediakan halaman persetujuan dan halaman Claude Console tempat mereka menetapkan batas atas pengeluaran atau memutuskan tautan aplikasi Anda, sedangkan semua pertanyaan lain tentang aplikasi Anda diajukan kepada Anda.
-
-Linked billing berfungsi untuk pelanggan yang organisasi Claude-nya membayar Anthropic secara langsung untuk penggunaan API-nya. Fitur ini tidak berfungsi untuk organisasi yang ditagih melalui marketplace cloud. Lihat [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections).
+Untuk menawarkan Linked billing, Anda memerlukan aplikasi OAuth dan [penyedia identitas](https://platform.claude.com/docs/id/manage-claude/oauth-apps/overview#no-client-secret) yang menerbitkan token ke back end Anda. Pelanggan Anda memerlukan organisasi Claude yang membayar Anthropic secara langsung: lihat [Pelanggan yang memenuhi syarat](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing#eligible-customers).
 
 ## Cara kerjanya
 
-Linked billing mengikuti perjalanan bolak-balik singkat. Orang tersebut meninggalkan produk Anda menuju halaman persetujuan Claude satu kali, menyetujui aplikasi Anda di sana, lalu kembali:
+Pelanggan menyetujui aplikasi Anda satu kali. Hal itu membuat sebuah koneksi, yang mengikat organisasi Claude mereka ke aplikasi Anda hingga mereka atau Anda mengakhirinya.
+
+Seorang pengguna di perusahaan pelanggan Anda mengklik [tombol Link your Claude organization](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/link-button) di produk Anda. Back end Anda mengarahkan mereka ke halaman persetujuan Claude di `auth.claude.com`. Jika mereka memiliki peran Admin atau Billing di organisasi pelanggan, mereka menyetujui aplikasi Anda, dan browser kembali dengan kode sekali pakai. Back end Anda menukarkan kode tersebut dengan ID koneksi dan token OAuth. Setelah itu, Anthropic dapat menagih organisasi pelanggan untuk permintaan yang dibuat back end Anda atas nama mereka.
 
 <Frame>
-  !["Sequence diagram" (diagram urutan): orang tersebut menyetujui aplikasi Anda di auth.claude.com, lalu back end Anda menukarkan "one-time code" (kode sekali pakai)](https://platform.claude.com/docs/id/images/oauth-apps-billing-round-trip.svg)
+  ![Diagram urutan: orang tersebut menyetujui aplikasi Anda di auth.claude.com, lalu back end Anda menukarkan kode sekali pakai](https://platform.claude.com/docs/id/images/linked-billing-round-trip.svg)
 </Frame>
 
-Halaman persetujuan menampilkan nama aplikasi Anda dan apa yang diminta oleh aplikasi Anda, sehingga orang tersebut mengetahui apa yang mereka setujui.
+Seseorang yang tidak memiliki salah satu peran tersebut tidak dapat memberikan persetujuan: lihat [Apa yang dilihat pelanggan Anda](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/what-your-customers-see#approving-the-link). Jika Anda mengenal OAuth, ini adalah “authorization code flow” (alur kode otorisasi) dengan PKCE.
 
-<Note>
-  Claude Platform OAuth menggunakan “authorization code flow” (alur kode otorisasi) OAuth 2.0 dengan PKCE. Anthropic adalah “authorization server” (server otorisasi).
-</Note>
+### Aplikasi OAuth Anda
 
-## Penyiapan aplikasi OAuth satu kali
+Aplikasi OAuth Anda adalah pendaftaran produk Anda di Anthropic. Seorang Admin organisasi Claude Anda membuatnya di Claude Console, dan aplikasi tersebut memberikan client ID kepada produk Anda. Di halaman persetujuan, pelanggan melihat nama, logo, dan apa yang diminta oleh aplikasi tersebut.
 
-Linked billing dimulai dengan langkah penyiapan satu kali berikut di Claude Console. Panduan [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections#setup-process) memandu Anda melaluinya.
+### Penyedia identitas alih-alih client secret
 
-Langkah-langkah ini memerlukan peran Admin di organisasi Claude Anda.
+Setiap permintaan yang dikirim back end Anda ke `auth.claude.com` membawa token dari penyedia identitas Anda, melalui [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation). Anthropic tidak menerbitkan “client secret” (rahasia klien) untuk aplikasi OAuth. Penerbit OpenID Connect apa pun dapat digunakan, dan tersedia [panduan untuk penyedia identitas umum](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation#identity-providers).
 
-1. **Buat aplikasi.** Di Claude Console, buat aplikasi OAuth dan salin client ID-nya. Aplikasi tersebut menyimpan nama yang dilihat orang di halaman persetujuan serta alamat di produk Anda tempat mereka kembali.
-2. **Siapkan autentikasi klien.** Alih-alih “client secret” (rahasia klien), back end Anda menggunakan token berumur pendek untuk membuktikan bahwa suatu permintaan berasal dari aplikasi Anda. Token tersebut berasal dari penyedia identitas Anda sendiri, seperti AWS, Google Cloud, atau Kubernetes. Pada tab **Client authentication** aplikasi, Anda memilih penyedia identitas dan token mana darinya yang diterima.
-3. **Siapkan identitas back end Anda.** Buat “service account” (akun layanan) dan aturan federasi kedua dengan [Workload Identity Federation](https://platform.claude.com/docs/id/manage-claude/workload-identity-federation). Pilih akun layanan tersebut sebagai [akun layanan operator](https://platform.claude.com/docs/id/manage-claude/oauth-apps/oauth-reference#terms) aplikasi, yang digunakan back end Anda untuk menagih pelanggan.
+## Pilih jalur Anda
 
-## Langkah selanjutnya
-
-Panduan Linked billing memandu Anda melalui penyiapan dan pelanggan tertaut pertama Anda.
+Mulailah dengan tugas yang Anda hadapi sekarang. Untuk membangun integrasi, [siapkan aplikasi Anda](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/set-up-your-app), [tautkan dan tagih pelanggan uji](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/link-and-bill-a-customer), lalu [uji dan publikasikan aplikasi Anda](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/test-and-publish). Sampai aplikasi Anda aktif, hanya pengguna ujinya yang dapat menautkannya, jadi terlebih dahulu [tambahkan pemberi persetujuan pelanggan uji Anda](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/test-and-publish#add-test-users).
 
 <CardGroup cols={2}>
-  <Card title="Linked billing" icon="coins" href="https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections">
-    Izinkan pelanggan Anda membayar penggunaan Claude di produk Anda dari organisasi Claude mereka sendiri
+  <Card title="Linked billing" icon="coins" href="https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing">
+    Tentukan apakah Linked billing sesuai untuk produk dan pelanggan Anda
   </Card>
 
-  <Card title="Referensi OAuth" icon="book" href="https://platform.claude.com/docs/id/manage-claude/oauth-apps/oauth-reference">
-    Endpoint, parameter, respons token, masa berlaku, dan error
+  <Card title="Siapkan aplikasi Anda untuk Linked billing" icon="settings" href="https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/set-up-your-app">
+    Daftarkan aplikasi Anda, lalu lanjutkan untuk menautkan dan menagih pelanggan
+  </Card>
+
+  <Card title="Kelola pelanggan tertaut" icon="list" href="https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/manage-customers">
+    Dukung pelanggan tertaut, periksa apakah mereka masih tertaut, atau tautkan mereka kembali
+  </Card>
+
+  <Card title="Error Linked billing" icon="triangle-alert" href="https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/errors">
+    Perbaiki error yang dikembalikan oleh penautan atau penagihan
+  </Card>
+
+  <Card title="Apa yang dilihat pelanggan Anda" icon="browser" href="https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing/what-your-customers-see">
+    Untuk tim produk dan dukungan: halaman persetujuan, batas atas pengeluaran, dan email yang dilihat pelanggan Anda
+  </Card>
+
+  <Card title="Endpoint dan parameter OAuth" icon="book" href="https://platform.claude.com/docs/id/manage-claude/oauth-apps/endpoints-and-parameters">
+    Cari endpoint, parameter, scope, field token OAuth, atau error yang tepat
   </Card>
 </CardGroup>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/models/fable-5-2/migration-guide
-fetched_at: 2026-11-19T02:13:30.221159Z
-sha256: bb18a03ca5f08f627078533b800204241f4a381b62c6e3137fb2db42bfc2de6c
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: aba115fb0cb688a1387dca860941515a8d77041f3f718e97edfdd3ada9f94fb0
 ---
 
 ---
@@ -39,7 +39,7 @@ Pengaturan dasar yang sama untuk `claude-fable-5-2` dan `claude-mythos-5-2`:
 * **Thinking yang terikat akun:** Blok thinking dari Claude Fable 5.2 dan Claude Mythos 5.2 hanya berfungsi di akun yang menghasilkannya, atau di akun yang tertaut dengannya. Ketika akun lain mengirim salah satu blok ini, API tidak menyertakan blok tersebut sebelum permintaan sampai ke model, dan permintaan berhasil. Di Claude API dan Claude Models on Google Cloud (Google managed), dengan header beta `thinking-binding-controls-2026-08-01`, respons mencantumkan setiap blok yang tidak disertakan di `input_transformations` dengan `reason: "organization_binding_mismatch"`. Lihat [Akun dan platform cloud](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking#account-bound-thinking).
 * **Jendela konteks dan output:** [“Context window” (jendela konteks) sebesar 1M token](https://platform.claude.com/docs/id/build-with-claude/context-windows) secara default, dan hingga 128k token output untuk setiap permintaan.
 * **Harga:** $8 USD per juta token input dan $40 USD per juta token output, dibandingkan dengan $10 USD dan $50 USD pada Claude Fable 5.1 dan Claude Mythos 5.1. Pembacaan cache prompt seharga $0,20 USD per juta token, dibandingkan dengan $0,25 USD pada model-model tersebut. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing).
-* **Retensi data:** Kedua model memerlukan retensi data 30 hari, tidak tersedia di bawah pengaturan “zero data retention” (retensi data nol), atau ZDR, kecuali diizinkan secara tegas oleh Anthropic, dan ditetapkan sebagai Covered Models, sama seperti Claude Fable 5.1 dan Claude Mythos 5.1. Di Claude API, permintaan dari organisasi atau workspace tanpa retensi 30 hari mengembalikan `invalid_request_error` 400. Organisasi dengan pengaturan ZDR harus menghubungi tim akun Anthropic mereka, atau mengonfigurasi retensi untuk workspace individual. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) untuk detail per platform.
+* **Retensi data:** Kedua model memerlukan retensi data 30 hari, tidak tersedia di bawah pengaturan “legacy zero data retention” (retensi data nol lama), atau Legacy ZDR, kecuali diizinkan secara tegas oleh Anthropic, dan ditetapkan sebagai Covered Models, sama seperti Claude Fable 5.1 dan Claude Mythos 5.1. Di Claude API, permintaan dari organisasi atau workspace tanpa retensi 30 hari mengembalikan `invalid_request_error` 400. Organisasi dengan pengaturan Legacy ZDR harus menghubungi tim akun Anthropic mereka, atau mengonfigurasi retensi untuk workspace individual. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements) untuk detail per platform.
 * **Priority Tier:** Kedua model tidak didukung di [Priority Tier](https://platform.claude.com/docs/id/api/service-tiers#supported-models).
 * **Mode cepat:** Kedua model mendukung [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) dalam permintaan Messages API. Untuk platform setiap model, lihat [Ketersediaan mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode#feature-availability).
 
@@ -162,7 +162,7 @@ model = "claude-fable-5-2"  # After
 
 ### Apa yang berubah
 
-1. **Retensi data diperlukan:** Claude Fable 5.2 memerlukan retensi data 30 hari dan tidak tersedia di bawah pengaturan zero data retention (ZDR) kecuali diizinkan secara tegas oleh Anthropic. Jika organisasi atau workspace Anda menjalankan Claude Opus 5.5 di bawah ZDR, aktifkan retensi 30 hari untuk sebuah workspace atau hubungi tim akun Anthropic Anda sebelum beralih. Jika tidak, di Claude API, setiap permintaan ke Claude Fable 5.2 mengembalikan `invalid_request_error` 400. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+1. **Retensi data diperlukan:** Claude Fable 5.2 memerlukan retensi data 30 hari dan tidak tersedia di bawah pengaturan legacy zero data retention (Legacy ZDR) kecuali diizinkan secara tegas oleh Anthropic. Jika organisasi atau workspace Anda menjalankan Claude Opus 5.5 di bawah Legacy ZDR, aktifkan retensi 30 hari untuk sebuah workspace atau hubungi tim akun Anthropic Anda sebelum beralih. Jika tidak, di Claude API, setiap permintaan ke Claude Fable 5.2 mengembalikan `invalid_request_error` 400. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 
 2. **Pemeriksaan prefiks yang gagal mengembalikan error 400:** Pada Claude Fable 5.2, setiap permintaan menjalani [pemeriksaan prefiks](https://platform.claude.com/docs/id/build-with-claude/preserved-thinking/prefix-checks#prefix-check). Pemeriksaan prefiks gagal jika Anda mengubah `system`, `tools`, atau pesan sebelumnya di tengah percakapan lalu mengirim kembali blok thinking. Jika pemeriksaan prefiks gagal, permintaan menerima error 400. Untuk menguji kode Anda sebelum beralih, lihat [cara menemukan permintaan yang gagal dalam pemeriksaan prefiks](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide#fable-5-2-preserved-thinking).
 
@@ -192,7 +192,7 @@ model = "claude-fable-5-2"  # After
 
 ### Daftar periksa migrasi
 
-* Jika organisasi Anda memiliki pengaturan ZDR, aktifkan retensi 30 hari untuk workspace, atau konfirmasikan kelayakan dengan tim akun Anthropic Anda, sebelum hal lainnya.
+* Jika organisasi Anda memiliki pengaturan Legacy ZDR, aktifkan retensi 30 hari untuk workspace, atau konfirmasikan kelayakan dengan tim akun Anthropic Anda, sebelum hal lainnya.
 * Perbarui ID model dari `claude-opus-5-5` ke `claude-fable-5-2`.
 * Periksa [batas laju](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda sebelum memindahkan lalu lintas produksi. Batas laju Claude Fable 5.2 terpisah dari batas laju Claude Opus 5.5, dengan batas token yang lebih rendah di setiap tier.
 * Jika kode Anda membangun array `messages` sendiri, jalankan pengujian di [Pemeriksaan prefiks yang gagal mengembalikan error 400](https://platform.claude.com/docs/id/models/fable-5-2/migration-guide#fable-5-2-preserved-thinking).
@@ -328,7 +328,7 @@ model = "claude-fable-5-2"  # After
 
 8. **Harga:** Claude Fable 5.2 dikenakan biaya $8 USD per juta token input dan $40 USD per juta token output, dibandingkan dengan $5 USD dan $25 USD untuk Claude Opus 5. Pembacaan cache prompt dikenakan $0,20 USD per juta token, dibandingkan dengan $0,50 USD. Lihat [Harga](https://platform.claude.com/docs/id/about-claude/pricing).
 
-9. **Retensi data diwajibkan:** Claude Fable 5.2 memerlukan retensi data 30 hari dan tidak tersedia di bawah pengaturan “zero data retention” (retensi data nol), atau ZDR, kecuali secara tegas diizinkan oleh Anthropic. Claude Opus 5 tersedia di bawah ZDR. Di Claude API, permintaan dari organisasi atau workspace tanpa retensi 30 hari mengembalikan 400 `invalid_request_error`. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
+9. **Retensi data diwajibkan:** Claude Fable 5.2 memerlukan retensi data 30 hari dan tidak tersedia di bawah pengaturan “legacy zero data retention” (retensi data nol lama), atau Legacy ZDR, kecuali secara tegas diizinkan oleh Anthropic. Claude Opus 5 tersedia di bawah Legacy ZDR. Di Claude API, permintaan dari organisasi atau workspace tanpa retensi 30 hari mengembalikan 400 `invalid_request_error`. Lihat [Persyaratan retensi data khusus model](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements).
 
 10. **Mode cepat:** Claude Opus 5 mendukung [mode cepat](https://platform.claude.com/docs/id/build-with-claude/fast-mode) (`speed: "fast"`) dalam pratinjau riset, dengan beta header `fast-mode-2026-02-01`. Claude Fable 5.2 mendukungnya dalam permintaan Messages API di Claude API tanpa header tersebut. Permintaan yang mengirimkan header tersebut tetap berfungsi. Mode cepat untuk Claude Fable 5.2 dikenakan biaya $16 USD per juta token input dan $80 USD per juta token output, dibandingkan dengan $10 USD dan $50 USD untuk Claude Opus 5 dalam mode cepat. Lihat [Harga mode cepat](https://platform.claude.com/docs/id/about-claude/pricing#fast-mode-pricing).
 
@@ -348,7 +348,7 @@ model = "claude-fable-5-2"  # After
 
 ### Daftar periksa migrasi
 
-* Jika organisasi Anda memiliki pengaturan ZDR, aktifkan retensi 30 hari untuk workspace, atau konfirmasikan kelayakan dengan tim akun Anthropic Anda, sebelum langkah lainnya.
+* Jika organisasi Anda memiliki pengaturan Legacy ZDR, aktifkan retensi 30 hari untuk workspace, atau konfirmasikan kelayakan dengan tim akun Anthropic Anda, sebelum langkah lainnya.
 * Perbarui ID model dari `claude-opus-5` menjadi `claude-fable-5-2`.
 * Periksa [batas laju](https://platform.claude.com/docs/id/api/rate-limits#rate-limits) Anda sebelum memindahkan lalu lintas produksi. Batas laju Claude Fable 5.2 terpisah dari batas laju Claude Opus 5, dengan batas token yang lebih rendah di setiap tier.
 * Hapus konfigurasi `thinking: {type: "disabled"}` apa pun. Kendalikan penggunaan token dengan tingkat effort yang lebih rendah, tinjau kembali `max_tokens`, dan pilih blok konten berdasarkan `type`.
@@ -372,7 +372,7 @@ Pertama, kerjakan [Migrasi ke Claude Fable 5.2 dari Claude Opus 5](https://platf
 
 * Menerima `thinking: {type: "disabled"}`, pilihan alat paksa, alat `computer_20251124`, dan mode cepat, yang [sudah tidak digunakan lagi (deprecated) di Claude Opus 4.8](https://platform.claude.com/docs/id/build-with-claude/fast-mode).
 * Mengembalikan teks di antara pemanggilan alat sebagai blok `text`.
-* Tersedia di bawah pengaturan retensi data nol (ZDR).
+* Tersedia di bawah pengaturan retensi data nol lama (Legacy ZDR).
 * Dikenakan biaya $5 USD per juta token input dan $25 USD per juta token output, dengan pembacaan cache prompt sebesar $0,50 USD.
 
 Bagian ini menambahkan perbedaan yang tidak dicakup oleh bagian Claude Opus 5.

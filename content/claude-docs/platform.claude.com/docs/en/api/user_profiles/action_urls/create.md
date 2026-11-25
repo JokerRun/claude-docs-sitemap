@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/api/user_profiles/action_urls/create
-fetched_at: 2026-10-23T02:21:28.653315Z
-sha256: b82e93d44abeb815d5b988d5adf75fc1c79df1a7c575dafac6991348b7fad6e9
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 44a35eb6a0a9ec1084b30b54d605ef6c5dba71176309d54f20300329b370f750
 ---
 
 ---
@@ -14,7 +14,9 @@ url: https://platform.claude.com/docs/en/api/user_profiles/action_urls/create
 
 **POST** `/v1/user_profiles/{user_profile_id}/action_urls`
 
-Create Action URL
+Create a link that sends the profile's end customer to the Verification Portal.
+
+See [Send an end customer a link to the Verification Portal](https://platform.claude.com/docs/en/manage-claude/user-profiles-verification-portal?sdk_languages=http) for when to create the link and what the end customer sees.
 
 ## Path parameters
 

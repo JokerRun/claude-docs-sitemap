@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/overview
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 0e88961336f3d6efb9e668739f4c55eeefae3d7d531a763df89f1542c0bccdf6
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 3f1a7175daa4b2606d9365b19836d2dc2696c40181375355b631659f502a2c3d
 ---
 
 ---
@@ -91,8 +91,9 @@ Fitur-fitur Claude Platform yang berfungsi di seluruh API-nya. Halaman setiap fi
 | [Alat bash](https://platform.claude.com/docs/id/agents-and-tools/tool-use/bash-tool) | Memungkinkan Claude meminta perintah shell, yang dijalankan dalam sesi bash yang mempertahankan state-nya di antara perintah. |
 | [Alat eksekusi kode](https://platform.claude.com/docs/id/agents-and-tools/tool-use/code-execution-tool) | Memungkinkan Claude menjalankan kode Python dan Bash dalam kontainer sandbox. |
 | [Pengeditan konteks](https://platform.claude.com/docs/id/build-with-claude/context-editing) | Menghapus konten tertentu, seperti hasil alat lama atau blok pemikiran lama, dari riwayat percakapan seiring bertambahnya riwayat. |
-| [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) | Zero Data Retention (ZDR) untuk organisasi yang memiliki kelayakan dan menggunakan model Claude yang paling mumpuni. Data keselamatan tersegel, yaitu salinan terenkripsi dari permintaan dan respons Anda, dikirim ke penyimpanan milik Anda. Anthropic Human Review selalu nonaktif, sehingga tim Anda sendiri yang meninjau kasus yang ditandai oleh Safety Review otomatis. |
+| [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) | Zero Data Retention (ZDR) untuk organisasi yang memiliki kelayakan dan menggunakan model Claude yang paling mumpuni. Data keselamatan tersegel, yaitu salinan terenkripsi dari prompt dan respons Anda, ditulis ke penyimpanan milik Anda. Anthropic Human Review selalu nonaktif, sehingga tim Anda sendiri yang meninjau kasus yang ditandai oleh pemantauan keselamatan otomatis. |
 | [Penggunaan alat paksa](https://platform.claude.com/docs/id/agents-and-tools/tool-use/define-tools#forcing-tool-use) | Membuat Claude memanggil alat, atau satu alat tertentu, alih-alih menjawab langsung. |
+| [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing) | Memungkinkan pelanggan Anda membayar penggunaan Claude di produk Anda melalui organisasi Claude mereka sendiri. |
 | [Alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool) | Memungkinkan Claude menyimpan dan membaca informasi lintas percakapan dalam direktori file memori. |
 | ↳ [Helper alat memori](https://platform.claude.com/docs/id/agents-and-tools/tool-use/memory-tool#implement-the-memory-handler) | Helper SDK yang menangani antarmuka alat memori dan loop penggunaan alat, sehingga kode Anda hanya perlu menyediakan penyimpanan. |
 | [Streaming pesan](https://platform.claude.com/docs/id/build-with-claude/streaming) | Menerima respons Messages API secara bertahap, sebagai server-sent event, selama respons dihasilkan. |

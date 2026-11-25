@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/setup-claude-platform-on-aws
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 81f5f12e262fd4c2641c64d10ae5c4b29148777a348b0741129c3637a7d5e278
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 2e09112ea0f537398a64c4a39f6b0187bafdd71228a98b06ace9cb87f3a1adc7
 ---
 
 ---
@@ -68,7 +68,7 @@ Finally, answer these questions:
 To set up Enterprise Frontier Safeguards, you need the following:
 
 * The Admin role in the Claude Console. To get the role, go to the **Claude Platform on AWS** service page in the AWS Console, select **Admin**, and click **Sign in**. Sign in this way before you follow links on this page to the Claude Console. Each link opens in the Anthropic organization that your browser is signed in to.
-* [Access to EFS](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/setup-claude-platform-on-aws#what-getting-access-changes) for your organization, from your Anthropic account team.
+* [Access to EFS](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/setup-claude-platform-on-aws#what-getting-access-changes) for your organization.
 * [IAM permissions](https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/setup-claude-platform-on-aws#iam-permissions) for your IAM principal.
 
 Use a new workspace for EFS, even if you already have workspaces. Anthropic recommends that you set its **AWS region** to `us-east-2` to avoid network transfer costs, but it isn’t required. You can’t change the region later.
@@ -116,9 +116,9 @@ Accepting the terms changes more than the workspaces you plan to use. Read these
 
 ### Accept the terms
 
-To accept the terms, go to the [Programs](https://platform.claude.com/settings/programs) page in the Claude Console and click **Accept terms** on the **Enterprise Frontier Safeguards** card. If you don’t see **Accept terms** there, sign in to the [Verification Portal](https://portal.anthropic.com), select your organization, and click **Accept terms**.
+To accept the terms, go to the [Programs](https://platform.claude.com/settings/programs) page in the Claude Console and click **Accept terms** on the **Enterprise Frontier Safeguards** card. If you don’t see **Accept terms** there, click **Open Verification Portal** on the same page, and then click **Accept terms** in the Verification Portal.
 
-Ask your Anthropic account team for access if you can’t sign in to the Verification Portal or don’t see **Accept terms** there either. If you don’t have an account team, complete the [Enterprise Frontier Safeguards request form](https://claude.com/form/enterprise-frontier-safeguards).
+Ask your Anthropic account team for access if you can’t open the Verification Portal or don’t see **Accept terms** there either. If you don’t have an account team, complete the [Enterprise Frontier Safeguards request form](https://claude.com/form/enterprise-frontier-safeguards).
 
 ## 1. Add cloud resources
 

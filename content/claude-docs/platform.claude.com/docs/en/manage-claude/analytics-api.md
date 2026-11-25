@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/analytics-api
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 70e880330f52682f4ca27bf25e7ceeb2b3e7b39dab13777b74f17d1ab2fbdbe6
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 1f8c474a78c305f46ac41bc7c0c2955d587937b9b798034839d9b6aa6a4f429e
 ---
 
 ---
@@ -28,7 +28,7 @@ The two APIs use different key types, created in different places by different r
 The two key types differ in what they can call:
 
 * An **Admin API key** (`sk-ant-admin01-...`) cannot call the Claude Enterprise Analytics API.
-* An **Analytics API key** is a key created in claude.ai with the `read:analytics` scope. Besides the Claude Enterprise Analytics API, it works with the [Usage and Cost Analytics API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api) and the legacy [Usage and Cost API](https://platform.claude.com/docs/en/manage-claude/usage-cost-api). To call Admin API endpoints such as members and invites, a key created in claude.ai needs other scopes (see [Choose scopes for a Claude Enterprise key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key)).
+* An **Analytics API key** is a key created in claude.ai with the `read:analytics` scope. Besides the Claude Enterprise Analytics API, it works with the [Usage and Cost Analytics API](https://platform.claude.com/docs/en/manage-claude/usage-cost-analytics-api). To call Admin API endpoints such as members and invites, a key created in claude.ai needs other scopes (see [Choose scopes for a Claude Enterprise key](https://platform.claude.com/docs/en/manage-claude/admin-api-keys#choose-scopes-for-a-claude-enterprise-key)).
 
 The Claude Code Analytics API and the Claude Enterprise Analytics API both appear under the [Admin API reference](https://platform.claude.com/docs/en/api/beta/organization), but they are separate APIs. If your organization uses both the Claude Platform and Claude Enterprise, you can provision both keys and use each API for its own data.
 
@@ -42,7 +42,7 @@ The Claude Code Analytics API and the Claude Enterprise Analytics API both appea
 
 ## Get access to the Claude Code Analytics API
 
-The Claude Code Analytics API is available to every organization with access to the [Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api), and is free to use.
+The Claude Code Analytics API is free for Claude Console organizations on the Claude API. Your organization needs [access to the Admin API](https://platform.claude.com/docs/en/manage-claude/admin-api#availability), and an organization admin creates the key.
 
 <Steps>
   <Step title="Create an Admin API key">

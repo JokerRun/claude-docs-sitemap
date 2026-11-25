@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 168054a4109545ee9538af70cca0621b13dcea1a4f1f836f29d47c0f98cace35
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 9fd882b866fbf1f3e07ec88671bbe5a3e95021a16afe97023b6a872e30dd0257
 ---
 
 ---
@@ -21,13 +21,48 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 
 ### 23 November 2026
 
+* A fix is live for an undercount of web searches in the [List User Activity](https://platform.claude.com/docs/en/api/beta/organization/analytics/users/list) endpoint of the [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/manage-claude/analytics-api). The top-level `web_search_count` did not count every search tool that Claude uses in chats, so it left out some searches. It now includes them, so it can be higher. Most of the added searches come from [Chat and Cowork unified](https://platform.claude.com/docs/en/manage-claude/analytics-api#how-metrics-are-defined).
+* The web search fix applies to data for November 17, 2026 (UTC), and later, so counts that you already pulled for those days can change. It does not recount earlier days.
+* A fix is live for an undercount in the [Get Connector Usage](https://platform.claude.com/docs/en/api/beta/organization/analytics/connectors/list) endpoint of the [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/manage-claude/analytics-api). In chats that the [session counting change](https://platform.claude.com/docs/en/release-notes/overview#analytics-api-chat-session-counting) reached, `individual_auth_distinct_user_count` and `managed_auth_distinct_user_count` left out users who used a connector. For most organizations, these counts now include most of those users. They can be higher, and can show a number where they used to be `null`.
+* The connector fix applies to data for November 19, 2026 (UTC), and later, so counts that you already pulled for those days can change. It does not recount earlier days.
+* On November 24, 2026, a fix for an undercount of project activity in the [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/manage-claude/analytics-api) will go live. The [Get Chat Project Usage](https://platform.claude.com/docs/en/api/beta/organization/analytics/apps/chat/projects/list) endpoint leaves out some messages in project chats. One example is messages sent after a chat moves into a Cowork cloud session. After the fix, it will count most of those messages. `message_count`, `distinct_conversation_count`, and `distinct_user_count` can then be higher, and more projects can appear in the results.
+* The [List User Activity](https://platform.claude.com/docs/en/api/beta/organization/analytics/users/list) endpoint will change in the same way when you filter by `project_id`. `message_count` and `distinct_conversation_count` can be higher, `last_activity_date` can be later, and more users can appear. Without the filter, some of these messages count in `chat_cowork_unified_metrics.sessions.message_count`. So the chat `message_count` for a user can be higher with the filter than without it.
+* The project fix will apply to data for November 20, 2026 (UTC), and later, so counts that you already pulled for those days can change. It does not recount earlier days.
 * Kami telah mengumumkan penghentian model Claude Opus 4.5 (`claude-opus-4-5-20251101` dan `claude-opus-4-5`), yang dijadwalkan dipensiunkan di Claude API pada 22 Januari 2027. Kami menyarankan untuk bermigrasi ke Claude Opus 5.5. Lihat [Migrasi dari Claude Opus 4.5 atau sebelumnya](https://platform.claude.com/docs/id/models/opus-5-5/migration-guide#migrating-from-claude-opus-45). Untuk memeriksa tanggal yang berlaku di platform lain, lihat [Penghentian model](https://platform.claude.com/docs/id/about-claude/model-deprecations).
 * Kami telah meluncurkan [Enterprise Frontier Safeguards](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/overview) (EFS) dalam versi beta di Claude Platform, Claude Platform on AWS, dan Claude Models on Google Cloud (Anthropic managed). EFS adalah “Zero Data Retention” (retensi data nol), atau ZDR, untuk organisasi yang memenuhi syarat yang menggunakan [model Claude yang paling mumpuni](https://platform.claude.com/docs/id/manage-claude/api-and-data-retention#model-specific-data-retention-requirements). Anthropic tidak menyimpan prompt dan respons Anda. Salinan terenkripsi dari prompt dan respons tersebut, yang disebut “Sealed Safety Data” (data keselamatan tersegel), dikirim ke sebuah bucket di akun cloud Anda sendiri. Workspace yang menggunakan penyimpanan yang dikelola Anthropic tidak termasuk EFS, karena Anthropic menyimpan data keselamatan tersegel milik workspace tersebut. Untuk mendapatkan akses, lihat [Panduan penyiapan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-console).
 * Kami telah menambahkan dua jenis event ke [webhook organisasi](https://platform.claude.com/docs/id/manage-claude/organization-webhooks#customer-owned-storage-events), yang berstatus beta. Kami mengirim `external_storage.failed` ketika bucket yang Anda gunakan sebagai [penyimpanan milik pelanggan](https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-owned-storage) gagal dalam pemeriksaan harian kami, dan `external_storage.recovered` ketika bucket tersebut kembali lolos pemeriksaan.
 
+### 20 November 2026
+
+* The [Claude Enterprise Analytics API](https://platform.claude.com/docs/en/manage-claude/analytics-api) has a new rule for when a chat in [Chat and Cowork unified](https://platform.claude.com/docs/en/manage-claude/analytics-api#how-metrics-are-defined) counts as a session.
+
+  * **New rule:** A session starts the first time on a UTC day that Claude successfully runs a Bash command, creates a file, or edits a file in the chat. It ends when that day ends.
+  * **Previous rule:** A chat counted as a session after it moved into a Cowork cloud session (a sandbox where Claude runs code), including on later days. Uploading some types of files could cause that move.
+  * **Rollout:** The change reaches chats gradually, and existing chats can change later than new ones. Until then, a chat follows the previous rule. Activity from before then is not recounted. The API does not show which rule a chat follows.
+
+* In [List User Activity](https://platform.claude.com/docs/en/api/beta/organization/analytics/users/list), these counts can change. `chat` and `sessions` are the objects in `chat_cowork_unified_metrics`.
+
+  * **Sessions:** `sessions.distinct_session_count` can be higher, or lower for some users.
+  * **Messages:** They count in `chat` before the session starts and in `sessions` after. `message_count` can be higher or lower in each.
+  * **Chats:** `chat.distinct_conversation_count` can be higher. A chat counts there on each day that it gets a message, even one that counts in `sessions`.
+  * **Tool actions and file edits:** They count in `sessions` during the session. `action_count` and `file_edit_count` can be higher or lower.
+  * **Connectors:** In most chats, `connectors_used_count` and `distinct_connectors_used_count` split the same way as messages. Added up across both objects, each can be higher or lower.
+  * **Skills and plugins:** Their use counts in `sessions`, even on a day with no session.
+  * **Artifacts:** Counts can move between `chat` and `sessions`.
+
+* For chats that the change reached, the API does not get the names of some skills and plugins that Anthropic did not make, such as your own.
+
+  * **List User Activity:** `distinct_skills_used_count` can leave out these skills. Added up across both objects, it can be lower.
+  * **[Get Skill Usage](https://platform.claude.com/docs/en/api/beta/organization/analytics/skills/list):** Spend for these skills can leave out these chats. `estimated_overage_spend` can be lower, and `attributed_list_price` can be lower or `null`.
+  * **[Get Plugin Usage](https://platform.claude.com/docs/en/api/beta/organization/analytics/plugins/list):** These plugins can appear under the `plugin_name` value `third-party`.
+
+* In [Get Connector Usage](https://platform.claude.com/docs/en/api/beta/organization/analytics/connectors/list), `individual_auth_distinct_user_count` and `managed_auth_distinct_user_count` can leave out some users of chats that the change reached, so they can be lower.
+
+* Other counts from the connector, skill, and plugin usage endpoints can be higher or lower.
+
 ### 17 November 2026
 
-* Kami telah meluncurkan [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/organization-billing-connections) dalam versi beta dengan beta header `user-profiles-billing-2026-10-01`. Pelanggan Anda kini dapat membayar penggunaan Claude di aplikasi Anda melalui organisasi Claude mereka sendiri. Setelah pelanggan menautkan organisasinya, atur `billing_policy` pada setiap permintaan `/v1/messages` atau `/v1/chat/completions` untuk memilih siapa yang membayar. Di Claude Console, pelanggan dapat menetapkan batas pengeluaran untuk aplikasi Anda atau membatalkan tautan aplikasi Anda. Linked billing berfungsi untuk pelanggan yang organisasinya membayar Anthropic secara langsung untuk penggunaan API.
+* Kami telah meluncurkan [Linked billing](https://platform.claude.com/docs/id/manage-claude/oauth-apps/linked-billing) dalam versi beta dengan beta header `user-profiles-billing-2026-10-01`. Pelanggan Anda kini dapat membayar penggunaan Claude di aplikasi Anda melalui organisasi Claude mereka sendiri. Setelah pelanggan menautkan organisasinya, atur `billing_policy` pada setiap permintaan `/v1/messages` atau `/v1/chat/completions` untuk memilih siapa yang membayar. Di Claude Console, pelanggan dapat menetapkan batas pengeluaran untuk aplikasi Anda atau membatalkan tautan aplikasi Anda. Linked billing berfungsi untuk pelanggan yang organisasinya membayar Anthropic secara langsung untuk penggunaan API.
 
 ### 16 November 2026
 

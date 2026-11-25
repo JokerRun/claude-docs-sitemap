@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/build-with-claude/token-counting
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 9dfae71595272542314edd973897cad9c25acfa9f089a988c8742d9f06cd2ac5
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: d11d41dc7f0ed45b305878b9ee246040ba5a01315457ec859316233fe623fd72
 ---
 
 ---
@@ -1444,13 +1444,15 @@ Claude Fable 5.2, Claude Mythos 5.2, Claude Fable 5.1, Claude Mythos 5.1, Claude
 
 ## Pricing and rate limits
 
-Token counting is **free to use** but subject to requests per minute rate limits based on your [usage tier](https://platform.claude.com/docs/en/api/rate-limits#rate-limits). If you need higher limits, use **Request tier increase** on the [Rate limits](https://platform.claude.com/usage/limits) page in the Claude Console.
+Token counting is **free to use** but subject to requests per minute rate limits based on your [usage tier](https://platform.claude.com/docs/en/api/rate-limits#rate-limits).
 
 | Usage tier | Requests per minute (RPM) |
 | ----- | ----- |
 | Start | 5,000 |
 | Build | 10,000 |
 | Scale | 20,000 |
+
+If you need higher limits, see [Requesting higher limits](https://platform.claude.com/docs/en/api/rate-limits#requesting-higher-limits).
 
 <Note>
   Token counting and message creation have separate and independent rate limits. Usage of one does not count against the limits of the other.

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/managed-agents/quickstart
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: fb743a2c16a2173ea861bdc592e6d7cdd8f40fe20079c2ef225aaeb21d35ab47
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: fe59398110e79885850254e751e35bbbc446b532e6fe2240a06c8da139319185
 ---
 
 ---
@@ -63,6 +63,11 @@ Let Claude Code set up your agent for you
 
 ## Before you begin
 
+The examples use the Claude API. If you use one of the following cloud platforms, follow its setup steps instead and adapt this page’s examples:
+
+* **Claude Models on Google Cloud (Anthropic managed):** Follow the [setup steps on Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#before-making-api-calls), then see [Making requests on Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed#making-requests).
+* **Claude Platform on AWS:** Follow the [setup steps on Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#before-making-api-calls), then see [Making requests on Claude Platform on AWS](https://platform.claude.com/docs/en/build-with-claude/claude-platform-on-aws#making-requests).
+
 <Steps continues>
   <Step title="Create a Claude Console account">
     [Sign up](https://platform.claude.com/) for a Claude Console account, or sign in to the one you have.
@@ -90,7 +95,7 @@ Let Claude Code set up your agent for you
         For Linux environments, download the release binary directly.
 
         ```bash
-        VERSION=2.13.0
+        VERSION=2.14.0
         OS=$(uname -s | tr '[:upper:]' '[:lower:]')
         case $(uname -m) in
           x86_64) ARCH=amd64 ;;
@@ -159,7 +164,7 @@ To run the CLI examples, install the CLI:
     For Linux environments, download the release binary directly.
 
     ```bash
-    VERSION=2.13.0
+    VERSION=2.14.0
     OS=$(uname -s | tr '[:upper:]' '[:lower:]')
     case $(uname -m) in
       x86_64) ARCH=amd64 ;;
@@ -206,7 +211,7 @@ To run the CLI examples, install the CLI:
     <Tabs>
       <Tab title="Gradle">
         ```kotlin
-        implementation("com.anthropic:anthropic-java:3.13.0")
+        implementation("com.anthropic:anthropic-java:3.14.0")
         ```
       </Tab>
 
@@ -215,7 +220,7 @@ To run the CLI examples, install the CLI:
         <dependency>
             <groupId>com.anthropic</groupId>
             <artifactId>anthropic-java</artifactId>
-            <version>3.13.0</version>
+            <version>3.14.0</version>
         </dependency>
         ```
       </Tab>

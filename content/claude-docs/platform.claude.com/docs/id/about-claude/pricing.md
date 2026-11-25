@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/about-claude/pricing
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 51bdf3acb46b23fbf00c0b304cce7b3855a6d2bd9978245e5e51f056459330e5
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: ea3bf5316a8b0efd91eeb6523a4ae60d039da75ec49042db97846e5360c4919c
 ---
 
 ---
@@ -79,8 +79,6 @@ Untuk harga resmi di [Claude Models on Google Cloud (Google managed)](https://pl
   * **Claude Models on Google Cloud (Google managed)** menawarkan endpoint global dan endpoint multi-region (perutean dinamis dalam suatu area geografis) untuk model-model ini, serta endpoint regional untuk Claude Sonnet 4.6 dan model sebelumnya.
 
   Endpoint regional dan multi-region dikenakan premi 10 persen di atas endpoint global. Claude API (first-party) bersifat global secara default; untuk opsi dan harga residensi data first-party, lihat [Harga residensi data](https://platform.claude.com/docs/id/about-claude/pricing#data-residency-pricing).
-
-  **Cakupan:** Struktur harga ini berlaku untuk Claude Sonnet 4.5 (deprecated), Haiku 4.5, Opus 4.5, dan model-model selanjutnya. Struktur harga ini tidak berlaku untuk model sebelumnya (Claude Opus 4.1 dan rilis sebelumnya).
 
   Untuk detail implementasi dan contoh kode:
 
@@ -496,19 +494,19 @@ Sesi coding selama 1 jam menggunakan Claude Opus 5.5 yang mengonsumsi 50.000 tok
 
 | Item baris | Perhitungan | Biaya |
 | ----- | ----- | ----- |
-| Token input | 50.000 × $4 / 1.000.000 | $0,20 USD |
-| Token output | 15.000 × $20 / 1.000.000 | $0,30 USD |
-| Runtime sesi | 1,0 jam × $0,08 | $0,08 USD |
+| Token input | 50.000 × $4 USD / 1.000.000 | $0,20 USD |
+| Token output | 15.000 × $20 USD / 1.000.000 | $0,30 USD |
+| Runtime sesi | 1,0 jam × $0,08 USD | $0,08 USD |
 | **Total** |  | **$0,58 USD** |
 
 Jika caching prompt aktif dan 40.000 dari token input merupakan pembacaan cache:
 
 | Item baris | Perhitungan | Biaya |
 | ----- | ----- | ----- |
-| Token input yang tidak di-cache | 10.000 × $4 / 1.000.000 | $0,04 USD |
-| Token pembacaan cache | 40.000 × $4 × 0,05 / 1.000.000 | $0,008 USD |
-| Token output | 15.000 × $20 / 1.000.000 | $0,30 USD |
-| Runtime sesi | 1,0 jam × $0,08 | $0,08 USD |
+| Token input yang tidak di-cache | 10.000 × $4 USD / 1.000.000 | $0,04 USD |
+| Token pembacaan cache | 40.000 × $4 USD × 0,05 / 1.000.000 | $0,008 USD |
+| Token output | 15.000 × $20 USD / 1.000.000 | $0,30 USD |
+| Runtime sesi | 1,0 jam × $0,08 USD | $0,08 USD |
 | **Total** |  | **$0,428 USD** |
 
 ## Pertimbangan harga tambahan

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/headless
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: b9bb6c1392edfc7f999349ac99ea6bc33f9ebd05f2940d5ea5dfe35668d116f5
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: d566f5da4cc12db79f4baee146509f25a46eaf9845da38f301cda697f204c9c5
 ---
 
 > ## Documentation Index
@@ -215,7 +215,7 @@ Use `--output-format stream-json` with `--verbose` and `--include-partial-messag
 claude -p "Explain recursion" --output-format stream-json --verbose --include-partial-messages
 ```
 
-The last line of the stream is a `result` message with the final response text, cost, and session metadata.
+Find each [`result` message](https://code.claude.com/docs/en/agent-sdk/typescript#sdkresultmessage) by `type`, because a message such as a task notification can follow a result and start another turn. A successful `result` message holds any final response text, the running cost total, and session metadata.
 
 If your consumer reads the stream slowly, Claude Code waits for the queued output to drain before exiting, scaling the wait with how much is still queued, capped at 30 seconds.
 
@@ -384,6 +384,7 @@ The `--allowedTools` flag uses [permission rule syntax](https://code.claude.com/
 > Command support differs in `-p` mode:
 >
 > * User-invoked [skills](https://code.claude.com/docs/en/skills.md) and custom commands work. Include `/skill-name` in the prompt string and Claude Code expands it before running.
+> * [Skills from MCP servers](https://code.claude.com/docs/en/mcp.md#requirements-for-skills-from-mcp-servers) aren't supported.
 > * Built-in commands that only run in the terminal interface, such as `/login`, aren't available.
 > * `/model`, `/effort`, `/fast`, `/color`, and `/rename` accept the value as an argument, for example `/model sonnet`, and `/mcp` with no argument prints a text summary of server status. These forms follow each command's [availability notes](https://code.claude.com/docs/en/commands.md#all-commands).
 > * To change a setting, pass `key=value` to `/config`, for example `/config verbose=true`.

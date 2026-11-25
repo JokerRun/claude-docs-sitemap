@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/handling-stop-reasons
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 697701a171d3bf165e5de1c7b1bc8a82b71bbb14cf935ef55d2b64360419f832
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: e7b6326f874f8d26735245529aff77b4c5b341314882104ae877539bb93b6306
 ---
 
 ---
@@ -1929,10 +1929,6 @@ Claude menolak untuk menghasilkan respons. Pengklasifikasi keamanan mengembalika
   ```
 </CodeGroup>
 
-<Tip>
-  Jika Anda sering menemukan alasan berhenti `refusal` saat menggunakan Claude Sonnet 4.5 ([tidak digunakan lagi](https://platform.claude.com/docs/id/about-claude/model-deprecations)) atau Claude Opus 4.1 (yang terakhir [telah dipensiunkan, kecuali di Claude Models on Google Cloud (Google managed) dan Amazon Bedrock](https://platform.claude.com/docs/id/about-claude/model-deprecations)), Anda dapat mencoba memperbarui panggilan API Anda untuk menggunakan Claude Haiku 4.5 (`claude-haiku-4-5-20251001`), yang memiliki batasan penggunaan berbeda. Pelajari lebih lanjut tentang [memahami filter keamanan API Sonnet 4.5](https://support.claude.com/en/articles/12449294-understanding-sonnet-4-5-s-api-safety-filters).
-</Tip>
-
 Pada penolakan, objek [`stop_details`](https://platform.claude.com/docs/id/api/messages/create#message.stop_details) mengidentifikasi kategori kebijakan yang memicunya. Kategori-kategori tersebut dan bentuk lengkap respons penolakan dibahas dalam [Seperti apa penolakan itu](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#refusal-response). `stop_details` bernilai `null` untuk semua alasan berhenti selain `refusal`.
 
 Anda biasanya dapat memperoleh respons atas permintaan yang ditolak dengan mencoba ulang pada model Claude lain. Cara ini berlaku untuk Claude Fable 5.2, Claude Fable 5.1, Claude Fable 5, Claude Opus 5.5, Claude Opus 5, Claude Sonnet 5.5, dan Claude Haiku 5.5. [Penolakan dan fallback](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback) menunjukkan cara menyiapkan percobaan ulang tersebut, di sisi server atau di klien Anda. Claude Haiku 5.5 tidak memiliki fallback sisi server, jadi siapkan percobaan ulangnya dengan [fallback sisi klien](https://platform.claude.com/docs/id/build-with-claude/refusals-and-fallback#client-side-fallback). Jika Anda membangun sendiri percobaan ulang dari salah satu model ini kecuali Claude Haiku 5.5, [Kredit fallback](https://platform.claude.com/docs/id/build-with-claude/fallback-credit) menjelaskan cara menghindari membayar biaya cache prompt dua kali.
@@ -1943,9 +1939,7 @@ Penolakan `reasoning_extraction` merupakan salah satu pengecualian: ubah prompt 
 
 Claude berhenti karena mencapai batas “context window” (jendela konteks) model. Ini memungkinkan Anda meminta token maksimum yang mungkin tanpa mengetahui ukuran input yang tepat.
 
-<Note>
-  Alasan berhenti ini saat ini hanya memiliki tipe di namespace `beta` (csharp, go: `Beta`; java: `beta()`) SDK, sehingga contoh-contoh berikut memanggil `client.beta.messages` (csharp, go: `client.Beta.Messages`; java: `client.beta().messages()`; php: `$client->beta->messages`) dan menggunakan tipe berawalan `Beta`. Pada Sonnet 4.5 (tidak digunakan lagi) dan model yang lebih baru, API mengembalikan nilai ini tanpa header beta. Untuk model yang lebih lama, tambahkan header beta `model-context-window-exceeded-2025-08-26` untuk mengaktifkannya.
-</Note>
+Pada Claude 4.5 dan model yang lebih baru, API dapat mengembalikan nilai ini. Pada model yang lebih lama, tambahkan [header beta](https://platform.claude.com/docs/id/api/beta-headers) `model-context-window-exceeded-2025-08-26` untuk mengaktifkannya.
 
 <CodeGroup>
   ```bash cURL

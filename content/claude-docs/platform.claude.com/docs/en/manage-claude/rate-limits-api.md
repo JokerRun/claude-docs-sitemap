@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/manage-claude/rate-limits-api
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 1fd9574bef57237ef32ab901dda6d0c502baea1e6dcbeedff6a27697659a549f
+fetched_at: 2026-11-25T02:14:09.890537Z
+sha256: 3e467c558e46226e830a5e6e077e6a02d6a348858278b7a65447e0b263df9d96
 ---
 
 ---
@@ -161,6 +161,8 @@ List the rate limits configured for your organization:
   end
   ```
 </CodeGroup>
+
+On [Claude Models on Google Cloud (Anthropic managed)](https://platform.claude.com/docs/en/build-with-claude/claude-models-on-google-cloud/anthropic-managed), you can call the endpoints that read limits. Use the platform’s base URL and credentials instead of `https://api.anthropic.com` and an Admin API key. See the Admin API page’s [Cloud platforms](https://platform.claude.com/docs/en/manage-claude/admin-api#cloud-platforms) section.
 
 ## Organization rate limits
 
