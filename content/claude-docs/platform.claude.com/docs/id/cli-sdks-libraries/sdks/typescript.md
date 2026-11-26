@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 7a7682a17f81b96cbf43ad99c2573454d4379bd0afc1687c276e363d54fe2a35
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 7e5d1654e860cc5f5aa537af123ee02f4cb835532e58bbe51c969d164630f4ec
 ---
 
 ---
@@ -381,39 +381,14 @@ await client.files.upload({
 
 ## Menangani error
 
-Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status yang tidak sukses (yaitu, respons 4xx atau 5xx), subclass dari `APIError` akan dilemparkan:
+SDK melempar subclass dari `Anthropic.APIError` ketika tidak dapat terhubung ke API atau ketika API mengembalikan respons error (4xx atau 5xx). [Tipe error SDK](https://platform.claude.com/docs/id/api/errors#sdk-error-types) mencantumkan kelas-kelasnya, dan [Menangani error](https://platform.claude.com/docs/id/api/handle-errors) menunjukkan cara menangkapnya.
 
-```typescript
-const message = await client.messages
-  .create({
-    max_tokens: 1024,
-    messages: [{ role: "user", content: "Hello, Claude" }],
-    model: "claude-opus-5-5"
-  })
-  .catch(async (err) => {
-    if (err instanceof Anthropic.APIError) {
-      console.log(err.status); // 400
-      console.log(err.name); // BadRequestError
-      console.log(err.headers); // {server: 'nginx', ...}
-    } else {
-      throw err;
-    }
-  });
-```
+Properti `status` dan `headers` pada error berisi status dan header respons (misalnya, `err.headers?.get("retry-after")`). Keduanya bernilai `undefined` jika tidak ada respons.
 
-Kode error adalah sebagai berikut:
+Dua error tidak berasal dari koneksi yang gagal atau respons error. Pemeriksaan terhadap `APIError` cocok dengan yang pertama tetapi tidak dengan yang kedua:
 
-| Kode status | Tipe error |
-| ----- | ----- |
-| 400 | `BadRequestError` |
-| 401 | `AuthenticationError` |
-| 403 | `PermissionDeniedError` |
-| 404 | `NotFoundError` |
-| 409 | `ConflictError` |
-| 422 | `UnprocessableEntityError` |
-| 429 | `RateLimitError` |
-| >=500 | `InternalServerError` |
-| T/A | `APIConnectionError` |
+* **`APIUserAbortError`:** Anda membatalkan permintaan dengan opsi permintaan `signal` (sebuah `AbortSignal`) atau memanggil `abort()` pada [stream `client.messages.stream()`](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#streaming-helpers).
+* **`AnthropicError`:** SDK itu sendiri gagal. Misalnya, SDK menolak permintaan non-streaming yang panjang (lihat [Request panjang](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#long-requests)). `AnthropicError` adalah kelas induk dari `APIError`.
 
 ## ID permintaan
 
@@ -432,9 +407,11 @@ console.log(message._request_id); // req_018EeWyXxfu5pfWkrYcMdjWG
 
 ## Percobaan ulang
 
-Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan “exponential backoff” (jeda eksponensial) yang singkat. Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500 semuanya dicoba ulang secara default.
+Secara default, SDK mencoba ulang error tertentu hingga dua kali (total tiga percobaan). SDK mencoba ulang error koneksi, timeout, 408 Request Timeout, 409 Conflict, 429 Too Many Requests, dan error server 5xx.
 
-Anda dapat menggunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan ini:
+Jika respons memiliki header `x-should-retry` (`true` atau `false`), SDK mengikuti header tersebut alih-alih status. Di antara percobaan, SDK menunggu selama yang ditentukan oleh header `retry-after`, atau SDK menggunakan exponential backoff yang singkat.
+
+Gunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan percobaan ulang:
 
 ```typescript
 // Konfigurasikan default untuk semua permintaan:

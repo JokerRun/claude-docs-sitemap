@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/costs
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: 944ba153970b73ef824aff8d8498da154e354778e65a3d86871f7962b32ac543
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: a77557a9985a8e59d982e7b97a592a61fdc30a37957e9f7af091c37c731b3dd2
 ---
 
 > ## Documentation Index
@@ -303,7 +303,7 @@ This PreToolUse hook trims test output to its last 100 lines:
 
 > [tab] settings.json
 >
-> Add this to your [settings.json](https://code.claude.com/docs/en/settings.md#where-settings-live) to run the hook before every Bash command:
+> Add this to your [settings.json](https://code.claude.com/docs/en/settings.md#where-settings-live) to run the hook before every Bash tool call:
 >
 > ```json theme={null}
 > {

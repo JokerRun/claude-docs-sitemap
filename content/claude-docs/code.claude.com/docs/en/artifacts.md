@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/artifacts
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 1775086b42ab9c989e7301811312afc5a88a543c88bf749a13b360a9e511486d
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 652edf7de4a41902bbbb9f41f4a487451298355ce3a0e781692dd0df4bfc8e87
 ---
 
 > ## Documentation Index
@@ -211,9 +211,7 @@ You can stop Claude from replying on its own in any of these ways:
 * **Stop the task in `/tasks`**: Claude stops replying on that artifact until you ask it to resume replies there. Publishing the artifact again doesn't start replies again, and the stop still applies when you resume the session later.
 * **Press `Ctrl+X Ctrl+K` twice within 3 seconds**: the chord that [stops every running background subagent](https://code.claude.com/docs/en/interactive-mode.md#general-controls) also stops Claude from replying on every artifact for the rest of the session. Asking Claude to resume replies doesn't undo this stop.
 
-A watch that Claude Code started on its own can end after the artifact goes several hours without activity. You see `Stopped watching Artifact: <name> (idle)`. If you see `(made room for a newer watch)` in place of `(idle)`, your session reached its limit of 25 watches. In either case, ask Claude to republish the artifact to restart the watch.
-
-If the service that delivers comments becomes unavailable or stops answering, Claude Code keeps trying to reconnect for a while, then stops watching each artifact your session was watching.
+If you see `Stopped watching Artifact: <name>` followed by `(idle)`, `(connection lost)`, or `(made room for a newer watch)`, ask Claude to republish the artifact to restart the watch. A watch that Claude Code started on its own can end after several hours without activity.
 
 ## Pull live data with MCP connectors
 

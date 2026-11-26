@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/api/errors
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 79262258355b87856e3a76afdc635e69de31c2daa8be7842b75c852132e1f813
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: cc9fded865eb76b53acff4fd6c6af5773d4cd2e9a28795fa41a160842671b5e9
 ---
 
 ---
@@ -10,6 +10,8 @@ title: Error Claude API
 url: https://platform.claude.com/docs/id/api/errors
 description: Pahami kode status HTTP, bentuk respons error, dan ID permintaan yang dikembalikan oleh Claude API, serta tangani error dengan exception bertipe dari SDK.
 ---
+
+Untuk mengetahui error SDK yang dihasilkan oleh suatu error API, lihat [Tipe error SDK](https://platform.claude.com/docs/id/api/errors#sdk-error-types). Untuk menangkapnya dalam kode Anda, lihat [Menangani error](https://platform.claude.com/docs/id/api/handle-errors).
 
 ## Error HTTP
 
@@ -33,7 +35,9 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
 
 * 429 - `rate_limit_error`: Organisasi Anda telah mencapai [“rate limit” (batas laju)](https://platform.claude.com/docs/id/api/rate-limits), mencapai batas pengeluaran bulanan tingkat penggunaannya, atau mencapai batas pengeluaran pada workspace Claude Code. Error 429 akibat batas pengeluaran tingkat tidak memiliki header `retry-after` dan akan terus gagal hingga akses dipulihkan; lihat [Mencapai batas pengeluaran Anda](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) untuk cara mengenalinya. Peningkatan penggunaan yang tajam juga dapat menyebabkan error 429 meskipun Anda masih berada di bawah batas laju Anda; lihat [“Ramp limits” (batas ramp)](https://platform.claude.com/docs/id/api/rate-limits#ramp-limits).
 
-* 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba ulang permintaan dengan “exponential backoff” (penundaan eksponensial); jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id). Jika tipe error-nya justru `timeout_error`, lihat entri 504.
+  Untuk membedakan batas pengeluaran dari batas laju dalam kode, periksa [kode error](https://platform.claude.com/docs/id/api/errors#error-codes).
+
+* 500 - `api_error`: Terjadi error tak terduga di dalam sistem Anthropic. Coba ulang hanya jika header `x-should-retry` pada respons tidak bernilai `false` (lihat [Percobaan ulang](https://platform.claude.com/docs/id/api/errors#retries)). Jika error berlanjut, hubungi dukungan dengan menyertakan [ID permintaan](https://platform.claude.com/docs/id/api/errors#request-id). Jika tipe error-nya justru `timeout_error`, lihat entri 504.
 
 * 504 - `timeout_error`: Permintaan mengalami timeout saat diproses. API juga mengembalikan `timeout_error` dengan kode status lain, seperti 500 ketika permintaan mencapai batas waktu server sebelum respons dimulai. Untuk permintaan Messages API yang berjalan lama, gunakan [Messages API dengan streaming](https://platform.claude.com/docs/id/build-with-claude/streaming). Lihat [Permintaan panjang](https://platform.claude.com/docs/id/api/errors#long-requests) untuk opsi lainnya.
 
@@ -43,9 +47,22 @@ API mengikuti format kode error HTTP yang dapat diprediksi:
     Error 529 dapat terjadi ketika API mengalami lalu lintas tinggi di seluruh pengguna.
   </Warning>
 
-SDK resmi secara otomatis mencoba ulang kegagalan sementara (seperti error koneksi, batas laju, dan error server 5xx) dengan exponential backoff, dua kali secara default, dengan mematuhi header `retry-after` jika ada. Klien SDK menerima `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) untuk mengonfigurasi atau menonaktifkan perilaku ini.
-
 Saat menerima respons [streaming](https://platform.claude.com/docs/id/build-with-claude/streaming) melalui “server-sent events” (peristiwa yang dikirim server), atau SSE, error dapat terjadi setelah API mengembalikan respons 200. Dalam kasus tersebut, penanganan error tidak mengikuti mekanisme standar ini. Lihat [Event error](https://platform.claude.com/docs/id/build-with-claude/streaming#error-events) untuk bentuk error di tengah stream.
+
+SDK tidak mencoba ulang error di dalam stream. Untuk menangkapnya, lihat [Menangani error dalam stream](https://platform.claude.com/docs/id/api/handle-errors#handle-an-error-in-a-stream).
+
+### Percobaan ulang
+
+Secara default, SDK mencoba ulang permintaan yang gagal hingga dua kali (total tiga percobaan). Untuk mengubah jumlah percobaan ulang, atur `max_retries` (typescript, php: `maxRetries`; java: `.maxRetries()`; csharp: `MaxRetries`; go: `option.WithMaxRetries()`) pada klien. Nilai `0` menonaktifkan percobaan ulang.
+
+Untuk setiap percobaan yang gagal, SDK menentukan dua hal:
+
+* **Apakah SDK mencoba ulang:** Jika respons memiliki header `x-should-retry` (`true` atau `false`), SDK mengikutinya. Jika tidak, SDK mencoba ulang error koneksi, timeout, serta status 408, 409, 429, dan 500 ke atas.
+* **Berapa lama SDK menunggu:** Jika respons memiliki header `retry-after`, SDK menunggu selama yang dinyatakan oleh header tersebut. Jika tidak, SDK menggunakan exponential backoff dari 0,5 hingga 8 detik.
+
+Go SDK mencoba ulang beberapa metode create dalam lebih sedikit kasus. Lihat [Percobaan ulang untuk metode create di Go SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#retries-for-create-methods).
+
+Tanpa SDK, ikuti `x-should-retry` dan `retry-after` dalam kode Anda sendiri, serta gunakan backoff dan batas percobaan ulang.
 
 ## Batas ukuran permintaan
 
@@ -77,17 +94,241 @@ API selalu mengembalikan error sebagai JSON, dengan objek `error` tingkat atas y
 
 Berdasarkan [kebijakan pembuatan versi API](https://platform.claude.com/docs/id/api/versioning), nilai dalam objek-objek ini dapat bertambah, dan nilai `type` baru dapat muncul.
 
+### Kode error
+
+Beberapa error juga memiliki kode error di `error.details.error_code`. Satu `type` dapat mencakup beberapa penyebab, dan sebuah kode menyebutkan salah satunya.
+
+Misalnya, mencapai batas laju dan mencapai [batas pengeluaran bulanan](https://platform.claude.com/docs/id/api/rate-limits#reaching-your-spend-cap) Anda sama-sama menyebabkan 429 `rate_limit_error`. Pada Messages API, respons batas pengeluaran menambahkan sebuah kode:
+
+```json JSON
+{
+  "type": "error",
+  "error": {
+    "type": "rate_limit_error",
+    "message": "You have reached your API usage limits: ...",
+    "details": { "error_code": "enforced_spend_limit_reached" }
+  },
+  "request_id": "req_018EeWyXxfu5pfWkrYcMdjWG"
+}
+```
+
+API lain yang mengembalikan 429 ini, seperti Claude Managed Agents, tidak menambahkan kode tersebut. Di sana, hanya `message` yang membedakan kedua penyebab itu, dan Anda sebaiknya tidak mencocokkannya dalam kode. Error 429 akibat batas pengeluaran akan terus gagal hingga akses dipulihkan, jadi batasi percobaan ulang Anda setelah 429.
+
+Kumpulan kode dapat bertambah. Jika sebuah error tidak memiliki kode atau memiliki kode yang tidak Anda kenali, tangani berdasarkan `type` atau status HTTP-nya.
+
+Untuk daftar lengkap kode, lihat [`ErrorDetails`](https://platform.claude.com/docs/id/api/$shared#error_details) di referensi API. Untuk menemukan kode yang dapat dikembalikan oleh suatu metode, lihat [Menangani kode error tertentu](https://platform.claude.com/docs/id/api/handle-errors#handle-a-specific-error-code).
+
 ## Tipe error SDK
 
-SDK resmi memunculkan exception bertipe untuk error-error ini alih-alih mengembalikan JSON mentah. Misalnya, error 404 muncul sebagai `anthropic.NotFoundError` (typescript: `Anthropic.NotFoundError`; ruby: `Anthropic::Errors::NotFoundError`; java: `com.anthropic.errors.NotFoundException`; csharp: `AnthropicNotFoundException`; php: `Anthropic\Core\Exceptions\NotFoundException`; go: `*anthropic.Error`). Go SDK memiliki satu tipe error untuk semua status, yaitu `*anthropic.Error`: lakukan percabangan berdasarkan `StatusCode`. Tangkap kelas bertipe dari SDK alih-alih mencocokkan string pesan error, dengan menangani kelas yang paling spesifik terlebih dahulu. Halaman SDK Anda mendokumentasikan hierarki exception secara lengkap:
+Bagian ini mencantumkan apa yang perlu ditangkap atau diperiksa di SDK untuk setiap jenis error. Untuk menulis handler, lihat [Menangani error](https://platform.claude.com/docs/id/api/handle-errors).
 
-* [Python](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#handling-errors) · [TypeScript](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#handling-errors) · [C#](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp#error-handling) · [Go](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#error-handling) · [Java](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#error-handling) · [PHP](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php#error-handling) · [Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby#handling-errors)
+<Tabs>
+  <Tab title="Python">
+    Kelas-kelas ini berada dalam paket `anthropic` kecuali jika suatu baris menyebutkan yang lain. Sebuah kelas juga menangkap subclass-nya, jadi letakkan kelas yang lebih sempit terlebih dahulu. Misalnya, `RateLimitError` juga menangkap `EnforcedSpendLimitReachedError`.
+
+    | Untuk menangani | Tangkap |
+    | ----- | ----- |
+    | Satu [kode error](https://platform.claude.com/docs/id/api/errors#error-codes) | Kelasnya sendiri, seperti `anthropic.EnforcedSpendLimitReachedError` (lihat [Menangani kode error tertentu](https://platform.claude.com/docs/id/api/handle-errors#handle-a-specific-error-code)) |
+    | 400 | `BadRequestError` |
+    | 401 | `AuthenticationError` |
+    | 403 | `PermissionDeniedError` |
+    | 404 | `NotFoundError` |
+    | 409 | `ConflictError` |
+    | 413 | `ContentTooLargeError` |
+    | 422 | `UnprocessableEntityError` |
+    | 429 | `RateLimitError` |
+    | 504 | `GatewayTimeoutError` |
+    | 529 | `OverloadedError` |
+    | Setiap 5xx, seperti 500, 504, dan 529 | `InternalServerError` |
+    | Setiap respons error | `APIStatusError` |
+    | Event error di dalam stream | `APIStatusError` |
+    | Timeout klien (SDK berhenti menunggu) | `APITimeoutError` |
+    | Setiap kegagalan koneksi sebelum respons tiba (termasuk timeout klien) | `APIConnectionError` |
+    | Koneksi yang terputus atau macet di tengah stream | `httpx2.TransportError` (`httpx2` adalah library HTTP yang digunakan SDK) |
+    | Setiap error dalam tabel ini kecuali stream yang terputus | `APIError` |
+
+    Untuk status yang tidak memiliki baris, seperti 402, tangkap `APIStatusError` dan bandingkan `status_code`-nya.
+
+    Untuk mengakses exception yang mendasarinya atau respons mentah, lihat [Menangani error di Python](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python#handling-errors).
+  </Tab>
+
+  <Tab title="TypeScript">
+    Kelas-kelas ini adalah properti dari `Anthropic` kecuali jika suatu baris menyatakan lain. Sebuah kelas juga menangkap subclass-nya, jadi letakkan kelas yang lebih sempit terlebih dahulu. Misalnya, `RateLimitError` juga menangkap `EnforcedSpendLimitReachedError`.
+
+    | Untuk menangani | Tangkap |
+    | ----- | ----- |
+    | Satu [kode error](https://platform.claude.com/docs/id/api/errors#error-codes) | Kelasnya sendiri, seperti `Anthropic.EnforcedSpendLimitReachedError` (lihat [Menangani kode error tertentu](https://platform.claude.com/docs/id/api/handle-errors#handle-a-specific-error-code)) |
+    | 400 | `BadRequestError` |
+    | 401 | `AuthenticationError` |
+    | 403 | `PermissionDeniedError` |
+    | 404 | `NotFoundError` |
+    | 409 | `ConflictError` |
+    | 413 | `ContentTooLargeError` |
+    | 422 | `UnprocessableEntityError` |
+    | 429 | `RateLimitError` |
+    | 504 | `GatewayTimeoutError` |
+    | 529 | `OverloadedError` |
+    | Setiap 5xx, seperti 500, 504, dan 529 | `InternalServerError` |
+    | Timeout klien (SDK berhenti menunggu) | `APIConnectionTimeoutError` |
+    | Setiap kegagalan koneksi sebelum respons tiba (termasuk timeout klien) | `APIConnectionError` |
+    | Koneksi yang terputus di tengah stream | `AnthropicError` dari `client.messages.stream()`. Dengan `stream: true`, tangkap error milik runtime itu sendiri, seperti `TypeError`. |
+    | Event error di dalam stream | `APIError` |
+    | Setiap error dalam tabel ini kecuali stream yang terputus | `APIError` |
+
+    Untuk status yang tidak memiliki baris, seperti 402, tangkap `APIError` dan bandingkan `status`-nya.
+
+    Untuk membaca header respons, lihat [Menangani error di TypeScript](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/typescript#handling-errors).
+  </Tab>
+
+  <Tab title="C#">
+    Kelas-kelas ini berada dalam namespace `Anthropic.Exceptions` kecuali jika suatu baris menyebutkan yang lain. Sebuah kelas juga menangkap subclass-nya, jadi letakkan kelas yang lebih sempit terlebih dahulu. Misalnya, `AnthropicRateLimitException` juga menangkap `AnthropicEnforcedSpendLimitReachedException`.
+
+    | Untuk menangani | Tangkap |
+    | ----- | ----- |
+    | Satu [kode error](https://platform.claude.com/docs/id/api/errors#error-codes) | Kelasnya sendiri, seperti `Anthropic.Models.AnthropicEnforcedSpendLimitReachedException` (lihat [Menangani kode error tertentu](https://platform.claude.com/docs/id/api/handle-errors#handle-a-specific-error-code)) |
+    | 400 | `AnthropicBadRequestException` |
+    | 401 | `AnthropicUnauthorizedException` |
+    | 403 | `AnthropicForbiddenException` |
+    | 404 | `AnthropicNotFoundException` |
+    | 409 | `AnthropicConflictException` |
+    | 413 | `AnthropicContentTooLargeException` |
+    | 422 | `AnthropicUnprocessableEntityException` |
+    | 429 | `AnthropicRateLimitException` |
+    | 504 | `AnthropicGatewayTimeoutException` |
+    | 529 | `AnthropicOverloadedException` |
+    | Setiap 4xx | `Anthropic4xxException` |
+    | Setiap 5xx, seperti 500, 504, dan 529 | `Anthropic5xxException` |
+    | Setiap respons error | `AnthropicApiException` |
+    | Event error di dalam stream | `AnthropicSseException` |
+    | Setiap respons error dan setiap event error di dalam stream | `AnthropicServiceException` |
+    | Kegagalan koneksi sebelum respons tiba | `AnthropicIOException` |
+    | Koneksi yang terputus di tengah stream | `IOException` milik .NET sendiri, di `System.IO` |
+    | Timeout klien (SDK berhenti menunggu) | `TaskCanceledException` milik .NET sendiri, di `System.Threading.Tasks` |
+    | Setiap error dalam tabel ini kecuali timeout klien dan stream yang terputus | `AnthropicException` |
+
+    Untuk status yang tidak memiliki barisnya sendiri, seperti 402, tangkap `Anthropic4xxException` dan bandingkan `StatusCode`-nya.
+  </Tab>
+
+  <Tab title="Go">
+    Go SDK memiliki satu tipe error, yaitu `*anthropic.Error`. Anda membandingkan field-nya alih-alih menangkap sebuah kelas. Dalam tabel ini, `apierr` adalah variabel `*anthropic.Error` yang diisi oleh `errors.As()`.
+
+    | Untuk menangani | Periksa |
+    | ----- | ----- |
+    | Satu [kode error](https://platform.claude.com/docs/id/api/errors#error-codes) | `apierr.ErrorCode() == anthropic.ErrorCodeEnforcedSpendLimitReached` |
+    | Satu status HTTP | `apierr.StatusCode == http.StatusTooManyRequests` |
+    | Setiap respons error | `errors.As(err, &apierr)` |
+    | Event error di dalam stream | `errors.As(stream.Err(), &apierr)` |
+    | Kegagalan koneksi, timeout klien, atau koneksi yang terputus di tengah stream | `err` lain apa pun yang bukan `nil` |
+
+    Setiap kode error memiliki konstantanya sendiri (lihat [Menangani kode error tertentu](https://platform.claude.com/docs/id/api/handle-errors#handle-a-specific-error-code)).
+
+    Untuk mencetak permintaan dan respons mentah dari `*anthropic.Error`, lihat [Penanganan error di Go](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#error-handling).
+  </Tab>
+
+  <Tab title="Java">
+    Kelas-kelas ini berada dalam paket `com.anthropic.errors` kecuali jika suatu baris menyebutkan yang lain. Sebuah kelas juga menangkap subclass-nya, jadi letakkan kelas yang lebih sempit terlebih dahulu. Misalnya, `RateLimitException` juga menangkap `EnforcedSpendLimitReachedException`.
+
+    | Untuk menangani | Tangkap |
+    | ----- | ----- |
+    | Satu [kode error](https://platform.claude.com/docs/id/api/errors#error-codes) | Kelasnya sendiri, seperti `com.anthropic.models.EnforcedSpendLimitReachedException` (lihat [Menangani kode error tertentu](https://platform.claude.com/docs/id/api/handle-errors#handle-a-specific-error-code)) |
+    | 400 | `BadRequestException` |
+    | 401 | `UnauthorizedException` |
+    | 403 | `PermissionDeniedException` |
+    | 404 | `NotFoundException` |
+    | 409 | `ConflictException` |
+    | 413 | `ContentTooLargeException` |
+    | 422 | `UnprocessableEntityException` |
+    | 429 | `RateLimitException` |
+    | 504 | `GatewayTimeoutException` |
+    | 529 | `OverloadedException` |
+    | Setiap 5xx, seperti 500, 504, dan 529 | `InternalServerException` |
+    | Event error di dalam stream | `SseException` |
+    | Setiap respons error dan setiap event error di dalam stream | `AnthropicServiceException` |
+    | Kegagalan koneksi, timeout klien, atau koneksi yang terputus di tengah stream | `AnthropicIoException` |
+    | Setiap error dalam tabel ini | `AnthropicException` |
+
+    Untuk status yang tidak memiliki baris, seperti 402, tangkap `AnthropicServiceException` dan bandingkan `statusCode()`-nya.
+
+    `errorCode()` dan `type()` pada error masing-masing mengembalikan `Optional`.
+
+    Untuk membaca header respons, lihat [Penanganan error di Java](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java#error-handling).
+  </Tab>
+
+  <Tab title="PHP">
+    Kelas-kelas ini berada dalam namespace `Anthropic\Core\Exceptions` kecuali jika suatu baris menyebutkan yang lain. Sebuah kelas juga menangkap subclass-nya, jadi letakkan kelas yang lebih sempit terlebih dahulu. Misalnya, `RateLimitException` juga menangkap `EnforcedSpendLimitReachedException`.
+
+    | Untuk menangani | Tangkap |
+    | ----- | ----- |
+    | Satu [kode error](https://platform.claude.com/docs/id/api/errors#error-codes) | Kelasnya sendiri, seperti `Anthropic\EnforcedSpendLimitReachedException` (lihat [Menangani kode error tertentu](https://platform.claude.com/docs/id/api/handle-errors#handle-a-specific-error-code)) |
+    | 400 | `BadRequestException` |
+    | 401 | `AuthenticationException` |
+    | 403 | `PermissionDeniedException` |
+    | 404 | `NotFoundException` |
+    | 409 | `ConflictException` |
+    | 413 | `ContentTooLargeException` |
+    | 422 | `UnprocessableEntityException` |
+    | 429 | `RateLimitException` |
+    | 504 | `GatewayTimeoutException` |
+    | 529 | `OverloadedException` |
+    | Setiap 5xx, seperti 500, 504, dan 529 | `InternalServerException` |
+    | Setiap respons error | `APIStatusException` |
+    | Event error di dalam stream | `APIStatusException` |
+    | Kegagalan koneksi sebelum respons tiba atau timeout klien | `APIConnectionException` |
+    | Koneksi yang terputus di tengah stream | Exception milik klien HTTP itu sendiri atau tidak ada (lihat paragraf setelah tabel ini). Dengan Guzzle 7, reset koneksi memunculkan `\RuntimeException` milik PHP. |
+    | Setiap error dalam tabel ini kecuali stream yang terputus | `APIException` |
+
+    Jika server menutup koneksi di tengah stream, stream berakhir tanpa error. Periksa apakah event `message_stop` telah tiba.
+
+    Untuk status yang tidak memiliki baris, seperti 402, tangkap `APIStatusException` dan bandingkan `status`-nya.
+
+    Untuk mengakses exception yang mendasarinya, lihat [Penanganan error di PHP](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php#error-handling).
+  </Tab>
+
+  <Tab title="Ruby">
+    Kelas-kelas ini berada dalam modul `Anthropic::Errors` kecuali jika suatu baris menyebutkan yang lain. Sebuah kelas juga menangkap subclass-nya, jadi letakkan kelas yang lebih sempit terlebih dahulu. Misalnya, `RateLimitError` juga menangkap `EnforcedSpendLimitReachedError`.
+
+    | Untuk menangani | Tangkap |
+    | ----- | ----- |
+    | Satu [kode error](https://platform.claude.com/docs/id/api/errors#error-codes) | Kelasnya sendiri, seperti `Anthropic::EnforcedSpendLimitReachedError` (lihat [Menangani kode error tertentu](https://platform.claude.com/docs/id/api/handle-errors#handle-a-specific-error-code)) |
+    | 400 | `BadRequestError` |
+    | 401 | `AuthenticationError` |
+    | 403 | `PermissionDeniedError` |
+    | 404 | `NotFoundError` |
+    | 409 | `ConflictError` |
+    | 413 | `ContentTooLargeError` |
+    | 422 | `UnprocessableEntityError` |
+    | 429 | `RateLimitError` |
+    | 504 | `GatewayTimeoutError` |
+    | 529 | `OverloadedError` |
+    | Setiap 5xx, seperti 500, 504, dan 529 | `InternalServerError` |
+    | Setiap respons error | `APIStatusError` |
+    | Event error di dalam stream | `APIStatusError` |
+    | Timeout klien (SDK berhenti menunggu) | `APITimeoutError` |
+    | Setiap kegagalan koneksi (termasuk timeout klien dan koneksi yang terputus di tengah stream) | `APIConnectionError` |
+    | Setiap error dalam tabel ini | `APIError` |
+
+    Untuk status yang tidak memiliki baris, seperti 402, tangkap `APIStatusError` dan bandingkan `status`-nya.
+
+    `error_code` dan `type` pada error adalah simbol.
+
+    Untuk mengakses exception yang mendasarinya, lihat [Menangani error di Ruby](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby#handling-errors).
+  </Tab>
+</Tabs>
+
+Tabel ini didasarkan pada status HTTP dan kode error, bukan pada `error.type`:
+
+* Error 503 dengan `overloaded_error` dihitung sebagai 5xx, bukan sebagai 529.
+* Event error di dalam stream tidak pernah cocok dengan baris status atau kelas suatu kode. Status HTTP-nya adalah 200 milik stream atau tidak ada.
+
+Untuk menangani berdasarkan `error.type`, periksa `type` (csharp: `Type`; go: `Type()`; java: `type()`; php: `getType()`) pada error, seperti dalam [Menangani error dalam stream](https://platform.claude.com/docs/id/api/handle-errors#handle-an-error-in-a-stream).
 
 ## ID permintaan
 
 Setiap respons API menyertakan header `request-id` yang unik. Header ini berisi nilai seperti `req_018EeWyXxfu5pfWkrYcMdjWG`. Pengenal yang sama muncul sebagai field `request_id` dalam [body respons error](https://platform.claude.com/docs/id/api/errors#error-shapes). Saat menghubungi dukungan mengenai permintaan tertentu, sertakan ID ini untuk membantu menyelesaikan masalah Anda dengan cepat.
 
 Pada [Claude Platform on AWS](https://platform.claude.com/docs/id/build-with-claude/claude-platform-on-aws), respons menyertakan dua ID permintaan: ID permintaan AWS (`x-amzn-requestid`, primer, diindeks di CloudTrail) dan ID permintaan Anthropic (`request-id`, sekunder). Gunakan ID permintaan AWS untuk pencarian CloudTrail dan ID permintaan Anthropic untuk tiket dukungan Anthropic.
+
+Ketika API mengembalikan respons error, baca ID dari error SDK, di `request_id` (typescript: `requestID`; csharp, go: `RequestID`; java: `requestId()`; php: `getRequestID()`). Untuk contohnya, lihat [Menangkap error berdasarkan jenisnya](https://platform.claude.com/docs/id/api/handle-errors#catch-errors-by-kind). Ketika permintaan berhasil, baca ID dari respons.
 
 SDK Python dan TypeScript menyediakan ID permintaan sebagai properti `_request_id` pada objek respons tingkat teratas. SDK C#, Go, Java, dan PHP menyediakannya melalui accessor respons mentah masing-masing, sedangkan SDK Ruby menyediakannya melalui [middleware](https://platform.claude.com/docs/id/cli-sdks-libraries/middleware). Di semua SDK kecuali Ruby, gunakan `with_raw_response` (typescript: `.withResponse()`; java: `.withRawResponse()`; csharp: `WithRawResponse`; go: `option.WithResponseInto()`; php: `->raw`) untuk membaca [header respons](https://platform.claude.com/docs/id/api/overview#response-headers) lainnya, seperti `anthropic-organization-id` dan [`anthropic-workspace-id`](https://platform.claude.com/docs/id/manage-claude/workspaces#identify-the-workspace-behind-an-api-response). Di Ruby, gunakan middleware yang sama. Di Claude Platform on AWS, gunakan juga accessor respons mentah untuk membaca ID permintaan AWS (`x-amzn-requestid`):
 
@@ -585,7 +826,7 @@ Jika setiap permintaan ke [Claude Platform on AWS](https://platform.claude.com/d
     Untuk mengurangi penyalahgunaan dan mengelola kapasitas pada API, terdapat batasan seberapa banyak suatu organisasi dapat menggunakan Claude API.
   </Card>
 
-  <Card title="Streaming pesan" icon="lightning" href="https://platform.claude.com/docs/id/build-with-claude/streaming">
-    Stream respons Messages API secara bertahap dengan server-sent events, termasuk delta teks, penggunaan alat, dan pemikiran diperpanjang.
+  <Card title="Menangani error" icon="code" href="https://platform.claude.com/docs/id/api/handle-errors">
+    Gunakan SDK untuk menangkap error Claude API berdasarkan kode error, status HTTP, atau kegagalan koneksi, dan untuk menangani error yang datang dalam stream.
   </Card>
 </CardGroup>

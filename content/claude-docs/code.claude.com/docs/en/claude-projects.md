@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/claude-projects
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 5bb767bacdc146169fb4e59f2d16750d16c08445c7e84ba4130f993dc80c54b4
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: bb001025ad31826102295f48c7f08ae68f7560834511163e29f6e6b6d604c893
 ---
 
 > ## Documentation Index
@@ -91,7 +91,7 @@ Before you create a project, check your plan, your GitHub setup, and what the wo
 
 ### Start a new project from scratch
 
-Starting a project from scratch means opening the **New project** dialog, naming the stream of work, and optionally giving it a goal and the repositories and files it works on. Only the name is required, so you can create the project first and fill in the rest as the work takes shape.
+Starting a project from scratch means opening the **New project** dialog, naming the stream of work, and optionally giving it a goal and the repositories and files it works on.
 
 **1. Open Projects**
 

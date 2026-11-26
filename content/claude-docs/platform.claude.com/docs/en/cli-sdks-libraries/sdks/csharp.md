@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: a1c71838ecff3d6bcf2905854753df2674f7aec52a2c14f68b25c6c9ead29574
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: cc4b55c46617ddf6f32df6aa6141b6b2f609295c5304f255690508d1af9f01e2
 ---
 
 ---
@@ -145,44 +145,21 @@ await foreach (var message in client.Messages.CreateStreaming(parameters))
 
 ## Error handling
 
-The SDK throws custom unchecked exception types:
-
-* `AnthropicApiException`: Base class for API errors. See this table for which exception subclass is thrown for each HTTP status code:
-
-| Status | Exception |
-| ----- | ----- |
-| 400 | `AnthropicBadRequestException` |
-| 401 | `AnthropicUnauthorizedException` |
-| 403 | `AnthropicForbiddenException` |
-| 404 | `AnthropicNotFoundException` |
-| 422 | `AnthropicUnprocessableEntityException` |
-| 429 | `AnthropicRateLimitException` |
-| 5xx | `Anthropic5xxException` |
-| others | `AnthropicUnexpectedStatusCodeException` |
-
-Additionally, all 4xx errors inherit from `Anthropic4xxException`.
-
-* `AnthropicSseException`: Errors encountered during SSE streaming after a successful initial HTTP response.
-
-* `AnthropicIOException`: I/O networking errors.
-
-* `AnthropicInvalidDataException`: Failure to interpret successfully parsed data. For example, when accessing a property that’s supposed to be required, but the API unexpectedly omitted it from the response.
-
-* `AnthropicException`: Base class for all exceptions.
+The SDK throws `AnthropicApiException` when the API returns an error response and `AnthropicIOException` when the SDK can’t connect to the API. These and the SDK’s other exceptions extend `AnthropicException`. [SDK error types](https://platform.claude.com/docs/en/api/errors#sdk-error-types) lists the cases (including errors in a stream), and [Handle errors](https://platform.claude.com/docs/en/api/handle-errors) shows how to catch these exceptions.
 
 ## Retries
 
-The SDK automatically retries 2 times by default, with a short exponential backoff between requests.
+By default, the SDK retries certain errors up to two times (three attempts in all).
 
-Only the following error types are retried:
+The SDK retries the following error types:
 
-* Connection errors (for example, because of a network connectivity problem)
+* Connection errors and timeouts
 * 408 Request Timeout
 * 409 Conflict
-* 429 Rate Limit
-* 5xx Internal
+* 429 Too Many Requests
+* 5xx server errors
 
-The API might also explicitly instruct the SDK to retry or not retry a request.
+If a response has an `x-should-retry` header (`true` or `false`), the SDK follows it instead of the status. Between attempts, the SDK waits as long as the `retry-after` header says, or it uses a short exponential backoff.
 
 To set a custom number of retries, configure the client using the `MaxRetries` property:
 

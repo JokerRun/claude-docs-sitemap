@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/sub-agents
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 25d04de67920ba38de3c5b80a22dc12061a61c6df233b925adb0875ac2b782e8
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 9e223cb6656a18c9244ce019fdd1635871f1dd96ba0425dcff64a965978f1e5a
 ---
 
 > ## Documentation Index
@@ -721,7 +721,7 @@ When memory is enabled:
 
 For more dynamic control over tool usage, use `PreToolUse` hooks to validate operations before they execute. This is useful when you need to allow some operations of a tool while blocking others.
 
-This example creates a subagent that only allows read-only database queries. The `PreToolUse` hook runs the script specified in `command` before each Bash command executes:
+This example creates a subagent that only allows read-only database queries. The `PreToolUse` hook runs the script specified in `command` before each Bash tool call executes:
 
 ```yaml theme={null}
 ---

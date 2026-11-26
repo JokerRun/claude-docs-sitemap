@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/settings-example
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: cac911d94631e3a20a0b720d43f6f71c3c90af796a2ff823b389e79de82aee51
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 9b76b3d42abb3cb0a46232ce39a2ee2399022dfb712b4bc08be4442bc20bbdea
 ---
 
 > ## Documentation Index
@@ -190,7 +190,7 @@ One team's shared settings, committed to the repository so everyone who clones i
 >       "Read(./secrets/**)"
 >     ]
 >   },
->   // Before every Bash command, run a script in the repo that can block it
+>   // Before every Bash tool call, run a script in the repo that can block it
 >   "hooks": {
 >     "PreToolUse": [
 >       {

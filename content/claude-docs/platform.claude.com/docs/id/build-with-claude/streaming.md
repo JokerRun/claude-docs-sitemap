@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/build-with-claude/streaming
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: ac8640172892da2278b58453a695e30575ebd9a6c79582daed4c39515a4450ed
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 76fd62bcb59f595cd26f992d7ff586ca876c45ff3e5b0c4a6bfb49f320213361
 ---
 
 ---
@@ -353,6 +353,8 @@ API terkadang dapat mengirimkan [error](https://platform.claude.com/docs/id/api/
 event: error
 data: {"type": "error", "error": {"type": "overloaded_error", "message": "Overloaded"}}
 ```
+
+Jika Anda menggunakan SDK, kode Anda tidak menerima event ini. SDK mengakhiri stream, dan kode yang membaca stream akan mendapatkan error sebagai gantinya. Untuk menanganinya, lihat [Menangani error dalam stream](https://platform.claude.com/docs/id/api/handle-errors#handle-an-error-in-a-stream).
 
 ### Event lainnya
 
@@ -1559,10 +1561,6 @@ Untuk model Claude 4.6 dan setelahnya, strategi tangkap-dan-lanjutkan yang sama 
 
   <Card title="Pemikiran" icon="brain" href="https://platform.claude.com/docs/id/build-with-claude/thinking">
     Stream output thinking dengan event `thinking_delta` dan `signature_delta`.
-  </Card>
-
-  <Card title="SDK klien" icon="code" href="https://platform.claude.com/docs/id/cli-sdks-libraries/overview">
-    Gunakan SDK resmi, yang menangani streaming, akumulasi, dan koneksi ulang untuk Anda.
   </Card>
 
   <Card title="Pemrosesan batch" icon="stack" href="https://platform.claude.com/docs/id/build-with-claude/batch-processing">

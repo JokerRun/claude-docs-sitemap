@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/release-notes/overview
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 9fd882b866fbf1f3e07ec88671bbe5a3e95021a16afe97023b6a872e30dd0257
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 25a0e3a1b9287938bc90c5e1173809e8eda4d57f150ad028ab3dc99952cbd69b
 ---
 
 ---
@@ -91,6 +91,10 @@ Catatan rilis Claude Platform mencantumkan perubahan pada Claude API, SDK klien,
 * [Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-api) kini menyertakan data Security posture, dalam versi beta untuk organisasi Claude Enterprise. [Activity Feed](https://platform.claude.com/docs/id/manage-claude/compliance-activity-feed) mencatat perubahan pada atestasi di halaman **Security posture** dalam **Pengaturan organisasi** claude.ai. Endpoint `GET /v1/compliance/organizations/{organization_id}/security_posture` mengembalikan hasil Security posture terkini dari sebuah organisasi. Lihat [Security posture di Compliance API](https://platform.claude.com/docs/id/manage-claude/compliance-security-posture/overview).
 * Anda sekarang dapat menyiapkan “IP allowlist” (daftar izin IP) untuk organisasi Anda di Claude Console, dalam beta. Permintaan ke layanan yang tercakup dari alamat yang tidak ada dalam daftar Anda akan ditolak, sehingga membatasi tempat kunci API yang bocor dapat digunakan. Tambahkan alamat IPv4 dan IPv6 atau rentang CIDR, hingga 1.000 per organisasi. Lihat [Allowlist IP](https://platform.claude.com/docs/id/manage-claude/ip-allowlist) untuk mengetahui apa saja yang tercakup dan cara menyiapkannya.
 * Anda sekarang dapat mengeluarkan anggota organisasi Claude Enterprise (claude.ai) Anda dari Claude di mana saja dengan Admin API. Kemampuan ini tersedia dalam versi beta. Lihat [referensi Admin API](https://platform.claude.com/docs/id/api/beta/organization). Anggota tetap berada di organisasi dan dapat masuk kembali. Lihat [Mengeluarkan anggota dari semua sesi di mana saja](https://platform.claude.com/docs/id/manage-claude/user-management#sign-a-member-out-everywhere) untuk header beta dan untuk apa yang tidak diakhiri oleh permintaan tersebut.
+
+### 4 November 2026
+
+* Kami telah menambahkan [kode error](https://platform.claude.com/docs/id/api/errors#error-codes) ke SDK sehingga Anda dapat menangani satu penyebab error tanpa mengurai body respons. Setiap error API kini membawa kode error, pesan, dan detail dari API, dan setiap kode error memiliki kelas exception tersendiri (di Go, sebuah konstanta). Untuk menggunakan kode error, perbarui ke [versi terbaru SDK](https://platform.claude.com/docs/id/cli-sdks-libraries/overview#latest-versions). Lihat [Menangani error](https://platform.claude.com/docs/id/api/handle-errors).
 
 ### 3 November 2026
 

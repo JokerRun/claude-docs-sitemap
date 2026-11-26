@@ -14431,6 +14431,9 @@
 <loc>https://platform.claude.com/docs/zh-TW/claude_api_primer</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/de/api/handle-errors</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/de/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
 </url>
 <url>
@@ -14474,6 +14477,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/de/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/en/api/handle-errors</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
@@ -14521,6 +14527,9 @@
 <loc>https://platform.claude.com/docs/en/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/es/api/handle-errors</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/es/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
 </url>
 <url>
@@ -14564,6 +14573,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/es/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/fr/api/handle-errors</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/fr/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
@@ -14611,6 +14623,9 @@
 <loc>https://platform.claude.com/docs/fr/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/id/api/handle-errors</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
 </url>
 <url>
@@ -14654,6 +14669,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/id/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/it/api/handle-errors</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/it/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
@@ -14701,6 +14719,9 @@
 <loc>https://platform.claude.com/docs/it/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/ja/api/handle-errors</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/ja/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
 </url>
 <url>
@@ -14744,6 +14765,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/ja/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/ko/api/handle-errors</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/ko/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
@@ -14791,6 +14815,9 @@
 <loc>https://platform.claude.com/docs/ko/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/pt-BR/api/handle-errors</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/pt-BR/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
 </url>
 <url>
@@ -14834,6 +14861,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/pt-BR/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/ru/api/handle-errors</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/ru/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
@@ -14881,6 +14911,9 @@
 <loc>https://platform.claude.com/docs/ru/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
 </url>
 <url>
+<loc>https://platform.claude.com/docs/zh-CN/api/handle-errors</loc>
+</url>
+<url>
 <loc>https://platform.claude.com/docs/zh-CN/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>
 </url>
 <url>
@@ -14924,6 +14957,9 @@
 </url>
 <url>
 <loc>https://platform.claude.com/docs/zh-CN/manage-claude/enterprise-frontier-safeguards/setup-google-cloud-agent-platform</loc>
+</url>
+<url>
+<loc>https://platform.claude.com/docs/zh-TW/api/handle-errors</loc>
 </url>
 <url>
 <loc>https://platform.claude.com/docs/zh-TW/manage-claude/enterprise-frontier-safeguards/customer-managed-keys</loc>

@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/en/release-notes/overview
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 2153734a35aed562c4fe31928eadee8e10df1ea4d6ee62d5d444e50b8cd62967
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 0a05a304ac6278e8fa22f87e3615e7f5a438fe891250a21bb756c48a79921bc8
 ---
 
 ---
@@ -91,6 +91,10 @@ The Claude Platform release notes list changes to the Claude API, the client SDK
 * The [Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-api) now includes Security posture data, in beta for Claude Enterprise organizations. The [Activity Feed](https://platform.claude.com/docs/en/manage-claude/compliance-activity-feed) records changes to attestations on the **Security posture** page in claude.ai **Organization settings**. The `GET /v1/compliance/organizations/{organization_id}/security_posture` endpoint returns an organization’s current Security posture results. See [Security posture in the Compliance API](https://platform.claude.com/docs/en/manage-claude/compliance-security-posture/overview).
 * You can now set up an IP allowlist for your organization in the Claude Console, in beta. Requests to covered services from addresses not on your list are refused, which limits where a leaked API key can be used. Add IPv4 and IPv6 addresses or CIDR ranges, up to 1,000 per organization. See [IP allowlisting](https://platform.claude.com/docs/en/manage-claude/ip-allowlist) for what’s covered and how to set it up.
 * You can now sign a member of your Claude Enterprise (claude.ai) organization out of Claude everywhere with the Admin API. This capability is in beta. See the [Admin API reference](https://platform.claude.com/docs/en/api/beta/organization). The member stays in the organization and can sign in again. See [Sign a member out everywhere](https://platform.claude.com/docs/en/manage-claude/user-management#sign-a-member-out-everywhere) for the beta header and what the request doesn’t end.
+
+### November 4, 2026
+
+* We’ve added [error codes](https://platform.claude.com/docs/en/api/errors#error-codes) to the SDK so you can handle one cause of an error without parsing the response body. Each API error now carries the API’s error code, message, and details, and each error code has its own exception class (in Go, a constant). To use error codes, update to the [latest version of the SDK](https://platform.claude.com/docs/en/cli-sdks-libraries/overview#latest-versions). See [Handle errors](https://platform.claude.com/docs/en/api/handle-errors).
 
 ### November 3, 2026
 

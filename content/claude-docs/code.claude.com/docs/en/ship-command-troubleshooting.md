@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/ship-command-troubleshooting
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 27880632e452a2a377cc266253d242394688bcd6d5f7b9499200a787466882e5
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 70fd1de274f45e02d7e0daa688b2706d880a552a5a8eeac2077657db78b02f07
 ---
 
 > ## Documentation Index
@@ -245,6 +245,24 @@ These messages are about a custom skill or command. Its name is one that the bui
 | `Nothing started. A custom /ship isn't loaded`, or the same for `/steward` | To run the built-in command, type the same line again. To run the custom one, rename it, then restart Claude Code |
 
 Leave a repository's `.claude/skills/steward/SKILL.md` as it is, because PR Steward and the watch read it as instructions. Neither message counts that file, so one that names `/steward` is about another skill or command.
+
+### Keep a custom /ship or /steward without renaming
+
+If you've already created your own skill or command called `/ship` or `/steward` and don't want the built-in versions to override it, you can turn them off. To do that, use the `CLAUDE_CODE_DISABLE_SHIP` environment variable, which turns off both together and requires Claude Code v2.1.331 or later. Before you set it, [remove any `"off"` entry](#a-skilloverrides-entry-turns-off-%2Fship-or-%2Fsteward) for your command under `skillOverrides`.
+
+Add this [`env`](https://code.claude.com/docs/en/settings-reference#env) entry to your [user settings file](https://code.claude.com/docs/en/settings.md#settings-files-and-who-they-affect), or to a project's `.claude/settings.json` for everyone who starts sessions in its top folder, then restart Claude Code:
+
+```json theme={null}
+{
+  "env": {
+    "CLAUDE_CODE_DISABLE_SHIP": "1"
+  }
+}
+```
+
+To check that your command loaded, type `/` at the Claude Code prompt and look for its description or first line.
+
+If your command is named `steward` and the repository has a `.claude/skills/steward/SKILL.md` file, check [which one runs](https://code.claude.com/docs/en/skills.md#resolve-skills-that-share-a-name).
 
 ## Related resources
 

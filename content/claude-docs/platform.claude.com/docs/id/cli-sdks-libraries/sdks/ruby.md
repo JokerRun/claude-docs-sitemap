@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/ruby
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 5f55e52fe43afd669b20c0da83de8bc1672ac6c67e45fdba2007bffc83438777
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 1319cc21abb523efe032ec65fe7669c961deb816cd055e1e0fc148187800fb37
 ---
 
 ---
@@ -120,50 +120,17 @@ Untuk dokumentasi lengkap tentang output terstruktur termasuk contoh Ruby, lihat
 
 ## Menangani error
 
-Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status yang tidak berhasil (yaitu, respons 4xx atau 5xx), subkelas dari `Anthropic::Errors::APIError` akan dimunculkan:
+SDK memunculkan subclass dari `Anthropic::Errors::APIError` ketika tidak dapat terhubung ke API atau ketika API mengembalikan respons error (4xx atau 5xx). [Tipe error SDK](https://platform.claude.com/docs/id/api/errors#sdk-error-types) mencantumkan kelas-kelasnya, dan [Menangani error](https://platform.claude.com/docs/id/api/handle-errors) menunjukkan cara melakukan rescue terhadapnya.
 
-```ruby
-anthropic = Anthropic::Client.new
-begin
-  message = anthropic.messages.create(
-    max_tokens: 1024,
-    messages: [{role: "user", content: "Hello, Claude"}],
-    model: Anthropic::Model::CLAUDE_OPUS_5_5
-  )
-rescue Anthropic::Errors::APIConnectionError => e
-  puts("The server could not be reached")
-  puts(e.cause)  # an underlying Exception, likely raised within `net/http`
-rescue Anthropic::Errors::RateLimitError => e
-  puts("A 429 status code was received; we should back off a bit.")
-rescue Anthropic::Errors::APIStatusError => e
-  puts("Another non-200-range status code was received")
-  puts(e.status)
-end
-```
-
-Kode error adalah sebagai berikut:
-
-| Penyebab | Tipe Error |
-| ----- | ----- |
-| HTTP 400 | `BadRequestError` |
-| HTTP 401 | `AuthenticationError` |
-| HTTP 403 | `PermissionDeniedError` |
-| HTTP 404 | `NotFoundError` |
-| HTTP 409 | `ConflictError` |
-| HTTP 422 | `UnprocessableEntityError` |
-| HTTP 429 | `RateLimitError` |
-| HTTP >= 500 | `InternalServerError` |
-| Error HTTP lainnya | `APIStatusError` |
-| Timeout | `APITimeoutError` |
-| Error jaringan | `APIConnectionError` |
+Untuk melihat mengapa koneksi gagal atau timeout, baca `cause` pada `Anthropic::Errors::APIConnectionError` atau subclass-nya `APITimeoutError`. `cause` berisi exception yang mendasarinya.
 
 ## Percobaan ulang
 
-Error tertentu akan dicoba ulang secara otomatis sebanyak 2 kali secara default, dengan “exponential backoff” (penundaan eksponensial) yang singkat.
+Secara default, SDK mencoba ulang error tertentu hingga dua kali (total tiga percobaan). SDK mencoba ulang error koneksi, timeout, 408 Request Timeout, 409 Conflict, 429 Too Many Requests, dan error server 5xx.
 
-Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, error Internal >=500, dan timeout semuanya dicoba ulang secara default.
+Jika respons memiliki header `x-should-retry` (`true` atau `false`), SDK mengikuti header tersebut alih-alih status. Di antara percobaan, SDK menunggu selama yang ditentukan oleh header `retry-after`, atau SDK menggunakan exponential backoff yang singkat.
 
-Anda dapat menggunakan opsi `max_retries` untuk mengonfigurasi atau menonaktifkan ini:
+Gunakan opsi `max_retries` untuk mengonfigurasi atau menonaktifkan percobaan ulang:
 
 ```ruby
 # Konfigurasikan default untuk semua permintaan:

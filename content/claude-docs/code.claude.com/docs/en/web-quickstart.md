@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/web-quickstart
-fetched_at: 2026-11-20T02:13:34.557439Z
-sha256: 6af1a45c08b310fb173394900a2150aa00dfa9b02fa86a0478d8e55148d5cd25
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 9f663b0fc547e5b540be4d7f5e1c1570790ffd2677cd4bf8c67cbda834a0c4ae
 ---
 
 > ## Documentation Index
@@ -39,7 +39,7 @@ The steps below describe Anthropic-hosted sessions. In a [self-hosted environmen
 3. **Work**: Claude analyzes code, makes changes, runs tests, and checks its work. You can watch and steer throughout, or step away and come back when it's done.
 4. **Push the branch**: when Claude reaches a stopping point, it pushes its branch to GitHub. You review the diff, leave inline comments, create a PR, or send another message to keep going.
 
-The session doesn't close when the branch is pushed. PR creation and further edits all happen within the same conversation.
+PR creation and further edits all happen within the same conversation.
 
 ## Compare ways to run Claude Code
 

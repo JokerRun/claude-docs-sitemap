@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/php
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 04ab74007252d5b28d0065d630529cb4447a2952af03ccb05be2159c4d411c8f
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 11ffb2a93f5858a0fefc8a15434c62d30916c85e1dab9eaec3f39fdd4080f6da
 ---
 
 ---
@@ -82,56 +82,17 @@ $client = new Client(
 
 ## Penanganan error
 
-Ketika library tidak dapat terhubung ke API, atau jika API mengembalikan kode status yang tidak berhasil (yaitu, respons 4xx atau 5xx), subclass dari `Anthropic\Core\Exceptions\APIException` akan dilemparkan:
+SDK melempar subclass dari `Anthropic\Core\Exceptions\APIException` ketika tidak dapat terhubung ke API atau ketika API mengembalikan respons error (4xx atau 5xx). [Tipe error SDK](https://platform.claude.com/docs/id/api/errors#sdk-error-types) mencantumkan kelas-kelasnya, dan [Menangani error](https://platform.claude.com/docs/id/api/handle-errors) menunjukkan cara menangkapnya.
 
-```php
-<?php
-// ...
-use Anthropic\Core\Exceptions\APIConnectionException;
-use Anthropic\Core\Exceptions\APIStatusException;
-use Anthropic\Core\Exceptions\RateLimitException;
-use Anthropic\Messages\Model;
-// ...
-try {
-    $message = $client->messages->create(
-        maxTokens: 1024,
-        messages: [['role' => 'user', 'content' => 'Hello, Claude']],
-        model: Model::CLAUDE_OPUS_5_5,
-    );
-} catch (APIConnectionException $e) {
-    echo 'The server could not be reached', PHP_EOL;
-    echo $e->getPrevious()?->getMessage(), PHP_EOL;
-} catch (RateLimitException $_) {
-    echo 'A 429 status code was received; we should back off a bit.', PHP_EOL;
-} catch (APIStatusException $e) {
-    echo 'Another non-200-range status code was received', PHP_EOL;
-    echo $e->getMessage();
-}
-```
-
-Kode error adalah sebagai berikut:
-
-| Penyebab | Jenis error |
-| ----- | ----- |
-| HTTP 400 | `BadRequestException` |
-| HTTP 401 | `AuthenticationException` |
-| HTTP 403 | `PermissionDeniedException` |
-| HTTP 404 | `NotFoundException` |
-| HTTP 409 | `ConflictException` |
-| HTTP 422 | `UnprocessableEntityException` |
-| HTTP 429 | `RateLimitException` |
-| HTTP >= 500 | `InternalServerException` |
-| Error HTTP lainnya | `APIStatusException` |
-| Timeout | `APITimeoutException` |
-| Error jaringan | `APIConnectionException` |
+Untuk melihat mengapa koneksi gagal atau mengalami timeout, panggil `getPrevious()` pada `Anthropic\Core\Exceptions\APIConnectionException`. Metode ini mengembalikan exception yang mendasarinya atau `null` jika tidak ada.
 
 ## Percobaan ulang
 
-Error tertentu secara otomatis dicoba ulang dua kali secara default, dengan “exponential backoff” (penundaan eksponensial) yang singkat.
+Secara default, SDK mencoba ulang error tertentu hingga dua kali (total tiga percobaan). SDK mencoba ulang error koneksi, timeout, 408 Request Timeout, 409 Conflict, 429 Too Many Requests, dan error server 5xx.
 
-Error koneksi (misalnya, karena masalah konektivitas jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, error Internal >=500, dan timeout semuanya dicoba ulang secara default.
+Jika respons memiliki header `x-should-retry` (`true` atau `false`), SDK mengikuti header tersebut alih-alih status. Di antara percobaan, SDK menunggu selama yang ditentukan oleh header `retry-after`, atau SDK menggunakan exponential backoff yang singkat.
 
-Anda dapat menggunakan opsi `maxRetries` untuk mengonfigurasi atau menonaktifkan ini:
+Gunakan opsi permintaan `maxRetries` untuk mengonfigurasi atau menonaktifkan percobaan ulang:
 
 ```php
 use Anthropic\Messages\Model;

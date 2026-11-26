@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/python
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: 8d609b8224768bb8d63db4d4bf02a22f06e2c09c80e2ec48e77dd670833a95b1
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 9d0d44413521558d3e85af024f4110a26893268ded0f3c81cfe0e6396718f6ae
 ---
 
 ---
@@ -356,46 +356,14 @@ Klien async menggunakan antarmuka yang persis sama. Jika Anda memberikan instanc
 
 ## Menangani error
 
-SDK memunculkan subclass dari `APIError` ketika tidak dapat terhubung ke API atau ketika API mengembalikan kode status 4xx atau 5xx:
+SDK memunculkan subclass dari `anthropic.APIError` ketika tidak dapat terhubung ke API atau ketika API mengembalikan respons error (4xx atau 5xx). [Tipe error SDK](https://platform.claude.com/docs/id/api/errors#sdk-error-types) mencantumkan kelas-kelasnya, dan [Menangani error](https://platform.claude.com/docs/id/api/handle-errors) menunjukkan cara menangkapnya.
 
-```python
-import anthropic
-# ...
-try:
-    message = client.messages.create(
-        max_tokens=1024,
-        messages=[
-            {
-                "role": "user",
-                "content": "Hello, Claude",
-            }
-        ],
-        model="claude-opus-5-5",
-    )
-except anthropic.APIConnectionError as e:
-    print("The server could not be reached")
-    print(e.__cause__)  # an underlying Exception, likely raised within httpx2
-except anthropic.RateLimitError as e:
-    print("A 429 status code was received; wait before retrying.")
-except anthropic.APIStatusError as e:
-    print("Another non-200-range status code was received")
-    print(e.status_code)
-    print(e.response)
-```
+Dua dari kelas tersebut menyimpan detail lebih lanjut tentang suatu kegagalan:
 
-Kode error adalah sebagai berikut:
-
-| Kode status | Jenis error |
-| ----- | ----- |
-| 400 | `BadRequestError` |
-| 401 | `AuthenticationError` |
-| 403 | `PermissionDeniedError` |
-| 404 | `NotFoundError` |
-| 409 | `ConflictError` |
-| 422 | `UnprocessableEntityError` |
-| 429 | `RateLimitError` |
-| >=500 | `InternalServerError` |
-| T/A | `APIConnectionError` |
+| Kelas | Dimunculkan ketika | Letak detailnya |
+| ----- | ----- | ----- |
+| `APIConnectionError` | SDK tidak dapat menjangkau API, atau permintaan mengalami timeout (subclass `APITimeoutError`) | `__cause__` menyimpan exception yang mendasarinya |
+| `APIStatusError` | API mengembalikan respons error | `status_code` menyimpan status, dan `response` menyimpan `httpx2.Response` mentah beserta header-nya |
 
 ## ID permintaan
 
@@ -418,9 +386,11 @@ print(message._request_id)  # for example, req_018EeWyXxfu5pfWkrYcMdjWG
 
 ## Percobaan ulang
 
-Secara default, SDK mencoba ulang error tertentu dua kali, dengan exponential backoff yang singkat. SDK mencoba ulang error koneksi (misalnya, masalah jaringan), 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500.
+Secara default, SDK mencoba ulang error tertentu hingga dua kali (total tiga percobaan). SDK mencoba ulang error koneksi, timeout, 408 Request Timeout, 409 Conflict, 429 Too Many Requests, dan error server 5xx.
 
-Anda dapat menggunakan opsi `max_retries` untuk mengonfigurasi atau menonaktifkan ini:
+Jika respons memiliki header `x-should-retry` (`true` atau `false`), SDK mengikuti header tersebut alih-alih status. Di antara percobaan, SDK menunggu selama yang ditentukan oleh header `retry-after`, atau SDK menggunakan exponential backoff yang singkat.
+
+Gunakan opsi `max_retries` untuk mengonfigurasi atau menonaktifkan percobaan ulang:
 
 ```python
 # Konfigurasikan default untuk semua permintaan:

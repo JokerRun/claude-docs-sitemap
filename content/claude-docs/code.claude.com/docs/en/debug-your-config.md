@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/debug-your-config
-fetched_at: 2026-11-15T02:13:36.177739Z
-sha256: 39eccc7f88f52f10d32b66f05d49076f08d6302ab290c10431e902953d2748ae
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: f23dd2450f7d010818c0ab74078e5a054c9b1c79cbd7ba06cf2144f9b49aec4e
 ---
 
 > ## Documentation Index
@@ -69,7 +69,7 @@ For configuration locations and scope rules, see [MCP](https://code.claude.com/d
 Run `/hooks` to list every hook registered for the current session, grouped by event. If a hook you defined doesn't appear, Claude Code didn't load it. Check for these causes:
 
 * The hook is defined in a standalone file. Hooks go under the `"hooks"` key in a [settings file](https://code.claude.com/docs/en/settings.md#settings-files).
-* The `matcher` value is an array instead of a single string. Claude Code lists the entry as an invalid setting when you start an interactive session and in `claude doctor`. If the array is under `PreToolUse` or `PermissionRequest`, none of that file's other hooks load either.
+* The `matcher` value is an array instead of a single string. Claude Code lists the entry as an invalid setting when you start an interactive session and in `claude doctor`. If the array is under `PreToolUse`, `PermissionRequest`, or `PreSkillShellCommand`, none of that file's other hooks load either.
 * The hook is in a skill's frontmatter, and neither you nor Claude has invoked the skill yet in this session. Invoke it or ask Claude to, then run `/hooks` again. If the hook still doesn't appear, check for other causes, such as [frontmatter that didn't parse](https://code.claude.com/docs/en/skills.md#skill-not-triggering) or one of the [limits on skill hooks](https://code.claude.com/docs/en/hooks.md#limits-on-skill-hooks).
 
 If the hook appears but doesn't fire, the matcher is the usual cause. Check it for these mistakes:

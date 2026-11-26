@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/csharp
-fetched_at: 2026-11-21T02:12:50.066053Z
-sha256: a88c42dbd9edd8cecc5f4683552471309b18197a8e3d9e4ee31ff63694ade7b8
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 418cc537b672c3afd40cd1c193b13fa77c4ee331d26ad1c113ae0e55c2390156
 ---
 
 ---
@@ -145,44 +145,21 @@ await foreach (var message in client.Messages.CreateStreaming(parameters))
 
 ## Penanganan error
 
-SDK melempar tipe exception kustom yang tidak diperiksa (unchecked):
-
-* `AnthropicApiException`: Kelas dasar untuk error API. Lihat tabel ini untuk mengetahui subkelas exception mana yang dilempar untuk setiap kode status HTTP:
-
-| Status | Exception |
-| ----- | ----- |
-| 400 | `AnthropicBadRequestException` |
-| 401 | `AnthropicUnauthorizedException` |
-| 403 | `AnthropicForbiddenException` |
-| 404 | `AnthropicNotFoundException` |
-| 422 | `AnthropicUnprocessableEntityException` |
-| 429 | `AnthropicRateLimitException` |
-| 5xx | `Anthropic5xxException` |
-| lainnya | `AnthropicUnexpectedStatusCodeException` |
-
-Selain itu, semua error 4xx mewarisi dari `Anthropic4xxException`.
-
-* `AnthropicSseException`: Error yang terjadi selama streaming SSE setelah respons HTTP awal berhasil.
-
-* `AnthropicIOException`: Error jaringan I/O.
-
-* `AnthropicInvalidDataException`: Kegagalan menginterpretasikan data yang berhasil di-parse. Misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya dari respons.
-
-* `AnthropicException`: Kelas dasar untuk semua exception.
+SDK melempar `AnthropicApiException` ketika API mengembalikan respons error dan `AnthropicIOException` ketika SDK tidak dapat terhubung ke API. Exception ini dan exception SDK lainnya merupakan turunan dari `AnthropicException`. [Tipe error SDK](https://platform.claude.com/docs/id/api/errors#sdk-error-types) mencantumkan kasus-kasusnya (termasuk error dalam stream), dan [Menangani error](https://platform.claude.com/docs/id/api/handle-errors) menunjukkan cara menangkap exception ini.
 
 ## Percobaan ulang
 
-SDK secara otomatis mencoba ulang sebanyak 2 kali secara default, dengan “exponential backoff” (jeda eksponensial) singkat di antara permintaan.
+Secara default, SDK mencoba ulang error tertentu hingga dua kali (total tiga percobaan).
 
-Hanya tipe error berikut yang dicoba ulang:
+SDK mencoba ulang tipe error berikut:
 
-* Error koneksi (misalnya, karena masalah konektivitas jaringan)
+* Error koneksi dan timeout
 * 408 Request Timeout
 * 409 Conflict
-* 429 Rate Limit
-* 5xx Internal
+* 429 Too Many Requests
+* Error server 5xx
 
-API juga dapat secara eksplisit menginstruksikan SDK untuk mencoba ulang atau tidak mencoba ulang suatu permintaan.
+Jika respons memiliki header `x-should-retry` (`true` atau `false`), SDK mengikuti header tersebut alih-alih status. Di antara percobaan, SDK menunggu selama yang ditentukan oleh header `retry-after`, atau SDK menggunakan exponential backoff yang singkat.
 
 Untuk mengatur jumlah percobaan ulang kustom, konfigurasikan klien menggunakan properti `MaxRetries`:
 

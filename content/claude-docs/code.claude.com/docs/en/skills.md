@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/skills
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: a4e18f19af703a60dbab8e03a23ffb51cb997a6faaab79c8fc856a9d3f498c07
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 3de6c6acc4b9a446307c112a90fe40a8739b1d28796595952cd146f37483509d
 ---
 
 > ## Documentation Index
@@ -827,6 +827,8 @@ Outside [auto mode](https://code.claude.com/docs/en/permission-modes.md#eliminat
 * **Bare repository folders**: a folder looks bare when it holds a `HEAD` file directly beside `refs` or `commondir`. When the closest repository at or above the working directory looks bare, Claude Code ignores `allowed-tools` for a Bash command that contains `git` or that Claude Code can't parse. If you trust that folder, allow the command with [`/permissions`](https://code.claude.com/docs/en/permissions#manage-permissions) in the session.
 
 In auto mode, a command that would otherwise need your approval doesn't abort the invocation. The skill loads with an instruction telling Claude to run the command first, and Claude's own call then goes through [auto mode's usual checks](https://code.claude.com/docs/en/permission-modes.md#how-the-classifier-evaluates-actions). The invocation still aborts in a [forked skill](#run-skills-in-a-subagent) that sets `agent`, and in a session where Claude doesn't have the [shell tool that runs injected commands](#how-injected-commands-run).
+
+`PreToolUse` hooks don't fire for injected commands that run as the skill loads. To log or block the ones that pass the permission check, use a [`PreSkillShellCommand` hook](https://code.claude.com/docs/en/hooks#preskillshellcommand).
 
 ### Run skills in a subagent
 

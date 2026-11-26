@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/java
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 528c00d2a11ad60d56e68b03e61541d34fa8c6cfe07e32dd5119496c754f2bf7
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 3ac1a1163d4c5b85fd17a6ebce901f348c7ab235300972a68f9bcda3705f8c8b
 ---
 
 ---
@@ -603,44 +603,9 @@ try (HttpResponse response = client.files().download(params)) {
 
 ## Penanganan error
 
-SDK melempar tipe exception unchecked kustom:
+SDK melempar subclass dari `AnthropicException` saat permintaan gagal. Penyebabnya antara lain kegagalan koneksi dan respons error dari API. Exception ini bersifat unchecked. [Tipe error SDK](https://platform.claude.com/docs/id/api/errors#sdk-error-types) mencantumkan kasus-kasusnya (termasuk error dalam stream), dan [Menangani error](https://platform.claude.com/docs/id/api/handle-errors) menunjukkan cara menangkap exception ini.
 
-* `AnthropicServiceException` - Kelas dasar untuk error HTTP
-* `AnthropicIoException` - Error jaringan I/O
-* `AnthropicRetryableException` - Error umum yang menunjukkan kegagalan yang dapat dicoba ulang
-* `AnthropicInvalidDataException` - Kegagalan menginterpretasikan data yang berhasil diurai (misalnya, saat mengakses properti yang seharusnya wajib, tetapi API secara tak terduga menghilangkannya)
-* `AnthropicException` - Kelas dasar untuk semua exception
-
-### Pemetaan kode status
-
-| Status | Exception |
-| ----- | ----- |
-| 400 | `BadRequestException` |
-| 401 | `UnauthorizedException` |
-| 403 | `PermissionDeniedException` |
-| 404 | `NotFoundException` |
-| 422 | `UnprocessableEntityException` |
-| 429 | `RateLimitException` |
-| 5xx | `InternalServerException` |
-| lainnya | `UnexpectedStatusCodeException` |
-
-`SseException` dilempar untuk error yang terjadi selama streaming SSE setelah respons HTTP awal berhasil.
-
-```java
-import com.anthropic.errors.*;
-
-try {
-    Message message = client.messages().create(params);
-} catch (RateLimitException e) {
-    IO.println("Rate limited, retry after: " + e.headers());
-} catch (UnauthorizedException e) {
-    IO.println("Invalid API key");
-} catch (AnthropicServiceException e) {
-    IO.println("API error: " + e.statusCode());
-} catch (AnthropicIoException e) {
-    IO.println("Network error: " + e.getMessage());
-}
-```
+Setiap exception untuk respons error merupakan turunan dari `AnthropicServiceException`. Untuk membaca header respons, tangkap kelas tersebut lalu panggil `headers()`. Misalnya, `e.headers().values("retry-after")` mengembalikan nilai-nilai header tersebut sebagai list.
 
 ## ID permintaan
 
@@ -659,17 +624,17 @@ Ini dapat digunakan untuk mencatat permintaan yang gagal dan melaporkannya kemba
 
 ## Percobaan ulang
 
-SDK secara otomatis mencoba ulang 2 kali secara default, dengan exponential backoff singkat di antara permintaan.
+Secara default, SDK mencoba ulang error tertentu hingga dua kali (total tiga percobaan).
 
-Hanya tipe error berikut yang dicoba ulang:
+SDK mencoba ulang tipe error berikut:
 
-* Error koneksi (misalnya, karena masalah konektivitas jaringan)
+* Error koneksi dan timeout
 * 408 Request Timeout
 * 409 Conflict
-* 429 Rate Limit
-* 5xx Internal
+* 429 Too Many Requests
+* Error server 5xx
 
-API juga dapat secara eksplisit menginstruksikan SDK untuk mencoba ulang atau tidak mencoba ulang suatu permintaan.
+Jika respons memiliki header `x-should-retry` (`true` atau `false`), SDK mengikuti header tersebut alih-alih status. Di antara percobaan, SDK menunggu selama yang ditentukan oleh header `retry-after`, atau SDK menggunakan exponential backoff yang singkat.
 
 Untuk menetapkan jumlah percobaan ulang kustom, konfigurasikan klien menggunakan metode `maxRetries`:
 

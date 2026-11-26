@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/how-claude-code-works
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 7edd19621761a2efc5e6f47e04e3b9f744525b6ed8859cf7832b3cd935552d5e
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 0542e1d7bd66e6a2a22b2d590dff1db8bbbffe878f21278d2037f926b99b41ef
 ---
 
 > ## Documentation Index
@@ -25,7 +25,7 @@ When you give Claude a task, it works through three phases: **gather context**, 
 
 The loop adapts to what you ask. A question about your codebase might only need context gathering. A bug fix cycles through all three phases repeatedly. A refactor might involve extensive verification. Claude decides what each step requires based on what it learned from the previous step, chaining dozens of actions together and course-correcting along the way.
 
-You're part of this loop too. You can interrupt at any point to steer Claude in a different direction, provide additional context, or ask it to try a different approach. Claude works autonomously but stays responsive to your input.
+You're part of this loop too. You can interrupt at any point to steer Claude in a different direction, provide additional context, or ask it to try a different approach.
 
 The agentic loop is powered by two components: [models](#models) that reason and [tools](#tools) that act. Claude Code is the layer around the model that provides the tools and manages the context the model sees. This surrounding layer is what the term agentic harness refers to.
 
@@ -138,7 +138,7 @@ To change or remove the attribution lines, set [`attribution`](https://code.clau
 
 #### When context fills up
 
-Claude Code manages context automatically as you approach the limit. It compacts the conversation into a summary. The summary keeps your requests and key code snippets, but detailed instructions from early in the conversation may be lost. Put persistent rules in CLAUDE.md rather than relying on conversation history.
+Claude Code manages context automatically as you approach the limit. It compacts the conversation into a summary. The summary keeps your requests and key code snippets, but detailed instructions from early in the conversation may be lost. Put persistent rules in CLAUDE.md.
 
 To control what's preserved during compaction, add a "Compact Instructions" section to CLAUDE.md or run `/compact` with a focus (like `/compact focus on the API changes`).
 

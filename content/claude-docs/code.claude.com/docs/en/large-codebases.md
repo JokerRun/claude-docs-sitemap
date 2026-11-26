@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/large-codebases
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: cb93dfcc2bb8cbefdecab2b4e1c1464de20449a2e89d47c459d9ed7fa68587e1
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 672c530f0ba7e26782daf13f7e51d0f7aa065da7351cf341ec29f49e8c9438d6
 ---
 
 > ## Documentation Index
@@ -42,7 +42,7 @@ Each setting below is independent. They layer rather than replace each other, so
 
 ### The example monorepo
 
-The examples throughout this page refer to a monorepo with three packages. The same patterns work in a large single-tree codebase: where an example uses `packages/api/`, substitute your own subsystem directory such as `src/backend/` or `lib/core/`.
+The examples throughout this page refer to a monorepo with three packages. Where an example uses `packages/api/`, substitute your own subsystem directory such as `src/backend/` or `lib/core/`.
 
 ```text theme={null}
 monorepo/

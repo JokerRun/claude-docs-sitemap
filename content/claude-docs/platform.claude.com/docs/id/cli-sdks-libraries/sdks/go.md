@@ -1,8 +1,8 @@
 ---
 source: platform
 url: https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go
-fetched_at: 2026-11-12T02:13:38.637181Z
-sha256: 60176f861c82d66b8fd1f37e0bd92f720b1e5f63f638db8bd14703000049c858
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 4c8427073759d00462027906409e70018fbf78f5004070c338eeaf00ef7a6b8d
 ---
 
 ---
@@ -481,13 +481,19 @@ if err != nil {
 }
 ```
 
+Untuk membuat percabangan berdasarkan kode error dan status HTTP, lihat [Menangani error](https://platform.claude.com/docs/id/api/handle-errors).
+
 Ketika error lain terjadi, error tersebut dikembalikan tanpa dibungkus; misalnya, jika transport HTTP gagal, Anda mungkin menerima `*url.Error` yang membungkus `*net.OpError`.
 
 ## Percobaan ulang
 
-Error tertentu secara otomatis dicoba ulang 2 kali secara default, dengan exponential backoff yang singkat. Secara default, SDK mencoba ulang semua error koneksi, 408 Request Timeout, 409 Conflict, 429 Rate Limit, dan error Internal >=500.
+Secara default, SDK mencoba ulang error tertentu hingga dua kali (total tiga percobaan). SDK mencoba ulang [beberapa metode create](https://platform.claude.com/docs/id/cli-sdks-libraries/sdks/go#retries-for-create-methods) dalam lebih sedikit kasus.
 
-Anda dapat menggunakan opsi `WithMaxRetries` untuk mengonfigurasi atau menonaktifkan ini:
+Untuk sebagian besar metode, seperti `client.Messages.New()`, SDK mencoba ulang error koneksi, timeout, 408 Request Timeout, 409 Conflict, 429 Too Many Requests, dan error server 5xx.
+
+Untuk metode-metode ini, jika respons memiliki header `x-should-retry` (`true` atau `false`), SDK mengikuti header tersebut alih-alih status. Di antara percobaan, SDK menunggu selama yang ditentukan oleh header `retry-after`, atau SDK menggunakan exponential backoff yang singkat.
+
+Gunakan `option.WithMaxRetries()` untuk mengonfigurasi atau menonaktifkan percobaan ulang:
 
 ```go
 // Konfigurasikan default untuk semua permintaan:
@@ -509,6 +515,17 @@ client := anthropic.NewClient(
 		option.WithMaxRetries(5),
 	)
 ```
+
+### Percobaan ulang untuk metode create
+
+Untuk menghindari sumber daya duplikat, SDK mencoba ulang beberapa metode create, seperti `client.Beta.Agents.New()`, hanya dalam dua kasus:
+
+* API mengembalikan respons 429 Too Many Requests.
+* SDK tidak dapat terhubung ke API, sehingga permintaan tidak pernah dikirim.
+
+Dalam kedua kasus tersebut, API belum memproses permintaan, sehingga percobaan ulang tidak dapat membuat sumber daya kedua.
+
+Metode-metode ini mengembalikan error lainnya tanpa percobaan ulang, bahkan jika respons memiliki `x-should-retry: true`. API mungkin telah membuat sumber daya jika terjadi error server atau jika koneksi terputus atau mengalami timeout setelah SDK mengirim permintaan. Periksa apakah sumber daya tersebut sudah ada sebelum Anda memanggil metode tersebut lagi.
 
 ## Timeout
 

@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/managed-settings
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 7a54e72aee8a05d8cd9134fc07dcf6e93774bffdb25b6aff36ac524eea601489
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: b1630f0456ed3a8fb47117beb5084e1f4e33fa7bc0fcb9b59d4bdce092e21300
 ---
 
 > ## Documentation Index
@@ -144,7 +144,7 @@ Both settings rank the sources the same way. These terms recur in this section:
 
 Claude Code checks the sources in this order, highest priority first:
 
-1. Remote settings, delivered from claude.ai as [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md) or by a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway). Claude Code fetches this source only when the session meets one of these conditions:
+1. Remote settings, delivered from claude.ai as [server-managed settings](https://code.claude.com/docs/en/server-managed-settings.md) or by a [Claude apps gateway](https://code.claude.com/docs/en/claude-apps-gateway). Claude Code can fetch this source when the session meets one of these conditions:
 
    * It has an [eligible credential](https://code.claude.com/docs/en/server-managed-settings.md#platform-availability)
    * It signs in to a gateway with `/login`

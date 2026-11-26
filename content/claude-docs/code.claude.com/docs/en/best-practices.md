@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/best-practices
-fetched_at: 2026-11-25T02:14:09.890537Z
-sha256: 1f5d17e5bd9e7de9f90e6e852ae962ced3f9ec9883017dbc0dc9ba2f0a5ed717
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 37be345e32beaaa7866eb84a7f2c3a91f27158ed39718a5c9abf56bde0baf2d1
 ---
 
 > ## Documentation Index
@@ -47,7 +47,7 @@ When a session doesn't go the way you expected, it's almost always one of these:
 
 Every instruction you give Claude Code is one of these:
 
-1. Non-deterministic: you write the instruction, and Claude (the model) reads it. This can be your prompt, `CLAUDE.md`, or a skill. The model then decides what to do with this information. It usually follows your commands, and current models are good at understanding your intent without much context, but there's no *guarantee* that it'll follow your instructions. It can still decide not to do things, or do other things.
+1. Non-deterministic: you write the instruction, and Claude (the model) reads it. This can be your prompt, `CLAUDE.md`, or a skill. The model then decides what to do with this information. It usually follows your commands, and current models are good at understanding your intent without much context, but there's no *guarantee* that it'll follow your instructions.
 2. Deterministic: you configure the instruction, and Claude Code (the harness) *has* to execute this. This can be a hook, a deny rule, or a managed setting. Claude Code applies this every time, no matter what the model decided to do.
 
 Most things in Claude Code come in both forms:

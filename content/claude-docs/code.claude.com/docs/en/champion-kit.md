@@ -1,8 +1,8 @@
 ---
 source: code
 url: https://code.claude.com/docs/en/champion-kit
-fetched_at: 2026-11-24T02:13:59.956186Z
-sha256: d69c906d4eeadefa85e833eff305715bfbcd0e935c0082776c5c331cab5cae8f
+fetched_at: 2026-11-26T02:13:38.275404Z
+sha256: 8ebc927881e15bc476c13b2fabc188cfa7b6146ffec176189d49c1b3eaf7185e
 ---
 
 > ## Documentation Index
@@ -137,7 +137,7 @@ The objective is to establish a small number of lightweight habits that allow mo
 
 ### Thirty-day playbook
 
-If a loose plan is helpful, the sequence below reflects what tends to work across most teams. Adjust freely to fit your context.
+If a loose plan is helpful, the sequence below reflects what tends to work across most teams.
 
 **1. Week 1: Seed the channel**
 
